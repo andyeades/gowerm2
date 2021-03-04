@@ -1,0 +1,42 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+
+<?php if ($block->getCollection()->getSize()): ?>
+    <div class="toolbar toolbar-products" data-mage-init='<?= /* @escapeNotVerified */ $block->getWidgetOptionsJson() ?>'>
+        <?php if ($block->isExpanded()){ include ($block->getTemplateFile('Elevate_LandingPages::product/list/toolbar/viewmode.phtml')); } ?>
+
+        <?php //include ($block->getTemplateFile('Elevate_LandingPages::product/list/toolbar/amount.phtml')) ?>
+
+        <?php
+
+        //landingpages.js has a click event to open the filter ?>
+     <!-- <button class="ev_ln_filter_click ev_ln_toolbar_btn">
+      <span><?= /* @escapeNotVerified */
+        __('Filter') ?></span> <i class="fa fa-filter"></i>
+      </button>
+-->
+        <?= $block->getPagerHtml() ?>
+
+        <?php //include ($block->getTemplateFile('Elevate_LandingPages::product/list/toolbar/limiter.phtml')) ?>
+
+        <?php if ($block->isExpanded()): ?>
+            <?php //include ($block->getTemplateFile('Elevate_LandingPages::product/list/toolbar/sorter.phtml')) ?>
+        <?php endif; ?>
+    </div>
+<?php endif ?>
+

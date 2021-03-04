@@ -1,0 +1,174 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Blog\Block\Frontend $block */
+?>
+<?php $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+
+if (strpos($url,'posturite') !== false)
+{
+
+
+
+    ?>
+  <style>
+
+    .mp-post-info {
+      font-size: 12px;
+      color: #979797;
+    }
+    .evblog #page-main-outer h2 {
+      margin-top: 20px;
+      font-size: 15px;
+    }
+    .post-image img.img-responsive {
+      max-height: 100%;
+      height: 100%;
+      width: 100%;
+      max-width: initial;
+      right: 0;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      border: none;
+    }
+    .post-image {
+      min-height: 150px;
+      position: relative;
+      max-height: 150px;
+      overflow: hidden;
+      /* border-radius: 10px; */
+    }
+    .post-item-wraper {
+      border: 1px solid #eee;
+      padding: 0 !important;
+      position: relative;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .evblog .post-list-item {
+      box-shadow: none !important;
+      border-bottom: 0px solid gray;
+      margin-bottom: 25px;
+      border: 0px solid #ccc !important;
+      align-items: stretch;
+      flex-grow: 1;
+    }
+    .post-list-body {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    pager {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+    .pages {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      order: 1;
+      margin-left: auto;
+      margin: 0 0 1rem 0;
+    }
+    .limiter {
+      order: 4;
+      margin-left: auto;
+    }
+  </style>
+
+<?php } ?>
+
+<div class="post-list-content" id="mpblog-list-container">
+    <?php $postCollection = $block->getPostCollection(); ?>
+    <?php if ($postCollection && $postCollection->getSize()) : ?>
+        <div class="post-list-body">
+            <?php $i = 1 ?>
+            <?php /** @var \Mageplaza\Blog\Model\Post $post */
+            foreach ($postCollection as $post) : ?>
+                <div class="post-list-item col-mp<?= $block->isGridView() ? ' post-item-grid mp-3 mp-xs-12' : ' post-item-list mp-12'; ?>">
+                    <div class="post-item-wraper">
+                        <?php if ($post->getImage()) : ?>
+                            <div class="post-image">
+                                <a href="<?= str_replace('/post', '', $post->getUrl()) ?>">
+                                    <img class="img-responsive"
+
+
+                                  <?php
+
+                                  $image = $post->getImage()
+                                  ?>
+
+
+                                        <? //$block->resizeImage($post->getImage(), '400x'); ?>
+                                         src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
+                                         alt="<?= $block->escapeHtml($post->getName()); ?>"/>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        <div class="post-info-wraper">
+                            <h2 class="mp-post-title">
+                                <a class="post-link-title" title="<?= $block->escapeHtml($post->getName()); ?>"
+                                   href="<?= str_replace('/post', '', $post->getUrl()) ?>">
+                                    <?= $post->getName(); ?>
+                                </a>
+                            </h2>
+                            <div class="mp-post-info">
+                                <?= $block->getPostInfo($post); ?>
+                            </div>
+                            <div class="post-short-description">
+                                <p><?= $block->maxShortDescription($post->getShortDescription()); ?></p>
+                            </div>
+                            <div class="mp-clearfix"></div>
+                            <div class="mp-post-meta-info mp-alignright">
+                                <div class="actions">
+                                    <a class="mp-read-more" href="<?= $post->getUrl(); ?>"
+                                       title="<?= __('Read More'); ?>">
+                                        <?= __('Read More'); ?>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php if ($i++ % 4 == 0) : ?>
+                    <div class="mp-clear"></div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <div class="mp-clear"></div>
+        </div>
+        <?= $block->getPagerHtml() ?>
+    <?php else : ?>
+        <?= __('There are no posts at this moment'); ?>
+    <?php endif; ?>
+    <?= $this->getChildHtml('additional'); ?>
+</div>
+<script>
+    require(['jquery'], function ($) {
+        $('.limiter').css('float', 'right');
+    });
+</script>
+

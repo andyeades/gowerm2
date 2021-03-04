@@ -1,0 +1,80 @@
+<?php
+/**
+ * FME Extensions
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the fmeextensions.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.fmeextensions.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category  FME
+ * @package   FME_Productattachments
+ * @copyright Copyright (c) 2019 FME (http://fmeextensions.com/)
+ * @license   https://fmeextensions.com/LICENSE.txt
+ */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+
+$feefo_link_sku = '';
+$feefo_link_sku = $_product->getData('feefo_link_sku');
+if (empty($feefo_link_sku)) {
+    $feefo_link_sku = $_product->getSku();
+}
+?>
+
+<style>
+    .feefowidget-header-information-title {
+        display: none !important;
+    }
+</style>
+<div class="feefo-loading">Loading Reviews...</div>
+
+<div id="feefo-product-review-widgetId" class="feefo-review-widget-product" data-product-sku="<?php echo $feefo_link_sku; ?>"></div>
+
+<script type="text/javascript">
+    // Only Load Feefo Widget if Tab is clicked
+    var reviews_loaded = 0;
+    jQuery('#tab-label-product-info-reviews-title').on('click', function (e) {
+        url = 'https://api.feefo.com/api/javascript/www.happybeds.co.uk';
+        if (reviews_loaded == 0) {
+            console.log('reviews_loaded === 0');
+            jQuery.getScript(url, function () {
+                    reviews_loaded = 1;
+                    jQuery(".feefo-loading").hide();
+
+                    let intervalId = window.setInterval(function () {
+
+                        if (typeof FeefoOpenReviewsAccordion == 'function') {
+
+                            FeefoOpenReviewsAccordion();
+                            if (jQuery(".feefowidget-global-container-body-content-controls").length) {
+                                window.clearInterval(intervalId);
+                            }
+                        }
+
+                    })
+
+                }, 1000)
+
+
+//jQuery('#loading-reviews').hide();
+            };
+
+
+
+
+    });
+
+    function load_reviews() {
+
+    }
+</script>
+
+

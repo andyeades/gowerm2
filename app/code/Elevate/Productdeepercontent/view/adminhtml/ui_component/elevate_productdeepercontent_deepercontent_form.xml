@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">elevate_productdeepercontent_deepercontent_form.deepercontent_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button class="Elevate\Productdeepercontent\Block\Adminhtml\Deepercontent\Edit\BackButton" name="back"/>
+			<button class="Elevate\Productdeepercontent\Block\Adminhtml\Deepercontent\Edit\DeleteButton" name="delete"/>
+			<button class="Elevate\Productdeepercontent\Block\Adminhtml\Deepercontent\Edit\SaveButton" name="save"/>
+			<button class="Elevate\Productdeepercontent\Block\Adminhtml\Deepercontent\Edit\SaveAndContinueButton" name="save_and_continue"/>
+		</buttons>
+		<namespace>elevate_productdeepercontent_deepercontent_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>elevate_productdeepercontent_deepercontent_form.deepercontent_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="deepercontent_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider class="Elevate\Productdeepercontent\Model\Deepercontent\DataProvider" name="deepercontent_form_data_source">
+			<settings>
+				<requestFieldName>deepercontent_id</requestFieldName>
+				<primaryFieldName>deepercontent_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field formElement="input" name="deepercontent_title" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Deepercontent</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Title</label>
+				<dataScope>deepercontent_title</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+
+        <field name="deepercontent_image" formElement="imageUploader" sortOrder="10">
+            <settings>
+                <label translate="true">Image</label>
+                <componentType>imageUploader</componentType>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">elevate_productdeepercontent/deepercontent/upload</param>
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field formElement="textarea" name="deepercontent" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Deepercontent</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Content</label>
+                <dataScope>deepercontent</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+	</fieldset>
+</form>

@@ -1,0 +1,72 @@
+<config>
+    <default>
+        <punchout2go_purchaseorder>
+            <authentication>
+                <api_key>abcd1234</api_key>
+                <from_identity>1001</from_identity>
+                <to_identity>1001</to_identity>
+                <shared_secret>abracadabra</shared_secret>
+            </authentication>
+            <orders>
+                <allow_qty_edits>1</allow_qty_edits>
+                <allow_item_removals>1</allow_item_removals>
+                <shipping_policy>a:1:{i:0;a:1:{s:3:"key";s:29:"purchase_order/purchase_order";}}</shipping_policy>
+                <apply_provided_tax>0</apply_provided_tax>
+                <apply_provided_shipping>0</apply_provided_shipping>
+                <payment_method>orderrequest</payment_method>
+                <inventory_processed>0</inventory_processed>
+                <notify_customer>1</notify_customer>
+                <successful_order_status>pending</successful_order_status>
+            </orders>
+            <default_billing_address>
+                <enabled>1</enabled>
+                <firstname>Default</firstname>
+                <lastname>Buyer</lastname>
+                <street_line1>3317 Berkmar Dr.</street_line1>
+                <street_line2>Suite 1</street_line2>
+                <city>Charlottesville</city>
+                <postcode>22902</postcode>
+                <country_id>US</country_id>
+                <region_id>VA</region_id>
+                <telephone>888-623-2374</telephone>
+            </default_billing_address>
+            <default_shipping_address>
+                <enabled>1</enabled>
+                <firstname>Default</firstname>
+                <lastname>Recipient</lastname>
+                <street_line1>3317 Berkmar Dr.</street_line1>
+                <street_line2>Suite 2</street_line2>
+                <city>Charlottesville</city>
+                <postcode>22902</postcode>
+                <country_id>US</country_id>
+                <region_id>VA</region_id>
+                <telephone>888-623-2374</telephone>
+            </default_shipping_address>
+            <system>
+                <logging>1</logging>
+            </system>
+        </punchout2go_purchaseorder>
+        <carriers>
+            <orderrequest>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>Punchout2go\Purchaseorder\Model\Carrier\Orderrequest</model>
+                <name>Order Request</name>
+                <price>0</price>
+                <title>PO</title>
+                <type>1</type>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </orderrequest>
+        </carriers>
+        <payment>
+            <orderrequest>
+                <active>1</active>
+                <model>Punchout2go\Purchaseorder\Model\Payment\Method\Orderrequest</model>
+                <order_status>pending</order_status>
+                <title>Procurement Order Request</title>
+                <allowspecific>0</allowspecific>
+                <group>offline</group>
+            </orderrequest>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,76 @@
+<?php
+
+$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+if (strpos($url,'happybeds') !== false) {
+?>
+<style>
+  .cat-menu img.cat-icon {
+        text-align: center;
+        width: 90px;
+        height: auto;
+        margin-bottom: 20px;
+        filter: brightness(100%)!important;
+        -webkit-filter: brightness(100%)!important;
+        -moz-filter: brightness(100%)!important;
+        -o-filter: brightness(100%)!important;
+        -ms-filter: brightness(100%)!important;
+    }
+    .cat-menu li a {
+        display: block;
+        color: #5c5c66;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+   .cat-menu li {
+        flex: 1 1 auto;
+    }
+
+   .cat-menu {
+        width: 100%;
+        margin: 0 auto;
+        padding-bottom: 30px;
+        padding-top: 30px;
+    }
+  .cat-menu ul {
+        padding: 0;
+        overflow: hidden;
+        margin: auto;
+        display: flex;
+    }
+    @media screen and (min-width: 768px){
+        .evblog .cat-menu {
+            display: block!important;
+        }
+    }
+    @media screen and (max-width: 767.98px){
+       .cat-menu ul {
+            flex-wrap: wrap;
+        }
+        .cat-menu li {
+            flex: 1 1 50%;
+        }
+         .cat-menu img.cat-icon {
+            width: 40px;
+            margin-bottom: 0;
+        }
+        .cat-menu li a {
+            padding: 5px 0;
+            font-size: 12px;
+        }
+    }
+</style>
+<img src="https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/comfort-zone-blog-banner.jpg" width="100%" >
+<div class="cat-menu">
+    <ul>
+        <li><a class="active" href="/blog/"><img class="cat-icon" src="https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/blog-icons/all-dark.svg" data-pagespeed-url-hash="3527497536" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"><br>All</a></li>
+        <li><a href="/blog/category/happy-beds-news/"><img class="cat-icon" src="https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/blog-icons/happy-beds-news-dark.svg" data-pagespeed-url-hash="3722251012" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"><br>Happy Beds News</a></li>
+        <li><a href="/blog/category/interior-inspiration/"><img class="cat-icon" src="https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/blog-icons/interior-inspiration-dark.svg" data-pagespeed-url-hash="1484149852" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"><br>Interior Inspiration</a></li>
+        <li><a href="/blog/category/lifestyle/"><img class="cat-icon" src="https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/blog-icons/lifestyle-and-wellbeing-dark.svg" data-pagespeed-url-hash="2478239110" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"><br> Lifestyle and Wellbeing</a></li>
+        <li><a href="/blog/category/sleep-science/"><img class="cat-icon" src="https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/blog-icons/sleep-science-dark.svg" data-pagespeed-url-hash="2361792635" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"><br>Sleep Science</a></li>
+    </ul>
+</div>
+<?php } ?>
+

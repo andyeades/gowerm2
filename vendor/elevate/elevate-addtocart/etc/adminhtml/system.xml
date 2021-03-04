@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="elevate" translate="label" sortOrder="850">
+            <label>Elevate</label>
+        </tab>
+        <section id="elevate_addtocart" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Elevate Add To Cart / Minicart</label>
+            <tab>elevate</tab>
+            <resource>Elevate_AddToCart::addtocart</resource>
+            <group id="minicart" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Minicart</label>
+                <field id="no_items_text" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>No Items Text</label>
+                </field>
+
+                <field id="list_mode" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>List Mode</label>
+                    <source_model>Elevate\AddToCart\Model\Config\Source\ListMode</source_model>
+                </field>
+
+                <field id="price_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Price Type</label>
+                    <source_model>Elevate\AddToCart\Model\Config\Source\PriceType</source_model>
+                </field>
+
+
+                <field id="cart_icon_class" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cart Icon Class</label>
+                    <comment>Icon Class To Display (if not using a custom cart icon) - default: fa fa-shopping-cart</comment>
+                </field>
+
+                <field id="custom_cart_icon_on" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Cart Icon On</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+
+                <field id="custom_cart_icon_html" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Custom Cart Html</label>
+                    <comment>Html Block Appearing to Side of Minicart Icon/Count</comment>
+                </field>
+                <field id="custom_cart_icon_styling" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Custom Cart Css</label>
+                    <comment>Add custom css for icon</comment>
+                </field>
+
+                <field id="custom_cart_icon" translate="label" type="image" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Cart Icon</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">carticon</upload_dir>
+                    <base_url type="media" scope_info="1">carticon</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png, svg.]]></comment>
+                </field>
+
+            </group>
+
+            <group id="productview" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Page Settings</label>
+                <field id="qty_label_text" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Quantity Label Text</label>
+                </field>
+
+                <field id="qty_display_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantity Display Type</label>
+                    <source_model>Elevate\AddToCart\Model\Config\Source\QtyDisplayType</source_model>
+                </field>
+                <field id="qty_select_max" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantity Select Max Value</label>
+                    <validate>validate-zero-or-greater validate-digits</validate>
+                    <depends>
+                        <field id="qty_display_type">select</field>
+                    </depends>
+                </field>
+
+                <field id="actions_position" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add To Cart Button Position</label>
+                    <source_model>Elevate\AddToCart\Model\Config\Source\ActionsPosition</source_model>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

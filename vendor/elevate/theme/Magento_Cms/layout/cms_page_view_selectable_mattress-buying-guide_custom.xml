@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs" remove="true"/>
+        <referenceContainer name="top.container">
+
+
+
+        </referenceContainer>
+        <referenceContainer name="main">
+            <container name="guides-outer" htmlTag="div" htmlClass="guides">
+                <block class="Magento\Theme\Block\Html\Title" name="page.main.title" template="Magento_Cms::/happybeds/guides-header.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="ev.cms.page.guides" after="page.main.title" template="Magento_Cms::/happybeds/guides-menu.phtml" />
+            </container>
+        </referenceContainer>
+
+        <move element="content" destination="guides-outer" after="-"/>
+    </body>
+</page>
+

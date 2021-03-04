@@ -1,0 +1,748 @@
+$multishipping-checkout-include: 0 !default;
+
+$multishipping-body-background-color: false !default;
+
+$multishipping-checkout-logo-display: block !default;
+$multishipping-checkout-logo-width: 70% !default;
+$multishipping-checkout-logo-width-desktop: 50% !default;
+
+$multishipping-checkout-logo-margin: 2rem auto 4rem auto !default;
+$multishipping-checkout-logo-margin-desktop: 2rem auto 4rem auto !default;
+
+$multishipping-checkout-actionstoolbar-back-border: false !default;
+
+$multishipping-actionstoolbar-back-order: 1 !default;
+$multishipping-actionstoolbar-update-order: 2 !default;
+$multishipping-actionstoolbar-add-order: 2 !default;
+$multishipping-actionstoolbar-secondary-flex: flex !default;
+
+
+$multishipping-actionstoolbar-action-margin: 0 0 0.5rem !default;
+$multishipping-actionstoolbar-action-margin-desktop: 0 0.5rem 0 0 !default;
+
+
+
+
+$multishipping-actionstoolbar-marginleft: false !default;
+$multishipping-actionstoolbar-marginleft-desktop: 0 !important !default;
+$multishipping-actionstoolbar-flex: flex !default;
+$multishipping-actionstoolbar-alignitems: center !default;
+$multishipping-actionstoolbar-flexwrap: wrap !default;
+$multishipping-actionstoolbar-primary-width: 100% !default;
+$multishipping-actionstoolbar-primary-width-desktop: 35% !default;
+
+
+$multishipping-actionstoolbar-primary-order: 2 !default;
+$multishipping-actionstoolbar-primary-order-desktop: 2 !default;
+$multishipping-actionstoolbar-primary-order-mobiletabletmax: 1 !default;
+$multishipping-actionstoolbar-primary-margin: 2rem 0 0 !default;
+$multishipping-actionstoolbar-primary-margin-desktop: 0 !default;
+$multishipping-actionstoolbar-primary-margin-mobiletabletmax: 0 !default;
+
+
+$multishipping-actionstoolbar-secondary-width: 100% !default;
+$multishipping-actionstoolbar-secondary-width-desktop: 65% !default;
+$multishipping-actionstoolbar-secondary-order: 1 !default;
+$multishipping-actionstoolbar-secondary-order-desktop: 1 !default;
+$multishipping-actionstoolbar-secondary-order-mobiletabletmax: 2 !default;
+$multishipping-actionstoolbar-secondary-margin: 0 !default;
+$multishipping-actionstoolbar-secondary-margin-desktop: 0 !default;
+$multishipping-actionstoolbar-secondary-margin-mobiletabletmax: 2rem 0 0 0 !default;
+$multishipping-actionstoolbar-secondary-display: flex !default;
+$multishipping-actionstoolbar-secondary-flexwrap: wrap !default;
+
+$multishipping-actionstoolbar-tertiary-width: 100% !default;
+$multishipping-actionstoolbar-tertiary-width-desktop: 100% !default;
+$multishipping-actionstoolbar-tertiary-order: 3 !default;
+$multishipping-actionstoolbar-tertiary-order-desktop: 3 !default;
+$multishipping-actionstoolbar-tertiary-order-mobiletabletmax: 3 !default;
+$multishipping-actionstoolbar-tertiary-margin: 2rem 0 0 0 !default;
+$multishipping-actionstoolbar-tertiary-margin-desktop: false !default;
+$multishipping-actionstoolbar-tertiary-margin-mobiletabletmax: false !default;
+
+$multishipping-actionstoolbar-tertiary-display: flex !default;
+$multishipping-actionstoolbar-tertiary-flexwrap: wrap !default;
+
+$multishipping-actionstoolbar-tertiary-action-margin: 0 auto !default;
+
+
+
+
+
+// Primary action
+
+//$multishiping-actionstoolbar-pri-proceedtocheckout-fontsize: 0.875rem !default;
+
+$multishipping-actionstoolbar-primary-action-margin: 0 !default;
+$multishipping-actionstoolbar-primary-action-margin-desktop: 0 !default;
+
+
+// Continue/Submit Action
+
+$multishipping-primaryaction-cta-color: #fff !default;
+$multishipping-primaryaction-cta-backgroundcolor: #02c934 !default;
+$multishipping-primaryaction-cta-border-color: #02c934 !default;
+$multishipping-primaryaction-cta-border-radius: 0.25rem !default;
+$multishipping-primaryaction-cta-fontweight: 700 !default;
+$multishipping-primaryaction-cta-text-transform: uppercase !default;
+$multishipping-primaryaction-cta-padding: 0.9375rem 1.25rem !default;
+$multishipping-primaryaction-cta-fontsize: 1rem !default;
+$multishipping-primaryaction-cta-fontsize-mobilemax: false !default;
+
+
+$multishipping-primaryaction-cta-hover-color: false !default;
+$multishipping-primaryaction-cta-hover-backgroundcolor: darken($multishipping-primaryaction-cta-backgroundcolor, 15%) !default;
+$multishipping-primaryaction-cta-hover-border-color: darken( $multishipping-primaryaction-cta-border-color, 15%) !default;
+
+
+
+
+$multishipping-tablewrapper-margin: 1rem 0 0 0 !default;
+$multishipping-blockshipping-bc-display: flex !default;
+$multishipping-blockshipping-bc-flexwrap: wrap !default;
+
+$multishipping-blockshipping-bc-title-width: 100% !default;
+
+$multishipping-boxshippingmethod-width: 100% !default;
+$multishipping-boxshippingmethod-width-desktop: 100% !default;
+$multishipping-boxshippingmethod-order: 3 !default;
+$multishipping-boxshippingmethod-order-desktop: 3 !default;
+$multishipping-boxshippingmethod-margin: 0 !default;
+$multishipping-boxshippingmethod-margin-mobiletabletmax: 1.5rem 0 0 0 !default;
+$multishipping-boxshippingmethod-margin-desktop: 0 !default;
+$multishipping-boxshippingmethod-display: false !default;
+$multishipping-boxshippingmethod-flexwrap: false !default;
+
+$multishipping-boxshippingmethod-boxtitle-display: none !default;
+
+$multishipping-boxshippingaddress-width: 100% !default;
+$multishipping-boxshippingaddress-width-desktop: 50% !default;
+$multishipping-boxshippingaddress-order: 1 !default;
+
+$multishipping-boxshippingaddress-order-desktop: 1 !default;
+$multishipping-boxshippingaddress-margin: 0 !default;
+$multishipping-boxshippingaddress-margin-desktop: 0 !default;
+$multishipping-boxshippingaddress-display: flex !default;
+$multishipping-boxshippingaddress-flexwrap: wrap !default;
+
+$multishipping-boxshippingaddress-aligncontent: flex-start !default;
+
+$multishipping-boxshippingaddress-boxtitle-width: 100% !default;
+$multishipping-boxshippingaddress-boxtitle-width-desktop: 100% !default;
+$multishipping-boxshippingaddress-boxtitle-order: 1 !default;
+$multishipping-boxshippingaddress-boxtitle-order-desktop: 1 !default;
+$multishipping-boxshippingaddress-boxtitle-margin: 0 0 0.5rem 0 !default;
+$multishipping-boxshippingaddress-boxtitle-margin-desktop: false !default;
+
+$multishipping-boxshippingaddress-boxtitle-a-margin: 0 0 0 1rem !default;
+
+$multishipping-boxshippingaddress-boxcontent-width: 100% !default;
+$multishipping-boxshippingaddress-boxcontent-width-desktop: 100% !default;
+$multishipping-boxshippingaddress-boxcontent-order: 2 !default;
+$multishipping-boxshippingaddress-boxcontent-order-desktop: 2 !default;
+$multishipping-boxshippingaddress-boxcontent-margin: 0 !default;
+$multishipping-boxshippingaddress-boxcontent-margin-desktop: 0 !default;
+
+
+$multishipping-boxitems-boxtitle-width: 100% !default;
+$multishipping-boxitems-boxtitle-width-desktop: 100% !default;
+$multishipping-boxitems-boxtitle-order: 1 !default;
+$multishipping-boxitems-boxtitle-order-desktop: 1 !default;
+$multishipping-boxitems-boxtitle-margin: false !default;
+$multishipping-boxitems-boxtitle-margin-desktop: false !default;
+
+$multishipping-boxitems-boxtitle-a-float: right !default;
+
+
+$multishipping-boxitems-boxcontent-width: 100% !default;
+$multishipping-boxitems-boxcontent-width-desktop: 100% !default;
+$multishipping-boxitems-boxcontent-order: 2 !default;
+$multishipping-boxitems-boxcontent-order-desktop: 2 !default;
+$multishipping-boxitems-boxcontent-margin: 0 !default;
+$multishipping-boxitems-boxcontent-margin-desktop: 0 !default;
+
+
+$multishipping-boxitems-width: 100% !default;
+$multishipping-boxitems-width-desktop: 50% !default;
+$multishipping-boxitems-order: 2 !default;
+$multishipping-boxitems-order-desktop: 2 !default;
+$multishipping-boxitems-margin: 0 !default;
+$multishipping-boxitems-margin-desktop: 0 !default;
+$multishipping-boxitems-display: flex !default;
+$multishipping-boxitems-flexwrap: wrap !default;
+
+$multishipping-boxitems-itemimage-width: 100px !default;
+$multishipping-boxitems-itemimage-height: false !default;
+
+
+// Block Billing
+
+$multishipping-boxbillingaddress-boxtitle-width: 100% !default;
+$multishipping-boxbillingaddress-boxtitle-width-desktop: 100% !default;
+$multishipping-boxbillingaddress-boxtitle-order: 1 !default;
+$multishipping-boxbillingaddress-boxtitle-order-desktop: 1 !default;
+$multishipping-boxbillingaddress-boxtitle-margin: false !default;
+$multishipping-boxbillingaddress-boxtitle-margin-desktop: false !default;
+
+
+// box-title a
+
+$multishipping-boxtitle-action-fontweight: 700 !default;
+
+$multishipping-boxtitle-span-margin: 0 !default;
+
+// Gift Messages
+
+
+$multishipping-giftmessagesorder-field-width: false !default;
+$multishipping-giftmessagesorder-field-order: false !default;
+$multishipping-giftmessagesorder-field-margin: false !default;
+$multishipping-giftmessagesorder-field-display: flex !default;
+$multishipping-giftmessagesorder-field-flexwrap: false !default;
+
+
+$multishipping-giftmessagesorder-field-label-display-mobilemax: none !default;
+
+$multishipping-giftmessagesorder-field-label-width: false !default;
+$multishipping-giftmessagesorder-field-label-width-desktop: false !default;
+$multishipping-giftmessagesorder-field-label-padding: false !default;
+$multishipping-giftmessagesorder-field-label-padding-desktop: false !default;
+$multishipping-giftmessagesorder-field-label-float: none !default;
+
+$multishipping-giftmessagesorder-field-label-margin: 0 !default;
+$multishipping-giftmessagesorder-field-label-margin-desktop: 0 !default;
+$multishipping-giftmessagesorder-field-label-display: flex !default;
+$multishipping-giftmessagesorder-field-label-flexwrap: wrap !default;
+
+$multishipping-giftmessagesorder-field-control-width: 100% !default;
+$multishipping-giftmessagesorder-field-control-width-desktop: 50% !default;
+$multishipping-giftmessagesorder-field-control-float: false !default;
+$multishipping-giftmessagesorder-field-control-padding: false !default;
+$multishipping-giftmessagesorder-field-control-margin: 0 !default;
+$multishipping-giftmessagesorder-field-control-margin-desktop: 0 !default;
+$multishipping-giftmessagesorder-field-control-display: flex !default;
+$multishipping-giftmessagesorder-field-control-flexwrap: wrap !default;
+
+$multishipping-giftmessages-width: false !default;
+$multishipping-giftmessages-margin: 0 0 2rem 0 !default;
+$multishipping-giftmessages-padding: 1rem !default;
+$multishipping-giftmessages-background: $theme-brand-color-2 !default;
+$multishipping-giftmessages-border: 1px solid $theme-brand-color-3 !default;
+$multishipping-giftmessages-border-radius: $border-radius !default;
+
+$multishipping-giftmessages-legend-fontweight: 700 !default;
+
+$multishipping-checkout-boxbillingaddress-boxtitle-span-margin: false !default;
+
+$multishipping-giftmessagesorder-field-margin: 0 auto !default;
+$multishipping-giftmessagesorder-field-width: false !default;
+
+$multishipping-giftmessagesorder-field-margin-desktop: 0 auto !default;
+$multishipping-giftmessagesorder-field-width-desktop: 80% !default;
+
+
+
+$multishipping-order-options-field-label-margin: false !default;
+$multishipping-order-options-field-label-width: false !default;
+
+$multishipping-order-options-field-label-margin-desktop: false !default;
+$multishipping-order-options-field-label-width-desktop: 12% !default;
+
+
+// Checkout Address Page
+
+$multishipping-checkout-addresses-pagetitlewrapper-h1-margin: 0 0 1.5rem 0 !default;
+
+
+// Multishipping Form
+
+//$ev-multishippingform-actionstoolbar-primary-continue-fontsize: 0.875rem !default;
+//$ev-multishippingform-actionstoolbar-primary-continue-fontsize-mobilemax: false !default;
+
+$ev-multishippingform-actionstoolbar-buttons-justifycontent-mobiletabletmax: center !default;
+$ev-multishippingform-actionstoolbar-buttons-justifycontent-mobilemax: center !default;
+$ev-multishippingform-actionstoolbar-buttons-justifycontent: false !default;
+
+// Order Review
+
+$multishipping-checkout-overview-grand-totals-textalign-mobiletabletmax: center !default;
+
+// Order Success
+
+$multishipping-checkout-success-h3-margin: 1.5rem 0 !default;
+
+$multishipping-checkout-success-orderslist-li-margin: 0 0 1.5rem 0 !default;
+
+@if $multishipping-checkout-include == 1 {
+
+    .multi-checkout {
+        .action.primary {
+            &.submit,
+            &.continue,
+            &.proceedtocheckout {
+                    @include co(color, $multishipping-primaryaction-cta-color);
+                    @include co(background-color, $multishipping-primaryaction-cta-backgroundcolor);
+                    @include co(border-color, $multishipping-primaryaction-cta-border-color);
+                    @include co(border-radius, $multishipping-primaryaction-cta-border-radius);
+                    @include co(font-weight, $multishipping-primaryaction-cta-fontweight);
+                    @include co(text-transform, $multishipping-primaryaction-cta-text-transform);
+                    @include co(padding, $multishipping-primaryaction-cta-padding);
+                    @include co(font-size, $multishipping-primaryaction-cta-fontsize);
+
+                    &:hover {
+                        @include co(color, $multishipping-primaryaction-cta-hover-color);
+                        @include co(background-color, $multishipping-primaryaction-cta-hover-backgroundcolor);
+                        @include co(border-color, $multishipping-primaryaction-cta-hover-border-color);
+                    }
+
+                    @include max-screen($mobilemax) {
+                        @include co(font-size, $multishipping-primaryaction-cta-fontsize-mobilemax  $multishipping-primaryaction-cta-fontsize);
+                    }
+
+
+            }
+        }
+
+    }
+
+    // Page 1
+    #checkout-multishipping-form {
+        .actions-toolbar {
+            .primary,
+            .secondary {
+                button, a {
+                    align-items: center;
+                    display: flex;
+                    @include co(justify-content, $ev-multishippingform-actionstoolbar-buttons-justifycontent);
+                    @include max-screen($mobilemax) {
+                        @include co(justify-content, $ev-multishippingform-actionstoolbar-buttons-justifycontent-mobilemax, $ev-multishippingform-actionstoolbar-buttons-justifycontent);
+                    }
+                    @include max-screen($mobiletablet-max) {
+                        @include co(justify-content, $ev-multishippingform-actionstoolbar-buttons-justifycontent-mobiletabletmax, $ev-multishippingform-actionstoolbar-buttons-justifycontent);
+                    }
+                }
+            }
+            .primary {
+                .action.primary.continue {
+
+                }
+            }
+        }
+    }
+
+
+    //All pages
+    .multi-checkout {
+
+
+
+        .gift-message-message {
+            margin-bottom: 2rem;
+        }
+        body {
+            @include co(background, $multishipping-body-background-color);
+        }
+        .logo {
+            @include co(display, $multishipping-checkout-logo-display);
+            @include co(width, $multishipping-checkout-logo-width);
+            @include co(margin, $multishipping-checkout-logo-margin);
+            @include min-screen($desktop-min) {
+                @include co(width, $multishipping-checkout-logo-width-desktop, $multishipping-checkout-logo-width);
+                @include co(margin, $multishipping-checkout-logo-margin-desktop, $multishipping-checkout-logo-margin);
+            }
+        }
+        .actions-toolbar {
+
+        }
+        .actions-toolbar {
+            @include co(margin-left, $multishipping-actionstoolbar-marginleft);
+            @include co(display, $multishipping-actionstoolbar-flex);
+            @include co(align-items, $multishipping-actionstoolbar-alignitems);
+            @include co(flex-wrap, $multishipping-actionstoolbar-flexwrap);
+            @include min-screen($desktop-min) {
+                @include co(margin-left, $multishipping-actionstoolbar-marginleft-desktop, $multishipping-actionstoolbar-marginleft);
+            }
+            > .primary {
+                @include co(width, $multishipping-actionstoolbar-primary-width);
+                @include co(order, $multishipping-actionstoolbar-primary-order);
+                @include co(margin, $multishipping-actionstoolbar-primary-margin);
+                @include min-screen($desktop-min) {
+                    @include co(width, $multishipping-actionstoolbar-primary-width-desktop, $multishipping-actionstoolbar-primary-width);
+                    @include co(order, $multishipping-actionstoolbar-primary-order-desktop, $multishipping-actionstoolbar-primary-order);
+                    @include co(margin, $multishipping-actionstoolbar-primary-margin-desktop, $multishipping-actionstoolbar-primary-margin);
+
+                }
+                @include max-screen($mobiletablet-max) {
+                    @include co(margin, $multishipping-actionstoolbar-primary-margin-mobiletabletmax, $multishipping-actionstoolbar-primary-margin);
+                    @include co(order, $multishipping-actionstoolbar-primary-order-mobiletabletmax, $multishipping-actionstoolbar-primary-order);
+                }
+
+                > .action {
+                    @include co(margin, $multishipping-actionstoolbar-primary-action-margin);
+                    @include min-screen($desktop-min) {
+                        @include co(margin, $multishipping-actionstoolbar-primary-action-margin-desktop, $multishipping-actionstoolbar-primary-action-margin);
+
+                    }
+                }
+            }
+            .secondary {
+                @include co(width, $multishipping-actionstoolbar-secondary-width);
+                @include co(order, $multishipping-actionstoolbar-secondary-order);
+                @include co(margin, $multishipping-actionstoolbar-secondary-margin);
+                @include co(display, $multishipping-actionstoolbar-secondary-display);
+                @include co(flex-wrap, $multishipping-actionstoolbar-secondary-flexwrap);
+
+                @include min-screen($desktop-min) {
+                    @include co(width, $multishipping-actionstoolbar-secondary-width-desktop, $multishipping-actionstoolbar-secondary-width);
+                    @include co(order, $multishipping-actionstoolbar-secondary-order-desktop, $multishipping-actionstoolbar-secondary-order);
+                    @include co(margin, $multishipping-actionstoolbar-secondary-margin-desktop, $multishipping-actionstoolbar-secondary-margin);
+                }
+                @include max-screen($mobiletablet-max) {
+                    @include co(margin, $multishipping-actionstoolbar-secondary-margin-mobiletabletmax, $multishipping-actionstoolbar-secondary-margin);
+                    @include co(order, $multishipping-actionstoolbar-secondary-order-mobiletabletmax, $multishipping-actionstoolbar-secondary-order);
+                }
+                .action {
+                    @include co(margin, $multishipping-actionstoolbar-action-margin);
+                    @include min-screen($desktop-min) {
+                        @include co(margin, $multishipping-actionstoolbar-action-margin-desktop, $multishipping-actionstoolbar-action-margin);
+                    }
+                }
+                .back {
+                    @include co(border, $multishipping-checkout-actionstoolbar-back-border);
+                    @include co(order, $multishipping-actionstoolbar-back-order);
+                }
+                .update {
+                    @include co(order, $multishipping-actionstoolbar-update-order);
+                }
+                .add {
+                    @include co(order, $multishipping-actionstoolbar-add-order);
+                }
+            }
+            .tertiary {
+                @include co(width, $multishipping-actionstoolbar-tertiary-width);
+                @include co(order, $multishipping-actionstoolbar-tertiary-order);
+                @include co(margin, $multishipping-actionstoolbar-tertiary-margin);
+                @include co(display, $multishipping-actionstoolbar-tertiary-display);
+                @include co(flex-wrap, $multishipping-actionstoolbar-tertiary-flexwrap);
+
+                @include min-screen($desktop-min) {
+                    @include co(width, $multishipping-actionstoolbar-tertiary-width-desktop, $multishipping-actionstoolbar-tertiary-width);
+                    @include co(order, $multishipping-actionstoolbar-tertiary-order-desktop, $multishipping-actionstoolbar-tertiary-order);
+                    @include co(margin, $multishipping-actionstoolbar-tertiary-margin-desktop, $multishipping-actionstoolbar-tertiary-margin);
+                }
+                @include max-screen($mobiletablet-max) {
+                    @include co(margin, $multishipping-actionstoolbar-tertiary-margin-mobiletabletmax, $multishipping-actionstoolbar-tertiary-margin);
+                    @include co(order, $multishipping-actionstoolbar-tertiary-order-mobiletabletmax, $multishipping-actionstoolbar-tertiary-order);
+                }
+                >.action {
+                    @include co(margin, $multishipping-actionstoolbar-tertiary-action-margin);
+                }
+            }
+
+        }
+        .gift-message {
+            @include co(width, $multishipping-giftmessages-width);
+            @include co(margin, $multishipping-giftmessages-margin);
+            @include co(padding, $multishipping-giftmessages-padding);
+            @include co(background, $multishipping-giftmessages-background);
+            @include co(border, $multishipping-giftmessages-border);
+            @include co(border-radius, $multishipping-giftmessages-border-radius);
+            legend {
+                @include co(font-weight, $multishipping-giftmessages-legend-fontweight);
+            }
+        }
+        .order-options {
+            .field {
+                .label {
+                    @include co(width, $multishipping-order-options-field-label-width);
+                    @include co(margin, $multishipping-order-options-field-label-margin);
+
+                    @include min-screen($desktop-min) {
+                        @include co(width, $multishipping-order-options-field-label-width-desktop, $multishipping-order-options-field-label-width);
+                        @include co(margin, $multishipping-order-options-field-label-margin-desktop, $multishipping-order-options-field-label-margin);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+    .multicheckout {
+        .table-wrapper {
+            @include co(margin, $multishipping-tablewrapper-margin);
+        }
+
+        .box-title {
+            > .action {
+               @include co(font-weight, $multishipping-boxtitle-action-fontweight);
+            }
+            span {
+                @include co(margin, $multishipping-boxtitle-span-margin);
+            }
+        }
+
+        .block-shipping {
+
+            .block-content {
+                @include co(display, $multishipping-blockshipping-bc-display);
+                @include co(flex-wrap, $multishipping-blockshipping-bc-flexwrap);
+                @include min-screen($desktop-min) {
+                }
+                .title {
+                    @include co(width, $multishipping-blockshipping-bc-title-width);
+                }
+            }
+            .box-shipping-address {
+
+                @include co(width, $multishipping-boxshippingaddress-width);
+                @include co(order, $multishipping-boxshippingaddress-order);
+                @include co(margin, $multishipping-boxshippingaddress-margin);
+
+                @include co(display, $multishipping-boxshippingaddress-display);
+                @include co(flex-wrap, $multishipping-boxshippingaddress-flexwrap);
+                @include co(align-content, $multishipping-boxshippingaddress-aligncontent);
+
+                @include min-screen($desktop-min) {
+                    @include co(width, $multishipping-boxshippingaddress-width-desktop, $multishipping-boxshippingaddress-width);
+                    @include co(order, $multishipping-boxshippingaddress-order-desktop, $multishipping-boxshippingaddress-order);
+                    @include co(margin, $multishipping-boxshippingaddress-margin-desktop, $multishipping-boxshippingaddress-margin);
+                }
+
+
+
+
+
+                .box-title {
+                    @include co(width, $multishipping-boxshippingaddress-boxtitle-width);
+                    @include co(order, $multishipping-boxshippingaddress-boxtitle-order);
+                    @include co(margin, $multishipping-boxshippingaddress-boxtitle-margin);
+                    @include min-screen($desktop-min) {
+                        @include co(width, $multishipping-boxshippingaddress-boxtitle-width-desktop, $multishipping-boxshippingaddress-boxtitle-width);
+                        @include co(order, $multishipping-boxshippingaddress-boxtitle-order-desktop, $multishipping-boxshippingaddress-boxtitle-order);
+                        @include co(margin, $multishipping-boxshippingaddress-boxtitle-margin-desktop, $multishipping-boxshippingaddress-boxtitle-margin);
+                    }
+                    > a {
+                        @include co(margin, $multishipping-boxshippingaddress-boxtitle-a-margin)
+                    }
+                }
+
+
+
+                .box-content {
+                    @include co(width, $multishipping-boxshippingaddress-boxcontent-width);
+                    @include co(order, $multishipping-boxshippingaddress-boxcontent-order);
+                    @include co(margin, $multishipping-boxshippingaddress-boxcontent-margin);
+                    @include min-screen($desktop-min) {
+                        @include co(width, $multishipping-boxshippingaddress-boxcontent-width-desktop, $multishipping-boxshippingaddress-boxcontent-width);
+                        @include co(order, $multishipping-boxshippingaddress-boxcontent-order-desktop, $multishipping-boxshippingaddress-boxcontent-order);
+                        @include co(margin, $multishipping-boxshippingaddress-boxcontent-margin-desktop, $multishipping-boxshippingaddress-boxcontent-margin);
+                    }
+                }
+            }
+            .box-shipping-method {
+                .box-title {
+                    @include co(display, $multishipping-boxshippingmethod-boxtitle-display);
+                }
+
+                @include co(width, $multishipping-boxshippingmethod-width);
+                @include co(order, $multishipping-boxshippingmethod-order);
+                @include co(margin, $multishipping-boxshippingmethod-margin);
+
+                @include co(display, $multishipping-boxshippingmethod-display);
+                @include co(flex-wrap, $multishipping-boxshippingmethod-flexwrap);
+
+                @include max-screen($mobiletablet-max) {
+                    @include co(margin, $multishipping-boxshippingmethod-margin-mobiletabletmax, $multishipping-boxshippingmethod-margin);
+                }
+
+                @include min-screen($desktop-min) {
+                    @include co(width, $multishipping-boxshippingmethod-width-desktop, $multishipping-boxshippingmethod-width);
+                    @include co(order, $multishipping-boxshippingmethod-order-desktop, $multishipping-boxshippingmethod-order);
+                    @include co(margin, $multishipping-boxshippingmethod-margin-desktop, $multishipping-boxshippingmethod-margin);
+                }
+
+                $multishipping-shippingmethod-methodsshipping-display: none !default;
+                .methods-shipping {
+
+                    @include co(display, $multishipping-shippingmethod-methodsshipping-display);
+                }
+
+                .fieldset {
+                    .legend {
+                        @include abs-reset-left-margin();
+                    }
+
+                    .field {
+                        &:before {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .box-items {
+                @include co(width, $multishipping-boxitems-width);
+                @include co(order, $multishipping-boxitems-order);
+                @include co(margin, $multishipping-boxitems-margin);
+                @include co(display, $multishipping-boxitems-display);
+                @include co(flex-wrap, $multishipping-boxitems-flexwrap);
+
+                @include min-screen($desktop-min) {
+                    @include co(width, $multishipping-boxitems-width-desktop, $multishipping-boxitems-width);
+                    @include co(order, $multishipping-boxitems-order-desktop, $multishipping-boxitems-order);
+                    @include co(margin, $multishipping-boxitems-margin-desktop, $multishipping-boxitems-margin);
+                }
+
+                .box-title {
+                    @include co(width, $multishipping-boxitems-boxtitle-width);
+                    @include co(order, $multishipping-boxitems-boxtitle-order);
+                    @include co(margin, $multishipping-boxitems-boxtitle-margin);
+                    @include min-screen($desktop-min) {
+                        @include co(width, $multishipping-boxitems-boxtitle-width-desktop, $multishipping-boxitems-boxtitle-width);
+                        @include co(order, $multishipping-boxitems-boxtitle-order-desktop, $multishipping-boxitems-boxtitle-order);
+                        @include co(margin, $multishipping-boxitems-boxtitle-margin-desktop, $multishipping-boxitems-boxtitle-margin);
+                    }
+                    > a {
+                        @include co(float, $multishipping-boxitems-boxtitle-a-float);
+                    }
+                }
+                .box-content {
+                    @include co(width, $multishipping-boxitems-boxcontent-width);
+                    @include co(order, $multishipping-boxitems-boxcontent-order);
+                    @include co(margin, $multishipping-boxitems-boxcontent-margin);
+                    @include min-screen($desktop-min) {
+                        @include co(width, $multishipping-boxitems-boxcontent-width-desktop, $multishipping-boxitems-boxcontent-width);
+                        @include co(order, $multishipping-boxitems-boxcontent-order-desktop, $multishipping-boxitems-boxcontent-order);
+                        @include co(margin, $multishipping-boxitems-boxcontent-margin-desktop, $multishipping-boxitems-boxcontent-margin);
+                    }
+                }
+
+                .multiship-item-image {
+                    @include co(height, $multishipping-boxitems-itemimage-height);
+                    @include co(width, $multishipping-boxitems-itemimage-width);
+                }
+            }
+        }
+        .block-billing {
+
+            .box-title {
+                @include co(width, $multishipping-boxbillingaddress-boxtitle-width);
+                @include co(order, $multishipping-boxbillingaddress-boxtitle-order);
+                @include co(margin, $multishipping-boxbillingaddress-boxtitle-margin);
+                @include min-screen($desktop-min) {
+                    @include co(width, $multishipping-boxbillingaddress-boxtitle-width-desktop, $multishipping-boxbillingaddress-boxtitle-width);
+                    @include co(order, $multishipping-boxbillingaddress-boxtitle-order-desktop, $multishipping-boxbillingaddress-boxtitle-order);
+                    @include co(margin, $multishipping-boxbillingaddress-boxtitle-margin-desktop, $multishipping-boxbillingaddress-boxtitle-margin);
+                }
+            }
+        }
+        .box-billing-address {
+            .box-title {
+                span {
+                    @include co(margin, $multishipping-checkout-boxbillingaddress-boxtitle-span-margin);
+                }
+            }
+        }
+    }
+
+
+
+    .multi-checkout {
+
+    }
+
+    .gift-messages-order {
+        .fieldset {
+            @include co(width, $multishipping-giftmessagesorder-field-width);
+            @include co(margin, $multishipping-giftmessagesorder-field-margin);
+
+            @include min-screen($desktop-min) {
+                @include co(width, $multishipping-giftmessagesorder-field-width-desktop, $multishipping-giftmessagesorder-field-width);
+                @include co(margin, $multishipping-giftmessagesorder-field-margin-desktop, $multishipping-giftmessagesorder-field-margin);
+            }
+
+            .field {
+
+                @include co(width, $multishipping-giftmessagesorder-field-width);
+                @include co(margin, $multishipping-giftmessagesorder-field-margin);
+                @include co(display, $multishipping-giftmessagesorder-field-display);
+                @include co(flex-wrap, $multishipping-giftmessagesorder-field-flexwrap);
+                .label {
+                    @include co(width, $multishipping-giftmessagesorder-field-label-width);
+                    @include co(float, $multishipping-giftmessagesorder-field-label-float);
+                    @include co(margin, $multishipping-giftmessagesorder-field-label-margin);
+                    @include co(padding, $multishipping-giftmessagesorder-field-label-padding);
+                    @include max-screen($mobilemax) {
+                        @include co(display, $multishipping-giftmessagesorder-field-label-display-mobilemax);
+                    }
+                }
+                .control {
+                    @include co(width, $multishipping-giftmessagesorder-field-control-width);
+                    @include co(float, $multishipping-giftmessagesorder-field-control-float);
+                    @include co(margin, $multishipping-giftmessagesorder-field-control-margin);
+                    @include co(padding, $multishipping-giftmessagesorder-field-control-padding);
+                }
+            }
+        }
+    }
+
+    .multishipping-checkout-addresses {
+        .page-title-wrapper {
+            h1 {
+                @include co(margin, $multishipping-checkout-addresses-pagetitlewrapper-h1-margin);
+            }
+        }
+    }
+
+    .multishipping-checkout-overview {
+        .order-review-wrapper {
+            .col.item {
+                padding-left: 0;
+                a {
+                    > span {
+                        font-size: 0.75rem;
+                        //margin-left: 0.5rem;
+
+                    }
+                }
+            }
+        }
+        .order-review {
+            .block-shipping {
+                .block-content {
+                    border-bottom: 1px solid $theme-brand-color-2;
+                    &:not(:last-child) {
+                        padding-bottom: 1.25rem;
+                    }
+                    &:not(:first-child) {
+                        padding-top: 1.25rem;
+                    }
+
+
+
+                }
+
+                .box-shipping-method {
+                    display: none;
+                }
+            }
+        }
+        .grand.totals {
+            @include max-screen($mobiletablet-max) {
+                @include co(text-align, $multishipping-checkout-overview-grand-totals-textalign-mobiletabletmax);
+            }
+        }
+    }
+    .multishipping-checkout-success {
+        h3 {
+            @include co(margin, $multishipping-checkout-success-h3-margin);
+        }
+        .orders-list {
+            > li {
+                @include co(margin, $multishipping-checkout-success-orderslist-li-margin);
+            }
+        }
+    }
+}
+

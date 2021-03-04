@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle */
+?>
+<?php $_product = $block->getProduct() ?>
+<?php if ($block->displayProductStockStatus()) : ?>
+    <?php if ($_product->isAvailable()) : ?>
+        <i class="pp-icon pp-icon-tick">
+            <svg viewBox="0 0 512 512" version="1.1" fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+                <title>tick</title>
+                <desc>Created with Sketch.</desc>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="tick" fill-rule="nonzero">
+                        <path d="M256,0 C114.843377,0 0,114.843377 0,256 C0,397.156623 114.843377,512 256,512 C397.156623,512 512,397.156623 512,256 C512,114.843377 397.15563,0 256,0 Z M224.000248,381.251092 L121.375013,278.625856 L166.624739,233.37613 L224.000248,290.751639 L345.375261,169.376626 L390.624987,214.626353 C390.624987,214.626353 224.000248,381.251092 224.000248,381.251092 L224.000248,381.251092 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </svg>
+        </i>
+        <p class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability:')) ?>">
+            <span><?= $block->escapeHtml(__('In stock')) ?></span>
+        </p>
+    <?php else : ?>
+        <i class="pp-icon pp-icon-cross">
+            <svg viewBox="0 0 512 512" version="1.1" fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+                <title>tick</title>
+                <desc>Created with Sketch.</desc>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="tick" fill-rule="nonzero">
+                        <path d="M256,0 C114.843377,0 0,114.843377 0,256 C0,397.156623 114.843377,512 256,512 C397.156623,512 512,397.156623 512,256 C512,114.843377 397.15563,0 256,0 Z M224.000248,381.251092 L121.375013,278.625856 L166.624739,233.37613 L224.000248,290.751639 L345.375261,169.376626 L390.624987,214.626353 C390.624987,214.626353 224.000248,381.251092 224.000248,381.251092 L224.000248,381.251092 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </svg>
+        </i>
+        <p class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability:')) ?>">
+            <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+        </p>
+    <?php endif; ?>
+<?php endif; ?>
+<?= $block->getChildHtml('bundle_prices') ?>

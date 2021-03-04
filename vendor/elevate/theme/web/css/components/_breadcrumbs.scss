@@ -1,0 +1,84 @@
+$page_main_outer_margin_with_breadcrumbs: 0 !default;
+
+$breadcrumbs_items_container_padding_on: 0 !default;
+$breadcrumbs_items_container_padding: 0.9375rem 0 !default;
+
+$breadcrumbs_off_mobile: true !default;
+
+
+$breadcrumbs_home_icon_on: 0 !default;
+$breadcrumbs_home_icon_url: '../images/breadcrumbs/home.svg' !default;
+$breadcrumbs_home_icon_height: 18px !default;
+$breadcrumbs_home_icon_width: 18px !default;
+$breadcrumbs_home_icon_color: rgba(66, 66, 66, 0.5) !default;
+
+$breadcrumbs_border_on: 0 !default;
+$breadcrumbs_border_thickness: 1px !default;
+$breadcrumbs_border_type: solid !default;
+$breadcrumbs_border_position: top-bottom !default;
+$breadcrumbs_border_color_type: linear-gradient !default;
+$breadcrumbs_border_color: linear-gradient(45deg, #DDDDDD, rgb(255, 255, 255)) !default;
+
+$breadcrumbs_items_border_on: 0 !default;
+
+$breadcrumbs__container-padding: false !default;
+
+.breadcrumbs {
+    @if $breadcrumbs_off_mobile == true {
+        @include max-screen($mobile-max) {
+
+                display: none;
+            }
+    }
+    @if $breadcrumbs__container-padding != false {
+        padding: $breadcrumbs__container-padding;
+    }
+
+    @if $breadcrumbs_border_on == 1 {
+        @if ($breadcrumbs_border_color_type == linear-gradient) {
+            border-image-source: $breadcrumbs_border_color;
+            border-image-slice: 1;
+        }
+        @include elevate-border(false, $breadcrumbs_border_thickness, $breadcrumbs_border_type, $breadcrumbs_border_position);
+
+    }
+
+
+
+    @include lib-breadcrumbs();
+
+    .items {
+        @if $breadcrumbs_items_container_padding_on == 1 {
+            padding: $breadcrumbs_items_container_padding;
+        }
+        @if $breadcrumbs_items_border_on == 1 {
+            @if ($breadcrumbs_border_color_type == linear-gradient) {
+                border-image-source: $breadcrumbs_border_color;
+                border-image-slice: 1;
+            }
+            @include elevate-border(false, $breadcrumbs_border_thickness, $breadcrumbs_border_type, $breadcrumbs_border_position);
+        }
+
+    }
+    font-weight: $breadcrumbs-font-weight;
+    @if $breadcrumbs_home_icon_on == 1 {
+        .home {
+           > a {
+               display: inline-block;
+               height: $breadcrumbs_home_icon_height;
+               width: $breadcrumbs_home_icon_width;
+
+                > svg {
+                    fill: $breadcrumbs_home_icon_color;
+                    height: $breadcrumbs_home_icon_height;
+                    width: $breadcrumbs_home_icon_width;
+                    > * {
+                        fill: $breadcrumbs_home_icon_color;
+                    }
+                }
+
+            }
+        }
+    }
+
+}

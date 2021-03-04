@@ -1,0 +1,22 @@
+{
+    "name": "punchout2go/xframe",
+    "description": "N/A",
+    "require": {
+    },
+    "suggest": {
+    },
+    "type": "magento2-module",
+    "version": "0.0.4",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Punchout2go\\Xframe\\": ""
+        }
+    }
+}

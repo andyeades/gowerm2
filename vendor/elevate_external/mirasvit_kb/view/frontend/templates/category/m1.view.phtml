@@ -1,0 +1,519 @@
+<?php
+function getPreviewText($article) {
+
+
+    $text = $article->getTextHtml();
+    if (strlen($article->getMetaDescription()) > 10) {
+        $text = $article->getMetaDescription();
+
+        return Mage::helper('core/string')->truncate($text, 300) . '...';
+    }
+    if (preg_match("/\/[a-z]*>/i", $text)) {
+        $text = strip_tags(substr($text, strpos($text, "<p>"), strpos($text, "</p>")));
+        $text = preg_replace("/\s|&nbsp;/", ' ', $text); // -- we need this to make trim work
+    }
+
+    return Mage::helper('core/string')->truncate($text, 300) . '...';
+}
+
+?>
+
+
+<?php
+
+$_rootCategory = $this->getCategory();
+
+$_collection = $this->getArticleCollection($_rootCategory);
+
+if (count($_collection) > 0) {
+
+    ?>
+    <div class="kb-got-question-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 style="
+    text-transform: uppercase;
+    color: white;
+    font-size: 39px;
+"><?php echo $_rootCategory->getname(); ?></h1>
+                    <!-- <div class="kb-got-question-header-search-row">
+          <form action="<?php echo Mage::getUrl('kb/article/s') ?>" method="GET" id="kb-s-form">
+            <input name='s' id='s' placeholder="<?php echo $this->__('What can we help you with?') ?>" class="input-text required-entry" value="<?php echo $this->getQuery() ?>">
+            <button type="submit" title="Submit" class="btn btn-hbred">Search</button>
+          </form>
+
+            <script type="text/javascript">
+              //<![CDATA[
+              var dataForm = new VarienForm('kb-s-form', true);
+              //]]>
+            </script>
+        </div>
+        -->
+                    <div style="
+    color: white;
+"><a href="/help-and-advice" style="
+    color: white;
+    text-decoration: underline;
+">Help &amp; Advice</a> <a href="/help-and-advice/customer-services" style="
+    color: white;
+    border-left: 1px solid #f0f0f0;
+    margin-left: 7px;
+    padding-left: 7px;
+    text-decoration: underline;
+">Customer Service</a> <a href="/help-and-advice/help-to-buy" style="
+    color: white;
+    border-left: 1px solid #f0f0f0;
+    margin-left: 7px;
+    padding-left: 7px;
+    text-decoration: underline;
+">Help To Buy</a> <a href="/help-and-advice/product-care" style="
+    color: white;
+    border-left: 1px solid #f0f0f0;
+    margin-left: 7px;
+    padding-left: 7px;
+    text-decoration: underline;
+">Product Care</a> <a href="/blog" style="
+    color: white;
+    border-left: 1px solid #f0f0f0;
+    margin-left: 7px;
+    padding-left: 7px;
+    text-decoration: underline;
+">Inspire Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Start faq -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="kb-category-view">
+
+
+                    <?php if ($_collection->count()) { ?>
+                        <div class="articles">
+                            <?php foreach ($_collection as $_article) { ?>
+
+
+                                <div class="article col-md-3" style="height:300px;">
+                                    <a href="<?php echo $_article->getUrl() ?>" class="overa">
+                                        <div class="overwrap">
+                                            <div class="overimage" style="background-image: url('<?php echo "/media/wysiwyg/kbarticles/header-images/" . $_article->getData('article_header_image') ?>');height: 175px;background-size: cover;">
+
+                                            </div>
+                                            <div class="overtext">
+         <span style="    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}"><?php echo $_article->getName() ?></span>
+                                                <div>
+                                                    <?php echo getPreviewText($_article); ?>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php } ?>
+                            <div style="clear:both;"></div>
+                        </div>
+
+                    <?php } else { ?>
+
+
+                    <?php } ?>
+
+                </div>
+            </div>
+        </div>
+        <!-- end faq-->
+    </div>
+    <?
+
+} else {
+
+    $_collection = $this->getAllArticleCollection(4);
+    ?>
+
+    <div class="kb-got-question-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 style="
+    text-transform: uppercase;
+    color: white;
+    font-size: 39px;
+">Help &amp; Advice</h1>
+                    <div class="kb-got-question-header-search-row">
+                        <form action="<?php echo Mage::getUrl('kb/article/s') ?>" method="GET" id="kb-s-form">
+                            <input name='s' id='s' placeholder="<?php echo $this->__('What can we help you with?') ?>" class="input-text required-entry" value="<?php echo $this->getQuery() ?>">
+                            <button type="submit" title="Submit" class="btn btn-hbred">Search</button>
+                        </form>
+
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            var dataForm = new VarienForm('kb-s-form', true);
+                            //]]>
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-inner">
+                    <div class="kb-landing-page-title">
+                        <div class="line-seperator-m">
+                            <h2>What can we Help With?</h2>
+                            <div class="line-seperator-l"></div>
+                        </div>
+                    </div>
+                    <div class="kb-landingpage-row">
+                        <div class="kb-category-block">
+                            <div class="kb-category-inner">
+                                <div class="kb-category-img">
+                                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>/frontend/happybeds/default/images/kb-block-1.jpg" alt="Help With My Order"/>
+                                </div>
+                                <div class="kb-category-name">Customer Services</div>
+                                <ul class="kb-category-items">
+                                    <li><a href="/customer-service">Contact Us</a></li>
+                                    <li><a href="/help-and-advice/delivery-information">Delivery Information</a></li>
+                                    <li><a href="/help-and-advice/returns-refunds">Returns & Refunds</a></li>
+                                    <li><a href="/help-and-advice/manufacturers-guarantee">Manufacturers Guarantee</a></li>
+                                    <!--<li><a href="/help-and-advice/terms-conditions">Terms & Conditions</a></li>
+                                    <li><a href="/help-and-advice/privacy-gdpr-policy">Privacy & GDPR Policy</a></li>-->
+                                </ul>
+                                <a href="/help-and-advice/customer-services" class="see-all-link">See All <i class="fa fa-chevron-right"></i></a>
+
+                            </div>
+                        </div>
+                        <div class="kb-category-block">
+                            <div class="kb-category-inner">
+                                <div class="kb-category-img">
+                                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>/frontend/happybeds/default/images/kb-block-2.jpg" alt="Help With My Order"/>
+                                </div>
+                                <div class="kb-category-name">Help To Buy</div>
+                                <ul class="kb-category-items">
+                                    <li><a href="/help-and-advice/bunk-beds-faqs">Bunk Bed Guide</a></li>
+                                    <li><a href="/help-and-advice/kids-beds-faqs">Kid's Bed Guide</a></li>
+                                    <li><a href="/help-and-advice/ottoman-storage-bed-buying-guide">Ottoman Buying Guide</a></li>
+                                    <li><a href="/help-and-advice/mattress-faqs">Mattress FAQs</a></li>
+                                    <!-- <li><a href="/help-and-advice/ottoman-storage-bed-faqs">Ottoman Bed FAQs</a></li>
+                                     <li><a href="/help-and-advice/faux-and-real-leather-faqs">Leather FAQs</a></li>
+                                     <li><a href="/help-and-advice/metal-bed-and-furniture-faqs">Metal Bed FAQs</a></li>
+                                     <li><a href="/help-and-advice/happy-beds-symbol-faqs">Happy Beds Symbols Explained</a></li> -->
+                                </ul>
+                                <a href="/help-and-advice/help-to-buy" class="see-all-link">See All <i class="fa fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="kb-category-block">
+                            <div class="kb-category-inner">
+                                <div class="kb-category-img">
+                                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>/frontend/happybeds/default/images/kb-block-3.jpg" alt="Product Care"/>
+                                </div>
+                                <div class="kb-category-name">Product Care</div>
+                                <ul class="kb-category-items">
+                                    <li><a href="/help-and-advice/fabric-care-guide">Fabric Care Guide</a></li>
+                                    <li><a href="/help-and-advice/faux-and-real-leather-bed-and-furniture-care-guide">Leather Care Guide</a></li>
+                                    <li><a href="/help-and-advice/metal-bed-and-furniture-care-guide">Metal Care Guide</a></li>
+                                    <li><a href="/help-and-advice/glass-mirror-furniture-care-guide">Glass & Mirror Care Guide</a></li>
+
+
+                                </ul>
+                                <a href="/help-and-advice/product-care" class="see-all-link">See All <i class="fa fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="kb-category-block">
+                            <div class="kb-category-inner">
+                                <div class="kb-category-img">
+                                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>/frontend/happybeds/default/images/kb-block-4.jpg" alt="Inspire Me"/>
+                                </div>
+                                <div class="kb-category-name">Inspire Me</div>
+                                <div class="cat-menu">
+                                    <ul class="kb-category-items">
+                                        <li><a class="active" href="/blog/category/happy-beds-news/">
+                                                <div class="bimle"></div>
+                                                <div class="bimsp">Happy Beds News</div>
+                                            </a></li>
+
+                                        <li><a href="/blog/category/interior-inspiration/">
+                                                <div class="bimle"></div>
+                                                <div class="bimsp">Interior Inspiration</div>
+                                            </a></li>
+                                        <li><a href="/blog/category/lifestyle/">
+                                                <div class="bimle"></div>
+                                                <div class="bimsp">Lifestyle and Wellbeing</div>
+                                            </a></li>
+                                        <li><a href="/blog/category/sleep-science/">
+                                                <div class="bimle"></div>
+                                                <div class="bimsp">Sleep Science</div>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <a href="/blog" class="see-all-link">See All <i class="fa fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+
+        <!-- Start faq -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="kb-category-view">
+                    <div class="kb-landing-page-title" style="margin-bottom:20px;">
+                        <div class="line-seperator-m">
+                            <h2 style="
+    float: left;
+">Product Care</h2>
+                            <a href="/help-and-advice/product-care" class="browseall">[Browse All]</a>
+                            <div class="line-seperator-l" style="
+    clear: both;
+"></div>
+                        </div>
+                    </div>
+                    <style>
+                        .article img {
+                            max-width: 100%;
+                        }
+                    </style>
+
+                    <?php if ($_collection->count()) { ?>
+                        <div class="articles">
+                            <?php foreach ($_collection as $_article) { ?>
+
+                                <div class="article col-md-3" style="height:300px;">
+                                    <a href="<?php echo $_article->getUrl() ?>" class="overa">
+                                        <div class="overwrap">
+                                            <div class="overimage" style="background-image: url('<?php echo "/media/wysiwyg/kbarticles/header-images/" . $_article->getData('article_header_image') ?>');height: 175px;background-size: cover;">
+
+                                            </div>
+                                            <div class="overtext">
+         <span style="    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}"><?php echo $_article->getName() ?></span>
+                                                <div>
+                                                    <?php echo getPreviewText($_article); ?>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php } ?>
+                            <div style="clear:both;"></div>
+                        </div>
+                    <?php } else { ?>
+
+
+                    <?php } ?>
+
+                </div>
+            </div>
+        </div>
+        <!-- end faq-->
+
+        <?php $_collection = $this->getAllArticleCollection(2); ?>
+        <!-- Start Guides -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="kb-category-view">
+                    <div class="kb-landing-page-title" style="margin-bottom:20px;">
+                        <div class="line-seperator-m">
+                            <h2 style="
+    float: left;
+">Help to Buy</h2>
+                            <a href="/help-and-advice/help-to-buy" class="browseall">[Browse All]</a>
+                            <div class="line-seperator-l" style="
+    clear: both;
+"></div>
+                        </div>
+                    </div>
+                    <style>
+                        .article img {
+                            max-width: 100%;
+                        }
+                    </style>
+
+                    <?php if ($_collection->count()) { ?>
+                        <div class="articles">
+                            <?php foreach ($_collection as $_article) { ?>
+
+                                <div class="article col-md-3" style="height:300px;">
+                                    <a href="<?php echo $_article->getUrl() ?>" class="overa">
+                                        <div class="overwrap">
+                                            <div class="overimage" style="background-image: url('<?php echo "/media/wysiwyg/kbarticles/header-images/" . $_article->getData('article_header_image') ?>');height: 175px;background-size: cover;">
+
+                                            </div>
+                                            <div class="overtext">
+         <span style="    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}"><?php echo $_article->getName() ?></span>
+                                                <div>
+                                                    <?php echo getPreviewText($_article); ?>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+                            <?php } ?>
+                            <div style="clear:both;"></div>
+                        </div>
+                    <?php } else { ?>
+
+
+                    <?php } ?>
+
+                </div>
+            </div>
+        </div>
+        <!-- end guides-->
+        <?php $_collection = $this->getAllArticleCollection(6); ?>
+        <!-- Start Guides -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="kb-category-view">
+                    <div class="kb-landing-page-title" style="margin-bottom:20px;">
+                        <div class="line-seperator-m">
+                            <h2 style="
+    float: left;
+">Customer Services</h2>
+                            <a href="/help-and-advice/customer-services" class="browseall">[Browse All]</a>
+                            <div class="line-seperator-l" style="
+    clear: both;
+"></div>
+                        </div>
+                    </div>
+                    <style>
+                        .article img {
+                            max-width: 100%;
+                        }
+                    </style>
+
+                    <?php if ($_collection->count()) { ?>
+                        <div class="articles">
+                            <?php foreach ($_collection as $_article) { ?>
+
+
+                                <div class="article col-md-3" style="height:300px;">
+                                    <a href="<?php echo $_article->getUrl() ?>" class="overa">
+                                        <div class="overwrap">
+                                            <div class="overimage" style="background-image: url('<?php echo "/media/wysiwyg/kbarticles/header-images/" . $_article->getData('article_header_image') ?>');height: 175px;background-size: cover;">
+
+                                            </div>
+                                            <div class="overtext">
+         <span style="    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}"><?php echo $_article->getName() ?></span>
+                                                <div>
+                                                    <?php echo getPreviewText($_article); ?>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+                            <?php } ?>
+                            <div style="clear:both;"></div>
+                        </div>
+                    <?php } else { ?>
+
+
+                    <?php } ?>
+
+                </div>
+            </div>
+        </div>
+        <!-- end customer service-->
+        <?php $posts = Mage::getResourceModel('wordpress/post_collection')->addPostTypeFilter('post')->setOrderByPostDate()->addIsViewableFilter()->setPageSize(4)->load();
+        $articlecount = 1; ?>
+        <!-- Start inspire me -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="kb-category-view">
+                    <div class="kb-landing-page-title" style="margin-bottom:20px;">
+                        <div class="line-seperator-m">
+                            <h2 style="
+    float: left;
+">Inspire Me</h2>
+                            <a href="/blog" class="browseall">[Browse All]</a>
+                            <div class="line-seperator-l" style="
+    clear: both;
+"></div>
+                        </div>
+                    </div>
+                    <style>
+                        .article img {
+                            max-width: 100%;
+                        }
+                    </style>
+
+                    <?php if ($posts->count()) { ?>
+                        <div class="articles">
+                            <?php foreach ($posts as $post) { ?>
+
+
+                                <div class="article col-md-3" style="height:300px;">
+                                    <a href="<?php echo $post->getPermalink() ?>" class="overa">
+                                        <div class="overwrap">
+                                            <?php $featuredImage = $post->getFeaturedImage(); ?>
+                                            <div class="overimage" style="background-image: url('<?php echo $featuredImage->getMediumImage() ?>');height: 175px;background-size: cover;">
+
+                                            </div>
+
+                                            <div class="overtext">
+         <span style="    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}"><?php echo $this->htmlEscape($post->getPostTitle()) ?>   </span>
+                                                <div>
+                                                    <?php echo getPreviewText($post); ?>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+                            <?php } ?>
+                            <div style="clear:both;"></div>
+                        </div>
+                    <?php } else { ?>
+
+
+                    <?php } ?>
+
+                </div>
+            </div>
+        </div>
+        <!-- end customer service-->
+
+    </div>
+
+
+    <?php
+}
+?>
+
+

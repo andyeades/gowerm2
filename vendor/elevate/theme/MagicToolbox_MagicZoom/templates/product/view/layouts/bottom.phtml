@@ -1,0 +1,96 @@
+<?php
+
+/**
+ * @var $block \MagicToolbox\MagicZoomPlus\Block\Template
+ */
+
+$id = $block->getData('id');
+$mainHTML = $block->getData('mainHTML');
+$selectorsArray = $block->getData('selectorsArray');
+$selectorMaxWidth = $block->getData('selectorMaxWidth');
+$additionalClasses = $block->getData('additionalClasses');
+$scrollOptions = $block->getData('scrollOptions');
+$thumbSwitcherOptions = $block->getData('thumbSwitcherOptions');
+?>
+
+
+<div class="MagicToolboxContainer selectorsBottom minWidth"<?php echo $thumbSwitcherOptions ?>>
+
+
+  <style>
+    div.MagicToolboxContainer{
+      position:relative;
+    }
+
+  </style>
+
+
+
+    <?php
+
+    $no = 0;
+
+    if (!empty($no)) {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $_firmnessRatingHelper = $objectManager->get(\Elevate\Framework\Helper\Data::class);
+        echo $_firmnessRatingHelper->getPercentageOverlay($product);
+
+
+        // $_firmnessRatingHelper = $this->helper('Elevate\Framework\Helper\Data');
+        //echo $_firmnessRatingHelper->getPercentageOverlay($product);
+
+
+    }
+
+
+    ?>
+
+
+
+
+
+    <?php echo $mainHTML; ?>
+    <?php
+    if (count($selectorsArray) > 1) {
+        ?>
+      <style>
+        .hide360{
+          display:none !important;
+        }
+        .show360{
+          display:block !important;
+        }
+      </style>
+      <div class="MagicToolboxSelectorsContainer">
+        <div id="MagicToolboxSelectors<?php echo $id ?>" class="<?php echo $additionalClasses ?>"<?php echo $scrollOptions ?>>
+            <?php echo join("\n\t\t", $selectorsArray); ?>
+        </div>
+      </div>
+      <script type="text/javascript">
+          require(["jquery"], function(){
+
+              jQuery(".mt-thumb-switcher-360").on('click touchend', function(e){
+                  console.log("SS");
+                  e.preventDefault();
+                  jQuery("#mt360Container").removeClass("hide360").addClass("show360");
+                  jQuery("#mtImageContainer").addClass("hide360").removeClass("show360");
+
+
+              });
+              jQuery(".mt-thumb-switcher").on('click touchend', function(){
+
+                  jQuery(".mz-figure img").css('visibility', 'visble');
+                  jQuery("#mt360Container").addClass("hide360").removeClass("show360");
+                  jQuery("#mtImageContainer").removeClass("hide360").addClass("show360");
+
+
+
+              });
+
+          });
+      </script>
+        <?php
+    }
+    ?>
+</div>

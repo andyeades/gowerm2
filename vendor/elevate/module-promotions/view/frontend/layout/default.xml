@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    <referenceContainer name="before.body.end">
+                <block class="Magento\Framework\View\Element\Template" name="elevate.promotions.beforebody"  template="Elevate_Promotions::init.phtml"/>
+    </referenceContainer>
+
+        <referenceContainer name="page.top">
+            <container name="your.custom.name" as="your-custom" label="Your Label Name" htmlTag="div" htmlClass="your-class" htmlId="elevate-promotions" before="main.content">
+
+                    <block class="Magento\Framework\View\Element\Template" name="custom.file" template="Elevate_Promotions::header/belowheader.phtml" /><!-- This is just an example -->
+
+            </container>
+        </referenceContainer>
+
+        <move element="breadcrumbs" destination="your.custom.name" before="main.content"/>
+
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="custompage" before="-" template="Elevate_Promotions::header/aboveheader.phtml" />
+        </referenceContainer>
+    </body>
+</page>

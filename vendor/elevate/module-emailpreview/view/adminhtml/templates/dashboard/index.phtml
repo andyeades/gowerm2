@@ -1,0 +1,311 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+
+// @codingStandardsIgnoreFile
+
+
+
+  $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+  $alltemplele = $objectManager->get('Magento\Email\Model\Template\Config');
+
+  $alltemplele_data =$alltemplele->getAvailableTemplates();
+
+  foreach($alltemplele_data AS $key => $value){
+
+      $alltemplele_data_grouped[$value['group']][] = array('value' => $value['value'], 'label' => $value['label']);
+  }
+
+  //unset currently unsupported templates
+unset($alltemplele_data_grouped['Magento_User']);
+unset($alltemplele_data_grouped['Magento_Directory']);
+unset($alltemplele_data_grouped['Magento_Checkout']);
+?>
+<style>
+  /* The device with borders */
+  .smartphone {
+    position: relative;
+    width: 360px;
+    height: 640px;
+    margin: auto;
+    border: 16px black solid;
+    border-top-width: 60px;
+    border-bottom-width: 60px;
+    border-radius: 36px;
+  }
+
+  /* The horizontal line on the top of the device */
+  .smartphone:before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 10px;
+  }
+
+  /* The circle on the bottom of the device */
+  .smartphone:after {
+    content: '';
+    display: block;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 50%;
+    bottom: -65px;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 50%;
+  }
+
+  /* The screen (or content) of the device */
+  .smartphone .content {
+    width: 328px;
+    height: 520px;
+    background: white;
+  }
+
+  /* The device with borders */
+  .tablet {
+    position: relative;
+    width: 768px;
+    height: 1024px;
+    margin: auto;
+    border: 16px black solid;
+    border-top-width: 60px;
+    border-bottom-width: 60px;
+    border-radius: 36px;
+  }
+
+  /* The horizontal line on the top of the device */
+  .tablet:before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 10px;
+  }
+
+  /* The circle on the bottom of the device */
+  .tablet:after {
+    content: '';
+    display: block;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 50%;
+    bottom: -65px;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 50%;
+  }
+
+  /* The screen (or content) of the device */
+  .tablet .content {
+    width: 738px;
+    height: 905px;
+    background: white;
+    margin: -1px;
+  }
+
+  /* The laptop with borders */
+  .laptop {
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(.6) translate(-50%); /* Scaled down for a better Try-it experience (change to 1 for full scale) */
+    transform: scale(.6) translate(-50%); /* Scaled down for a better Try-it experience (change to 1 for full scale) */
+    left: 50%;
+    position: absolute;
+    width: 1366px;
+    height: 800px;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    border-width: 24px 24px 80px;
+    background-color: black;
+
+  }
+
+  /* The keyboard of the laptop */
+  .laptop:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 1600px;
+    height: 60px;
+    margin: 80px 0 0 -110px;
+    background: black;
+    border-radius: 6px;
+  }
+
+  /* The top of the keyboard */
+  .laptop:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    bottom: -110px;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+    background: #f1f1f1;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 1;
+  }
+
+  /* The screen (or content) of the device */
+  .laptop .content {
+    width: 1318px;
+    height: 690px;
+    overflow: hidden;
+    border: none;
+  }
+
+  .switchdevice {
+    border: 1px solid;
+    border-radius: 0;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.36;
+    padding: .6rem 1em .6rem;
+    text-align: center;
+    vertical-align: baseline;
+    background: #e3e3e3;
+    border-color: #adadad;
+    color: #514943;
+    cursor: pointer;
+    margin: 0px 8px;
+  }
+  .switchdevice:hover{
+    background-color: #dbdbdb;
+    color: #514943;
+    text-decoration: none;
+  }
+  .sdactive {
+    background: #adadad;
+  }
+  .admin__field {
+    margin-top: 14px;
+  }
+</style>
+<div class=" row">
+    <div class="col-m-12">
+
+<div style="
+    margin: 0 auto;
+    width: 300px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin-bottom: 24px;
+">
+      <select id="template_select" name="code" class="admin__control-select required-entry">
+        <optgroup label="Custom">
+          <option value="3">Shipping Email</option>
+        </optgroup>
+          <?php
+          foreach ($alltemplele_data_grouped as $key => $value): ?>
+
+            <optgroup label="<?= ($key) ?>">
+
+                <?php foreach ($value as $option): ?>
+                  <option value="<?= ($option['value']) ?>"><?= ($option['label']) ?></option>
+                <?php endforeach; ?>
+
+            </optgroup>
+
+          <?php endforeach; ?>
+      </select>
+
+
+      <div class="admin__field required">
+    <div class="admin__field-control">
+      <input id="elevate_emailpreview_order_number" class="admin__control-text" type="text" placeholder="Enter Order Number">
+    </div>
+  </div>
+  <div class="admin__field required">
+    <div class="admin__field-control">
+      <input class="admin__control-text" type="text" placeholder="Enter Email Address">
+    </div>
+  </div>
+  <div class="admin__field required">
+
+    <div class="admin__field-control">
+      <button id="loadEmail" title="Load Template" type="button" class="action-default scalable save" style="width: 100%;" data-role="template-load" data-ui-id="template-edit-load-button">
+        <span>Load Email</span>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class=" row">
+  <div class="col-m-12">
+
+
+<div style="
+    margin: 0 auto;
+    width: 600px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+">
+
+  <span class="switchdevice " data-type="smartphone">Mobile</span>
+  <span class="switchdevice" data-type="tablet">Tablet</span>
+  <span class="switchdevice sdactive" data-type="laptop">Desktop</span>
+</div>
+
+<div style="min-height: 570px;">
+<div id="device_switch_size" class="laptop">
+  <div class="content">
+    <iframe id="device_iframe" src="<?php echo $block->getUrl('elevate_emailpreview/preview', ['template_code' => 'sales_email_order_template', 'order_id' => '123']) ?>" style="width:100%;border:none;height:100%">
+    </iframe>
+  </div>
+  <div style="clear:both"></div>
+</div>
+</div>
+
+  </div>
+
+  <div>
+    <?php
+    $iframe_url = $block->getUrl('elevate_emailpreview/preview')."?store=".$block->getStoreId()."&template_code=";
+    ?>
+<script>
+    require([
+        "jquery"
+    ], function(jQuery){
+        //<![CDATA[
+
+        jQuery('.switchdevice').on('click', function(){
+            var datatype = jQuery(this).attr('data-type');
+            jQuery('#device_switch_size').removeClass('smartphone').removeClass('tablet').removeClass('laptop').addClass(datatype);
+            jQuery('.switchdevice').removeClass('sdactive');
+            jQuery(this).addClass('sdactive');
+        });
+        jQuery('#loadEmail').on('click', function () {
+            var template_code = jQuery('#template_select').val();
+            var order_id = jQuery('#elevate_emailpreview_order_number').val();
+            jQuery('#device_iframe').attr('src', '<?php echo $iframe_url; ?>'+template_code+'&order_id='+order_id);
+        });
+        //]]>
+
+    });
+</script>

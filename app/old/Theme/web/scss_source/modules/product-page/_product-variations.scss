@@ -1,0 +1,100 @@
+/* Product Variation Variables */
+
+$variation-circle-width: 40px;
+$variation-circle-height: 40px;
+$variation-circle-border-color: #b1b1b1;
+$variation-circle-border-radius: $variation-circle-height;
+$variation-circle-border: 1px solid $variation-circle-border-color;
+
+$v1-var-item-margin: 0 15px;
+$v1-is_sel-border-color: #1F1E23;
+$v1-is_sel-border:  2px solid $v1-is_sel-border-color;
+$v1-is_sel_after_icon_color: #FFF;
+
+
+  /* End Product Variation Variables */
+
+/* Product Variations */
+
+.variation_wrap {
+  text-align: center;
+  display:    block;
+  width:      auto;
+  margin:     0 auto;
+  margin-top: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.variation_item {
+  display:      inline-block;
+  border:       1px solid #b1b1b1;
+  padding:      11px;
+  margin-right: 5px;
+  color:        #000 !important;
+  cursor:       pointer;
+  min-width:    47px;
+  text-align:   center;
+  &:hover {
+    background-color: #f0f0f0;
+    text-decoration:  none;
+    @include rj-transition(all 0.30s ease-in-out);
+  }
+}
+
+.variation_item2 {
+  display:      inline-block;
+  height:       50px;
+  width:        50px;
+  border:       3px solid #fff;
+  padding:      0px;
+  margin-right: 5px;
+  color:        #000 !important;
+  cursor:       pointer;
+  min-width:    47px;
+  width:        50px;
+  text-align:   center;
+}
+
+.variation_item_select {
+  border: 3px solid #f50;
+}
+
+.is_selected_variation {
+  background-color: #f0f0f0;
+
+  //box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+
+}
+
+.variation-circle {
+  width: $variation-circle-width;
+  height: $variation-circle-height;
+  border-radius: $variation-circle-border-radius;
+  display: block;
+  border: $variation-circle-border;
+}
+
+
+.var-style-1 {
+  display:flex;
+  .var-item {
+    flex: 0 1 auto;
+    margin: $v1-var-item-margin;
+    position: relative;
+    .is_selected_variation {
+      //border: $v1-is_sel-border;
+      &:after {
+        content: "\f00c";
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        vertical-align: -50%;
+        color: $v1-is_sel_after_icon_color;
+      }
+    }
+  }
+}
+
+/* End Product Variations */

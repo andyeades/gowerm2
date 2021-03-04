@@ -1,0 +1,37 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+if ($_product) {
+  $icons = $_product->getData('elevate_producticons');
+}
+
+$output_class = "";
+if (empty($icons)) {
+  $output_class = "no-icon-pp-1";
+}
+
+
+?>
+<div class="ev-prod-icon-block ev-prod-icon-block-pp-1">
+
+
+
+<?php if (!empty($icons)) {
+
+  $icons_exp = array_map('trim', explode(',', $icons));
+
+  $icons_to_output = $this->getIconsForProduct($icons_exp);
+
+}
+?>
+  <div class="ev-product-icons">
+
+    <?php if (!empty($icons)) { ?>
+      <?php echo $icons_to_output[1]; ?>
+    <?php } ?>
+
+      <?php $media_url = $this->getMediaUrl(); ?>
+
+  </div>
+
+</div>

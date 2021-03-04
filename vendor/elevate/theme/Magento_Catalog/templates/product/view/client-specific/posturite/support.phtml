@@ -1,0 +1,160 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+
+
+$session = $objectManager->create('Magento\Customer\Model\Session');
+$moduleManager = $objectManager->get('\Magento\Framework\Module\Manager');
+
+$_helper = $objectManager->create('FME\Productattachments\Helper\Data');
+
+$categoriesCollection = $_helper->getAllCategories();
+
+
+
+
+$_customerGroupId = $session->getCustomerGroupId();
+
+if (!$_helper->enableAtProductView()) {
+    return;
+}
+
+
+$jspath = $this->_storeManager->getStore()->getBaseUrl();
+
+
+$blockTitle = $_helper->getProductPageAttachmentHeading();
+
+if ($categoriesCollection->getSize() != 0) {
+
+     foreach ($categoriesCollection as $category) {
+
+
+        $hasData = $_helper->getProductRelatedAttachments(null, $category->getCategoryId(),$_product->getId());
+        //echo '<pre>';print_r($hasData->getData());exit;
+
+
+       if (count($hasData) > 0) { ?>
+           <h6 class="fme-prod-attachments-categorytitle"><?php /** @noEscape */ echo trim($category->getCategoryName()) ?></h6>
+                <div class="row fme-prod-attachment-row">
+
+                    <?php //fetch collection by category id  ?>
+                    <?php foreach ($_helper->getProductRelatedAttachments(null, $category->getCategoryId(), $_product->getId()) as $item) {
+                        $userArray=explode(',', $item['customer_group_id']);
+
+                        if ($session->isLoggedIn()){
+                            $customerGroup = $session->getCustomer()->getGroupId();
+                        } else {
+                            $customerGroup = 0;
+                        }
+                         //if ($item->getDownloadLink() != ''):
+                        $ext = pathinfo($item['filename'], PATHINFO_EXTENSION);
+                        $icon = $this->getnewicon($item['file_type']);
+                        if($icon){
+                            $item['file_icon'] = $icon;
+                        }
+                        if (in_array($customerGroup, $userArray)) { ?>
+
+
+                                <?php
+
+                                $file_icon = str_replace("https://www.posturite.co.uk/js/productattachmennts/icons/", '/media/theme_assets/icons/pattachments/' ,$item['file_icon']);
+                                $file_icon = str_replace('.gif', '.svg', $item['file_icon']);
+                                $file_icon = str_replace('src="','class="pattach-icon lazyload" src="/media/loader.jpg" data-src="', $file_icon);
+
+                                // check if file is attached
+                                if ($item['file_size'] > 0) {?>
+                                    <div class="col-12">
+                                        <?php
+                                    //check download limit
+                                    if ($item['limit_downloads'] != "" && $item['limit_downloads'] != 0) {
+                                        if ($item['downloads'] == $item['limit_downloads']) {
+                                            echo '<a class="downloadlink" href="javascript:;" onclick="alert(\'You can not download because this attachment excceds the number of download\');"><div class="content-wrap">' . $file_icon . '&nbsp;<b>' . $item['title'] . '</b> <span class="prod-attach-size">Size: (' . $item['file_size'] . ')</span></div></a> ';
+                                        }
+                                        else {
+                                            if(($ext == 'pdf' || $ext == 'PDF') && $_helper->ispro_pdflink()){
+                                                echo '<a class="downloadlink" id="'.$item['productattachments_id'].'" counter="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/counter?id=' . $item['productattachments_id'] . '" href="' . $item['download_link'] . '">' . $item['file_icon'] . '&nbsp;<b>' . $item['title'] . '</b></a>  Size: (' . $item['file_size'] . ')';
+                                            }else{
+                                                echo '<a class="downloadlink" id="'.$item['productattachments_id'].'" counter="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/counter?id=' . $item['productattachments_id'] . '" href="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/download?id=' . $item['productattachments_id'] . '"><div class="content-wrap">' . $file_icon . '&nbsp;<b>' . $item['title'] . '</b>  <span class="prod-attach-size">Size: (' . $item['file_size'] . ')</span></div></a>';
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        if(($ext == 'pdf' || $ext == 'PDF') && $_helper->ispro_pdflink()){
+
+                                            $count_text = 'counter="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/counter?id=' . $item['productattachments_id'] . '"';
+                                            $size_text = '<span class="prod-attach-size">Size: (' . $item['file_size'] . ')</span>';
+                                            echo '<a class="downloadlink" id="'.$item['productattachments_id'].'" href="' . $item['download_link'] . '"><div class="content-wrap">' . $file_icon . '&nbsp;<b>' . $item['title'] . '</b> </div></a>';
+                                        }else{
+                                            $url = $_helper->getStoreManager()->getStore()->getUrl('productattachments').'index/download?id='.$item['productattachments_id'];
+                                            $id = $item['productattachments_id'];
+                                            echo '<a class="downloadlink" id="'.$id.'" href="'.$url.'">';
+                                            echo '<div class="content-wrap">' . $file_icon . '&nbsp;<b>' . $item['title'] . '</b></div>';
+                                            echo '</a>';
+                                        }
+                                    }
+
+                                    if ($_helper->getScopeConfig()->getValue('productattachments/general/show_counter')) {
+                                        /** @noEscape */ echo '&nbsp;&nbsp;' . __('Downloads: ' . '<span id="item_counter_'.$item['productattachments_id'].'">'. $item['downloads'].'</span>');
+                                    }
+                                    ?>
+                                   </div>
+                                   <?php
+                                } else {
+                                    // don't want the damn title
+                                    ///** @noEscape */ echo '<b>' . $item['title'] . '</b>';
+                                }
+                                ?>
+
+                                <?php if ($_helper->getScopeConfig()->getValue('productattachments/productattachments/showcontent')): ?>
+                                    <?php if (isset($item['content']) && $item['content'] != ''): ?>
+                                        <br /><?php /** @noEscape */  echo $item['content']; ?><br />
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            <?php if ($item->getLinkUrl() != '') { ?>
+                                <?php
+                                $linkTitle = 'Go To';
+                                if ($item->getLinkTitle() != '') {
+                                    $linkTitle = trim($item->getLinkTitle());
+                                }
+                                ?>
+                    <div class="col-12">
+                                    <a href="<?php /** @noEscape */  echo $item->getLinkUrl() ?>">
+                                        <img src="<?php /** @noEscape */  echo $this->getViewFileUrl('FME_Productattachments::images/link.jpg') ?>" width="18"/>&nbsp;<?php echo __($linkTitle) ?>
+                                    </a>
+                                </div>
+                            <?php } ?>
+
+                            <?php if ($item->getEmbedVideo() != '') { ?>
+                                <?php $vidTitle = trim($item->getVideoTitle()); ?>
+                                <div class="col-12">
+                                        <style>.embed-container {
+                                                position:       relative;
+                                                padding-bottom: 56.25%;
+                                                height:         0;
+                                                overflow:       hidden;
+                                                max-width:      100%;
+                                            }
+
+                                            .embed-container iframe, .embed-container object, .embed-container embed {
+                                                position: absolute;
+                                                top:      0;
+                                                left:     0;
+                                                width:    100%;
+                                                height:   100%;
+                                            }</style>
+                                        <div class='embed-container'>
+                                            <iframe src='<?php echo str_replace('watch?v=', 'embed/', $item['embed_video']); ?>' frameborder='0' allowfullscreen></iframe>
+                                        </div>
+
+
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
+                    <?php } ?>
+                </div>
+
+        <?php } ?>
+    <?php } ?>
+<?php } ?>

@@ -1,0 +1,35 @@
+<style>
+    .kb-got-question-header {
+        height: auto;
+        padding: 100px 0;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="kb-got-question-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Help &amp; Advice</h1>
+                <div class="kb-got-question-header-search-row">
+
+                    <form action="<?= $block->getUrl('kbase/article/s')?>" method="GET" id="kb-s-form">
+                        <input name='s' id='s' placeholder="<?= __('What can we help you with?') ?>" class="form-control input-text required-entry" value="<?= $this->getQuery() ?>">
+                        <button type="submit" title="Submit" class="btn button action primary btn-hbred">Search</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12"><div class="kb-search-result" style="border:none;">
+                <!-- <h1><?php //echo $this->__('Search by') ?> "<?php //echo $this->getQuery()?>"</h1>-->
+                <?= $block->getChildHtml('kb.article_list'); ?>
+            </div>
+        </div>
+    </div>
+</div>

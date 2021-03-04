@@ -1,0 +1,51 @@
+@if $sitename == posturite {
+
+    $btn-posturite-color: #FFF !default;
+    $btn-posturite-bg-color: #006f51 !default;
+    $btn-posturite-border-color: $btn-posturite-bg-color !default;
+
+    $btn-outline-color: #006f51 !default;
+    $btn-outline-general-color: #006f51 !default;
+
+    .pdf {
+        background-image: url(/media/icons/pdf.svg);
+        background-repeat: no-repeat;
+        padding-left: 24px;
+        display: block;
+        background-size: contain;
+    }
+
+    .btn-posturite {
+        @include button-variant($btn-posturite-bg-color, $btn-posturite-border-color);
+        border-radius: $border-radius;
+    }
+
+
+    .btn-outline {
+        color: $btn-outline-general-color;
+        background-color: transparent;
+        border-color: $btn-outline-general-color;
+
+        &:active, &:focus, &:hover {
+            color: #FFF;
+            background-color: $btn-outline-general-color;
+            border-color: $btn-outline-general-color;
+        }
+    }
+    .btn-outline {
+        border-radius: $border-radius;
+    }
+    .btn-outline-inverse {
+        color: #FFF;
+        background-color: transparent;
+        border-color: #FFF;
+        border-radius: $border-radius;
+
+        &:active, &:focus, &:hover {
+            color: $btn-outline-general-color;
+            background-color: #FFF;
+            border-color: #FFF;
+            text-shadow: none;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Elevate_Themeoptions::elevatethemeoptions" sortOrder="10" title="elevatethemeoptions">
+                    <resource id="Elevate_Themeoptions::generate_buildscss" sortOrder="10" title="Custom Build Scss (Not Implemented)"/>
+                    <resource id="Elevate_Themeoptions::options" sortOrder="10" title="Options">
+                        <resource id="Elevate_Themeoptions::options_save" sortOrder="10" title="Save Options"/>
+                        <resource id="Elevate_Themeoptions::options_delete" sortOrder="20" title="Delete Options"/>
+                        <resource id="Elevate_Themeoptions::options_update" sortOrder="30" title="Update Options"/>
+                        <resource id="Elevate_Themeoptions::options_view" sortOrder="40" title="View Options"/>
+                    </resource>
+                    <resource id="Elevate_Themeoptions::Footer" sortOrder="10" title="Footer">
+                        <resource id="Elevate_Themeoptions::footer_save" sortOrder="10" title="Save Footer"/>
+                        <resource id="Elevate_Themeoptions::footer_delete" sortOrder="20" title="Delete Footer"/>
+                        <resource id="Elevate_Themeoptions::footer_update" sortOrder="30" title="Update Footer"/>
+                        <resource id="Elevate_Themeoptions::footer_view" sortOrder="40" title="View Footer"/>
+                    </resource>
+                    <resource id="Elevate_Themeoptions::Translations" sortOrder="10" title="Translations">
+                        <resource id="Elevate_Themeoptions::translations_save" sortOrder="10" title="Save Translations"/>
+                        <resource id="Elevate_Themeoptions::translations_delete" sortOrder="20" title="Delete Translations"/>
+                        <resource id="Elevate_Themeoptions::translations_update" sortOrder="30" title="Update Translations"/>
+                        <resource id="Elevate_Themeoptions::translations_view" sortOrder="40" title="View Translations"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Elevate_Themeoptions::config_elevatethemeoptions" title="options"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

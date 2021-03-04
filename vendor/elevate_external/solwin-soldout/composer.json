@@ -1,0 +1,13 @@
+{
+    "name": "elevate_external/solwin-soldout",
+    "description": "Solwin out of stock Label on outofstock Products",
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Solwin\\Soldout\\": ""
+        }
+    }
+}

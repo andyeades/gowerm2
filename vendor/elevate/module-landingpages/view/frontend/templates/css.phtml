@@ -1,0 +1,42 @@
+<?php
+$multi_filter = true;
+
+?>
+
+
+<style>
+    <?php if($multi_filter) { ?>
+    .single-sidebar-open {
+        background-color: #fff;
+        z-index: 90;
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        min-width: 280px;
+        /* max-width: 500px; */
+        max-height: 100%;
+        top: 0;
+        align-content: stretch;
+        transition: all 0.5s;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        right: auto;
+        left: -600px;
+        will-change: left;
+        pointer-events: auto;
+        width: 272px;
+        overflow-y: auto;
+        height: calc(100vh - 72px);
+        overflow: auto;
+
+        position: fixed;
+        left: 0 !important;
+        padding: 0;
+        height: 100vh;
+        width: initial !important;
+        position: fixed !important;
+        flex: initial !important;
+    }
+    <?php } ?>
+
+
+</style>

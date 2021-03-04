@@ -1,0 +1,35 @@
+
+
+// Variables
+
+@import "core_pre_vars";
+
+
+@import 'temp-buildvars';
+
+
+// Gower Cottage
+@import "components/clientspecific/gowercottage/vars_before";
+
+
+// Posturite
+@import "components/clientspecific/posturite/pvars_before";
+
+@import "components/clientspecific/happybeds/happybeds_vars_before";
+
+@import "variables/elevate_variables";
+@import 'vendor/magento-ui/variables';
+
+@import 'variables/elevate_variables_after';
+
+@import 'adminvars_extended';
+
+// Posturite
+@import 'components/clientspecific/posturite/temppvars';
+@import "components/clientspecific/posturite/pvars";
+
+// HB
+@import "components/clientspecific/happybeds/happybeds_vars";
+
+// Gower Cottage
+@import "components/clientspecific/gowercottage/vars";

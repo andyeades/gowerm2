@@ -1,0 +1,248 @@
+<link rel="stylesheet" type="text/css" href="https://www.happybeds.co.uk/skin/frontend/base/default/css/magiczoomplus/magiczoomplus.css" media="all">
+<script type="text/javascript" src="https://www.happybeds.co.uk/skin/frontend/happybeds/default/js/magiczoomplus.js"></script>
+<style>
+  #matzoomgalwrap {
+    margin-top: 5px;
+  }
+
+  a[data-zoom-id] img, .mz-thumb img {
+    border: 0;
+    box-shadow: 0 0 1px 0px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+
+  .popup-left-content img{
+    width: 100%;
+    height: auto;
+  }
+
+  .popup-right-content{
+    text-align: center;
+  }
+
+  .username_handle{
+    margin-top:30px;
+    text-align: center;
+  }
+
+  .popup-right-content .price-box>div {
+    text-align: center;
+  }
+
+
+
+
+
+
+
+  .popup-right-content .price-box {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    padding-bottom: 20px;
+  }
+
+  .add-this-sharing{
+    margin-top: 10px;
+  }
+
+  .popup-right-content .product-img-box img {
+    max-width: 180px !important;
+  }
+
+  .view-more {
+    margin-top: 5px;
+  }
+
+  .popup-left-content {
+    text-align: center;
+  }
+
+  .product-img-box img.mymatim2 {
+    /*    max-width: 100% !important;*/
+  }
+
+  #matmain2 img {
+    /*    max-width: 100% !important;*/
+
+    object-fit: contain;
+  }
+
+  .popup-left-content a[data-zoom-id] img, .mz-thumb img {
+    width: 50px;
+    height: 50px;
+  }
+
+
+</style>
+
+
+
+<?php
+
+
+$productData = $block->getData();
+$productId = $productData['data']['currentproductid'];
+$_product = $block->getProducts($productId);
+
+$itemID = 328;
+
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$socialpost = $objectManager->create('Elevate\CustomerGallery\Model\Items')->load($itemID);
+
+$social_gallery_images = [];
+
+
+
+array_push($social_gallery_images, $socialpost->getData("additional_image_2"), $socialpost->getData("additional_image_3"), $socialpost->getData("additional_image_4"), $socialpost->getData("additional_image_5"));
+
+?>
+
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <span aria-hidden="true">x</span>
+</button>
+<script type="text/javascript" src="/js/varien/product.js"></script>
+<script type="text/javascript" src="/js/varien/product_options.js"></script>
+
+<script type="text/javascript">
+    <?php  if($_product->getTypeId() == 'configurable'){ ?>
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+
+    <?php  } ?>
+</script>
+
+
+
+
+
+
+
+
+<style>
+  span.draw_text {
+    font-size: 16px;
+    font-weight: bold;
+    width: 130px;
+    display: block;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-6 col-xs-12 popup-left-content">
+
+    <div class="product-img-box">
+
+
+      <div class="includes-matt">
+
+
+        <div style="clear:both;">&nbsp;</div>
+
+        <div id="mobmatwrap" class="mobmatwraphideme">
+          <div class="mobmat-wrap-one zoommasmall">
+
+            <div id="matzoomwrap">
+              <div id="mainim" style="position: relative;">
+                <!--
+                               <div class="btn" onclick="MagicZoom.prev('matmain2');" style="
+                  position: absolute;
+                  top: 50%;
+                  z-index: 999;
+
+                ">
+                                  <i class="fa fa-chevron-left"></i></div>
+                -->
+                <a id="matmain2" data-options="zoomType: inner; zoomWidth:400px; zoomHeight:400px; hint: always; textHoverZoomHint:Hover to zoom; textClickZoomHint: Click for more images" href="/media/<?php echo $socialpost->getImage(); ?>" class="MagicZoom"><img id="mymatim" class="mymatim2" src="/media/<?php echo $socialpost->getImage(); ?>"></a>
+                <!--
+                                <div class="btn" onclick="MagicZoom.next('matmain2');" style="
+                  position: absolute;
+                  top: 50%;
+                  z-index: 999;
+
+                  right: 0;
+                ">
+                                  <i class="fa fa-chevron-right"></i></div>
+                -->
+              </div>
+
+
+              <div id="matzoomgalwrap">
+                <a class="matzoomgal" data-zoom-id="matmain2" href="/media/<?php echo $socialpost->getImage(); ?>" data-image="/media/<?php echo $socialpost->getImage(); ?>"><img src="/media/<?php echo $socialpost->getImage(); ?>"></a>
+                  <?php foreach ($social_gallery_images as $key => $val) { ?>
+                      <?php  if($val){ ?>
+                      <a class="matzoomgal" data-zoom-id="matmain2" href="/media/<?php echo $val; ?>" data-image="/media/<?php echo $val; ?>"><img src="/media/<?php echo $val; ?>"></a>
+                      <?php  } ?>
+                  <?php } ?>
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+      </div> <!-- End Hide me mobile wrap-->
+    </div>
+
+
+    <div class="username_handle">
+
+        <?php
+        $thumbImage= '';
+        if($socialpost->getPostType() == 1){
+            $thumbImage = 'https://www.instagram.com/static/images/ico/favicon-192.png/68d99ba29cc8.png';
+            $uNameSymbol = '@';
+        }
+        if($socialpost->getPostType() == 2){
+            $thumbImage = 'https://www.happybeds.co.uk/skin/frontend/base/default/images/elevate/customergallery/icons/twitter.png';
+            $uNameSymbol = '@';
+        }
+        if($socialpost->getPostType() == 3){
+            $thumbImage = 'https://www.happybeds.co.uk/skin/frontend/base/default/images/elevate/customergallery/icons/facebook.png';
+        }
+        if($socialpost->getPostType() == 4){
+            $thumbImage = 'https://www.happybeds.co.uk/skin/frontend/base/default/images/elevate/customergallery/icons/email.png';
+        }
+        if($socialpost->getPostType() == 5){
+            $thumbImage = 'https://www.happybeds.co.uk/skin/frontend/base/default/images/elevate/customergallery/icons/feefo.png';
+        }
+        ?>
+        <?php if($thumbImage){ ?>
+          <img src="<?php echo $thumbImage; ?>" width="15px" style="margin-right: 10px; width: 15px;">
+        <?php } ?>
+        <?php if($thumbImage){ ?>
+            <?php echo $uNameSymbol; ?>
+        <?php } ?>
+        <?php echo $socialpost->getName(); ?>
+
+    </div>
+
+  </div>
+  <div class="col-md-6 col-xs-12 popup-right-content">
+    <table class="table" style="
+    margin-top: 60px;
+">
+      <tr><td class="draw_text">School:</td> <td class="draw_data"><?php echo $socialpost->getData("draw_school"); ?></td></tr>
+      <tr><td class="draw_text">Region:</td> <td class="draw_data"><?php echo $socialpost->getData("draw_region"); ?></td></tr>
+      <tr><td class="draw_text">Age:</td> <td class="draw_data"><?php echo $socialpost->getData("draw_age"); ?></td></tr>
+      <tr><td class="draw_text">Name:</td> <td class="draw_data"><?php echo $socialpost->getData("draw_name"); ?></td></tr>
+      <tr><td class="draw_text">Features:</td> <td class="draw_data"><?php echo $socialpost->getData("draw_features"); ?></td></tr>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+

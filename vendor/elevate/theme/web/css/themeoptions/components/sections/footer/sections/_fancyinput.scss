@@ -1,0 +1,133 @@
+// Search
+
+$ftr_nwsltr_style: normal !default;
+
+$ftr_nwsltr_max_width: 350px !default;
+
+$ftr_nwsltr_inputgroup_bg_color_on: false !default;
+$ftr_nwsltr_inputgroup_bg_color: false !default;
+$ftr_nwsltr_border_radius: false !default;
+$ftr_nwsltr_inputgroup_flexalignitems_on: 0 !default;
+$ftr_nwsltr_inputgroup_flexalignitems: center !default;
+
+
+$ftr_nwsltr_button_width: 100% !default;
+$ftr_nwsltr_button_height: 100% !default;
+$ftr_nwsltr_button_bg_color: transparent !default;
+$ftr_nwsltr_button_padding: 2px 5px !default;
+$ftr_nwsltr_button_border_radius_on: 1 !default;
+$ftr_nwsltr_button_border_radius: 3px !default;
+
+$ftr_nwsltr_inputgroup_btn_height: auto !default;
+$ftr_nwsltr_inputgroup_btn_width: $hdr-search-icon-width * 2 !default;
+
+
+$ftr_nwsltr_box_shadow: none !default;
+
+
+.hdr-search-wrap, .e-pn {
+    @include min-screen($mobile-menu-notvisible) {
+        > svg {
+            display: none;
+        }
+    }
+    @if $ftr_nwsltr_style == "normal" {
+        @include min-screen($mobile-menu-notvisible) {
+            padding-left: 25px;
+        }
+    }
+
+    .field.search {
+        margin: 0 auto;
+        padding: 0;
+        max-width: $ftr_nwsltr_max_width;
+
+        @include max-screen($mobile-menu-visible-max) {
+            max-width: none;
+        }
+
+        @if $ftr_nwsltr_style == "expands" {
+            @include max-screen($mobile-menu-visible-max) {
+                max-width: none;
+            }
+            @include min-screen($screen-md-min) {
+                margin-left: 25px;
+                margin-right: auto;
+                width: 240px;
+            }
+            @include min-screen($screen-lg-min) {
+                margin-left: 25px;
+                width: 300px;
+            }
+            @include min-screen($screen-xlg-min) {
+                width: 325px;
+            }
+            &:focus-within {
+                @include rj-transition(0.5s width ease-in-out);
+                width: 100%;
+            }
+        }
+
+        @if $ftr_nwsltr_style == "normal" {
+            width: 100%;
+        }
+
+
+        button {
+            width: $ftr_nwsltr_button_width;
+            height: $ftr_nwsltr_button_height;
+
+            background: $ftr_nwsltr_button_bg_color;
+            padding: $ftr_nwsltr_button_padding;
+            position: relative;
+            margin-bottom: 0;
+            border: 0;
+            @if $ftr_nwsltr_button_border_radius_on == 1 {
+                @include rj-border-radius($ftr_nwsltr_button_border_radius);
+            }
+
+            &:focus {
+                z-index: 1;
+            }
+        }
+
+        .label {
+            display: none;
+        }
+
+        svg {
+            fill: $hdr_search_icon_color;
+            width: $hdr-search-icon-width;
+            height: $hdr-search-icon-height;
+        }
+
+        .ev-input-group {
+            display: flex;
+            @if $ftr_nwsltr_inputgroup_flexalignitems_on == 1 {
+                align-items: $ftr_nwsltr_inputgroup_flexalignitems;
+            }
+
+            @if $ftr_nwsltr_inputgroup_bg_color_on == 1 {
+                background-color: $ftr_nwsltr_inputgroup_bg_color;
+                border-radius: $ftr_nwsltr_border_radius; // Stops CLipping issue
+            }
+        }
+
+        .ev-input-group-btn {
+            height: $ftr_nwsltr_inputgroup_btn_height;
+            width: $ftr_nwsltr_inputgroup_btn_width;
+            flex: 0 1 auto;
+            @if $hdr-search-icon-position == "left" {
+                order: 1;
+            }
+            @if $hdr-search-icon-position == "right" {
+                order: 2;
+                padding-right: 5px;
+            }
+        }
+
+        input {
+
+        }
+    }
+}

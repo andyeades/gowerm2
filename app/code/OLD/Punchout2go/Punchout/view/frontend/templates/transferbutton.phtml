@@ -1,0 +1,10 @@
+<a class="action primary checkout <?php echo $this->getTransferButtonCSS() ?>" href="<?php echo $this->getTransferUrl(); ?>" id="po2go-transfer">
+    <span><?php echo $this->getTransferLabel(); ?></span>
+</a>
+<?php
+$help = $this->getTransferHelp();
+if ($help) { ?>
+    <br /><small><?php echo $help; ?></small>
+<?php
+}
+?>

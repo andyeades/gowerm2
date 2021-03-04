@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="elevate_deepercontent" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Product Deeper Content</label>
+			<tab>elevate</tab>
+			<resource>Elevate_Productdeepercontent::config_elevate_productdeepercontent</resource>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>General</label>
+				<field id="enable_random_display" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="multiselect">
+					<label>Enable Random Display</label>
+					<comment>Display random deeper content selections instead of picking specific</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="random_number_to_display" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+					<label>Random Number to Display</label>
+					<comment/>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

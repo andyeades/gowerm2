@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="css/styles-s.css"/>
+        <link src="css/styles.css"/>
+
+    </head>
+	<body>
+		<attribute name="class" value="theme-elevate"/>
+		<referenceBlock name="form.subscribe" remove="true"/>
+		<referenceBlock name="footer_links" remove="true"/>
+		<move element="store_switcher" destination="header.panel" after="store_language" />
+		<referenceBlock name="store.settings">
+			<block class="Magento\Store\Block\Switcher" name="store.settings.storeswitcher" template="switch/stores.phtml">
+				<arguments>
+					<argument name="id_modifier" xsi:type="string">nav</argument>
+				</arguments>
+			</block>
+		</referenceBlock>
+
+        <!-- Add containers to keep proper page width. This change is reverted on pages that use Content Constructor
+because CC components have their own containers -->
+        <referenceContainer name="main.content" htmlClass="cs-container">
+            <container name="page.main.container.inner" htmlTag="div" htmlClass="cs-container__inner"/>
+        </referenceContainer>
+        <move element="columns.top" destination="page.main.container.inner" after="-"/>
+        <move element="columns" destination="page.main.container.inner" after="-"/>
+
+
+        <referenceContainer name="page.wrapper">
+            <!-- Top Bar above header -->
+            <container name="top.bar.container" htmlTag="div" htmlClass="cs-container cs-container--top-bar" before="-">
+                <container name="top.bar.container.inner" htmlTag="div" htmlClass="cs-container__inner cs-topbar">
+                    <container name="top.bar.container.wrapper" htmlTag="div" htmlClass="cs-topbar__wrapper">
+                        <container name="top.bar.child1" htmlTag="div" htmlClass="cs-topbar__item cs-topbar__item--usps">
+                            <block class="MageSuite\ThemeHelpers\Block\Cms\CacheableBlock" name="top.bar_usps">
+                                <arguments>
+                                    <argument name="block_id" xsi:type="string">header_topbar_usps</argument>
+                                </arguments>
+                            </block>
+                        </container>
+                        <container name="top.bar.child2" htmlTag="div" htmlClass="cs-topbar__item cs-topbar__item--hotline" after="top.bar.child1">
+                            <block class="MageSuite\ThemeHelpers\Block\Cms\CacheableBlock" name="top.bar_hotline">
+                                <arguments>
+                                    <argument name="block_id" xsi:type="string">header_topbar_hotline</argument>
+                                </arguments>
+                            </block>
+                        </container>
+                        <container name="top.bar.authorization_link.container" htmlTag="div" htmlClass="cs-topbar__item cs-topbar__item--authorization" after="top.bar.child2">
+                            <block class="MageSuite\ThemeHelpers\Block\Cms\CacheableBlock" name="top.bar_authorisation">
+                            </block>
+                        </container>
+                        <container name="top.bar.currency_switcher.container" htmlTag="div" htmlClass="cs-topbar__item cs-topbar__item--currency" after="top.bar.authorization_link.container">
+                            <block class="MageSuite\ThemeHelpers\Block\Cms\CacheableBlock" name="top.bar_currency">
+                            </block>
+                        </container>
+                        <container name="top.bar.language_switcher.container" htmlTag="div" htmlClass="cs-topbar__item cs-topbar__item--language" after="top.bar.currency_switcher.container">
+                            <block class="MageSuite\ThemeHelpers\Block\Cms\CacheableBlock" name="top.bar_language">
+                            </block>
+                        </container>
+                    </container>
+                </container>
+            </container>
+
+
+
+        </referenceContainer>
+	</body>
+</page>
+

@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="elevate_generate_css" xsi:type="object">Elevate\Themeoptions\Console\Generatecss</item>
+                <item name="elevate_write_translations" xsi:type="object">Elevate\Themeoptions\Console\Writetranslations</item>
+            </argument>
+
+        </arguments>
+    </type>
+
+    <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="Elevate\Themeoptions\Block\Html\Breadcrumbs"/>
+
+
+    <preference for="Elevate\Themeoptions\Api\TranslationsRepositoryInterface" type="Elevate\Themeoptions\Model\TranslationsRepository"/>
+    <preference for="Elevate\Themeoptions\Api\Data\TranslationsInterface" type="Elevate\Themeoptions\Model\Data\Translations"/>
+    <preference for="Elevate\Themeoptions\Api\Data\TranslationsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Themeoptions\Model\ResourceModel\Translations\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_themeoptions_translations</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Translations\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Elevate\Themeoptions\Model\Translations\DataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevatethemeoptions_translations_form_data_source" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Translations\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="evtranslationsMetadata" type="Elevate\Themeoptions\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Translations</argument>
+            <argument name="modelClassName" xsi:type="string">Elevate\Themeoptions\Model\Translations</argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\Themeoptions\Model\TranslationsRepository">
+        <arguments>
+            <argument name="evtranslationsMetadata" xsi:type="object">evtranslationsMetadata</argument>
+        </arguments>
+    </type>
+
+
+
+    <preference for="Elevate\Themeoptions\Api\OptionsRepositoryInterface" type="Elevate\Themeoptions\Model\OptionsRepository"/>
+    <preference for="Elevate\Themeoptions\Api\Data\OptionsInterface" type="Elevate\Themeoptions\Model\Data\Options"/>
+    <preference for="Elevate\Themeoptions\Api\Data\OptionsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Elevate\Themeoptions\Api\FooterRepositoryInterface" type="Elevate\Themeoptions\Model\FooterRepository"/>
+    <preference for="Elevate\Themeoptions\Api\Data\FooterInterface" type="Elevate\Themeoptions\Model\Data\Footer"/>
+    <preference for="Elevate\Themeoptions\Api\Data\FooterSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Themeoptions\Model\ResourceModel\Footer\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_themeoptions_footer</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Footer\Collection</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Elevate\Themeoptions\Model\ResourceModel\Options\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_themeoptions_options</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Options\Collection</argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\Themeoptions\Model\Options\DataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevatethemeoptions_form_data_source" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Options\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevatethemeoptions_footer_listing_data_source" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Footer\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Elevate\Themeoptions\Model\Footer\DataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevatethemeoptions_footer_form_data_source" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Footer\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+
+
+
+
+    <type name="Elevate\Themeoptions\Model\Footer\DataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevatethemeoptions_footer_form_data_source" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Footer\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="evfooterMetadata" type="Elevate\Themeoptions\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Footer</argument>
+            <argument name="modelClassName" xsi:type="string">Elevate\Themeoptions\Model\Footer</argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\Themeoptions\Model\FooterRepository">
+        <arguments>
+            <argument name="evfooterMetadata" xsi:type="object">evfooterMetadata</argument>
+        </arguments>
+    </type>
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevatethemeoptions_options_listing_data_source" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Options\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevatethemeoptions_translations_listing_data_source" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Translations\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <virtualType name="evoptionsMetadata" type="Elevate\Themeoptions\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Elevate\Themeoptions\Model\ResourceModel\Options</argument>
+            <argument name="modelClassName" xsi:type="string">Elevate\Themeoptions\Model\Options</argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\Themeoptions\Model\OptionsRepository">
+        <arguments>
+            <argument name="evoptionsMetadata" xsi:type="object">evoptionsMetadata</argument>
+        </arguments>
+    </type>
+
+
+    <virtualType name="AlternativeSourceProcessors">
+        <arguments>
+            <argument name="alternatives" xsi:type="array">
+                <item name="scss" xsi:type="array">
+                    <item name="class" xsi:type="string">Elevate\Themeoptions\Preprocessor\Adapter\Scss\Processor</item>
+                </item>
+                <!-- Use the following syntax to set the priority of processors. That is, what file types will the system search for, when requested CSS files are not found. The following lines set SCSS to be prior to Less -->
+                <item name="less" xsi:type="array">
+                    <item name="after" xsi:type="string">scss</item>
+                    <item name="class" xsi:type="string">Magento\Framework\Css\PreProcessor\Adapter\Less\Processor</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\Themeoptions\Preprocessor\Instruction\MagentoImport">
+        <arguments>
+            <argument name="fileSource" xsi:type="object">Magento\Framework\Css\PreProcessor\File\Collector\Aggregated</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="PreProcessorInstructionImportForBaseFlowScss" type="Elevate\Themeoptions\Preprocessor\Instruction\Import">
+        <arguments>
+            <argument name="relatedFileGenerator" xsi:type="object">FileGeneratorPublicationDecoratorForBaseFlow</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AssetPreProcessorPool" type="Magento\Framework\View\Asset\PreProcessor\Pool">
+        <arguments>
+            <argument name="preprocessors" xsi:type="array">
+                <item name="scss" xsi:type="array">
+                    <item name="magento_import" xsi:type="array">
+                        <item name="class" xsi:type="string">Elevate\Themeoptions\Preprocessor\Instruction\MagentoImport</item>
+                    </item>
+                    <item name="import" xsi:type="array">
+                        <item name="after" xsi:type="string">magento_import</item>
+                        <item name="class" xsi:type="string">PreProcessorInstructionImportForBaseFlowScss</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PreProcessorInstructionImportForSourceThemeDeployScss" type="Elevate\Themeoptions\Preprocessor\Instruction\Import">
+        <arguments>
+            <argument name="relatedFileGenerator" xsi:type="object">FileGeneratorPublicationDecoratorForSourceThemeDeploy</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AssetPreProcessorPoolForSourceThemeDeploy" type="Magento\Framework\View\Asset\PreProcessor\Pool">
+        <arguments>
+            <argument name="preprocessors" xsi:type="array">
+                <item name="scss" xsi:type="array">
+                    <item name="magento_import" xsi:type="array">
+                        <item name="class" xsi:type="string">Elevate\Themeoptions\Preprocessor\Instruction\MagentoImport</item>
+                    </item>
+                    <item name="import" xsi:type="array">
+                        <item name="after" xsi:type="string">magento_import</item>
+                        <item name="class" xsi:type="string">PreProcessorInstructionImportForSourceThemeDeployScss</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\AbstractBlock">
+        <plugin name="remove_discount_block" type="Elevate\Themeoptions\Plugin\RemoveDiscountBlock" />
+    </type>
+</config>

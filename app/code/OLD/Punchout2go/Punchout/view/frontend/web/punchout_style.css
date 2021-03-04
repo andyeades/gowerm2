@@ -1,0 +1,15 @@
+/** punchout sessio only css should start with .is-punchout-session */
+
+.is-punchout-session .customer-welcome,
+.is-punchout-session .customer-name,
+.is-punchout-session .authorization-link,
+.is-punchout-session .customer-menu
+{
+    display:none;
+}
+.punchout-close {
+    display:none !important;
+}
+.is-punchout-session .punchout-close.on {
+    display:inline !important;
+}

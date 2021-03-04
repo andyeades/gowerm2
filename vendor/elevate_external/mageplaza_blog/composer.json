@@ -1,0 +1,29 @@
+{
+  "name": "elevate_external/mageplaza_blog",
+  "description": "Magento 2 Blog extension",
+  "type": "magento2-module",
+  "license": "proprietary",
+  "keywords": [
+    "magento 2",
+    "mageplaza",
+    "blog",
+    "magento 2 blog",
+    "magento2"
+  ],
+  "authors": [
+    {
+      "name": "Mageplaza",
+      "email": "support@mageplaza.com",
+      "homepage": "https://www.mageplaza.com",
+      "role": "Technical Support"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Mageplaza\\Blog\\": ""
+    }
+  }
+}

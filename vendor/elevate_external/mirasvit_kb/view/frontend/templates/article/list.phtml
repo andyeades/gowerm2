@@ -1,0 +1,59 @@
+<?php
+/**
+ * $block->getCoreString()  \Mirasvit\Core\Helper\Text  $_coreString
+ * @var \Mirasvit\Kb\Block\Article\ListArticle $block
+ */
+
+$collection = $block->getArticleCollection();
+?>
+    <style>
+        .article-item {
+            border-bottom: 2px solid #f0f0f0;
+            padding: 15px 0px;
+            margin-bottom: 10px;
+        }
+        a.name {
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .pager {
+            padding-bottom:0px;
+        }
+        a.rmore {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="kb-article-list">
+        <?php if ($collection->count()) { ?>
+
+            <?= $block->getChildHtml('kb.article_list_toolbar'); ?>
+            <?= $block->getToolbarHtml() ?>
+            <div class="articles">
+                <?php foreach ($collection as $article) { ?>
+
+                    <div class="article col-xs-6 col-sm-6 col-md-3">
+                        <a href="<?= $article->getUrl() ?>" class="overa">
+                            <div class="overwrap">
+                                <div class="overimage" style="background-image: url('<?= $this->getUrl('pub/media')."wysiwyg/kbarticles/header-images/" . $article->getData('article_header_image') ?>');height: 175px;background-size: cover;">
+
+                                </div>
+                                <div class="overtext">
+                                    <span><?=$article->getName() ?></span>
+                                    <div>
+                                        <?php
+                                        $remainder = '';
+                                        echo $this->helper('Mirasvit\Core\Helper\Text')->truncate(strip_tags($article->getSummary()), 300, ' ...', $remainder, false);
+                                        ?>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                <?php } ?>
+            </div>
+        <?php } ?>
+        <?= $block->getToolbarHtml() ?>
+    </div>

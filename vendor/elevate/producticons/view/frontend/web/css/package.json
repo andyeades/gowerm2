@@ -1,0 +1,25 @@
+{
+  "name": "elevate_upgrade",
+  "version": "0.0.1",
+  "description": "Elevate Upgrade Gulpfile Etc",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Richard Jones",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-merge-media-queries": "^0.2.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-svg-spritesheet": "github:iamdarrenhall/gulp-svg-sprite",
+    "gulp-util": "^3.0.7"
+  },
+  "sasslintConfig": ".sass-lint.yml"
+}

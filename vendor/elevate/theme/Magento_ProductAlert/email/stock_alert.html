@@ -1,0 +1,27 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Products back in stock alert"}} @-->
+<!--@vars {
+"var alertGrid|raw":"Alert Data Grid",
+"var customerName":"Customer Name",
+"template config_path=\"design\/email\/footer_template\"":"Email Footer Template",
+"template config_path=\"design\/email\/header_template\"":"Email Header Template"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
+    <tbody class="mcnOuter">
+    <tr>
+        <td style="padding-top:18px; padding-right:18px; padding-bottom:0; padding-left:18px;" valign="top" align="left" class="mcnBlockInner">
+            <p class="greeting">{{trans "%name," name=$customerName}}</p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{var alertGrid|raw}}
+
+{{template config_path="design/email/footer_template"}}

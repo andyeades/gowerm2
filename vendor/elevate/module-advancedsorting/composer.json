@@ -1,0 +1,11 @@
+{
+  "name": "elevate/module-advancedsorting",
+  "description": "Magento 2 Module that adds sorting by name, priority and price within the sorting dropdown instead of having to toggle using the up and down arrow.",
+  "type": "magento2-module",
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Elevate\\AdvancedSorting\\": ""
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.breadcrumbs {
+  @include lib-breadcrumbs();
+  text-align: center;
+  letter-spacing: 0;
+  padding: 20px;
+  .items {
+    @include lib-list-inline();
+    .item {
+      a, strong {
+        text-transform: uppercase;
+        vertical-align: middle;
+      }
+      &:not(:last-child) {
+        &.home {
+
+          &:before {
+            vertical-align: middle;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            content: "";
+            display: inline-block;
+            font-weight: normal;
+            overflow: hidden;
+            speak: none;
+            text-align: center;
+            //margin: 0 0 0 8px;
+            font-size: unset;
+            font-family: unset;
+            line-height: initial;
+            height: 6px;
+            width: 6px;
+            background: url(../images/breadcrumb-icon.svg) no-repeat center center;
+          }
+        }
+        &:after {
+          margin: 0 0 0 8px;
+          font-size: unset;
+          content: "";
+          font-family: unset;
+          line-height: initial;
+          vertical-align: middle;
+          height: 6px;
+          width: 6px;
+          background: url(../images/breadcrumb-icon.svg) no-repeat center center;
+        }
+      }
+    }
+  }
+}
+
+
+

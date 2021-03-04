@@ -1,0 +1,15 @@
+<div id="sidebar" class="sticky">
+    <div class="navbar-posturite">
+        <div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="navbar-brand sub-menu-brand">Menu</span></div>
+
+        <div id="navbar-collapse" class="navbar-collapse collapse " aria-expanded="false" style="display: none; height: 1px;">
+            <?php echo $this->getLayout()
+                            ->createBlock('Magento\Catalog\Block\Navigation')
+                            ->setTemplate('Magento_Catalog::navigation/left.phtml')
+                            ->toHtml();
+            ?>
+        </div>
+    </div>
+</div>
+
+

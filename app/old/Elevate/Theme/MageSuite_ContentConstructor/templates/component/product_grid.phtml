@@ -1,0 +1,82 @@
+<?php
+/** @var $block \MageSuite\ContentConstructorFrontend\Block\Component\ProductGrid */
+$viewModel = $block->getViewModel();
+$visibility = $block->getVisibilityClass();
+
+$items = $viewModel->getItems();
+
+$componentClasses = $block->getSkipSpacing() ? ' cs-products-grid--skip-spacing' : ''; 
+$componentClasses .= ' ' . $block->getVar('product_grid/additional_css_classes');
+?>
+
+<div <?= $visibility ? 'class="' . $visibility . '"' : ''; ?>>
+    <div class="cs-container cs-container--products-grid">
+        <div class="cs-container__inner">
+            <div class="cs-products-grid<?= $componentClasses ?>"
+                 data-rows-mobile="<?= $viewModel->getRowsMobile() ?>"
+                 data-rows-tablet="<?= $viewModel->getRowsTablet() ?>"
+                 data-rows-desktop="<?= $viewModel->getRowsDesktop() ?>"
+            >
+                <?php
+                $teasersConfiguration = $viewModel->getTeasersConfiguration();
+                ?>
+                <div class="cs-grid-layout cs-products-grid__grid-layout">
+                    <ul class="cs-grid-layout__grid cs-products-grid__grid">
+                        <?php if(!empty($items) && $viewModel->useTeaser()): ?>
+                            <?php 
+                                $newTeaserConfig = [
+                                    "scenario" => [
+                                        'desktopLayout' => [
+                                            'id' => 1,
+                                        ],
+                                        'mobileLayout' => [
+                                            'id' => 'mobile-large',
+                                        ],
+                                        'contentPlacement' => [
+                                            'id' => 'over',
+                                        ],
+                                        'teaserWidth' => [
+                                            'id' => 'window',
+                                        ]
+                                    ],
+                                    "items" => $items
+                                ];
+                            ?>
+
+                            <?= $this->getLayout()
+                                ->createBlock('MageSuite\ContentConstructorFrontend\Block\Component\ImageTeaser')
+                                ->setData($newTeaserConfig)
+                                ->setGridTeaser(true)
+                                ->setTeaserId('0')
+                                ->setTeaserData($items[0])
+                                ->setBrickClass('cs-grid-layout__brick')
+                                ->setMix('cs-image-teaser--grid-teaser ' . $block->getMix())
+                                ->setContainerMix('cs-container--grid-teaser ' . $block->getContainerMix())
+                                ->toHtml();
+                            ?>
+                        <?php endif; ?>
+                        <?php foreach ($viewModel->getProducts() as $product): ?>
+                            <li class="cs-grid-layout__brick cs-products-grid__item">
+                                <?= $viewModel->renderProductTile($product, null) ?>
+                            </li>
+                        <?php endforeach ?>
+                    </ul>
+                    <?php if(!empty($items) && $viewModel->useTeaser()): ?>
+                        <input type="hidden" class="image-teasers-data" value='[<?= json_encode($teasersConfiguration) ?>]'>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php if ($block->getVar('ajax_addtocart/enabled', 'Magento_Catalog')): ?>
+    <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {
+
+                }
+            }
+        }
+    </script>
+<?php endif; ?>

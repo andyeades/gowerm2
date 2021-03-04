@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="elevate_microsite_display_text">
+        <observer name="mp_display_text" instance="Elevate\Microsite\Observer\ChangeDisplayText" />
+    </event>
+
+
+    <!-- Restrict Catalog Product -->
+    <event name="controller_action_predispatch_catalog_product_view">
+        <observer name="elevate_microsite_product_restrict_redirect" instance="Elevate\Microsite\Observer\Product\ViewPredispatch"/>
+    </event>
+
+    <!-- Restrict Catalog Category -->
+    <event name="catalog_category_collection_load_before">
+        <observer name="elevate_microsite_menu_check" instance="Elevate\Microsite\Observer\Category\Collection\Restrict"/>
+    </event>
+    <event name="catalog_category_tree_init_inactive_category_ids">
+        <observer name="elevate_microsite_menu_addinactive" instance="Elevate\Microsite\Observer\Category\AddInactive"/>
+    </event>
+    <event name="controller_action_predispatch_catalog_category_view">
+        <observer name="elevate_microsite_category_restrict_redirect" instance="Elevate\Microsite\Observer\Category\ViewPredispatch"/>
+    </event>
+        <event name="controller_front_send_response_before">
+            <observer name="elevate_microsite_loadmicrosite" instance="Elevate\Microsite\Observer\LoadMicrosite" shared="false" />
+        </event>
+
+</config>

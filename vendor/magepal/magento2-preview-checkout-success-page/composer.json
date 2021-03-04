@@ -1,0 +1,44 @@
+{
+    "name": "magepal/magento2-preview-checkout-success-page",
+    "description": "Quickly and easily preview and test your Magento2 checkout success page, without placing a new order each time",
+    "keywords": [
+        "magento 2",
+        "magento2",
+        "How to test or style the order success page",
+        "checkout success page",
+        "style checkout",
+        "one step checkout previewer",
+        "order confirmation page preview",
+        "magento order confirmation styling",
+        "magento checkout tester",
+        "magento reload success page"
+    ],
+    "license": [
+        "proprietary"
+    ],
+    "homepage": "http://www.magepal.com/",
+    "support": {
+        "email": "support@magepal.com",
+        "issues": "https://github.com/magepal/magento2-preview-checkout-success-page/issues/"
+    },
+    "authors": [
+        {
+            "name": "Renon Stewart",
+            "email": "renon@magepal.com",
+            "homepage": "http://www.magepal.com/",
+            "role": "Leader"
+        }
+    ],
+    "suggest": {
+        "magepal/magento2-checkout-success-misc-script":"Add miscellaneous HTML and scripts to your checkout success page"
+    },
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MagePal\\PreviewCheckoutSuccessPage\\": ""
+        }
+    }
+}

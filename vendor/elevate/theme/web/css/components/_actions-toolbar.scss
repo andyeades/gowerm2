@@ -1,0 +1,50 @@
+.actions-toolbar {
+    > .primary,
+    > .secondary {
+        text-align: center;
+        .action {
+            @include abs-button-responsive();
+            margin-bottom: $indent__s;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        margin-bottom: $indent__s;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    form & {
+        @include min-screen($desktop-min) {
+            @if $form-field-type-revert == inline {
+                .column:not(.sidebar-additional) &,
+                .column:not(.sidebar-main) & {
+                    @include abs-margin-for-forms-desktop();
+                }
+            }
+
+    }
+    }
+}
+//
+//  Desktop
+//  _____________________________________________
+@include min-screen($screen__m) {
+    .actions-toolbar {
+        @include lib-actions-toolbar();
+        > .secondary,
+        > .primary {
+            margin-bottom: 0;
+            .action {
+                margin-bottom: 0;
+                width: auto;
+            }
+        }
+    }
+    form {
+        .actions-toolbar {
+
+        }
+    }
+}

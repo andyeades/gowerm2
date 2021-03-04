@@ -1,0 +1,154 @@
+@if $sitename == happybeds {
+
+
+
+
+// Nav
+
+
+
+$slider-nav-icon-color: #A3A8B2 !default;
+$slider-nav-icon-color-hover: $theme-brand-color-2 !default;
+$slider-nav-container-position-top: 42px !default;
+$slider-nav-container-position-top-desktop: 42px !default;
+
+$slider-nav-prev-left-position: -25px !default;
+$slider-nav-prev-left-position-desktop: -40px !default;
+
+$slider-nav-next-right-position: -25px !default;
+$slider-nav-next-right-position-desktop: -40px !default;
+
+
+$morecollection-nav-container-margin: 0 (-$grid-gutter-width) !default;
+$morecollection-nav-container-margin-mobile-tablet: 0  (-$grid-gutter-width)  !default;
+$morecollection-nav-container-margin-desktop: 0  (-$grid-gutter-width) !default;
+$morecollection-nav-icon-color: $theme-brand-color-1 !default;
+$morecollection-nav-icon-color-hover: $theme-brand-color-2 !default;
+$morecollection-nav-container-position-top: 50% !default;
+$morecollection-nav-container-position-top-desktop: 50% !default;
+
+$morecollection-nav-prev-left-position: 6px !default;
+$morecollection-nav-prev-left-position-desktop: 6px !default;
+
+$morecollection-nav-next-right-position: 6px !default;
+$morecollection-nav-next-right-position-desktop: 6px !default;
+
+$morecollection-width: 100% !default;
+$morecollection-order: 5 !default;
+
+.more-from-collection {
+    width: $morecollection-width;
+    order: $morecollection-order;
+    .section-title {
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid $theme-brand-color-1;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 18px;
+        @include max-screen($screen-sm-max) {
+            margin-top: 10px;
+            text-align: center;
+        }
+    }
+}
+
+.more-from-collection-inner {
+    position: relative;
+    background: #f7f8fb;
+    display:    block;
+    padding:    $grid-gutter-width;
+    @include min-screen($mobiletablet-min) {
+        padding:    $grid-gutter-width;
+    }
+}
+
+
+
+.slider-nav {
+    width: 100%;
+
+    position: absolute;
+    top: $slider-nav-container-position-top;
+    i {
+        @include ev-color-output($slider-nav-icon-color);
+        &:hover {
+            @include ev-color-output($slider-nav-icon-color-hover);
+        }
+    }
+    .fa {
+        font-size: 2em;
+    }
+    @include min-screen($desktop-min) {
+        top: $slider-nav-container-position-top-desktop;
+        .fa {
+            font-size: 2em;
+        }
+    }
+    .slider-prev {
+        left: $slider-nav-prev-left-position;
+        position: absolute;
+        @include min-screen($desktop-min) {
+            left: $slider-nav-prev-left-position-desktop;
+        }
+    }
+    .slider-next {
+        right: $slider-nav-next-right-position;
+        position: absolute;
+        @include min-screen($desktop-min) {
+            right: $slider-nav-next-right-position-desktop;
+        }
+
+    }
+}
+
+#morecollection-nav {
+    width: 100%;
+    position: absolute;
+    margin: $morecollection-nav-container-margin;
+    top: $morecollection-nav-container-position-top;
+    transform: translate(0, -$morecollection-nav-container-position-top);
+    @include min-screen($mobiletablet-min) {
+        margin: $morecollection-nav-container-margin-mobile-tablet;
+    }
+    @include min-screen($desktop-min) {
+        margin: $morecollection-nav-container-margin-desktop;
+    }
+    i {
+        @include ev-color-output($morecollection-nav-icon-color);
+        &:hover {
+            @include ev-color-output($morecollection-nav-icon-color-hover);
+        }
+    }
+    .fa {
+        font-size: 1em;
+        @include min-screen($mobiletablet-min) {
+            font-size: 1.5em;
+        }
+    }
+    @include min-screen($desktop-min) {
+        top: $morecollection-nav-container-position-top-desktop;
+        .fa {
+            font-size: 1.5em;
+        }
+    }
+
+
+    .slider-prev {
+
+        left: $morecollection-nav-prev-left-position;
+        position: absolute;
+        @include min-screen($desktop-min) {
+            left: $morecollection-nav-prev-left-position-desktop;
+        }
+    }
+    .slider-next {
+        right: $morecollection-nav-next-right-position;
+        position: absolute;
+        @include min-screen($desktop-min) {
+            right: $morecollection-nav-next-right-position-desktop;
+        }
+
+    }
+}
+}

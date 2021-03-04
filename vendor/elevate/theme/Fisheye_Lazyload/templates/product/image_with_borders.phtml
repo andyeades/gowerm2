@@ -1,0 +1,50 @@
+<?php
+/**
+ * Copyright © Fisheye Media Ltd. All rights reserved.
+ * See LICENCE.txt for licence details.
+ */
+/** @var Magento\Catalog\Block\Product\Image $block */
+
+
+
+$product_data = $block->getData('product_data');
+
+
+
+
+if (array_key_exists('discontinued_date',$product_data)) {
+    $date = $product_data['discontinued_date'];
+} else {
+    $date = null;
+}
+
+
+
+
+$p_image_class = "";
+
+if (!empty($date)) {
+    if (strtotime($date) < strtotime('30 days')) {
+        $p_image_class = "hb-prod-img-soldout";
+    }
+}
+?>
+        <img class="product-image-photo lazyload  <?= $p_image_class; ?>"
+            <?= /* @escapeNotVerified */ $block->getCustomAttributes() ?>
+             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+             data-src="<?= $block->escapeUrl($block->getImageUrl()) ?>"
+             alt="<?= $block->escapeHtmlAttr($block->stripTags($block->getLabel(), null, true)) ?>"/></span>
+
+<?php
+if (!empty($date)) {
+    if (strtotime($date) < strtotime('30 days')) {
+        ?>
+        <img class="hb-soldout lazyload" src="/media/loader.jpg" data-src="/media/theme_assets/soldout-icon.png" alt="Sold Out"/>
+    <?php }
+} ?>
+
+<?php
+/*
+max-width="<?= $block->escapeHtmlAttr($block->getWidth()) ?>"
+             max-height="<?= $block->escapeHtmlAttr($block->getHeight()) ?>"
+*/ ?>

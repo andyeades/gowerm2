@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src="Magecomp_Ordercomment::css/logo.css"/>
+        <remove src="Aitoc_Core::css/main.css"/>
+        <remove src="css/styles.css"/>
+        <remove src="MagicToolbox_MagicZoomPlus::css/styles.css"/>
+    </head>
+    <body>
+        <container name="root">
+            <block class="Magento\Framework\View\Element\Template" name="page.block" template="Elevate_EmailPreview::preview/preview.phtml">
+                <block class="Elevate\EmailPreview\Block\Preview" name="preview"/>
+            </block>
+        </container>
+    </body>
+</page>
+

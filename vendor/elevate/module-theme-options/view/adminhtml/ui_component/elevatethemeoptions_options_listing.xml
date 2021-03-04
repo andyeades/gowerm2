@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">elevatethemeoptions_options_listing.elevatethemeoptions_options_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>elevatethemeoptions_options_columns</spinner>
+		<deps>
+			<dep>elevatethemeoptions_options_listing.elevatethemeoptions_options_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add New Theme</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource component="Magento_Ui/js/grid/provider" name="elevatethemeoptions_options_listing_data_source">
+		<settings>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Elevate_Themeoptions::Options</aclResource>
+		<dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="elevatethemeoptions_options_listing_data_source">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>entity_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="elevatethemeoptions_options_columns">
+		<settings>
+			<editorConfig>
+				<param name="selectProvider" xsi:type="string">elevatethemeoptions_options_listing.elevatethemeoptions_options_listing.elevatethemeoptions_options_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">false</param>
+				<param name="indexField" xsi:type="string">entity_id</param>
+			</editorConfig>
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">elevatethemeoptions_options_listing.elevatethemeoptions_options_listing.elevatethemeoptions_options_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids" sortOrder="1">
+			<settings>
+				<indexField>entity_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="entity_id" sortOrder="2">
+			<settings>
+                <filter>textRange</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+        <column name="theme_options_name" sortOrder="3">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="hdr_general_color" sortOrder="5">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Header General Color</item>
+                </item>
+            </argument>
+        </column>
+        <column name="hdr_link_color" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Header Link Color</item>
+                </item>
+            </argument>
+        </column>
+        <column name="hdr_main_outer_background_color" sortOrder="18">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Header Outer Background Color</item>
+                </item>
+            </argument>
+        </column>
+		<actionsColumn class="Elevate\Themeoptions\Ui\Component\Listing\Column\OptionsActions" name="actions" sortOrder="20">
+			<settings>
+				<indexField>entity_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>107</resizeDefaultWidth>
+
+			</settings>
+		</actionsColumn>
+	</columns>
+</listing>

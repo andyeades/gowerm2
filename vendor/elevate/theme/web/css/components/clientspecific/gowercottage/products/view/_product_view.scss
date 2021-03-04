@@ -1,0 +1,146 @@
+$prod-view-info-description-font-size: 0.875rem !default;
+
+@if $sitename == gowercottage {
+
+    .ev-prodpage-topsection {
+        margin: 0 auto;
+       //width: 100%;
+
+
+        @include min-screen($desktop-md-min) {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 1) 71%, rgba(234, 231, 223, 1) 71%);
+        }
+    }
+
+    #ev-productpage-topsection {
+        display: flex;
+        flex-wrap: wrap;
+        @include max-screen($desktop-sm-max) {
+            padding: 0;
+        }
+        @include min-screen($desktop-md-min) {
+            flex-wrap: nowrap;
+        }
+        .ev-productimage-side {
+            width: 100%;
+            flex: 0 1 auto;
+            @include min-screen($desktop-min) {
+                //width: 60%;
+            }
+            @include min-screen($desktop-md-min) {
+                width: 60%;
+            }
+
+        }
+        .ev-product-main-side {
+            width: 100%;
+            flex: 0 1 auto;
+            @include min-screen($desktop-min) {
+                //width: 40%;
+            }
+            @include min-screen($desktop-md-min) {
+                width: 40%;
+            }
+        }
+    }
+
+    .catalog-product-view {
+        .column.main {
+            padding-bottom: 0;
+
+        }
+    }
+    .product-info-description {
+        font-size: $prod-view-info-description-font-size;
+    }
+
+    .product.attribute.ingredients {
+        @include max-screen($mobiletablet-max) {
+            padding: 0 15px;
+        }
+    }
+
+    .product.info.detailed {
+        .gower-estd-logo {
+            @include min-screen($desktop-min) {
+                position: absolute;
+                top: 108px;
+
+                left: 50%;
+                margin-left: -160px;
+
+                background-image: url(/pub/media/theme_assets/productpage/est-logo-logo.svg);
+                background-repeat: no-repeat;
+                background-size: 320px;
+                height: 120px;
+                width: 320px;
+            }
+
+        }
+    }
+
+    $nutritional-info-font-family: $theme-sans-serif-font-family !default;
+    $nutritional-info-firstoftype-tdth-border: false !default;
+    $nutritional-info-firstoftype-tdth-bordertop: false !default;
+    $nutritional-info-tdth-border: 1px solid #928665 !default;
+    $nutritional-info-tdth-bordertop: 1px solid #928665 !default;
+    $nutritional-info-tdth-borderleft: unset !default;
+    $nutritional-info-tdth-borderright: unset !default;
+    $nutritional-info-tdth-fontsize: 1rem !default;
+    $nutritional-info-tdth-color: #2C231E !default;
+    $nutritional-info-tdth-background: #EBE7DE !default;
+
+
+    .nutritional-info-table {
+        @include ev-check-output(font-family, $nutritional-info-font-family);
+
+        @include screen($screen-xs-min, $screen-xs-max) {
+            width: 70%;
+            margin: 0 auto;
+        }
+        @include min-screen($desktop-md-min) {
+            width: 50%;
+            margin: 0 auto;
+        }
+        @include ev-check-output(background, $nutritional-info-tdth-background);
+        table {
+            margin-bottom: 0;
+        }
+        tr {
+            &:first-of-type {
+                td, th {
+                    @include ev-check-output(border, $nutritional-info-firstoftype-tdth-border);
+                    @include ev-check-output(border-top, $nutritional-info-firstoftype-tdth-bordertop);
+
+                }
+            }
+        }
+        td, th {
+            @include ev-check-output(border, $nutritional-info-tdth-border);
+            @include ev-check-output(border-top, $nutritional-info-tdth-bordertop);
+            @include ev-check-output(border-left, $nutritional-info-tdth-borderleft);
+            @include ev-check-output(border-right, $nutritional-info-tdth-borderright);
+            @include ev-check-output(font-size, $nutritional-info-tdth-fontsize);
+            @include ev-check-output(color, $nutritional-info-tdth-color);
+            &:first-of-type {
+                padding-left: 20px;
+                text-align: left;
+            }
+            &:nth-of-type(2) {
+                padding-right: 20px;
+                text-align: right;
+            }
+            &:not(:first-of-type) {
+                padding-right: 20px;
+                text-align: right;
+            }
+
+        }
+    }
+
+    .ev-pp-brand-adv {
+
+
+    }
+}
+

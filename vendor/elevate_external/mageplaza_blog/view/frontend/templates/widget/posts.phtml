@@ -1,0 +1,51 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Blog\Block\Widget\Posts $block */
+
+$posts = $block->getCollection();
+?>
+<div id="homepage-blog" class="homepage-block">
+<div class="container">
+  <div class="section-title-outer">
+    <div class="section-title"><a href="<?= $block->getBlogUrl(''); ?>">Blog</a></div>
+    <div class="read-all-link"><a href="<?= $block->getBlogUrl(''); ?>">Read all articles</a></div>
+  </div>
+  <div class="articles-row row">
+      <?php foreach ($posts as  $post) : ?>
+    <div class="article col-md-4 col-xs-12">
+      <a class="post-image" href="<?= str_replace('blog/post', 'blog', str_replace('.html', '', $post->getUrl())); ?>">
+        <div class="article-img-outer">
+          <img class="article-img lazyload" src="/media/loader.png" data-src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
+               data-src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
+               alt="<?= $block->escapeHtml($post->getName()); ?>" >
+        </div>
+        <div class="article-title">
+            <?= $block->escapeHtml($post->getName()); ?> </div>
+        <div class="article-button button"><?= __('Read more'); ?>
+        </div>
+      </a>
+    </div>
+      <?php endforeach; ?>
+  </div>
+</div>
+
+</div>

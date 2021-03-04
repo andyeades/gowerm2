@@ -1,0 +1,25 @@
+@mixin backdrop-transform-enter($tippyjs-placement) {
+  $tippyjs-scale: 1;
+  @if ($tippyjs-placement == 'top') {
+    transform: scale($tippyjs-scale) translate(-50%, -55%);
+  } @else if ($tippyjs-placement == 'bottom') {
+    transform: scale($tippyjs-scale) translate(-50%, -45%);
+  } @else if ($tippyjs-placement == 'left') {
+    transform: scale($tippyjs-scale) translate(-50%, -50%);
+  } @else if ($tippyjs-placement == 'right') {
+    transform: scale($tippyjs-scale) translate(-50%, -50%);
+  }
+}
+
+@mixin backdrop-transform-leave($tippyjs-placement) {
+  $tippyjs-scale: 0.2;
+  @if ($tippyjs-placement == 'top') {
+    transform: scale($tippyjs-scale) translate(-50%, -45%);
+  } @else if ($tippyjs-placement == 'bottom') {
+    transform: scale($tippyjs-scale) translate(-50%, 0);
+  } @else if ($tippyjs-placement == 'left') {
+    transform: scale($tippyjs-scale) translate(-75%, -50%);
+  } @else if ($tippyjs-placement == 'right') {
+    transform: scale($tippyjs-scale) translate(-25%, -50%);
+  }
+}

@@ -1,0 +1,13 @@
+{
+    "name": "elevate/module-performance-dashboard",
+    "description": "Performance Dashboard",
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Elevate\\PerformanceDashboard\\": ""
+        }
+    }
+}

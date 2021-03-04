@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Elevate\CartAssignments\Api\CartAssignmentsRepositoryInterface" type="Elevate\CartAssignments\Model\CartAssignmentsRepository"/>
+	<preference for="Elevate\CartAssignments\Api\Data\CartAssignmentsInterface" type="Elevate\CartAssignments\Model\Data\CartAssignments"/>
+	<preference for="Elevate\CartAssignments\Api\Data\CartAssignmentsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Magento\Checkout\Model\Cart\ImageProvider"
+                type="Elevate\CartAssignments\Model\Overrides\Cart\ImageProvider"/>
+    <virtualType name="Elevate\CartAssignments\Model\ResourceModel\CartAssignments\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">elevate_cartassignments_cartassignments</argument>
+			<argument name="resourceModel" xsi:type="string">Elevate\CartAssignments\Model\ResourceModel\CartAssignments\Collection</argument>
+		</arguments>
+	</virtualType>
+    <!-- Register the Abstract Repositories -->
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Elevate\CartAssignments\Api\CartAssignmentsInterface" xsi:type="string">Elevate\CartAssignments\Api\CartAssignmentsRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="elevate_cartassignments_cartassignments_listing_data_source" xsi:type="string">Elevate\CartAssignments\Model\ResourceModel\CartAssignments\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Elevate\CartAssignments\Api\Data\CartAssignmentsInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">elevate_cartassignments_cartassignments</item>
+                    <item name="identifierField" xsi:type="string">cartassignments_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Elevate\CartAssignments\Api\Data\CartAssignmentsInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="storeReader" xsi:type="string">Elevate\CartAssignments\Model\ResourceModel\CartAssignments\Relation\Store\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="storeCreator" xsi:type="string">Elevate\CartAssignments\Model\ResourceModel\CartAssignments\Relation\Store\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="storeUpdater" xsi:type="string">Elevate\CartAssignments\Model\ResourceModel\CartAssignments\Relation\Store\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Elevate\CartAssignments\Api\Data\CartAssignmentsInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+	<preference for="Elevate\CartAssignments\Api\QuoteItemAssignmentsRepositoryInterface" type="Elevate\CartAssignments\Model\QuoteItemAssignmentsRepository"/>
+	<preference for="Elevate\CartAssignments\Api\Data\QuoteItemAssignmentsInterface" type="Elevate\CartAssignments\Model\Data\QuoteItemAssignments"/>
+	<preference for="Elevate\CartAssignments\Api\Data\QuoteItemAssignmentsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+</config>

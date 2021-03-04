@@ -1,0 +1,815 @@
+$toolbar-mode-icon-font-size: 24px !default;
+$toolbar-element-background: $panel--background-color !default;
+
+
+$toolbar-number-margin: 0 3px !default;
+
+$toolbar-products-border-on: 1 !default;
+$toolbar-products-border-on-mobile: 0 !default;
+$toolbar-products-border-position: bottom !default;
+$toolbar-products-border-radius-on: 0 !default;
+$toolbar-products-border-radius: 5px !default;
+
+$toolbar-products-border-color: #ddd !default;
+$toolbar-products-border-style: solid !default;
+$toolbar-products-border-thickness: 2px !default;
+
+$toolbar-products-margin: 0 0 1rem 0 !default;
+$toolbar-products-textalign: center !default;
+
+$toolbar-products-limiter-enabled: 1 !default;
+$toolbar-products-sorter-enabled: 1 !default;
+
+
+$toolbar-products-pager-display: flex !default;
+$toolbar-products-pager-alignitems: center !default;
+$toolbar-products-pager-justifycontent: center !default;
+
+$toolbar-products-pager-margin-mobiletablet-max: false !default;
+$toolbar-products-pager-display-mobiletablet-max: false !default;
+
+$toolbar-products-pager-margin-desktopsm-max: false !default;
+$toolbar-products-pager-display-desktopsm-max: false !default;
+
+
+$toolbar-amount-disabled: false !default;
+
+$toolbar-amount-margin: 0 !default;
+
+$toolbar-products-amount-textalign: false !default;
+$toolbar-products-amount-width: false !default;
+$toolbar-products-amount-margin: false !default;
+$toolbar-products-amount-display: false !default;
+$toolbar-products-amount-alignitems: center !default;
+$toolbar-products-amount-order: center !default;
+$toolbar-products-amount-flex: 0 1 auto !default;
+
+$toolbar-products-amount-textalign-desktop: false !default;
+$toolbar-products-amount-width-desktop: false !default;
+$toolbar-products-amount-margin-desktop: false !default;
+$toolbar-products-amount-display-desktop: false !default;
+$toolbar-products-amount-alignitems-desktop: center !default;
+$toolbar-products-amount-order-desktop: center !default;
+$toolbar-products-amount-flex-desktop: 0 1 auto !default;
+
+
+$toolbar-products-amount-textalign-desktopmd: false !default;
+$toolbar-products-amount-width-desktopmd: false !default;
+$toolbar-products-amount-margin-desktopmd: false !default;
+$toolbar-products-amount-display-desktopmd: false !default;
+$toolbar-products-amount-alignitems-desktopmd: center !default;
+$toolbar-products-amount-order-desktopmd: center !default;
+$toolbar-products-amount-flex-desktopmd: 0 1 auto !default;
+
+
+
+$toolbar-products-modes-on: true !default;
+$toolbar-products-modes-order: 1 !default;
+$toolbar-products-amount-order: 2 !default;
+
+$toolbar-products-sorter-order: 4 !default;
+
+
+
+$toolbar-products-modes-display: false !default;
+$toolbar-products-modes-display-desktopsm-max: false !default;
+
+
+
+
+
+
+$toolbar-products-sorter-label-show-on: 0 !default;
+$toolbar-products-sorter-align: flex-end !default;
+$toolbar-products-sorter-width: false !default;
+$toolbar-products-sorter-margin: 0 0 0 10px !default;
+
+$toolbar-products-sorter-order-desktop: false !default;
+$toolbar-products-sorter-margin-desktop: false !default;
+$toolbar-products-sorter-width-desktop: false !default;
+
+$toolbar-products-sorter-order-desktopmd: false !default;
+$toolbar-products-sorter-margin-desktopmd: false !default;
+$toolbar-products-sorter-width-desktopmd: false !default;
+
+
+$toolbar-products-sorter-order-mobiletablet-max: false !default;
+$toolbar-products-sorter-margin-mobiletablet-max: 0 !default;
+$toolbar-products-sorter-width-mobiletablet-max: 50% !default;
+
+$toolbar-products-sorter-order-desktopsm-max: false !default;
+$toolbar-products-sorter-margin-desktopsm-max: false !default;
+$toolbar-products-sorter-width-desktopsm-max: false !default;
+
+$sorter-options-border-color: $theme-brand-color-1 !default;
+$sorter-options-border-style: solid !default;
+$sorter-options-border-thickness: 2px !default;
+$sorter-options-border-position: all !default;
+
+$sorter-options-font-size: 1.125rem !default;
+$sorter-options-font-weight: 700 !default;
+
+$sorter-options-margin-desktop: 0 0 0 7px !default;
+
+
+$sorter-options-border-on-mobilettablet-max: true !default;
+$sorter-options-width-mobiletablet-max: 100% !default;
+$sorter-options-height-mobiletablet-max: 48px !default;
+$sorter-options-margin-mobiletablet-max: 0 0.5rem 0 0 !default;
+$sorter-options-border-radius-mobiletablet-max: 5px !default;
+$sorter-options-fontsize-mobiletablet-max: 1rem !default;
+
+$sorter-options-border-on-desktopsm-max: false !default;
+$sorter-options-width-desktopsm-max: false !default;
+$sorter-options-height-desktopsm-max: false !default;
+$sorter-options-margin-desktopsm-max: false !default;
+$sorter-options-border-radius-desktopsm-max: false !default;
+$sorter-options-fontsize-desktopsm-max: false !default;
+
+
+
+$toolbar-products-modes-margin: 0 10px 0 0 !default;
+
+$toolbar-products-limiter-order: 3 !default;
+$toolbar-products-limiter-order-desktop: false !default;
+$toolbar-products-limiter-order-desktopmd: false !default;
+
+$toolbar-products-limiter-display: false !default;
+$toolbar-products-limiter-display-desktop: false !default;
+$toolbar-products-limiter-display-desktopmd: false !default;
+
+$toolbar-products-limiter-width: false !default;
+$toolbar-products-limiter-width-desktop: false !default;
+$toolbar-products-limiter-width-desktopmd: false !default;
+
+$toolbar-products-limiter-margin: 0 0 0 auto !default;
+$toolbar-products-limiter-margin-desktop: false !default;
+$toolbar-products-limiter-margin-desktopmd: false !default;
+
+
+$toolbar-products-limiter-control-display: inline-block !default;
+
+$toolbar-products-limiter-text-display: false !default;
+
+
+$toolbar-products-limiter-before-content: "" !default;
+$toolbar-products-limiter-before-display: block !default;
+$toolbar-products-limiter-before-margin: 0 9px !default;
+$toolbar-products-limiter-before-width: 2px !default;
+$toolbar-products-limiter-before-height: 13px !default;
+$toolbar-products-limiter-before-border-left: 1px solid #f0386c !default;
+
+
+
+$toolbar-products-pager-order: 5 !default;
+
+$toolbar-products-pager-width: 100% !default;
+$toolbar-products-pager-width-if-filter-enabled: auto !default;
+$toolbar-products-pager-margin-if-filter-enabled: 0 auto !default;
+
+$toolbar-products-pager-margin: 0 0 1rem 0 !default;
+$toolbar-products-pager-margin-desktopsm-max: false !default;
+$toolbar-products-pager-margin-mobiletablet-max: false !default;
+$toolbar-products-pager-margin-xs-sm: false !default;
+
+
+// Bottom of List/Grid Toolbar
+
+
+
+
+$toolbar-products-pager-display: flex !default;
+$toolbar-products-pager-bottom-width: 100% !default;
+$toolbar-products-pager-bottom-margin: 1rem 0 !default;
+
+$toolbar-products-pager-bottom-width-desktopsm-max: false !default;
+$toolbar-products-pager-bottom-margin-desktopsm-max: false !default;
+
+
+$toolbar-products-elements-border-bottom: false !default;
+$toolbar-products-elements-padding: 0 0 5px 0 !default;
+$toolbar-products-elements-position: relative !default;
+$toolbar-products-elements-bottom: -2px !default;
+
+
+$toolbar-products-elements-display: flex !default;
+$toolbar-products-elements-alignitems: center !default;
+
+$toolbar-products-elements-height: 40px !default;
+
+
+
+
+
+$sorter-icon-color: #0e1936 !default;
+$sorter-icon-color-hover: lighten(#0e1936, 15%) !default;
+
+
+$ev-ln-toolbar-btn-margin: 0 !default;
+
+
+
+$ev-ln-toolbar-btn-margin-sm-max: false !default;
+
+
+$ev-ln-toolbar-btn-margin-sm-minmax: 1rem 0 0 0 !default;
+
+$ev-ln-toolbar-btn-width: 50% !default;
+$ev-ln-toolbar-btn-order: 5 !default;
+$ev-ln-toolbar-btn-bg-color: $theme-brand-color-2 !default;
+
+$ev-ln-toolbar-btn-border-radius-on: 1 !default;
+$ev-ln-toolbar-btn-border-radius: 5px !default;
+
+$ev-ln-toolbar-btn-text-transform-on: 1 !default;
+$ev-ln-toolbar-btn-text-transform: uppercase !default;
+$ev-ln-toolbar-btn-icon-on: 1 !default;
+
+$ev-ln-toolbar-btn-border-color: #cdcdcd !default;
+$ev-ln-toolbar-btn-border-style: solid !default;
+$ev-ln-toolbar-btn-border-thickness: 1px !default;
+$ev-ln-toolbar-btn-font-size: 1.125rem !default;
+$ev-ln-toolbar-btn-font-weight: 700 !default;
+
+$ev-ln-toolbar-btn-color: #FFF !default;
+$ev-ln-toolbar-btn-color-hover: darken($ev-ln-toolbar-btn-color, 15%) !default;
+$ev-ln-toolbar-btn-padding: 0.75rem 0.9375rem !default;
+$ev-ln-toolbar-btn-lineheight: 1.4rem !default;
+
+$toolbar-products-bottom-toolbar-on: 1 !default;
+
+$pages-action-width: 34px !default;
+
+$pages-item-prev-margin: false !default;
+$pages-item-next-margin: false !default;
+
+.pages {
+    @include lib-pager();
+
+    .action {
+        @include co(width, $pages-action-width);
+
+    }
+    .pages-item-prev {
+        @include co(margin, $pages-item-prev-margin);
+    }
+    .pages-item-next {
+        @include co(margin, $pages-item-next-margin);
+    }
+}
+
+.page-products {
+    .columns {
+        position: relative;
+        z-index: 1;
+    }
+
+}
+
+.ev_ln_toolbar_btn {
+    width: $ev-ln-toolbar-btn-width;
+    flex: 0 1 auto;
+    order: $ev-ln-toolbar-btn-order;
+    cursor: pointer;
+    display: inline-block;
+    background: $ev-ln-toolbar-btn-bg-color;
+    border: $ev-ln-toolbar-btn-border-thickness $ev-ln-toolbar-btn-border-style $ev-ln-toolbar-btn-border-color;
+    color: $ev-ln-toolbar-btn-color;
+    @include co(margin, $ev-ln-toolbar-btn-margin);
+    padding: $ev-ln-toolbar-btn-padding;
+    font-size: $ev-ln-toolbar-btn-font-size;
+    font-weight: $ev-ln-toolbar-btn-font-weight;
+    line-height: $ev-ln-toolbar-btn-lineheight;
+    @if $ev-ln-toolbar-btn-border-radius-on == 1 {
+        border-radius: $ev-ln-toolbar-btn-border-radius;
+    }
+    @if $ev-ln-toolbar-btn-text-transform-on == 1 {
+        text-transform: $ev-ln-toolbar-btn-text-transform;
+    }
+    @if $ev-ln-toolbar-btn-icon-on != 1 {
+        > i {
+            display: none;
+        }
+    }
+
+    @include max-screen($desktop-sm-max) {
+        @include co(margin, $ev-ln-toolbar-btn-margin-sm-max);
+    }
+
+    @include screen($screen-sm-min, $screen-sm-max) {
+        @include co(margin, $ev-ln-toolbar-btn-margin-sm-minmax);
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active {
+        box-shadow: unset;
+    }
+}
+
+
+.toolbar-products {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    > div {
+        flex: 0 1 auto;
+    }
+
+    @include co(margin, $toolbar-products-margin);
+    @include co(text-align, $toolbar-products-textalign);
+
+
+
+    @if $toolbar-products-border-on == 1 {
+        @include elevate-border($toolbar-products-border-color, $toolbar-products-border-thickness, $toolbar-products-border-style, $toolbar-products-border-position);
+    }
+    @if $toolbar-products-border-on-mobile == 0 {
+        border: unset;
+    }
+    @if $toolbar-products-border-radius-on == 1 {
+        border-radius: $toolbar-products-border-radius;
+    }
+
+
+    .limiter,
+    .toolbar-amount,
+    .sorter,
+    .modes {
+        @include co(border-bottom, $toolbar-products-elements-border-bottom);
+        @include co(padding, $toolbar-products-elements-padding);
+        @include co(position, $toolbar-products-elements-position);
+        @include co(bottom, $toolbar-products-elements-bottom);
+        @include co(display, $toolbar-products-elements-display);
+        @include co(align-items, $toolbar-products-elements-alignitems);
+        @include co(height, $toolbar-products-elements-height);
+    }
+
+    .limiter, .sorter {
+        label {
+            margin-bottom: 0;
+        }
+    }
+
+    .modes, .limiter, .toolbar-amount {
+        @include max-screen($screen-xs-max) {
+            display: none;
+        }
+    }
+
+    .limiter {
+        @include co(order, $toolbar-products-limiter-order);
+        @include co(margin, $toolbar-products-limiter-margin);
+        @include co(display, $toolbar-products-limiter-display);
+        @include co(width, $toolbar-products-limiter-width);
+
+
+        @include min-screen($desktop-min) {
+            @include co(display, $toolbar-products-limiter-display-desktop, $toolbar-products-limiter-display);
+            @include co(margin, $toolbar-products-limiter-margin-desktop, $toolbar-products-limiter-margin);
+            @include co(width, $toolbar-products-limiter-width-desktop, $toolbar-products-limiter-width);
+            @include co(order, $toolbar-products-limiter-order-desktop, $toolbar-products-limiter-order);
+        }
+
+        @include min-screen($desktop-md-min) {
+            @include co(display, $toolbar-products-limiter-display-desktopmd, $toolbar-products-limiter-display-desktop, $toolbar-products-limiter-display);
+            @include co(margin, $toolbar-products-limiter-margin-desktopmd, $toolbar-products-limiter-margin-desktop, $toolbar-products-limiter-margin);
+            @include co(width, $toolbar-products-limiter-width-desktopmd, $toolbar-products-limiter-width-desktop, $toolbar-products-limiter-width);
+            @include co(order, $toolbar-products-limiter-order-desktopmd, $toolbar-products-limiter-order-desktop, $toolbar-products-limiter-order);
+        }
+
+        .control {
+            @include co(display, $toolbar-products-limiter-control-display);
+        }
+
+        .limiter-text {
+            @include co(display, $toolbar-products-limiter-text-display);
+        }
+
+        &:before {
+            @include co(content, $toolbar-products-limiter-before-content);
+            @include co(display, $toolbar-products-limiter-before-display);
+            @include co(margin, $toolbar-products-limiter-before-margin);
+            @include co(height, $toolbar-products-limiter-before-height);
+            @include co(width, $toolbar-products-limiter-before-width);
+            @include co(border-left, $toolbar-products-limiter-before-border-left);
+        }
+    }
+
+
+
+
+
+
+
+
+
+    .toolbar-amount {
+        @include co(display, $toolbar-products-amount-display);
+        @include co(align-items, $toolbar-products-amount-alignitems);
+        @include co(order, $toolbar-products-amount-order);
+        @include co(flex, $toolbar-products-amount-flex);
+        @include co(margin, $toolbar-products-amount-margin);
+        @include co(width, $toolbar-products-amount-width);
+        @include co(text-align, $toolbar-products-amount-textalign);
+
+        @include min-screen($desktop-min) {
+            @include co(text-align, $toolbar-products-amount-textalign-desktop, $toolbar-products-amount-textalign);
+            @include co(width, $toolbar-products-amount-width-desktop, $toolbar-products-amount-width);
+            @include co(display, $toolbar-products-amount-display-desktop, $toolbar-products-amount-display);
+            @include co(order, $toolbar-products-amount-order-desktop, $toolbar-products-amount-order);
+            @include co(flex, $toolbar-products-amount-flex-desktop, $toolbar-products-amount-flex);
+            @include co(margin, $toolbar-products-amount-margin-desktop, $toolbar-products-amount-margin);
+        }
+
+        @include min-screen($desktop-md-min) {
+            @include co(text-align, $toolbar-products-amount-textalign-desktopmd, $toolbar-products-amount-textalign-desktop, $toolbar-products-amount-textalign);
+            @include co(width, $toolbar-products-amount-width-desktopmd, $toolbar-products-amount-width-desktop, $toolbar-products-amount-width);
+            @include co(display, $toolbar-products-amount-display-desktopmd, $toolbar-products-amount-display-desktop, $toolbar-products-amount-display);
+            @include co(order, $toolbar-products-amount-order-desktopmd, $toolbar-products-amount-order-desktop, $toolbar-products-amount-order);
+            @include co(flex, $toolbar-products-amount-flex-desktopmd, $toolbar-products-amount-flex-desktop, $toolbar-products-amount-flex);
+            @include co(margin, $toolbar-products-amount-margin-desktopmd,  $toolbar-products-amount-margin-desktop, $toolbar-products-amount-margin);
+        }
+    }
+
+    .sorter {
+
+
+
+
+        @if $toolbar-products-sorter-enabled == 1 {
+            @include co(order, $toolbar-products-sorter-order);
+            @include co(margin, $toolbar-products-sorter-margin);
+            @include co(width, $toolbar-products-sorter-width);
+
+
+            @include min-screen($desktop-min) {
+                @include co(order, $toolbar-products-sorter-order-desktop);
+                @include co(margin, $toolbar-products-sorter-margin-desktop);
+                @include co(width, $toolbar-products-sorter-width-desktop);
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(order, $toolbar-products-sorter-order-desktopmd);
+                @include co(margin, $toolbar-products-sorter-margin-desktopmd);
+                @include co(width, $toolbar-products-sorter-width-desktopmd);
+            }
+            @include max-screen($mobiletablet-max) {
+                @include co(order, $toolbar-products-sorter-order-mobiletablet-max);
+                @include co(margin, $toolbar-products-sorter-margin-mobiletablet-max);
+                @include co(width, $toolbar-products-sorter-width-mobiletablet-max);
+            }
+            @include max-screen($desktop-sm-max) {
+                @include co(order, $toolbar-products-sorter-order-desktopsm-max);
+                @include co(margin, $toolbar-products-sorter-margin-desktopsm-max);
+                @include co(width, $toolbar-products-sorter-width-desktopsm-max);
+            }
+            label {
+                @if $toolbar-products-sorter-label-show-on != 1 {
+
+                    @include abs-visually-hidden;
+                }
+            }
+        } @else {
+            display: none;
+        }
+
+    }
+
+    .modes {
+        @include co(display, $toolbar-products-modes-display);
+        order: $toolbar-products-modes-order;
+        margin: $toolbar-products-modes-margin;
+        @include max-screen($desktop-sm-max) {
+            @include co(display, $toolbar-products-modes-display-desktopsm-max, $toolbar-products-modes-display);
+
+        }
+    }
+}
+
+// Targets Second Toolbar at bottom
+.products.wrapper ~ .toolbar-products {
+    @if $toolbar-products-bottom-toolbar-on != 1 {
+        display: none;
+    }
+
+
+}
+
+
+
+.pages {
+
+    @include co(display, $toolbar-products-pager-display);
+    @include co(align-items, $toolbar-products-pager-alignitems);
+    @include co(justify-content, $toolbar-products-pager-justifycontent);
+    @include co(width, $toolbar-products-pager-width);
+    @include co(order, $toolbar-products-pager-order);
+    @include co(margin, $toolbar-products-pager-margin);
+
+
+    @include max-screen($ev-landingpages-filter-visible-until) {
+        @include co(width, $toolbar-products-pager-width-if-filter-enabled);
+        @include co(margin, $toolbar-products-pager-margin-if-filter-enabled);
+    }
+
+    @include max-screen($mobiletablet-max) {
+        @include co(margin, $toolbar-products-pager-margin-mobiletablet-max);
+        @include co(display, $toolbar-products-pager-display-mobiletablet-max);
+    }
+
+    @include max-screen($desktop-sm-max) {
+        @include co(margin, $toolbar-products-pager-margin-desktopsm-max);
+        @include co(display, $toolbar-products-pager-display-desktopsm-max);
+    }
+
+
+
+
+        .products.wrapper ~ .toolbar & {
+            @include co(display, $toolbar-products-pager-display);
+            @include co(width, $toolbar-products-pager-bottom-width);
+            @include co(margin, $toolbar-products-pager-bottom-margin);
+            @include max-screen($desktop-sm-max) {
+                @include co(width, $toolbar-products-pager-bottom-width-desktopsm-max);
+                @include co(margin, $toolbar-products-pager-bottom-margin-desktopsm-max);
+            }
+
+        }
+
+}
+
+
+
+
+
+
+
+.sorter-options {
+
+    @include max-screen($mobiletablet-max) {
+        @include co(width, $sorter-options-width-mobiletablet-max);
+        @include co(height, $sorter-options-height-mobiletablet-max);
+        @include co(margin, $sorter-options-margin-mobiletablet-max);
+        @include co(font-size, $sorter-options-fontsize-mobiletablet-max);
+        @include co(border-radius, $sorter-options-border-radius-mobiletablet-max);
+
+        @if $sorter-options-border-on-mobilettablet-max == true {
+            @include elevate-border($sorter-options-border-color, $sorter-options-border-thickness, $sorter-options-border-style, $sorter-options-border-position);
+        }
+
+    }
+
+    @include max-screen($desktop-sm-max) {
+        @include co(width, $sorter-options-width-desktopsm-max);
+        @include co(height, $sorter-options-height-desktopsm-max);
+        @include co(margin, $sorter-options-margin-desktopsm-max);
+        @include co(font-size, $sorter-options-fontsize-desktopsm-max);
+        @include co(border-radius, $sorter-options-border-radius-desktopsm-max);
+
+        @if $sorter-options-border-on-desktopsm-max == true {
+            @include elevate-border($sorter-options-border-color, $sorter-options-border-thickness, $sorter-options-border-style, $sorter-options-border-position);
+        }
+    }
+
+}
+
+.sorter-action {
+    vertical-align: top;
+    @include lib-icon-font(
+            $icon-arrow-up,
+        $-icon-font-size: 1.25rem,
+        $-icon-font-line-height: false,
+        $-icon-font-color: $sorter-icon-color,
+        $-icon-font-color-hover: $sorter-icon-color-hover,
+        $-icon-font-text-hide: true
+    );
+}
+
+.toolbar-amount {
+    @if $toolbar-amount-disabled == true {
+        display: none;
+    } @else {
+        margin: $toolbar-amount-margin;
+
+        .toolbar-number {
+            margin: $toolbar-number-margin;
+        }
+    }
+
+
+}
+
+.sorter.sort-desc {
+    &:before {
+        content: $icon-arrow-down;
+    }
+}
+
+.limiter-options {
+    margin: 0 5px 0 7px;
+    width: auto;
+}
+
+.limiter-label {
+    font-weight: 400;
+}
+
+
+$modes-mode-color: $text--color--muted !default;
+$modes-mode-before-color: $modes-mode-color !default;
+$modes-mode-border-on: 1 !default;
+$modes-mode-border-on-mobile: 0 !default;
+$modes-mode-border-position: all-but-right !default;
+$modes-mode-border-radius: false !default;
+
+$modes-mode-border-color: $border-color--base !default;
+$modes-mode-border-style: solid !default;
+$modes-mode-border-thickness: 2px !default;
+
+
+$modes-mode-active-color: $primary--color--light !default;
+$modes-mode-active-background-color: #2f2523 !default;
+$modes-mode-not-active-hover-color: $text--color--muted !default;
+$modes-mode-not-active-hover-background: darken($toolbar-element-background, 7%) !default;
+
+$modes-mode-border-radius: false !default;
+$modes-mode-margin: false !default;
+$modes-mode-padding: 7px 10px !default;
+$modes-mode-lastchild-margin: false !default;
+$modes-mode-transition: $standard-transition !default;
+
+$modes-mode-custom-icons-on: false !default;
+
+
+$modes-grid-before-background-repeat: false !default;
+$modes-grid-before-background: false !default;
+$modes-grid-active-before-background: false !default;
+$modes-grid-active-before-background-repeat: false !default;
+$modes-grid-active-before-background-position: false !default;
+$modes-grid-active-before-background-size: false !default;
+$modes-grid-before-height: false !default;
+$modes-grid-before-width: false !default;
+$modes-grid-before-background-size: false !default;
+
+$modes-grid-before-background-position: false !default;
+
+$modes-list-before-background: false !default;
+$modes-list-before-background-repeat: false !default;
+$modes-list-before-background-size: false !default;
+$modes-list-before-background-position: false !default;
+
+
+$modes-list-active-before-background-size: false !default;
+$modes-list-active-before-background-repeat: false !default;
+$modes-list-active-before-background: false !default;
+$modes-list-active-before-background-position: false !default;
+
+
+$modes-list-before-height: false !default;
+$modes-list-before-width: false !default;
+
+.modes-mode {
+    @include min-screen($mobile-menu-notvisible) {
+        @include co(color, $modes-mode-color);
+        @if $modes-mode-border-on == 1 {
+            @include elevate-border($modes-mode-border-color, $modes-mode-border-thickness, $modes-mode-border-style, $modes-mode-border-position);
+        }
+        @include co(margin, $modes-mode-margin);
+        @include co(padding, $modes-mode-padding);
+        @include co(border-radius, $modes-mode-border-radius);
+        float: left;
+        font-weight: $font-weight--regular;
+        line-height: 1;
+        text-align: center;
+        @include co(transition, $modes-mode-transition);
+
+        @if $modes-mode-custom-icons-on == false {
+
+            @include lib-icon-font(
+                    $icon-grid,
+                $-icon-font-size: $toolbar-mode-icon-font-size,
+                $-icon-font-text-hide: true,
+                $-icon-font-color: $modes-mode-before-color,
+                $-icon-font-color-hover: $modes-mode-color,
+                $-icon-font-display: block
+            );
+        } @else {
+            &:before {
+                content: '';
+                display: inline-block;
+                @include co(background, $modes-grid-before-background);
+                @include co(background-repeat, $modes-grid-before-background-repeat);
+                @include co(background-size, $modes-grid-before-background-size);
+                @include co(height, $modes-grid-before-height);
+                @include co(width, $modes-grid-before-width);
+            }
+            &.active {
+                &:before {
+                    @include co(background, $modes-grid-active-before-background);
+                    @include co(background-repeat, $modes-grid-active-before-background-repeat);
+                    @include co(background-size, $modes-grid-active-before-background-size);
+                    @include co(height, $modes-grid-before-height);
+                    @include co(width, $modes-grid-before-width);
+                }
+            }
+            &:hover {
+                &:before {
+                    @include co(background, $modes-grid-active-before-background);
+                    @include co(background-repeat, $modes-grid-active-before-background-repeat);
+                    @include co(background-size, $modes-grid-active-before-background-size);
+                    @include co(height, $modes-grid-before-height);
+                    @include co(width, $modes-grid-before-width);
+                }
+            }
+            span {
+                @include lib-visually-hidden();
+            }
+        }
+
+
+
+        &:not(.active) {
+            &:hover {
+                @include co(color, $modes-mode-not-active-hover-color);
+                @include co(background, $modes-mode-not-active-hover-background);
+            }
+        }
+
+        &:last-child {
+            @include co(margin, $modes-mode-lastchild-margin);
+            @if $modes-mode-border-on == 1 {
+                @include elevate-border($modes-mode-border-color, $modes-mode-border-thickness, $modes-mode-border-style, 'right');
+            }
+        }
+
+        &.active {
+            @include co(background, $modes-mode-active-background-color);
+            @include co(color, $modes-mode-active-color);
+        }
+    }
+
+}
+
+
+
+.mode-list {
+    @include min-screen($mobile-menu-notvisible) {
+        @if $modes-mode-custom-icons-on == false {
+            @include lib-icon-font-symbol($icon-list);
+        } @else {
+
+            &:before {
+                @include co(background, $modes-list-before-background);
+                @include co(background-repeat, $modes-list-before-background-repeat);
+                @include co(background-size, $modes-list-before-background-size);
+                @include co(background-position, $modes-list-before-background-position);
+                @include co(height, $modes-list-before-height);
+                @include co(width, $modes-list-before-width);
+            }
+            &:hover {
+                &:before {
+                    @include co(background, $modes-list-active-before-background);
+                    @include co(background-repeat, $modes-list-active-before-background-repeat);
+                    @include co(background-size, $modes-list-active-before-background-size);
+                    @include co(background-position, $modes-list-active-before-background-position);
+                    @include co(height, $modes-list-before-height);
+                    @include co(width, $modes-list-before-width);
+                }
+            }
+            &.active {
+                &:before {
+                    @include co(background, $modes-list-active-before-background);
+                    @include co(background-repeat, $modes-list-active-before-background-repeat);
+                    @include co(background-size, $modes-list-active-before-background-size);
+                    @include co(background-position, $modes-list-active-before-background-position);
+                }
+            }
+        }
+
+    }
+
+}
+
+//
+//  Desktop
+//  ---------------------------------------------
+
+@include min-screen($desktop-min) {
+
+    .page-products {
+        .columns {
+            padding-top: 0;
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+
+    .modes-label {
+        @include lib-visually-hidden();
+    }
+
+}

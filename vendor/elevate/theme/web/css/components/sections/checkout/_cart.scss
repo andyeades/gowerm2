@@ -1,0 +1,273 @@
+
+
+
+$include-checkout-selector_css: false !default;
+
+$checkout_btn_both_fontweight: 700 !default;
+$checkout_btn_both_textransform_on: 1 !default;
+$checkout_btn_both_textransform: uppercase !default;
+$checkout_btn_both_padding: 0.9375rem 1.25rem !default;
+$checkout_btn_both_fontsize: 0.875rem !default;
+
+
+// Elevate Checkout Selector
+
+$ev-checkoutselector-parcelicons-flex-mobiletabletmax: 0 0 auto !important !default;
+$ev-checkoutselector-parcel-icon-img-height: 40px !default;
+$ev-checkoutselector-parcel-icon-img-width: 40px !default;
+
+$ev-checkoutselector-parcel-icon-img-height-mobilemax: 30px !default;
+$ev-checkoutselector-parcel-icon-img-width-mobilemax: 30px !default;
+
+$ev-checkoutselector-parceladdressiconouter-fontsize-mobilemax: 0.875rem !default;
+$ev-checkoutselector-parceladdressiconouter-margin-mobiletabletmax: 0 0 1rem 0 !default;
+$ev-checkoutselector-parceladdressiconouter-margin: 0 0 1rem 0 !default;
+
+$ev-checkoutselector-parceladdressiconouterouter-width-mobilemax: 260px !default;
+$ev-checkoutselector-parceladdressiconouterouter-width: 270px !default;
+$ev-checkoutselector-parceladdressiconouterouter-width-desktopmin: 280px !default;
+$ev-checkoutselector-parceladdressiconouterouter-margin-mobilemax: 1rem 0 0 0 !default;
+$ev-checkoutselector-parceladdressiconouterouter-justifycontent-mobiletabletmax: center !default;
+
+$ev-checkoutselector-checkboxselectionouter-flexwrap-mobilemax: wrap !default;
+$ev-checkoutselector-checkboxcontainer-flex-mobilemax: 1 0 auto !default;
+
+$ev-checkoutselector-address-button-fontsize: false !default;
+
+
+@if $include-checkout-selector-css != false {
+    .checkout-selector-outer-wrapper {
+        text-align: center;
+        .abc-checkbox {
+            label {
+                &:before {
+                    border: 2px solid #e2e2e2;
+                    background-color: #fff;
+                }
+                &:after {
+                    left: -1px;
+                }
+            }
+        }
+
+        p {
+            text-align: center;
+        }
+        .checkout-selector-wrapper {
+            cursor: pointer;
+            text-align: center;
+            display: block;
+        }
+        .checkout-selection-outer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include max-screen($mobile-max) {
+                @include co(flex-wrap, $ev-checkoutselector-checkboxselectionouter-flexwrap-mobilemax);
+            }
+            > div {
+                flex: 0 1 auto;
+            }
+            margin: 1rem 0 2rem 0;
+
+        }
+        .proceedtocheckout {
+            margin: 1rem auto;
+
+        }
+        .parcel-address-icon-outer-outer {
+            display: flex;
+            flex-wrap: wrap;
+            @include co(width, $ev-checkoutselector-parceladdressiconouterouter-width);
+            padding: 1rem;
+            border: 2px solid $theme-brand-color-1;
+            border-radius: 10px;
+            color: $theme-brand-color-1;
+            @include min-screen($desktop-min) {
+                @include co(width, $ev-checkoutselector-parceladdressiconouterouter-width-desktopmin, $ev-checkoutselector-parceladdressiconouterouter-width);
+            }
+            @include max-screen($mobile-max) {
+                @include co(width, $ev-checkoutselector-parceladdressiconouterouter-width-mobilemax, $ev-checkoutselector-parceladdressiconouterouter-width);
+            }
+
+            @include max-screen($mobiletablet-max) {
+                @include co(justify-content, $ev-checkoutselector-parceladdressiconouterouter-justifycontent-mobiletabletmax);
+            }
+            > div {
+            }
+        }
+
+        .parcel-address-icon-outer {
+            display: flex;
+
+            &:last-of-type {
+                margin: 0;
+            }
+            @include co(margin, $ev-checkoutselector-parceladdressiconouter-margin);
+
+            @include max-screen($mobiletablet-max) {
+                @include co(margin, $ev-checkoutselector-parceladdressiconouter-margin-mobiletabletmax, $ev-checkoutselector-parceladdressiconouter-margin);
+            }
+            > div {
+                flex: 0 1 auto;
+            }
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+            @include max-screen($mobile-max) {
+                @include co(flex, $ev-checkoutselector-checkboxcontainer-flex-mobilemax);
+            }
+        }
+
+        .checkout-selection-outer {
+
+        }
+
+        .address-to {
+            margin-left: 1rem;
+        }
+        .checkbox-container {
+            flex: 0 1 auto;
+        }
+        .parcel-address-icon-outer {
+            @include max-screen($mobile-max) {
+                @include co(font-size, $ev-checkoutselector-parceladdressiconouter-fontsize-mobilemax);
+            }
+        }
+
+        .parcel-icons {
+            flex: 0 0 auto !important;
+            display: flex;
+            align-items: center;
+            @include max-screen($mobiletablet-max) {
+                @include co(flex, $ev-checkoutselector-parcelicons-flex-mobiletabletmax);
+
+            }
+        }
+        .parcel-icon {
+
+        }
+        .parcel-icon-img {
+
+            @include co(height, $ev-checkoutselector-parcel-icon-img-height);
+            @include co(width, $ev-checkoutselector-parcel-icon-img-width);
+            @include max-screen($mobilemax) {
+                @include co(height, $ev-checkoutselector-parcel-icon-img-height-mobilemax);
+                @include co(width, $ev-checkoutselector-parcel-icon-img-width-mobilemax);
+            }
+        }
+        .address-icons {
+            margin-left: 1rem;
+            flex: 0 1 auto;
+        }
+
+        $ev-checkoutselector-address-button-fontsize: 0.875rem !default;
+
+        #single-address,
+        #multi-address {
+            color: #fff;
+            background-color: #02c934;
+            border-color: #02c934;
+            border-radius: 0.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.9375rem 1.25rem;
+
+            @include co(font-size, $ev-checkoutselector-address-button-fontsize);
+
+            &.checkout-hidden {
+                display: none;
+            }
+            &.checkout-disabled {
+                opacity: 0.65;
+                pointer-events: none;
+            }
+            &.checkout-enabled {
+                opacity: 1;
+                pointer-events: all;
+                &:hover {
+                    background-color: darken(#02c934, 15%);
+                    border-color: darken(#02c934, 15%);
+                }
+            }
+        }
+
+        .checkout-select-breaker {
+            margin: 2rem 0;
+            border-bottom: 4px solid $theme-brand-color-1;
+        }
+
+        .address-icon {
+            display: flex;
+            align-items: center;
+            > i {
+
+                &:first-of-type {
+                    margin-right: 0.875rem;
+                }
+            }
+            > div {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+.checkout-cart-index {
+    .action.primary.checkout {
+        font-weight: $checkout_btn_both_fontweight;
+        @if $checkout_btn_both_textransform_on == 1 {
+            text-transform: $checkout_btn_both_textransform;
+        }
+        padding: $checkout_btn_both_padding;
+        @include co(font-size, $checkout_btn_both_fontsize);
+
+    }
+    .checkout-methods-items {
+        .action.primary.checkout {
+            width: 100%;
+        }
+        .item {
+            &:nth-of-type(2) {
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+.cart-container {
+
+    .search-bar {
+        input {
+            @include max-screen($mobilemax) {
+                min-width: 180px;
+                max-width: 180px;
+            }
+        }
+
+    }
+}
+
+
+
+
+
+
+
+////// ANYTHING BELOW MAY BE REDUNDANT
+
+
+
+
+
+
+

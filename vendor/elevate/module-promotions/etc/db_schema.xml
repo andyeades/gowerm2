@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="elevate_promotions_promotions Table" engine="innodb" name="elevate_promotions_promotions" resource="default">
+		<column comment="Entity Id" identity="true" name="promotions_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="promotions_id"/>
+		</constraint>
+		<column name="sitewide_enable" nullable="true" xsi:type="boolean"/>
+		<column name="sitewide_type" nullable="true" xsi:type="text"/>
+		<column name="sitewide_link" nullable="true" xsi:type="text"/>
+		<column name="sitewide_background" nullable="true" xsi:type="text"/>
+		<column name="sitewide_custom_block" nullable="true" xsi:type="text"/>
+		<column name="sitewide_main_text" nullable="true" xsi:type="text"/>
+		<column name="sitewide_pill_colour" nullable="true" xsi:type="text"/>
+		<column name="sitewide_pill_text" nullable="true" xsi:type="text"/>
+		<column name="sitewide_invert_icons" nullable="true" xsi:type="text"/>
+		<column name="sitewide_main_text_colour" nullable="true" xsi:type="text"/>
+		<column name="sitewide_mainsubtext" nullable="true" xsi:type="text"/>
+	</table>
+</schema>

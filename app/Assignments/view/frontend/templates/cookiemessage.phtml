@@ -1,0 +1,23 @@
+<?php if($this->getEnable()){ ?>
+
+<script type="text/javascript" id="cookieinfo"
+        src="//cookieinfoscript.com/js/cookieinfo.min.js"
+		<?php if($this->getCloseText()){?>
+        data-close-text="<?php echo $this->getCloseText(); ?>"
+		<?php } ?>
+		<?php if($this->getDivlinkbg()){?>
+        data-divlinkbg="<?php echo $this->getDivlinkbg(); ?>"
+		<?php } ?>
+		<?php if($this->getDivlink()){?>
+        data-divlink="<?php echo $this->getDivlink(); ?>"
+		<?php } ?>
+		<?php if($this->getMoreinfo()){?>
+        data-moreinfo="<?php echo $this->getMoreinfo(); ?>"
+		<?php } ?>
+		<?php if($this->getMessage()){?>
+		data-message="<?php echo $this->getMessage(); ?>"
+		<?php } ?>
+>
+</script>
+
+<?php } ?>

@@ -1,0 +1,40 @@
+@if $sitename == posturite {
+
+    $hero-h1-fontsize: 2.5rem !default;
+    $hero-h1-fontsize-desktop: 3.75rem !default;
+
+    $hero-h2-fontweight: 500 !default;
+    $hero-h2-lineheight: 1.35 !default;
+
+    .sale-banner, .hero-banner {
+        display: block;
+        width: 100%;
+        height: auto;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: $ps-color-convert-19;
+        position: relative;
+
+        h1 {
+            font-size: $hero-h1-fontsize;
+
+            @include min-screen($desktop-min) {
+                font-size:   $hero-h1-fontsize-desktop;
+            }
+        }
+
+        h2 {
+            font-weight: $hero-h2-fontweight;
+            line-height: $hero-h2-lineheight;
+        }
+
+        .btn {
+            @include min-screen($desktop-min) {
+                width: 20%;
+            }
+        }
+    }
+
+}
+

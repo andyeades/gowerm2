@@ -1,0 +1,44 @@
+<?php //$product = $block->getProductById($productId); ?>
+<?php
+
+
+$productData = $block->getData();
+$productId = $productData['data']['currentproductid'];
+$product = $block->getProducts($productId);
+
+//echo $product->getName();
+//print_r($product->getName());
+//echo ''.$product->getName().'<br>';
+//echo ''.$product->getFinalPrice().'<br>';
+$imageUrl = $this->helper('Magento\Catalog\Helper\Image')
+                 ->init($product, 'product_base_image')
+                 ->constrainOnly(TRUE)
+                 ->keepAspectRatio(TRUE)
+                 ->keepTransparency(TRUE)
+                 ->keepFrame(FALSE)
+                 ->resize(300, 300)->getUrl();
+
+//$product->getProductUrl()
+
+?>
+
+<div class="row">
+
+    <div class="col-6">
+        <img src="<?= $imageUrl ?>" />
+    </div>
+    <div class="col-6">
+        <h2><?= $product->getName(); ?></h2>
+        <p><?= $product->getShortDescription(); ?></p>
+
+    </div>
+</div>
+<div class="row">
+
+  <div class="col-12">
+
+  <?= $product->getDescription(); ?>
+
+
+  </div>
+</div>

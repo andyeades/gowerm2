@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="1column"/>
+    <referenceContainer name="page.wrapper">
+
+    </referenceContainer>
+
+    <referenceContainer name="elevate-cms-content" htmlTag="div" htmlId="elevate-cms-content">
+
+    </referenceContainer>
+
+    <!-- Move Elements Around on this Page -->
+    <move element="page.top" destination="page.wrapper" as="page.top" before="header-main-outer"/>
+    <move element="content" destination="page.wrapper" as="content" after="header-main-outer"/>
+    <move element="cms_page" destination="elevate-cms-content" as="elevate_cms_page" />
+    <move element="page.messages" destination="page.wrapper" as="page.messages" after="header-main-outer" />
+    <move element="skip_to_content.target" destination="page.wrapper" as="skip_to_content.target" after="page.messages"/>
+    <!-- Remove Breadcrumbs -->
+    <referenceContainer name="breadcrumbs" remove="true" />
+    <!-- Remove Home Page Title-->
+    <referenceContainer name="page.main.title" remove="true" />
+</layout>

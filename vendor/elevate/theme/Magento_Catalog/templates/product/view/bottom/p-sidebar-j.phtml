@@ -1,0 +1,442 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+/** @var $block Magento\Catalog\Block\Product\View */
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+
+/** @var $storeManager Magento\Store\Model\StoreManagerInterface */
+$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+
+$current_url = $storeManager->getStore()->getCurrentUrl();
+$is_customer_logged_in = $customerSession->isLoggedIn();
+
+$feefo_helper = '';
+$product_attachment_helper = '';
+
+/** @var $_helper Magento\Catalog\Helper\Output */
+$_helper = $objectManager->get('Magento\Catalog\Helper\Output');
+
+/** @var $block Magento\Catalog\Block\Product\View */
+$block->_storeManager()->getStore()->getCurrentUrl();
+
+$product = $product->getProduct();
+$pid = $product->getProduct()->getId();
+
+/* add this condition for if we do not have anything to show then we do not need attribute block */
+if (count($product->getAdditionalData()) != 0) {
+
+//if (count($product->getAdditionalData()) != 0 || (count($product->getAdditionalData()) != 0 && count(Mage::getModel('reviewfeefo/reviewfeefo')->getCollection()->addFieldToFilter('sku', $product->getSku())) > 0)) {
+    ?>
+    <div class="product-collateral">
+        <?php if ($_additional = $product->getAdditionalData()): ?>
+
+
+            <?php
+            $i = -1;
+            foreach ($_additional as $_data) {
+
+                if (strtolower($_data['label']) == 'sku') {
+                    continue;
+                }
+                $i
+
+                ?>
+
+                <?php if ($_data['value'] != "No") { ?>
+
+
+                    <?php
+
+                    $showcontent = false;
+                    if ($_data['code'] == "product_features") {
+                        $product_features .= '<div class="additional-data-wrap">';
+                        $product_features .= '<div class="additonal-data-title">' . $block->escapeHtml($product->__($_data["label"])) . '</div>';
+                        $product_features .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                        $product_features .= '</div>';
+                        $showcontent = true;
+
+                    }
+
+                    if ($_data['code'] == "product_specification") {
+                        $product_specification .= '<div class="additional-data-wrap">';
+                        $product_specification .= '<div class="additonal-data-title">' . $block->escapeHtml($product->__($_data["label"])) . '</div>';
+                        $product_specification .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                        $product_specification .= '</div>';
+                        $showcontent = true;
+                    }
+                    if ($_data['code'] == "product_faqs") {
+                        $product_faqs .= '<div class="additional-data-wrap">';
+                        $product_faqs .= '<div class="additonal-data-title">' . $block->escapeHtml($product->__($_data["label"])) . '</div>';
+                        $product_faqs .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                        $product_faqs .= '</div>';
+                        $showcontent = true;
+                    }
+
+                    if ($_data['code'] == "product_bulk_purchasing") {
+                        $product_bulk_purchasing .= '<div class="additional-data-wrap">';
+                        $product_bulk_purchasing .= '<div class="additonal-data-title">' . $block->escapeHtml($product->__($_data["label"])) . '</div>';
+                        $product_bulk_purchasing .= '<div class="additonal-data-content">' . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_bulk_purchasing')->toHtml() . '</div>';
+                        $product_bulk_purchasing .= '</div>';
+                        $showcontent = true;
+                    }
+
+                    if ($_data['code'] == "product_bulk_assessment") {
+                        $product_bulk_assessment .= '<div class="additional-data-wrap">';
+                        $product_bulk_assessment .= '<div class="additonal-data-title">' . $block->escapeHtml($product->__($_data["label"])) . '</div>';
+                        $product_bulk_assessment .= '<div class="additonal-data-content">' . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_bulk_assessment')->toHtml() . '</div>';
+                        $product_bulk_assessment .= '</div>';
+                        $showcontent = true;
+                    }
+
+                    if ($_data['code'] == "product_delivery_returns") {
+                        $product_delivery_returns .= '<div class="additional-data-wrap">';
+                        $product_delivery_returns .= '<div id="pinfo-delreturns" class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                        $product_delivery_returns .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                        $product_delivery_returns .= '</div>';
+                        $showcontent = true;
+
+                    }
+
+                    if ($_data['code'] == "product_documentation") {
+                        $product_documentation .= '<div class="additional-data-wrap">';
+                        $product_documentation .= '<div class="additonal-data-title">' . $block->escapeHtml($product->__($_data["label"])) . '</div>';
+                        $product_documentation .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                        $product_documentation .= '</div>';
+                        $showcontent = true;
+
+                    }
+
+                    if ($_data['code'] == "product_instock_chairs") {
+                        $product_instock_chairs .= '<div class="additional-data-wrap">';
+                        $product_instock_chairs .= '<div class="additonal-data-title">' . $block->escapeHtml($product->__($_data["label"])) . '</div>';
+                        $product_instock_chairs .= '<div class="additonal-data-content">' . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_instock_chairs')->toHtml() . '</div>';
+                        $product_instock_chairs .= '</div>';
+                        $showcontent = true;
+
+                    }
+
+                    /*if($_data['code'] == "delivery_returns"){
+                        $code = 'delivery_'.$_data['value'];
+                        //calling return block here
+                        $code_returns = 'returns_'.$product->getAttributeText('returns');
+                        $delivery_returns .= '<div class="additional-data-wrap">';
+                        $delivery_returns .= '<div class="additonal-data-title">'.$block->escapeHtml($product->__($_data["label"])).'</div>';
+                        $delivery_returns .= '<div class="additonal-data-content">'.$block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($code)->toHtml() . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($code_returns)->toHtml().'</div>';
+                        $delivery_returns .= '</div>';
+                        $showcontent = true;
+
+                    }*/
+
+                    if ($_data['code'] == "delivery") {
+                        //calling return block here
+                        $code_returns = 'returns_' . $product->getAttributeText('returns');
+                        $delivery_returns .= '<div class="additional-data-wrap">';
+                        $delivery_returns .= '<div id="pinfo-delreturns"  class="additonal-data-title">' . $block->escapeHtml($product->__($_data["label"])) . '</div>';
+                        $delivery_returns .= '<div class="additonal-data-content">' . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_lead_times')->toHtml();
+
+                        if ($_data['value'] == 'courier_only') {
+                            if (Mage::app()->getStore()->getStoreId() == 4) {
+                                $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_courier_only')->toHtml() . '</div>';
+                            } else {
+                                $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_courier_only_microsites')->toHtml() . '</div>';
+                            }
+                        } elseif ($_data['value'] == 'downloadable_software') {
+                            $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_downloadable_software')->toHtml() . '</div>';
+
+                        } else {
+                            if (Mage::app()->getStore()->getStoreId() == 4) {
+                                $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_courier_product_care')->toHtml() . '</div>';
+                            } else {
+                                $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_courier_product_care_microsites')->toHtml() . '</div>';
+                            }
+                        }
+                        $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($code_returns)->toHtml();
+                        $delivery_returns .= '</div>';
+                        $showcontent = true;
+
+                    }
+
+                    if ($_data['code'] == "product_terms") {
+                        $product_terms .= '<div class="additional-data-wrap">';
+                        $product_terms .= '<div class="additonal-data-title">' . $block->escapeHtml($product->__($_data["label"])) . '</div>';
+                        $product_terms .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                        $product_terms .= '</div>';
+                        $showcontent = true;
+                    }
+
+                    ?>
+
+
+                <?php } ?>
+
+            <?php } ?>
+
+
+        <?php endif; ?>
+    </div>
+    <?php /*if products has only reviews nothing else */
+
+} elseif (count($product->getAdditionalData()) == 0) {
+//} elseif (count($product->getAdditionalData()) == 0 && count(Mage::getModel('reviewfeefo/reviewfeefo')->getCollection()->addFieldToFilter('sku', $product->getSku())) > 0) {
+
+    ?>
+
+
+    <div class="product-collateral">
+        <h2>
+            <?php echo $product->__('Additional Information') ?>
+        </h2>
+
+        <div class="row-heading">
+            <h2 class="decorated"><span> <?php echo $product->__('Additional Information') ?></span></h2>
+        </div>
+
+        <div id="tab-container" class="tab-container">
+            <ul class="info-tabs">
+                <!--for review tab-->
+                <?php // echo $product->getLayout()->getBlockSingleton('reviewfeefo/reviewfeefo')->getviewstarttab($product->getSku()); ?>
+                <!--end here -->
+            </ul>
+            <div class="tab-baseline"></div>
+            <div class="panel-container">
+                <!--for review details-->
+                <div id="<?php echo " reviews "; ?>" class="reviews active">
+                    <?php //echo $product->getLayout()->getBlockSingleton('reviewfeefo/reviewfeefo')->getreviews($product->getSku()); ?>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<?php } ?>
+
+
+<?php if ($showcontent == true) { ?>
+    <div class="product-collateral">
+        <div class="row-heading">
+            <h2 class="decorated"><span> <?php echo $product->__('Additional Information') ?></span></h2>
+        </div>
+    </div>
+
+<?php } ?>
+
+
+
+<?php
+$firstcol = "col-md-12";
+$secondcol = "col-md-12";
+
+//checking if second col contents exist
+//if ($product_delivery_returns || $delivery_returns || $product_instock_chairs || $product_bulk_assessment || $product_bulk_purchasing || $feefo_helper->Countfeeforeview() > 0) {
+if ($product_delivery_returns || $delivery_returns || $product_instock_chairs || $product_bulk_assessment || $product_bulk_purchasing) {
+    $firstcol = "col-md-7";
+}
+
+//checking if fist col contents exist
+if ($product_features || $product_specification || $product_documentation || $product_faqs || $product_terms) {
+    $secondcol = "col-md-5";
+}
+?>
+
+
+<div id="tab-container" class="tab-container row ">
+    <div class="<?php echo $firstcol; ?> panel-container">
+        <?php echo $product_features; ?>
+
+        <?php echo $product_specification; ?>
+
+
+
+        <?php
+
+        $show_support_block = false;
+        $support_output = '';
+
+        // API call instead
+
+        $ignore = 1;
+        if ($ignore != 1) {
+
+            $collection = $product_attachment_helper->getProductAttachmentsByProduct(1, $pid);
+
+            $doc_title_shown = false;
+            foreach ($collection as $item) {
+
+                $show_support_block = true;
+                if (!$doc_title_shown) {
+                    $support_output .= "  <h5>Documentation</h5>";
+                    $doc_title_shown = true;
+                }
+
+                $support_output .= '<div class="pa_attachments">
+          <ul>';
+
+                if (!$is_customer_logged_in) {
+                    $customerSession->setBeforeAuthUrl($current_url);
+                }
+
+                $support_output .= '<li>';
+
+                // check if file is attached
+
+                //check download limit
+                $model = Mage::getModel('productattachments/productattachments')->load($item['productattachments_id']);
+                $fileconfig = Mage::getModel('productattachments/image_fileicon');
+                $filePath = "/media/" . $model['filename'];
+                $fileconfig->Fileicon($filePath);
+                $fileName = $model['filename'];
+                $support_output .= '<a target="_blank" href="' . $filePath . '">' . $item['file_icon'] . '&nbsp;<b>' . $item['short_name'] . '</b></a> ';
+
+                if (Mage::getStoreConfig('productattachments/general/show_counter')) {
+                    //  $support_output .= '&nbsp;&nbsp;' .$_helper->__('Downloads: (%d)', $item['downloads'] );
+                }
+
+                ?><?php if (Mage::getStoreConfig('productattachments/productattachments/showcontent')): ?><?php if (isset($item['content']) && $item['content'] != ''):
+                    $support_output .= '<br />' . $item['content'] . '<br />';
+                endif; ?><?php endif;
+                $support_output .= '</li>';
+                //endif;
+                ?><?php if ($item['link_url'] != ''): ?><?php
+                    $linkTitle = 'Go To';
+                    if ($item['link_title'] != '') {
+                        $linkTitle = trim($item['link_title']);
+                    }
+                    $linkTitle = $item['short_name'];
+
+                    $support_output .= '<li>
+                <a href="' . $item['link_url'] . '" target="bottom">
+                  <img src="' . $product->getSkinUrl('css/productattachments/images/link.jpg') . '" width="18"/>
+                  ' . $_helper->__($linkTitle) . '
+                </a>
+              </li>';
+                endif; ?>
+
+                <?php if ($item['embed_video'] != ''): ?><?php $vidTitle = trim($item['video_title']);
+                    $support_output .= '<li>';
+
+                    $support_output .= '<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class="embed-container">
+                        <iframe src="' . str_replace('watch?v=', 'embed/', $item['embed_video']) . '" frameborder="0" allowfullscreen></iframe></div>
+                <a href="' . $item['embed_video'] . '" rel="prettyPhoto" title="' . $vidTitle . '">
+                  <img src="/"/>&nbsp;';
+                    echo ($vidTitle != '') ? $vidTitle: '';
+                    $support_output .= '</a>
+              </li>'; ?><?php endif;
+                $support_output .= '</ul>';
+                $support_output .= '</div>'; ?><?
+            }
+
+            // Videos?
+            $collection = $product_attachment_helper->getProductAttachmentsByProduct(2, $pid);
+
+            $vid_title_shown = false;
+            foreach ($collection as $item) {
+                $show_support_block = true;
+                if (!$vid_title_shown) {
+                    $support_output .= "  <h5>Video</h5>";
+                    $vid_title_shown = true;
+                }
+
+                $support_output .= '<div class="pa_attachments">
+      <ul>';
+
+                if (!$is_customer_logged_in) {
+                    $customerSession->setBeforeAuthUrl($current_url);
+                }
+
+                $support_output .= '<li>'; ?>
+
+                <?php if (Mage::getStoreConfig('productattachments/productattachments/showcontent')): ?><?php if (isset($item['content']) && $item['content'] != ''):
+                    $support_output .= '<br />' . $item['content'] . '<br />';
+                endif; endif;
+                $support_output .= '<li>'; ?><?php //endif;
+                ?><?php if ($item['link_url'] != ''): ?><?php
+                    $linkTitle = 'Go To';
+                    if ($item['link_title'] != '') {
+                        $linkTitle = trim($item['link_title']);
+                    }
+
+                    $support_output .= '<li>
+            <a href="' . $item['link_url'] . '" target="bottom">
+              <img src="' . $product->getSkinUrl('css/productattachments/images/link.jpg') . '" width="18"/>
+              ' . $_helper->__($linkTitle) . '
+            </a>
+          </li>';
+                endif; ?>
+
+                <?php if ($item['embed_video'] != ''): ?><?php $vidTitle = trim($item['video_title']);
+                    $support_output .= '<li>
+
+                    <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class="embed-container">
+                    <iframe src="' . str_replace('watch?v=', 'embed/', $item['embed_video']) . '" frameborder="0" allowfullscreen></iframe></div>
+
+          </li>'; ?><?php endif;
+                $support_output .= '</ul>';
+                $support_output .= '</div>'; ?><?
+            }
+        }
+
+        if ($show_support_block) { ?>
+            <div class="additional-data-wrap">
+                <div class="additonal-data-title">Support</div>
+                <div class="additonal-data-content">
+                    <?= $support_output; ?>
+                </div>
+            </div>
+        <?php } ?>
+
+        <?php //echo $product_documentation;?>
+
+        <?php echo $product_faqs; ?>
+
+        <?php echo $product_terms; ?>
+
+
+    </div>
+
+    <div class="<?php echo $secondcol; ?> panel-container">
+        <?php echo $product_delivery_returns; ?>
+
+        <?php echo $delivery_returns; ?>
+
+        <?php echo $product_instock_chairs; ?>
+
+        <?php echo $product_bulk_assessment; ?>
+
+        <?php echo $product_bulk_purchasing; ?>
+
+        <?php if ($feefo_helper->Countfeeforeview() > 0) { ?>
+            <div id="reviews">
+                <div class="additional-data-wrap">
+
+                    <?php if ($feefo_helper->Countfeeforeview() == 1) { ?>
+
+                        <div class="additonal-data-title">
+                            Review
+                        </div>
+
+                    <?php } else { ?>
+                        <div class="additonal-data-title">
+                            Reviews
+                        </div>
+
+                    <?php } ?>
+
+
+                    <div class="additonal-data-content">
+                        <!--for review details-->
+                        <div id="<?php echo " reviews "; ?>" class="reviews">
+                            <div id="feefo-product-review-widgetId" class="feefo-review-widget-product" data-product-sku="<?php echo $product->getSku(); ?>"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        <?php } ?>
+
+    </div>
+
+</div>
+
+</div>

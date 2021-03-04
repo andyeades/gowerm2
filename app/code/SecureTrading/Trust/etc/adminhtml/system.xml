@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="secure_trading" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <fieldset_css>complex secure-trading-section</fieldset_css>
+                <frontend_model>Magento\Paypal\Block\Adminhtml\System\Config\Fieldset\Payment</frontend_model>
+                <field id="module_version" type="note" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>SecureTrading\Trust\Block\Adminhtml\System\Config\Form\Field\ModuleVersion</frontend_model>
+                </field>
+                <group id="payment_pages" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Pages</label>
+                    <group id="payment_pages_required" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Required Settings</label>
+                        <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Enabled</label>
+                            <validate>required-entry</validate>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/secure_trading/active</config_path>
+                            <tooltip>Enable or disable this payment method.</tooltip>
+                        </field>
+                        <field id="endpoint" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Endpoint</label>
+                            <validate>required-entry</validate>
+                            <source_model>SecureTrading\Trust\Model\Config\Source\Endpoint</source_model>
+                            <config_path>payment/secure_trading/endpoint</config_path>
+                            <tooltip>The EU gateway currently has the endpoint as payments.securetrading.net, whereas the US gateway will contain the endpoint of payments.securetrading.us.</tooltip>
+                        </field>
+                        <field id="is_test" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Test Environment</label>
+                            <validate>required-entry</validate>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/secure_trading/is_test</config_path>
+                            <tooltip>Switch to test environment.</tooltip>
+                        </field>
+                        <field id="site_reference" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Site Reference</label>
+                            <validate>required-entry</validate>
+                            <depends>
+                                <field id="is_test">0</field>
+                            </depends>
+                            <config_path>payment/secure_trading/site_reference</config_path>
+                            <tooltip>You must obtain a site reference from Secure Trading before you can use this module.  This module can accept either a test site reference or a live site reference.</tooltip>
+                        </field>
+                        <field id="test_site_reference" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>(Test) Site Reference</label>
+                            <validate>required-entry</validate>
+                            <depends>
+                                <field id="is_test">1</field>
+                            </depends>
+                            <config_path>payment/secure_trading/test_site_reference</config_path>
+                            <tooltip>You must obtain a site reference from Secure Trading before you can use this module.  This module can accept either a test site reference or a live site reference.</tooltip>
+                        </field>
+                        <field id="back_office" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Perform Back-Office Operations</label>
+                            <validate>required-entry</validate>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/secure_trading/back_office</config_path>
+                            <tooltip>Enabling this option will allow your shopping cart to interact with the Secure Trading API using our Web Services.  This allows you to perform TRANSACTIONUPDATE and REFUND requests from the shopping cart without using MyST.</tooltip>
+                        </field>
+                        <field id="username" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Web Services Username</label>
+                            <depends>
+                                <field id="is_test">0</field>
+                                <field id="back_office">1</field>
+                            </depends>
+                            <validate>required-entry</validate>
+                            <config_path>payment/secure_trading/username</config_path>
+                            <tooltip>This is the username used for server authentication when connecting to the Secure Trading API using our Web Services.</tooltip>
+                        </field>
+                        <field id="test_username" translate="label" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>(Test) Web Services Username</label>
+                            <depends>
+                                <field id="is_test">1</field>
+                                <field id="back_office">1</field>
+                            </depends>
+                            <config_path>payment/secure_trading/test_username</config_path>
+                            <validate>required-entry</validate>
+                            <tooltip>This is the username used for server authentication when connecting to the Secure Trading API using our Web Services.</tooltip>
+                        </field>
+                        <field id="password" translate="label" type="obscure" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Web Services Password</label>
+                            <depends>
+                                <field id="is_test">0</field>
+                                <field id="back_office">1</field>
+                            </depends>
+                            <config_path>payment/secure_trading/password</config_path>
+                            <validate>required-entry</validate>
+                            <tooltip>This is the password used for server authentication when connecting to the Secure Trading API using our Web Services</tooltip>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                        </field>
+                        <field id="test_password" translate="label" type="obscure" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>(Test) Web Services Password</label>
+                            <depends>
+                                <field id="is_test">1</field>
+                                <field id="back_office">1</field>
+                            </depends>
+                            <config_path>payment/secure_trading/test_password</config_path>
+                            <validate>required-entry</validate>
+                            <tooltip>This is the password used for server authentication when connecting to the Secure Trading API using our Web Services</tooltip>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                        </field>
+                        <field id="site_password" translate="label" type="obscure" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Site Security Password</label>
+                            <validate>required-entry</validate>
+                            <depends>
+                                <field id="is_test">0</field>
+                            </depends>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <config_path>payment/secure_trading/site_password</config_path>
+                            <tooltip>This is the password that will be used as part of the site security configuration.  It must match the password configured on your Secure Trading account.</tooltip>
+                        </field>
+                        <field id="test_site_password" translate="label" type="obscure" sortOrder="65" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>(Test) Site Security Password</label>
+                            <depends>
+                                <field id="is_test">1</field>
+                            </depends>
+                            <config_path>payment/secure_trading/test_site_password</config_path>
+                            <validate>required-entry</validate>
+                            <tooltip>This is the password that will be used as part of the site security configuration.  It must match the password configured on your Secure Trading account.</tooltip>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                        </field>
+                    </group>
+                    <group id="payment_pages_optional" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Optional Settings</label>
+                        <group id="display_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Display Setting</label>
+                            <field id="title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>Title</label>
+                                <config_path>payment/secure_trading/title</config_path>
+                                <tooltip>The name of this payment method shown to your customers.</tooltip>
+                            </field>
+                            <field id="description" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                                <label>Description</label>
+                                <tooltip>The description of this payment method shown to your customers.</tooltip>
+                            </field>
+                            <field id="use_iframe" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                                <label>Use Iframe</label>
+                                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                                <tooltip>Enabling this option will make the Payment Pages load in an HTML iframe element.  Using an iframe in combination with parent/child CSS allows you to make it appear as if the Payment Pages are part of your own website.</tooltip>
+                            </field>
+                            <field id="iframe_height" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>Iframe Height</label>
+                                <depends>
+                                    <field id="use_iframe">1</field>
+                                </depends>
+                                <tooltip>The height of the iframe.  Enter one or more numbers followed by "px" or "%".</tooltip>
+                            </field>
+                            <field id="iframe_width" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>Iframe Width</label>
+                                <depends>
+                                    <field id="use_iframe">1</field>
+                                </depends>
+                                <tooltip>The width of the iframe. Enter one or more numbers followed by "px" or "%".</tooltip>
+                            </field>
+                        </group>
+                        <group id="version_settings" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Payment Pages Version Settings</label>
+                            <field id="version" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                                <label>Version</label>
+                                <source_model>SecureTrading\Trust\Model\Config\Source\Version</source_model>
+                                <comment><![CDATA[The version number is used to change the type of styling used when rendering the Payment Pages.</br>If you are using custom CSS and JS, and would like to upgrade from version 1 to version 2, you will need to click <a target="_blank" href="https://www.securetrading.com/paymentpages/customisation.html">here</a> and follow the instructions.]]></comment>
+                            </field>
+                            <field id="parent_css" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>Parent CSS</label>
+                                <depends>
+                                    <field id="version">1</field>
+                                </depends>
+                                <tooltip>The parent CSS file allows you to make the Payment Pages look the same as your own website by overriding the main CSS stylesheet loaded on the Secure Trading Payment Pages.  Upload this stylesheet to the MyST File Manager and then enter the filename of the file you uploaded to the File Manager here, without the file path or the extension.</tooltip>
+                            </field>
+                            <field id="child_css" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                                <label>Child CSS</label>
+                                <depends>
+                                    <field id="version">1</field>
+                                </depends>
+                                <tooltip>The child CSS file allows you to alter the appearance of certain parts of the Payment Pages by extending the main CSS stylesheet loaded on the Secure Trading Payment Pages (CSS Inheritance).  This is useful when you wish to make minor changes to the default look of the Payment Pages.  Upload this stylesheet to the MyST File Manager and then enter the filename of the file you uploaded to the File Manager here, without the file path or the extension.</tooltip>
+                            </field>
+                            <field id="parent_js" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                                <label>Parent JS</label>
+                                <depends>
+                                    <field id="version">1</field>
+                                </depends>
+                                <tooltip>The parent JS file, if provided, replaces the JavaScript file that is loaded when the Payment Pages are viewed by your customers.  You should provide this file when you wish to drastically alter the front-end validation and user-experience provided by the default Secure Trading javascript file.  Upload this file to the MyST File Manager and then enter the filename of the file you uploaded to the File Manager here, without the file path or the extension.</tooltip>
+                            </field>
+                            <field id="child_js" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>Child JS</label>
+                                <depends>
+                                    <field id="version">1</field>
+                                </depends>
+                                <tooltip>The child JS file is loaded after the default Payment Pages Javascript file has been loaded.  You can use a child JS file to make small alterations to the default Payment Pages behaviour.  Upload this file to the MyST File Manager and then enter the filename of the file you uploaded to the File Manager here, without the file path or the extension.</tooltip>
+                            </field>
+                            <field id="st_profile" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>ST Profile</label>
+                                <depends>
+                                    <field id="version">2</field>
+                                </depends>
+                                <tooltip>The ST Profile refers to a set of custom HTML files that will be loaded by the Payment Pages instead of the default HTML files used by  Secure Trading.  These HTML file must be uploaded to the MyST File Manager.  See the Payment Pages documentation for more information.</tooltip>
+                            </field>
+                            <field id="skip_choice_page" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>Skip Choice Page</label>
+                                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                                <depends>
+                                    <field id="version">2</field>
+                                </depends>
+                                <tooltip>Enabling this will let your customers select their payment type (Visa etc.) on your website rather than on the Payment Pages.</tooltip>
+                            </field>
+<!--                            <field id="show_multiselect_accepted_card" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">-->
+<!--                                <label>Show Accepted Cards Multi-select</label>-->
+<!--                                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                                <depends>-->
+<!--                                    <field id="version">2</field>-->
+<!--                                    <field id="skip_choice_page">1</field>-->
+<!--                                </depends>-->
+<!--                                <tooltip>Enable this to show the list of Accepted Cards in the payment method section of the checkout.  If disabled the payment type will automatically be determined using the customers' PAN.</tooltip>-->
+<!--                            </field>-->
+<!--                            <field id="accepted_card" translate="label" type="multiselect" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">-->
+<!--                                <label>Accepted Cards</label>-->
+<!--                                <source_model>SecureTrading\Trust\Model\Config\Source\AcceptedCards</source_model>-->
+<!--                                <depends>-->
+<!--                                    <field id="show_multiselect_accepted_card">1</field>-->
+<!--                                </depends>-->
+<!--                                <tooltip>These are the payment types that you wish to show when a user makes payment with Secure Trading.</tooltip>-->
+<!--                            </field>-->
+                        </group>
+<!--                        <group id="tokenization_settings" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">-->
+<!--                            <label>Tokenization Settings</label>-->
+<!--                            <field id="use_tokenization" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">-->
+<!--                                <label>Use Tokenization</label>-->
+<!--                                <comment>If you enable this feature you must also configure the Secure Trading Tokenization module.</comment>-->
+<!--                                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                                <tooltip>Using tokenization will allow customers who place orders with this payment method to make easy future repeat purchases through the Secue Trading Tokenization payment method.</tooltip>-->
+<!--                            </field>-->
+<!--                            <field id="save_cc_question" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">-->
+<!--                                <label>"Save CC details?" Question</label>-->
+<!--                                <depends>-->
+<!--                                    <field id="use_tokenization">1</field>-->
+<!--                                </depends>-->
+<!--                                <tooltip>What you will ask your customers when you suggest they save their card details with your store for easy future order placement.</tooltip>-->
+<!--                            </field>-->
+<!--                        </group>-->
+                        <group id="other_settings" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Other Settings</label>
+                            <field id="allowspecific" translate="label" type="allowspecific" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                                <label>Applicable Countries</label>
+                                <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                                <config_path>payment/secure_trading/allowspecific</config_path>
+                                <tooltip>This payment method can be enabled for all countries or for a specified subset of countries.</tooltip>
+                            </field>
+                            <field id="specificcountry" translate="label" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                                <label>Payment from Specific Countries</label>
+                                <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                                <can_be_empty>1</can_be_empty>
+                                <config_path>payment/secure_trading/specificcountry</config_path>
+                                <depends>
+                                    <field id="allowspecific">1</field>
+                                </depends>
+                                <tooltip>If 'Applicable Countries' is set to 'Specific Countries' this list will determine which country this payment method can be used in.</tooltip>
+                            </field>
+                            <field id="payment_action" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>Payment Action</label>
+                                <source_model>SecureTrading\Trust\Model\Config\Source\PaymentAction</source_model>
+                                <tooltip>Enabling authorize only payments will set the settlestatus of the order to 2.  This means the payment will be suspended in the Secure Trading system and will not be captured by your aquiring bank.</tooltip>
+                            </field>
+                            <field id="settle_status" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>Settle Status</label>
+                                <depends>
+                                    <field id="payment_action">authorize_capture</field>
+                                </depends>
+                                <source_model>SecureTrading\Trust\Model\Config\Source\SettleStatus</source_model>
+                                <tooltip>This is the settle status that will be applied to this transaction.  This should normally be set to 0.</tooltip>
+                            </field>
+                            <field id="settle_due_date" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                                <label>Settle Due Date</label>
+                                <source_model>SecureTrading\Trust\Model\Config\Source\SettleDueDay</source_model>
+                                <tooltip>The settle due date is the day that funds held against your customers' account will be acquired.</tooltip>
+                            </field>
+<!--                            <field id="ws_verify_ca" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">-->
+<!--                                <label>Verify SSL Certificates (Web Services)</label>-->
+<!--                                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                                <tooltip>Enable this option to verify that the root Certificate Authority (CA) is trusted and that the verification of the signatures in the certificate chain is successful.  This should always be used in a production environment and should only be disabled for testing purposes.</tooltip>-->
+<!--                            </field>-->
+<!--                            <field id="ws_ca_file" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">-->
+<!--                                <label>SSL CA FILE (Web Services)</label>-->
+<!--                                <depends>-->
+<!--                                    <field id="ws_verify_ca">1</field>-->
+<!--                                </depends>-->
+<!--                                <tooltip>The full filepath containing trusted CAs.  The file should be in .PEM/.CRT format.  This is required when the 'Verify SSL Certificates' config option is enabled.</tooltip>-->
+<!--                            </field>-->
+<!--                            <field id="ppg_cancel_60107" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">-->
+<!--                                <label>Cancel Order on 60107 Error Code</label>-->
+<!--                                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                                <tooltip>Applicable only if your Secure Trading account has RISKDEC requests enabled and the MyST Rule Manager has been updated to 'Update transaction to Stop Child AUTH ... if a generic request matches RISKDEC DENY'.  If you select 'Yes' you must also enable the 'Magento ECOM 60107' and 'Magento MOTO 60107 redirects' in the 'Payment pages redirects' section of MyST (see the readme for more information).  Selecting 'Yes' will cause AUTH/THREEDQUERY requests that return RISKDEC's DENY shieldstatuscode to be automatically updated to the 'Canceled' order state by putting them into payment review and denying the payment.  The customer will be redirected back to Magento.  If you select 'No' the order state will not change and the customer will remain on the Payment Pages.</tooltip>-->
+<!--                            </field>-->
+                        </group>
+                    </group>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

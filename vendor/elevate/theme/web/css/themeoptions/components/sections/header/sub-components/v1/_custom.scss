@@ -1,0 +1,312 @@
+@if $headerstyle_selected == 'v1' {
+
+    $hdr_myacc_link_padding_desktop: 0 0.9375rem 0 0 !default;
+
+    $hdr_myacc_link_width_mobile: 24px !default;
+    $hdr_myacc_link_fill_mobile: #0e1936 !default;
+    $hdr_myacc_link_color_mobile: #0e1936 !default;
+
+    $hdr_acc_li_icon_enabled: 1 !default;
+    $hdr_myacc_link_width_desktop: 24px !default;
+    $hdr_myacc_link_fill_desktop: #FFFFFF !default;
+    $hdr_myacc_link_color_desktop: #FFFFFF !default;
+    $hdr_acc_li_icon_display_type: both !default;
+
+    $hdr_in_left_width_desktop: 45% !default;
+    $hdr_in_left_width_desktop_large: 45% !default;
+    $hdr_in_left_width_mobile: 30% !default;
+
+    $hdr_top_list_line_height_on: 1 !default;
+    $hdr_top_list_line_height: 1.5 !default;
+    $hdr_top_list_font_size: 0.75rem !default;
+    $hdr_top_list_background_on: 0 !default;
+    $hdr_top_list_background_color: #466c5c !default;
+    $hdr_top_list_padding_mobile: 0 !default;
+    $hdr_top_list_padding_desktop: 0 !default;
+    $hdr_top_list_border_radius_on: 0 !default;
+    $hdr_top_list_border_radius: 5px !default;
+    $hdr_top_list_align_items: center !default;
+
+
+    $hdr_myacc_link_fontsize: 0.75rem !default;
+
+    $hdr_top_list_bottom_row_styling: 0 !default;
+    $hdr_top_list_bottom_row_color: #D4DDDA !default;
+    $hdr_myacc_link_font_size: 1rem !default;
+
+    $hdr_r_trow_ul_li_a_align_items: center !default;
+    $hdr_r_trow_ul_li_first_icon: 0 !default;
+    $hdr_r_trow_ul_li_first_icon_padding: 0 0.9375rem 0 0 !default;
+    $hdr_r_trow_ul_li_first_seperator_padding: 0 0.9375rem 0 0 !default;
+    $hdr_r_trow_ul_li_first_seperator_next_padding: 0 0 0 0.9375rem !default;
+
+
+    $hdr_r_brow_margin_md_min: 0 15px 0 0 !default;
+    $hdr_r_brow_margin_xlg_min: 0 30px 0 0 !default;
+
+
+    $hdr_in_right_order: 3 !default;
+    $hdr_in_right_width: 35% !default;
+    $hdr_in_right_width_desktop: 35% !default;
+    $hdr_in_right_width_desktop_large: 35% !default;
+
+    $hdr_searchwrap_top: $hdr-mobile-height !default;
+    $hdr_search_wrap_zindex_mobile: 9999 !default;
+
+    .hdr-in-mobile-left {
+        order: 1;
+        width: 35%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: $hdr_mobile_height;
+
+        > div {
+            flex: 0 1 auto;
+            width: 50%;
+            height: $hdr_mobile_height;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        svg {
+            fill: $hdr_search_icon_color;
+        }
+
+        .hdr-mobile-menu-icon {
+            height: $hdr_mobile_menu_icon_height;
+        }
+
+        .hdr-mobile-search-icon {
+            height: $hdr_mobile_search_icon_height;
+        }
+
+        @include min-screen($mobile-menu-notvisible) {
+            display: none;
+        }
+    }
+
+
+    .cd-nav-trigger {
+        color: $hdr_mobile_nav_trigger_color;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        > svg {
+
+        }
+
+        .mob-menu-label {
+            color: $hdr_mobile_menu_label_text_color;
+            position: relative;
+            font-size: 10px;
+        }
+
+        @include max-screen($mobile-menu-visible-max) {
+            left: 10px;
+        }
+        @include min-screen($mobile-menu-notvisible) {
+            display: none;
+        }
+    }
+
+    .hdr-in-left {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include co(width, $hdr_in_left_width_mobile);
+        order: 2;
+        @include min-screen($mobile-menu-notvisible) {
+            order: 1;
+            width: $hdr_in_left_width_desktop;
+        }
+
+
+        @include min-screen($desktop_large_min) {
+            width: $hdr_in_left_width_desktop_large;
+        }
+
+        > div {
+            flex: 0 1 auto;
+        }
+    }
+    .hdr-in-center {
+        order: 2;
+        width: 20%;
+        @include max-screen($mobile-menu-visible-max) {
+            display: none;
+        }
+    }
+
+
+    .hdr-in-right {
+        order: $hdr_in_right_order;
+        width: $hdr_in_right_width;
+        @include min-screen($mobile-menu-notvisible) {
+            width: $hdr_in_right_width_desktop;
+        }
+        @include min-screen($desktop-large-min) {
+            width: $hdr_in_right_width_desktop_large;
+        }
+    }
+
+    // Logo
+
+    .hdr-logo-wrap {
+        width: 20%;
+        order: 1;
+        @include max-screen($mobile-menu-visible-max) {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    // Search
+
+    .hdr-search-wrap {
+        order: 2;
+        width: 80%;
+        @include max-screen($mobile-menu-visible-max) {
+            display: block;
+            position: absolute;
+            height: 66px;
+            width: 100% !important;
+            top: $hdr_searchwrap_top;
+            background-color: #FFFFFF;
+            padding: 10px 0;
+            left: 0;
+            z-index: $hdr_search_wrap_zindex_mobile;
+            opacity: 0;
+            visibility: hidden;
+            @include rj-transition(opacity .3s 0s, visibility 0s .3s);
+            > form {
+                padding: 0 15px;
+            }
+            &.is-visible {
+                opacity: 1;
+                visibility: visible;
+                @include rj-transition(opacity .3s 0s, visibility 0s 0s);
+            }
+        }
+    }
+
+    // Right Section
+
+    .hdr-in-right {
+        display: flex;
+        align-items: center;
+
+        > div {
+            flex: 0 1 auto;
+            @include max-screen($screen-xs-max) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        @if $hdr-r-trowbrow-sidebyside == 1 {
+            justify-content: center;
+        }
+    }
+
+
+
+    .hdr-signinreg-sep {
+        display: inline-block;
+        padding: 0 5px;
+        @include max-screen($mobile-menu-visible-max) {
+            display: none;
+        }
+    }
+
+    .hdr-r-brow {
+        order: 2;
+        width: 50%;
+
+        @include min-screen($mobile-menu-notvisible) {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            @if $hdr-r-trowbrow-sidebyside == 1 {
+                width: 50%;
+            } @else {
+                width: 100%;
+                height: 75px;
+            }
+
+        }
+        @include min-screen($desktop_md_min) {
+            margin: $hdr_r_brow_margin_md_min;
+        }
+        @include min-screen($screen-xlg-min) {
+            margin: $hdr_r_brow_margin_xlg_min;
+        }
+
+        > div {
+            flex: 0 1 auto;
+        }
+
+        .hdr-r-brow-in-r {
+            order: 2;
+            @include max-screen($mobile-menu-visible-max) {
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .hdr-r-brow-in-l {
+            order: 1;
+        }
+    }
+
+    .hdr-top-list {
+        display: flex;
+        text-align: center;
+        flex: 0 1 auto;
+        align-items: $hdr_top_list_align_items;
+        @if $hdr_top_list_line_height_on == 1 {
+            line-height: $hdr_top_list_line_height;
+        }
+        font-size: $hdr_top_list_font_size;
+        @if $hdr_top_list_background_on == 1 {
+            background-color: $hdr_top_list_background_color;
+        }
+        @if $hdr_top_list_padding_mobile > 0 {
+            padding: $hdr_top_list_padding_mobile;
+        }
+
+        @include max-screen($mobile-menu-visible-max) {
+            width: 50%;
+            justify-content: flex-end;
+        }
+        @include min-screen($mobile-menu-notvisible) {
+            #hdr-mo & {
+                @if $hdr_top_list_padding_desktop != $hdr_top_list_padding_mobile {
+                    padding: $hdr_top_list_padding_desktop;
+                }
+                @if $hdr_top_list_border_radius_on == 1 {
+                    border-radius: $hdr_top_list_border_radius;
+                }
+
+                margin-left: auto;
+            }
+        }
+
+        > li {
+            color: $hdr-top-list-li-color;
+            flex: 0 1 auto;
+        }
+    }
+
+
+
+}

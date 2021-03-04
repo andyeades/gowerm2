@@ -1,0 +1,13 @@
+<?xml version="1.0"?><!--
+/**
+ * Copyright    2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elevate_Core::Elevate" title="Elevate" module="Elevate_Core" sortOrder="200" resource="Elevate_Core::Elevate"/>
+        <add id="Elevate_Core::Elevate_Theme_Options" title="Elevate Theme Options" module="Elevate_Core" sortOrder="3" parent="Elevate_Core::Elevate" resource="Elevate_Core::Elevate_Theme_Options"/>
+        <add id="Elevate_Core::Elevate_Extensions" title="Elevate Extensions" module="Elevate_Core" sortOrder="3" parent="Elevate_Core::Elevate" resource="Elevate_Core::Elevate_Theme_Options"/>
+    </menu>
+</config>

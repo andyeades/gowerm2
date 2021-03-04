@@ -1,0 +1,24 @@
+@if $headerstyle_selected == 'v3' {
+
+    $hdr_mt_o_bg_color_on: 1 !default;
+    $hdr_mt_o_bg_color: #235E4B !default;
+
+    $hdr_mt_o_hide_mobile: 1 !default;
+
+    #hdr-mt-o {
+        @if $hdr_mt_o_hide_mobile == 1 {
+            @include max-screen($mobile-menu-visible-max) {
+                display: none;
+            }
+        }
+
+
+        @if $hdr_mt_o_bg_color_on == 1 {
+            background-color: $hdr_mt_o_bg_color;
+        }
+    }
+
+    #hdr-mt-i {
+
+    }
+}

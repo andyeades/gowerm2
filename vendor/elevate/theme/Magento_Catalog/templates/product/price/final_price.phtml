@@ -1,0 +1,109 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<?php
+/** @var \Magento\Catalog\Pricing\Render\FinalPriceBox $block */
+
+/** ex: \Magento\Catalog\Pricing\Price\RegularPrice */
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $priceModel */
+$priceModel = $block->getPriceType('regular_price');
+
+/** ex: \Magento\Catalog\Pricing\Price\FinalPrice */
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $finalPriceModel */
+$finalPriceModel = $block->getPriceType('final_price');
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix(): '';
+$schema = ($block->getZone() == 'item_view') ? true: false;
+
+$_product = $block->getPriceType('final_price')->getProduct();
+$was_price = number_format((float)$_product->getData('was_price'), 2, '.', '')
+
+?>
+
+<div style="display:none;">template_price</div>
+<?php if ($was_price > 0) { ?>
+
+    <span class="was-price">
+        <span class="price-container price-final_price tax weee rewards_earn">
+                    <span class="price-label">Was</span>
+                <span data-price-amount="<?= $was_price; ?>" data-price-type="wasPrice" class="price-wrapper "><span class="price"><?= $was_price; ?></span></span>
+                </span>
+    </span>
+    <span class="special-price">
+        <?= /* @noEscape */
+        $block->renderAmount(
+            $finalPriceModel->getAmount(), [
+            'display_label'     => __('Special Price'),
+            'price_id'          => $block->getPriceId('product-price-' . $idSuffix),
+            'price_type'        => 'finalPrice',
+            'include_container' => true,
+            'schema'            => $schema
+        ]
+        ); ?>
+    </span>
+    <span class="old-price s1">
+        <?= /* @noEscape */
+        $block->renderAmount(
+            $priceModel->getAmount(), [
+            'display_label'     => __('RRP'),
+            'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
+            'price_type'        => 'oldPrice',
+            'include_container' => true,
+            'skip_adjustments'  => true
+        ]
+        ); ?>
+    </span>
+
+<?php } else if ($block->hasSpecialPrice()) { ?>
+    <span class="special-price">
+        <?= /* @noEscape */
+        $block->renderAmount(
+            $finalPriceModel->getAmount(), [
+            'display_label'     => __('Special Price'),
+            'price_id'          => $block->getPriceId('product-price-' . $idSuffix),
+            'price_type'        => 'finalPrice',
+            'include_container' => true,
+            'schema'            => $schema
+        ]
+        ); ?>
+    </span>
+    <span class="old-price s2">
+        <?= /* @noEscape */
+        $block->renderAmount(
+            $priceModel->getAmount(), [
+            'display_label'     => __('Regular Price'),
+            'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
+            'price_type'        => 'oldPrice',
+            'include_container' => true,
+            'skip_adjustments'  => false //set to false shows ex and inc VAT
+        ]
+        ); ?>
+    </span>
+<?php } else { ?>
+    <span class="main-price">
+    <?= /* @noEscape */
+    $block->renderAmount(
+        $finalPriceModel->getAmount(), [
+        'price_id'          => $block->getPriceId('product-price-' . $idSuffix),
+        'price_type'        => 'finalPrice',
+        'include_container' => true,
+        'schema'            => $schema
+    ]
+    ); ?>
+    </span>
+<?php } ?>
+
+<?php if ($block->showMinimalPrice()) : ?><?php if ($block->getUseLinkForAsLowAs()) : ?>
+    <a href="<?= $block->escapeUrl($block->getSaleableItem()->getProductUrl()) ?>" class="minimal-price-link">
+        <?= /* @noEscape */
+        $block->renderAmountMinimal() ?>
+    </a>
+<?php else : ?>
+    <span class="minimal-price-link">
+            <?= /* @noEscape */
+            $block->renderAmountMinimal() ?>
+        </span>
+<?php endif ?><?php endif; ?>

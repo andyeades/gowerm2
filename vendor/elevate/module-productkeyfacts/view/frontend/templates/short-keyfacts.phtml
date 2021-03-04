@@ -1,0 +1,76 @@
+<?php
+/**
+ * @var $block \Elevate\ProductKeyFacts\Block\Keyfacts
+ */
+
+$product = $block->getCurrentProduct();
+
+$evkeyfacts = array();
+
+$evkeyfacts_1 = $product->getEvKeyfacts1();
+$evkeyfacts_2 = $product->getEvKeyfacts2();
+$evkeyfacts_3 = $product->getEvKeyfacts3();
+$evkeyfacts_4 = $product->getEvKeyfacts4();
+$evkeyfacts_5 = $product->getEvKeyfacts5();
+$evkeyfacts_6 = $product->getEvKeyfacts6();
+
+
+
+
+
+if (!empty($evkeyfacts_1)) {
+  $evkeyfacts_1_type = $product->getEvKeyfacts1Type();
+  $evkeyfacts[$evkeyfacts_1_type][] = $evkeyfacts_1;
+}
+if (!empty($evkeyfacts_2)) {
+  $evkeyfacts_2_type = $product->getEvKeyfacts2Type();
+  $evkeyfacts[$evkeyfacts_2_type][] = $evkeyfacts_2;
+}
+if (!empty($evkeyfacts_3)) {
+  $evkeyfacts_3_type = $product->getEvKeyfacts3Type();
+  $evkeyfacts[$evkeyfacts_3_type][] = $evkeyfacts_3;
+}
+if (!empty($evkeyfacts_4)) {
+  $evkeyfacts_4_type = $product->getEvKeyfacts4Type();
+  $evkeyfacts[$evkeyfacts_4_type][] = $evkeyfacts_4;
+}
+if (!empty($evkeyfacts_5)) {
+  $evkeyfacts_5_type = $product->getEvKeyfacts5Type();
+  $evkeyfacts[$evkeyfacts_5_type][] = $evkeyfacts_5;
+}
+if (!empty($evkeyfacts_6)) {
+  $evkeyfacts_6_type = $product->getEvKeyfacts6Type();
+  $evkeyfacts[$evkeyfacts_6_type][] = $evkeyfacts_6;
+}
+
+
+// Are any Key Facts Set?
+
+$short_count = 0;
+
+foreach ($evkeyfacts as $key => $value) {
+  if (strcmp($key,"Short") === 0) {
+    $short_count += count($value);
+  }
+}
+
+
+
+
+
+
+?>
+
+<?php if (!empty($short_count)) { ?>
+  <div class="ev-keyfacts-2">
+    <div class="ev-kf-block-outer">
+      <div class="ev-kf-block-inner">
+        <?php
+          $ev_helper = $this->helper('Elevate\ProductKeyFacts\Helper\Data');
+          echo $ev_helper->getItemOutput($evkeyfacts["Short"],"Short",$product,'ev-kf-short');
+        ?>
+      </div>
+    </div>
+  </div>
+<?php } ?>
+

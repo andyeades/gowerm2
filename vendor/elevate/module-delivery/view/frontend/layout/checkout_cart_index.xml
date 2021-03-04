@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkout.cart.container">
+            <referenceContainer name="cart.discount">
+                <block class="Magento\Framework\View\Element\Template" ifconfig="delivery_options/cart/showgiftmessagenotice" name="cart.giftmessage.notice" template="Elevate_Delivery::gift-messaging-cart.phtml" />
+                <block class="Magento\Framework\View\Element\Template" name="cart.deliveryday.notice" ifconfig="delivery_options/cart/deliverydaynotice" template="Elevate_Delivery::delivery-day-cart.phtml" />
+            </referenceContainer>
+        </referenceContainer>
+
+    </body>
+</page>

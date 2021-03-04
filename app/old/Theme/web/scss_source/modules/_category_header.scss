@@ -1,0 +1,169 @@
+.ev-page-header-outer-container, .cat-page-header-outer-container, .prod-page-header-outer-container {
+  height: 100%;
+}
+
+.ev-page-header-outer-a, .cat-page-header-outer-a, .prod-page-header-outer-a {
+  &.non-blend {
+    background: linear-gradient(rgba(209, 27, 7, 0.7), rgba(209, 29, 7, 0.7)),
+                rgba(209, 27, 7, 0.7) url('../images/page-header-background-opc-45.jpg') no-repeat center;
+  }
+  background-size: cover;
+  color: white;
+  height: 300px;
+  position: relative;
+  z-index: 1;
+  background-image: linear-gradient(rgba(209, 27, 7, 1),rgba(209, 29, 7, 1), rgba(209, 27, 7, 1)),url("../images/page-header-background-opc-45.jpg");
+  background-blend-mode: multiply;
+  background-position: center;
+  @include max-screen($screen-xs-max) {
+    height: 150px;
+  }
+}
+
+.ev-page-header-outer-b {
+  &.non-blend {
+    background: linear-gradient(rgba(30, 129, 209, 0.7), rgba(30, 129, 209, 0.7)),
+                rgba(30, 129, 209, 0.7) url('../images/page-header-background-opc-45.jpg') no-repeat center;
+  }
+  background-size: cover;
+  color: white;
+  height: 300px;
+  position: relative;
+  z-index: 1;
+  background-image: linear-gradient(rgba(30, 129, 209, 1),rgba(30, 129, 209, 1), rgba(30, 129, 209, 1)),url("../images/page-header-background-opc-45.jpg");
+  background-blend-mode: multiply;
+  background-position: center;
+  @include max-screen($screen-xs-max) {
+    height: 150px;
+  }
+}
+
+.ev-page-header-inner,
+.cat-page-header-inner,
+.prod-page-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 230px;
+  @include max-screen($screen-xs-max) {
+    height: 100px;
+  }
+}
+
+.ev-page-breadcrumbs,
+.cat-page-breadcrumbs,
+.prod-page-breadcrumbs {
+  color: white;
+
+}
+
+.ev-page-category-title,
+.ev-page-title,
+.cat-page-category-title,
+.prod-page-category-title {
+  flex-direction: column;
+}
+
+.ev-page-category-title .page-title-wrapper .page-title,
+.ev-page-title .page-title-wrapper .page-title,
+.prod-page-category-title-actual,
+.cat-page-category-title .page-title-wrapper #page-title-heading {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 4px;
+  font-size: 36px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 0;
+  @include max-screen($screen-xs-max) {
+    font-size: 20px;
+  }
+}
+
+.page-title,
+.cat-page-category-title,
+.prod-page-category-title {
+  text-align: center;
+  margin-top: 0px;
+  height: auto;
+}
+
+
+.ev-page-columns-header,
+.cat-page-columns-header {
+  flex: 0 1 auto;
+  order: 1;
+  width: 100%;
+  background: #1F1E23;
+  padding: 30px;
+  max-height: 370px;
+  img {
+    @include img-responsive();
+    max-height: 310px;
+    margin: 0 auto;
+  }
+}
+
+.category-description {
+  color: white;
+  p {
+    line-height: 2rem;
+  }
+  h2 {
+    color: white;
+    text-transform: initial;
+    font-weight: 400;
+    margin-bottom: 35px;
+  }
+  .pas-category-button {
+    background-color: $color-pas-grey-lighter;
+    border: 1px solid $color-pas-grey-lighter;
+    color: white;
+    transition-duration: 300ms;
+    transition-property: background-color;
+    padding: 16px 50px;
+    display: inline-block;
+    border-radius: 25px;
+    box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+    margin-top: 30px;
+    span {
+      color: white;
+      line-height: 18px;
+    }
+    &:hover {
+      background-color: darken($color-pas-grey-lighter, 15%);
+      border: 1px solid darken($color-pas-grey-lighter, 15%);
+      color: white;
+      span {
+        color: white;
+      }
+    }
+  }
+}
+
+.cat-page-columns-header-inner {
+  display: flex;
+  @include max-screen($screen-xs-max) {
+    display: none;
+  }
+
+  h2.cat-page-columns-header-title {
+    font-family: "Oswald", sans-serif;
+  }
+}
+
+.cat-page-columns-header-inner-left {
+  flex: 0 1 auto;
+  order: 1;
+  @include min-screen($screen-sm-min) {
+    width: 50%;
+  }
+}
+
+.cat-page-columns-header-inner-right {
+  flex: 0 1 auto;
+  order: 2;
+  @include min-screen($screen-sm-min) {
+    width: 50%;
+  }
+}

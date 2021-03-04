@@ -1,0 +1,195 @@
+
+@if $sitename == posturite {
+    $nav-width-S: 260px !default;
+    $trainingmenu_bgcolor: #2f2f2f !default;
+    $trainingmenu_trigger_color: #FFF !default;
+    $trainingmenu_fontsize: 1rem !default;
+    $trainingmenu_icon_height: 24px !default;
+    $trainingmenu_height: 44px !default;
+    $trainingmenu_li_a_border_color: #c3a572 !default;
+
+    $trainingmenu_li_a_padding: 0.9375rem 1.5rem !default;
+    $trainingmenu_goback_padding: 0.9375rem 2.5rem 0.9375rem 2.5rem !default;
+
+    $trainingmenu_li_ul_padding_desktop: 1rem !default;
+    .trainingmenu {
+        display: flex;
+        align-items: center;
+
+        background: $trainingmenu_bgcolor;
+        .see-all {
+            display: none;
+        }
+        .cd-secondary-nav {
+            @include min-screen($mobile-menu-notvisible) {
+                display: flex;
+            }
+        }
+
+        @include min-screen($mobile-menu-notvisible) {
+            position: relative;
+            height: $trainingmenu_height;
+        }
+        .cd-mobile-header {
+            display: flex;
+            align-items: center;
+            height: $trainingmenu_height;
+            span {
+                flex: 0 1 auto;
+                padding-left: 10px;
+                cursor: pointer;
+                font-size: 1rem;
+                color: white;
+            }
+            @include min-screen($mobile-menu-notvisible) {
+                display: none;
+            }
+        }
+        .e-pn {
+            position: relative;
+            ul {
+                @include max-screen($mobile-menu-visible-max) {
+                    background: $trainingmenu_bgcolor;
+                }
+            }
+            background: $trainingmenu_bgcolor;
+            > li {
+                > ul {
+                    @include min-screen($mobile-menu-notvisible) {
+                        padding: $trainingmenu_li_ul_padding_desktop;
+                    }
+                }
+                a {
+                    justify-content: inherit;
+                    @include max-screen($mobile-menu-visible-max) {
+                        padding: $trainingmenu_li_a_padding;
+                        height: unset;
+                        line-height: unset;
+
+                        border-color: $trainingmenu_li_a_border_color;
+                    }
+                }
+                &:first-of-type {
+                    @include max-screen($mobile-menu-visible-max) {
+                        margin-top: 50px;
+                        border-top: 1px solid $trainingmenu_li_a_border_color;
+                    }
+
+                }
+                &.has-children {
+                    a {
+                        &:before, &:after {
+
+                            @include max-screen($mobile-menu-visible-max) {
+                                background: $trainingmenu_li_a_border_color;
+                            }
+                        }
+                    }
+                }
+                ul.menu-style-3 {
+                    > li {
+                        a {
+                            @include max-screen($mobile-menu-visible-max) {
+                                white-space: unset;
+                                height: auto;
+                                line-height: unset;
+                                border-color: $trainingmenu_li_a_border_color;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+        .go-back {
+            a {
+                @include max-screen($mobile-menu-visible-max) {
+                    padding: $trainingmenu_goback_padding !important;
+                    &:before, &:after {
+                        background: $trainingmenu_li_a_border_color;
+                    }
+
+                }
+            }
+        }
+        .ev-train-menu-icon {
+            height: $trainingmenu_icon_height;
+        }
+        .ev-train-nav-trigger {
+            cursor: pointer;
+            color: $trainingmenu_trigger_color;
+            display: flex;
+            align-items: center;
+            &.nav-toggle-desktop {
+
+                @include min-screen($mobile-menu-notvisible) {
+                    display: flex !important;
+                    position: relative;
+                }
+
+            }
+        }
+        .ev-train-nav-trigger-close {
+            @include max-screen($mobile-menu-visible-max) {
+                // ToDo: Make COntrollable
+                width: 25px;
+                height: 25px;
+                border: none;
+                padding: 0;
+                background-size: 14px;
+                // sass-lint:disable no-misspelled-properties, space-after-colon, space-around-operator, space-after-comma
+                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAmVBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VHQRUAAAAMnRSTlMAASYoLzA1ODw9QEZLTU9RUlRdX2FiZGZtb3Fze3+DhYy0tbq+wcPFyM/R1dre4uTz9YVMxz0AAAExSURBVEjHndRbU8IwFATgRQXrFRG11opU8V5U2P//43ywQpPuOY3mqbM732QyOQ3w/5XVXB6Z7ckH30ZRVpIk7wxRkSRzIci5I0LzK7SpNm0uhDJVq82F6JoqaHMhYlNF7RWAjHRM1WmHwDsd0xVcAKRthOAKqG2jBB+BQ1pGCo4A3Goz0OIaMM2XTIvmlNp4It0UrRtLM0UwFykmFCkmFv2mK/qMEr7RwjOWsI0tMPiUoraFMbvk7M/CNrawjCe08YUyfaJr+kVsUkRo0kTbpIqt0aJ2jBalMaMzAMeGsOb6AFhawjDP+uUvnf9nBbzaQpp7YOgIZXYAnDuia04BAFNHxGbcpFNHhGa8SS8c0TZnrfTSEVszCdKffW70o9CYSZTuLdZP+7BW9rJ+2G2+vwE93S0WoL7dLQAAAABJRU5ErkJggg==);
+                right: 15px;
+                top: 7px;
+                position: absolute;
+                z-index: 99999;
+                background-repeat: no-repeat;
+                background-position: center;
+                display: block;
+
+            }
+
+        }
+        .nav-toggle-desktop {
+            @include max-screen($mobile-menu-visible-max) {
+                display: none;
+            }
+        }
+    }
+.ev-train-overlay {
+    // shadow layer visible when navigation is active
+position: fixed;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    background-color: rgba(#2E3233, .8);
+    visibility: hidden;
+    opacity: 0;
+    @include backface-visibility(hidden);
+    @include rj-transition(opacity .3s 0s, visibility 0s .3s, transform .3s 0s);
+
+    &.is-visible {
+        opacity: 1;
+        visibility: visible;
+        @include rj-transition(all 0s ease 0s);
+        z-index: 999;
+
+    }
+
+    @include max-screen($mobile-menu-visible-max) {
+        .nav-on-left &.is-visible {
+            @include rj-transform(translateX($nav-width-S));
+        }
+        &.is-visible.search-is-visible, .nav-on-left &.is-visible.search-is-visible {
+            @include rj-transform(translateX(0));
+        }
+    }
+    @include min-screen($mobile-menu-notvisible) {
+        display: none;
+    }
+}
+}
+

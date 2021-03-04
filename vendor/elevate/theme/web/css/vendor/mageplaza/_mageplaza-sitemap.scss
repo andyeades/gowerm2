@@ -1,0 +1,44 @@
+#mageplaza-seo-html-sitemap {
+    .row {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        .mp-sitemap-listing,
+        h2 {
+            @include max-screen($mobilemax) {
+                padding-left: $grid-gutter-width-mobile;
+                padding-right: $grid-gutter-width-mobile;
+            }
+            padding-left: $grid-gutter-width / 2;
+            padding-right: $grid-gutter-width / 2;
+        }
+
+        h2 {
+            width: 100%;
+            margin: 0 0 1.5rem;
+        }
+
+        .mp-sitemap-listing {
+            padding-left: 15px;
+            padding-right: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            margin: 0 0 1.5rem;
+
+            > li {
+                flex: 0 1 auto;
+                width: 50%;
+                margin: 0 0 0.5rem;
+                @include min-screen($desktop-min) {
+                    width: 25%;
+                }
+
+                > a {
+                    padding: 0 0.5rem 0 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <theme_options>
+            <productpage>
+                <enable_evproductaddto_social>0</enable_evproductaddto_social>
+                <enable_evproductaddto>0</enable_evproductaddto>
+                <enable_evproductmailto>0</enable_evproductmailto>
+            </productpage>
+
+            <productgridlist>
+                <pitems_addtocart_enabled>0</pitems_addtocart_enabled>
+                <pitems_addtolinks_enabled>0</pitems_addtolinks_enabled>
+            </productgridlist>
+            <themeoptionsheader>
+                <header_search_icon_svg><![CDATA[<svg viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+        <path d="M149.999863,142.499899 L142.499914,149.999838 L134.999966,149.999838 L95.2877376,110.25016 C84.7158094,116.844479 72.4583032,120.231246 60.0004791,120.000081 C44.1297513,120.293374 28.8122161,114.16976 17.5176315,103.016372 C6.22304695,91.8629833 -0.0927562936,76.6237028 0.000889832147,60.7505613 C0.0463349136,27.2183767 27.2182471,0.0464988145 60.750474,0.00105379037 C76.6261694,-0.100897807 91.8703436,6.21225421 103.025562,17.5086639 C114.180781,28.8050737 120.301698,44.1274303 120.000068,60.0005674 C120.249099,72.4578094 116.874977,84.7192742 110.287635,95.2952813 L149.999863,134.999959 L149.999863,142.499899 L149.999863,142.499899 Z M60.0004791,15.0759316 C35.1478355,15.0759316 15.0007872,35.2229545 15.0007872,60.0755668 C15.0007872,84.9281791 35.1478355,105.075202 60.0004791,105.075202 C84.8531228,105.075202 105.000171,84.9281791 105.000171,60.0755668 C105.000171,35.2229545 84.8531228,15.0759316 60.0004791,15.0759316 L60.0004791,15.0759316 Z" id="icon__search"></path>
+</svg>]]></header_search_icon_svg>
+            </themeoptionsheader>
+            <cart>
+                <checkout_info_block>0</checkout_info_block>
+                <remove_discount_block>0</remove_discount_block>
+                <single_proceedtocheckout_button>0</single_proceedtocheckout_button>
+            </cart>
+            <checkout>
+                <giftmessaging_include>0</giftmessaging_include>
+            </checkout>
+
+        </theme_options>
+        <evto_email_options>
+            <sales_emails_items_block>
+                <default_email_order_items_enabled>1</default_email_order_items_enabled>
+                <custom_layout_one_email_order_items_enabled>0</custom_layout_one_email_order_items_enabled>
+                <custom_layout_two_email_order_items_enabled>0</custom_layout_two_email_order_items_enabled>
+            </sales_emails_items_block>
+        </evto_email_options>
+    </default>
+</config>

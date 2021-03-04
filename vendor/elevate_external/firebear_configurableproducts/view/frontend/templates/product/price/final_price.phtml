@@ -1,0 +1,113 @@
+<?php
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
+/** @var \Firebear\ConfigurableProducts\Pricing\Bundle\Render\FinalPriceBox $block */
+
+/** @var \Magento\Bundle\Pricing\Price\FinalPrice $finalPriceModel */
+$finalPriceModel = $block->getPrice();
+$minimalPrice = $finalPriceModel->getMinimalPrice();
+$maximalPrice = $finalPriceModel->getMaximalPrice();
+/** ex: \Magento\Bundle\Pricing\Price\BundleRegularPrice */
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $regularPriceModel */
+$regularPriceModel = $block->getPriceType('regular_price');
+$maximalRegularPrice = $regularPriceModel->getMaximalPrice();
+$minimalRegularPrice = $regularPriceModel->getMinimalPrice();
+$hasFixedPrice = $block->getSaleableItem()->getPriceType() == Magento\Bundle\Model\Product\Price::PRICE_TYPE_FIXED;
+$showPrice = $block->showPrice();
+?>
+<style>
+  .product-info-price .price-box .old-price, .product-options-bottom .price-box .old-price {
+    order: 0;
+  }
+</style>
+<?php if ($showPrice === true): ?>
+    <?php if ($block->getSaleableItem()->getPriceView()): ?>
+        <?php if ($minimalPrice < $minimalRegularPrice): ?>
+      <span class="old-price a1">
+                <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalRegularPrice, [
+                    'display_label'     => __('Regular Price'),
+                    'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
+                    'include_container' => true,
+                    'skip_adjustments'  => false, //false will include both pricing
+                    'price_type'        => 'oldPrice',
+                ]); ?>
+            </span>
+        <?php endif ?>
+
+    <span class="minimal-price amin">
+        <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalPrice, [
+            'display_label'     => __('As low as'),
+            'price_id'          => $block->getPriceId('from-'),
+            'include_container' => true,
+            'skip_adjustments'  => false, //false will include both pricing
+            'price_type'        => 'finalPrice'
+        ]);
+
+        ?>
+
+    </span>
+    <?php else: ?>
+        <?php if ($block->showRangePrice()): ?>
+      <span class="price-from a2">
+          <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalPrice, [
+              'display_label'     => __(''),
+              'price_id'          => $block->getPriceId('from-'),
+              'price_type'        => 'minPrice',
+              'include_container' => true
+          ]); ?>
+          <?php if ($minimalPrice < $minimalRegularPrice && $hasFixedPrice): ?>
+            <span class="old-price a3">
+                    <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalRegularPrice, [
+                        'display_label'     => __('Regular Price'),
+                        'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
+                        'include_container' => true,
+                        'skip_adjustments'  => true
+                    ]); ?>
+                </span>
+          <?php endif ?>
+      </span>
+      <span class="price-to a4">
+          <?php /* @escapeNotVerified */ echo $block->renderAmount($maximalPrice, [
+              'display_label'     => __('To'),
+              'price_id'          => $block->getPriceId('to-'),
+              'price_type'        => 'maxPrice',
+              'include_container' => true
+          ]); ?>
+          <?php if ($maximalPrice < $maximalRegularPrice && $hasFixedPrice): ?>
+            <span class="old-price a5">
+                    <?php /* @escapeNotVerified */ echo $block->renderAmount($maximalRegularPrice, [
+                        'display_label'     => __('Regular Price'),
+                        'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
+                        'include_container' => true,
+                        'skip_adjustments'  => true
+                    ]); ?>
+                </span>
+          <?php endif ?>
+      </span>
+        <?php else: ?>
+            <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalPrice, [
+                'price_id'          => $block->getPriceId('product-price-'),
+                'include_container' => true
+            ]); ?>
+            <?php if ($minimalPrice < $minimalRegularPrice): ?>
+        <span class="old-price a6">
+                <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalRegularPrice, [
+                    'display_label'     => __('Regular Price'),
+                    'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
+                    'include_container' => true,
+                    'skip_adjustments'  => true
+                ]); ?>
+            </span>
+            <?php endif ?>
+        <?php endif ?>
+    <?php endif ?>
+<?php else: ?>
+  <span class="no-price">
+      <?php /* @escapeNotVerified */ echo $block->showPrice(); ?>
+  </span>
+<?php endif ?>

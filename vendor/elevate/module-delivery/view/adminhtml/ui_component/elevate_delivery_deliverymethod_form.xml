@@ -1,0 +1,457 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">elevate_delivery_deliverymethod_form.deliverymethod_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button class="Elevate\Delivery\Block\Adminhtml\DeliveryMethod\Edit\BackButton" name="back"/>
+			<button class="Elevate\Delivery\Block\Adminhtml\DeliveryMethod\Edit\DeleteButton" name="delete"/>
+			<button class="Elevate\Delivery\Block\Adminhtml\DeliveryMethod\Edit\SaveButton" name="save"/>
+			<button class="Elevate\Delivery\Block\Adminhtml\DeliveryMethod\Edit\SaveAndContinueButton" name="save_and_continue"/>
+		</buttons>
+		<namespace>elevate_delivery_deliverymethod_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>elevate_delivery_deliverymethod_form.deliverymethod_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="deliverymethod_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider class="Elevate\Delivery\Model\DeliveryMethod\DataProvider" name="deliverymethod_form_data_source">
+			<settings>
+				<requestFieldName>deliverymethod_id</requestFieldName>
+				<primaryFieldName>deliverymethod_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label/>
+		</settings>
+        <field name="deliverymethod_id" sortOrder="136" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="name" sortOrder="151" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>name</dataScope>
+                <label translate="false">Method Name (Not Customer Facing)</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="internal_name" sortOrder="151" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>internal_name</dataScope>
+                <label translate="false">Internal Method Name (Not Customer Facing)</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="enabled" sortOrder="136" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable Method</label>
+                <dataScope>enabled</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="deliveryarea_id" sortOrder="137" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Delivery Area</label>
+                <dataScope>deliveryarea_id</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Delivery\Model\Config\Source\DeliveryArea"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="day1" sortOrder="138" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Day 1</label>
+                <dataScope>day1</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="day2" sortOrder="139" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Day 2</label>
+                <dataScope>day2</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="day3" sortOrder="140" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Day 3</label>
+                <dataScope>day3</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="day4" sortOrder="141" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Day 4</label>
+                <dataScope>day4</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="day5" sortOrder="142" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Day 5</label>
+                <dataScope>day5</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="day6" sortOrder="143" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Day 6</label>
+                <dataScope>day6</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="day7" sortOrder="144" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Day 7</label>
+                <dataScope>day7</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <field name="start_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Start time</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/date</item>
+                    <item name="sortOrder" xsi:type="number">146</item>
+                    <item name="dataScope" xsi:type="string">start_time</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string"></item>
+                        <item name="timeFormat" xsi:type="string">HH:mm</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-dateandtime">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="end_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">End time</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/date</item>
+                    <item name="sortOrder" xsi:type="number">147</item>
+                    <item name="dataScope" xsi:type="string">end_time</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string"></item>
+                        <item name="timeFormat" xsi:type="string">HH:mm</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-dateandtime">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="before_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Before time</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="dataScope" xsi:type="string">before_time</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/date</item>
+                    <item name="sortOrder" xsi:type="number">148</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-dateandtime">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="deliveryteamnumber" sortOrder="151" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>deliveryteamnumber</dataScope>
+                <label translate="false">Number of Persons on Delivery Team</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <additionalClasses>
+                    <class name="admin__field-shortinput">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="delivery_team_ability" sortOrder="152" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>delivery_team_ability</dataScope>
+                <label translate="false">Delivery Team Ability</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <additionalClasses>
+                    <class name="admin__field-shortinput">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <textarea name="delivery_desc" sortOrder="152">
+            <settings>
+                <dataScope>delivery_desc</dataScope>
+                <label translate="true">Delivery Description</label>
+                <rows>8</rows>
+                <tooltip>
+                    <description translate="true">This description is used anywhere else a delivery widget is used - except the Checkout pages.</description>
+                </tooltip>
+            </settings>
+        </textarea>
+        <textarea name="delivery_desc_checkout" sortOrder="153">
+            <settings>
+                <dataScope>delivery_desc_checkout</dataScope>
+                <label translate="true">Checkout Delivery Description</label>
+                <rows>8</rows>
+                <tooltip>
+                    <description translate="true">Displayed when a user selects a delivery option on the checkout.</description>
+                </tooltip>
+            </settings>
+        </textarea>
+        <input name="workingdays_min" sortOrder="154">
+            <settings>
+                <dataScope>workingdays_min</dataScope>
+                <label translate="false">Minimum Working Days</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <tooltip>
+                    <description translate="true">Minimum number of working days before delivery can take place from the time the customer places order.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-shortinput">true</class>
+                </additionalClasses>
+            </settings>
+        </input>
+        <field name="workingdays_max" sortOrder="155" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>workingdays_max</dataScope>
+                <label translate="false">Maximum Working Days</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <tooltip>
+                    <description translate="true">Maximum number of working days before delivery can take place from the time the customer places order. If there is no maximum enter 0.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-shortinput">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="call_day_before" sortOrder="156" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Call Day Before</label>
+                <dataScope>call_day_before</dataScope>
+                <tooltip>
+                    <description translate="true">Courier will call customer the day before delivery to confirm..</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="date_range_selection" sortOrder="157" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Date Range Selection</label>
+                <dataScope>date_range_selection</dataScope>
+                <tooltip>
+                    <description translate="true">User is selecting a date range on the checkout, not a specific date.</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

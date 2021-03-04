@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<page layout="empty" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Elevate\CartAssignments\Block\Popup" name="submit_coupon" before="-" template="Elevate_CartAssignments::popup.phtml"  cacheable="false"/>
+        </referenceContainer>
+
+
+        <referenceBlock name="ev.footer" remove="true" />
+        <referenceBlock name="ev.footer.above" remove="true" />
+        <referenceBlock name="ev.footer.below" remove="true" />
+    </body>
+</page>

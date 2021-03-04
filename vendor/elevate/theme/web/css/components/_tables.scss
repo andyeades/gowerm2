@@ -1,0 +1,339 @@
+// Wrapper
+
+$flextable-wrapper-margin: 1rem 0 !default;
+
+// Flex Table
+
+$flextable-background: false !default;
+$flextable-padding: false !default;
+$flextable-padding-desktop: false !default;
+$flextable-display: false !default;
+$flextable-textalign: false !default;
+$flextable-flexwrap: false !default;
+
+
+
+$flextable-width: false !default;
+$flextable-width-desktop: false !default;
+
+$flextable-justifycontent: false !default;
+$flextable-margin: false !default;
+$flextable-margin-desktop: false !default;
+
+// Caption
+
+$flextable-tablecaption-display: none !default;
+
+.flex-table-wrapper {
+    @include co(margin, $flextable-wrapper-margin);
+    .flex-table {
+
+        @include co(background, $flextable-background);
+        @include co(text-align, $flextable-textalign);
+        @include co(width, $flextable-width);
+        @include co(display, $flextable-display);
+        @include co(flex-wrap, $flextable-flexwrap);
+        @include co(justify-content, $flextable-justifycontent);
+        @include co(margin, $flextable-margin);
+        @include co(padding, $flextable-padding);
+
+        @include min-screen($desktop-min) {
+            @include co(margin, $flextable-margin-desktop, $flextable-margin);
+            @include co(width, $flextable-width-desktop, $flextable-width);
+            @include co(padding, $flextable-padding-desktop, $flextable-padding);
+        }
+
+    }
+    .flex-table-caption {
+        @include co(display, $flextable-tablecaption-display);
+    }
+
+    $flextable-headerrow-display: none !default;
+    $flextable-headerrow-flexwrap: false !default;
+
+    $flextable-headerrow-flex: 0 0 auto !default;
+    $flextable-headerrow-flex-mobilemax: false !default;
+    $flextable-headerrow-flex-mobiletabletmax: false !default;
+    $flextable-headerrow-flex-desktop: false !default;
+    $flextable-headerrow-flex-desktopmd: false !default;
+
+
+    $flextable-headerrow-width: 100% !default;
+    $flextable-headerrow-width-mobilemax: false !default;
+    $flextable-headerrow-width-mobiletabletmax: false !default;
+    $flextable-headerrow-width-desktop: false !default;
+    $flextable-headerrow-width-desktopmd: false !default;
+
+    $flextable-headerrow-divs-flex: 0 1 auto !default;
+
+
+    // Item Row
+    $flextable-itemrow-display: flex !default;
+    $flextable-itemrow-flexwrap: false !default;
+    $flextable-itemrow-flexwrap-mobilemax: wrap !default;
+    $flextable-itemrow-margin: 0 0 1rem 0 !default;
+
+    $flextable-itemrow-flex: 0 0 auto !default;
+    $flextable-itemrow-flex-mobilemax: false !default;
+    $flextable-itemrow-flex-mobiletabletmax: false !default;
+    $flextable-itemrow-flex-desktop: false !default;
+    $flextable-itemrow-flex-desktopmd: false !default;
+
+
+    $flextable-itemrow-width: 100% !default;
+    $flextable-itemrow-width-mobilemax: false !default;
+    $flextable-itemrow-width-mobiletabletmax: false !default;
+    $flextable-itemrow-width-desktop: false !default;
+    $flextable-itemrow-width-desktopmd: false !default;
+
+    // Item Row Sub Divs
+
+    $flextable-itemrow-divs-flex: 0 1 auto !default;
+
+    $flextable-itemrow-divs-margin: 0 0.5rem 0 0 !default;
+    $flextable-itemrow-divs-lastoftype-margin-mobiletabletmin: 0 !default;
+    $flextable-itemrow-divs-lastoftype-margin-desktopmin: false !default;
+
+    // product Column
+
+    $flextable-itemrow-productcol-width: false !default;
+    $flextable-itemrow-productcol-width-mobilemax: 100% !default;
+
+    $flextable-itemrow-productcol-margin: false !default;
+    $flextable-itemrow-productcol-margin-mobilemax: 0 0 0.75rem 0 !default;
+
+
+    // Qty Col - qty Field
+
+
+    $flextable-itemrow-qty-control-width: 2rem !default;
+
+
+    // Address Column
+
+    $flextable-itemrow-addresscol-width: false !default;
+    $flextable-itemrow-addresscol-width-mobilemax: 80% !default;
+    $flextable-itemrow-addresscol-flex-mobilemax: 1 1 auto !default;
+
+    $flextable-itemrow-addressdropdown-width: false !default;
+    $flextable-itemrow-addressdropdown-width-mobilemax: false !default;
+
+    // actions
+
+    $flextable-itemrow-actionccol-width: false !default;
+    $flextable-itemrow-actionccol-width-mobilemax: 100% !default;
+
+    $flextable-itemrow-actionccol-margin: false !default;
+    $flextable-itemrow-actionccol-margin-mobilemax: 0.75rem 0 !default;
+
+    $flextable-itemrow-actionccol-textalign: false !default;
+    $flextable-itemrow-actionccol-textalign-mobilemax: center !default;
+
+    .flex-table-header-row {
+        @include co(display, $flextable-headerrow-display);
+        @include co(flex-wrap, $flextable-headerrow-flexwrap);
+        @include co(flex, $flextable-headerrow-flex);
+        @include co(width, $flextable-headerrow-width);
+        @include max-screen($mobile-max) {
+            @include co(flex, $flextable-headerrow-flex-mobilemax, $flextable-headerrow-flex);
+            @include co(width, $flextable-headerrow-width-mobilemax, $flextable-headerrow-width);
+        }
+
+        @include min-screen($mobiletablet-max) {
+            @include co(flex, $flextable-headerrow-flex-mobiletabletmax, $flextable-headerrow-flex);
+            @include co(width, $flextable-headerrow-width-mobiletabletmax, $flextable-headerrow-width);
+        }
+        @include min-screen($desktop-min) {
+            @include co(flex, $flextable-headerrow-flex-desktop, $flextable-headerrow-flex);
+            @include co(width, $flextable-headerrow-width-desktop, $flextable-headerrow-width);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(flex, $flextable-headerrow-flex-desktopmd, $flextable-headerrow-flex-desktop, $flextable-headerrow-flex);
+            @include co(width, $flextable-headerrow-width-desktopmd, $flextable-headerrow-width-desktop, $flextable-headerrow-width);
+        }
+        > div {
+            @include co(flex, $flextable-headerrow-divs-flex);
+        }
+    }
+    .flex-table-item-row {
+        @include co(display, $flextable-itemrow-display);
+        @include co(flex-wrap, $flextable-itemrow-flexwrap);
+        @include co(flex, $flextable-itemrow-flex);
+        @include co(width, $flextable-itemrow-width);
+        @include co(margin, $flextable-itemrow-margin);
+        @include max-screen($mobile-max) {
+            @include co(flex, $flextable-itemrow-flex-mobilemax, $flextable-itemrow-flex);
+            @include co(width, $flextable-itemrow-width-mobilemax, $flextable-itemrow-width);
+            @include co(flex-wrap, $flextable-itemrow-flexwrap-mobilemax, $flextable-itemrow-flexwrap);
+        }
+
+        @include min-screen($mobiletablet-max) {
+            @include co(flex, $flextable-itemrow-flex-mobiletabletmax, $flextable-itemrow-flex);
+            @include co(width, $flextable-itemrow-width-mobiletabletmax, $flextable-itemrow-width);
+        }
+        @include min-screen($desktop-min) {
+            @include co(flex, $flextable-itemrow-flex-desktop, $flextable-itemrow-flex);
+            @include co(width, $flextable-itemrow-width-desktop, $flextable-itemrow-width);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(flex, $flextable-itemrow-flex-desktopmd, $flextable-itemrow-flex-desktop, $flextable-itemrow-flex);
+            @include co(width, $flextable-itemrow-width-desktopmd, $flextable-itemrow-width-desktop, $flextable-itemrow-width);
+        }
+        > div {
+            @include co(flex, $flextable-itemrow-divs-flex);
+            @include co(margin, $flextable-itemrow-divs-margin);
+            &:last-of-type {
+
+                @include min-screen($mobiletablet-min) {
+                    @include co(margin, $flextable-itemrow-divs-lastoftype-margin-mobiletabletmin);
+                }
+                @include min-screen($desktop-min) {
+                    @include co(margin, $flextable-itemrow-divs-lastoftype-margin-desktopmin);
+                }
+            }
+        }
+        > .product {
+            @include co(width, $flextable-itemrow-productcol-width);
+            @include co(margin, $flextable-itemrow-productcol-margin);
+            @include max-screen($mobile-max) {
+                @include co(width, $flextable-itemrow-productcol-width-mobilemax, $flextable-itemrow-productcol-width);
+                @include co(margin, $flextable-itemrow-productcol-margin-mobilemax, $flextable-itemrow-productcol-margin);
+            }
+        }
+        > .qty {
+            .control {
+                @include co(width, $flextable-itemrow-qty-control-width);
+            }
+        }
+        > .address {
+            @include co(width, $flextable-itemrow-addresscol-width);
+            @include max-screen($mobile-max) {
+                @include co(width, $flextable-itemrow-addresscol-width-mobilemax, $flextable-itemrow-addresscol-width);
+                @include co(flex, $flextable-itemrow-addresscol-flex-mobilemax);
+            }
+            .control {
+                @include co(width, $flextable-itemrow-addressdropdown-width);
+                @include max-screen($mobile-max) {
+                    @include co(width, $flextable-itemrow-addressdropdown-width-mobilemax, $flextable-itemrow-addressdropdown-width);
+                }
+            }
+
+        }
+        > .actions {
+            @include co(width, $flextable-itemrow-actionccol-width);
+            @include co(margin, $flextable-itemrow-actionccol-margin);
+            @include co(text-align, $flextable-itemrow-actionccol-textalign);
+            @include max-screen($mobile-max) {
+                @include co(width, $flextable-itemrow-actionccol-width-mobilemax, $flextable-itemrow-actionccol-width);
+                @include co(margin, $flextable-itemrow-actionccol-margin-mobilemax, $flextable-itemrow-actionccol-margin);
+                @include co(text-align, $flextable-itemrow-actionccol-textalign-mobilemax, $flextable-itemrow-actionccol-textalign);
+            }
+        }
+    }
+
+}
+
+table {
+    @include lib-table-caption();
+  .col {
+    // Fix For Bootstrap Styles causing haywire!
+    flex-basis: unset;
+    flex-grow: unset;
+    max-width: unset;
+    position: unset;
+    width: auto;
+  }
+}
+
+.table-wrapper {
+    margin-bottom: $indent__base;
+    @include max-screen($mobiletablet-max) {
+        @include lib-table-overflow();
+        position: relative; // To hide unnecessary horizontal scrollbar in Safari
+    }
+
+    .table {
+        &:not(.cart) {
+            &:not(.totals) {
+                @include lib-table-bordered(
+                    $_table_type         : light,
+                    $_table_border-width : $table__border-width
+                );
+
+                tfoot {
+                    > tr {
+                        &:first-child {
+                            th,
+                            td {
+
+                                border-top: $table__border-width $table__border-style $table__border-color;
+                                padding-top: $indent__base;
+                            }
+                        }
+                    }
+
+                    .mark {
+                        font-weight: $font-weight__regular;
+                        text-align: right;
+                    }
+                }
+
+                &:not(.table-comparison) {
+                    //@include lib-table-responsive();
+
+                    tbody > tr {
+                        > td:first-child {
+                            //padding-top: $indent__base;
+                        }
+
+                        > td:last-child {
+                            //padding-bottom: $indent__base;
+                        }
+                    }
+                    &.additional-attributes {
+                        tbody {
+                            th {
+                                @include max-screen($mobiletablet-max) {
+                                    display: none;
+                                }
+
+                            }
+
+                            td {
+                                &:last-child {
+                                    @include max-screen($mobiletablet-max) {
+                                        border: none;
+                                        padding: 0 0 $indent__xs;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+.data-table-definition-list {
+    thead {
+        @include max-screen($mobiletablet-max) {
+            display: none;
+        }
+    }
+
+    tbody th {
+        @include max-screen($mobiletablet-max) {
+            padding-bottom: 0;
+        }
+    }
+
+    tbody th,
+    tbody td {
+        @include max-screen($mobiletablet-max) {
+        display: block;
+        padding-left: 0;
+        padding-right: 0;
+        }
+    }
+}

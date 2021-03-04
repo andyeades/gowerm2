@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Elevate_Themeoptions::js/footer-accordion.js" />
+    </head>
+    <body>
+       <referenceBlock name="head.additional">
+           <block class="Elevate\Themeoptions\Block\Frontend\Customisationoutput" name="customisationoutput" template="Elevate_Themeoptions::customisationoutput.phtml"></block>
+       </referenceBlock>
+        <referenceContainer name="header-main-inner">
+            <container name="header.mobile.left" htmlClass="hdr-in-mobile-left hdr-conta" htmlTag="div" before="-">
+                <block class="Magento\Framework\View\Element\Template" name="hdr.mobile.left" template="Elevate_Themeoptions::header/v1/mobileleft.phtml"></block>
+            </container>
+            <container name="header.main.in.left" htmlClass="hdr-in-left hdr-conta" htmlTag="div" before="-">
+                <container name="header.main.in.left.logo" htmlClass="hdr-logo-wrap hdr-conta" htmlTag="div" before="-">
+                    <block class="Magento\Theme\Block\Html\Header\Logo" name="logo"></block>
+                </container>
+                <container name="header.main.in.left.search" htmlId="hdr-search-wrap" htmlClass="hdr-search-wrap hdr-conta" htmlTag="div" before="-">
+                    <block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch" template="Magento_Search::form.mini.phtml" />
+                </container>
+            </container>
+            <container name="header.main.in.center" htmlClass="hdr-in-center hdr-conta" htmlTag="div" before="-">
+                <block class="Magento\Framework\View\Element\Template" name="hdr.main.center" template="Elevate_Themeoptions::header/v1/center.phtml"></block>
+                <block class="Magento\Cms\Block\Block" name="header_main_in_center_cms">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">ev-header-main-center</argument>
+                    </arguments>
+                </block>
+            </container>
+            <container name="header.main.in.right" htmlClass="hdr-in-right hdr-conta" htmlTag="div" before="-">
+                <container name="header.main.top.list" htmlClass="hdr-r-trow" htmlId="header-top" htmlTag="div" before="-">
+                    <block class="Elevate\Themeoptions\Block\Frontend\Headertoplist" name="ev_hdr_top_list" template="Elevate_Themeoptions::header/ev-hdr-top-list.phtml">
+                    </block>
+                </container>
+                <container name="header.main.in.right.brow" htmlClass="hdr-r-brow hdr-conta" htmlTag="div" before="-">
+                    <container name="header.main.in.right.brow.left" htmlClass="hdr-r-brow-in-l hdr-conta" htmlTag="div" before="-">
+                        <block class="Magento\Cms\Block\Block" name="ev_header_right_inner_left">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">ev-header-right-inner-left</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="header.main.in.right.brow.right" htmlClass="hdr-r-brow-in-r hdr-conta" htmlTag="div" before="-">
+                    </container>
+                </container>
+
+            </container>
+        </referenceContainer>
+        <referenceContainer name="page.wrapper">
+            <container name="ev.footer.above" htmlTag="div" htmlId="elevate-footer-above">
+                <container name="ev.footer.above.inner.container" htmlTag="div" htmlClass="container">
+                    <container name="ev.footer.above.inner" htmlTag="div" htmlId="ev-footer-above-inner">
+                        <block class="Magento\Cms\Block\Block" name="ev_footer_above_inner_content">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">ev-footer-above-inner-content</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                </container>
+            </container>
+            <container name="ev.footer" htmlTag="footer" htmlId="ev-footer">
+                <container name="ev.footer.inner.container" htmlTag="div" htmlClass="container">
+                    <container name="ev.footer.inner.top" htmlTag="section" htmlId="ev-footer-inner-top">
+                        <block class="Magento\Cms\Block\Block" name="ev_footer_main_inside_top_inner_content">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">ev-footer-main-inside-top-inner-content</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="ev.footer.main" htmlTag="div" htmlId="ev-footer-main">
+                        <container name="ev.footer.main.inner" htmlTag="div" htmlId="ftr-m-ti">
+                            <container name="footer-block-1" htmlTag="div" htmlClass="footer-block" htmlId="footer-block-1">
+                                <block class="Magento\Cms\Block\Block" name="ev_footer_block_1">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">ev-footer-block-1</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                            <container name="footer-block-2" htmlTag="div" htmlClass="footer-block" htmlId="footer-block-2">
+                                <block class="Magento\Cms\Block\Block" name="ev_footer_block_2">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">ev-footer-block-2</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                            <container name="footer-block-3" htmlTag="div" htmlClass="footer-block" htmlId="footer-block-3">
+                                <block class="Magento\Cms\Block\Block" name="ev_footer_block_3">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">ev-footer-block-3</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                            <container name="footer-block-4" htmlTag="div" htmlClass="footer-block" htmlId="footer-block-4">
+                                <block class="Magento\Cms\Block\Block" name="ev_footer_block_4">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">ev-footer-block-4</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                        </container>
+                    </container>
+                </container>
+            </container>
+            <container name="ev.footer.below" htmlTag="div" htmlId="ev-footer-below">
+                <container name="ev.footer.below.inner.container" htmlTag="div" htmlClass="container">
+                    <container name="ev.footer.below.inner" htmlTag="div" htmlId="ev-footer-below-inner">
+                        <block class="Magento\Cms\Block\Block" name="ev_footer_below_inner_content">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">ev-footer-below-inner-content</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+
+
+
+        <move element="minicart" destination="header.main.in.right.brow.right"/>
+
+        <!-- Remove Junk -->
+        <referenceBlock name="header" remove="true" />
+        <referenceBlock name="compare-link-wrapper" remove="true" />
+        <referenceBlock name="advanced-search-link" remove="true" />
+        <referenceContainer name="header.panel.wrapper" remove="true" />
+    </body>
+</page>

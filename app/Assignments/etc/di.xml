@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Elevate\Assignments\Api\ItemsRepositoryInterface" type="Elevate\Assignments\Model\ItemsRepository"/>
+	<preference for="Elevate\Assignments\Api\Data\ItemsInterface" type="Elevate\Assignments\Model\Data\Items"/>
+	<preference for="Elevate\Assignments\Api\Data\ItemsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Elevate\Assignments\Model\ResourceModel\Items\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">elevate_assignments_addons</argument>
+			<argument name="resourceModel" xsi:type="string">Elevate\Assignments\Model\ResourceModel\Items\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="elevate_assignments_items_listing_data_source" xsi:type="string">Elevate\Assignments\Model\ResourceModel\Items\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

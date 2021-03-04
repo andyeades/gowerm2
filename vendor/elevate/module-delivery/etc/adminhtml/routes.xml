@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+	<router id="admin">
+		<route frontName="deliveryoptions" id="deliveryoptions">
+			<module before="Magento_Backend" name="Elevate_Delivery"/>
+		</route>
+		<route frontName="elevate_delivery" id="elevate_delivery">
+			<module before="Magento_Backend" name="Elevate_Delivery"/>
+		</route>
+	</router>
+</config>

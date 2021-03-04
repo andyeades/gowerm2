@@ -1,0 +1,462 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Title
+ */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+
+$cssClass = $block->getCssClass() ? ' ' . $block->getCssClass(): '';
+$title = $_product->getName();
+
+$_firmnessRatingHelper = $objectManager->get(\Elevate\Framework\Helper\Data::class);
+echo $_firmnessRatingHelper->getLeadTimeInfo($_product);
+?>
+
+
+
+<?
+$brand = 'blank';
+$brands_array = array(
+    'trigger-point' => '/trigger-point',
+    'trx'           => '/trx',
+    'harbinger'     => '/harbinger',
+    'ironmind'      => '/ironmind',
+    'fat-gripz'     => '/fat-gripz',
+    'heavy-grips'   => '/heavy-gripz',
+    'rocktape'      => '/rocktape',
+    'reflex-bands'  => '/reflex-bands-resistance-bands',
+    'usn'           => '/usn',
+);
+if ($_product) {
+    $brand = $_product->getResource()->getAttribute('brand')->getFrontend()->getValue($_product);
+    $brand_title = $brand;
+    $brand = strtolower(str_replace(" ", "-", $brand));
+
+}
+?>
+<div class="page-title-wrapper<?php /* @escapeNotVerified */
+echo $cssClass; ?>">
+    <?php
+
+    if ($brand == 'trx') {
+        ?>
+        <style type="text/css">
+            .modal-content {
+                background-color: #fff !important;
+            }
+
+            .modal-header {
+                background-color: #fff000;
+            }
+
+            .page-title-wrapper button {
+                background-color: #000;
+                text-decoration:  none;
+                text-shadow:      none;
+                box-shadow:       none !important;
+                outline:          0px auto -webkit-focus-ring-color !important;
+                color:            #fff;
+                border-radius:    0px;
+                text-transform:   uppercase;
+            }
+        </style>
+        <button class="btn btn-primary btn-lg" data-toggle="modal" type="button" data-target="#brandModal" style="    background: none;
+    padding: 0;">
+
+
+            <img alt="<?php echo $brand_title; ?>" src="/pub/media/brands/logos/<? echo $brand; ?>.jpg" style="width: 200px;margin-bottom: 21px;margin-top: 20px;">
+        </button>
+        <?php
+    } else {
+
+        ?>
+        <style type="text/css">
+            .trx_outer {
+                margin-bottom: 0px !important;
+            }
+
+            .hexagon {
+                float:            left;
+                position:         relative;
+                width:            80px;
+                height:           46.19px;
+                background-color: #191c21;
+                margin:           23.09px 0;
+                border-left:      solid 2px #333333;
+                border-right:     solid 2px #333333;
+            }
+
+            .hexagon:before,
+            .hexagon:after {
+                content:           "";
+                position:          absolute;
+                z-index:           1;
+                width:             56.57px;
+                height:            56.57px;
+                -webkit-transform: scaleY(0.5774) rotate(-45deg);
+                -ms-transform:     scaleY(0.5774) rotate(-45deg);
+                transform:         scaleY(0.5774) rotate(-45deg);
+                background-color:  inherit;
+                left:              9.7157px;
+            }
+
+            .hexagon:before {
+                top:          -28.2843px;
+                border-top:   solid 2.8284px #333333;
+                border-right: solid 2.8284px #333333;
+            }
+
+            .hexagon:after {
+                bottom:        -28.2843px;
+                border-bottom: solid 2.8284px #333333;
+                border-left:   solid 2.8284px #333333;
+            }
+
+            @media (min-width: 768px) {
+                .product-info-main .box-tocart .action.tocart {
+                    margin-right: 0;
+
+                }
+            }
+
+            form#product_addtocart_form {
+                background-color: #f0f0f0;
+                padding:          20px;
+            }
+
+            @media (min-width: 1200px) {
+                span.pp_reward_wrap {
+                    width:            100%;
+                    display:          block;
+
+                    float:            none !important;
+                    margin-bottom:    21px;
+                    background-color: #e3e3e3;
+                    text-align:       center !important;
+                    padding:          14px;
+                    margin-bottom:    0px !important;
+                    clear:            both;
+                }
+            }
+        </style>
+
+
+        <?
+        if (array_key_exists($brand, $brands_array)) {
+
+
+            echo '<a title="' . $brand_title . '" href="' . $brands_array[$brand] . '" />';
+            ?>
+            <img alt="<?php echo $brand_title; ?>" src="/pub/media/brands/logos/<? echo $brand; ?>.jpg" style="width: 200px;margin-bottom: 21px;margin-top: 20px;">
+            <?php
+            echo '</a>';
+        }
+    }
+
+    $nutrition_protein = $_product->getData('nutrition_badge_protein');
+    $nutrition_carbs = $_product->getData('nutrition_badge_carbs');
+    $nutrition_fat = $_product->getData('nutrition_badge_fat');
+
+    if (!empty($nutrition_protein)) {
+        ?>
+
+
+        <div style="float: right;">
+            <div class="hexagon" style="margin-right:10px;">
+
+                <div style="font-size: 24px;font-weight: bold;text-align: center;
+    position: absolute;
+    color: #f50;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: -7px;
+    z-index: 200;
+"><?php echo $nutrition_protein; ?>g
+                </div>
+                <div style="
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 24px;
+    z-index: 200;
+    text-transform: uppercase;
+    font-weight: bold;
+">Fat
+                </div>
+                <div style="
+    text-align: center;
+    position: absolute;
+    color: #f0f0f0;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    font-size: 9px;
+    top: 37px;
+    z-index: 200;
+">Per Serving
+                </div>
+            </div>
+            <div class="hexagon" style="
+    margin-right: 10px;
+">
+
+                <div style="
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    color: #f50;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: -7px;
+    z-index: 200;
+"><?php echo $nutrition_carbs; ?>g
+                </div>
+                <div style="
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 24px;
+    z-index: 200;
+    text-transform: uppercase;
+    font-weight: bold;
+">Carbs
+                </div>
+                <div style="
+    text-align: center;
+    position: absolute;
+    color: #f0f0f0;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    font-size: 9px;
+    top: 37px;
+    z-index: 200;
+">Per Serving
+                </div>
+            </div>
+            <div class="hexagon" style="
+    margin-right: 10px;
+">
+
+                <div style="
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    color: #f50;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: -7px;
+    z-index: 200;
+"><?php echo $nutrition_fat; ?>g
+                </div>
+                <div style="
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 24px;
+    z-index: 200;
+    text-transform: uppercase;
+    font-weight: bold;
+">Fat
+                </div>
+                <div style="
+    text-align: center;
+    position: absolute;
+    color: #f0f0f0;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    font-size: 9px;
+    top: 37px;
+    z-index: 200;
+">Per Serving
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+        <?php
+    }
+    if (array_key_exists($brand, $brands_array)) {
+
+    }
+    ?>
+    <h1 class="page-title"
+        <?php if ($block->getId()): ?> id="<?php /* @escapeNotVerified */
+        echo $block->getId(); ?>" <?php endif; ?>
+        <?php if ($block->getAddBaseAttributeAria()): ?>
+            aria-labelledby="<?php /* @escapeNotVerified */
+            echo $block->getAddBaseAttributeAria(); ?>"
+        <?php endif; ?>>
+        <?php /* @escapeNotVerified */
+        echo $title ?>
+    </h1>
+    <script type="text/javascript">ELEVATE.Megamenu.initPP();</script>
+    <?php echo $block->getChildHtml(); ?>
+</div>
+
+
+<?php
+$skus = $_product->getData('associated_skus');
+?>
+<style>
+    #variation_wrap {
+        text-align: center;
+        display:    block;
+        width:      auto;
+        margin:     0 auto;
+        margin-top: 10px;
+
+    }
+
+    .variation_item {
+        display:      inline-block;
+        border:       1px solid #b1b1b1;
+        padding:      11px;
+        margin-right: 5px;
+        color:        #000 !important;
+        cursor:       pointer;
+        min-width:    47px;
+        text-align:   center;
+    }
+
+    .variation_item2 {
+        display:      inline-block;
+        height:       50px;
+        width:        50px;
+        border:       3px solid #fff;
+        padding:      0px;
+        margin-right: 5px;
+        color:        #000 !important;
+        cursor:       pointer;
+        min-width:    47px;
+        width:        50px;
+        text-align:   center;
+    }
+
+    .variation_item_select {
+        border: 3px solid #f50;
+    }
+
+    .variation_item:hover {
+        background-color: #f0f0f0;
+        text-decoration:  none;
+    }
+
+    .is_selected_variation {
+        background-color: #f0f0f0;
+    }
+</style>
+<?php
+//$productId = 100;
+
+if (!empty($skus)) {
+
+    $skus_exp = array_map('trim', explode(',', $skus));
+
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+    $prodCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+    $collection = $prodCollection->create()->addAttributeToSelect('*')->addAttributeToSelect('associated_sku_label')->addAttributeToSelect('associated_swatch')
+        // ->addFieldToFilter('sku',$sku);
+        // ->addAttributeToFilter('sku', ['in' =>  'TPT-GRDOWS', 'TPT-GRD2SMUW', 'TPT-GRDOWS']);
+                                 ->addAttributeToFilter('sku', array('in' => array($skus_exp)))->setOrder('associated_sku_label', 'ASC');
+    // or ->load($productId);
+    //echo $collection->getSelect()->__toString();
+
+    echo '<div id="variation_wrap">';
+    foreach ($collection as $product) {
+        $swatch = $product->getData('associated_swatch');
+
+        $extra_class = '';
+
+        if ($product->isSaleable()) {
+            if (empty($swatch)) {
+                if ($_product->getData('associated_sku_label') == $product->getData('associated_sku_label')) {
+                    $extra_class = 'is_selected_variation';
+                }
+                echo '<a class="variation_item ' . $extra_class . '" href="/' . $product->getUrlKey() . '">';
+                echo $product->getData('associated_sku_label');
+                echo '</a>';
+            } else {
+                if ($_product->getData('associated_sku_label') == $product->getData('associated_sku_label')) {
+                    $extra_class = 'variation_item_select';
+                }
+                echo '<a class="variation_item2 ' . $extra_class . '" href="/' . $product->getUrlKey() . '">';
+                echo '<img alt="' . $product->getData('associated_sku_label') . '" src="/pub/media/swatches/' . $swatch . '">';
+                echo '</a>';
+            }
+        }
+
+    }
+    echo '</div><div style="clear:both;"></div><div style="clear:both;"></div>';
+}
+if ($brand == 'trx') {
+    ?>
+    <div class="modal " id="brandModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">TRX Genuine Reseller</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>TRX are high quality &amp; safety tested</h3>
+                    <p>Unfortunately there are a lot of websites selling fake TRX products, which are low quality and can be unsafe to use.</p>
+                    <p>TRX ensure quality and durability of their products and like manufacturers of mountain climbing gear they use industrial-strength materials, employ redundant stitching, and build in lots safety features.</p>
+                    <p>Their products undergo testing for durability and safety to ensure they will withstand major loads</p>
+
+                    <h3>How to check your product is genuine</h3>
+                    <p>Each TRX Product comes with a unique serial number</p>
+                    <p>You can (and should) register your genuine product on the
+                        <a target="_blank" href="https://id.trxtraining.com/users/sign_up">Official TRX &reg; website</a>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <?php
+
+}
+
+?>
+

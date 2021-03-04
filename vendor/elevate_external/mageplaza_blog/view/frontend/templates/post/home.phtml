@@ -1,0 +1,196 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Blog\Block\Frontend $block */
+
+?>
+
+
+<?php $postCollection = $block->getPostCollectionHome(); ?>
+<div class="blog-home homepage-block">
+
+    <?php
+    $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+    if (strpos($url,'posturite') !== false)
+    {
+
+        $latest_posts_title = __('Latest Posts');
+
+        ?>
+          
+                <style>
+      
+                    .p-img-top-left, .save-icon, .discontinued-icon {
+          background-color: #235e4b;
+          border-radius: 0px;
+          font-size: 14px;
+          font-weight: bold;
+          padding: 9px 30px;
+          height: 50px;
+          width: auto !important;
+        }
+         
+                </style>
+
+    <?php } ?>
+
+
+                <style>
+        .first-blog-home {
+          width: 100%;
+        }
+        .featured-cat-articlename {
+          display: block;
+          align-items: center;
+          min-height: auto !important;
+          width: 100%;
+          z-index: 999;
+          background-color: #fff;
+          border-bottom: solid 15px #fff;
+          font-size: 20px;
+          padding: 0;
+          font-weight: 700;
+          padding-top: 22px;
+        }
+        .blog-home a:hover {
+          text-decoration: underline;
+          color: #000;
+        }
+   
+        .featured-cat-articlename {
+          color: black;
+          font-size: 16px;
+        }
+        a.featured-cat-articlename.a-block {
+          font-size: 20px;
+        }
+   
+   </style>
+    <div class="row latest-posts">
+
+        <div class="first-blog-home">
+            <?php $i = 1;
+
+            $main_post_collection = [];
+
+            $first_post_collection = [];
+            $second_post_collection = [];
+
+            ?>
+            <?php foreach ($postCollection as $post) {
+                $post_name = $post->getName();
+                $post_url = str_replace('category', '', str_replace('blog/post', 'blog', str_replace('.html', '', $post->getUrl())));
+                $post_image = '/media/mageplaza/blog/post/' . $post->getImage();//$block->resizeImage($post->getImage(), '1200px');
+                $post_info = $block->getPostInfo($post);
+
+                $description_length = 100;
+
+                if (!empty($post->getShortDescription())) {
+                    $post_description = $block->maxShortDescription($post->getShortDescription());
+                } else {
+                    $post_description = $block->maxShortDescription(mb_strimwidth(strip_tags($post->getPostContent()), 0, $description_length, '...'));
+                }
+
+                if ($i == 1) {
+                    $main_post_collection[] = [
+                        'post_name'        => $post_name,
+                        'post_url'         => $post_url,
+                        'post_image'       => $post_image,
+                        'post_info'        => $post_info,
+                        'post_description' => $post_description
+                    ];
+                }
+                //top block
+                if ($i > 1 && $i <= 6) {
+                    $first_post_collection[] = [
+                        'post_name'        => $post_name,
+                        'post_url'         => $post_url,
+                        'post_image'       => $post_image,
+                        'post_info'        => $post_info,
+                        'post_description' => $post_description
+                    ];
+                }
+
+                //rest of posts
+                if ($i > 6) {
+                    $first_post_collection[] = [
+                        'post_name'        => $post_name,
+                        'post_url'         => $post_url,
+                        'post_image'       => $post_image,
+                        'post_info'        => $post_info,
+                        'post_description' => $post_description
+                    ];
+                }
+
+                $imageZoom = false;
+                if ($i == 1) {
+                    $imageZoom = true;
+                }
+
+                $i++;
+            }
+            ?>
+            <?php foreach ($main_post_collection as $post) { ?>
+                <div class="featured-cat-outer">
+
+
+                    <div class="featured-cat-img <?php if ($imageZoom == true) { ?>zoom<?php } ?>" style="position:relative;">
+
+                        <a href="<?php echo str_replace('/category', '',  $post['post_url']) ?>">
+                            <div class="p-img-icon save-icon latest-post-icon">Latest Post</div>
+                            <img src="<?= $post['post_image'] ?>" alt="<?php echo $post['post_name'] ?>" class="img-responsive"/> </a>
+                    </div>
+                    <a class="featured-cat-articlename a-block" href="<?php echo str_replace('/category', '', $post['post_url']) ?>"><?php echo $post['post_name'] ?></a>
+                </div>
+
+                <?php $i++; ?>
+
+            <?php } ?>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

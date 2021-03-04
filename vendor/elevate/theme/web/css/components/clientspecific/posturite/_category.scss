@@ -1,0 +1,810 @@
+@if $sitename == posturite {
+
+    .category-image img {
+        width: 100%;
+    }
+
+    .category-description {
+        margin: 0 0 30px;
+    }
+
+    .category-products {
+        padding: 10px;
+    }
+
+    .category-main-information {
+        margin-top: 30px;
+
+        h2 {
+            margin: 0 0 12px 0;
+            text-align: left;
+        }
+
+        h3 {
+            margin: 6px 0 12px;
+        }
+
+        h4 {
+            margin: 6px 0 12px;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        li {
+            width: 600px;
+            margin-bottom: 6px;
+        }
+    }
+
+    .category-left-information {
+        border: 1px solid #dddddd;
+        margin-bottom: 20px;
+
+        .block-content {
+            padding: 10px;
+
+            ul {
+                list-style: disc;
+                padding-left: 20px;
+            }
+
+            li {
+                margin-bottom: 6px;
+            }
+        }
+    }
+
+    .category-products {
+        .category-title, .products-grid {
+        }
+
+        .product-teaser-snippet {
+            position: absolute;
+            height: 164px;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            text-align: left;
+            font-size: 0.9em;
+            color: #222222;
+            padding: 5px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #cccccc;
+            display: none;
+            z-index: 1000;
+        }
+    }
+
+    // This can be used to style short description pulled through on category page
+
+    // Category Landing Pages
+
+    .category-landing-parent, .category-landing-title, .category-landing-intro {
+        text-align: center;
+    }
+
+    .category-landing-parent {
+        text-transform: uppercase;
+        color: #787878;
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+    .category-landing-title {
+        color: #006f51;
+        font-size: 28px;
+
+        span {
+            font-size: 14px;
+            color: #444444;
+        }
+    }
+
+    .category-landing-intro {
+        color: #787878;
+        font-size: 14px;
+        line-height: 20px;
+        padding-top: 10px;
+    }
+
+    //colors
+    $posturite-cat-color-0: rgba(255, 255, 255, 0.7);
+    $posturite-cat-color-1: #cccccc;
+    $posturite-cat-color-2: #c2a472;
+    $posturite-cat-color-3: #000;
+    $posturite-cat-color-4: black;
+    $posturite-cat-color-5: #006a42;
+    $posturite-cat-color-6: #000000;
+    $posturite-cat-color-7: #ffffff;
+    $posturite-cat-color-8: #ececec;
+    $posturite-cat-color-9: #d8eade;
+    $posturite-cat-color-10: #e6d2b9;
+    $posturite-cat-color-11: #006f51;
+    $posturite-cat-color-12: #006b41;
+    $posturite-cat-color-13: #fff;
+    $posturite-cat-color-14: #1b9271;
+    $posturite-cat-color-15: rgba(255, 255, 255, 1);
+
+    //urls
+    $posturite-cat-url-0: url(/media/homepage/mobile-device-accessories-block.jpg);
+    $posturite-cat-url-1: url(/media/category-landing/ergonomic-chairs/chairs-landing-page-office-chairs_2019.jpg);
+    $posturite-cat-url-2: url(/media/category-landing/ergonomic-chairs/chairs-landing-in-stock-chairs_2019.jpg);
+    $posturite-cat-url-3: url(/media/category-landing/ergonomic-chairs/chairs-landing-page-standing-chairs_2019.jpg);
+    $posturite-cat-url-4: url(/media/category-landing/ergonomic-chairs/chairs-landing-page-specialist-chairs_2019.jpg);
+    $posturite-cat-url-5: url(/media/category-landing/ergonomic-chairs/chairs-landing-page-browse-collection_2019.jpg);
+    $posturite-cat-url-6: url(/media/category-landing/ergonomic-chairs/chairs-landing-page-hero_2019.jpg);
+
+
+    .content-righ-bottom {
+        &.inner {
+            padding-top: 76px;
+            padding-left: 0;
+            text-align: center;
+        }
+
+        h2, p {
+            color: #ffffff;
+        }
+
+        .home-btn-content {
+            border: 1px solid #ffffff;
+            color: #ffffff;
+        }
+    }
+
+    .info-wrap {
+        padding: 30px;
+        height: 154px;
+    }
+
+    .home-services .info-wrap,
+    .consulting .info-wrap {
+        background: #006a42;
+        height: 230px;
+    }
+
+    .bottom-row .info-wrap {
+        background: #d7c3a8;
+        height: 205px;
+    }
+
+    .home-services {
+        .image-wrap img {
+            width: 100%;
+            display: block;
+        }
+
+        .info-wrap {
+            h3 {
+                color: #ffffff;
+                font-size: 24px;
+            }
+
+            p, a {
+                color: #ffffff;
+                font-size: 15px;
+            }
+        }
+    }
+
+    .info-wrap p {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight: 300;
+        line-height: normal;
+    }
+
+    .home-services {
+        padding-top: 30px !important;
+        padding-bottom: 30px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-align: center;
+    }
+
+    .consulting {
+        padding-top: 30px;
+    }
+
+    .bottom-row {
+        padding-top: 30px;
+
+        .info-wrap {
+            h3, p, a {
+                color: #010101;
+            }
+        }
+    }
+
+    .elevate-custom-cat {
+
+
+        .block-layered-nav {
+            dt {
+                border-bottom: 1px solid $posturite-cat-color-1;
+            }
+
+            .block-title {
+                display: none;
+            }
+
+            .block-content li {
+                height: auto;
+            }
+        }
+
+        .ev-cms-page-wrap {
+            .btn-posturite {
+                border: none;
+                color: $posturite-cat-color-2;
+                background: transparent;
+            }
+
+            a:hover {
+                text-decoration: none !important;
+            }
+        }
+
+        .custom-category-wrap {
+            margin-bottom: 20px;
+
+            .col-md-6 {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .half-size {
+                width: 50%;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+        }
+
+        .menu-item {
+            margin-bottom: 40px;
+
+            h3 {
+                font-size: 20px;
+            }
+
+            li a {
+                color: $posturite-cat-color-3;
+                font-weight: bold;
+            }
+
+            .nav-stacked > li + li {
+                border-bottom: 0;
+            }
+        }
+
+        .cms-bootstrap-content {
+            margin-top: 0;
+        }
+
+        .content-middle {
+            background: none !important;
+            background-size: cover;
+
+            &.inner {
+                padding-top: 40px;
+                text-align: center;
+                padding-left: 0;
+                padding: 25px;
+            }
+        }
+
+        .content-left {
+            background: none !important;
+            background-size: cover;
+        }
+
+        .inner {
+            padding-left: 0;
+            padding-top: 0;
+            height: auto;
+        }
+
+        .content-righ-bottom {
+            height: auto;
+            background-position: 50% 50% !important;
+            background: $posturite-cat-color-5 !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            padding-bottom: 55.5%;
+
+            &.inner {
+                padding-top: 0;
+            }
+
+            .text-content-wrap {
+                position: absolute;
+                top: 50%;
+                //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+                transform: translateY(-50%);
+                text-align: left;
+                margin-left: 10%;
+                margin-right: 10%;
+
+                li {
+                    font-size: 16px;
+                    color: $posturite-cat-color-7;
+                }
+
+                ul {
+                    list-style-type: square;
+                    margin-left: 6%;
+                }
+            }
+        }
+
+        .content-left-bottom {
+            background: none !important;
+            background-size: cover;
+        }
+
+        .content-right {
+            background: none !important;
+            background-size: cover;
+            height: auto;
+
+            .text-content-wrap {
+                position: absolute;
+                top: 50%;
+                //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+                transform: translateY(-50%);
+                text-align: left;
+                margin-left: 6%;
+            }
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .content-righ-bottom2 {
+            background: $posturite-cat-color-5 !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            padding-bottom: 75%;
+        }
+
+        .text-content-wrap {
+            margin: 0 auto;
+            text-align: center;
+
+            h2 {
+                font-size: 35px;
+                margin-bottom: 0.75rem;
+                color: white;
+                @include min-screen($desktop-min) {
+                    font-size: 20px;
+                    margin-bottom: 0.75rem;
+
+                }
+            }
+
+            p {
+                font-size: 13px;
+                color: $posturite-cat-color-6;
+            }
+
+            a:hover {
+                text-decoration: none !important;
+                color: initial;
+            }
+        }
+
+        .bottom-row-left {
+            background: $posturite-cat-color-8;
+            background-position: 50% 50% !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            padding-bottom: 75%;
+            background-image: $posturite-cat-url-3 !important;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .bottom-row-middle {
+            background: $posturite-cat-color-9;
+            background-position: 50% 50% !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            padding-bottom: 75%;
+            background-image: $posturite-cat-url-4 !important;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .bottom-row-right {
+            background: $posturite-cat-color-10;
+            background-position: 50% 50% !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            padding-bottom: 75%;
+            background-image: $posturite-cat-url-5 !important;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .right-cat-col {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .cat-main-description {
+            background: $posturite-cat-color-8;
+            padding: 30px;
+            background-image: $posturite-cat-url-6 !important;
+            background-position: right 0 bottom;
+            background-repeat: no-repeat !important;
+            background-size: cover;
+        }
+
+        .cat-main-description-inner {
+            //width: 70%;
+            h2 {
+                font-size: 35px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+
+        .cat-btn {
+            padding: 5px 10px;
+            border: 1px solid $posturite-cat-color-6;
+            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+            border-radius: 5px;
+            color: $posturite-cat-color-6;
+            text-transform: uppercase;
+
+            &:hover {
+                text-decoration: none;
+                color: initial;
+            }
+        }
+
+        .top-right-content {
+            &:hover {
+                opacity: 0.8;
+            }
+
+            a:hover {
+                text-decoration: none !important;
+                color: initial;
+            }
+        }
+
+        .nav-stacked {
+            .level2 {
+                list-style-type: square;
+                padding-left: 15px;
+            }
+
+            > li {
+                display: list-item;
+            }
+        }
+
+        .shop-by-button {
+            background: $posturite-cat-color-11;
+            padding: 20px;
+            text-align: center;
+            color: $posturite-cat-color-7;
+            line-height: 11px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+
+            &:hover {
+                cursor: pointer;
+                background: $posturite-cat-color-14;
+            }
+        }
+
+        .nav-pills {
+            text-align: center;
+
+            > li {
+                float: left;
+                flex-grow: 1;
+            }
+        }
+
+        .owl-carousel {
+            position: relative;
+        }
+
+        .owl-prev {
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+        }
+
+        .owl-next {
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+        }
+
+        .customNavigationOwl {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            z-index: 999;
+        }
+
+        .shop-by-filters {
+            padding-top: 30px;
+
+            .container-fluid {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        .main-banner {
+            padding-top: 30px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .home-services {
+            .button {
+                background: $posturite-cat-color-12;
+                padding: 15px;
+                color: $posturite-cat-color-13;
+                margin-top: 30px;
+                text-transform: uppercase;
+                font-size: 15px;
+
+                &:hover {
+                    background: $posturite-cat-color-14;
+                }
+            }
+
+            .info-wrap {
+                p {
+                    color: $posturite-cat-color-13;
+                    font-size: 16px;
+                    line-height: 21px;
+                }
+
+                a {
+                    color: $posturite-cat-color-13;
+                    font-size: 16px;
+                    line-height: 21px;
+                }
+            }
+        }
+
+        .info-wrap {
+            padding: 20px;
+            height: 200px;
+        }
+
+        .shop-by {
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .test {
+            width: 15% !important;
+            width: 30%;
+            position: absolute;
+            background: linear-gradient(to right, $posturite-cat-color-15 0, rgba(255, 255, 255, 0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=1);
+            z-index: 99;
+            float: left;
+        }
+
+        .test2 {
+            width: 15% !important;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, $posturite-cat-color-15 83%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=1);
+            width: 30%;
+            position: absolute;
+            right: 0;
+            z-index: 9;
+        }
+
+        #sidebar {
+            order: 1;
+        }
+
+        .shop-by-button-wrap {
+            margin-bottom: 30px;
+            width: 100%;
+
+            a:hover {
+                text-decoration: none;
+            }
+        }
+
+        .decorated {
+            overflow: hidden;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 12px;
+
+            > span {
+                position: relative;
+                display: initial;
+                color: #306f45;
+                font-size: 24px;
+
+                &:before {
+                    right: 100%;
+                }
+
+                &:before, &:after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    border-bottom: 2px solid;
+                    width: 591px;
+                    margin: 0 20px;
+                    color: #e2e2e2;
+                }
+            }
+        }
+
+        .our-brands {
+            padding-top: 40px;
+            padding-bottom: 40px;
+
+            h2 {
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+
+            .owl-wrapper .item {
+                background-color: transparent;
+                border-bottom: 0;
+                border-right: 0;
+                border-top: 0;
+                min-height: auto;
+                position: relative;
+                height: auto;
+            }
+        }
+
+        .bottom-row .info-wrap {
+            color: $posturite-cat-color-4 !important;
+
+            a {
+                color: $posturite-cat-color-4 !important;
+            }
+
+            p {
+                color: $posturite-cat-color-4 !important;
+            }
+        }
+
+        .content img {
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .cat-bottom-row .text-content-wrap {
+            position: absolute;
+            top: 50%;
+            //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+            transform: translateY(-50%);
+            text-align: left;
+            margin-left: 6%;
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+
+        li.top-level-item {
+            text-transform: uppercase;
+        }
+
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 0;
+        }
+
+        ul.nav.nav-pills.tabs {
+            margin: 0 auto;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .fme-filter dt {
+            border: none;
+        }
+
+        .catalog-category-view .container-fluid {
+            padding: 0 !important;
+        }
+    }
+    @media screen and(max-width: 992px) {
+        .elevate-custom-cat {
+            #sidebar {
+                position: initial !important;
+            }
+
+            .shop-by {
+                margin-top: 60px !important;
+
+                .row {
+                    flex-direction: column;
+                }
+            }
+
+            .row-eq-height {
+                display: block;
+            }
+
+            .text-content-wrap {
+                h2 {
+                }
+
+                p {
+                    font-size: 13px;
+                }
+            }
+
+            .cat-main-description {
+                padding: 20px !important;
+            }
+
+            .cat-main-description-inner {
+                background: $posturite-cat-color-0;
+                padding: 30px;
+            }
+
+            .blog-slider a.featured-cat-link {
+                text-align: center;
+            }
+
+            .custom-category-wrap .row {
+                flex-direction: column;
+            }
+
+            .content-righ-bottom .text-content-wrap li {
+                font-size: 13px;
+            }
+        }
+    }
+    @media screen and(max-width: 1470px) {
+        .elevate-custom-cat {
+            .cat-main-description-inner {
+                background: $posturite-cat-color-0;
+                padding: 30px;
+            }
+
+        }
+    }
+    @media screen and(min-width: 1470px) {
+        .elevate-custom-cat .cat-main-description-inner {
+            width: 50%;
+        }
+    }
+}

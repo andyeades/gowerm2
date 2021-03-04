@@ -1,0 +1,52 @@
+<?php
+/** @var \Mirasvit\Kb\Block\Article\Comment\Form $block */
+?>
+<?php if ($block->isAllowed()): ?>
+    <div class="kb-article-form">
+        <form action="<?= $block->getSubmitUrl() ?>" method="POST" enctype="multipart/form-data" data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset">
+                <input type="hidden" name="article_id" value="<?= $block->getArticle()->getId() ?>">
+
+                <div class="field required">
+                    <label class="label" for="message"><span><?= __('Comment') ?></span></label>
+                    <div class="control">
+                        <textarea name="message" id="message" class="input-text required-entry" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <?= $block->getBlockHtml('msp-recaptcha') ?>
+
+                <div class="actions-toolbar">
+                    <button type="submit" class="action secondary" title="<?= __('Submit Comment') ?>">
+                        <span><?= __('Submit Comment') ?></span>
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+
+        <script type="text/javascript">
+            require([
+                "jquery",
+                "mage/validation"
+            ], function ($) {
+                $(document).ready(function () {
+                    var $submitBtn = $('.kb-article-form .action.secondary');
+
+                    $('.kb-article-form form').on('invalid-form.validate', function (event, validation) {
+                        submitBtn.show();
+                    });
+
+                    $submitBtn.on("click", function () {
+                        $submitBtn.hide();
+                    });
+                });
+            });
+        </script>
+    </div>
+<?php else: ?>
+    <div class="message info">
+        <div data-bind="html: message.text">
+            <?= __('Only <a href="%1">logged in</a> customers can leave comments', $block->getLoginUrl()) ?>
+        </div>
+    </div>
+<?php endif ?>

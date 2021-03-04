@@ -1,0 +1,16 @@
+{
+    "name": "elevate_external/amasty-cron-schedule-list",
+    "description": "Cron Schedule List by Amasty",
+    "type": "magento2-module",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\CronScheduleList\\": ""
+        }
+    }
+}

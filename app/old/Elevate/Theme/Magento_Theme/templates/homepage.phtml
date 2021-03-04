@@ -1,0 +1,291 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+// Instance of Pricing Helper
+$priceHelper = $objectManager->create("Magento\Framework\Pricing\Helper\Data");
+
+$abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+
+
+$categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+$categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+$categoryRepository = $objectManager->get('\Magento\Catalog\Model\CategoryRepository');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+
+$categoryId2 = 18; // Homepage Block - Main Items
+$category2 = $categoryFactory->create()->load($categoryId2);
+
+$categoryProducts2 = $category2->getProductCollection()->setPageSize(5)->addAttributeToSelect('*');
+
+$categoryId = 17; // YOUR CATEGORY ID
+$category = $categoryFactory->create()->load($categoryId);
+
+$categoryProducts = $category->getProductCollection()->setPageSize(1)->addAttributeToSelect('*');
+
+?>
+
+<style>
+.home-products .product-info-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+<!--
+<div class="header-wrap">
+
+    <div class="image-wrapper">
+        <div class="banner-item banner-4">
+            <span class="banner-video">
+                                <div class="banner-video-AW19" style="display: block;" id="banner-video-AW19-hidden">
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/qj6NOw-wyEg?rel=0&amp;controls=0&amp;modestbranding=1&amp;autoplay=1&amp;fs=0&amp;loop=1&amp;autohide=1&amp;disablekb=1&amp;cc_load_policy=1&amp;iv_load_policy=3&amp;mute=1&amp;version=3&amp;playlist=qj6NOw-wyEg&amp;showsearch=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+</div>
+
+
+
+
+
+<script>
+var deviceAgent = navigator.userAgent.toLowerCase();
+
+var isTouchDevice = ('ontouchstart' in document.documentElement) || 
+(deviceAgent.match(/(iphone|ipod|ipad)/) ||
+deviceAgent.match(/(android)/)  || 
+deviceAgent.match(/(iemobile)/) || 
+deviceAgent.match(/iphone/i) || 
+deviceAgent.match(/ipad/i) || 
+deviceAgent.match(/ipod/i) || 
+deviceAgent.match(/blackberry/i) || 
+deviceAgent.match(/bada/i));
+
+
+</script>
+
+
+<style type="text/css" media="screen">
+.banner-video-AW19 {
+	position: relative;
+	/* padding-bottom: 56.25%; 16:9 */
+	padding-bottom: 41.67%; /* video ratio */
+	padding-top: 25px;
+	height: 0;
+	overflow: hidden;
+	margin-top: -8%;
+}
+.banner-video-AW19 iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 101%;
+	height: 120%;
+	margin-left: -1px;
+}
+
+@media only screen and (max-width: 767px) {
+	.banner-video-AW19 {
+		display: block !Important;
+	}
+/*
+	.banner-video-AW19-desktop {
+		display: block !Important;
+}
+*/
+/*
+	.banner-video-AW19-mobile {
+		margin-bottom: 10px;
+}
+*/
+	.hp-secondary_item--center {
+		margin-bottom: 10px;
+}
+}
+
+@media only screen and (min-width: 768px) {
+/*
+	.banner-video-AW19-mobile {
+		display: none;
+	}
+*/
+}
+
+@media only screen and (max-width: 940px) {
+.banner-video-AW19 {
+	margin-top: -10%;
+}
+}
+    
+    .ambassador-content-wrap h2{
+        color: #ffffff;
+        margin-bottom: 30px;
+        margin-top:30px;
+    }
+
+    
+@media only screen and (max-width: 992px) {
+    .theme-pearl.cms-informed-sport .ambassador-quote-outer img{
+        margin-top: 30px;
+    }
+}
+
+</style>                            </span>
+            <div class="content_slider">
+
+
+                <div class="buttons">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+<div class="hp-v7-slider">
+  <?php echo $this->getLayout()->createBlock("WeltPixel\OwlCarouselSlider\Block\Slider\Custom")->setSliderId("4")->toHtml(); ?>
+</div>
+
+
+
+<div class="off-suppliers-outer">
+  <div class="heading-intro-wrap">
+    <div class="heading-into">
+      <h2 class="intro-main">Official <span class="highlighted">performance nutrition</span> Supplier</h2>
+
+    </div>
+
+    <div class="club-banners">
+                <span class="club-banner-inner">
+
+                  <?php echo $this->getLayout()->createBlock("WeltPixel\OwlCarouselSlider\Block\Slider\Custom")->setSliderId("5")->toHtml(); ?>
+            </span>
+
+    </div>
+
+
+  </div>
+</div>
+<div class="prod-page-main-outer" style="padding: 0px">
+
+
+  <div class="home-products">
+    <div class="home-products-heading">
+      <h2>Top Selling products</h2>
+<!--      <p class="intro-sub">Below you will find a list of our hottest selling products.</p>-->
+    </div>
+
+
+    <div class="content row product-wrap">
+
+      <?php $rowCount = 0; ?>
+
+      <?php foreach ($categoryProducts2 as $product) {
+        $rowCount++;
+
+        $imageUrl = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_page_image_large')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepTransparency(TRUE)->keepFrame(FALSE)->getUrl();
+
+        ?>
+
+
+        <?php
+
+        if ($rowCount == 1 || $rowCount == 3 || $rowCount == 4) {
+          $centerItem = '';
+
+          if ($rowCount == 3) {
+            $centerItem = 'center-item';
+
+          }
+          echo '<div class="home-products-item col-md-4 ' . $centerItem . '">';
+        }
+        ?>
+        <div class="content-left inner" style="position:relative">
+          <div class="product-info-wrap">
+            <a href="<?php echo $product->getProductUrl(); ?>">
+              <div class="prod-image-wrap">
+                <img src="<?php echo $imageUrl; ?>">
+              </div>
+              <div class="product-info">
+                <p class="product-name">
+                  <?php echo $product->getName(); ?>
+                </p>
+                <div class="price">
+                  <!-- <span class="now-pirce"><?php //echo $abstractProductBlock->getProductPrice($product); ?></span> -->
+                  <span class="now-pirce"><?php echo  $priceHelper->currency($product->getPriceInfo()->getPrice('final_price')->getAmount()->getValue(), true, false);
+                    ?></span>
+                </div>
+              </div>
+            </a> <a href="<?php echo $product->getProductUrl(); ?>">
+              <div class="overlay">
+                <span class="shop-now invert button">Shop Now</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+
+        <?php
+
+        if ($rowCount == 2 || $rowCount == 3 || $rowCount == 5) {
+          echo '</div>';
+        }
+
+        ?>
+
+
+      <?php }
+
+      ?>
+    </div>
+
+
+  </div>
+  <div class="featured-item">
+    <div class="row row-eq-height">
+      <div class="col-md-6 left-section">
+        <?php foreach ($categoryProducts as $product) { ?>
+          <div class="featured-content-wrap">
+            <div class="featured-heading">
+              <h3>Get <span class="higlighted"><?php echo $product->getName(); ?></span> and destroy your opposition.</h3>
+              <p><?php $product->getShortDescription(); ?></p>
+            </div>
+            <div class="price">
+                            <span class="now-pirce">
+                    <?php //echo $priceHelper->currency($product->getPrice(), true, false); ?>
+                    <?php echo  $priceHelper->currency($product->getPriceInfo()->getPrice('final_price')->getAmount()->getValue(), true, false);
+                    ?>
+                </span>
+            </div>
+
+            <div class="cta-buttons">
+              <a href="<?php echo $product->getProductUrl(); ?>" class="shop-now button">Shop Now</a>
+              <a href="<?php echo $product->getProductUrl(); ?>" class="more-info button">More Info</a>
+            </div>
+          </div>
+        <?php } ?>
+      </div>
+      <div class="col-md-6 right-section">
+        <img src="/media/catalog/category/<?php echo $category->getImage(); ?>"/>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div class="mg-bottom-insta">
+<?php echo $this->getLayout()->createBlock("WeltPixel\InstagramWidget\Block\Widget\Instagram")
+->setInstagramClientId("5bc99b370a7c42c7bef4551e6c9a6160")
+->setInstagramAccessToken("1738192271.5bc99b3.3afba32f588d4c8695971c36528bc05f")
+->setTitle("#PAS ON INSTAGRAM")
+->setDescription("")
+->setImagesInNewTab("0")
+->setImagesPerRow("col-4")
+->setImagesHavePadding("0")
+->setOptimizeImageLayout("0")
+->setLimit("4")
+->setSortBy("none")
+->setResolution("standard_resolution")
+->setUserId("1738192271")
+->setFeedType("user")->toHtml(); ?>
+</div>

@@ -1,0 +1,202 @@
+
+//
+//  Category view
+//  ---------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//  Sidebar product view
+//  ---------------------------------------------
+
+.sidebar {
+    .product-items {
+        .product-item {
+            margin-bottom: $indent__base;
+            position: relative;
+        }
+
+        .product-item-info {
+            position: relative;
+            width: auto;
+
+            .product-item-photo {
+                left: 0;
+                position: absolute;
+                top: 0;
+            }
+        }
+
+        .product-item-name {
+            margin-top: 0;
+        }
+
+        .product-item-details {
+            margin: 0 0 0 85px;
+        }
+
+        .product-item-actions {
+            display: block;
+            margin-top: $indent__s;
+        }
+
+        .price-box {
+            display: block;
+            margin: 7px 0;
+        }
+
+        .text {
+            margin-right: 8px;
+        }
+
+        .counter {
+            @include lib-css(color, $primary__color__lighter);
+            @include lib-font-size(12);
+            white-space: nowrap;
+        }
+
+        .minilist {
+            .price {
+                display: inline;
+                padding: 0;
+            }
+
+            .weee:before {
+                display: inline-block;
+            }
+        }
+    }
+
+    .action {
+        &.delete {
+            @include abs-remove-button-for-blocks();
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+
+    .subtitle {
+        @include abs-no-display();
+    }
+
+    //
+    //  Product images only
+    //  ---------------------------------------------
+
+    .product-items-images {
+        @include abs-add-clearfix();
+        margin-left: -$indent__xs;
+
+        .product-item {
+
+            float: left;
+            padding-left: $indent__xs;
+        }
+    }
+
+    //
+    //  Product names only
+    //  ---------------------------------------------
+
+    .product-items-names {
+        .product-item {
+            margin-bottom: $indent__s;
+        }
+
+        .product-item-name {
+            margin: 0;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+@include max-screen($screen__m) {
+
+    .compare,
+    .product-addto-links .action.tocompare,
+    .product-item-actions .actions-secondary > .action.tocompare,
+    [class*='block-compare'] {
+        display: none;
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+
+
+    .sidebar {
+        .product-items {
+            .product-item-info {
+                .product-item-photo {
+                    float: left;
+                    left: auto;
+                    margin: 0 $indent__s $indent__s 0;
+                    position: relative;
+                    top: auto;
+                }
+            }
+
+
+            .product-item-details {
+                margin: 0;
+            }
+
+            .product-item-actions {
+                clear: left;
+            }
+        }
+    }
+
+
+}
+
+//
+//  Desktop large
+//  _____________________________________________
+
+@include min-screen($screen__xl) {
+    .sidebar {
+        .product-items {
+            .product-item-info {
+                .product-item-photo {
+                    float: none;
+                    left: 0;
+                    margin: 0;
+                    position: absolute;
+                    top: 0;
+                }
+            }
+
+            .product-item-details {
+                margin-left: 85px;
+            }
+        }
+    }
+}
+
+//
+//  Product page layout
+//  ---------------------------------------------
+
+
+
+
+

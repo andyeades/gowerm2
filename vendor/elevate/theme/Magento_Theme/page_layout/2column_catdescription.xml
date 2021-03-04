@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="1column"/>
+
+
+    <container name="ev.page.wrapper" htmlTag="div" htmlClass="elevate-custom-cat page-layout-2columns-left" after="after.body.start">
+
+    </container>
+    <move element="page.wrapper" destination="ev.page.wrapper"/>
+
+    <referenceContainer name="columns">
+        <container name="single-sidebar" label="single-sidebar" htmlTag="div" htmlClass="single-sidebar">
+            <container name="div.sidebar.main" htmlTag="div" htmlClass="sidebar sidebar-main" after="main">
+                <container name="sidebar.main" as="sidebar_main" label="Sidebar Main">
+                    <block class="Magento\Framework\View\Element\Template" name="cat.sidebar.content" after="-" template="Magento_Theme::page/2column_catdescription/cat-sidebar-content.phtml" />
+                </container>
+            </container>
+            <container name="div.sidebar.additional" htmlTag="div" htmlClass="sidebar sidebar-additional" after="div.sidebar.main">
+                <container name="sidebar.additional" as="sidebar_additional" label="Sidebar Additional"/>
+            </container>
+        </container>
+    </referenceContainer>
+    <referenceContainer name="main">
+        <block class="Magento\Framework\View\Element\Template" name="cat.below.content" after="-" template="Magento_Theme::page/2column_catdescription/cat-below-content.phtml" />
+    </referenceContainer>
+    <referenceContainer name="page.main.title" remove="true" />
+</layout>

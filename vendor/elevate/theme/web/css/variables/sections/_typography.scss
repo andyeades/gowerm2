@@ -1,0 +1,47 @@
+// Fonts
+
+
+
+// Body - And Used as Default as a result everywhere else
+$body-color:                            #333;
+
+$font-weight-bold:            600;
+$font-weight-bolder:          700;
+$strong_b_font_weight:        700;
+
+
+$font-size-base: 0.75rem !default; //12px;
+$font-size-lg: $font-size_base * 1.666666667;
+
+
+// Headers
+
+$h1_font_family: false !default;
+$h1_color: false !default;
+$h1_lineheight: false !default;
+
+
+
+$product-name-link-color: #444444;
+
+
+$addto-color                                                  : $primary__color !default;
+$addto-hover-color                                            : $link__hover__color !default;
+
+$accent-link-color: $theme-brand-color-2 !default;
+$accent-link-hover-color: darken($accent-link-color, 15%) !default;
+
+
+
+
+
+
+$link-color: #5a5a5a !default;
+$link-hover-color: darken($link-color, 15%) !default;
+$link-hover-decoration: underline !default;
+
+
+$page-title-font-weight: 500 !default;
+
+$theme-sans-serif-font-family: 'Montserrat', sans-serif !default;
+$theme-serif-font-family: Georgia, serif !default;

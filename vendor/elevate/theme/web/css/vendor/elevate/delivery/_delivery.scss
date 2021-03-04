@@ -1,0 +1,1353 @@
+$delivery-type-odd-max: 5 !default;
+$del-type-count: 1 !default;
+$delivery-mobile-outer-padding: 0 25px !default;
+$delivery-mobile-outer-padding-desktop: 0 45px !default;
+$hide-delivery-method-if-only-one: 1 !default;
+
+// Outer Container
+
+$del-outer-margin: 0 0 1.25rem 0 !default;
+
+
+// Choose Date Text
+
+$del-choosedate-color: $theme-brand-color-2 !default;
+$del-choosedate-padding: 0.75rem 0 0.875rem !default;
+$del-choosedate-margin: 0 0 0.625rem 0 !default;
+$del-choosedate-margin-desktop: 1.5rem 0 1.5rem 0 !default;
+$del-choosedate-textalign: center !default;
+
+
+$del-choosedate-border-on: 0 !default;
+$del-choosedate-border-position: bottom !default;
+$del-choosedate-border-color: #313d57 !default;
+$del-choosedate-border-thickness: 2px !default;
+$del-choosedate-border-style: solid !default;
+
+$del-choosedate-text-transform-on: 0 !default;
+$del-choosedate-text-transform: uppercase !default;
+$del-choosedate-font-size: 1.125rem !default;
+$del-choosedate-font-weight: 400 !default;
+$del-choosedate-width: 100% !default;
+$del-choosedate-display: block !default;
+
+// Choose Month
+
+$del-month-color: $body-color !default;
+$del-month-padding: 0.75rem 0 0.875rem !default;
+$del-month-margin: 0 0 0.625rem 0 !default;
+$del-month-margin-desktop: 1.5rem 0 1.5rem 0 !default;
+$del-month-textalign: center !default;
+$del-month-font-size: 1rem !default;
+$del-month-font-weight: 400 !default;
+
+$del-month-border-on: 0 !default;
+$del-month-border-position: bottom !default;
+$del-month-border-color: #313d57 !default;
+$del-month-border-thickness: 2px !default;
+$del-month-border-style: solid !default;
+
+$del-month-text-transform-on: 0 !default;
+$del-month-text-transform: uppercase !default;
+$del-month-width: 100% !default;
+$del-month-display: block !default;
+
+//
+
+$del-dates-container-width: 100% !default;
+$del-dates-container-height: 66px !default;
+$del-dates-container-height-desktop: 120px !default;
+$del-dates-container-padding: 0 !default;
+
+// Not Selected Date
+
+$del-date-display: flex !default;
+$del-date-flexwrap: wrap !default;
+$del-date-padding: 0.625rem !default;
+$del-date-padding-desktop: 1rem !default;
+$del-date-margin: 0 0 0.625rem 0 !default;
+$del-date-margin-desktop: 0.9375rem 0 0.625rem 0 !default;
+$del-date-textalign: center !default;
+$del-date-justifycontent: center !default;
+$del-date-font-size: 0.75rem !default;
+$del-date-font-weight: 300 !default;
+$del-date-children-width: 100% !default;
+
+$del-date-color: $body-color !default;
+
+
+$del-date-border-on: 1 !default;
+$del-date-border-position: all !default;
+$del-date-border-color: #A3A8B2 !default;
+$del-date-border-thickness: 2px !default;
+$del-date-border-style: solid !default;
+$del-date-border-radius-on: 1 !default;
+$del-date-border-radius: 3px !default;
+
+$del-date-text-transform-on: 0 !default;
+$del-date-text-transform: uppercase !default;
+$del-date-width: 100% !default;
+$del-date-display: flex !default;
+
+
+// Faux Radio Tick
+
+
+$fauxradio-width: 24px !default;
+
+$fauxradio-height: 24px !default;
+$fauxradio-width: 24px !default;
+$fauxradio-bg-color: #A3A8B2 !default;
+$fauxradio-color: #FFFFFF !default;
+
+$fauxradio-margin: 0 0 0.5rem 0 !default;
+
+$fauxradio-border-on: 1 !default;
+$fauxradio-border-position: all !default;
+$fauxradio-border-color: #A3A8B2 !default;
+$fauxradio-border-thickness: 1px !default;
+$fauxradio-border-style: solid !default;
+$fauxradio-border-radius-on: 1 !default;
+$fauxradio-border-radius: 24px !default;
+
+
+// Date Selector (essentially faux radio)
+
+$date-selector-width: 24px !default;
+
+$date-selector-height: 24px !default;
+$date-selector-width: 24px !default;
+$date-selector-bg-color: #A3A8B2 !default;
+$date-selector-color: #FFFFFF !default;
+
+$date-selector-margin: 0 0 0.5rem 0 !default;
+
+$date-selector-border-on: 1 !default;
+$date-selector-border-position: all !default;
+$date-selector-border-color: #A3A8B2 !default;
+$date-selector-border-thickness: 1px !default;
+$date-selector-border-style: solid !default;
+$date-selector-border-radius-on: 1 !default;
+$date-selector-border-radius: 24px !default;
+
+
+// Date Selector (active)
+
+
+$date-selector-active-bg-color: $theme-brand-color-2 !default;
+$date-selector-active-color: #FFFFFF !default;
+
+$date-selector-active-margin: 0 0 0.5rem 0 !default;
+
+$date-selector-active-border-on: 1 !default;
+$date-selector-active-border-position: all !default;
+$date-selector-active-border-color: $theme-brand-color-2 !default;
+$date-selector-active-border-thickness: 1px !default;
+$date-selector-active-border-style: solid !default;
+$date-selector-active-border-radius-on: 1 !default;
+$date-selector-active-border-radius: 24px !default;
+
+
+// Date Day Text
+
+$del-date-day-font-size: 0.9375rem !default;
+$del-date-day-font-weight: 400 !default;
+
+
+// Date No = Number
+$del-date-no-color: $body-color !default;
+$del-date-no-font-weight: 700 !default;
+$del-date-no-font-size: $font-size-base !default;
+$del-date-no-font-size-desktop: 1rem !default;
+
+$del-date-no-del-options-opacity: 0.2 !default;
+
+// Active States
+
+$del-date-active-border-on: 1 !default;
+$del-date-active-border-position: all !default;
+$del-date-active-border-color: $theme-brand-color-2 !default;
+$del-date-active-border-thickness: 2px !default;
+$del-date-active-border-style: solid !default;
+$del-date-active-border-radius-on: 1 !default;
+$del-date-active-border-radius: 3px !default;
+
+
+$del-date-no-active-color: $theme-brand-color-2 !default;
+
+$del-date-active-color: $body-color !default;
+$del-date-active-bg-color: #FFFFFF !default;
+
+$del-date-active-border-color: $theme-brand-color-2;
+
+$del-outer-minheight: 245px !default;
+
+
+// Nav
+
+$delslider-nav-icon-color: #A3A8B2 !default;
+$delslider-nav-icon-color-hover: $theme-brand-color-2 !default;
+$deliveryslider-nav-fontsize: 2em !default;
+$deliveryslider-nav-fontsize-mobilemax: false !default;
+
+$delslider-nav-container-position-top: 42px !default;
+$delslider-nav-container-position-top-desktop: 42px !default;
+
+$delslider-nav-prev-left-position: -24px !default;
+$delslider-nav-prev-left-position-desktop: -40px !default;
+
+$delslider-nav-next-right-position: -24px !default;
+$delslider-nav-next-right-position-desktop: -40px !default;
+
+
+// Choose Delivery Title
+
+
+$del-date-choosedeliverytitle-color: $theme-brand-color-2 !default;
+$del-date-choosedeliverytitle-padding: 0.75rem 0 0.875rem !default;
+$del-date-choosedeliverytitle-margin: 0 0 0.625rem 0 !default;
+$del-date-choosedeliverytitle-margin-desktop: 1.625rem 0 1.5rem 0 !default;
+$del-date-choosedeliverytitle-textalign: center !default;
+$del-date-choosedeliverytitle-font-size: 1.125rem !default;
+$del-date-choosedeliverytitle-font-weight: 400 !default;
+
+$del-date-choosedeliverytitle-border-on: 0 !default;
+$del-date-choosedeliverytitle-border-position: bottom !default;
+$del-date-choosedeliverytitle-border-color: #313d57 !default;
+$del-date-choosedeliverytitle-border-thickness: 2px !default;
+$del-date-choosedeliverytitle-border-style: solid !default;
+
+$del-date-choosedeliverytitle-text-transform-on: 0 !default;
+$del-date-choosedeliverytitle-text-transform: uppercase !default;
+
+
+#onepage-checkout-shipping-method-additional-load {
+    position: relative;
+}
+
+.delivery-outer {
+    margin: $del-outer-margin;
+    min-height: $del-outer-minheight;
+
+}
+
+.delivery-desc {
+    display: none;
+}
+
+
+#tr_method_deliveryoption_deliveryoption {
+    @if $hide-delivery-method-if-only-one == 1 {
+        display: none;
+
+    }
+}
+
+
+.delivery-options-message-extended {
+    padding: 10px;
+}
+
+.delivery-options-message {
+    display: none;
+    text-align: center;
+
+    p {
+        font-weight: 600;
+        color: blue;
+    }
+}
+
+.delivery-options-bottom {
+    @include rj-clearfix();
+}
+
+.delivery-mask-overlay {
+    position: absolute;
+    background-color: pink;
+    opacity: 0.8;
+    display: block;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    transition: $standard-transition;
+
+}
+
+.delivery-enter-postcode-outer {
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+$del-enter-postcode-font-size: 1.75rem !default;
+$del-enter-postcode-font-size-desktop: 2.25rem !default;
+
+.delivery-ajax-loader, .delivery-enter-postcode {
+    display: table-cell;
+    vertical-align: middle;
+    color: white;
+    font-size: $del-enter-postcode-font-size;
+    font-weight: 600;
+    opacity: 1;
+    @include min-screen($desktop-min) {
+        font-size: $del-enter-postcode-font-size-desktop;
+    }
+}
+
+
+.delivery-ajax-loader {
+    margin: 0 auto;
+    display: none;
+}
+
+.delivery-mask-hidden {
+    opacity: 0 !important;
+    z-index: 9999 !important;
+    transition: $standard-transition;
+}
+
+.delivery-type-left {
+    float: left;
+    @include max-screen($screen-xs-max) {
+        .checkout-onepage-index & {
+            font-size: 11px;
+        }
+        .product-view & {
+            font-size: 11px;
+        }
+    }
+    @include screen($screen-sm-min, $screen-sm-max) {
+        .product-view & {
+            width: 70%;
+        }
+    }
+
+}
+
+.del-type-details {
+    position: absolute;
+    bottom: 10px;
+
+    i {
+        margin-left: 3px;
+    }
+}
+
+.delivery-type-right {
+    float: right;
+    text-align: right;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+    @include min-screen($screen-lg-min) {
+        width: 30%;
+        display: block;
+    }
+
+}
+
+.delivery-options-message-extended {
+    padding: 10px;
+    clear: both;
+    text-align: center;
+}
+
+.delivery-options-slider {
+    position: relative;
+}
+
+.delivery-options-bottom {
+    display: none;
+
+    .scrollbar {
+        width: 100%;
+        height: 4px;
+        margin: 15px 0;
+        float: left;
+    }
+
+    .scrollbar .handle {
+        width: 100px; // overriden if dynamicHandle: 1
+        height: 100%;
+        background: green;
+    }
+}
+
+
+$del-btm-message-1-padding: 0.625rem 0 0 0 !default;
+$del-btm-message-1-textalign: center !default;
+$del-btm-message-1-fontweight: 600 !default;
+$del-btm-message-1-fontsize: 0.875rem !default;
+
+
+$del-btm-message-1-deldesc-padding: 1.25rem !default;
+$del-btm-message-1-deldesc-textalign: center !default;
+$del-btm-message-1-deldesc-fontweight: 600 !default;
+$del-btm-message-1-deldesc-fontsize: 0.875rem !default;
+
+
+$del-desc-store-padding: 0 !default;
+$del-desc-store-textalign: center !default;
+$del-desc-store-fontweight: 300 !default;
+$del-desc-store-fontsize: $font-size-base !default;
+$del-desc-store-color: #FFF !default;
+$del-desc-store-bg-color-on: 1 !default;
+$del-desc-store-bg-color: #3C4854 !default;
+
+$del-desc-store-border-on: 0 !default;
+$del-desc-store-border-position: all !default;
+$del-desc-store-border-color: #A3A8B2 !default;
+$del-desc-store-border-thickness: 1px !default;
+$del-desc-store-border-style: solid !default;
+$del-desc-store-border-radius-on: 1 !default;
+$del-desc-store-border-radius: 24px !default;
+
+$del-desc-padding: 0 1.25rem 1.25rem 1.25rem !default;
+
+$del-desc-store-notice-text-align: left !default;
+
+$del-desc-store-notice-padding: 1.25rem !default;
+
+.delivery-description-store {
+    @include co-notzero('padding', $del-desc-store-padding);
+    padding: $del-desc-store-padding;
+    text-align: $del-desc-store-textalign;
+    font-size: $del-desc-store-fontsize;
+    font-weight: $del-desc-store-fontweight;
+    @include ev-color-output($del-desc-store-color);
+
+    @if $del-desc-store-bg-color-on == 1 {
+        background-color: $del-desc-store-bg-color;
+    }
+
+    @if $del-desc-store-border-on == 1 {
+        @include elevate-border($del-desc-store-border-color, $del-desc-store-border-thickness, $del-desc-store-border-style, $del-desc-store-border-position);
+    }
+
+    .delivery-desc {
+        padding: $del-desc-padding;
+    }
+
+    .del-desc-store-notice {
+        padding: $del-desc-store-notice-padding;
+        text-align: $del-desc-store-notice-text-align;
+        display: flex;
+        align-items: center;
+
+        > i {
+            padding-right: 0.5rem;
+        }
+    }
+}
+
+// Delivery Bottom Message
+
+.delivery-bottom-message-1 {
+    clear: both;
+    @include rj-clearfix();
+
+    p {
+        padding: $del-btm-message-1-padding;
+        text-align: $del-btm-message-1-textalign;
+        font-size: $del-btm-message-1-fontsize;
+        font-weight: $del-btm-message-1-fontweight;
+    }
+
+    .delivery_desc {
+        padding: 20px 0;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        @include max-screen($screen-sm-min) {
+            font-size: 12px;
+            font-weight: 300;
+        }
+    }
+}
+
+.delivery-bottom-message-2 {
+
+    //padding: 20px 15px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+
+    &.active {
+        padding: 20px 15px;
+    }
+}
+
+
+// Mobile Specific Picker
+
+.delivery-mobile {
+    position: relative;
+
+    .pre-loadingstyle & {
+        .mobile-dates-container {
+            width: $del-dates-container-width;
+            height: $del-dates-container-height;
+            padding: $del-dates-container-padding;
+
+            @include min-screen($desktop-min) {
+                height: $del-dates-container-height-desktop;
+            }
+
+            .mobile-date {
+                padding-right: 10px;
+                @include max-screen($mobilemax) {
+                    &:nth-of-type(n+5) {
+                        display: none;
+                    }
+                }
+                @include max-screen($mobiletablet-max) {
+                    &:nth-of-type(n+6) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.delivery-mobile-outer {
+    padding: $delivery-mobile-outer-padding;
+    overflow: hidden;
+    @include min-screen($desktop-min) {
+        padding: $delivery-mobile-outer-padding-desktop;
+    }
+}
+
+.delivery-choose-date {
+    color: $del-choosedate-color;
+    text-align: $del-choosedate-textalign;
+    font-size: $del-choosedate-font-size;
+    @include co(font-weight, $del-choosedate-font-weight, $font-weight-base);
+    margin: $del-choosedate-margin;
+    @if $del-choosedate-text-transform-on == 1 {
+        text-transform: $del-choosedate-text-transform;
+    }
+    @include min-screen($desktop-min) {
+        @include co(margin, $del-choosedate-margin-desktop, $del-choosedate-margin);
+    }
+}
+
+
+.mobile-month {
+    width: $del-month-width;
+    display: $del-month-display;
+    @include ev-color-output($del-month-color);
+    text-align: $del-month-textalign;
+    font-size: $del-month-font-size;
+    font-weight: $del-month-font-weight;
+    margin: $del-month-margin;
+
+    @if $del-month-text-transform-on == 1 {
+        text-transform: $del-month-text-transform;
+    }
+
+    @if $del-month-border-on == 1 {
+        @include elevate-border($del-month-border-color, $del-month-border-thickness, $del-month-border-style, $del-month-border-position);
+    }
+
+    @include min-screen($desktop-min) {
+        @include co(margin, $del-month-margin-desktop, $del-month-margin);
+    }
+
+}
+
+
+.mobile-date-inner {
+    cursor: pointer;
+    width: $del-date-width;
+    display: $del-date-display;
+    @if $del-date-display == "flex" {
+        justify-content: $del-date-justifycontent;
+        flex-wrap: $del-date-flexwrap;
+        > div {
+            width: $del-date-children-width;
+        }
+    }
+    @include ev-color-output($del-date-color);
+    //height: $del-date-height;
+    padding: $del-date-padding;
+    @include co(text-align, $del-date-textalign);
+    @include co(font-size, $del-date-font-size);
+    //font-weight: $del-date-font-weight;
+
+
+    margin: $del-date-margin;
+
+    @if $del-date-text-transform-on == 1 {
+        text-transform: $del-date-text-transform;
+    }
+
+    @if $del-date-border-on == 1 {
+        @include elevate-border($del-date-border-color, $del-date-border-thickness, $del-date-border-style, $del-date-border-position);
+        @if $del-date-border-radius-on == 1 {
+            border-radius: $del-date-border-radius;
+        }
+    }
+
+    @include min-screen($desktop-min) {
+        @include co(padding, $del-date-padding-desktop, $del-date-padding);
+    }
+
+    .date-day {
+        @include co(font-size, $del-date-day-font-size);
+    }
+
+
+    .date-number {
+        color: $del-date-no-color;
+        font-weight: $del-date-no-font-weight;
+        @include co(font-size, $del-date-no-font-size, $font-size-base);
+        @include min-screen($desktop-min) {
+            @include co(font-size, $del-date-no-font-size-desktop, $del-date-no-font-size);
+        }
+    }
+
+    .date-selector {
+        height: $date-selector-height;
+        width: $date-selector-width;
+        background-color: $date-selector-bg-color;
+        color: $date-selector-color;
+        margin: $date-selector-margin;
+        @if $date-selector-border-on == 1 {
+            @include elevate-border($date-selector-border-color, $date-selector-border-thickness, $date-selector-border-style, $date-selector-border-position);
+            @if $date-selector-border-radius-on == 1 {
+                border-radius: $date-selector-border-radius;
+            }
+
+        }
+        > i {
+            display: none;
+        }
+    }
+
+
+    &.no-del-options {
+        opacity: $del-date-no-del-options-opacity;
+
+    }
+}
+
+.fauxradio {
+    height: $fauxradio-height;
+    width: $fauxradio-width;
+    background-color: $fauxradio-bg-color;
+    color: $fauxradio-color;
+    margin: $fauxradio-margin;
+    @if $fauxradio-border-on == 1 {
+        @include elevate-border($fauxradio-border-color, $fauxradio-border-thickness, $fauxradio-border-style, $fauxradio-border-position);
+        @if $fauxradio-border-radius-on == 1 {
+            border-radius: $fauxradio-border-radius;
+        }
+
+    }
+}
+
+
+.mobile-date {
+    &.active {
+        .mobile-date-inner {
+            background-color: $del-date-active-bg-color;
+            color: $del-date-active-color;
+
+            @if $del-date-active-border-on == 1 {
+                @include elevate-border($del-date-active-border-color, $del-date-active-border-thickness, $del-date-active-border-style, $del-date-active-border-position);
+                @if $del-date-active-border-radius-on == 1 {
+                    border-radius: $del-date-active-border-radius;
+                }
+            }
+
+
+            .date-number {
+                color: $del-date-no-active-color;
+            }
+
+            .date-selector {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: $date-selector-width;
+                @include co(color, $date-selector-active-color, $date-selector-color);
+                @include co(background-color, $date-selector-active-bg-color, $date-selector-bg-color);
+                @if $date-selector-active-border-on == 1 {
+                    @include elevate-border($date-selector-active-border-color, $date-selector-active-border-thickness, $date-selector-active-border-style, $date-selector-active-border-position);
+                    @if $date-selector-active-border-radius-on == 1 {
+                        border-radius: $date-selector-active-border-radius;
+                    }
+
+                }
+                > i {
+                    display: inline-block;
+                }
+            }
+        }
+
+        &.no-del-options {
+
+        }
+    }
+}
+
+// Initial loading?
+
+
+.delivery-mobile {
+    .tns-nav {
+        display: none;
+    }
+
+}
+
+
+#deliveryslider-nav, .deliveryslider-nav {
+    width: 100%;
+    position: absolute;
+    top: $delslider-nav-container-position-top;
+
+    i {
+        @include ev-color-output($delslider-nav-icon-color);
+
+        &:hover {
+            @include ev-color-output($delslider-nav-icon-color-hover);
+        }
+    }
+
+    .fa {
+        font-size: 2em;
+        @include co(font-size, $deliveryslider-nav-fontsize);
+        @include max-screen($mobile-max) {
+            @include co(font-size, $deliveryslider-nav-fontsize);
+        }
+    }
+
+    @include min-screen($desktop-min) {
+        top: $delslider-nav-container-position-top-desktop;
+        .fa {
+            font-size: 2em;
+        }
+    }
+
+    > div {
+        cursor: pointer;
+    }
+
+    .slider-prev {
+        left: $delslider-nav-prev-left-position;
+        position: absolute;
+        @include min-screen($desktop-min) {
+            left: $delslider-nav-prev-left-position-desktop;
+        }
+    }
+
+    .slider-next {
+        right: $delslider-nav-next-right-position;
+        position: absolute;
+        @include min-screen($desktop-min) {
+            right: $delslider-nav-next-right-position-desktop;
+        }
+
+    }
+}
+
+
+.delivery-date-choosedelivery {
+    @include ev-color-output($del-date-choosedeliverytitle-color);
+
+    text-align: $del-date-choosedeliverytitle-textalign;
+    font-size: $del-date-choosedeliverytitle-font-size;
+    font-weight: $del-date-choosedeliverytitle-font-weight;
+    margin: $del-date-choosedeliverytitle-margin;
+
+    @if $del-date-choosedeliverytitle-text-transform-on == 1 {
+        text-transform: $del-date-choosedeliverytitle-text-transform;
+    }
+
+    @if $del-date-choosedeliverytitle-border-on == 1 {
+        @include elevate-border($del-date-choosedeliverytitle-border-color, $del-date-choosedeliverytitle-border-thickness, $del-date-choosedeliverytitle-border-style, $del-date-choosedeliverytitle-border-position);
+    }
+
+    @include min-screen($desktop-min) {
+        @include co(margin, $del-date-choosedeliverytitle-margin-desktop, $del-date-choosedeliverytitle-margin);
+    }
+}
+
+.delivery-date-other-options {
+    display: none;
+}
+
+$delivery-radio-selector-label-span-display: block !default;
+
+
+$del-option-fauxradio-pos-top: 10px !default;
+$del-option-fauxradio-pos-right: 10px !default;
+$del-option-fauxradio-width: 24px !default;
+
+$del-option-fauxradio-pos-top-desktop: 24px !default;
+$del-option-fauxradio-pos-right-desktop: 24px !default;
+$del-option-fauxradio-width-desktop: 24px !default;
+
+$del-date-sel-opts-margin: 0.75rem 0 1.25rem !default;
+$del-day-options-flex-wrap: wrap !default;
+$del-day-options-align-items: stretch !default;
+$del-day-options-justify-content: center !default;
+
+$del-day-options-display: flex !default;
+
+$del-day-options-li-justify-content: center !default;
+$del-day-options-li-flex: 0 1 auto !default;
+$del-day-options-li-margin: 0 !default;
+$del-day-options-li-margin-desktop-large: 0 !default;
+$del-day-options-li-width: 100% !default;
+$del-day-options-li-width-desktop-large: 50% !default;
+
+
+$del-radio-selector-noselectables-padding: 1rem !default;
+$del-radio-selector-color: $body-color !default;
+$del-radio-selector-bgcolor: transparent !default;
+$del-radio-selector-padding: 1rem 0 0 0 !default;
+$del-radio-selector-padding-desktop: 1rem 0 0 0 !default;
+$del-radio-selector-margin: 0.625rem !default;
+$del-radio-selector-margin-desktop: 0.625rem !default;
+$del-radio-selector-textalign: center !default;
+$del-radio-selector-font-size: $font-size-base !default;
+$del-radio-selector-font-weight: 700 !default;
+
+$del-radio-selector-border-on: 1 !default;
+$del-radio-selector-border-position: all !default;
+$del-radio-selector-border-color: #A3A8B2 !default;
+$del-radio-selector-border-thickness: 2px !default;
+$del-radio-selector-border-style: solid !default;
+$del-radio-selector-border-radius-on: 1 !default;
+$del-radio-selector-border-radius: 3px !default;
+
+
+
+$del-radio-selector-selected-border-on: 1 !default;
+$del-radio-selector-selected-border-position: all !default;
+$del-radio-selector-selected-border-color: $theme-brand-color-2 !default;
+$del-radio-selector-selected-border-thickness: 2px !default;
+$del-radio-selector-selected-border-style: solid !default;
+$del-radio-selector-selected-border-radius-on: 1 !default;
+$del-radio-selector-selected-border-radius: 3px !default;
+
+$del-radio-selector-selected-fauxradio-i-display: inline-block !default;
+$del-radio-selector-fauxradio-i-display: none !default;
+
+$del-radio-selector-text-transform-on: 0 !default;
+$del-radio-selector-text-transform: uppercase !default;
+$del-radio-selector-font-size: 1rem !default;
+$del-radio-selector-font-weight: 700 !default;
+$del-radio-selector-width: 50% !default;
+$del-radio-selector-width-desktop: 33.3333% !default;
+$del-radio-selector-display: flex !default;
+
+$del-radio-selector-radiobtn-show: 0 !default;
+$del-radio-selector-radiobtn-margin: 0 1.25rem 0 0 !default;
+
+$del-method-pri-color: $body-color !default;
+$del-method-pri-fontsize: 2rem !default;
+$del-method-pri-fontweight: 500 !default;
+$del-method-pri-padding: 0 !default;
+$del-method-pri-margin: 0 !default;
+$del-method-pri-text-transform-on: 0 !default;
+$del-method-pri-text-transform: uppercase !default;
+$del-method-pri-order: 1 !default;
+$del-method-pri-width: 40% !default;
+
+$del-method-teamnumber-color: $theme-brand-color-1 !default;
+
+$del-method-teamnumber-icon-color: $theme-brand-color-1 !default;
+
+
+$del-method-time-delivery-window-color: $body-color !default;
+$del-method-time-delivery-window-fontsize: 1rem !default;
+$del-method-time-delivery-window-fontweight: 500 !default;
+$del-method-time-delivery-window-padding: 0 !default;
+$del-method-time-delivery-window-margin: 0 0.75rem 0.75rem 0.75rem !default;
+$del-method-time-delivery-window-text-transform-on: 0 !default;
+$del-method-time-delivery-window-text-transform: uppercase !default;
+
+$del-method-time-delivery-window-order: 5 !default;
+
+$del-method-type-color: $body-color !default;
+$del-method-type-fontsize: 0.8125rem !default;
+$del-method-type-fontweight: 400 !default;
+$del-method-type-padding: 0 !default;
+$del-method-type-margin: 0 !default;
+$del-method-type-text-transform-on: 0 !default;
+$del-method-type-text-transform: uppercase !default;
+$del-method-type-order: 2 !default;
+
+$del-method-teamnumber-color: $theme-brand-color-1 !default;
+$del-method-teamnumber-fontsize: 1.5rem !default;
+$del-method-teamnumber-fontweight: 300 !default;
+$del-method-teamnumber-padding: 0 !default;
+$del-method-teamnumber-margin: 0 0.75rem 2rem 0.75rem !default;
+$del-method-teamnumber-text-transform-on: 0 !default;
+$del-method-teamnumber-text-transform: uppercase !default;
+
+
+$del-method-teamnumber-ico-display: false !default;
+$del-method-teamnumber-ico-padding: 0 0.5rem 0 0 !default;
+$del-method-teamnumber-ico-fontsize: 3rem !default;
+$del-method-teamnumber-order: 4 !default;
+$del-method-teamnumber-align-items: center !default;
+$del-method-teamnumber-alignself: flex-start !default;
+
+$del-method-teamnumber-display: false !default;
+$del-method-teamnumber-lineheight: 1 !default;
+$del-method-teamnumber-text-margin: 0 !default;
+
+$del-method-teamnumber-ico-width: 35% !default;
+$del-method-teamnumber-ico-width-desktop: 30% !default;
+$del-method-teamnumber-deltypetext-width: 65% !default;
+$del-method-teamnumber-deltypetext-width-desktop: 70% !default;
+
+$del-method-time-display: false !default;
+$del-method-time-color: $body-color !default;
+$del-method-time-fontsize: 1rem !default;
+$del-method-time-fontweight: 500 !default;
+$del-method-time-padding: 0 !default;
+$del-method-time-margin: 0 0 0.75rem !default;
+$del-method-time-text-transform: false !default;
+$del-method-time-order: 8 !default;
+
+$del-delivery-methoddates-color: $body-color !default;
+$del-delivery-methoddates-fontsize: 1rem !default;
+$del-delivery-methoddates-fontweight: 700 !default;
+$del-delivery-methoddates-padding: false !default;
+$del-delivery-methoddates-margin: 0 0 0.75rem !default;
+$del-delivery-methoddates-text-transform: false !default;
+$del-delivery-methoddates-order: 6 !default;
+
+$del-delivery-starttext-color: $body-color !default;
+$del-delivery-starttext-fontsize: 1rem !default;
+$del-delivery-starttext-fontweight: 400 !default;
+$del-delivery-starttext-padding: false !default;
+$del-delivery-starttext-margin: false !default;
+$del-delivery-starttext-text-transform: false !default;
+$del-delivery-starttext-order: 5 !default;
+
+
+$del-delivery-dates-breaker-color: $body-color !default;
+$del-delivery-dates-breaker-fontsize: false !default;
+$del-delivery-dates-breaker-fontweight: 400 !default;
+$del-delivery-dates-breaker-padding: false !default;
+$del-delivery-dates-breaker-margin: false !default;
+$del-delivery-dates-breaker-text-transform: false !default;
+$del-delivery-dates-breaker-order: false !default;
+
+
+$del-method-extra-info-color: #A3A8B4 !default;
+$del-method-extra-info-fontsize: 0.75rem !default;
+$del-method-extra-info-fontweight: 300 !default;
+$del-method-extra-info-padding: 0 !default;
+$del-method-extra-info-margin: 1rem 0.75rem 2rem 0.75rem !default;
+$del-method-extra-info-text-transform-on: 0 !default;
+$del-method-extra-info-text-transform: uppercase !default;
+$del-method-extra-info-order: 9 !default;
+
+
+$del-sel-btn-o-order: 2 !default;
+$del-sel-btn-o-width: 60% !default;
+$del-sel-btn-bgcolor: $theme-brand-color-1 !default;
+$del-sel-btn-bordercolor: $theme-brand-color-1 !default;
+
+$del-rad-sel-b-bgcolor: #f6f8fb !default;
+$del-rad-sel-b-alignitems: center !default;
+$del-rad-sel-b-order: 15 !default;
+$del-rad-sel-b-minheight: 88px !default;
+$del-rad-sel-b-maxheight: 88px !default;
+$del-rad-sel-b-alignself: flex-end !default;
+
+
+$del-sel-btn-texttransform-on: 1 !default;
+$del-sel-btn-fontweight: 700 !default;
+$del-sel-btn-fontsize: 1.125rem !default;
+$del-sel-btn-margin: false !default;
+$del-sel-btn-texttransform: uppercase !default;
+
+$del-sel-btn-borderradius-on: 1 !default;
+$del-sel-btn-borderradius: $border-radius !default;
+$del-sel-btn-padding: 1rem 1.5rem !default;
+
+.delivery-date-selected-options {
+    margin: $del-date-sel-opts-margin;
+
+    > ul {
+        display: flex;
+        flex-wrap: $del-day-options-flex-wrap;
+        align-items: $del-day-options-align-items;
+        justify-content: $del-day-options-justify-content;
+
+        > li {
+            display: $del-day-options-display;
+            cursor: pointer;
+            flex: $del-day-options-li-flex;
+            width: $del-day-options-li-width;
+            margin: $del-day-options-li-margin;
+            justify-content: $del-day-options-li-justify-content;
+            @include min-screen($desktop-min) {
+
+            }
+            @include min-screen($desktop-medium-min) {
+                @include co(width, $del-day-options-li-width-desktop-large, $del-day-options-li-width);
+                @include co(margin, $del-day-options-li-margin-desktop-large, $del-day-options-li-margin);
+            }
+        }
+
+    }
+}
+
+
+.delivery-radio-selector {
+    align-items: stretch;
+    position: relative;
+    background-color: $del-radio-selector-bgcolor;
+    cursor: pointer;
+    display: $del-radio-selector-display;
+    @include ev-color-output($del-radio-selector-color);
+    padding: $del-radio-selector-padding;
+    text-align: $del-radio-selector-textalign;
+    font-size: $del-radio-selector-font-size;
+
+    margin: $del-radio-selector-margin;
+
+    @if $del-radio-selector-text-transform-on == 1 {
+        text-transform: $del-radio-selector-text-transform;
+    }
+
+    @if $del-radio-selector-border-on == 1 {
+        @include elevate-border($del-radio-selector-border-color, $del-radio-selector-border-thickness, $del-radio-selector-border-style, $del-radio-selector-border-position);
+        @if $del-radio-selector-border-radius-on == 1 {
+            border-radius: $del-radio-selector-border-radius;
+        }
+    }
+
+    @if $del-radio-selector-selected-border-on == 1 {
+        .selected & {
+            @include elevate-border($del-radio-selector-selected-border-color, $del-radio-selector-selected-border-thickness, $del-radio-selector-selected-border-style, $del-radio-selector-selected-border-position);
+            @if $del-radio-selector-selected-border-radius-on == 1 {
+                border-radius: $del-radio-selector-selected-border-radius;
+            }
+        }
+
+
+    }
+
+    .no-selectables & {
+        padding: $del-radio-selector-noselectables-padding;
+    }
+
+    .method-price {
+        margin: 0;
+        cursor: pointer;
+    }
+
+    .selected & {
+        .fauxradio {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-color: $del-radio-selector-selected-border-color;
+            background-color: $del-radio-selector-selected-border-color;
+            > i {
+                @include co(display, $del-radio-selector-selected-fauxradio-i-display);
+            }
+        }
+
+        .method-pri {
+            @include ev-color-output($del-radio-selector-selected-border-color);
+        }
+
+        .method-del-type {
+            @include ev-color-output($del-radio-selector-selected-border-color);
+        }
+
+        .del-sel-btn-o {
+            display: none;
+        }
+
+        .method-pri {
+            width: 100%;
+        }
+    }
+
+
+    @include min-screen($desktop-min) {
+        //@include co(width, $del-radio-selector-width-desktop, $del-radio-selector-width);
+        @include co(margin, $del-radio-selector-margin-desktop, $del-radio-selector-margin);
+        @include co(padding, $del-radio-selector-padding-desktop, $del-radio-selector-padding);
+    }
+
+    input {
+        @if $del-radio-selector-radiobtn-show != 1 {
+            display: none;
+        } @else {
+            margin-right: $del-radio-selector-radiobtn-margin;
+        }
+    }
+
+
+    > .radio {
+        display: flex;
+
+        > input, label {
+            flex: 0 1 auto;
+        }
+    }
+
+
+    label {
+        display: flex;
+        flex-wrap: wrap;
+
+        > span, > div {
+            flex: 0 1 auto;
+            width: 100%;
+        }
+
+        > span {
+            @include co(display, $delivery-radio-selector-label-span-display);
+
+        }
+
+        // Debug mode
+        > p {
+            display: none;
+        }
+    }
+
+
+    .fauxradio {
+        display: none;
+        position: absolute;
+        cursor: pointer;
+        top: $del-option-fauxradio-pos-top;
+        right: $del-option-fauxradio-pos-right;
+        width: $del-option-fauxradio-width;
+        @include min-screen($desktop-min) {
+            top: $del-option-fauxradio-pos-top-desktop;
+            right: $del-option-fauxradio-pos-right-desktop;
+            width: $del-option-fauxradio-width-desktop;
+        }
+        > i {
+            @include co(display, $del-radio-selector-fauxradio-i-display);
+        }
+    }
+
+    .method-pri {
+        @include ev-color-output($del-method-pri-color);
+        padding: $del-method-pri-padding;
+        font-size: $del-method-pri-fontsize;
+        font-weight: $del-method-pri-fontweight;
+        margin: $del-method-pri-margin;
+        @if $del-method-pri-text-transform-on == 1 {
+            text-transform: $del-method-pri-text-transform;
+        }
+        order: $del-method-pri-order;
+        width: $del-method-pri-width;
+    }
+
+    .method-time-delivery-window {
+        @include ev-color-output($del-method-time-delivery-window-color);
+        padding: $del-method-time-delivery-window-padding;
+        font-size: $del-method-time-delivery-window-fontsize;
+        font-weight: $del-method-time-delivery-window-fontweight;
+        margin: $del-method-time-delivery-window-margin;
+        order: $del-method-time-delivery-window-order;
+
+        @if $del-method-time-delivery-window-text-transform-on == 1 {
+            text-transform: $del-method-time-delivery-window-text-transform;
+        }
+    }
+
+    .method-del-type-text {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        text-align: left;
+
+        > span {
+            width: 100%;
+        }
+    }
+
+    .method-del-teamnumber-outer {
+        display: flex;
+        flex-wrap: wrap;
+        @include ev-color-output($del-method-teamnumber-color);
+        padding: $del-method-teamnumber-padding;
+        font-size: $del-method-teamnumber-fontsize;
+        font-weight: $del-method-teamnumber-fontweight;
+        margin: $del-method-teamnumber-margin;
+        order: $del-method-teamnumber-order;
+        align-items: $del-method-teamnumber-align-items;
+        align-self: $del-method-teamnumber-alignself;
+        @if $del-method-teamnumber-text-transform-on == 1 {
+            text-transform: $del-method-teamnumber-text-transform;
+        }
+
+        > span {
+
+            width: $del-method-teamnumber-ico-width;
+            @include min-screen($desktop-min) {
+                width: $del-method-teamnumber-ico-width-desktop;
+            }
+        }
+
+        > div {
+
+            width: $del-method-teamnumber-deltypetext-width;
+
+            display: flex;
+            flex-wrap: wrap;
+            @include min-screen($desktop-min) {
+                width: $del-method-teamnumber-deltypetext-width-desktop;
+            }
+
+            > span {
+                flex: 0 1 auto;
+            }
+        }
+
+        .method-del-teamnumber-ico {
+            @include co(display, $del-method-teamnumber-ico-display);
+            padding: $del-method-teamnumber-ico-padding;
+
+            i {
+                font-size: $del-method-teamnumber-ico-fontsize;
+            }
+        }
+
+        .method-del-teamnumber {
+            @include co(display, $del-method-teamnumber-display);
+            line-height: $del-method-teamnumber-lineheight;
+            margin: $del-method-teamnumber-text-margin;
+        }
+    }
+
+    .method-del-type {
+        @include ev-color-output($del-method-type-color);
+        padding: $del-method-type-padding;
+        @include co(font-size, $del-method-type-fontsize);
+        font-weight: $del-method-type-fontweight;
+        margin: $del-method-type-margin;
+        order: $del-method-type-order;
+        @if $del-method-type-text-transform-on == 1 {
+            text-transform: $del-method-type-text-transform;
+        }
+    }
+
+
+    .method-extra-info {
+        @include ev-color-output($del-method-extra-info-color);
+        padding: $del-method-extra-info-padding;
+        font-size: $del-method-extra-info-fontsize;
+        font-weight: $del-method-extra-info-fontweight;
+        margin: $del-method-extra-info-margin;
+        order: $del-method-extra-info-order;
+        @if $del-method-extra-info-text-transform-on == 1 {
+            text-transform: $del-method-extra-info-text-transform;
+        }
+    }
+}
+
+.method-dates-breaker {
+    @include ev-color-output($del-delivery-dates-breaker-color);
+    @include co(padding, $del-delivery-dates-breaker-padding);
+    @include co(font-size, $del-delivery-dates-breaker-fontsize);
+    @include co(font-weight, $del-delivery-dates-breaker-fontweight);
+    @include co(margin, $del-delivery-dates-breaker-margin);
+    @include co(order, $del-delivery-dates-breaker-order);
+    @include co(text-transform, $del-delivery-dates-breaker-text-transform);
+}
+
+
+.method-dates {
+    @include ev-color-output($del-delivery-methoddates-color);
+    @include co(padding, $del-delivery-methoddates-padding);
+    @include co(font-size, $del-delivery-methoddates-fontsize);
+    @include co(font-weight, $del-delivery-methoddates-fontweight, $font-weight-base);
+    @include co(margin, $del-delivery-methoddates-margin);
+
+    @include co(order, $del-delivery-methoddates-order);
+    @include co(text-transform, $del-delivery-methoddates-text-transform);
+}
+
+.method-delivery-starttext {
+    @include ev-color-output($del-delivery-starttext-color);
+    @include co(padding, $del-delivery-starttext-padding);
+    @include co(font-size, $del-delivery-starttext-fontsize);
+    @include co(font-weight, $del-delivery-starttext-fontweight, $font-weight-base);
+    @include co(margin, $del-delivery-starttext-margin);
+
+    @include co(order, $del-delivery-starttext-order);
+    @include co(text-transform, $del-delivery-starttext-text-transform);
+}
+
+.method-time-time {
+    @include co(display, $del-method-time-display);
+    @include ev-color-output($del-method-time-color);
+    @include co(padding, $del-method-time-padding);
+    @include co(font-size, $del-method-time-fontsize);
+    @include co(font-weight, $del-method-time-fontweight, $font-weight-base);
+    @include co(margin, $del-method-time-margin);
+    @include co(order, $del-method-time-order);
+    @include co(text-transform, $del-method-time-text-transform);
+}
+
+
+
+.del-rad-sel-b {
+    background-color: $del-rad-sel-b-bgcolor;
+    display: flex;
+    align-items: $del-rad-sel-b-alignitems;
+    order: $del-rad-sel-b-order;
+    align-self: $del-rad-sel-b-alignself;
+    @include co(min-height, $del-rad-sel-b-maxheight);
+    @include co(max-height, $del-rad-sel-b-maxheight);
+
+    > div, span {
+        flex: 0 1 auto;
+
+    }
+}
+
+.del-sel-btn-o {
+    order: $del-sel-btn-o-order;
+    width: $del-sel-btn-o-width;
+}
+
+
+.del-sel-btn {
+    cursor: pointer;
+    display: inline-block;
+    @include button-variant($del-sel-btn-bgcolor, $del-sel-btn-bordercolor);
+    @if $del-sel-btn-texttransform-on == 1 {
+        text-transform: $del-sel-btn-texttransform;
+    }
+    padding: $del-sel-btn-padding;
+    font-size: $del-sel-btn-fontsize;
+    font-weight: $del-sel-btn-fontweight;
+    @include co(margin, $del-sel-btn-margin);
+    @if $del-sel-btn-borderradius-on == 1 {
+        border-radius: $del-sel-btn-borderradius;
+    }
+}
+
+
+.timeslot-pri {
+    float: right;
+    display: block;
+    color: blue;
+    font-weight: 700;
+    z-index: 1;
+    position: relative;
+}

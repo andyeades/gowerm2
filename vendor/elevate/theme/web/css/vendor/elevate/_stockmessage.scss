@@ -1,0 +1,59 @@
+$stock_message_bg: rgb(204, 229, 255) !default;
+$stock_message_padding: 0.875rem !default;
+$stock_message_width: auto !default;
+$stock_message_maxwidth: 100% !default;
+$stock_message_margin: 1rem 0 !default;
+$stock_message_textalign: center !default;
+$stock_message_border_radius_on: 0 !default;
+$stock_message_border_radius: $border-color__base !default;
+
+$stock_handlingtime_bg: #cce5ff !default;
+
+$stock_handlingtimehdrcolor: #db2727 !default;
+
+
+$stock_dispatchmessage_bg: rgb(230, 242, 255) !default;
+$stock_dispatchmessage_margin: 1rem 0 0 0 !default;
+$stock_dispatchmessage_padding: 1.125rem !default;
+
+$stock_dispatchmessage_icon_margin: 0 0.3125rem 0 0 !default;
+
+#stock_message {
+
+}
+
+.stock_message {
+    background: $stock_message_bg;
+    padding: $stock_message_padding;
+    width: $stock_message_width;
+    max-width: $stock_message_maxwidth;
+    margin: $stock_message_margin;
+    text-align: $stock_message_textalign;
+    @if $stock_message_border_radius_on == 1 {
+        border-radius: $stock_message_border_radius;
+    }
+}
+
+#stock_handlingtime {
+
+    background: $stock_handlingtime_bg;
+
+
+    strong {
+
+    }
+
+    .stock_handlingtimehdr {
+        color: $stock_handlingtimehdrcolor;
+    }
+}
+
+.stock_dispatchmessage {
+    margin: $stock_dispatchmessage_margin;
+    background: $stock_dispatchmessage_bg;
+    padding: $stock_dispatchmessage_padding;
+
+    > i {
+        margin: $stock_dispatchmessage_icon_margin;
+    }
+}

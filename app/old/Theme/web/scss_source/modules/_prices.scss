@@ -1,0 +1,67 @@
+.theme-pearl {
+  .old-price {
+    color: #9f9f9f;
+    text-decoration: line-through;
+    .price {
+      color: #9f9f9f;
+      text-decoration: line-through;
+    }
+  }
+  .normal-price, .special-price {
+    color: $color-pas-orange;
+  }
+
+  .product-info-price {
+    .price-container {
+      display: flex;
+      align-items: center;
+      @include max-screen($screen-xs-max) {
+        justify-content: center;
+      }
+    }
+    .price-box {
+      .price-label {
+        flex: 0 1 auto;
+        margin-right: 0.25rem;
+        text-transform: uppercase;
+      }
+      .price-wrapper {
+        flex: 0 1 auto;
+        margin-left: 0.25rem;
+      }
+    }
+
+  }
+  .products-grid {
+    .product-item-details {
+      .price-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        @include max-screen($screen-xs-max) {
+
+        }
+        .special-price,
+        .old-price {
+          flex: 0 1 auto;
+          width: 100%;
+        }
+        .price-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .price-label {
+          flex: 0 1 auto;
+          margin-right: 0.25rem;
+          text-transform: uppercase;
+        }
+        .price-wrapper {
+          flex: 0 1 auto;
+          margin-left: 0.25rem;
+        }
+      }
+    }
+  }
+}

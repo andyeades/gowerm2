@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- ICP Service -->
+    <route url="/V1/improved_configurable_products/product_attributes" method="POST">
+        <service class="Firebear\ConfigurableProducts\Api\ProductOptionsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    <route url="/V1/improved_configurable_products/product_attributes/:productId" method="POST">
+        <service class="Firebear\ConfigurableProducts\Api\ProductOptionsRepositoryInterface" method="update"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    <route url="/V1/improved_configurable_products/product_attributes/:itemId" method="DELETE">
+        <service class="Firebear\ConfigurableProducts\Api\ProductOptionsRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    <route url="/V1/improved_configurable_products/product_attributes/product/:productId" method="DELETE">
+        <service class="Firebear\ConfigurableProducts\Api\ProductOptionsRepositoryInterface" method="deleteByProductId"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    <route url="/V1/improved_configurable_products/product_attributes/:itemId" method="GET">
+        <service class="Firebear\ConfigurableProducts\Api\ProductOptionsRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    <route url="/V1/improved_configurable_products/default_product_option" method="POST">
+        <service class="Firebear\ConfigurableProducts\Api\DefaultProductOptionsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    <route url="/V1/improved_configurable_products/default_product_option/:linkId" method="GET">
+        <service class="Firebear\ConfigurableProducts\Api\DefaultProductOptionsRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    <route url="/V1/improved_configurable_products/default_product_option/product/:parentId" method="GET">
+        <service class="Firebear\ConfigurableProducts\Api\DefaultProductOptionsRepositoryInterface" method="getByParentId"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    <route url="/V1/improved_configurable_products/default_product_option/:linkId" method="DELETE">
+        <service class="Firebear\ConfigurableProducts\Api\DefaultProductOptionsRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    <route url="/V1/improved_configurable_products/default_product_option/product/:parentId" method="DELETE">
+        <service class="Firebear\ConfigurableProducts\Api\DefaultProductOptionsRepositoryInterface" method="deleteByParentId"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+</routes>

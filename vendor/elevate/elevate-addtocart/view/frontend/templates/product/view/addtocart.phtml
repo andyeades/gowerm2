@@ -1,0 +1,425 @@
+<?php
+/**
+ * Copyright � 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Basket'); ?>
+<?php $default_qty = (int)$block->getProductDefaultQty();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$scopeConfig = $objectManager->create('Magento\Framework\App\Config\ScopeConfigInterface');
+
+$qty_label_text = $scopeConfig->getValue('elevate_addtocart/productview/qty_label_text', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+$qty_display_type = $scopeConfig->getValue('elevate_addtocart/productview/qty_display_type', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+$qty_select_max = $scopeConfig->getValue('elevate_addtocart/productview/qty_select_max', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+$actions_position = $scopeConfig->getValue('elevate_addtocart/productview/actions_position', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+$enable_popup = true;
+
+if ($default_qty < 1) {
+    $default_qty = 1;
+}
+
+$qty_values = '';
+
+?>
+<style>
+  #pinfo-btm-o #pinfo-btm-m{
+    z-index:1;
+  }
+</style>
+
+<?php if ($_product->isSaleable()): ?>
+  <div class="box-tocart <?= $actions_position; ?>">
+
+      <?php if ($block->shouldRenderQuantity()) { ?>
+        <?php if ($actions_position == "inside_qty_container") { ?>
+              <div class="field qty">
+                  <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Quantity') ?></span></label>
+                  <div class="control">
+
+                      <?php
+                      if (strcmp($qty_display_type, 'select') == 0){
+                          $qty_values = '';
+                          $prodQty = $default_qty;
+                          $qty_values = '<select id="qtySelect" name="qty" class="qtySelect form-control">';
+                          //$qty_values .= '<option value="">Choose Qty</option>';
+                          for ($qtyCnt = 1; $qtyCnt <= $qty_select_max; $qtyCnt++) {
+                              $strSelect = '';
+                              if ($prodQty == $qtyCnt) {
+                                  $strSelect = 'selected="selected"';
+                              }
+
+                              $qty_values .= '<option ' . $strSelect . ' value="' . $qtyCnt . '">' . $qtyCnt . '</option>';
+                          }
+
+
+
+
+                          $qty_values .= '</select>';
+                          echo $qty_values;
+                      } else { ?>
+                          <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */
+                          echo $default_qty * 1 ?>" title="<?php /* @escapeNotVerified */
+                          echo __('Qty') ?>" class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
+                          <?php
+                      }
+                      ?>
+
+                      <div class="actions">
+                          <button type="submit"
+                                  title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+                                  class="action primary ev_tocart2"
+                                  id="product-addtocart-button">
+                              <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span><i class="ion ion-bag"></i>
+                          </button>
+                      
+                          <a href="<?php echo $block->getUrl('checkout/cart', ['_secure' => true]);?>" class="action primary ev_hideme" id="ev_checkoutnow">
+                              <span><?php /* @escapeNotVerified */ echo __('Checkout Now') ?></span>
+                          </a>
+                          <?php echo $block->getChildHtml('', true) ?>
+                      </div>
+                  </div>
+              </div>
+          <?php } else { ?>
+              <div class="field qty">
+                  <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Quantity') ?></span></label>
+                  <div class="control">
+
+                      <?php
+                      if (strcmp($qty_display_type, 'select') == 0){
+                          $qty_values = '';
+                          $prodQty = $default_qty;
+                          $qty_values = '<select id="qtySelect" name="qty" class="qtySelect form-control">';
+                          //$qty_values .= '<option value="">Choose Qty</option>';
+                          for ($qtyCnt = 1; $qtyCnt <= $qty_select_max; $qtyCnt++) {
+                              $strSelect = '';
+                              if ($prodQty == $qtyCnt) {
+                                  $strSelect = 'selected="selected"';
+                              }
+
+                              $qty_values .= '<option ' . $strSelect . ' value="' . $qtyCnt . '">' . $qtyCnt . '</option>';
+                          }
+
+
+
+
+                          $qty_values .= '</select>';
+                          echo $qty_values;
+                      } else { ?>
+                          <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */
+                          echo $default_qty * 1 ?>" title="<?php /* @escapeNotVerified */
+                          echo __('Qty') ?>" class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
+                          <?php
+                      }
+                      ?>
+
+
+                  </div>
+              </div>
+              <div class="actions">
+                  <button type="submit"
+                          title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+                          class="action primary ev_tocart2"
+                          id="product-addtocart-button">
+                      <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span><i class="ion ion-bag"></i>
+                  </button>
+               
+                  <a href="<?php echo $block->getUrl('checkout/cart', ['_secure' => true]);?>" class="action primary ev_hideme" id="ev_checkoutnow">
+                      <span><?php /* @escapeNotVerified */ echo __('Checkout Now') ?></span>
+                  </a>
+                  <?php echo $block->getChildHtml('', true) ?>
+              </div>
+          <?php } ?>
+
+
+
+
+     <?php } else { ?>
+          <div class="actions">
+              <button type="submit"
+                      title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+                      class="action primary ev_tocart2"
+                      id="product-addtocart-button">
+                  <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span><i class="ion ion-bag"></i>
+              </button>  
+                            
+              <a href="<?php echo $block->getUrl('checkout/cart', ['_secure' => true]);?>" class="action primary ev_hideme" id="ev_checkoutnow">
+                  <span><?php /* @escapeNotVerified */ echo __('Checkout Now') ?></span>
+              </a>
+              <?php echo $block->getChildHtml('', true) ?>
+          </div>
+
+      <?php }  ?>
+
+  </div>
+<?php endif; ?>
+
+<script type="text/javascript">
+
+    var ELEVATE = ELEVATE || {};
+
+    (function ($, window) {
+
+        ELEVATE.Addtocart = (function () {
+
+
+            var processStart = null,
+                processStop =  null,
+                bindSubmit =  true,
+                element = jQuery('#product_addtocart_form'),
+                minicartSelector =  '[data-block="minicart"]',
+                messagesSelector =  '[data-placeholder="messages"]',
+                productStatusSelector =  '.stock.available',
+                addToCartButtonSelector =  '.ev_tocart2',
+                addToCartButtonDisabledClass =  'disabled',
+                addToCartButtonTextWhileAdding =  '',
+                addToCartButtonTextAdded =  '',
+                overrideUrl = false,
+                addToCartButtonTextDefault =  '',
+                urlParams = '';
+
+
+            _create = function() {
+                if (bindSubmit) {
+                    this._bindSubmit();
+                }
+            },
+
+                _bindSubmit = function() {
+                    var self = this;
+                    element.on('submit', function(e) {
+                        e.preventDefault();
+                        self.submitForm($(this));
+                    });
+                },
+
+                isLoaderEnabled = function() {
+                    return processStart && processStop;
+                },
+
+                /**
+                 * Handler for the form 'submit' event
+                 *
+                 * @param {Object} form
+                 */
+                submitForm = function (form) {
+                    var addToCartButton, self = this;
+
+                    if (form.has('input[type="file"]').length && form.find('input[type="file"]').val() !== '') {
+                        self.element.off('submit');
+                        // disable 'Add to Cart' button
+                        addToCartButton = $(form).find(addToCartButtonSelector);
+                        addToCartButton.prop('disabled', true);
+                        addToCartButton.addClass(addToCartButtonDisabledClass);
+                        form.submit();
+                    } else {
+                        self.ajaxSubmit(form);
+                    }
+                },
+
+                ajaxSubmit = function(form) {
+                    var self = this;
+                    $(minicartSelector).trigger('contentLoading');
+                    self.disableAddToCartButton(form);
+                    var url = form.attr('action');
+
+
+                    if(self.overrideUrl){
+                        url = url.replace("checkout/cart",self.overrideUrl);
+                    }
+                    else{
+                        url = url.replace("checkout/cart","ev_addtocart/cart");
+                    }
+
+                    url = url+self.urlParams;
+
+
+                    console.log(form.serialize());
+
+                    $.ajax({
+                        url: url,
+                        data: form.serialize(),
+                        type: 'post',
+                        dataType: 'json',
+                        beforeSend: function() {
+                            if (self.isLoaderEnabled()) {
+                                $('body').trigger(processStart);
+                            }
+                        },
+                        success: function(res) {
+
+                            if (self.isLoaderEnabled()) {
+                                $('body').trigger(processStop);
+                            }
+                            if (res.success) {
+                                <?php if($enable_popup){
+                                $body_type = 'inline';
+                                $body = 'test';
+                                $title_type = '';
+                                $title = 'Added to basket';
+                                $footer_type = 'inline';
+                                $footer = '<div class="add-to-cart"><div class="btn action tertiary button btn-continueshop" data-dismiss="bs-modal">Continue Shopping</div><a href="/checkout/cart" type="button" title="Go to checkout" class="btn action button btn-cart primary"><span><span> Go to Checkout</span></span></a></div>';
+
+                                $size = '';
+                                ?>
+                                ELEVATE.Lightbox.openLightbox('<?= $body_type ?>',
+                                    res.message,
+                                    '<?= $title_type ?>',
+                                    '<?= $title ?>',
+                                    '<?= $footer_type ?>',
+                                    '<?= $footer ?>',
+                                    '<?= $size ?>');
+                                <?php
+                                }
+                                ?>
+
+//should makethis option
+                               // $('#ev_checkoutnow').removeClass('ev_hideme');
+
+
+                                ELEVATE.Minicart.getCart();
+
+                            }
+                            else{
+
+                                <?php if($enable_popup){
+                                $body_type = 'inline';
+                                $body = 'error';
+                                $title_type = '';
+                                $title = 'Error adding to basket';
+                                $footer_type = '';
+                                $footer = '';
+                                $size = '';
+                                ?>
+                                ELEVATE.Lightbox.openLightbox('<?= $body_type ?>',
+                                    "'"+res.message+"'",
+                                    '<?= $title_type ?>',
+                                    '<?= $title ?>',
+                                    '<?= $footer_type ?>',
+                                    '<?= $footer ?>',
+                                    '<?= $size ?>');
+                                <?php
+                                }
+                                ?>
+
+                            }
+
+
+
+
+                            //Ev Add to cart Module should never server a backUrl
+                            if (res.backUrl) {
+                                //we dont want to page refresh in this instance - we want to handle it!
+                                self.enableAddToCartButtonNoSuccess(form);
+                                window.location = res.backUrl;
+                                return;
+                            }
+                            else{
+                                if (res.minicart) {
+                                    $(minicartSelector).replaceWith(res.minicart);
+                                    $(minicartSelector).trigger('contentUpdated');
+                                }
+
+                                self.enableAddToCartButton(form);
+                            }
+                            if (res.messages) {
+                                $(messagesSelector).html(res.messages);
+                            }
+                            //ELEVATE TODO: out of stock message. offer alternative products for immediate upsell of same product
+                            //i.e a different colour of a product
+                            //collect email address and notify when back in stock
+                            if (res.product && res.product.statusText) {
+                                //unavailable message from the goback function
+                                $(productStatusSelector)
+                                    .removeClass('available')
+                                    .addClass('unavailable')
+                                    .find('span')
+                                    .html(res.product.statusText);
+                            }
+
+
+                        }
+
+
+
+
+
+                    });
+                },
+
+                disableAddToCartButton = function(form) {
+                    var addToCartButtonTextWhileAdding = addToCartButtonTextWhileAdding || ('Adding...');
+                    var addToCartButton = $(form).find(addToCartButtonSelector);
+                    ELEVATE.Spinner.getSpinner(addToCartButton);
+                    //    addToCartButton.addClass(addToCartButtonDisabledClass);
+                    //  addToCartButton.find('span').text(addToCartButtonTextWhileAdding);
+                    //addToCartButton.attr('title', addToCartButtonTextWhileAdding);
+                },
+                enableAddToCartButtonNoSuccess = function(form) {
+                    //lets just revert the button back without showing added
+                    var self = this,
+                        addToCartButton = $(form).find(addToCartButtonSelector);
+                    //var addToCartButtonTextDefault = addToCartButtonTextDefault || ('Add to Basket');
+
+                    jQuery(addToCartButton).html("Add to Basket");
+
+
+                    // addToCartButton.removeClass(addToCartButtonDisabledClass);
+                   // addToCartButton.find('span').text(addToCartButtonTextDefault);
+                   // addToCartButton.attr('title', addToCartButtonTextDefault);
+
+                },
+                enableAddToCartButton = function(form) {
+                    var addToCartButtonTextAdded = addToCartButtonTextAdded || ('Added');
+                    var self = this,
+                        addToCartButton = $(form).find(addToCartButtonSelector);
+                    jQuery(addToCartButton).html("Add to Basket");
+
+                }
+            function init()
+            {
+                this._create();
+            }
+            return {
+                init : function() {
+                    init();
+                },
+                overrideUrl : function(input) {
+                    self.overrideUrl = input;
+                },
+                urlParams : function(input) {
+                    self.urlParams = input;
+                },
+
+
+
+            };
+        }());
+
+    }(jQuery, window));
+
+    ELEVATE.Addtocart.init();
+
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+

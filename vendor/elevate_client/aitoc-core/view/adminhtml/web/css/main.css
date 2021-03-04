@@ -1,0 +1,37 @@
+.aitoc-grid-message .aitoc-notif-logo {
+    margin-right: 15px;
+    height: 75px;
+    width: 60px;
+    float: left;
+    display: inline-block;
+    background: url(../images/logo-53x53.png) no-repeat;
+    background-position-y: 10px;
+    background-size: 53px;
+    border-right: 1px dashed gray;
+}
+
+.admin__action-dropdown-menu .notifications-entry[data-aitcore-logo="1"] {
+    padding-left: 37px;
+    background: url(../images/logo-30x30.png) no-repeat 5px 15px;
+    background-size: 30px;
+}
+
+div.aitoc-grid-message > div.ambase-grid-message {
+    padding-left: 0px;
+    min-height: 0px;
+    background: unset;
+}
+
+.admin__action-dropdown-menu .notifications-entry[data-aitcore-logo="1"]:not(.notifications-entry-last)  {
+    padding-left: 37px;
+    background: url(../images/logo-30x30.png) no-repeat 5px 5px;
+    background-size: 30px;
+}
+
+.admin__action-dropdown-menu .notifications-entry:not(.notifications-entry-last)  {
+    border-bottom: 1px dashed gray;
+}
+
+div.aitoc-grid-message span.grid-row-title {
+    font-weight: 600;
+}

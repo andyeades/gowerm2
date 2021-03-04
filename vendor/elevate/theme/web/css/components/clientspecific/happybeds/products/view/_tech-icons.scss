@@ -1,0 +1,669 @@
+@if $sitename == happybeds {
+
+    .products-list, #what-makes-it-great-icon-row {
+        .tech-ico-outer {
+            float: left;
+        }
+    }
+
+
+    .tech-ico-outer {
+        position: relative;
+
+        #what-makes-it-great & {
+            //width:12.5%;
+            float: left;
+            cursor: pointer;
+
+        }
+
+        .products-grid & {
+            margin-right: 5px;
+            @include max-screen($screen-xs-max) {
+                display: inline-block;
+
+                text-align: center;
+            }
+            @include min-screen($desktop-min) {
+                float: left;
+            }
+            @include screen($screen-md-min, $screen-lg-max) {
+                margin-right: 2.5px;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .products-list & {
+            margin-right: 10px;
+        }
+
+        &.active {
+            .tech-ico {
+                &:after {
+                    content: "";
+                    border-left: 15px solid transparent;
+                    border-right: 15px solid transparent;
+                    border-bottom: 15px solid #00acb6;
+                    height: 0;
+                    width: 0;
+                    bottom: -100px;
+                    //left: 30px;
+                    position: relative;
+                    @include max-screen($screen-xs-max) {
+                        bottom: -80px;
+                    }
+                    @include max-screen(615.98px) {
+                        bottom: -73px;
+                    }
+
+                }
+            }
+        }
+    }
+
+    .tech-ico-outer-13 {
+        width: 12.5%;
+    }
+    .tech-ico-outer-14 {
+        width: 14.285%;
+    }
+    .tech-ico-outer-17 {
+        width: 16.66%;
+    }
+    .tech-ico-outer-20 {
+        width: 20%;
+    }
+    .tech-ico-outer-25 {
+        width: 25%;
+    }
+    .tech-ico-outer-33 {
+        width: 33.33%;
+    }
+
+    .tech-ico-outer-50 {
+        width: 50%;
+    }
+    .tech-ico-outer-100 {
+        width: 100%;
+    }
+
+    .tech-ico {
+        display: block;
+        position: relative;
+        height: 86px;
+        width: 64px;
+        margin: 0 auto;
+        text-align: center;
+        background-repeat: no-repeat;
+        @include max-screen($screen-xs-max) {
+            margin-top: 10px;
+        }
+        @include screen($screen-sm-min, $screen-sm-max) {
+            height: 80px;
+            width: 59px;
+        }
+        @include screen($screen-md-min, $screen-md-max) {
+            height: 71px;
+            width: 53px;
+        }
+
+        @include min-screen($screen-lg-min) {
+            height: 86px;
+            width: 64px;
+        }
+
+        .category-products & {
+            @include screen($screen-lg-min, 1349.99px) {
+                height: 67px;
+                width: 50px;
+            }
+            @include screen(1350px, $screen-lg-max) {
+                height: 78px;
+                width: 57px;
+            }
+            @include min-screen($screen-xlg-min) {
+                height: 85px;
+                width: 63px;
+            }
+        }
+
+        $ppmb-tech-ico-width: 60px !default;
+        $ppmb-tech-ico-height: 85px !default;
+        $ppmb-tech-ico-maxwidth: 95% !default;
+
+        #product-page-midpage-block & {
+
+                width: $ppmb-tech-ico-width;
+                height: $ppmb-tech-ico-height;
+                max-width: $ppmb-tech-ico-maxwidth;
+
+            @include max-screen(615.98px) {
+                width: 60px;
+                height: 85px;
+                max-width: 95%;
+            }
+            @include min-screen(616px) {
+                height: 93px;
+                width: 69px;
+                max-width: 100%;
+            }
+
+        }
+    }
+    .tech-15cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/15cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/15cm.svg);
+
+
+    }
+    .tech-16cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/16cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/16cm.svg);
+    }
+    .tech-17cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/17cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/17cm.svg);
+    }
+
+    .tech-18cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/18cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/18cm.svg);
+    }
+
+
+    .tech-19cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/19cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/19cm.svg);
+    }
+
+    .tech-20cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/20cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/20cm.svg);
+
+    }
+
+    .tech-21cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/21cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/21cm.svg);
+
+
+    }
+    .tech-22cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/22cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/22cm.svg);
+    }
+
+    .tech-23cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/23cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/23cm.svg);
+    }
+
+    .tech-24cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/24cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/24cm.svg);
+
+
+    }
+    .tech-25cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/25cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/25cm.svg);
+    }
+    .tech-26cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/26cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/26cm.svg);
+    }
+
+    .tech-27cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/27cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/27cm.svg);
+
+
+    }
+    .tech-28cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/28cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/28cm.svg);
+    }
+
+    .tech-29cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/29cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/29cm.svg);
+    }
+
+    .tech-30cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/30cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/30cm.svg);
+    }
+
+    .tech-31cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/31cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/31cm.svg);
+    }
+    .tech-32cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/32cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/32cm.svg);
+    }
+
+    .tech-33cm-ico {
+        //background-image: url(../Elevate-Firmness/images/whats-great-about-this/33cm.png);
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/33cm.svg);
+    }
+    .tech-air-vents-ico, .tech-airvents-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-airvents.svg);
+    }
+
+    .tech-air-flow-ico, .tech-airflow-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-airflow.svg);
+
+    }
+    .tech-aloe-ico, .tech-aloevera-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-aloe.svg);
+
+
+    }
+    .tech-amethyst-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-amethyst.svg);
+
+
+    }
+    .tech-antibug-ico, .tech-anti-bug-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-antibug.svg);
+
+
+    }
+    .tech-bamboo-fibre-ico, .tech-bamboo-ibre-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-bamboo-fibre.svg);
+
+
+    }
+    .tech-chitosan-and-eucalyptus-infused-ico, .tech-chitosanandeucalyptusinfused-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-chitosan-and-eucalyptus-infused.svg);
+
+    }
+
+    .tech-cashmere-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-cashmere.svg);
+    }
+
+    .tech-cotton-based-ico, .tech-cottonbased-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-cotton-based.svg);
+
+
+    }
+    .tech-double-jersey-ico, .tech-doublejersey-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-double-jersey.svg);
+
+
+    }
+    .tech-hand-tufted-ico, .tech-handtufted-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-hand-tufted.svg);
+
+
+    }
+
+
+    .tech-handles-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-handles.svg);
+
+
+    }
+    .tech-hypoallergenic-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-hypoallergenic.svg);
+
+
+    }
+    .tech-kids-mattress-ico, .tech-kids-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-kids-mattress.svg);
+
+
+    }
+
+
+    .tech-memory-wool-ico, .tech-memorywool-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-memory-wool.svg);
+    }
+    .tech-wool-tufts-ico, .tech-wooltufts-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-wool-tufts.svg);
+    }
+    .tech-milk-protein-infused-ico, .tech-milkproteininfused-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-milk-protein-infused.svg);
+    }
+
+    .tech-natural-fillings-ico, .tech-naturalfillings-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-natural-fillings.svg);
+
+    }
+
+    .tech-classic-fillings-ico, .tech-classicfillings-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-classic-fillings.svg);
+    }
+    .tech-one-sided-ico, .tech-onesided-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-one-sided.svg);
+
+
+    }
+    .tech-quilted-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-quilted.svg);
+
+
+    }
+    .tech-zonal-support-ico, .tech-zonalsupport-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-zonal-support.svg);
+
+
+    }
+
+
+    .tech-fire-retard-ico, .tech-fire-retardant-ico, .tech-fireretardant-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-fire-retard.svg);
+
+
+    }
+    .tech-memoryfoam-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam.svg);
+
+
+    }
+    .tech-pocketspring-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs.svg);
+
+
+    }
+    .tech-reflex-foam-ico, .tech-reflexfoam-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam.svg);
+    }
+
+    .tech-reflex-foam-10-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-10.svg);
+    }
+
+    .tech-reflex-foam-20-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-20.svg);
+    }
+    .tech-reflex-foam-25-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-25.svg);
+    }
+
+    .tech-reflex-foam-30-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-30.svg);
+    }
+    .tech-reflex-foam-40-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-40.svg);
+    }
+    .tech-reflex-foam-50-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-50.svg);
+    }
+    .tech-reflex-foam-75-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-75.svg);
+    }
+    .tech-reflex-foam-100-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-100.svg);
+    }
+    .tech-reflex-foam-110-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-110.svg);
+    }
+    .tech-reflex-foam-120-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-120.svg);
+    }
+    .tech-reflex-foam-125-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-125.svg);
+    }
+    .tech-reflex-foam-130-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-130.svg);
+    }
+    .tech-reflex-foam-140-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-140.svg);
+    }
+    .tech-reflex-foam-150-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-150.svg);
+    }
+    .tech-reflex-foam-160-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-160.svg);
+    }
+    .tech-reflex-foam-170-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-170.svg);
+    }
+    .tech-reflex-foam-180-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-180.svg);
+    }
+    .tech-reflex-foam-240-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/reflex-foam-240.svg);
+    }
+
+    .tech-handmade-uk-ico, .tech-handmadeuk-ico, .tech-handmade-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-handmade-uk.svg);
+
+
+    }
+    .tech-air-stream-ico, .tech-airstream-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-air-stream.svg);
+
+
+    }
+    .tech-removable-cover-ico, .tech-removeable-cover-ico, .tech-removeabe-cover-ico, .tech-removablecover-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-removable-cover.svg);
+    }
+
+    .tech-pillowtop-ico, .tech-pillotop-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-pillowtop.svg);
+
+
+    }
+    .tech-special-fabric-ico, .tech-specialfabric-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-special-fabric.svg);
+
+
+    }
+
+    .tech-orthopaedic-ico, .tech-ortopaedic {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-orthopaedic.svg);
+
+
+    }
+    .tech-semi-orthopaedic-ico, .tech-semiorthopaedic-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-semi-orthopaedic.svg);
+
+
+    }
+    .tech-vacuum-packed-ico, .tech-vacuumpacked-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-vacuum-packed.svg);
+
+
+    }
+
+
+    .tech-gel-memory-foam-ico, .tech-gelmemoryfoam-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/gel-memory-foam.svg);
+    }
+    .tech-gel-memory-foam-20-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/gel-memory-foam-20.svg);
+    }
+    .tech-gel-memory-foam-50-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/gel-memory-foam-50.svg);
+    }
+    .tech-gel-memory-foam-100-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/gel-memory-foam-100.svg);
+    }
+
+    .tech-latexfoam-ico, .tech-latex-foam-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/latex-foam.svg);
+    }
+
+    .tech-latex-foam-20-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/latex-foam-20.svg);
+    }
+
+    .tech-latex-foam-50-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/latex-foam-50.svg);
+    }
+    .tech-latex-foam-100-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/latex-foam-100.svg);
+    }
+
+    .tech-memory-foam-ico, .tech-memoryfoam-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam.svg);
+    }
+
+    .tech-memory-foam-20-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-20.svg);
+    }
+    .tech-memory-foam-25-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-25.svg);
+    }
+    .tech-memory-foam-30-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-30.svg);
+    }
+    .tech-memory-foam-40-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-40.svg);
+    }
+    .tech-memory-foam-45-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-45.svg);
+    }
+    .tech-memory-foam-50-ico, .tech-memory-foam50-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-50.svg);
+    }
+    .tech-memory-foam-67-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-67.svg);
+    }
+    .tech-memory-foam-70-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-70.svg);
+    }
+    .tech-memory-foam-75-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-75.svg);
+    }
+    .tech-memory-foam-80-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-80.svg);
+    }
+    .tech-memory-foam-100-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/memory-foam-100.svg);
+    }
+
+    .tech-cool-indigo-memfoam-50-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/cool-indigo-memfoam-50.svg);
+    }
+    .tech-cool-indigo-memfoam-70-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/cool-indigo-memfoam-70.svg);
+    }
+
+    .tech-open-coil-springs-ico, .tech-opencoilsprings-ico, .tech-open-coil-spring-ico, .tech-opencoilspring-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/open-coil-springs.svg);
+
+
+    }
+
+    .tech-open-coil-springs-600-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/open-coil-springs-600.svg);
+    }
+
+    .tech-pocket-springs-ico, .tech-pocketsprings-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs.svg);
+
+    }
+    .tech-pocket-springs-800-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs-800.svg);
+
+
+    }
+    .tech-pocket-springs-1000-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs-1000.svg);
+
+
+    }
+    .tech-pocket-springs-1200-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs-1200.svg);
+
+
+    }
+    .tech-pocket-springs-1400-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs-1400.svg);
+
+
+    }
+    .tech-pocket-springs-1500-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs-1500.svg);
+
+
+    }
+    .tech-pocket-springs-1800-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs-1800.svg);
+
+
+    }
+    .tech-pocket-springs-2000-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs-2000.svg);
+
+
+    }
+    .tech-pocket-springs-2500-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs-2500.svg);
+
+
+    }
+    .tech-pocket-springs-3000-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/pocket-springs-3000.svg);
+
+
+    }
+    .tech-two-sided-ico, .tech-twosided-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-two-sided.svg);
+
+
+    }
+
+    .tech-twin-pocket-springs-ico, .tech-twinpocketspring-ico, .tech-twin-pocketspring-ico, .tech-twin-pocket-spring-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/twin-pocket-springs.svg);
+
+
+    }
+
+    .tech-twin-pocket-springs-4000-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/twin-pocket-springs-4000.svg);
+    }
+    .tech-lavender-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-lavender.svg);
+    }
+    .tech-laytech-foam-ico, .tech-laytechfoam-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/laytech-foam.svg);
+    }
+
+    .tech-laytech-foam-10-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/laytech-foam-10.svg);
+    }
+
+    .tech-laytech-foam-20-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/laytech-foam-20.svg);
+    }
+
+    .tech-laytech-foam-50-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/laytech-foam-50.svg);
+    }
+    .tech-mattress-topper-ico, .tech-mattresstopper-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-mattress-topper.svg);
+    }
+    .tech-suitable-for-bunk-bed-ico, .tech-suitableforbunkbed-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-suitable-for-bunkbeds.svg);
+    }
+    .tech-velour-fabric-ico, .tech-velourfabric-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-velour-fabric.svg);
+    }
+    .tech-damask-fabric-ico, .tech-damaskfabric-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-damask-fabric.svg);
+    }
+    .tech-flip-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-flip.svg);
+    }
+    .tech-rotate-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-rotate.svg);
+    }
+    .tech-flip-and-rotate-ico, .tech-flipandrotate-ico {
+        background-image: url(../Elevate_Firmness/images/whats-great-about-this/tech-flip-and-rotate.svg);
+    }
+
+
+    .tech-icon {
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}

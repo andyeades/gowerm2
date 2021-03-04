@@ -1,0 +1,15 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $firebearCatalogProductView = $block->getData('firebear_catalog_product_view');?>
+<meta property="og:type" content="product" />
+<meta property="og:title" content="<?= $block->escapeHtmlAttr($block->stripTags($firebearCatalogProductView->getVariationProduct()->getName())) ?>" />
+<meta property="og:image" content="<?= $block->escapeUrl($block->getImage($firebearCatalogProductView->getVariationProduct(), 'product_base_image')->getImageUrl()) ?>" />
+<meta property="og:description" content="<?= $block->escapeHtmlAttr($block->stripTags($firebearCatalogProductView->getVariationProduct()->getShortDescription())) ?>" />
+<meta property="og:url" content="<?= $block->escapeUrl($firebearCatalogProductView->getVariationProduct()->getProductUrl()) ?>" />
+<?php if ($priceAmount = $firebearCatalogProductView->getVariationProduct()->getFinalPrice()):?>
+    <meta property="product:price:amount" content="<?= /* @escapeNotVerified */ $priceAmount ?>"/>
+    <?= $block->getChildHtml('meta.currency') ?>
+<?php endif;?>

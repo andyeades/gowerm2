@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elevate_Megamenu::megamenu_top" module="Elevate_Megamenu" parent="Elevate_Core::menu" resource="Magento_Backend::content" sortOrder="38" title="Megamenu"/>
+        <add id="Elevate_Megamenu::megamenu_manage" title="Manage Megamenu" translate="title" module="Elevate_Megamenu" parent="Elevate_Megamenu::megamenu_top" sortOrder="10" dependsOnModule="Elevate_Megamenu" action="elevate_megamenu/index/managemegamenu" resource="Elevate_Megamenu::megamenu_manage"/>
+    </menu>
+</config>

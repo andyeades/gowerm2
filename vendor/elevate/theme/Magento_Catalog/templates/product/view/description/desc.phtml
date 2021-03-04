@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product description template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Description
+ */
+?>
+
+
+        <div class="pview-description-header-quote">
+            <div class="pview-description-quote-icon"><i></i></div>
+            Fresh from the oven and straight to your doorstep
+        </div>
+        <div class="pview-description">
+            <?php /* @escapeNotVerified */
+            echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDescription(), 'description') ?>
+        </div>

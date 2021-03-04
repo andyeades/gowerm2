@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="webshopapps_matrixrate" resource="default" engine="innodb" comment="WebShopApps Shipping MatrixRate">
+    <column xsi:type="int" name="pk" padding="10" unsigned="true" nullable="false" identity="true" comment="Primary key"/>
+    <column xsi:type="int" name="website_id" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Website Id"/>
+    <column xsi:type="varchar" name="dest_country_id" nullable="false" length="4" default="0" comment="Destination coutry ISO/2 or ISO/3 code"/>
+    <column xsi:type="int" name="dest_region_id" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Destination Region Id"/>
+    <column xsi:type="varchar" name="dest_city" nullable="false" length="30" default="" comment="Destination City"/>
+    <column xsi:type="varchar" name="dest_zip" nullable="false" length="10" default="*" comment="Destination Post Code (Zip)"/>
+    <column xsi:type="varchar" name="dest_zip_to" nullable="false" length="10" default="*" comment="Destination Post Code To (Zip)"/>
+
+
+      <column xsi:type="decimal" name="weight_from" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Weight From"/>
+      <column xsi:type="decimal" name="weight_to" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Weight To"/>
+      <column xsi:type="decimal" name="item_price_over" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Price from"/>
+      <column xsi:type="decimal" name="item_price_under_and_equal" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Price to"/>
+      <column xsi:type="decimal" name="order_total_over" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Price from"/>
+      <column xsi:type="decimal" name="order_total_under_and_equal" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Price to"/>
+      <column xsi:type="varchar" name="shipping_code_group" nullable="false" length="20" comment="Rate Condition name"/>
+      <column xsi:type="varchar" name="position" nullable="false" length="20" comment="Rate Condition name"/>
+    <column xsi:type="varchar" name="product_shipping_group" nullable="false" length="20" comment="Rate Condition name"/>
+    <column xsi:type="varchar" name="customer_shipping_group" nullable="false" length="20" comment="Rate Condition name"/>
+      <column xsi:type="varchar" name="attribute_match" nullable="false" length="20" comment="Attribute Match"/>
+    <column xsi:type="varchar" name="sku" nullable="false" length="20" comment="Rate Condition name"/>
+    <column xsi:type="varchar" name="rate_type" nullable="false" length="20" comment="Each or All"/>
+    <column xsi:type="decimal" name="price" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Price"/>
+    <column xsi:type="decimal" name="cost" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Cost"/>
+    <column xsi:type="varchar" name="shipping_method" nullable="false" length="255" comment="Shipping Method"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="pk"/>
+    </constraint>
+  </table>
+</schema>

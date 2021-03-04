@@ -1,0 +1,62 @@
+<?xml version="1.0"?>                                         
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="elevate_landingpages" resource="default" engine="innodb" comment="Landing Page Table">
+    <column xsi:type="int" name="landingpage_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Landing Page ID"/>
+    <column xsi:type="varchar" name="url_key" nullable="true" length="255" comment="URL Key"/>
+    <column xsi:type="varchar" name="page_title" nullable="true" length="255" comment="Page Title"/>
+    <column xsi:type="text" name="page_top_description" nullable="true" comment="Page Top Description"/>
+    <column xsi:type="text" name="page_bottom_description" nullable="true" comment="Page Bottom Description"/>
+    <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+    <column xsi:type="mediumtext" name="meta_description" nullable="true" comment="Meta Description"/>
+    <column xsi:type="varchar" name="meta_keywords" nullable="true" length="255" comment="Meta Keywords"/>
+    <column xsi:type="varchar" name="canonical_url" nullable="true" length="255" comment="Canonical Url"/>
+    <column xsi:type="varchar" name="image" nullable="true" length="255" comment="Page Image"/>
+    <column xsi:type="text" name="include_filters" nullable="true" comment="Include Filters"/>
+    <column xsi:type="text" name="exclude_filters" nullable="true" comment="Exclude Filters"/>
+    <column xsi:type="text" name="top_pages" nullable="false" comment="Top Pages"/>
+                                   
+       
+               <column xsi:type="smallint" name="hide_readmore" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Hide Readmore"/>
+        <column xsi:type="varchar" name="top_desc_type" nullable="true" length="255" comment="Top Desc Behaviour"/>
+             <column xsi:type="varchar" name="btm_desc_type" nullable="true" length="255" comment="Bottom Desc Behaviour"/>
+    <column xsi:type="text" name="top_desc_ajax" nullable="true" comment="Top Ajax Desc"/>
+        <column xsi:type="text" name="btm_desc_ajax" nullable="true" comment="Bottom Ajax Desc"/>
+      
+      
+      
+      
+      
+    <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Status"/>
+    <column xsi:type="smallint" name="standalone" padding="6" unsigned="false" nullable="true" identity="false" comment="Standalone"/>
+    <column xsi:type="smallint" name="no_index" padding="6" unsigned="false" nullable="true" identity="false" comment="No Index"/>
+    <column xsi:type="text" name="category_ids" nullable="false" comment="Category Id"/>
+    <column xsi:type="smallint" name="exclude_applied_category" padding="6" unsigned="false" nullable="true" identity="false" comment="Exclude Applied Category"/>
+    <column xsi:type="varchar" name="store_ids" nullable="false" length="255" default="0" comment="Store_ids"/>
+    <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="true" comment="Updated At"/>
+    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true" comment="Created At"/>
+    <column xsi:type="mediumtext" name="filtered_attributes" nullable="true" comment="Filtered_attributes"/>
+      <column xsi:type="text" name="exclude_category" nullable="false" comment="Exclude Category"/>
+      <column xsi:type="text" name="behave_like_category" nullable="false" comment="Behave Like Category"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="landingpage_id"/>
+    </constraint>
+    <constraint xsi:type="unique" referenceId="ELEVATE_LANDINGPAGES_URL_KEY">
+      <column name="url_key"/>
+    </constraint>
+  </table>
+  <table name="elevate_landingpages_attributes" resource="default" engine="innodb" comment="Landing Page Attributes Table">
+    <column xsi:type="int" name="landingpage_attributes_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Landingpage_attributes_id"/>
+    <column xsi:type="varchar" name="landingpage_landingpage_id" nullable="true" length="255" comment="Landing Page ID"/>
+    <column xsi:type="varchar" name="attribute_id" nullable="true" length="255" comment="Attribute ID"/>
+    <column xsi:type="varchar" name="attribute_code" nullable="true" length="255" comment="Attribute Code"/>
+    <column xsi:type="varchar" name="option_id" nullable="true" length="255" comment="Option ID"/>
+    <column xsi:type="varchar" name="option_value" nullable="true" length="255" comment="Option Value"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="landingpage_attributes_id"/>
+    </constraint>
+  </table>
+    <table name="elevate_landingpages_categories" resource="default" engine="innodb" comment="Landing Page Attributes Table">
+        <column xsi:type="varchar" name="landingpage_landingpage_id" nullable="true" length="255" comment="Landing Page ID"/>
+        <column xsi:type="smallint" name="category_id" padding="6" unsigned="false" nullable="true" identity="false" comment="No Index"/>
+    </table>
+</schema>

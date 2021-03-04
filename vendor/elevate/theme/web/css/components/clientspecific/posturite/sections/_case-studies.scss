@@ -1,0 +1,553 @@
+@if $sitename == posturite {
+    // TODO: globally changing the style like this on a bootstrap element... seriously?!
+    .col-md-6.image {
+        padding-right: 0;
+        padding-left: 0;
+
+        &.image-one {
+            background-color: $ps-color-convert-19;
+            min-height: 500px;
+
+            &.case-study-brabners {
+                background: $ps-url-convert-208;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-cairn-housing {
+                background: $ps-url-convert-209;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-dla-piper {
+                background: $ps-url-convert-210;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-fico {
+                background: $ps-url-convert-211;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-hastings-direct {
+                background: $ps-url-convert-212;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-hwu {
+                background: $ps-url-convert-213;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-holiday-extras {
+                background: $ps-url-convert-214;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-houlihan-lokey {
+                background: $ps-url-convert-215;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-insight-vacations {
+                background: $ps-url-convert-216;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-kings-college {
+                background: $ps-url-convert-217;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-ital-logistics {
+                background: $ps-url-convert-218;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-leicestershire-police {
+                background: $ps-url-convert-219;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-olswang {
+                background: $ps-url-convert-220;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-orange {
+                background: $ps-url-convert-221;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-panasonic {
+                background: $ps-url-convert-222;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-plantronics {
+                background: $ps-url-convert-223;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-qantas {
+                background: $ps-url-convert-224;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-randstad {
+                background: $ps-url-convert-225;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-sa-law {
+                background: $ps-url-convert-226;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-t-systems {
+                background: $ps-url-convert-227;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-tmg {
+                background: $ps-url-convert-228;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-terrapinn {
+                background: $ps-url-convert-229;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-trillium {
+                background: $ps-url-convert-230;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-law-society {
+                background: $ps-url-convert-231;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-uob {
+                background: $ps-url-convert-232;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-uow {
+                background: $ps-url-convert-233;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-uos {
+                background: $ps-url-convert-234;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-vaultex {
+                background: $ps-url-convert-235;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-waterplus {
+                background: $ps-url-convert-236;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-wgm {
+                background: $ps-url-convert-237;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-woolovers {
+                background: $ps-url-convert-238;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-ynap {
+                background: $ps-url-convert-239;
+                background-size: cover;
+                background-position: center;
+            }
+
+            &.case-study-xl-group {
+                background: $ps-url-convert-240;
+                background-size: cover;
+                background-position: center;
+            }
+        }
+    }
+
+
+    .img-banner {
+        text-align: center;
+
+        &.product-help {
+            background-image: $ps-url-convert-152;
+        }
+
+        &.consulting {
+            background-image: $ps-url-convert-153;
+        }
+
+        &.art-of-sitting {
+            background-image: $ps-url-convert-154;
+        }
+
+        &.agile-working {
+            background-image: $ps-url-convert-155;
+        }
+
+        &.seating-projects {
+            background-image: $ps-url-convert-156;
+        }
+
+        &.about-us {
+            background-image: $ps-url-convert-157;
+        }
+
+        &.case-study {
+            background-image: $ps-url-convert-155;
+        }
+
+        &.case-study-brabners {
+            background-image: $ps-url-convert-158;
+        }
+
+        &.case-study-cairn-housing {
+            background-image: $ps-url-convert-159;
+        }
+
+        &.case-study-dla-piper {
+            background-image: $ps-url-convert-160;
+        }
+
+        &.case-study-fico {
+            background-image: $ps-url-convert-161;
+        }
+
+        &.case-study-hastings-direct {
+            background-image: $ps-url-convert-162;
+        }
+
+        &.case-study-hwu {
+            background-image: $ps-url-convert-163;
+        }
+
+        &.case-study-holiday-extras {
+            background-image: $ps-url-convert-164;
+        }
+
+        &.case-study-houlihan-lokey {
+            background-image: $ps-url-convert-165;
+        }
+
+        &.case-study-insight-vacations {
+            background-image: $ps-url-convert-166;
+        }
+
+        &.case-study-kings-college {
+            background-image: $ps-url-convert-167;
+        }
+
+        &.case-study-ital-logistics {
+            background-image: $ps-url-convert-168;
+        }
+
+        &.case-study-leicestershire-police {
+            background-image: $ps-url-convert-169;
+        }
+
+        &.case-study-olswang {
+            background-image: $ps-url-convert-170;
+        }
+
+        &.case-study-orange {
+            background-image: $ps-url-convert-171;
+        }
+
+        &.case-study-panasonic {
+            background-image: $ps-url-convert-172;
+        }
+
+        &.case-study-plantronics {
+            background-image: $ps-url-convert-173;
+        }
+
+        &.case-study-qantas {
+            background-image: $ps-url-convert-174;
+        }
+
+        &.case-study-randstad {
+            background-image: $ps-url-convert-175;
+        }
+
+        &.case-study-sa-law {
+            background-image: $ps-url-convert-176;
+        }
+
+        &.case-study-t-systems {
+            background-image: $ps-url-convert-177;
+        }
+
+        &.case-study-tmg {
+            background-image: $ps-url-convert-178;
+        }
+
+        &.case-study-terrapinn {
+            background-image: $ps-url-convert-249;
+        }
+
+        &.case-study-trillium {
+            background-image: $ps-url-convert-180;
+        }
+
+        &.case-study-law-society {
+            background-image: $ps-url-convert-181;
+        }
+
+        &.case-study-uob {
+            background-image: $ps-url-convert-182;
+        }
+
+        &.case-study-uos {
+            background-image: $ps-url-convert-183;
+        }
+
+        &.case-study-uow {
+            background-image: $ps-url-convert-184;
+        }
+
+        &.case-study-vaultex {
+            background-image: $ps-url-convert-185;
+        }
+
+        &.case-study-waterplus {
+            background-image: $ps-url-convert-186;
+        }
+
+        &.case-study-wgm {
+            background-image: $ps-url-convert-187;
+        }
+
+        &.case-study-woolovers {
+            background-image: $ps-url-convert-188;
+        }
+
+        &.case-study-ynap {
+            background-image: $ps-url-convert-189;
+        }
+
+        &.case-study-xl-group {
+            background-image: $ps-url-convert-190;
+        }
+
+        &.dse-assessor-training {
+            background-image: $ps-url-convert-191;
+        }
+
+        &.first-aid-training {
+            background-image: $ps-url-convert-192;
+        }
+
+        &.health-safety-training {
+            background-image: $ps-url-convert-193;
+        }
+
+        &.what-is-ergonomics {
+            background-image: $ps-url-convert-194;
+        }
+
+        &.events {
+            background-image: $ps-url-convert-195;
+        }
+
+        &.f2f-training {
+            background-image: $ps-url-convert-196;
+        }
+
+        &.past-events {
+            background-image: $ps-url-convert-197;
+        }
+
+        &.workrite-agile {
+            background-image: $ps-url-convert-198;
+        }
+    }
+
+    .cms-page-view {
+        //colors
+        $casestudies-color-0: rgba(0, 106, 66, .8);
+        $casestudies-color-1: #fff;
+        $casestudies-color-2: rgba(0, 0, 0, .2);
+        $casestudies-color-3: #ececec;
+        $casestudies-color-4: #000;
+
+        .product-element {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 30px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .product-element-wrap {
+            overflow: hidden;
+            position: relative;
+            &:hover {
+                .after {
+                    display: block;
+                    background: $casestudies-color-0;
+                }
+                .before {
+                    display: none;
+                }
+            }
+            .after {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                display: none;
+                color: $casestudies-color-1;
+            }
+            .before {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                color: $casestudies-color-1;
+                background: $casestudies-color-2;
+            }
+        }
+        .isotope-item {
+            z-index: 2;
+        }
+        .isotope {
+            //Instead of the line below you could use @include transition-duration($duration-1, $duration-2, $duration-3, $duration-4, $duration-5, $duration-6, $duration-7, $duration-8, $duration-9, $duration-10)
+            transition-duration: .8s;
+            //Instead of the line below you could use @include transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+            transition-property: height, width;
+            .isotope-item {
+                //Instead of the line below you could use @include transition-duration($duration-1, $duration-2, $duration-3, $duration-4, $duration-5, $duration-6, $duration-7, $duration-8, $duration-9, $duration-10)
+                transition-duration: .8s;
+                //Instead of the line below you could use @include transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+                transition-property: transform, opacity;
+                &.no-transition {
+                    //Instead of the line below you could use @include transition-duration($duration-1, $duration-2, $duration-3, $duration-4, $duration-5, $duration-6, $duration-7, $duration-8, $duration-9, $duration-10)
+                    transition-duration: 0s;
+                }
+            }
+            &.no-transition {
+                //Instead of the line below you could use @include transition-duration($duration-1, $duration-2, $duration-3, $duration-4, $duration-5, $duration-6, $duration-7, $duration-8, $duration-9, $duration-10)
+                transition-duration: 0s;
+                .isotope-item {
+                    //Instead of the line below you could use @include transition-duration($duration-1, $duration-2, $duration-3, $duration-4, $duration-5, $duration-6, $duration-7, $duration-8, $duration-9, $duration-10)
+                    transition-duration: 0s;
+                }
+            }
+        }
+        #json-one {
+            display: inline;
+            width: auto;
+            width: 250px;
+            background: $casestudies-color-3;
+            color: $casestudies-color-4;
+            border: none;
+            text-transform: uppercase;
+            font-weight: 400;
+            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+            border-radius: 0 !important;
+            margin-left: 20px;
+            //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: none;
+        }
+        #json-two {
+            display: inline;
+            width: auto;
+            width: 250px;
+            background: $casestudies-color-3;
+            color: $casestudies-color-4;
+            border: none;
+            text-transform: uppercase;
+            font-weight: 400;
+            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+            border-radius: 0 !important;
+            margin-left: 20px;
+            //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: none;
+        }
+        .content {
+            position: absolute;
+            bottom: 0;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            a {
+                color: $casestudies-color-1;
+            }
+            h4 {
+                text-transform: uppercase;
+            }
+        }
+        .divider {
+            width: 50px;
+            left: 0;
+            display: inline-block;
+            border: 1px solid $casestudies-color-1;
+            margin-top: 4px;
+            margin-bottom: 10px;
+            background: 0 0;
+            height: 0;
+        }
+        .isotope-hidden.isotope-item {
+            pointer-events: none;
+            z-index: 1;
+        }
+        ul li:hover {
+            cursor: default;
+        }
+        div#filters {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 30px;
+            margin-top: 40px;
+        }
+        .case-study-wrap.content-section {
+            padding-top: 0;
+        }
+    }
+}

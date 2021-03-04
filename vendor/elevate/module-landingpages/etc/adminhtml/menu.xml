@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elevate_LandingPages::landingpages_top" module="Elevate_LandingPages" parent="Elevate_Core::menu" resource="Magento_Backend::content" sortOrder="990" title="Landing Pages"/>
+        <add id="Elevate_LandingPages::landingpages_manage" title="Manage Landing Pages" translate="title" module="Elevate_LandingPages" parent="Elevate_LandingPages::landingpages_top" sortOrder="10" dependsOnModule="Magento_Backend" action="elevate_landingpages/index/index"  resource="Elevate_LandingPages::landingpages"/>
+    </menu>
+</config>

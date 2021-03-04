@@ -1,0 +1,52 @@
+.pas-red-text {
+  color: $color-pas-orange;
+}
+
+::selection {
+  background-color: $color-pas-orange;
+  color: white;
+}
+
+
+.theme-pearl.store-view-default {
+  .page-title-wrapper {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    @include min-screen($screen-sm-min) {
+      max-width: $screen-xlg-min;
+    }
+  }
+  button:hover span {
+    color: #FFF !important;
+  }
+  .btt-button {
+    &:after{
+
+    }
+    background-color: $color-pas-orange;
+    border: 1px solid $color-pas-orange;
+    border-radius: $standard-button-radius;
+    &:hover {
+      background-color: darken($color-pas-orange, 15%);
+      border: 1px solid darken($color-pas-orange, 15%);
+    }
+  }
+  .page-wrapper {
+    .page-footer {
+      .footer.content {
+        .pre-footer {
+          .pre-footer-content {
+            @include max-screen($screen-xs-max) {
+              padding: 10px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+p {
+  margin-bottom: 1rem;
+}

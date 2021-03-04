@@ -1,0 +1,549 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Files.LineLength, Magento2.Templates.ThisInTemplate
+
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+/**
+ * @var $evHelper \Elevate\Delivery\Helper\General
+ */
+$evHelper = $objectManager->create('\Elevate\Delivery\Helper\General');
+
+$imageFactory = $objectManager->create('\Elevate\Framework\Block\Product\ImageFactory');
+
+
+?>
+<?php
+/**
+ * Multishipping checkout shipping template
+ *
+ * @var $block \Magento\Multishipping\Block\Checkout\Shipping
+ */
+?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"></script>
+<script type="text/javascript">
+    function sortObject(obj) {
+        var arr = [];
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                arr.push({
+                    'key': prop,
+                    'value': obj[prop]
+                });
+            }
+        }
+        arr.sort(function(a, b) { return b.value - a.value; });
+        //arr.sort(function(a, b) { a.value.toLowerCase().localeCompare(b.value.toLowerCase()); }); //use this to sort as strings
+        return arr; // returns array
+    }
+</script>
+<form action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="shipping_method_form" class="form multicheckout shipping">
+    <?php foreach ($block->getAddresses() as $_index => $_address) : ?>
+
+    <?php $address_id = (int) $_address->getId(); ?>
+    <div class="block block-shipping">
+        <div class="block-title"><strong><?= $block->escapeHtml(__('Address %1 <span>of %2</span>', ($_index+1), $block->getAddressCount()), ['span']) ?></strong></div>
+        <div class="block-content">
+            <div class="box box-shipping-address">
+                <strong class="box-title">
+                    <span><?= $block->escapeHtml(__('Shipping To')) ?></span>
+                    <a href="<?= $block->escapeUrl($block->getAddressEditUrl($_address)) ?>" class="action link-action edit">
+                        <span><?= $block->escapeHtml(__('Change')) ?></span>
+                    </a>
+                </strong>
+                <div class="box-content">
+                    <address><?= /* @noEscape */ $_address->format('html') ?></address>
+                </div>
+            </div>
+            <div class="box box-shipping-method">
+                <strong class="box-title">
+                    <span><?= $block->escapeHtml(__('Shipping Method')) ?></span>
+                </strong>
+
+                <div class="box-content">
+                    <?php if (!($_shippingRateGroups = $block->getShippingRates($_address))) : ?>
+                        <p><?= $block->escapeHtml(__('Sorry, no quotes are available for this order right now.')) ?></p>
+                    <?php else : ?>
+                    <dl class="items methods-shipping">
+                        <?php $_sole = count($_shippingRateGroups) == 1; foreach ($_shippingRateGroups as $code => $_rates) : ?>
+                            <dt class="item-title"><?= $block->escapeHtml($block->getCarrierName($code)) ?></dt>
+                            <dd class="item-content">
+                                <fieldset class="fieldset">
+                                    <input type="text" name="method_<?=$address_id?>" id="data_method_<?=$address_id?>" value="" />
+                                    <input type="text" name="dateselected_<?=$address_id?>" id="dateselected_<?=$address_id?>" value="" />
+
+
+
+
+                                    <input type="text" name="postcode_<?=$address_id?>" id="postcode_<?=$address_id?>" value="<?= $_address->getData('postcode') ?>" />
+                                    <input type="text" name="country_<?=$address_id?>" id="country_<?=$address_id?>" value="<?= $_address->getData('country_id') ?>" />
+                                    <legend class="legend">
+                                        <span><?= $block->escapeHtml($block->getCarrierName($code)) ?></span>
+                                    </legend><br>
+                                    <?php $_sole = $_sole && count($_rates) == 1; foreach ($_rates as $_rate) : ?>
+                                    <div class="field choice">
+                                        <?php if ($_rate->getErrorMessage()) : ?>
+                                        <strong><?= $block->escapeHtml($_rate->getCarrierTitle()) ?>: <?= $block->escapeHtml($_rate->getErrorMessage()) ?></strong>
+                                        <?php else : ?>
+                                        <div class="control">
+                                            <?php if ($_sole) : ?>
+                                                <input type="radio" name="shipping_method[<?= (int) $_address->getId() ?>]" value="<?= $block->escapeHtmlAttr($_rate->getCode()) ?>" id="s_method_<?= (int) $_address->getId() ?>_<?= $block->escapeHtmlAttr($_rate->getCode()) ?>" class="radio solo method" checked="checked"/>
+                                            <?php else : ?>
+                                                <input type="radio" name="shipping_method[<?= (int) $_address->getId() ?>]" value="<?= $block->escapeHtmlAttr($_rate->getCode()) ?>" id="s_method_<?= (int) $_address->getId() ?>_<?= $block->escapeHtmlAttr($_rate->getCode()) ?>" <?= ($_rate->getCode()===$block->getAddressShippingMethod($_address)) ? ' checked="checked"' : '' ?> class="radio" />
+                                            <?php endif; ?>
+                                        </div>
+                                        <label for="s_method_<?= (int) $_address->getId() ?>_<?= $block->escapeHtmlAttr($_rate->getCode()) ?>">
+                                            <?= $block->escapeHtml($_rate->getMethodTitle()) ?>
+                                            <?php $_excl = $block->getShippingPrice($_address, $_rate->getPrice(), $this->helper(Magento\Tax\Helper\Data::class)->displayShippingPriceIncludingTax()); ?>
+                                            <?php $_incl = $block->getShippingPrice($_address, $_rate->getPrice(), true); ?>
+                                            <?php if ($this->helper(Magento\Tax\Helper\Data::class)->displayShippingBothPrices() && $_incl != $_excl) : ?>
+                                            <span class="price-including-tax" data-label="<?= $block->escapeHtmlAttr(__('Incl. Tax')) ?>">
+                                            <?php endif; ?>
+                                                <?= $block->escapeHtml($_incl, ['span']) ?>
+                                            <?php if ($this->helper(Magento\Tax\Helper\Data::class)->displayShippingBothPrices() && $_incl != $_excl) : ?>
+                                            </span>
+                                            <?php endif; ?>
+                                            <?php if ($this->helper(Magento\Tax\Helper\Data::class)->displayShippingBothPrices() && $_incl != $_excl) : ?>
+                                            <span class="price-excluding-tax" data-label="<?= $block->escapeHtmlAttr(__('Excl. Tax')) ?>">
+                                                <?= $block->escapeHtml($_excl, ['span']) ?>
+                                            </span>
+                                            <?php endif; ?>
+                                        </label>
+                                        <?php endif ?>
+                                    </div>
+                                    <?php endforeach; ?>
+                                </fieldset>
+                            </dd>
+                        <?php endforeach; ?>
+                    </dl>
+                    <?php endif; ?>
+                    <?php
+                    $postcode = $_address->getData('postcode');
+
+                    $country_id = $_address->getData('country_id');
+
+                    $delivery_options = $evHelper->getMultiShipAddressDeliveryOutput($postcode, $country_id, $address_id);
+
+
+
+                    /*
+                    $first_array_key = array_key_first($delivery_options['mobile_day_options']);
+
+                    $first_day_options_data = reset($delivery_options['mobile_day_options']);
+
+                    $first_day_options_data_output = '<ul class="day-options-'. $first_array_key.'">';
+                    $first_day_options_data_output .= '<li class="date-">';
+                    $first_day_options_data_output .= $first_day_options_data['options'][0];
+                    $first_day_options_data_output .= '</li>';
+                    $first_day_options_data_output .= '</ul>';
+                    */
+
+
+                    $delivery_calendar = $delivery_options['mobile_day_options_1'];
+
+                    // Need to Make this admin selecteable
+                    $delivery_date_first_day_options = $delivery_options['mobile_day_options_firstday'];
+                    $delivery_date_other_options = $delivery_options['mobile_day_options_exceptfirstday'];
+
+                    $delivery_descriptions_checkout = $delivery_options['delivery_descriptions_checkout'];
+                    $delivery_month_to_display = $delivery_options['first_month_to_display'];
+
+
+                    ?>
+
+                    <div class="delivery-outer" id="delivery-outer_<?=$address_id?>">
+
+                        <div id="delivery-mobile-outer_<?=$address_id?>" class="delivery-mobile-outer pre-loadingstyle" style="">
+                            <div id="delivery-choose-date_<?=$address_id?>" class="delivery-choose-date">Choose Date</div>
+                            <div id="mobile-month_<?=$address_id?>" class="mobile-month"><?=$delivery_month_to_display;?></div>
+                            <div id="delivery-mobile_<?=$address_id?>" class="delivery-mobile">
+                                <div id="delivery-calendar_<?=$address_id?>" class="delivery-calendar">
+                                    <?=$delivery_calendar;?>
+                                </div>
+                                <div id="deliveryslider-nav_<?=$address_id?>" class="deliveryslider-nav slider-nav controls">
+                                    <div id="delslider-prev_<?=$address_id?>" class="delslider-prev prev slider-prev disabled"><i class="fa fa-chevron-circle-left"></i>
+                                    </div>
+                                    <div id="delslider-next_<?=$address_id?>" class="delslider-next next slider-next"><i class="fa fa-chevron-circle-right"></i></div>
+                                </div>
+                                <div id="delivery-date-choosedelivery_<?=$address_id?>" class="delivery-date-choosedelivery">Choose Delivery</div>
+                                <div id="delivery-date-selected-options_<?=$address_id?>" class="delivery-date-selected-options">
+                                    <? // If First Day Selected/Shown
+                                    echo $delivery_date_first_day_options ?>
+
+
+                                </div>
+                                <div id="delivery-date-other-options_<?=$address_id?>" class="delivery-date-other-options">
+                                    <?php
+                                    // If First Date Not Selected -
+                                     //echo $delivery_date_first_day_options;
+                                    ?>
+                                    <?= $delivery_date_other_options; ?>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div id="delivery-bottom-message-2_<?=$address_id?>" class="delivery-bottom-message-2"></div>
+                        <div id="delivery-bottom-message-1_<?=$address_id?>" class="delivery-bottom-message-1"></div>
+                        <div id="delivery-description-store_<?=$address_id?>" class="delivery-description-store">
+                            <div class="del-desc-store-notice" style="display:none;">
+                                <i class="fa fa-info-circle fa-2x"></i> Delivery Information
+                            </div>
+                            <div id="delivery-description-store-inner_<?=$address_id?>">
+
+                                <?= $delivery_descriptions_checkout; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?= /* @noEscape */ $block->getItemsBoxTextAfter($_address) ?>
+                </div>
+
+
+            </div>
+
+            <script type="text/javascript">
+
+                jQuery(document).ready(function() {
+                    var date = jQuery(jQuery('.mobile-dates-container').find('.mobile-date')[0]).find('.mobile-date-inner').attr('data-date');
+                    var dateval = jQuery(this).attr('data-date');
+                    var methodid = jQuery(this).attr('method');
+
+                    jQuery('#data_method_<?=$address_id?>').val(methodid);
+                    jQuery('#dateselected_<?=$address_id?>').val(dateval);
+                    console.log('dateval: '+dateval);
+
+                        if (jQuery('#delivery-date-selected-options_<?=$address_id?>').find('input').length === 1) {
+
+                            var dateselected = jQuery('#delivery-outer_<?=$address_id?> .mobile-date.active .mobile-date-inner').attr('data-date');
+                            var methodid = jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-' + dateselected + ' input').attr('method');
+                            console.log('only option');
+                            var input = jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-' + dateselected + ' input').prop('checked', true);
+
+                            var selectedoption = jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-' + dateselected + ' input').val();
+                            console.log(selectedoption);
+                            jQuery('#dateselected_<?=$address_id?>').val(selectedoption);
+
+                            if (jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-' + dateselected + ' li').hasClass('no-selectables')) {
+                                // don't do anything
+                                jQuery('#delivery-description-store_<?=$address_id?> .del-desc-store-notice').hide();
+
+                            } else {
+                                jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-' + dateselected + ' li').addClass('selected');
+                                jQuery('#delivery-description-store_<?=$address_id?> .del-desc-store-notice').show();
+                                jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-' + dateselected + ' li').find('.fauxradio i').show();
+                            }
+
+
+                            //jQuery('#delivery-description-store-inner_<?=$address_id?> .delivery-desc').hide();
+                            jQuery('#delivery-description-store-inner_<?=$address_id?> .delivery-desc-checkout-' + methodid).show();
+                        }
+                });
+
+
+
+                mobileslider_<?=$address_id?> = tns({
+                    container: '#delivery-outer_<?=$address_id?> .delivery-slider',
+                    loop: false,
+                    gutter: 10,
+                    mouseDrag: true,
+                    items: 3,
+                    controlsContainer: "#deliveryslider-nav_<?=$address_id?>",
+                    responsive:{
+                        768:{
+                            items:5
+                        },
+                        992:{
+                            items:7
+                        },
+                        1270:{
+                            items:7
+                        }
+                    }
+                });
+
+                mobileslider_<?=$address_id?>.events.on('indexChanged', function(event) {
+                    console.log('need to change this to not break it when comeing back from next step!')
+                    // Change Mobile Month Displayed dependent on number of
+                    console.log('carousel changed?');
+
+
+                    changeMobileMonth_<?=$address_id?>();
+                })
+
+                function changeMobileMonth_<?=$address_id?>() {
+                    console.log('delslider changed mobilemonth');
+                    // For Changing Month Based on Dates Displayed
+                    var months = {}
+
+                    // Page Items Active on screen
+                    jQuery('#delivery-calendar_<?=$address_id?> .tns-slide-active').each(function(index, element){
+                        var data_month = jQuery(this).attr('data-month');
+                        console.log(data_month);
+
+                        if (months.hasOwnProperty(data_month)) {
+                            var count = parseInt(months[data_month]);
+
+                            count++;
+
+                            months[data_month] = count;
+                        } else {
+                            months[data_month] = 1;
+                        }
+
+                    });
+
+                    var new_array = sortObject(months);
+
+
+                    // Month with highest number of dates visible will be 0 in array.
+                    var month_to_display = new_array[0].key;
+
+                    jQuery('#delivery-outer_<?=$address_id?> .mobile-month').html(month_to_display);
+                }
+
+                jQuery('#delivery-outer_<?=$address_id?> .mobile-date').click(function(){
+
+
+                    console.log('clicked it!');
+                    jQuery('#delivery-outer_<?=$address_id?> .delivery-desc').hide();
+                    var previouslychecked_item = jQuery('#delivery-outer_<?=$address_id?> input[name="deliveryMobile"]:checked');
+                    jQuery(previouslychecked_item).prop('checked', false);
+                    console.log(jQuery(this));
+                    var dateval = jQuery(this).attr('data-date');
+                    var methodid = jQuery(this).attr('method');
+
+                    jQuery('#data_method_<?=$address_id?>').val(methodid);
+                    jQuery('#dateselected_<?=$address_id?>').val(dateval);
+                    console.log('dateval: '+dateval);
+
+                    if (jQuery(this).hasClass('active')) {
+                        jQuery('#delivery-description-store_<?=$address_id?> .del-desc-store-notice').hide();
+                        jQuery('#delivery-description-store-inner_<?=$address_id?> .delivery_desc').hide();
+                        // Uncheck selected option?
+
+                        // DO IT!
+                        jQuery('#delivery-outer_<?=$address_id?> .mobile-date.active').find('.date-selector i').hide();
+                        jQuery('#delivery-outer_<?=$address_id?> .mobile-date.active').removeClass('active');
+                        jQuery(this).removeClass('active');
+
+                        var currentselectedoptions = jQuery('#delivery-date-selected-options_<?=$address_id?>').find('ul li');
+                        jQuery(currentselectedoptions).removeClass('selected').find('.fauxradio i').hide();
+
+
+
+                        jQuery('#delivery-date-selected-options_<?=$address_id?>').children().detach().appendTo('#delivery-date-other-options_<?=$address_id?>');
+                        jQuery('#delivery-date-other-options_<?=$address_id?> .day-options-'+dateval).detach().appendTo('#delivery-date-selected-options_<?=$address_id?>');
+                        jQuery('#delivery-date-selected-options_<?=$address_id?>').find('input').prop('disabled',false);
+
+
+                    } else {
+                        jQuery('#delivery-description-store_<?=$address_id?> .del-desc-store-notice').hide();
+                        jQuery('#delivery-outer_<?=$address_id?> .mobile-date.active').find('.date-selector i').hide();
+                        jQuery('#delivery-outer_<?=$address_id?> .mobile-date.active').removeClass('active');
+                        jQuery(this).addClass('active').find('.date-selector i').show();
+
+
+                        var currentselectedoptions = jQuery('#delivery-date-selected-options_<?=$address_id?>').find('ul li');
+                        jQuery(currentselectedoptions).removeClass('selected').find('.fauxradio i').hide();
+                        jQuery('#delivery-date-selected-options_<?=$address_id?> ').children().detach().appendTo('#delivery-date-other-options_<?=$address_id?>');
+                        jQuery('#delivery-date-other-options_<?=$address_id?>  .day-options-'+dateval).appendTo('#delivery-date-selected-options_<?=$address_id?>');
+                        jQuery('#delivery-date-selected-options_<?=$address_id?> ').find('input').prop('disabled',false);
+                        console.log(jQuery('#delivery-date-selected-options_<?=$address_id?>'));
+                        if (jQuery('#delivery-date-selected-options_<?=$address_id?>').find('input').length === 1) {
+
+                            var dateselected = jQuery('#delivery-outer_<?=$address_id?> .mobile-date.active .mobile-date-inner').attr('data-date');
+                            var methodid = jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-'+dateselected+' input').attr('method');
+                            console.log('only option');
+                            var input = jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-'+dateselected+' input').prop('checked', true);
+
+                            var selectedoption = jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-'+ dateselected + ' input').val();
+                            console.log(selectedoption);
+                            jQuery('#dateselected_<?=$address_id?>').val(selectedoption);
+
+                            if (jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-'+dateselected + ' li').hasClass('no-selectables')) {
+                                // don't do anything
+                                jQuery('#delivery-description-store_<?=$address_id?> .del-desc-store-notice').hide();
+
+                            } else {
+                    jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-'+dateselected + ' li').addClass('selected');
+                                jQuery('#delivery-description-store_<?=$address_id?> .del-desc-store-notice').show();
+                    jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-'+dateselected + ' li').find('.fauxradio i').show();
+                            }
+
+
+                            //jQuery('#delivery-description-store-inner_<?=$address_id?> .delivery-desc').hide();
+                            jQuery('#delivery-description-store-inner_<?=$address_id?> .delivery-desc-checkout-' + methodid).show();
+                        }
+
+                    }
+
+                });
+                jQuery('#delivery-outer_<?=$address_id?> input[name="deliveryMobile"]').click(function(){
+                    clickMobileDateOption_<?=$address_id?>(this);
+                    // TODO: WARNING NEED TO FIX IF RADIO IS SHOWN!!!
+                });
+                jQuery('#delivery-outer_<?=$address_id?> .delivery-radio-selector').click(function() {
+                    clickMobileDateOption_<?=$address_id?>(this);
+                });
+
+                // Clear Options
+                // Select first Available Date
+                //jQuery('#mobile-dates-container_<?=$address_id?>').find('.mobile-date:first').click();
+               // }
+
+
+
+                function clickMobileDateOption_<?=$address_id?>(parent) {
+                    var dateselected = jQuery('#delivery-outer_<?=$address_id?> .mobile-date.active .mobile-date-inner').attr('data-date');
+
+
+                    //console.log('clickmobiledateoption');
+                    //console.log(jQuery(this).find('input[name="deliveryMobile"]'));
+                    var input = jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-'+dateselected+' input').prop('checked', true);
+
+                    var selectedoption = jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-'+ dateselected + ' input').val();
+                    console.log(selectedoption);
+                    jQuery('#dateselected_<?=$address_id?>').val(selectedoption);
+
+                    var methodid = jQuery('#delivery-date-selected-options_<?=$address_id?> .day-options-'+dateselected+' input').attr('method');
+                    var li = jQuery(parent).parent();
+
+
+                    var ul = jQuery(li).parent();
+                    var otherlis = jQuery(ul).find('li');
+                    jQuery(otherlis).removeClass('selected');
+                    jQuery(otherlis).find('.fauxradio i').hide();
+                    jQuery(otherlis).removeClass('selected');
+                    if (jQuery(li).hasClass('no-selectables')) {
+                        // don't do anything
+                        jQuery('#delivery-description-store_<?=$address_id?> .del-desc-store-notice').hide();
+                    } else {
+                        jQuery(li).addClass('selected');
+                        jQuery('#delivery-description-store_<?=$address_id?> .del-desc-store-notice').show();
+                        jQuery(li).find('.fauxradio i').show();
+                    }
+
+
+                    jQuery('#delivery-description-store-inner_<?=$address_id?> .delivery-desc').hide();
+                    jQuery('#delivery-description-store-inner_<?=$address_id?> .delivery-desc-checkout-' + methodid).show();
+                }
+
+
+            </script>
+
+            <div class="box box-items">
+                <strong class="box-title">
+                    <span><?= $block->escapeHtml(__('Items')) ?></span>
+                    <a href="<?= $block->escapeUrl($block->getItemsEditUrl($_address)) ?>" class="action link-action edit"><span><?= $block->escapeHtml(__('Edit Items')) ?></span></a>
+                </strong>
+                <div class="box-content">
+                    <div class="boxbillingaddress">
+                        <table class="items data table" id="shipping-table-<?= (int) $_address->getId() ?>">
+                            <caption class="table-caption"><?= $block->escapeHtml(__('Items')) ?></caption>
+                            <thead>
+                            <tr>
+                                <th class="col item" scope="col"></th>
+                                <th class="col item" scope="col"><?= $block->escapeHtml(__('Product Name')) ?></th>
+                                <th class="col qty" scope="col"><?= $block->escapeHtml(__('Qty')) ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($block->getAddressItems($_address) as $_item) : ?>
+                                <tr>
+                                    <td class="col item">
+                                        <?php
+                                        $image = $_item->getQuoteItem()->getProduct()->getThumbnail();
+                                        $base_url = $block->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+                                        ?>
+                                        <img src="<?= $base_url.'pub/media/catalog/product'.$image?>" class="multiship-item-image"/>
+                                    </td>
+                                    <td class="col item" data-th="<?= $block->escapeHtmlAttr(__('Product Name')) ?>">
+
+                                        <?= $block->getItemHtml($_item->getQuoteItem()) ?></td>
+                                    <td class="col qty" data-th="<?= $block->escapeHtmlAttr(__('Qty')) ?>"><?= $block->escapeHtml($_item->getQty()) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+    <?= $block->getChildHtml('checkout_billing_items') ?>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button class="action primary continue proceedtocheckout" type="submit"><span><?= $block->escapeHtml(__('Continue to Billing Information')) ?></span></button>
+        </div>
+        <div class="secondary">
+            <a href="<?= $block->escapeUrl($block->getBackUrl()) ?>" class="action link-action back"><span><?= $block->escapeHtml(__('Back to Select Addresses')) ?></span></a>
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+
+
+
+
+
+
+    function ajaxOverlayPostcodeShow() {
+        //jQuery("#delivery-mask-overlay").show().removeClass('delivery-mask-hidden');
+
+    }
+    function ajaxOverlayPostcodeHide() {
+        console.log('ajax overlay hide');
+       // jQuery("#delivery-mask-overlay").addClass('delivery-mask-hidden').promise().done(function () {
+          //  jQuery('#delivery-mask-overlay').hide();
+        //});
+       // jQuery("#delivery-enter-postcode").hide();
+    }
+    function checkoutIncorrectPostcode() {
+
+        jQuery('#delivery-enter-postcode').html("Please check the entered postcode. If your postcode is valid, unfortunately we don't deliver to this postcode.");
+        jQuery('.deliveryoptions').hide();
+        jQuery('.delivery_desc').hide();
+        jQuery('#delivery-outer').addClass('delivery-outer-incorrect');
+     //   if (jQuery('#delivery-mask-overlay').is(":hidden")) {
+           // jQuery('#delivery-mask-overlay').show();
+
+       // }
+       // if (jQuery('#delivery-enter-postcode').is(":hidden")) {
+       //     jQuery("#delivery-enter-postcode").show();
+      //  }
+    }
+
+    function showDeliveryDescription(value,selector) {
+        jQuery("#delivery-bottom-message-1").hide();
+        jQuery("#delivery-bottom-message-1 .delivery_desc").hide();
+        var delivery_desc_for_checkoutreview = jQuery("#" + selector + value).text();
+        jQuery('#checkout-shipping-description').text(delivery_desc_for_checkoutreview);
+        jQuery("#" + selector + value).show();
+        this.showDeliveryBottomMessage();
+    }
+    function showDeliveryBottomMessage() {
+        if (jQuery('#delivery-bottom-message-1').is(':hidden')) {
+            jQuery("#delivery-bottom-message-1").show();
+        }
+    }
+    function showCartExtendedMessage() {
+        jQuery('#delivery-options-message-extended').html('<span>One or more of the items in your cart has an extended delivery date. The first date shown above is the first date your order will be available for delivery.</span>');
+    }
+    function hideCartExtendedMessage() {
+        jQuery('#delivery-options-message-extended').html('');
+    }
+    function hideDeliveryBottomMessage() {
+        if (jQuery('#delivery-bottom-message-1').is(':visible')) {
+            jQuery("#delivery-bottom-message-1").hide();
+        }
+    }
+
+
+</script>

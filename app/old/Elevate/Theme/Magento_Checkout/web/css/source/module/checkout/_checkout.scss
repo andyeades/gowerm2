@@ -1,0 +1,9 @@
+.opc-wrapper {
+  order: 1;
+  padding-right: 30px;
+  width: 75%;
+  flex: 0 1 auto;
+  @include min-screen($screen-md-min) {
+    box-sizing: border-box;
+  }
+}

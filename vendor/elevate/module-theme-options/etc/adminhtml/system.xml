@@ -1,0 +1,165 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="theme_options" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Theme Options</label>
+			<tab>elevate</tab>
+			<resource>Elevate_Themeoptions::config_elevatethemeoptions</resource>
+            <group id="themeoptions" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Theme Options</label>
+                <field id="headeroptionsset_in_use" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Header Options Set</label>
+                    <source_model>Elevate\Themeoptions\Model\Config\Source\Options</source_model>
+                </field>
+                <field id="footeroptionsset_in_use" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Footer Options Set</label>
+                    <source_model>Elevate\Themeoptions\Model\Config\Source\Footer</source_model>
+                </field>
+                <field id="temp_footerfile_to_include" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Temp Additional Footer File to Include</label>
+                    <source_model>Elevate\Themeoptions\Model\Config\Source\FooterTemp</source_model>
+                </field>
+
+                <field id="build_scss" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="button">
+
+                    <frontend_model>Elevate\Themeoptions\Block\Adminhtml\System\Config\Buildscss</frontend_model>
+                    <comment>If you change the selected options you will need to regenerate the scss files before the changes will show on the frontend.</comment>
+                </field>
+            </group>
+            <group id="themeoptionsheader" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Header Options</label>
+            <field id="header_style" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                <label>Header Style (XML Configuration)</label>
+                <comment><![CDATA[ Select Header version. ]]>
+                </comment>
+                <source_model>Elevate\Themeoptions\Model\Config\Source\Headerstyles</source_model>
+            </field>
+                <field id="header_search_icon_svg" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="textarea">
+                    <label>Header Search Icon Svg</label>
+                    <comment><![CDATA[Header Search Icon.]]></comment>
+                    <attribute type="rows">500</attribute>
+                    <frontend_class>extra-tall-textarea</frontend_class>
+                </field>
+        </group>
+            <group id="breadcrumbs" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Breadcrumbs</label>
+                <field id="home_breadcrumb_icon_on" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Use Icon for Home Link?</label>
+                    <comment>Home Icon instead of Text</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="home_icon_svg" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="textarea">
+                    <label>Home Icon SVG Code</label>
+                    <comment>Paste the SVG Code here.</comment>
+                </field>
+            </group>
+            <group id="googlefont" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Google Font</label>
+                <field id="include_font" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Include Google Font?</label>
+                    <comment>
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="google_font_to_include" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Font Name to Include</label>
+                    <comment>Montserrat</comment>
+                </field>
+                <field id="google_font_weights" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Font Weights to include</label>
+                    <comment>400,500,700</comment>
+                </field>
+            </group>
+            <group id="productgridlist" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Product Grid/List</label>
+                <field id="pitems_addtocart_enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Add to Cart Button Enabled</label>
+                    <comment>Product List/Grid (list.phtml template)</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pitems_addtolinks_enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Add to Links Enabled</label>
+                    <comment>Wishlist/Compare - Product List/Grid (list.phtml template)</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="customisation" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Customisation</label>
+                <field id="custom_scss" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="textarea">
+                    <label>Custom SCSS</label>
+                    <comment>Will be include into SCSS compilation for generating CSS.</comment>
+                    <attribute type="rows">500</attribute>
+                    <frontend_class>extra-tall-textarea</frontend_class>
+                </field>
+                <field id="custom_css" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="textarea">
+                    <label>Custom CSS</label>
+                    <comment>Will be included directly inline on pages.</comment>
+                </field>
+            </group>
+            <group id="productpage" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Product Page</label>
+                <field id="enable_evproductaddto_social" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enable Product Add To Social Container</label>
+                    <comment>Outer Container</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_evproductaddto" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+                    <label>Enable Product Add To Block</label>
+                    <comment>Compare/Wishlist Links</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_evproductmailto" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+                    <label>Enable Product Mailto/Share</label>
+                    <comment>Share/Mail Links</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="cart" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Cart</label>
+                <field id="remove_discount_block" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Remove Discount Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="checkout_info_block" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Include Checkout Info Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="single_proceedtocheckout_button" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enable Single Proceed to Checkout Button (and Popup)</label>
+                    <comment>Only necessary if Multi-shipping Checkout is also turned on in addition to Standard</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="checkout" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Checkout</label>
+                <field id="giftmessaging_include" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Include Gift Messaging Block on Checkout (After Shipping)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+		</section>
+        <section id="evto_email_options" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Email Options</label>
+            <tab>elevate</tab>
+            <resource>Elevate_Themeoptions::config_elevatethemeoptions</resource>
+            <group id="sales_emails_items_block" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Sales Emails - Items Block</label>
+                <comment>Warning: DO NOT have more than one of these options set to YES, otherwise multiple blocks will be output on email</comment>
+                <field id="default_email_order_items_enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Default Order Items Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="custom_layout_one_email_order_items_enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Custom Order Items Template - One</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="custom_layout_two_email_order_items_enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Custom Order Items Template - Two</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+	</system>
+</config>

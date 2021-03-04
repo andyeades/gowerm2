@@ -1,0 +1,1053 @@
+<link rel="stylesheet" type="text/css" href="/skin/frontend/posturite/default/css/cms_css.css" media="all">
+
+<?php
+
+?>
+
+<style>
+    .insearch.col-md-12 {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .main-container.container.col1-layout {
+        margin:  0;
+        padding: 0;
+        width:   100%;
+    }
+
+    .top-bar {
+
+    }
+
+
+    .breadcrumbs {
+        margin-right:  auto;
+        margin-left:   auto;
+        padding-left:  15px;
+        padding-right: 15px;
+        margin:        0 auto !important;
+    }
+
+    .pc_wizard_step {
+        display: none;
+    }
+
+    .pc_wizard_step_active {
+        display: block !important;
+    }
+
+    @media (min-width: 768px) {
+        .breadcrumbs {
+            width: 98%;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .breadcrumbs {
+            width: 98%;
+        }
+    }
+
+    @media (min-width: 1170px) {
+        .breadcrumbs {
+            width: 1140px;
+        }
+    }
+
+
+    @media (min-width: 1470px) {
+        .breadcrumbs {
+            width: 1440px;
+        }
+    }
+
+    .kb-got-question-header {
+        height:          auto;
+        padding:         100px 0px;
+        margin-bottom:   20px;
+        background:      #006548;
+        text-align:      center;
+        background:      linear-gradient(rgba(0, 101, 72, 0.7), rgba(0, 101, 72, 0.7)), url(/skin/frontend/posturite/default/images/faq-knowledgebase.jpg) no-repeat center;
+        background-size: cover;
+        margin-bottom:   0px;
+    }
+
+    .browseall {
+
+        float:         left;
+        font-size:     16px;
+        margin-top:    12px;
+        margin-left:   13px;
+        margin-bottom: 0px;
+        margin-right:  0px;
+        padding-top:   9px;
+        color:         #c3a572;
+    }
+
+    .article img {
+        max-width: 100%;
+    }
+
+    a.overa:hover {
+        background-color: #f7f5f5;
+    }
+
+    /*
+      .overa {
+        border:  1px solid #ccc;
+        padding: 10px;
+        height:  initial !important;
+        flex:    0 1 auto;
+        width:   100%;
+      }
+    */
+
+    .overtext {
+        margin-top: 10px;
+    }
+
+    .article.col-md-3 {
+        /*
+            height:        initial !important;
+            flex:          0 1 auto;
+            display:       flex;
+            align-items:   stretch;
+        */
+        height:        auto !important;
+        margin-bottom: 10px;
+    }
+
+    .articles {
+        flex-wrap:   wrap;
+        display:     flex;
+        align-items: stretch;
+    }
+
+    .header-main-title {
+        text-transform: uppercase;
+        color:          white;
+        font-size:      39px;
+    }
+
+    /*
+      .header-sub-header-link {
+        color:           white;
+        border-left:     1px solid #f0f0f0;
+        margin-left:     7px;
+        padding-left:    7px;
+        text-decoration: underline;
+      }
+
+      .header-sub-header-link:hover {
+        color: #006548;
+      }
+
+      .header-sub-header-link:first-of-type {
+        border-left:     none;
+        margin-left:     0;
+        padding-left:    0;
+      }
+    */
+
+    .header-sub-links-container {
+        color: white;
+    }
+
+    .overtext-inner {
+        font-weight:    bold;
+        margin-bottom:  10px;
+        display:        block;
+        text-transform: uppercase;
+        font-size:      20px;
+        text-align:     center;
+    }
+
+
+    .line-seperator-l, .line-seperator-m {
+        padding-bottom: 5px;
+        position:       relative;
+    }
+
+
+    @media screen and (max-width: 991.99px) {
+        /*
+          .content-section {
+            padding: 17px 0 0px 0px;
+        }
+        */
+        .content-section-main {
+            padding:    0px 20px;
+            text-align: center;
+        }
+
+        div#showstepback {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .article.col-md-3 {
+            /*      width:   100%;*/
+
+        }
+
+        .kb-category-img img {
+            width: 100%;
+
+        }
+
+    }
+
+    @media (min-width: 768px) {
+        .kb-category-block {
+
+            flex:        0 1 auto;
+            display:     flex;
+            align-items: stretch;
+        }
+
+        .kb-landingpage-row {
+
+            flex-wrap:   wrap;
+            display:     flex;
+            align-items: stretch;
+        }
+    }
+
+    /*
+      .insearch {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px
+    }
+    */
+    #searchres {
+        width:         100%;
+        margin:        0 auto;
+        margin-bottom: 40px;
+        position:      absolute;
+        background:    #fff;
+    }
+
+    .pc_wizard_step {
+        display: none;
+    }
+
+    .pc_wizard_step_active {
+        display: block !important;
+    }
+
+    .overimage {
+        text-align: center;
+    }
+
+    .article:hover {
+        cursor: pointer;
+    }
+
+    .article:hover .overtext {
+        color: #0088cc;
+    }
+
+    #pagesearcher {
+        border: none;
+    }
+
+    #pagesearcher:focus {
+        border: none;
+    }
+
+    .article {
+        padding-bottom: 100px;
+    }
+
+    #choosebrand, #choose_product_sku {
+        height:        50px;
+        border:        1px solid grey;
+        border-radius: 0 !important;
+        font-size:     20px;
+        color:         grey;
+        width:         100%;
+        margin-bottom: 30px;
+    }
+
+    .product-help-right {
+        color:     grey;
+        font-size: 20px;
+    }
+
+    .insearch .row {
+        text-align:    left;
+        padding:       20px 10px 20px 10px;
+        border:        1px solid #ddd;
+        border-bottom: 0;
+        background:    #ffffff;
+    }
+
+    .insearch .searchautocomlete-image img {
+        /*
+            float: left;
+            margin: 0 10px 10px 0;
+        */
+        height:    auto;
+        max-width: 100%;
+    }
+
+    .insearch a.name {
+        color:       #444;
+        font-weight: 700;
+        display:     block;
+        cursor:      pointer;
+        border:      none;
+        text-align:  left;
+    }
+
+    .insearch .row:hover {
+        background: #f7f7f7;
+    }
+
+    .insearch .highlight {
+        border: none;
+
+    }
+
+    .nav-input.UI-NAV-INPUT {
+        padding:  0;
+        z-index:  1;
+        position: relative;
+    }
+
+    .insearch .nav-submit-button {
+        float: left;
+    }
+
+    #showstepback {
+        color:          #0088cc;
+        text-transform: uppercase;
+        font-size:      20px;
+        display:        none;
+    }
+
+    #showstepback:hover {
+        cursor: pointer;
+    }
+
+
+    @media (max-width: 768px) {
+        .section-color.product-help {
+            display: none;
+        }
+    }
+
+
+    #choose_product_sku:disabled {
+        opacity: .2;
+    }
+
+
+    .pc_wizard_step .content-section {
+        padding: 30px;
+    }
+
+    #pc_wizard_wrap .article {
+        padding-bottom: 30px;
+    }
+
+    h1.text-center.product-help-name-cat {
+        margin-bottom: 0;
+    }
+
+</style>
+
+<?php
+
+$_collection = Mage::getModel('catalog/category')->getCollection()->addAttributeToSelect('*')->addIsActiveFilter()->addAttributeToFilter('include_in_menu', '1')->setOrder('position', 'ASC')->addAttributeToFilter('level', '2');
+
+// if Category sub Page
+if ($_collection) {
+
+?>
+<script language="JavaScript"><!--
+    function myFunction() {
+
+
+        return false;
+    }
+
+    //--></script><!-- START ROW - HEADER -->
+<section class="content-section hero-banner img-banner product-help">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center" style="color:white">Help with my product</h1>
+                <div class="kb-s-form" style="display: block;
+    text-align: center;
+	">
+                    <div onSubmit="return myFunction(); method=" GET
+                    " id="kb-s-form">
+                    <div class="outswrap nav-input UI-NAV-INPUT">
+
+                        <input name='rnadom' id='pagesearcher' placeholder="<?php echo $this->__('Search for product by name or sku...') ?>" autocomplete="new-password" class="input-text required-entry" value="<?php echo $this->getQuery() ?>" style="
+		    width: 100%;
+    z-index: 10;
+    padding: 20px;
+    background: white;
+	padding-left:14px;
+	font-size:18px;
+	">
+                        <div class="nav-submit-button">
+                            <button type="submit" title="search" class="button" style="
+    margin: 0;
+    cursor: initial;
+    color: #000;
+    line-height: 12px;
+    font-size: 13px;
+    background-color: #fff;
+    position: absolute;
+    right: 16px;
+    top: 22px;
+    height: 20px;
+    width: 20px;
+">
+                                <img src="/skin/frontend/posturite/default/images/posturite_search.svg" autocomplete="off" alt="Search" style="height: 20px; width: 20px;">
+                            </button>
+                        </div>
+                        <div id="searchres"></div>
+                    </div>
+                    <!--        <button type="submit" title="Submit" class="button form-button"><span><span><?php echo $this->__('Submit') ?></span></span></button>-->
+                </div>
+                <script type="text/javascript">
+
+
+                    jQuery(document).mouseup(function (e) {
+                        var container = jQuery(".outswrap");
+                        console.log("CLICK");
+                        // If the target of the click isn't the container
+                        if (!container.is(e.target) && container.has(e.target).length === 0) {
+                            jQuery('#searchres').hide();
+                        }
+                    });
+
+                    jQuery(".outswrap, #pagesearcher").click(function (e) {
+                        jQuery('#searchres').show();
+
+                        // any click events registering inside the div
+                    });
+
+
+                    //<![CDATA[
+                    var dataForm = new VarienForm('kb-s-form', true);
+
+                    //]]>
+
+
+                    function delay(callback, ms) {
+                        var timer = 0;
+                        return function () {
+                            var context = this, args = arguments;
+                            clearTimeout(timer);
+                            timer = setTimeout(function () {
+                                callback.apply(context, args);
+                            }, ms || 0);
+                        };
+                    }
+
+
+                    // Example usage:
+
+                    jQuery('#pagesearcher').keyup(delay(function (e) {
+                        searchProduct(jQuery('#pagesearcher').val());
+                    }, 100));
+                </script>
+            </div>
+            <!--<div id="searchres"></div>-->
+        </div>
+
+
+    </div>
+</section><!-- END ROW - HEADER -->
+
+
+<section class="content-section section-color product-help">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('productcare_menu')->toHtml(); ?>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container">
+
+
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="kb-s-form" style="display: block;
+    width: 90%;
+    text-align: center;
+    margin: 50px;
+	postion:absolute;">
+
+                </div>
+                <script type="text/javascript">
+                    function chooseProduct() {
+                        var main_qty_val = jQuery("#choose_product_sku").val();
+
+
+                        jQuery(".btn-go").on("click", function () {
+
+
+                            if (main_qty_val == '') {
+//		 alert("Please Select Brand and Model");
+
+                                jQuery(".error-message").html("*Please Select Brand and Model");
+
+
+                            } else {
+
+                                event.preventDefault();
+
+                                console.log(main_qty_val);
+
+                                jQuery(".error-message").html('');
+                                var url = '/help-advice/help-with-my-product/' + main_qty_val;
+                                window.location = url;
+                            }
+                        });
+
+
+                    }
+
+                    function searchProduct(term) {
+
+                        var url = '/productcare/index/searchproduct';
+
+
+                        var data = '&q=' + term;
+
+
+                        jQuery.ajax({
+                            url: url,
+                            dataType: 'json',
+                            type: 'post',
+                            data: data,
+                            success: function (data) {
+                                if (data.display_type == 'hide') {
+                                    jQuery('#searchres').html('').hide();
+                                } else {
+                                    jQuery('#searchres').html(data.output).show();
+                                }
+
+                            }
+
+                        });
+                    }
+
+                    function chooseBrand() {
+
+                        jQuery(".error-message").html('');
+                        var url = '/productcare/index/brandproduct';
+
+                        var main_qty_val = jQuery("#choosebrand").val();
+                        var data = '&brand=' + main_qty_val + '&id=' + jQuery("#pc_wizard_step_2").attr("data-catid");
+
+
+                        jQuery.ajax({
+                            url: url,
+                            dataType: 'json',
+                            type: 'post',
+                            data: data,
+                            success: function (data) {
+
+                                jQuery('#choose_product_sku').html(data.output).prop("disabled", false);
+                            }
+
+                        });
+                    }
+                </script>
+                <!-- end customer service-->
+                <script type="text/javascript">
+                    function pcStepOne(catid) {
+                        jQuery('#showstepback').show();
+                        jQuery('#choose_product_sku').html('<option value=""> Choose a model </option>');
+                        jQuery('.pc_wizard_step').removeClass('pc_wizard_step_active');
+                        jQuery('#pc_wizard_step_2').addClass('pc_wizard_step_active').attr("data-catid", catid);
+
+
+                    }
+
+                    function pcStepBack() {
+                        jQuery('#choose_product_sku').html('<option value=""> Choose a model </option>');
+                        jQuery('#showstepback').hide();
+                        jQuery('.pc_wizard_step').removeClass('pc_wizard_step_active');
+                        jQuery('#pc_wizard_step_1').addClass('pc_wizard_step_active');
+
+
+                    }
+                </script>
+            </div>
+            <!-- Start faq -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="kb-category-view">
+
+                        <style>
+                            .article img {
+                                max-width: 100%;
+                            }
+                        </style>
+
+
+                        <div id="pc_wizard_wrap">
+
+                            <div id="pc_wizard_step_1" class="pc_wizard_step pc_wizard_step_active">
+                                <section class="content-section">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h1 class="text-center product-help-name">Browse products</h1>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <?php if ($_collection->count()) { ?>
+                                    <div class="articles">
+                                        <?php foreach ($_collection as $_article) { ?>
+
+
+                                            <?php
+                                            if ($_article->getName() == "Shop By" || $_article->getName() == "DSE and Vehicle Assessments" || $_article->getName() == "Commercial Air Purifiers" || $_article->getName() == "Shop By Work Environment" || $_article->getName() == "Agile Working Products") {
+
+                                                continue;
+                                            }
+
+                                            ?>
+                                            <div class="article col-xs-6 col-md-3" style="height:300px;">
+                                                <div onclick="pcStepOne(<?php echo $_article->getId() ?>);" class="overa">
+                                                    <div class="overwrap">
+                                                        <div class="overimage 1">
+
+                                                            <?php
+                                                            $imageName = str_replace(' ', '-', strtolower($_article->getName()));
+                                                            ?>
+                                                            <img src="/skin/frontend/posturite/default/images/product-help/<?php echo $imageName; ?>.jpg"/>
+
+                                                        </div>
+                                                        <div class="overtext">
+                                                            <span class="overtext-inner"><?php echo $_article->getName() ?></span>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <?php } ?>
+                                        <div style="clear:both;"></div>
+                                    </div>
+                                <?php } else { ?>
+
+
+                                <?php } ?>
+
+                            </div>
+                            <div id="pc_wizard_step_2" class="pc_wizard_step">
+
+                                <script>
+                                    jQuery(".article").on("click", function () {
+                                        jQuery(".product-help-name-cat").html("");
+                                        var url = '/productcare/index/categoryname';
+                                        var data = '&id=' + jQuery("#pc_wizard_step_2").attr("data-catid");
+                                        jQuery.ajax({
+                                            url: url, //This is the current doc
+                                            type: "POST",
+                                            dataType: 'json', // add json datatype to get json
+                                            data: data,
+                                            success: function (data) {
+                                                console.log(data.catname);
+
+                                                jQuery(".product-help-name-cat").html(data.catname);
+                                            }
+                                        });
+
+
+                                    });
+                                </script>
+
+                                <div onclick="pcStepBack();" id="showstepback" style="display:none;">
+                                    <i class="fa fa-caret-left" aria-hidden="true"></i> Back
+                                </div>
+
+
+                                <style>
+                                    .mobile_section {
+
+                                    }
+                                </style>
+
+                                <section class="content-section mobile_section">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h1 class="text-center product-help-name-cat"></h1>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="content-section content-section-main">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h2 style="
+    font-size: 40px;
+">Select your item</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <script>
+                                                jQuery(".article").on("click", function () {
+                                                    var url = '/productcare/index/catbrands';
+                                                    var data = '&id=' + jQuery("#pc_wizard_step_2").attr("data-catid");
+                                                    jQuery.ajax({
+                                                        url: url, //This is the current doc
+                                                        type: "POST",
+                                                        dataType: 'json', // add json datatype to get json
+                                                        data: data,
+                                                        success: function (data) {
+
+                                                            jQuery("#choosebrand").html(data.output);
+                                                        }
+
+                                                    });
+                                                });
+                                            </script>
+
+
+                                            <select onchange="chooseBrand();" id="choosebrand">
+                                                <option value=""> Choose a brand</option>
+
+
+                                            </select>
+
+                                            <select onchange="chooseProduct();" id="choose_product_sku" disabled>
+                                                <option value=""> Choose a model</option>
+                                            </select>
+
+                                            <p style="color:red" class="error-message"></p>
+
+
+                                            <button onclick="chooseProduct();" type="submit" title="Go" class="btn btn-lg btn-posturite btn-go">
+                                                <span><span>Go</span></span></button>
+
+                                        </div>
+
+                                        <div class="col-md-2"></div>
+
+                                        <div class="col-md-4">
+
+                                            <div class="product-help-right">
+                                                Select a brand name and model to find user guides, advice, videos and more.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="product_list">
+
+
+                                    </div>
+
+                                </section>
+                            </div>
+                            <div id="pc_wizard_step_3" class="pc_wizard_step">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- end faq-->
+        </div>
+        <?
+
+        } else {
+
+            $_collection = $this->getAllArticleCollection(4);
+            ?>
+
+            <div class="kb-got-question-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h1>Help &amp; Advice</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+
+
+                <!-- Start faq -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="kb-category-view">
+                            <div class="kb-landing-page-title" style="margin-bottom:20px;">
+                                <div class="line-seperator-m">
+                                    <h2 style="
+    float: left;
+">Product Care</h2>
+                                    <a href="/help-and-advice/product-care" class="browseall">[Browse All]</a>
+                                    <div class="line-seperator-l" style="
+    clear: both;
+"></div>
+                                </div>
+                            </div>
+                            <style>
+                                .article img {
+                                    max-width: 100%;
+                                }
+                            </style>
+
+                            <?php if ($_collection->count()) { ?>
+                                <div class="articles">
+                                    <?php foreach ($_collection as $_article) { ?>
+
+                                        <div class="article col-md-3" style="height:300px;">
+                                            <a href="<?php echo $_article->getUrl() ?>" class="overa">
+                                                <div class="overwrap">
+                                                    <div class="overimage 4" style="background-image: url('<?php echo "/media/wysiwyg/kbarticles/header-images/" . $_article->getData('article_header_image') ?>');height: 175px;background-size: cover;">
+
+                                                    </div>
+                                                    <div class="overtext">
+                                                        <span class="overtext-inner"><?php echo $_article->getName() ?></span>
+                                                        <div>
+                                                            <?php echo getPreviewText($_article); ?>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php } ?>
+                                    <div style="clear:both;"></div>
+                                </div>
+                            <?php } else { ?>
+
+
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end faq-->
+
+                <?php $_collection = $this->getAllArticleCollection(2); ?>
+
+                <!-- Start Guides -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="kb-category-view">
+                            <div class="kb-landing-page-title" style="margin-bottom:20px;">
+                                <div class="line-seperator-m">
+                                    <h2 style="
+    float: left;
+">Help to Buy</h2>
+                                    <a href="/help-and-advice/help-to-buy" class="browseall">[Browse All]</a>
+                                    <div class="line-seperator-l" style="
+    clear: both;
+"></div>
+                                </div>
+                            </div>
+                            <style>
+                                .article img {
+                                    max-width: 100%;
+                                }
+                            </style>
+
+                            <?php if ($_collection->count()) { ?>
+                                <div class="articles">
+                                    <?php foreach ($_collection as $_article) { ?>
+
+                                        <div class="article col-md-3" style="height:300px;">
+                                            <a href="<?php echo $_article->getUrl() ?>" class="overa">
+                                                <div class="overwrap">
+                                                    <div class="overimage 2" style="background-image: url('<?php echo "/media/wysiwyg/kbarticles/header-images/" . $_article->getData('article_header_image') ?>');height: 175px;background-size: cover;">
+
+                                                    </div>
+                                                    <div class="overtext">
+                                                        <span class="overtext-inner"><?php echo $_article->getName() ?></span>
+                                                        <div>
+                                                            <?php echo getPreviewText($_article); ?>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    <?php } ?>
+                                    <div style="clear:both;"></div>
+                                </div>
+                            <?php } else { ?>
+
+
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end guides-->
+                <?php $_collection = $this->getAllArticleCollection(6); ?>
+
+                <!-- Start Guides -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="kb-category-view">
+                            <div class="kb-landing-page-title" style="margin-bottom:20px;">
+                                <div class="line-seperator-m">
+                                    <h2 style="
+    float: left;
+">Customer Services</h2>
+                                    <a href="/help-and-advice/customer-services" class="browseall">[Browse All]</a>
+                                    <div class="line-seperator-l" style="
+    clear: both;
+"></div>
+                                </div>
+                            </div>
+                            <style>
+                                .article img {
+                                    max-width: 100%;
+                                }
+                            </style>
+                            <div id="pc_wizard_wrap">
+
+                                <div id="pc_wizard_step_1">
+                                    <?php if ($_collection->count()) { ?>
+                                        <div class="articles">
+                                            <?php foreach ($_collection as $_article) { ?>
+
+
+                                                <div class="article col-md-3" style="height:300px;">
+                                                    <div onclick="pcStepOne(<?php echo $_article->getId() ?>);" class="overa">
+                                                        <div class="overwrap">
+                                                            <div class="overimage 5" style="background-image: url('<?php echo "/media/wysiwyg/kbarticles/header-images/" . $_article->getData('article_header_image') ?>');height: 175px;background-size: cover;">
+
+                                                            </div>
+                                                            <div class="overtext">
+                                                                <span class="overtext-inner"><?php echo $_article->getName() ?></span>
+                                                                <div>
+                                                                    <?php echo getPreviewText($_article); ?>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            <?php } ?>
+                                            <div style="clear:both;"></div>
+                                        </div>
+                                    <?php } else { ?>
+
+
+                                    <?php } ?>
+
+                                </div>
+                                <div id="pc_wizard_step_2">
+
+                                </div>
+                                <div id="pc_wizard_step_3">
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <?php
+                $posts = Mage::getResourceModel('wordpress/post_collection')->addPostTypeFilter('post')->setOrderByPostDate()->addIsViewableFilter()->setPageSize(4)->load();
+                $articlecount = 1;
+                ?>
+                <!-- Start News -->
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="kb-category-view">
+                            <div class="kb-landing-page-title" style="margin-bottom:20px;">
+                                <div class="line-seperator-m">
+                                    <h2 style="float: left;">Latest News</h2>
+                                    <a href="/news" class="browseall">[Browse All]</a>
+                                    <div class="line-seperator-l" style="
+    clear: both;
+"></div>
+                                </div>
+                            </div>
+                            <style>
+                                .article img {
+                                    max-width: 100%;
+                                }
+                            </style>
+
+                            <?php if ($posts->count()) { ?>
+                                <div class="articles">
+                                    <?php foreach ($posts as $post) { ?>
+                                        <div class="article col-md-3" style="height:300px;">
+                                            <a href="<?php echo $post->getPermalink() ?>" class="overa">
+                                                <div class="overwrap">
+                                                    <?php
+
+                                                    $first_img = '';
+                                                    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->getPostContent(), $matches);
+                                                    $first_img = $matches [1][0];
+
+                                                    if (empty($first_img)) { //Defines a default image
+                                                        $first_img = "/skin/frontend/posturite/default/images/faq-knowledgebase.jpg";
+                                                    }
+
+                                                    ?>
+                                                    <div class="overimage 3" style="background-image: url('<?php echo $first_img; ?>');height: 175px;background-size: cover;"></div>
+                                                    <div class="overtext">
+                                                        <span><?php echo $this->htmlEscape($post->getPostTitle()) ?>   </span>
+                                                        <div>
+                                                            <?php echo getPreviewText($post); ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    <?php } ?>
+                                    <div style="clear:both;"></div>
+                                </div>
+                            <?php } else { ?>
+
+
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end customer service-->
+
+            </div>
+
+
+            <?php
+        }
+        ?>
+
+
+
+

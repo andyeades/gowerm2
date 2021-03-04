@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--Orverriding Image Factory -->
+    <preference for="Magento\Catalog\Block\Product\ImageFactory" type="Elevate\Framework\Block\Product\ImageFactory"/>
+    <!-- Overiding to have access to product on details tabs -->
+    <preference for="Magento\Catalog\Block\Product\View\Details" type="Elevate\Framework\Block\Product\View\Details"/>
+
+    <!-- Overiding to have access to product_id on review short helper -->
+    <preference for="Magento\Review\Block\Product\ReviewRenderer" type="Elevate\Framework\Block\Product\ReviewRenderer"/>
+</config>

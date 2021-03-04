@@ -1,0 +1,159 @@
+<style>
+
+</style>
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+
+$brand = 'blank';
+$brands_array = array(
+    'trigger-point' => '/trigger-point',
+    'trx'           => '/trx',
+    'harbinger'     => '/harbinger',
+    'ironmind'      => '/ironmind',
+    'fat-gripz'     => '/fat-gripz',
+    'heavy-grips'   => '/heavy-gripz',
+    'rocktape'      => '/rocktape',
+    'reflex-bands'  => '/reflex-bands-resistance-bands',
+    'usn'           => '/usn',
+);
+if ($_product) {
+    $brand = $_product->getResource()->getAttribute('brand')->getFrontend()->getValue($_product);
+    $brand_title = $brand;
+    $brand = strtolower(str_replace(" ", "-", $brand));
+
+}
+
+if ($brand == 'trx') { ?>
+    <style type="text/css">
+        .bs-modal-content,
+        .modal-content {
+            background-color: #fff !important;
+        }
+        .bs-modal-header,
+        .modal-header {
+            background-color: #fff000;
+        }
+
+        .page-title-wrapper button {
+            background-color: #000;
+            text-decoration:  none;
+            text-shadow:      none;
+            box-shadow:       none !important;
+            outline:          0px auto -webkit-focus-ring-color !important;
+            color:            #fff;
+            border-radius:    0px;
+            text-transform:   uppercase;
+
+        }
+        .trx-link {
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: none;
+            margin-bottom: 21px;
+            margin-top: 20px;
+        }
+        .trx-imagea {
+            width: 200px;
+        }
+
+    </style>
+    <button class="btn btn-primary btn-lg evlightbox trx-link" data-body-type="div" data-title="TRX Reseller" data-body="#trx_div" type="button">
+
+
+        <img class="trx-imagea" alt="<?= $brand_title; ?>" src="/media/brands/logos/<?= $brand; ?>.jpg">
+    </button>
+
+    <div style="display:none;" id="trx_div">
+        <h3>TRX are high quality &amp; safety tested</h3>
+        <p>Unfortunately there are a lot of websites selling fake TRX products, which are low quality and can be unsafe to use.</p>
+        <p>TRX ensure quality and durability of their products and like manufacturers of mountain climbing gear they use industrial-strength materials, employ redundant stitching, and build in lots safety features.</p>
+        <p>Their products undergo testing for durability and safety to ensure they will withstand major loads</p>
+
+        <h3>How to check your product is genuine</h3>
+        <p>Each TRX Product comes with a unique serial number</p>
+        <p>You can (and should) register your genuine product on the
+            <a target="_blank" href="https://id.trxtraining.com/users/sign_up">Official TRX &reg; website</a>
+        </p>
+
+    </div>
+    <?php
+} else {
+
+    ?>
+    <style type="text/css">
+        .trx_outer {
+            margin-bottom: 0px !important;
+        }
+
+        .hexagon {
+            float:            left;
+            position:         relative;
+            width:            80px;
+            height:           46.19px;
+            background-color: #191c21;
+            margin:           23.09px 0;
+            border-left:      solid 2px #333333;
+            border-right:     solid 2px #333333;
+        }
+
+        .hexagon:before,
+        .hexagon:after {
+            content:           "";
+            position:          absolute;
+            z-index:           1;
+            width:             56.57px;
+            height:            56.57px;
+            -webkit-transform: scaleY(0.5774) rotate(-45deg);
+            -ms-transform:     scaleY(0.5774) rotate(-45deg);
+            transform:         scaleY(0.5774) rotate(-45deg);
+            background-color:  inherit;
+            left:              9.7157px;
+        }
+
+        .hexagon:before {
+            top:          -28.2843px;
+            border-top:   solid 2.8284px #333333;
+            border-right: solid 2.8284px #333333;
+        }
+
+        .hexagon:after {
+            bottom:        -28.2843px;
+            border-bottom: solid 2.8284px #333333;
+            border-left:   solid 2.8284px #333333;
+        }
+
+
+
+        @media (min-width: 1200px) {
+            span.pp_reward_wrap {
+                width:            100%;
+                display:          block;
+
+                float:            none !important;
+                margin-bottom:    21px;
+                background-color: #e3e3e3;
+                text-align:       center !important;
+                padding:          14px;
+                margin-bottom:    0px !important;
+                clear:            both;
+            }
+        }
+    </style>
+
+
+    <?php
+    if (array_key_exists($brand, $brands_array)) {
+
+
+        echo '<a class="trx-link" title="' . $brand_title . '" href="' . $brands_array[$brand] . '" />';
+        ?>
+        <img alt="<?php echo $brand_title; ?>" src="/pub/media/brands/logos/<?= $brand; ?>.jpg" style="width: 200px;margin-bottom: 21px;margin-top: 20px;">
+        <?php
+        echo '</a>';
+    }
+}
+
+?>

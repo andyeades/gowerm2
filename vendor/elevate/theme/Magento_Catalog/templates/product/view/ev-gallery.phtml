@@ -1,0 +1,89 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<?php
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, function ($img) use ($block) {
+    return $block->isMainImage($img);
+}));
+
+if (!empty($images) && empty($mainImage)) {
+    $mainImage = $block->getGalleryImages()->getFirstItem();
+}
+
+$helper = $block->getData('imageHelper');
+$mainImageData = $mainImage ?
+    $mainImage->getData('large_image_url') :
+    $helper->getDefaultPlaceholderUrl('image');
+
+?>
+
+
+
+    <div class="ev-productimage-side">
+        <img src="<?= /* @noEscape */ $mainImageData ?>" alt=""/>
+
+        <div class="ev-prod-image-thumbs">
+            <?php
+            foreach ($images as $thumbnail) { ?>
+                <img src="<?= $thumbnail['small_image_url']?>" data-link="<?= $thumbnail['large_image_url']?>" class="ev-image-thumbnail"/>
+            <?php } ?>
+
+
+
+        </div>
+    </div>
+  <?
+
+    /*
+    Magento\Framework\DataObject Object
+    (
+        [_data:protected] => Array
+    (
+        [value_id] => 201
+                [file] => /b/r/brownie_box_low_res.jpg
+    [media_type] => image
+    [entity_id] => 1
+                [label] =>
+                [position] => 9
+                [disabled] => 0
+                [label_default] =>
+                [position_default] => 9
+                [disabled_default] => 0
+                [video_provider] =>
+                [video_url] =>
+                [video_title] =>
+                [video_description] =>
+                [video_metadata] =>
+                [video_provider_default] =>
+                [video_url_default] =>
+                [video_title_default] =>
+                [video_description_default] =>
+                [video_metadata_default] =>
+                [url] => //localhost:3000/pub/media/catalog/product/b/r/brownie_box_low_res.jpg
+                [id] => 201
+                [path] => /Users/richardjones/www/gowercottage/pub/media/catalog/product/b/r/brownie_box_low_res.jpg
+    [small_image_url] => //localhost:3000/pub/media/catalog/product/cache/0fc22ae7df8cb371a65ad1c6bdd8a2dc/b/r/brownie_box_low_res.jpg
+                [medium_image_url] => //localhost:3000/pub/media/catalog/product/cache/e90c93d88f9e34db9cf5c0d09bf5302c/b/r/brownie_box_low_res.jpg
+                [large_image_url] => //localhost:3000/pub/media/catalog/product/cache/fa0d00306a6b21377e70be7fd5088f81/b/r/brownie_box_low_res.jpg
+            )
+
+    )
+
+     //       echo "<pre>";
+       //     print_r($thumbnail);
+         //   echo "</pre>";
+
+    */
+    ?>
+

@@ -1,0 +1,229 @@
+// sass-lint:disable no-css-comments
+/* stylelint-disable selector-type-no-unknown */
+
+$feefo-color2-rgba:     rgba(0, 107, 127, 0.5);
+$feefo-color2-rgba-b:     rgba(0, 107, 127, 0.7);
+$feefo-color7:          #efefef;
+$feefo-color24:         #c0c4cb;
+$feefo-color1:          #0e1936;
+$feefo-color9:          #f0386c;
+$feefo-color26:         #6b6b6b;
+$feefo-rating-stars:         #ffc100;
+$feefo-rating-stars-alt:         #ffc200;
+@if $sitename == happybeds {
+
+
+    .customer-reviews-header {
+        height:          360px;
+        text-align:      center;
+        background:      linear-gradient($feefo-color2-rgba-b, $feefo-color2-rgba-b), url(/media/pages/customer-reviews/faces__bg.jpg) no-repeat center;
+        background-size: cover;
+        @include rj-clearfix();
+        .customer-reviews-commenticons {
+            position:          relative;
+            display:           inline-block;
+            background:        url(/media/pages/customer-reviews/customersaying.png);
+            background-repeat: no-repeat;
+            background-size:   contain;
+            height:            72px;
+            width:             110px;
+            margin-top:        62px;
+
+
+            @include min-screen($screen-lg-min) {
+                margin-top: 80px;
+            }
+
+        }
+        h2 {
+            color:          white;
+            font-size:      52px;
+            text-transform: uppercase;
+            margin-top:     15px;
+            margin-bottom:  30px;
+            @include max-screen(540px) {
+                font-size:     22px;
+                margin-top:    10px;
+                margin-bottom: 20px;
+            }
+            @include screen(541px, $screen-xs-max) {
+                font-size:     40px;
+                margin-top:    10px;
+                margin-bottom: 20px;
+            }
+            @include screen($screen-sm-min, $screen-sm-max) {
+                margin-top: 30px;
+                font-size:  30px;
+            }
+            @include screen($screen-md-min, $screen-md-max) {
+                font-size:  44px;
+                margin-top: 40px;
+            }
+
+        }
+    }
+
+    .elevate-customreviews-index-index {
+
+        .feefo-review-widget-service {
+            position:      relative !important;
+            top:           -220px !important;
+            margin-bottom: -220px !important;
+            @include min-screen($desktop-min) {
+                top:           -210px !important;
+                margin-bottom: -210px !important;
+            }
+        }
+
+        .feefowidget-global-container {
+            background-color: unset !important;
+
+        }
+        feefowidget-global .feefowidget-global-container .feefowidget-global-container-header {
+            padding: 20px 0;
+            @include min-screen($desktop-min) {
+                padding: 20px 0 55px;
+            }
+        }
+        .feefowidget-header-information-total p {
+            color: white !important;
+        }
+        .feefowidget-header-information-title {
+            h1 {
+                text-align: center !important;
+                display:    none !important;
+            }
+        }
+        .feefowidget-header-image {
+            display: none !important;
+        }
+
+        feefowidget-merchant-header {
+            .feefowidget-header-service {
+                .feefowidget-header-information {
+                    display: block;
+                    min-height: initial !important;
+                    text-align:       center !important;
+                    background-color: white !important;
+                    padding:          20px !important;
+                    margin:           0 auto 50px auto !important;
+                    float:            none !important;
+                    border-radius: 4px;
+                    @include min-screen($desktop-min) {
+                        width: 380px !important;
+                    }
+                }
+            }
+        }
+        feefowidget-merchant-header .feefowidget-viewport-tablet-mobile.feefowidget-header-service .feefowidget-header-information {
+            width: 300px;
+            margin-top: 20px !important;
+        }
+        feefowidget-merchant-header-reviews-title .feefowidget-header-reviews-title {
+            //color: #FFF !important;
+        }
+    }
+
+    feefowidget-global .feefowidget-global-container.feefowidget-viewport-tablet-mobile
+    .feefowidget-global-container-header {
+        background-color: unset !important;
+        margin-top:       30px;
+    }
+
+    feefowidget-merchant-header .feefowidget-header-information-ratings .feefowidget-rating-label {
+        color: white !important;
+    }
+
+    feefowidget-merchant-header .feefowidget-viewport-tablet-mobile .feefowidget-header-information-ratings .feefowidget-logo .feefowidget-header-information-total-mobile {
+        color: white !important;
+    }
+
+    feefowidget-global .feefowidget-global-container.feefowidget-viewport-tablet-mobile .feefowidget-global-container-header {
+
+        @include screen($screen-sm-min, $screen-sm-max) {
+            background-color: unset !important;
+        }
+    }
+
+    feefowidget-global-container-body-content-controls-sorting {
+        feefowidget-feedbacks-sorting {
+            .feefowidget-sorting-newest.feefowidget-sort-selected,
+            .feefowidget-sorting-popular.feefowidget-sort-selected {
+                background-color: $feefo-color9 !important;
+            }
+        }
+    }
+
+    feefowidget-merchant-header .feefowidget-viewport-tablet-mobile .feefowidget-header-information-ratings .feefowidget-logo .feefowidget-header-information-total-mobile p {
+        @include max-screen($screen-sm-max) {
+            color: white !important;
+        }
+    }
+
+    feefowidget-feedbacks-pagination ul .feefowidget-pagination-item, feefowidget-feedbacks-pagination ul .feefowidget-pagination-item button {
+        height:      40px;
+        width:       38px;
+        line-height: 40px;
+        padding:     0 !important;
+    }
+
+    feefowidget-feedbacks-pagination ul .feefowidget-pagination-selected {
+        background-color: $feefo-color9 !important;
+        button {
+            color: white !important;
+        }
+    }
+
+    feefowidget-feedbacks-pagination ul .feefowidget-pagination-next button, feefowidget-feedbacks-pagination ul .feefowidget-pagination-prev button {
+        color: inherit !important;
+    }
+
+    feefowidget-feedbacks-pagination ul .feefowidget-pagination-next, feefowidget-feedbacks-pagination ul .feefowidget-pagination-prev {
+        background-color: unset !important;
+    }
+
+
+    .feefo-c-review-outer {
+        float:         left;
+        @include media-breakpoint-up(sm) {
+            @include make-col(6);
+        }
+        margin-bottom: 15px;
+    }
+
+
+
+    .feefo-c-review-inner {
+        padding:    15px;
+        background: $feefo-color7;
+        .feefo-c-r-title-row {
+            border-bottom: 1px solid $feefo-color24;
+
+            @include rj-clearfix();
+            padding:       10px 0;
+        }
+        .feefo-review-title {
+            font-size: 16px;
+            margin:    5px 0;
+            color:     $feefo-color1;
+
+        }
+        .feefo-c-r-location {
+            float: left;
+        }
+        .feefo-c-r-reviewstars {
+            color: $feefo-rating-stars;
+            float: right;
+        }
+        .feefo-c-r-time {
+            color:     $feefo-color26;
+            font-size: 10px;
+        }
+    }
+
+
+
+
+}
+
+/* stylelint-enable */

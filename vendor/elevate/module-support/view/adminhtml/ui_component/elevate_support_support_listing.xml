@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">elevate_support_support_listing.elevate_support_support_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>elevate_support_support_columns</spinner>
+		<deps>
+			<dep>elevate_support_support_listing.elevate_support_support_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource component="Magento_Ui/js/grid/provider" name="elevate_support_support_listing_data_source">
+		<settings>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Elevate_Support::support</aclResource>
+		<dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="elevate_support_support_listing_data_source">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>support_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="elevate_support_support_columns">
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>support_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="support_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="created_at">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Created At</label>
+			</settings>
+		</column>
+		<column name="hash">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Hash</label>
+			</settings>
+		</column>
+        <column name="email">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Email</label>
+			</settings>
+		</column>
+        <column name="link">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Link</label>
+			</settings>
+		</column>
+        <column name="description">
+			<settings>
+				<filter>description</filter>
+				<label translate="true">Description</label>
+			</settings>
+		</column>
+        <column name="c_data">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">c_data</label>
+			</settings>
+		</column>
+	</columns>
+</listing>
+

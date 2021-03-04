@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="order_tab_info">
+            <action method="setTemplate">
+                <argument name="template" translate="true" xsi:type="string">order/view/tab/info.phtml</argument>
+            </action>
+        </referenceBlock>
+        <!--<referenceBlock name="order_item_extra_info">
+            <block class="Punchout2go\Purchaseorder\Block\Adminhtml\Sales\Order\Create\Extras" name="po2go_item_extras" template="Punchout2go_Purchaseorder::order/view/Extras.phtml" />
+        </referenceBlock>-->
+        <referenceBlock name="column_name">
+            <action method="setTemplate">
+                <argument name="template" translate="true" xsi:type="string">Punchout2go_Purchaseorder::items/column/name.phtml</argument>
+            </action>
+        </referenceBlock>
+        <!--<referenceBlock name="order_item_extra_info">
+            <action method="setTemplate">
+                <argument name="template" translate="true" xsi:type="string">order/view/Extras.phtml</argument>
+            </action>
+        </referenceBlock>-->
+    </body>
+</page>

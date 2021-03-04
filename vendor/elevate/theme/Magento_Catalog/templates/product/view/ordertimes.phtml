@@ -1,0 +1,43 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+
+$leadtime = $_product->getLeadTime();
+
+$leadtimefloor = floor($leadtime % 5);
+
+if ($leadtimefloor == 0) {
+    if ($leadtime == 5) {
+        $maxValueInDaysValue = floor($leadtime / 5) . ' Week';
+    } else {
+        $maxValueInDaysValue = floor($leadtime / 5) . ' Weeks';
+    }
+} else {
+    if (floor($leadtime / 5) == 0) {
+        $maxValueInDaysValue = floor($leadtime % 5) . ' Working Days';
+    } else {
+        $maxValueInDaysValue = (floor($leadtime / 5)+1) . ' Weeks ';
+    }
+}
+
+?>
+
+
+<div class="pp-order-info-outer">
+    <i class="pp-icon pp-icon-clock"><svg viewBox="0 0 36 36" version="1.1" fill="#434343" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+            <title>Group</title>
+            <desc>Created with Sketch.</desc>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Group" >
+                    <path d="M18,36 C8.059,36 0,27.94 0,17.999 C0,8.059 8.059,0 18,0 C27.941,0 36,8.059 36,17.999 C36,27.94 27.941,36 18,36 Z M25.235,22.62 L19.565,16.951 L19.565,10.956 C19.565,9.659 18.514,8.609 17.217,8.609 C15.921,8.609 14.87,9.659 14.87,10.956 L14.87,17.999 C14.87,18.825 15.296,19.392 15.939,19.965 L21.914,25.941 C22.831,26.858 24.318,26.858 25.235,25.941 C26.151,25.024 26.151,23.537 25.235,22.62 Z" id="Shape"></path>
+                </g>item product
+            </g>
+        </svg></i>
+    <div class="pp-order-info">
+        <div class="line">Lead Time: <?= $maxValueInDaysValue; ?></div>
+        <div class="line">Delivery and returns - <a href="#pinfo-delreturns">find out more</a></div>
+    </div>
+</div>
+

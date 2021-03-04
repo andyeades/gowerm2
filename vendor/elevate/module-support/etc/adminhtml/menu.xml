@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Elevate::top_level" module="Elevate_Support" resource="Magento_Backend::content" sortOrder="9999" title="Elevate"/>
+		<add action="elevate_support/support/index" id="Elevate_Support::elevate_support_support" module="Elevate_Support" parent="Elevate_Core::menu" resource="Magento_Backend::content" sortOrder="9999" title="support"/>
+	</menu>
+</config>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.bundle.options">
+            <block class="Elevate\BundleAdvanced\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox"
+                   name="product.info.bundle.options.checkbox"
+                   as="checkbox" />
+        </referenceBlock>
+        <referenceContainer name="product.info.main">
+            <container name="bundle.options.container" htmlTag="div" htmlClass="aw-sbp__bundle-options-container" after="product.info.price" />
+            <container name="customize.button.container" htmlTag="div" htmlClass="aw-sbp__hidden-container" after="product.info.price">
+                <block class="Magento\Catalog\Block\Product\View" name="customize.button" template="Magento_Bundle::catalog/product/view/customize.phtml" />
+            </container>
+        </referenceContainer>
+        <referenceContainer name="product.info.form.options">
+            <container name="bundle.options.container.options" htmlTag="div" htmlClass="bundle-options-container"/>
+        </referenceContainer>
+        <referenceBlock name="bundle.back.button" remove="true"/>
+        <move element="product.info.addtocart.bundle" destination="product.info.options.wrapper.bottom" after="bundle.options.container"/>
+        <move element="product.info.addto.bundle" destination="product.info.options.wrapper.bottom" after="product.info.addtocart.bundle"/>
+        <move element="bundle.product.options.wrapper" destination="bundle.options.container.options" />
+        <referenceBlock name="bundle.summary" remove="true"/>
+        <referenceBlock name="bundle.product.view.options.notice" remove="true"/>
+    </body>
+</page>

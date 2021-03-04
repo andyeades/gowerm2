@@ -1,0 +1,68 @@
+// Product Stars
+
+
+$star_rating_bg_width: 109px !default;
+$star_rating_bg_height: 20px !default;
+
+.sr-clear {
+
+    height: $star_rating_bg_height;
+    width: 100%;
+    margin-bottom: 10px;
+
+    > .star-rating {
+        margin: 0 auto;
+    }
+}
+
+.star-rating {
+    #feefoouter & {
+        height: 20px;
+    }
+    position: relative;
+    width: 109px;
+    flex: 0 1 auto;
+    margin: 0 auto 10px auto;
+
+    &:before {
+        // inactive
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIGZpbGw9IiNGRkZGRkYiID4gICAgPHBhdGggZD0iTSAyNSAyLjI3MzQzNzUgTCAxOC42MDkzNzUgMTguNDgwNDY5IEwgMC44MTA1NDY4OCAxOS40MTc5NjkgTCAxNC42NDg0MzggMzAuNDEyMTA5IEwgMTAuMDcwMzEyIDQ3LjIyMjY1NiBMIDI1IDM3Ljc3MTQ4NCBMIDM5LjkyOTY4OCA0Ny4yMjI2NTYgTCAzNS4zNTE1NjIgMzAuNDEyMTA5IEwgNDkuMTg5NDUzIDE5LjQxNzk2OSBMIDMxLjM5MDYyNSAxOC40ODA0NjkgTCAyNSAyLjI3MzQzNzUgeiI+PC9wYXRoPjwvc3ZnPg==");
+        background-repeat: repeat-x;
+        background-size: $star_rating_bg_width / 5;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: $star_rating_bg_height;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: $star_rating_bg_width;
+    }
+
+    > span {
+        display: block;
+        text-indent: -10000px;
+        width: $star_rating_bg_width;
+        height: $star_rating_bg_height;
+        position: absolute;
+        overflow: hidden;
+
+        &:before {
+            // active
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIGZpbGw9IiNmMWM0MGYiID4gICAgPHBhdGggZD0iTSAyNSAyLjI3MzQzNzUgTCAxOC42MDkzNzUgMTguNDgwNDY5IEwgMC44MTA1NDY4OCAxOS40MTc5NjkgTCAxNC42NDg0MzggMzAuNDEyMTA5IEwgMTAuMDcwMzEyIDQ3LjIyMjY1NiBMIDI1IDM3Ljc3MTQ4NCBMIDM5LjkyOTY4OCA0Ny4yMjI2NTYgTCAzNS4zNTE1NjIgMzAuNDEyMTA5IEwgNDkuMTg5NDUzIDE5LjQxNzk2OSBMIDMxLjM5MDYyNSAxOC40ODA0NjkgTCAyNSAyLjI3MzQzNzUgeiI+PC9wYXRoPjwvc3ZnPg==");
+            background-repeat: repeat-x;
+            background-size: $star_rating_bg_width / 5;
+            bottom: 0;
+            content: "";
+            display: block;
+            height: $star_rating_bg_height;
+            left: 0;
+            position: absolute;
+            right: 0;
+            text-indent: 10000px;
+            top: 0;
+        }
+    }
+
+}

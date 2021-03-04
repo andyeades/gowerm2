@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="css/styles-product-shared.css"/>
+        <link src="css/styles-product-view.css"/>
+    </head>
+    <body>
+<referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Text" name="fixminicarterror">
+                <arguments>
+                    <argument name="text" xsi:type="string"><![CDATA[<script>window.checkout = {};</script>]]></argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="content">
+            <referenceContainer name="product.info.main">
+                <referenceContainer name="product.info.price" htmlId="product-info-price-main"/>
+            </referenceContainer>
+            <container name="ev.product.info.bottom.outer" htmlTag="div" htmlId="pinfo-btm-o" after="product.info.media">
+                <container name="ev.product.info.bottom.main" htmlTag="div" htmlId="pinfo-btm-m">
+                    <container name="ev.pp.keyfacts" htmlTag="div" htmlId="ev-prod-keyfacts-3" htmlClass="ev-prod-keyfacts ev-prod-keyfacts-3" after="product.info.main" before="product.info.details" >
+                        <block class="Magento\Catalog\Block\Product\View" name="product.info.keyfeatures" template="Magento_Catalog::product/view/keyfeatures.phtml"/>
+                    </container>
+                    <block  class="Magento\Catalog\Block\Product\View" name="product.morecollection" template="Magento_Catalog::product/view/more_from_collection.phtml" after="product.info.details" />
+                </container>
+                <container name="ev.product.info.bottom.side" htmlTag="div" htmlId="pinfo-btm-s">
+                    <block class="Magento\Catalog\Block\Product\View" name="elevate.pinfobtms.advert.space" template="Magento_Catalog::product/view/sidebaradvert.phtml" before="-" />
+                </container>
+            </container>
+        </referenceBlock>
+        <move element="product.info.details" before="product.morecollection" destination="ev.product.info.bottom.main"></move>
+        <move element="product.info.media" destination="content" before="product.info.main" />
+
+        <!-- HB Specific -->
+        <referenceBlock name="product.info.details">
+            <referenceBlock name="product.info.details">
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.description" template="Firebear_ConfigurableProducts::product/view/attribute.phtml" group="detailed_info">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getDescription</argument>
+                        <argument name="at_code" xsi:type="string">description</argument>
+                        <argument name="css_class" xsi:type="string">description</argument>
+                        <argument name="at_label" xsi:type="string">none</argument>
+                        <argument name="title" translate="true" xsi:type="string">Description</argument>
+                        <argument name="sort_order" xsi:type="string">10</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.attributes" as="additional" template="Magento_Catalog::product/view/attributes.phtml" group="detailed_info">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">More Information</argument>
+                        <argument name="sort_order" xsi:type="string">20</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+            <block class="Magento\Catalog\Block\Product\View"
+                   name="product-info-dimensions"
+                   template="Magento_Catalog::product/view/client-specific/happybeds/dimensions.phtml"
+                   group="detailed_info" after="product.info.description">
+                            <arguments>
+                                <argument name="sort_order" xsi:type="string">10</argument>
+                    <argument name="title" translate="true" xsi:type="string">Dimensions</argument>
+                            </arguments>
+                        </block>
+            <block class="Magento\Catalog\Block\Product\View"
+                   name="product-info-instructions"
+                   template="Magento_Catalog::product/view/client-specific/happybeds/instructions.phtml"
+                   group="detailed_info" after="product.info.dimensions">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Instructions</argument>
+                    <argument name="sort_order" xsi:type="string">50</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View" name="product-info-reviews" template="Magento_Catalog::product/view/client-specific/happybeds/reviews.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Product Reviews <![CDATA[<span class="testtag"></span>]]></argument>
+                    <argument name="sort_order" xsi:type="string">60</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <!--
+         <referenceBlock name="product.info.details">
+            <block class="Magento\Review\Block\Product\Review" name="reviews.tab" as="reviews" template="Magento_Review::review.phtml" group="detailed_info" ifconfig="catalog/review/active">
+                <arguments>
+                    <argument name="sort_order" xsi:type="string">30</argument>
+                </arguments>
+                <block class="Magento\Review\Block\Form" name="product.review.form" as="review_form" ifconfig="catalog/review/active">
+                    <container name="product.review.form.fields.before" as="form_fields_before" label="Review Form Fields Before"/>
+                </block>
+            </block>
+        </referenceBlock>
+        -->
+        <referenceBlock name="catalog.product.related" remove="true" />
+        <referenceBlock name="pattachments.tab" remove="true"/>
+        <referenceBlock name="product.info.details">
+            <block class="FME\Productattachments\Block\Productattachments"
+                   name="pattachments.tab" as="pattachments"
+                   template="FME_Productattachments::productattachments.phtml"
+                   group="detailed_info" after="product.info.dimensions">
+                <arguments>
+                    <argument name="title" xsi:type="helper" helper="FME\Productattachments\Helper\Data::getProductPageTabTitle">
+                        <param name="title">Instructions</param>
+                    </argument>
+                </arguments>
+                <block name="attachments" as="attachments" class="FME\Productattachments\Block\Productattachments" template="FME_Productattachments::items/attachments.phtml"/>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="aw_pq_ajax_container">
+            <arguments>
+                <argument name="sort_order" xsi:type="string">40</argument>
+            </arguments>
+        </referenceBlock>
+
+
+
+        <referenceBlock name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View"
+                   name="product.info.leadtime"
+                   template="Magento_Catalog::product/view/leadtime.phtml"
+                   after="product.info.price"
+                before="product.info"/>
+
+        </referenceBlock>
+        <referenceBlock name="reviews.tab" remove="true"/>
+
+
+
+
+
+        <!-- Removed Due to Using Amasty -->
+        <referenceContainer name="productalert.stock" remove="true"/>
+
+        <referenceBlock name="product.info.stock.sku" remove="true"/>
+
+        <referenceContainer name="product.info.addto" remove="true"/>
+        <referenceContainer name="product.info.social" remove="true"/>
+        <referenceBlock name="product.attributes" remove="true"/>
+    </body>
+</page>

@@ -1,0 +1,22 @@
+$prod-view-info-description-font-size: 0.875rem !default;
+
+@if $sitename == happybeds {
+
+    .product-info-description {
+        font-size: $prod-view-info-description-font-size;
+    }
+    .product-info-dimensions {
+        .pull-right {
+            float: right;
+        }
+        .pull-left {
+            float: left;
+        }
+     }
+
+    .ev-pp-brand-adv {
+
+
+    }
+}
+

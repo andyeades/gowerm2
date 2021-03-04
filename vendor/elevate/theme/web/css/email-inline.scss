@@ -1,0 +1,64 @@
+//
+//  Styles for emails
+//  _____________________________________________
+
+//  See comments in source/_email-base.scss for explanation of email styles
+
+
+@import "mixins/vendor/bootstrapmixins/functions";
+
+// Mixins
+@import "mixins/media-queries";
+@import "mixins/bootstrap-mixins";
+@import "mixins/rj-mixins";
+
+// Variables
+
+@import "variables/elevate_variables";
+@import 'vendor/magento-ui/variables';
+
+
+@import 'vendor/magento-ui/lib'; // Global lib
+
+
+// Global variables
+@import 'vendor/magento-ui/variables/colors';
+@import 'vendor/magento-ui/variables/typography';
+@import 'vendor/magento-ui/variables/icons';
+
+// All variables
+@import 'vendor/magento-ui/variables/actions-toolbar';
+@import 'vendor/magento-ui/variables/breadcrumbs';
+@import 'vendor/magento-ui/variables/buttons';
+@import 'vendor/magento-ui/variables/components';
+@import 'vendor/magento-ui/variables/dropdowns';
+@import 'vendor/magento-ui/variables/forms';
+@import 'vendor/magento-ui/variables/layout';
+@import 'vendor/magento-ui/variables/loaders';
+@import 'vendor/magento-ui/variables/messages';
+@import 'vendor/magento-ui/variables/navigation';
+@import 'vendor/magento-ui/variables/pages';
+@import 'vendor/magento-ui/variables/popups';
+@import 'vendor/magento-ui/variables/rating';
+@import 'vendor/magento-ui/variables/responsive';
+@import 'vendor/magento-ui/variables/sections';
+@import 'vendor/magento-ui/variables/structure';
+@import 'vendor/magento-ui/variables/tables';
+@import 'vendor/magento-ui/variables/tooltips';
+
+
+@import 'vendor/magento-ui/variables/email'; // Global email variables
+@import 'variables/elevate_variables';
+@import 'components/email/email-variables'; // Theme variables for emails
+
+
+@import 'components/email/email-base-inline';
+@import 'components/email/email-extend-inline';
+
+//  Module-specific styles for emails
+@import 'vendor/Magento_Bundle/styles/email-inline';
+
+@import 'vendor/Magento_Sales/styles/email-inline';
+
+//  It is impossible to apply media queries as inline styles, so all media queries must be output in this file
+$media-target: 'all';

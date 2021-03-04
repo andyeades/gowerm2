@@ -1,0 +1,291 @@
+.theme-pearl {
+  .page-footer {
+    background-color: $color-pas-grey-dark-alt;
+  }
+}
+
+.footer-block {
+  @include max-screen($screen-xs-max) {
+    &:not(:nth-child(1)) {
+      margin-bottom: 3rem;
+    }
+  }
+  @include min-screen($screen-sm-min) {
+    &:nth-child(1) {
+      width:        18%;
+      padding-left: 0;
+    }
+    &:nth-child(2) {
+      width: 22%;
+    }
+    &:nth-child(3) {
+      width: 28%;
+    }
+    &:nth-child(4) {
+      width:         34%;
+      padding-right: 0;
+    }
+  }
+  @include min-screen($screen-md-min) {
+    &:nth-child(1) {
+      width: 18%;
+    }
+    &:nth-child(2) {
+      width: 22%;
+    }
+    &:nth-child(3) {
+      width: 26%;
+    }
+    &:nth-child(4) {
+      width: 34%;
+      padding-right: 15px;
+    }
+  }
+  h4 {
+    margin-bottom: 1.5rem;
+  }
+  .mini-logo {
+    text-align: center;
+    margin: 0;
+    @include max-screen($screen-xs-max) {
+      margin: 40px auto;
+    }
+    @include min-screen($screen-sm-min) {
+      text-align: left;
+    }
+  }
+}
+
+.footer {
+  &.content {
+    margin-top: 0;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    ul {
+      @include min-screen($screen-sm-min) {
+        padding-right: 0 !important;
+      }
+    }
+  }
+}
+
+.theme-pearl {
+  .page-wrapper {
+    .page-footer {
+      .footer.content {
+        .pre-footer {
+          .pre-footer-content {
+            padding: 20px 0;
+          }
+          .heading-intro-wrap {
+            padding: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.heading-into {
+  text-align: center;
+}
+
+.intro-main {
+  text-align:     center;
+  text-transform: initial;
+}
+
+.intro-sub {
+  font-size: 20px;
+  color:     #404042;
+}
+
+.intro-main .highlighted {
+  color: #ff301a;
+}
+
+
+
+
+ .heading-into {
+   text-align: center;
+ }
+
+.intro-main {
+  text-align: center;
+  text-transform: initial;
+}
+
+.intro-sub {
+  font-size: 20px;
+  color: #404042;
+}
+
+.intro-main .highlighted {
+  color: #ff301a;
+}
+
+.page-footer .heading-intro-wrap {
+  padding: 30px;
+  background: none!important;
+}
+
+.footer-section2-content {
+  padding-top:    50px;
+  padding-bottom: 50px;
+  @include max-screen($screen-xs-max) {
+    text-align:  center;
+    padding-top: 0px;
+  }
+}
+
+#newsletter-footer {
+  .form-group {
+    display:     flex;
+    align-items: stretch;
+
+    @include max-screen($screen-xs-mid-max) {
+      flex-wrap: wrap;
+    }
+    @include max-screen($screen-xs-max) {
+
+    }
+    @include min-screen($screen-sm-min) {
+      flex-wrap: wrap;
+    }
+    @include min-screen($screen-md-min) {
+      flex-wrap: nowrap;
+    }
+    @include min-screen($screen-lg-min) {
+
+    }
+    @include min-screen($screen-xlg-min) {
+
+    }
+  }
+
+}
+
+input#newsletter-bottom {
+  flex:             1 1 auto;
+  height:           47px;
+  padding:          14px 12px;
+  font-size:        12px;
+  color:            #555555;
+  background-color: #ffffff;
+  @include max-screen($screen-xs-max) {
+    width:            70%;
+  }
+  @include max-screen($screen-xs-mid-max) {
+    width: 100%;
+  }
+
+  @include min-screen($screen-sm-min) {
+
+  }
+  @include min-screen($screen-md-min) {
+    width:            70%;
+  }
+  @include min-screen($screen-lg-min) {
+
+  }
+  @include min-screen($screen-xlg-min) {
+
+  }
+}
+
+#newsletter-footer button {
+  flex:          1 1 auto;
+  height:        47px;
+  background:    #ff2d00;
+
+  border:        none;
+  color:         #ffffff;
+  border-radius: $standard-button-radius;
+  @include max-screen($screen-xs-mid-max) {
+    max-width: 50%;
+    margin: 15px auto 0 auto;
+  }
+  @include screen($screen-xs-min, $screen-xs-max) {
+    margin: 0 0 0 15px;
+    width:         30%;
+  }
+  @include min-screen($screen-sm-min) {
+    max-width: 50%;
+    margin: 15px auto 0 auto;
+  }
+  @include min-screen($screen-md-min) {
+    margin: 0 0 0 15px;
+    width: 30%;
+  }
+  @include min-screen($screen-lg-min) {
+
+  }
+  @include min-screen($screen-xlg-min) {
+
+  }
+  span {
+    font-size:   12px;
+    line-height: initial;
+  }
+}
+
+.footer-v3-list {
+  line-height: 30px;
+}
+
+#elevate-footer-bottom {
+  background-color: $color-pas-grey-dark-alt;
+}
+
+.footer-copy {
+  position:   relative;
+  float:      none;
+  width:      100%;
+  min-height: 1px;
+  padding:    15px;
+  text-align: center;
+  font-size:  11px;
+ .row {
+   display: flex;
+   @include max-screen($screen-xs-max) {
+     flex-direction: column;
+   }
+ }
+}
+
+.footer-copy-left {
+  flex: 0 1 auto;
+
+  @include min-screen($screen-sm-min) {
+    text-align: left;
+    width: 50%;
+  }
+}
+
+.footer-copy-right {
+  flex: 0 1 auto;
+
+  @include min-screen($screen-sm-min) {
+    text-align: right;
+    width: 50%;
+  }
+}
+
+
+.mini-logo {
+  @include max-screen($screen-xs-max) {
+    text-align: center;
+  }
+
+}
+
+.signup-wrap {
+  @include max-screen($screen-xs-max) {
+    margin-top: 50px;
+  }
+}
+
+.footer-copy {
+  float: none;
+}

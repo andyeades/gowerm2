@@ -1,0 +1,24 @@
+{
+    "name": "elevate/module-theme-options",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Richard Jones",
+            "email": "richard.jones@elevateweb.co.uk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "scssphp/scssphp": "^1.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Elevate\\Themeoptions\\": ""
+        }
+    }
+}

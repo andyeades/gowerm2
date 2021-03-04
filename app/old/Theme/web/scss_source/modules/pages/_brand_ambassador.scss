@@ -1,0 +1,265 @@
+.theme-pearl.store-view-default.page-layout-cms_page_with_header_dark {
+
+  #maincontent {
+    background-color: $color-pas-black-dark;
+  }
+  .columns {
+    background: $color-pas-black-dark;
+    margin-top: -70px;
+    position:   relative;
+    z-index:    1;
+    display:    flex;
+    margin-bottom: 4rem;
+  }
+  .column.main {
+    padding-top: 0;
+  }
+
+  .sub-page-menu {
+    background: $color-pas-black-dark;
+  }
+  .cat-date-wrapper.container {
+    @include min-screen($screen-sm-min) {
+      .cat-date-wrapper.container {
+        position:  absolute;
+        left:      50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .ambassador-content-wrap {
+
+    @include min-screen($screen-sm-min) {
+      width:          100% !important;
+      padding-top:    50px !important;
+      padding-bottom: 50px !important;
+      padding-left:   0px !important;
+      padding-right:  0px !important;
+    }
+  }
+
+  .header-wrap {
+    position: relative;
+  }
+
+  a#taghov {
+    color:         #ffffff;
+    padding:       5px 11px;
+    margin-right:  5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size:     15px;
+    text-align:    center;
+  }
+
+  .cat-tags {
+    text-align: center;
+  }
+
+  .ev_amb_grid {
+    display:      flex;
+    flex-wrap: wrap;
+    @include min-screen($screen-sm-min) {
+
+    }
+  }
+
+  .ev_amb_item_wrap {
+    padding-top: 30px;
+    display:     flex;
+    width:       100%;
+    @include min-screen($screen-xs-min) {
+      width: 50%;
+    }
+    @include min-screen($screen-md-min) {
+      width: 25%;
+    }
+   }
+
+  .ev_amb_item {
+    box-sizing:       border-box;
+    box-shadow:       rgba(0, 0, 0, 0.13) 0px 2px 4px 0px;
+    zoom:             1;
+    transform:        translate3d(0px, 0px, 0px);
+    font-size:        13px;
+    line-height:      normal;
+    border-width:     0px;
+    border-style:     solid;
+    border-color:     rgb(187, 187, 187);
+    border-image:     initial;
+    margin:           0px;
+    color:            #b4b4b6;
+    overflow:         visible !important;
+    text-transform:   initial !important;
+    background-color: #303030;
+    img {
+        background: #3a3939;
+    }
+  }
+
+  .ev_amb_item_desc {
+    padding: 20px;
+    a, h2 {
+      color: #FFFFFF;
+    }
+    .short-intro {
+      min-height: 50px;
+    }
+  }
+
+  .ev_amb_item_btn {
+    width:      100%;
+    border:     1px solid #b4b4b6;
+    padding:    15px;
+    text-align: center;
+    margin-top: 20px;
+    &:hover {
+        background-color: $color-pas-orange;
+        cursor:           pointer;
+        color:            #ffffff;
+        border:           none;
+    }
+  }
+
+
+
+}
+
+.theme-pearl.store-view-default.cms-ambassadors,
+.theme-pearl.store-view-default.cms-official-performance-nutrition-supplier {
+  .ev-page-header-outer-a {
+    background-image: linear-gradient(rgba(209, 27, 7, 1),rgba(209, 29, 7, 1), rgba(209, 27, 7, 1)),url("../images/page-header-background-ambassadors-opc-45.jpg");
+  }
+}
+
+.theme-pearl.store-view-default.page-layout-ambassador_individual {
+  background: #161618;
+  .ev-page-header-outer-a {
+    background-image: linear-gradient(rgba(209, 27, 7, 1),rgba(209, 29, 7, 1), rgba(209, 27, 7, 1)),url("../images/page-header-background-ambassadors-opc-45.jpg");
+  }
+
+
+  @media screen and (max-width: 768px) {
+
+    .ambassador-content-wrap {
+      width: 100% !important;
+      padding-top: 50px !important;
+      padding-bottom: 50px !important;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    }
+
+    .page-title.post-title {
+      padding: 0px !important;
+    }
+  }
+
+  .header-wrap {
+    position: relative;
+  }
+
+  a#taghov {
+    color: #fff;
+    padding: 5px 11px;
+    margin-right: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .cat-tags {
+    text-align: center;
+  }
+
+  #maincontent {
+    background-color: $color-pas-grey-dark-alt-1;
+    color: #ffffff;
+  }
+  .columns {
+    background: $color-pas-black-dark;
+    margin-top: -70px;
+    position:   relative;
+    z-index:    1;
+    display:    flex;
+    margin-bottom: 4rem;
+  }
+  .column.main {
+    padding-top: 0;
+  }
+
+
+  .ambassador-content-wrap {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px;
+    text-align: center;
+  }
+
+  .ambassador-content-wrap img {
+    border-radius: 50%;
+    width: 300px;
+    margin-bottom: 30px;
+  }
+
+  .ambassador-quote {
+    text-align: center;
+    font-size: 25px;
+    color: #888888;
+    text-transform: uppercase;
+  }
+
+  .main-wording {
+    text-align: justify;
+    margin-top: 50px;
+    line-height: 25px;
+    font-size: 15px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #2e2e30;
+  }
+
+  .ambassador-quote-outer {
+    text-align: center;
+    img {
+      width:         30px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .sub-section ul {
+    text-transform: uppercase;
+    color: #949494;
+  }
+
+
+  .ambassodor-social-icons {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+
+  .image-wrapper:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.2) 80%, rgba(0, 0, 0, 0.7) 90%, rgba(0, 0, 0, 0.9) 95%, black 100%);
+  }
+
+  .sub-section {
+    text-align: left;
+    h2 {
+      color: #ffffff;
+    }
+  }
+}
+
+.theme-pearl.store-view-default.cms-official-performance-nutrition-supplier {
+  .ev_amb_item_desc {
+     h2 {
+       text-align: center;
+     }
+  }
+}
+

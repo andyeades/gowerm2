@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="orderrequest_setup_billing">
+        <observer name="orderrequest_merge_defaults" instance="Punchout2go\Purchaseorder\Observer\AddressMerger" />
+    </event>
+    <event name="orderrequest_setup_shipping">
+        <observer name="orderrequest_merge_defaults" instance="Punchout2go\Purchaseorder\Observer\AddressMerger" />
+    </event>
+    <event name="procurement_orderrequest_order_created">
+        <observer name="order_add_item_line_numbers" instance="Punchout2go\Purchaseorder\Observer\ItemModifier" />
+    </event>
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="order_set_order_request_id" instance="Punchout2go\Purchaseorder\Observer\OrderRequestIdUpdater" />
+    </event>
+</config>

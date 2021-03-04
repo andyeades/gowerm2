@@ -1,0 +1,50 @@
+<?php
+
+// Include Google Font?
+$include_font = $block->getIncludeGoogleFont();
+
+$google_font_to_include = $block->getGoogleFontToInclude();
+
+$google_fonts_array = explode(',', $google_font_to_include);
+
+$google_font_weights = $block->getGoogleFontWeights();
+
+$google_fonts_weights_array = explode(',', $google_font_weights);
+
+$output_string = '';
+
+$location_count = 0;
+
+$total_count = count($google_fonts_array);
+
+foreach ($google_fonts_array as $font_to_include) {
+
+    if (isset($google_font_weights_array[$location_count])) {
+        $font_weights = $google_fonts_weights_array[$location_count];
+    } else {
+        $font_weights = $google_fonts_weights_array[0];
+    }
+
+
+
+    $output_string .= "family=".$font_to_include.':wght@'.$font_weights;
+
+    if ($total_count != $location_count + 1) {
+        $output_string .= '&';
+    }
+        $location_count++;
+}
+
+
+?>
+
+
+
+<link href="https://fonts.googleapis.com/css2?<?= $output_string ?>&display=swap" rel="stylesheet">
+
+<?php
+$custom_css_output = $block->getCustomCss();
+?>
+<style>
+  <?=$custom_css_output;?>
+</style>

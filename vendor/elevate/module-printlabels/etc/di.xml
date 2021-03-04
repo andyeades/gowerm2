@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Elevate\PrintLabels\Model\Order\Pdf\Invoice" />
+
+    <virtualType name="Elevate\PrintLabels\Logger\Custom" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers"  xsi:type="array">
+                <item name="info" xsi:type="object">Elevate\PrintLabels\Logger\Handler\Custom</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Elevate\PrintLabels\Controller\Adminhtml\Test\Test">
+        <arguments>
+            <argument name="logger" xsi:type="object">Elevate\PrintLabels\Logger\Custom</argument>
+        </arguments>
+    </type>
+
+</config>

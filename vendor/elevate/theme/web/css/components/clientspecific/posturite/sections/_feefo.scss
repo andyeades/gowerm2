@@ -1,0 +1,216 @@
+@if $sitename == posturite {
+    .feefo-inner {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .feefo-item {
+        flex: 0 0 auto;
+        justify-content: center;
+    }
+
+    .feefo-wrap {
+        margin-right: 40px;
+    }
+
+    @media screen and(max-width: 592px) {
+        .feefo-inner {
+            flex-direction: column;
+            text-align: center;
+        }
+        .feefo-wrap {
+            margin-right: 0;
+        }
+        .feefo-badge-wrap {
+            margin-top: 40px;
+        }
+    }
+
+    .feefo-tab-icon {
+        float: left;
+        padding-top: 2px;
+        width: 54px;
+    }
+
+
+    .feefo-service-content {
+        position: relative;
+    }
+
+    .feefo-clickmore {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .Pfeefo-clickmore {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .feefo-clickmorebutton {
+        border: 1px solid $ps-color-convert-0;
+        padding: 10px 60px;
+        text-decoration: none;
+        background: $ps-color-convert-2;
+        display: inline-block;
+        margin: 0 auto;
+        color: $ps-color-convert-89;
+
+        &:hover {
+            border: 1px solid $ps-color-convert-89;
+            cursor: pointer;
+        }
+    }
+
+    .Pfeefo-clickmorebutton {
+        border: 1px solid $ps-color-convert-0;
+        padding: 10px 60px;
+        text-decoration: none;
+        background: $ps-color-convert-2;
+        display: inline-block;
+        margin: 0 auto;
+        color: $ps-color-convert-89;
+
+        &:hover {
+            border: 1px solid $ps-color-convert-89;
+            cursor: pointer;
+        }
+    }
+    .product-feefo-reviews-table {
+        width: 100%;
+        margin-bottom: 20px;
+
+        .rating-box {
+            width: 85px;
+            height: 16px;
+            font-size: 0;
+            line-height: 0;
+            background: $ps-url-convert-37 0 0 repeat-x;
+            text-indent: -999em;
+            overflow: hidden;
+            margin: 0 auto 4px;
+
+            .rating {
+                float: left;
+                height: 16px;
+                background: $ps-url-convert-37 0 100% repeat-x;
+            }
+        }
+
+        tbody {
+            th {
+                border-bottom: 1px dotted $ps-color-convert-0;
+                border-right: none;
+            }
+
+            td {
+                border-bottom: 1px dotted $ps-color-convert-0;
+                border-right: none;
+            }
+        }
+
+        td {
+            padding: 20px 10px;
+            border-bottom: 1px dotted $ps-color-convert-0;
+        }
+
+        thead th {
+            background-color: $ps-color-convert-59;
+            font-weight: 700;
+            border-bottom: 1px solid $ps-color-convert-0;
+            padding: 10px;
+            color: $ps-color-convert-58;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+    }
+
+    span {
+        &.feefo-tab-review-count {
+            display: block;
+            float: left;
+        }
+
+        &.feefo-score {
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+
+    .feefo-review-count {
+        display: block;
+        float: left;
+        width: 100%;
+        color: $ps-color-convert-33;
+        text-align: right;
+    }
+
+
+    .no-rating {
+        margin: 0;
+    }
+
+    .ratings {
+        margin: 7px 12px;
+
+        strong {
+            float: left;
+            margin: 1px 3px 0 0;
+        }
+
+        .rating-links {
+            margin: 0;
+            float: left;
+            margin-top: 5px;
+
+            .separator {
+                margin: 0 2px;
+            }
+        }
+
+        dt {
+        }
+
+        dd {
+        }
+
+        .rating-box {
+            float: left;
+            margin-right: 3px;
+        }
+
+        .amount {
+        }
+
+        &:after {
+            display: block;
+            content: ".";
+            clear: both;
+            font-size: 0;
+            line-height: 0;
+            height: 0;
+            overflow: hidden;
+        }
+    }
+
+    .rating-box {
+        height: 16px;
+        margin: 0 auto 4px;
+
+        .goldstar {
+        }
+
+        .greystar {
+        }
+
+        .rating {
+            height: 16px;
+        }
+
+        &.previous-review-rating {
+            float: left;
+        }
+    }
+
+}

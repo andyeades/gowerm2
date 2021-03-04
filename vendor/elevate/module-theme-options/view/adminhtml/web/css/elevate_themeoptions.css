@@ -1,0 +1,23 @@
+/* Color Picker Fix for Tooltip spilling onto second line */
+
+.admin__field-colorppickerfix .admin__field-control._with-tooltip .admin__field-tooltip {
+  display: inline-block;
+}
+.admin__field-colorppickerfix .admin__field-control._with-tooltip .admin__field-colorppickerfix.admin__field {
+  display: inline-block;
+}
+.admin__field-control.admin__field-colorppickerfix .admin__control-text.colorpicker-input {
+  width: auto !important;
+}
+
+
+/* Add Narrow Text Input Field */
+.admin__field-narrow-text .admin__control-text {
+  width: auto !important;
+}
+
+/* Big Text area */
+
+.extra-tall-textarea {
+    min-height: 500px;
+}

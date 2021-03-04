@@ -1,0 +1,60 @@
+<?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module
+ * to newer versions in the future.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Framework\View\TemplateEngine\Php $this */
+/** @var \Smile\DebugToolbar\Block\Zone\Response $block */
+
+$response = $block->getResponse();
+
+$length = mb_strlen($response->getContent());
+
+$headers = [];
+foreach ($response->getHeaders() as $header) {
+    $headers[$header->getFieldName()] = $header->getFieldValue();
+}
+
+$tags = [];
+if (array_key_exists('X-Magento-Tags', $headers)) {
+    $tags = explode(',', $headers['X-Magento-Tags']);
+    $headers['X-Magento-Tags'] = 'see in Full Page Cache section';
+    sort($tags);
+}
+
+$esi = $block->getEsiUrlList();
+
+$sections = [
+    'HTTP' => [
+        'Version'       => $block->formatValue($response->getVersion(), [], 'text'),
+        'Cookie'        => $response->getCookie(),
+        'Response Code' => $block->formatValue($response->getHttpResponseCode(), ['gt' => 399], 'text'),
+        'Reason Phrase' => $response->getReasonPhrase(),
+        'Status Code'   => $block->formatValue($response->getStatusCode(), ['gt' => 399], 'text'),
+    ],
+    'Headers' => $headers,
+    'Response' => [
+        'Date' => date('Y-m-d H:i:s'),
+        'Size' => $block->formatValue($length, ['gt' => 512*1024], 'size'),
+    ],
+    'Full Page Cache' => [
+        'Mode'    => $block->formatValue($block->getFullPageCacheMode(), ['neq' => 'varnish'], 'text'),
+        'Nb Tags' => $block->formatValue(count($tags), ['gt' => 50], 'number'),
+        'Nb ESI'  => $block->formatValue(count($esi), ['gt' => 4], 'number'),
+        'Tags'    => $tags,
+        'ESI'     => $esi,
+    ],
+];
+
+$block->addToSummary('Response', 'Date', $sections['Response']['Date']);
+$block->addToSummary('Response', 'Size', $sections['Response']['Size']);
+$block->addToSummary('Response', 'FPC Mode', $sections['Full Page Cache']['Mode']);
+$block->addToSummary('Response', 'FPC Tags', $sections['Full Page Cache']['Nb Tags']);
+$block->addToSummary('Response', 'ESI Tags', $sections['Full Page Cache']['Nb ESI']);
+
+echo $block->displaySections($sections);

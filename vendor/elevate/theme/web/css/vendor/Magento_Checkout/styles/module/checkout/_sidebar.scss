@@ -1,0 +1,23 @@
+//
+//  Variables
+//  _____________________________________________
+
+$checkout-sidebar__margin: $indent__base !default;
+$checkout-sidebar__margin__xl: 46px !default;
+
+
+$opc_sidebar_width_desktop: 33.33333% !default;
+$opc_sidebar_order_desktop: 6 !default;
+$opc_sidebar_margin_desktop: 2.875rem 0 1.25rem !default;
+
+
+.opc-sidebar {
+  @include min-screen($desktop-min) {
+    width: $opc_sidebar_width_desktop;
+    order: $opc_sidebar_order_desktop;
+    margin: $opc_sidebar_margin_desktop;
+    .modal-header {
+      display: none;
+    }
+  }
+}

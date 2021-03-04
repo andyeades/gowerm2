@@ -1,0 +1,122 @@
+$include_fullwidthprodimage_scss: false !default;
+
+$ev_fullwidth_prodimage_width: 100% !default;
+$ev_fullwidth_prodimage_width_desktopmd: 100% !default;
+$ev_fullwidth_prodimage_padding: false !default;
+$ev_fullwidth_prodimage_padding_desktop: false !default;
+$ev_fullwidth_prodimage_backgroundsize: contain !default;
+$ev_fullwidth_prodimage_backgroundsize_desktop: contain !default;
+$ev_fullwidth_prodimage_backgroundsize_desktopmd: cover !default;
+$ev_fullwidth_prodimage_transition: background 1s ease-in-out !default;
+$ev_fullwidth_prodimage_background: false !default;
+$ev_fullwidth_prodimage_container_background: false !default;
+$ev_fullwidth_prodimage_container_background_desktop: false !default;
+$ev_fullwidth_prodimage_container_background_desktopmd: false !default;
+
+$ev_fullwidth_prodimage_overlay_container_background: false !default;
+$ev_fullwidth_prodimage_overlay_container_background_desktop: false !default;
+$ev_fullwidth_prodimage_overlay_container_background_desktopmd: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.5) 100%) !default;
+
+$ev_fullwidth_prodimage_height: 500px !default;
+$ev_fullwidth_prodimage_height_desktopmd: 700px !default;
+
+$ev_fullwidth_prodimage_container_display: flex !default;
+$ev_fullwidth_prodimage_container_flexwrap: wrap !default;
+$ev_fullwidth_prodimage_container_paddingbottom: 3rem !default;
+
+
+$ev_prod_image_thumbs_flex: 0 1 auto !default;
+$ev_prod_image_thumbs_display: flex !default;
+$ev_prod_image_thumbs_width: 100% !default;
+$ev_prod_image_thumbs_background: false !default;
+$ev_prod_image_thumbs_alignitems: flex-end !default;
+$ev_prod_image_thumbs_order: 3 !default;
+$ev_prod_image_thumbs_padding: 0 0 3rem 0 !default;
+$ev_prod_image_thumbs_margin: 500px 0 0 0 !default;
+
+$ev_prod_image_thumbs_padding_desktop: 0 0 3rem 0 !default;
+$ev_prod_image_thumbs_margin_desktop: 500px 0 0 0 !default;
+
+$ev_prod_image_thumbs_padding_desktopmd: 0 0 3rem 0 !default;
+$ev_prod_image_thumbs_margin_desktopmd: false !default;
+
+$ev_image_thumbnail_cursor: pointer !default;
+$ev_image_thumbnail_borderradius: 50px !default;
+$ev_image_thumbnail_flex: 0 1 auto !default;
+$ev_image_thumbnail_padding: false !default;
+$ev_image_thumbnail_margin: 0 1rem 0 0 !default;
+$ev_image_thumbnail_width: 75px !default;
+$ev_image_thumbnail_height: 75px !default;
+
+
+@if $include_fullwidthprodimage_scss != false {
+
+    .ev-fullwidth-prodimage {
+        background-repeat: no-repeat;
+        width:  $ev_fullwidth_prodimage_width;
+        @include co(background-size, $ev_fullwidth_prodimage_backgroundsize);
+        @include co(padding, $ev_fullwidth_prodimage_padding);
+        @include co(transition, $ev_fullwidth_prodimage_transition);
+        @include min-screen($desktop_min) {
+            @include co(background-size, $ev_fullwidth_prodimage_backgroundsize_desktop,$ev_fullwidth_prodimage_backgroundsize);
+            @include co(padding, $ev_fullwidth_prodimage_padding_desktop, $ev_fullwidth_prodimage_padding);
+        }
+
+        @include min-screen($desktop_md_min) {
+            @include co(background-size, $ev_fullwidth_prodimage_backgroundsize_desktopmd, $ev_fullwidth_prodimage_backgroundsize_desktop,$ev_fullwidth_prodimage_backgroundsize);
+            @include co(width, $ev_fullwidth_prodimage_width_desktopmd, $ev_fullwidth_prodimage_width);
+        }
+        .container {
+            @include co(background, $ev_fullwidth_prodimage_container_background);
+            @include co(display, $ev_fullwidth_prodimage_container_display);
+            @include co(flex-wrap, $ev_fullwidth_prodimage_container_flexwrap);
+            @include co(padding-bottom, $ev_fullwidth_prodimage_container_paddingbottom);
+            @include min-screen($desktop_min) {
+                @include co(background, $ev_fullwidth_prodimage_container_background_desktop, $ev_fullwidth_prodimage_container_background);
+            }
+            @include min-screen($desktop_md_min) {
+                @include co(background, $ev_fullwidth_prodimage_container_background_desktopmd, $ev_fullwidth_prodimage_container_background_desktop, $ev_fullwidth_prodimage_container_background);
+            }
+        }
+        .ev-fullwidth-background-overlay {
+            @include co(background, $ev_fullwidth_prodimage_overlay_container_background);
+            @include min-screen($desktop_min) {
+                @include co(background, $ev_fullwidth_prodimage_overlay_container_background_desktop, $ev_fullwidth_prodimage_overlay_container_background);
+            }
+            @include min-screen($desktop_md_min) {
+                @include co(background, $ev_fullwidth_prodimage_overlay_container_background_desktopmd, $ev_fullwidth_prodimage_overlay_container_background_desktop, $ev_fullwidth_prodimage_overlay_container_background);
+            }
+        }
+    }
+
+    .ev-prod-image-thumbs {
+        @include co(flex, $ev_prod_image_thumbs_flex);
+        @include co(align-items, $ev_prod_image_thumbs_alignitems);
+        @include co(order, $ev_prod_image_thumbs_order);
+        @include co(display, $ev_prod_image_thumbs_display);
+        @include co(width, $ev_prod_image_thumbs_width);
+        @include co(background, $ev_prod_image_thumbs_background);
+        @include co(padding, $ev_prod_image_thumbs_padding);
+        @include co(margin, $ev_prod_image_thumbs_margin);
+        @include min-screen($desktop_min) {
+            @include co(padding, $ev_prod_image_thumbs_padding_desktop, $ev_prod_image_thumbs_padding);
+            @include co(margin, $ev_prod_image_thumbs_margin_desktop, $ev_prod_image_thumbs_margin);
+        }
+        @include min-screen($desktop_md_min) {
+            @include co(padding, $ev_prod_image_thumbs_padding_desktopmd $ev_prod_image_thumbs_padding_desktop, $ev_prod_image_thumbs_padding);
+            @include co(margin, $ev_prod_image_thumbs_margin_desktopmd, $ev_prod_image_thumbs_margin_desktop, $ev_prod_image_thumbs_margin);
+        }
+    }
+
+    .ev-image-thumbnail {
+        @include co(cursor, $ev_image_thumbnail_cursor);
+        @include co(border-radius, $ev_image_thumbnail_borderradius);
+        @include co(flex, $ev_image_thumbnail_flex);
+        @include co(margin, $ev_image_thumbnail_margin);
+        @include co(padding, $ev_image_thumbnail_padding);
+        @include co(height, $ev_image_thumbnail_width);
+        @include co(width, $ev_image_thumbnail_height);
+    }
+
+
+}

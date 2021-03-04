@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Elevate_Delivery::delivery" sortOrder="10" title="Delivery Options">
+                    <resource id="Elevate_Delivery::deliveryoptions" sortOrder="10" title="Elevate Delivery Options">
+                        <resource id="Elevate_Delivery::configuration_index" sortOrder="10" title="Configuration"/>
+                    </resource>
+                    <resource id="Elevate_Delivery::DeliveryMethod" sortOrder="10" title="DeliveryMethod">
+                        <resource id="Elevate_Delivery::DeliveryMethod_save" sortOrder="10" title="Save DeliveryMethod"/>
+                        <resource id="Elevate_Delivery::DeliveryMethod_delete" sortOrder="20" title="Delete DeliveryMethod"/>
+                        <resource id="Elevate_Delivery::DeliveryMethod_update" sortOrder="30" title="Update DeliveryMethod"/>
+                        <resource id="Elevate_Delivery::DeliveryMethod_view" sortOrder="40" title="View DeliveryMethod"/>
+                    </resource>
+                    <resource id="Elevate_Delivery::DeliveryArea" sortOrder="10" title="DeliveryArea">
+                        <resource id="Elevate_Delivery::DeliveryArea_save" sortOrder="10" title="Save DeliveryArea"/>
+                        <resource id="Elevate_Delivery::DeliveryArea_delete" sortOrder="20" title="Delete DeliveryArea"/>
+                        <resource id="Elevate_Delivery::DeliveryArea_update" sortOrder="30" title="Update DeliveryArea"/>
+                        <resource id="Elevate_Delivery::DeliveryArea_view" sortOrder="40" title="View DeliveryArea"/>
+                    </resource>
+                    <resource id="Elevate_Delivery::DeliveryProducts" sortOrder="10" title="DeliveryProducts">
+                        <resource id="Elevate_Delivery::DeliveryProducts_save" sortOrder="10" title="Save DeliveryProducts"/>
+                        <resource id="Elevate_Delivery::DeliveryProducts_delete" sortOrder="20" title="Delete DeliveryProducts"/>
+                        <resource id="Elevate_Delivery::DeliveryProducts_update" sortOrder="30" title="Update DeliveryProducts"/>
+                        <resource id="Elevate_Delivery::DeliveryProducts_view" sortOrder="40" title="View DeliveryProducts"/>
+                    </resource>
+                    <resource id="Elevate_Delivery::DeliveryFee" sortOrder="10" title="DeliveryFee">
+                        <resource id="Elevate_Delivery::DeliveryFee_save" sortOrder="10" title="Save DeliveryFee"/>
+                        <resource id="Elevate_Delivery::DeliveryFee_delete" sortOrder="20" title="Delete DeliveryFee"/>
+                        <resource id="Elevate_Delivery::DeliveryFee_update" sortOrder="30" title="Update DeliveryFee"/>
+                        <resource id="Elevate_Delivery::DeliveryFee_view" sortOrder="40" title="View DeliveryFee"/>
+                    </resource>
+                    <resource id="Elevate_Delivery::Holidaydates" sortOrder="10" title="DeliveryHolidaydates">
+                        <resource id="Elevate_Delivery::Holidaydates_save" sortOrder="10" title="Save DeliveryHolidaydates"/>
+                        <resource id="Elevate_Delivery::Holidaydates_delete" sortOrder="20" title="Delete DeliveryHolidaydates"/>
+                        <resource id="Elevate_Delivery::Holidaydates_update" sortOrder="30" title="Update DeliveryHolidaydates"/>
+                        <resource id="Elevate_Delivery::Holidaydates_view" sortOrder="40" title="View DeliveryHolidaydates"/>
+                    </resource>
+                    <resource id="Elevate_Delivery::DeliveryProductImport" sortOrder="10" title="DeliveryProductImport">
+                    </resource>
+                    <resource id="Elevate_Delivery::Test" sortOrder="10" title="DeliveryProductImportTest"></resource>
+                </resource>
+
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Elevate_Delivery::config_elevate_delivery" title="Delivery Options"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

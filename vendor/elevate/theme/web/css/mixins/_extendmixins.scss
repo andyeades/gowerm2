@@ -1,0 +1,175 @@
+
+@mixin abs-no-display() {
+    display: none;
+}
+
+@mixin abs-block-title() {
+    > strong {
+        @include lib-heading(h3);
+    }
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+@mixin abs-account-blocks() {
+    .block-title {
+       @include abs-block-title();
+        > .action {
+            margin-left: 15px;
+        }
+    }
+
+    .box-title {
+        display: inline-block;
+        margin: 0 0 $indent__xs;
+
+        > span {
+            @include lib-heading(h4);
+        }
+
+        > .action {
+            font-weight: 400;
+            margin-left: $indent__s;
+        }
+    }
+
+    .block-content {
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        .box {
+            margin-bottom: $indent__base;
+        }
+    }
+}
+
+@mixin abs-add-clearfix() {
+    @include lib-clearfix();
+}
+
+@mixin abs-reset-list() {
+    @include lib-list-reset-styles();
+    & > li {
+        margin: 0;
+    }
+}
+@mixin abs-input-qty() {
+    text-align: center;
+    width: 47px;
+}
+
+@mixin abs-action-button-as-link() {
+    @include lib-button-as-link($_margin: false);
+    border-radius: 0;
+    font-size: inherit;
+    font-weight: $font-weight__regular;
+
+    &:active,
+    &:not(:focus) {
+        box-shadow: none;
+    }
+}
+
+@mixin abs-product-options-list() {
+    dt {
+        clear: left;
+        float: left;
+        margin: 0 $indent__s $indent__xs 0;
+
+        &:after {
+            content: ': ';
+        }
+    }
+
+    dd {
+        display: inline-block;
+        float: left;
+        margin: 0 0 $indent__xs;
+    }
+}
+
+@mixin abs-button-responsive() {
+    @include lib-button-responsive();
+};
+
+@mixin abs-blocks-2columns() {
+    width: 48.8%;
+
+    &:nth-child(odd) {
+        clear: left;
+        float: left;
+    }
+
+    &:nth-child(even) {
+        float: right;
+    }
+}
+
+@mixin abs-reset-left-margin() {
+    margin-left: 0;
+}
+@mixin abs-margin-for-forms-desktop {
+    @include lib-css(margin-left, $form-field-type-label-inline__width);
+}
+@mixin abs-visually-hidden {
+    @include lib-visually-hidden();
+}
+
+@mixin abs-remove-button-for-blocks {
+    @include lib-icon-font(
+            $icon-remove,
+        $_icon-font-size         : 26px,
+        $_icon-font-line-height  : 15px,
+        $_icon-font-text-hide    : true,
+        $_icon-font-color        : $color-gray19,
+        $_icon-font-color-hover  : $color-gray19,
+        $_icon-font-color-active : $color-gray19
+    );
+}
+
+@mixin abs-revert-field-type {
+    .fieldset {
+        > .field,
+        .fields > .field {
+            @include lib-form-field-type-revert($_type: block);
+
+            &:not(:first-child):last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@mixin abs-pager-toolbar() {
+    .toolbar-amount,
+    .limiter,
+    .pages {
+        margin-bottom: $indent__m;
+    }
+}
+
+@mixin abs-adjustment-incl-excl-tax() {
+    .price-including-tax,
+    .price-excluding-tax,
+    .weee {
+        @include lib-font-size(14);
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .price-including-tax + .price-excluding-tax {
+        display: inline-block;
+        @include lib-font-size(11);
+
+        &:before {
+            content: '('attr(data-label)': ';
+        }
+
+        &:after {
+            content: ')';
+
+        }
+    }
+}

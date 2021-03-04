@@ -1,0 +1,102 @@
+<?php
+//    $_productCollection= Mage::getModel('catalog/product')->getCollection()->setPageSize(6)
+//        ->addAttributeToSelect('*')
+//        ;
+//New arrivals: 701
+//Featured: 702
+//Best Sellers: 703
+//$category = Mage::getModel('catalog/category')->load($category_id);
+
+$category_id  = 703;
+$category = Mage::getModel('catalog/category')->load($category_id);
+$productCollection = $category->getProductCollection();
+$productCollection->setPageSize(12)
+  ->setCurPage(1);
+
+/* $productCollection = Mage::getModel('catalog/product')
+->getCollection()
+->addCategoryFilter($category);
+
+  */
+$productCollection
+  ->addStoreFilter()
+  ->setVisibility(Mage::getSingleton('catalog/product_visibility')->getVisibleInCatalogIds());
+
+$productCollection
+  ->addMinimalPrice()
+  ->addFinalPrice()
+  ->addTaxPercents()
+  ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+  ->addUrlRewrite();
+
+$productCollection->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED));
+
+
+$_helper = $this->helper('catalog/output');
+
+$openup = 0;
+?>
+<div class="container-fluid" style="position:relative">
+  <div class="customNavigationOwl">
+    <a class="prev2 swiper-button-prev swiper-button-black"></a> <a class="next2 swiper-button-next swiper-button-black"></a>
+
+
+  </div>
+
+
+  <div class="container-fluid" style="position:relative;">
+
+    <div class="container-fluid" style="position:relative">
+
+
+      <div class="test"></div>
+      <div class="test2"></div>
+
+
+      <div class="owl-carousel owl-wrapper owl-one owl-theme">
+
+        <?php foreach ($productCollection as $_product): ?>
+          <div class="item">
+            <div class="featured-cat-outer">
+
+              <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), NULL, true) ?>" class="product-image">
+                <img src="<?php echo Mage::helper('catalog/image')->init($_product, 'thumbnail')->resize(250); ?>" width="174" height="174" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), NULL, true) ?>"/>
+              </a>
+              <div class="product-details">
+                <h2 class="product-name">
+                  <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), NULL, true) ?>"><span itemprop="name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span></a>
+                </h2>
+
+                <div class="posturite_reviews cf">
+                  <?php echo $this->getLayout()->getBlockSingleton('reviewfeefo/reviewfeefo')->getliststart($_product->getSku()); ?>
+                  <!--<img src="https://www.feefo.com/feefo/feefologo.jsp?logon=www.posturite.co.uk&template=product-page-orange-stars-only-85x18.png&vendorref=<?php echo $this->htmlEscape($_product->getData('sku')); ?>&mode=product&order=desc&since=all&negativesanswered=true&smallonzero=true">-->
+                  <?php //echo $this->getLayout()->createBlock('core/template')->setTemplate('feeforeview/list_start.phtml')->setProduct($_product)->toHtml(); ?>
+                </div>
+                <?php $this->getPriceHtml($_product, true); ?>
+
+                <?php if ($openup == 1) { ?>
+                  <div class="actions">
+                    <?php if ($_product->isSaleable()): ?>
+                      <button type="button" title="<?php echo $this->__('View Product') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')">
+                        <span><span><?php echo $this->__('View Product') ?></span></span></button>
+                    <?php else: ?>
+                      <p class="availability out-of-stock"><span><?php echo 'Out of stock'; ?></span></p>
+                    <?php endif; ?>
+                  </div>
+                <?php } ?>
+              </div>
+
+            </div>
+          </div>
+
+        <?php endforeach ?>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+</div>

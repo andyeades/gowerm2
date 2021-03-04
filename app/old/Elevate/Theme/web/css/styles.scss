@@ -1,0 +1,37 @@
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+//
+//  Blank theme desktop styles
+//  _____________________________________________
+
+//  These desktop styles are additional to mobile
+
+//
+//  Global lib + theme styles
+//  ---------------------------------------------
+
+// Mixins
+@import "mixins/media-queries";
+@import "mixins/bootstrap-mixins";
+@import "mixins/rj-mixins";
+
+// Variables
+
+@import 'vendor/magento-ui/variables';
+
+@import "variables/elevate_variables";
+
+@import 'vendor/magento-ui/lib';
+
+@import "components/extend";
+
+
+@import "components/core";
+//
+//  Magento Import instructions
+//  ---------------------------------------------
+
+//@magento_import 'source/_module.scss'; // Theme modules

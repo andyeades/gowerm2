@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="elevate_microsite_microsite Table" engine="innodb" name="elevate_microsite_microsite" resource="default">
+		<column comment="Entity Id" identity="true" name="microsite_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="microsite_id"/>
+		</constraint>
+		<column name="id" nullable="true" xsi:type="integer"/>
+		<column length="255" name="microsite_url" nullable="true" xsi:type="varchar"/>
+		<column name="created_at" nullable="true" xsi:type="datetime"/>
+		<column name="updated_at" nullable="true" xsi:type="datetime"/>
+		<column length="255" name="microsite_name" nullable="true" xsi:type="varchar"/>
+		<column name="microsite_description" nullable="true" xsi:type="text"/>
+		<column length="255" name="microsite_contact_name" nullable="true" xsi:type="varchar"/>
+		<column name="microsite_contact_number" nullable="true" xsi:type="text"/>
+		<column length="255" name="microsite_contact_email" nullable="true" xsi:type="varchar"/>
+		<column name="microsite_notes" nullable="true" xsi:type="text"/>
+		<column length="255" name="main_logo" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="price_display_type" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="selected_theme" nullable="true" xsi:type="varchar"/>
+		<column name="login_by_customer" nullable="true" xsi:type="integer"/>
+		<column name="login_splash_screen" nullable="true" xsi:type="integer"/>
+		<column name="force_login_email" nullable="true" xsi:type="text"/>
+		<column name="whitelist_ips" nullable="true" xsi:type="text"/>
+		<column name="header_dynamic_fields_id" nullable="true" xsi:type="integer"/>
+		<column name="footer_dynamic_fields_id" nullable="true" xsi:type="integer"/>
+	</table>
+</schema>

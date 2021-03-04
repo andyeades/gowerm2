@@ -1,0 +1,127 @@
+<style>
+  #page-main-outer{
+    background-color:#0e1937;
+margin:0;
+  }
+  .page-main {
+
+    color: white;
+  }
+  .snow{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 50%;
+  }
+  .breadcrumbs{
+    display:none;
+  }
+  #homepage-slider {
+    height: auto;
+    background: none;
+    background-size: cover;
+    margin: 0 auto;
+    min-height:300px;
+  }
+  #homepage-slider img {
+    width: 100%;
+  }
+  .hide_desktop {
+    display: block;
+  }
+  .hide_mobile {
+    display: none;
+  }
+  @media only screen and (max-width: 992px){
+    .hide_mobile {
+      display: block !important;
+    }
+    .hide_desktop {
+      display: none !important;
+    }
+  }
+  img.product-image-photo.lazyloaded {
+    width: 100%;
+
+  }
+  .products-grid .product-item {
+
+    border-radius: 5px;
+  }
+  .category-image, .category-description {
+    margin-bottom: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 50%;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+    padding-top: 37px;
+    margin-bottom: 40px!important;
+  }
+  .catalog-category-view .page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 25px;
+  }
+</style>
+
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+
+if ($category) {
+    $category_id = $category->getId();
+    echo '<div id="category_id" style="display:none;">'.$category_id.'</div>';
+    $image_array[] = ['d' => 'frozen_header.png', 'm' => 'frozen_header.jpg'];
+    $image_array[197] = ['d' => 'frozen_header.png', 'm' => 'frozen_header.jpg'];
+    $image_array[198] = ['d' => 'cars_header.jpg', 'm' => 'cars_header.jpg'];
+    $image_array[205] = ['d' => 'mickey_header.jpg', 'm' => 'mickey_header.jpg'];
+    $image_array[200] = ['d' => 'minnie_header.jpg', 'm' => 'minnie_header.jpg'];
+    $image_array[204] = ['d' => 'spiderman_header.jpg', 'm' => 'spiderman_header.jpg'];
+    $image_array[201] = ['d' => 'princess_header.jpg', 'm' => 'princess_header.jpg'];
+    $image_array[196] = ['d' => 'toy_story_header.jpg', 'm' => 'toy_story_header.jpg'];
+    $image_array[199] = ['d' => 'paw_patrol_header.jpg', 'm' => 'paw_patrol_header.jpg'];
+    $image_array[202] = ['d' => 'pj_masks_header.jpg', 'm' => 'pj_masks_header.jpg'];
+    $image_array[203] = ['d' => 'peppa_pig_header.jpg', 'm' => 'peppa_pig_header.jpg'];
+    $image_array[206] = ['d' => 'room_to_build_header.jpg', 'm' => 'room_to_build_header.jpg'];
+    $image_array[207] = ['d' => 'dinosaurs_header.jpg', 'm' => 'dinosaurs_header.jpg'];
+    $image_array[208] = ['d' => 'jcb_header.jpg', 'm' => 'jcb_header.jpg'];
+    $image_array[209] = ['d' => 'flowers_and_birds_header.jpg', 'm' => 'flowers_and_birds_header.jpg'];
+    $image_array[210] = ['d' => 'vehicles_header.jpg', 'm' => 'vehicles_header.jpg'];
+    $image_array[211] = ['d' => 'space_explorer_header.jpg', 'm' => 'space_explorer_header.jpg'];
+    $image_array[212] = ['d' => 'stargrey_header.jpg', 'm' => 'stargrey_header.jpg'];
+    $image_array[213] = ['d' => 'pink_header.jpg', 'm' => 'pink_header.jpg'];
+    $image_array[214] = ['d' => 'blue_header.jpg', 'm' => 'blue_header.jpg'];
+
+
+    $lookup_id = $category_id;
+    if(is_numeric($lookup_id)){
+
+        $desktop_image = $image_array[$lookup_id]['d'];
+        $mobile_image = $image_array[$lookup_id]['m'];
+    }
+    $from_homepage = false;
+if(isset($_GET['nobanner'])){
+    if($_GET['nobanner'] == 'true'){
+        $from_homepage = true;
+    }
+}
+    if((!empty($desktop_image) || !empty($mobile_image)) && !$from_homepage){
+        ?>
+      <div id="homepage-slider">
+        <img alt="Shop Now" class="hide_desktop lazyload" data-cfsrc="/media/loader.png" data-src="/media/disney/<?php echo $desktop_image; ?>" data-cfstyle="width: 100%;" style="">
+        <img alt="Shop Now" class="hide_mobile lazyload" data-cfsrc="/media/loader.png" data-src="/media/disney/mobile/<?php echo $mobile_image; ?>" data-cfstyle="width: 100%;" style="">
+      </div>
+
+        <?php
+    }
+}
+else{
+  echo "NO Category";
+}
+?>

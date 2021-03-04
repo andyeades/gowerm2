@@ -1,0 +1,30 @@
+/* default-value */
+.admin__control-collapsible .admin__collapsible-content .default-value {
+    text-align: center;
+}
+
+/* action-edit */
+.admin__control-collapsible .admin__collapsible-block-wrapper .fieldset-wrapper-title .action-edit {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    position: absolute;
+    right: 1rem;
+    top: 1.4rem;
+}
+
+.admin__control-collapsible .admin__collapsible-block-wrapper .fieldset-wrapper-title .action-edit:before {
+    content: '\e631';
+    font-size: 2rem;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Admin Icons';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    speak: none;
+}
+
+.admin__control-collapsible .admin__collapsible-block-wrapper .fieldset-wrapper-title .action-edit > span {
+    display: none;
+}

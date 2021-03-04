@@ -1,0 +1,527 @@
+.menu-image {
+    margin-right: 0 !important;
+    padding-top: 0 !important;
+
+    > img {
+        max-width: 100%;
+        height: 100%;
+        padding-bottom: 10px;
+    }
+}
+
+$e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
+
+.e-pn {
+    > li {
+        > ul {
+            @if $e-sn-dropshadow-on == 1 {
+                @include min-screen($mobile-menu-notvisible) {
+                    filter: $e-sn-dropshadow;
+                }
+
+            }
+
+            // ev-nav-level2 - cd-secondary-nav
+            @include co('font-family', $e-pn-font-family, $font-family-base);
+            .show-me {
+                @include  max-screen($mobile-menu-visible-max) {
+                    left: 0;
+                    position: unset;
+                    margin-bottom: 0;
+                }
+            }
+            position: absolute;
+            @include rj-transform(translateX(0));
+
+            a {
+                @include min-screen($mobile-menu-notvisible) {
+                    height: 30px;
+                    line-height: 30px;
+                    color: $e-sn-a-desktop-color;
+                    font-size: $e-sn-a-desktop-fontsize;
+
+                    &:hover {
+                        color: $e-sn-a-desktop-hover-color;
+                    }
+                }
+
+            }
+
+            @include min-screen($mobile-menu-notvisible) {
+                // dropdown menu style
+                height: auto;
+                width: $e-sn-desktop-width;
+                padding: $e-sn-desktop-padding;
+
+                @if $e-sn-desktop-border-on == 1 {
+                    border: $e-sn-desktop-border;
+                    @if $e-sn-desktop-border-radius-on == 1 {
+                        border-radius: $e-sn-desktop-border-radius;
+                    }
+                }
+                text-align: left;
+                @include rj-transform(translateX(0));
+            }
+            @include min-screen($mobile-menu-notvisible) {
+                width: 96vw;
+            }
+            @include min-screen($screen-xlg-min) {
+                width: $screen-xlg-min - 30px;
+            }
+
+            &.menu-style-3 {
+                @include min-screen($mobile-menu-notvisible) {
+                    @if $m3-desktop-border-on == 1 {
+                        border: $m3-desktop-border;
+                    }
+                    background: $m3-desktop-bg-color;
+                }
+
+                a {
+                    @include max-screen($mobile-menu-visible-max) {
+                        display: block;
+                        @include a-styling(
+                            $-a-height: $m3-mobile-ul-li-a-height,
+                            $-a-line-height: $m3-mobile-ul-li-a-lineheight,
+                            $-a-border-bottom-on: 1,
+                            $-a-border-bottom: $m3-mobile-border,
+                            $-a-font-size: false,
+                            $-a-color: $m3-mobile-ul-li-a-color,
+                            $-a-hover-color: $m3-mobile-ul-li-a-hover-color,
+                            $-a-text-transform-on: 0,
+                            $-a-text-transform: false,
+                            $-a-padding: false,
+                            $-a-margin: false
+                        );
+                    }
+                }
+
+                > li {
+                    > a {
+                        // No Link/ Headers on Desktop
+                        @include min-screen($mobile-menu-notvisible) {
+                            color: $m3-desktop-li-a-color;
+                            @if $m3-desktop-li-a-textransform-on == 1 {
+                                text-transform: $m3-desktop-li-a-textransform;
+                            }
+                            @include co('font-size', $m3-desktop-li-a-font-size, $font-size-base);
+                            @include co('margin', $m3-desktop-li-a-margin, $e-sn-has-children-a-desktop-margin);
+                            @include co(font-weight, $m3-li-a-fontweight-desktop, $font-weight-base);
+                        }
+                        @include max-screen($mobile-menu-visible-max) {
+                            display: block;
+                            @include a-styling(
+                                $-a-height: $m3-mobile-ul-li-a-height,
+                                $-a-line-height: $m3-mobile-ul-li-a-lineheight,
+                                $-a-border-bottom-on: 1,
+                                $-a-border-bottom: $m3-mobile-border,
+                                $-a-font-size: false,
+                                $-a-color: $m3-mobile-ul-li-a-color,
+                                $-a-hover-color: $m3-mobile-ul-li-a-hover-color,
+                                $-a-text-transform-on: 0,
+                                $-a-text-transform: false,
+                                $-a-padding: false,
+                                $-a-margin: false
+                            );
+                        }
+                    }
+                }
+
+                ul li {
+                    > a {
+                        @include min-screen($mobile-menu-notvisible) {
+                            @include a-styling(
+                                $-a-height: $m3-desktop-ul-li-a-height,
+                                $-a-line-height: $m3-desktop-ul-li-a-lineheight,
+                                $-a-border-bottom-on: 0,
+                                $-a-border-bottom: false,
+                                $-a-font-size: $m3-ul-li-a-font-size-desktop,
+                                $-a-font-weight: $m3-ul-li-a-font-weight-desktop,
+                                $-a-color: $m3-desktop-ul-li-a-color,
+                                $-a-hover-color: $m3-desktop-ul-li-a-hover-color,
+                                $-a-text-transform-on: 0,
+                                $-a-text-transform: false,
+                                $-a-padding: false,
+                                $-a-margin: false
+                            );
+                        }
+                        @include max-screen($mobile-menu-visible-max) {
+                            @include a-styling(
+                                $-a-height: $m3-mobile-ul-li-a-height,
+                                $-a-line-height: $m3-mobile-ul-li-a-lineheight,
+                                $-a-border-bottom-on: 0,
+                                $-a-border-bottom: false,
+                                $-a-font-size: false,
+                                $-a-color: $m3-mobile-ul-li-a-color,
+                                $-a-hover-color: $m3-mobile-ul-li-a-hover-color,
+                                $-a-text-transform-on: 0,
+                                $-a-text-transform: false,
+                                $-a-padding: false,
+                                $-a-margin: false
+                            );
+                        }
+
+                    }
+                }
+            }
+
+            &.hoverable-content {
+                @include min-screen($mobile-menu-notvisible) {
+                    // Styling For Hoverable Content Style Menu
+                    border: $e-sn-desktop-border;
+                    position: absolute;
+                    ul li {
+                        > a {
+                            padding: 8px 0;
+                            display: block;
+                        }
+                    }
+                }
+
+            }
+
+            .perchalf {
+                @include min-screen($mobile-menu-notvisible) {
+                    width: 40% !important;
+                }
+
+                .double {
+                    > li {
+                        @include min-screen($mobile-menu-notvisible) {
+                            width: 50%;
+                            float: left;
+                        }
+
+                    }
+                }
+            }
+
+            &.mm-left-align {
+                @include min-screen($screen-xlg-min) {
+                    left: 0;
+                }
+            }
+
+            &.mm-center-align {
+                @include min-screen($mobile-menu-notvisible) {
+                    margin-left: 2vw;
+                    margin-right: 2vw;
+                    left: 0;
+                }
+
+                @include min-screen($screen-xlg-min) {
+                    margin-left: -(($screen-xlg-min - 30px) / 2);
+                    left: 50%;
+                    margin-right: auto;
+                }
+            }
+
+
+            &.mm-right-align {
+                @include min-screen($screen-xlg-min) {
+                    right: 0;
+                }
+            }
+
+            > ul {
+                @include screen($screen-sm-min, $screen-sm-max) {
+                    width: auto;
+                    transform: none;
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+            }
+
+            .has-children {
+                @include nav-menu();
+            }
+
+            > .has-children {
+                > a {
+                    @include min-screen($mobile-menu-notvisible) {
+                        margin: $e-sn-has-children-a-desktop-margin;
+                        // remove arrows on secondary nav titles
+                        &:before,
+                        &:after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            &.hoverable-content {
+
+                padding: 0;
+
+                > .see-all {
+                    display: none;
+                }
+            }
+
+            &.is-hidden {
+                @include min-screen($mobile-menu-notvisible) {
+                    opacity: 0;
+                    visibility: hidden;
+
+                    // Was Global
+                }
+            }
+
+            > .see-all {
+                @include min-screen($mobile-menu-notvisible) {
+                    // this is the BIG See all button at the bottom of the dropdown menu
+                    //display:  none;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    height: 80px;
+                    width: 100% !important;
+                    overflow: hidden;
+                    // reset some inherited style
+                    margin: 0;
+                    padding: 0;
+
+                    a {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        font-size: 2.2rem;
+                        font-weight: bold;
+                        text-align: center;
+                        line-height: 80px;
+                        background: $desktop-see-all-bg;
+                        border-top: 1px solid $destkop-see-all-border-col;
+                        color: $desktop-see-all-col;
+                        // reset some inherited style
+                        border-bottom: none;
+                        margin: 0;
+                        padding: 0;
+                        @include rj-transition(color .2s, background .2s, border .2s);
+
+                        &:hover {
+                            color: $desktop-see-all-hover-col;
+                        }
+                    }
+                }
+            }
+
+            > li {
+                @if $e-sn-li-desktop-border-right-on == 1 {
+                    border-right: $e-sn-li-desktop-border-right;
+                }
+                overflow: hidden;
+                -webkit-overflow-scrolling: touch;
+                // +2 because we have 2 list items with display:none (Go Back/etc?)
+                &:nth-child(4n+2) {
+                    margin-right: 0;
+                    border-right: none;
+                }
+
+                > a {
+                    @include min-screen($mobile-menu-notvisible) {
+                        display: block;
+
+                        @if $e-sn-li-a-desktop-border-bottom-on == 1 {
+                            border-bottom: $e-sn-li-a-desktop-border-bottom;
+                        }
+                    }
+
+                }
+            }
+
+            ul {
+                display: inline-block;
+                padding: 0;
+                // Force Hardware Acceleration in WebKit
+                @include rj-transform(translateZ(0));
+                margin-bottom: 20px;
+
+                ul {
+
+                    // tertiary navigation
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+
+                    &.is-hidden {
+                        visibility: hidden;
+                    }
+
+                    &.flyout {
+                        height: 500px;
+                        background: $flyout-background-color;
+                        @include rj-transform(translateX(100%));
+                        border: $flyout-border;
+                        border-radius: $flyout-border-radius;
+                        font-size: $flyout-header-title-font-size;
+                    }
+
+                    .go-back {
+                        display: none;
+                        @include max-screen($mobile-menu-visible-max) {
+                            .go-back {
+                                display: block;
+                            }
+                        }
+                    }
+
+                    .see-all {
+                        display: none;
+                    }
+                }
+            }
+
+            .moves-out > li > a {
+                @include max-screen($mobile-menu-visible-max) {
+                    // push the navigation items to the left - and lower down opacity - when tertiary nav slides in
+                    @include rj-transform(translate(-100%));
+                }
+
+            }
+
+        }
+    }
+}
+
+
+.ev-bottom-split {
+    width: 50%;
+    float: left;
+
+    a {
+        text-align: center;
+    }
+}
+
+
+.go-back a {
+    position: relative;
+
+    &:before, &:after {
+        // arrow icon in CSS - for element with nested unordered lists
+        content: '';
+        position: absolute;
+        top: 50%;
+        margin-top: -1px;
+        display: inline-block;
+        height: 2px;
+        width: 10px;
+        background: lighten($arrow-color-mobile, 10%);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    &:before {
+        @include rj-transform(rotate(45deg));
+    }
+
+    &:after {
+        @include rj-transform(rotate(-45deg));
+    }
+
+    @include min-screen($mobile-menu-notvisible) {
+        &:before, &:after {
+            background: darken($arrow-color-mobile, 10%);
+
+        }
+
+        &:hover {
+            &:before, &:after {
+                background: $arrow-bg-color-mobile;
+            }
+        }
+    }
+}
+
+
+.e-pn .go-back a {
+    padding-left: 40px;
+    width: 100%;
+
+    &:before, &:after {
+        // arrow goes on the left side - go back button
+        left: 20px;
+        @include rj-transform-origin(1px 50%);
+    }
+}
+
+@include min-screen($mobile-menu-notvisible) {
+
+
+    .cd-secondary-nav > .has-children > a::before,
+    .cd-secondary-nav > .has-children > a::after {
+        // remove arrows on secondary nav titles
+        display: none;
+    }
+
+    .e-pn .go-back a {
+        padding-left: 20px;
+
+        &:before, &:after {
+            left: 1px;
+        }
+    }
+}
+
+
+.ev-overlay {
+    // shadow layer visible when navigation is active
+    position: fixed;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    background-color: rgba($ev-overlay-bg-color, .8);
+    visibility: hidden;
+    opacity: 0;
+    @include backface-visibility(hidden);
+    @include rj-transition(opacity .3s 0s, visibility 0s .3s, transform .3s 0s);
+
+    &.is-visible {
+        opacity: 1;
+        visibility: visible;
+        @include rj-transition(all 0s ease 0s);
+        z-index: 999;
+
+    }
+
+    @include max-screen($mobile-menu-visible-max) {
+        .nav-on-left &.is-visible {
+            @include rj-transform(translateX($ev-mm-nav-width-mobile));
+        }
+        &.is-visible.search-is-visible, .nav-on-left &.is-visible.search-is-visible {
+            @include rj-transform(translateX(0));
+        }
+    }
+    @include min-screen($mobile-menu-notvisible) {
+        display: none;
+    }
+}
+
+.overflow-hidden {
+    @include max-screen($mobile-menu-visible-max) {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
+}
+
+.search-mob-menu {
+    padding: 0 10px 20px 10px;
+}
+
+.mobile-logo-inner {
+    img {
+        @include img-responsive();
+        padding: 5px;
+        height: 48px;
+        width: 65px;
+        margin: 0 auto;
+    }
+}

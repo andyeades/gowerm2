@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <event name="controller_action_postdispatch">
+        <observer name="punchout_modify_xframe" instance="Punchout2go\Xframe\Observer\Xframe" />
+    </event>
+</config>

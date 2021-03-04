@@ -1,0 +1,159 @@
+//
+//  Compare Products Page
+//  ---------------------------------------------
+
+body.catalog-product-compare-index {
+  .action.print {
+    float: right;
+    margin: 15px 0;
+  }
+}
+
+.table-wrapper.comparison {
+  clear: both;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table-comparison {
+  table-layout: fixed;
+
+  .cell.label.remove,
+  .cell.label.product {
+    span {
+      @include abs-visually-hidden();
+    }
+  }
+
+  .cell.label,
+  td:last-child {
+    border-right: $table__border-width $table__border-style $table__border-color;
+  }
+
+  .cell {
+    padding: 15px;
+    width: 140px;
+
+    .attribute.value {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    &.product.info,
+    &.product.label {
+      border-bottom: $table__border-width $table__border-style $table__border-color;
+    }
+
+    &.label {
+      .attribute.label {
+        display: block;
+        width: 100%;
+        word-wrap: break-word;
+      }
+    }
+
+    &.attribute {
+      @include lib-font-size(13);
+      img {
+        height: auto;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .product-item-photo {
+    display: block;
+    margin: 0 auto 15px;
+  }
+
+  .product-image-photo {
+    margin-left: 0;
+  }
+
+  .product-item-actions,
+  .price-box,
+  .product.rating,
+  .product-item-name {
+    display: block;
+    margin: 15px 0;
+  }
+
+  .product-addto-links {
+    margin-top: 15px;
+
+    .action.split,
+    .action.toggle {
+      @include lib-button-s();
+    }
+
+    .action.toggle {
+      padding: 0;
+    }
+  }
+
+  .cell.remove {
+    padding-bottom: 0;
+    padding-top: 0;
+    text-align: right;
+
+    .action.delete {
+      @include abs-remove-button-for-blocks();
+    }
+  }
+
+  .product-item-actions {
+    > .actions-primary {
+      + .actions-secondary {
+        margin-top: $indent__s;
+      }
+    }
+  }
+
+  .action {
+    &.tocart {
+      white-space: nowrap;
+    }
+  }
+}
+
+.comparison.headings {
+  @include lib-css(background, $page__background-color);
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: auto;
+  z-index: 2;
+}
+
+.block-compare {
+  .block-title {
+   @include abs-block-title();
+  }
+
+  .product-item .product-item-name {
+    margin-left: 22px;
+  }
+
+  .action {
+    &.delete {
+      @include abs-remove-button-for-blocks();
+      left: -6px;
+      position: absolute;
+      top: 0;
+    }
+
+    &.compare {
+      @include lib-button-revert-secondary-color();
+    }
+  }
+
+  .counter {
+      @include lib-css(color, $primary__color__lighter);
+      @include lib-font-size(12px);
+      white-space: nowrap;
+  }
+
+  .actions-toolbar {
+    margin: 17px 0 0;
+  }
+}

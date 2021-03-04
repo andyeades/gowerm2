@@ -1,0 +1,163 @@
+@if $sitename == happybeds {
+
+    $pitems-picons-display: flex !default;
+    $pitems-picons-width: 100% !default;
+    $pitems-picons-height: 86px !default;
+    $pitems-picons-width-desktop: 54% !default;
+    $pitems-picons-margin-desktop: 0.75rem 0 0 0 !default;
+    $pitems-picons-order: 9 !default;
+
+    $pitems-picons-margin: 1rem 0 !default;
+    $pitems-picons-padding: 0 !default;
+    $pitems-picons-padding-desktop: 0 0 0 0.25rem !default;
+    $pitems-picons-textalign: center !default;
+    $pitems-picons-img-padding: 0 2px !default;
+    $pitems-picons-img-width: 50% !default;
+
+
+    $plist-picons-display: flex !default;
+    $plist-picons-width: auto !default;
+    $plist-picons-height: 110px !default;
+    $plist-picons-width-desktop: auto !default;
+    $plist-picons-margin-desktop: 0.75rem 0 0 0 !default;
+    $plist-picons-order: 9 !default;
+
+    $plist-picons-margin: 1rem 0 !default;
+    $plist-picons-padding: 0 !default;
+    $plist-picons-padding-desktop: 0 !default;
+    $plist-picons-textalign: center !default;
+
+
+    $plist-picons-img-height: 110px !default;
+    $plist-picons-img-width: 86px !default;
+    $plist-picons-img-padding: 0 !default;
+    $plist-picons-img-margin: 0 0.25rem 0 0 !default;
+    @if $pitems-icons-enabled == 1 {
+
+        .product-item {
+            &.no-picons {
+                .price-box {
+
+                }
+
+            }
+
+            &.has-picons {
+                .price-box {
+
+                }
+
+            }
+
+
+            .product-item-details {
+                .product-icons {
+                    display: $pitems-picons-display;
+                    width: $pitems-picons-width;
+                    height: $pitems-picons-height;
+                    margin: $pitems-picons-margin;
+                    padding: $pitems-picons-padding;
+                    text-align: $pitems-picons-textalign;
+                    order: $pitems-picons-order;
+
+                    @include min-screen($desktop-min) {
+                        @include co(width, $pitems-picons-width-desktop, $pitems-picons-width);
+                        @include co(margin, $pitems-picons-margin-desktop, $pitems-picons-margin);
+                        @include co(padding, $pitems-picons-padding-desktop, $pitems-picons-padding);
+                    }
+
+                    @include max-screen($screen-xs-mid-max) {
+                        margin: 0.5rem 0 0;
+                    }
+
+                    > img {
+                        flex: 0 1 auto;
+                        width: $pitems-picons-img-width;
+                        padding: $pitems-picons-img-padding;
+
+                    }
+
+                }
+            }
+        }
+        .products-list {
+            .product-item {
+                .product-item-details {
+                    .product-icons {
+
+                        width: $plist-picons-width;
+                        height: $plist-picons-height;
+                        margin: $plist-picons-margin;
+                        padding: $plist-picons-padding;
+                        text-align: $plist-picons-textalign;
+                        order: $plist-picons-order;
+
+                        @include min-screen($desktop-min) {
+                            @include co(width, $plist-picons-width-desktop, $plist-picons-width);
+                            @include co(margin, $plist-picons-margin-desktop, $plist-picons-margin);
+                            @include co(padding, $plist-picons-padding-desktop, $plist-picons-padding);
+                        }
+
+                        @include max-screen($screen-xs-mid-max) {
+                            margin: 0.5rem 0 0;
+                        }
+
+                        > img {
+                            flex: 0 1 auto;
+                            height: $plist-picons-img-height;
+                            width: $plist-picons-img-width;
+                            padding: $plist-picons-img-padding;
+                            margin: $plist-picons-img-margin;
+
+                        }
+                    }
+                }
+            }
+        }
+
+        .products-grid {
+            .product-item {
+                &.no-picons {
+                    .price-box {
+
+
+                        padding: $pgrid-noicons-price-box-padding;
+                    }
+
+
+                    @if $pgrid-price-box-was-now-prices-display-mode == side-by-side {
+
+                        .special-price, .old-price {
+                            width: 50%;
+                            flex: 1 1 auto;
+                        }
+
+
+                    }
+
+                }
+
+                &.has-picons {
+                    .price-box {
+                        justify-content: center;
+                        width: 100%;
+                        @include min-screen($desktop-min) {
+                            width: 46%;
+                            padding-right: 0.5rem;
+                        }
+                        @include min-screen($screen-md-min) {
+                            //width: 50%;
+                        }
+                        @include screen($screen-md-min, $screen-lg-max) {
+                            padding-right: 0.25rem;
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+
+
+}

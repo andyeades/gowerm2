@@ -1,0 +1,34 @@
+<div class="block block-numberplate">
+  <div class="block-numberplate-inner">
+    <div class="block-title">Enter Your Number Plate Below</div>
+    <div class="numberplate-input">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+        <input type="text" class="numberplate-control form-control" placeholder="YOUR REG" aria-describedby="basic-addon2">
+        <span class="input-group-addon"><i class="fa fa-long-arrow-right"></i></span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="block block-yourcar">
+  <div class="block-yourcar-inner">
+    <div class="block-title"><strong>Your Car</strong></div>
+    <div class="yc-car-image">
+      <img src="<?php echo $block->getViewFileUrl('images/dummy-images/car-goes-here.png'); ?>"/>
+    </div>
+
+    <ul class="yc-details">
+      <li class="yc-d-name">Audi A3 Sportback 1.4 TFSI</li>
+      <li class="yc-d-from">From: MAY 2014</li>
+      <li class="yc-d-engine">Engine 1395<span class="lowercase">cc</span></li>
+    </ul>
+    <div class="yc-bottom">
+      <div class="yc-showallparts">
+        <a href="#" class="red-link">Show All Parts</a>
+      </div>
+      <a href="#" class="btn btn-red-button btn-yc-clear">Clear</a>
+    </div>
+  </div>
+</div>

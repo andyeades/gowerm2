@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs" remove="true"/>
+        <referenceContainer name="top.container">
+
+
+
+        </referenceContainer>
+        <referenceContainer name="main">
+            <container name="customer-reviews-outer" htmlTag="div" htmlClass="customer-reviews">
+                <block class="Magento\Framework\View\Element\Template" name="feefo-customer-reviews" before="-" template="Magento_Cms::/happybeds/customer-reviews.phtml" />
+            </container>
+
+        </referenceContainer>
+
+        <referenceBlock name="page.main.title" remove="true"/>
+
+        <move element="content" destination="customer-reviews-outer" after="ev.cms.page.customer.reviews"/>
+    </body>
+</page>
+

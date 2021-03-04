@@ -1,0 +1,16 @@
+@if $sitename == gowercottage {
+    @include checkbox-variant('.gower-checkbox', #E7E9D5);
+
+    div[name="shippingAddress.company"] {
+        div.control {
+            margin-bottom: 1rem;
+        }
+        &:after {
+            background: $theme-brand-color-2;
+            padding: 1rem;
+            content: "Please use the address search provided as any errors in entering the address manually will not be the reponsibility of Gower Cottage Brownies." !important;
+            display: block !important;
+        }
+    }
+
+}

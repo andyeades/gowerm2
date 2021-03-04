@@ -1,0 +1,67 @@
+// Center Block
+.hdr-cent-char {
+    a {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        color: $hdr-link-color;
+        width: 100%;
+        font-weight: 700;
+        position: relative;
+
+        &:hover {
+            color: $hdr-link-hover-color;
+        }
+
+        > div {
+            flex: 0 1 auto;
+        }
+
+    }
+
+
+    .hdr-char-right {
+        width: 100px;
+
+    }
+
+    .hdr-char-left {
+        padding-right: 20px;
+        display: block;
+        height: 110px;
+        background-size: 88px;
+        width: 85px;
+    }
+}
+
+.hdr-byob {
+    > a {
+        display: flex;
+
+        > div {
+            flex: 0 1 auto;
+        }
+    }
+
+
+    @include max-screen($mobile-menu-visible-max) {
+        display: none;
+    }
+
+
+}
+
+// custom
+
+.hdr-byob-icon {
+    background: url(/media/theme_assets/byob.png);
+    background-size: 50px;
+    height: 34px;
+    width: 50px;
+}
+.hdr-byob-link {
+    color: $hdr-general-color;
+    font-size: 0.75rem;
+    width: 94px;
+    padding-left: 8px;
+}

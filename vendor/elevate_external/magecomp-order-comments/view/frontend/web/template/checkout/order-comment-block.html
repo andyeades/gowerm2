@@ -1,0 +1,10 @@
+<!-- ko if: isEnable() -->
+<div class="comment last checkout-order-comments">
+    <div class="field choice checkout-order-comments-title">
+        <span data-bind="i18n: getCheckouttitle()"></span>
+    </div>
+    <div class="checkout-order-comments-content">
+        <!-- ko template: 'Magecomp_Ordercomment/checkout/form-content' --><!-- /ko -->
+    </div>
+</div>
+<!-- /ko -->

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="elevate" sortOrder="400" translate="label">
+            <label>Elevate</label>
+        </tab>
+        <section id="evkeyfacts" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="5" translate="label">
+            <label>Key Facts</label>
+            <tab>elevate</tab>
+            <resource>Elevate_ProductKeyFacts::elevate_keyfacts</resource>
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Options</label>
+                <field id="pp_block_1" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Block 1</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pp_block_2" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Block 2</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pp_block_3" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Block 3</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

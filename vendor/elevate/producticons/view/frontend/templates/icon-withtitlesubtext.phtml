@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @var $block \Elevate\ProductIcons\Block\Frontend\Producticons
+*/
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+if ($_product) {
+  $icons = $_product->getData('elevate_producticons');
+}
+
+ if (!empty($icons)) {
+        $icons_exp = array_map('trim', explode(',', $icons));
+
+        $output_array = $block->getIconsForProductAsArray($icons_exp);
+
+        $icons_to_output = $output_array['icons'];
+        $media_url = $output_array['media_url'];
+
+        ?>
+
+      <div class="pview-keyfacts-icontitledesc-row">
+      <?php
+        $count = 1;
+
+        foreach ($icons_to_output as $icon) {
+            if ($count <= 3) { ?>
+          <div class="pview-keyfacts-icontitledesc-item">
+              <div class="<?=$icon['icon_blk_style']?>" style="background-image:url(<?=$media_url?>elevate/tmp/producticons/<?= $icon['icon_url']?>);"></div>
+              <div class="pview-keyfacts-icontitledesc-itemtitle"><?= $icon['icon_title'];?></div>
+              <div class="pview-keyfacts-icontitledesc-itemdesc"><?= $icon['icon_blk_description'];?></div>
+
+          </div>
+           <?php }
+            $count++;
+        } ?>
+
+      </div>
+
+    <?php } ?>

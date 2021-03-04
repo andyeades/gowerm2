@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Elevate\Productdeepercontent\Api\DeepercontentRepositoryInterface" type="Elevate\Productdeepercontent\Model\DeepercontentRepository"/>
+	<preference for="Elevate\Productdeepercontent\Api\Data\DeepercontentInterface" type="Elevate\Productdeepercontent\Model\Data\Deepercontent"/>
+	<preference for="Elevate\Productdeepercontent\Api\Data\DeepercontentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Elevate\Productdeepercontent\Model\ResourceModel\Deepercontent\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">elevate_productdeepercontent_deepercontent</argument>
+			<argument name="resourceModel" xsi:type="string">Elevate\Productdeepercontent\Model\ResourceModel\Deepercontent\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="elevate_productdeepercontent_deepercontent_listing_data_source" xsi:type="string">Elevate\Productdeepercontent\Model\ResourceModel\Deepercontent\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+    <virtualType name="Elevate\Productdeepercontent\ImageUploader" type="Elevate\Productdeepercontent\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">elevate/proddeepecontent/tmp/image</argument>
+            <argument name="basePath" xsi:type="string">elevate/proddeepecontent/image</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\Productdeepercontent\Controller\Adminhtml\Deepercontent\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Elevate\Productdeepercontent\ImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Elevate\Productdeepercontent\Controller\Adminhtml\Deepercontent\Save">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Elevate\Productdeepercontent\ImageUploader</argument>
+        </arguments>
+    </type>
+</config>

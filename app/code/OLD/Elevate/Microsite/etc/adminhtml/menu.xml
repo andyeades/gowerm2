@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elevate_Microsite::microsites" title="Microsite" module="Elevate_Microsite" sortOrder="51" resource="Elevate_Microsite::microsites"/>
+        <add id="Elevate_Microsite::microsite" title="Manage Microsites" module="Elevate_Microsite" sortOrder="10" action="elevate_microsite/microsite" resource="Elevate_Microsite::microsite" parent="Elevate_Microsite::microsites"/>
+        <add id="Elevate_Microsite::hello_configuration" title="Configuration" module="Elevate_Microsite" sortOrder="99" parent="Elevate_Microsite::microsites" action="adminhtml/system_config/edit/section/microsite" resource="Elevate_Microsite::microsite_configuration"/>
+    </menu>
+</config>

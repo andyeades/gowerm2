@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="elevate_customergallery_items Table" engine="innodb" name="elevate_customergallery_items" resource="default">
+		<column comment="Entity Id" identity="true" name="items_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="items_id"/>
+		</constraint>
+		<column length="255" name="name" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="image" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="additional_image_2" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="additional_image_3" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="additional_image_4" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="additional_image_5" nullable="true" xsi:type="varchar"/>
+        <column length="255" name="social_image" nullable="true" xsi:type="varchar"/>
+        <column xsi:type="int" name="product_id" padding="11" unsigned="false" nullable="true" identity="false" comment="Product Id"/>
+        <column name="status" xsi:type="smallint"/>
+		<column length="255" name="post_link" nullable="true" xsi:type="varchar"/>
+		<column name="post_type" xsi:type="smallint"/>
+        <column length="255" name="room_type" nullable="true" xsi:type="varchar"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <column length="50" name="location" nullable="true" xsi:type="varchar"/>
+        <column length="100" name="draw_school" nullable="true" xsi:type="varchar"/>
+        <column length="100" name="draw_region" nullable="true" xsi:type="varchar"/>
+        <column length="100" name="draw_age" nullable="true" xsi:type="varchar"/>
+        <column length="100" name="draw_name" nullable="true" xsi:type="varchar"/>
+        <column length="100" name="draw_features" nullable="true" xsi:type="varchar"/>
+        <column name="winner" xsi:type="smallint"/>
+    </table>
+</schema>

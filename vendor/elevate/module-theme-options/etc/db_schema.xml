@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="elevate_themeoptions_options" resource="default">
+      <column xsi:type="smallint" comment="entity_id" identity="true" name="entity_id" nullable="false" padding="6" unsigned="false" />
+      <constraint referenceId="PRIMARY" xsi:type="primary">
+          <column name="entity_id"/>
+      </constraint>
+      <column xsi:type="varchar" length="255" name="theme_options_name" nullable="false" comment="theme_options_name"/>
+      <column xsi:type="varchar" length="50" name="hdr_general_color" nullable="true" comment="hdr_general_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_link_color" nullable="true" comment="hdr_link_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_link_hover_color" nullable="true" comment="hdr_link_hover_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_general_font_size" nullable="true" comment="hdr_general_font_size"/>
+      <column xsi:type="varchar" length="50" name="hdr_font_size" nullable="true" comment="hdr_font_size"/>
+      <column xsi:type="varchar" length="255" name="hdr_main_outer_background_color" nullable="true" comment="hdr_main_outer_background_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_text_color" nullable="true" comment="hdr_text_color"/>
+      <column xsi:type="boolean" name="hdr_main_border_on_mobile" nullable="false" default="1" comment="hdr_main_border_on_mobile"/>
+      <column xsi:type="varchar" length="50" name="hdr_main_border_color_mobile" nullable="true" comment="hdr_main_border_color_mobile"/>
+      <column xsi:type="varchar" length="50" name="hdr_main_border_position_mobile" nullable="true" comment="hdr_main_border_position_mobile"/>
+      <column xsi:type="varchar" length="50" name="hdr_main_border_thickness_mobile" nullable="true" comment="hdr_main_border_thickness_mobile"/>
+      <column xsi:type="varchar" length="50" name="hdr_main_border_style_mobile" nullable="true" comment="hdr_main_border_style_mobile"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_input_font_size" nullable="true" comment="hdr_search_input_font_size"/>
+      <column xsi:type="varchar" length="255" name="hdr_search_style" nullable="true" comment="hdr_search_style"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_input_bg_color" nullable="true" comment="hdr_search_input_bg_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_text_color" nullable="true" comment="hdr_search_text_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_icon_color" nullable="true" comment="hdr_search_icon_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_placeholder_text_color" nullable="true" comment="hdr_search_placeholder_text_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_input_text_color" nullable="true" comment="hdr_search_input_text_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_border_color" nullable="true" comment="hdr_search_border_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_border_position" nullable="true" comment="hdr_search_border_position"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_border_type" nullable="true" comment="hdr_search_border_type"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_border_thickness" nullable="true" comment="hdr_search_border_thickness"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_border_style" nullable="true" comment="hdr_search_border_style"/>
+      <column xsi:type="varchar" length="50" name="hdr_right_link_color" nullable="true" comment="hdr_right_link_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_text_align" nullable="true" comment="hdr_r_trow_text_align"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_height" nullable="true" comment="hdr_r_trow_height"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_padding" nullable="true" comment="hdr_r_trow_padding"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_ul_li_fontweight" nullable="true" comment="hdr_r_trow_ul_li_fontweight"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_ul_li_a_color" nullable="true" comment="hdr_r_trow_ul_li_a_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_ul_li_a_hover_color" nullable="true" comment="hdr_r_trow_ul_li_a_hover_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_link_color_alt1" nullable="true" comment="hdr_r_trow_link_color_alt1"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_link_hover_color_alt1" nullable="true" comment="hdr_r_trow_link_hover_color_alt1"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_link_color_alt2" nullable="true" comment="hdr_r_trow_link_color_alt2"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_link_hover_color_alt2" nullable="true" comment="hdr_r_trow_link_hover_color_alt2"/>
+      <column xsi:type="varchar" length="50" name="hdr_top_list_li_color" nullable="true" comment="hdr_top_list_li_color"/>
+      <column xsi:type="boolean" name="hdr_r_trow_ul_li_first_seperator" nullable="false" default="0" comment="hdr_r_trow_ul_li_first_seperator"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_ul_li_first_seperator_border_color" nullable="true" comment="hdr_r_trow_ul_li_first_seperator_border_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_ul_li_first_seperator_border_thickness" nullable="true" comment="hdr_r_trow_ul_li_first_seperator_border_thickness"/>
+      <column xsi:type="varchar" length="50" name="hdr_r_trow_ul_li_first_seperator_border_style" nullable="true" comment="hdr_r_trow_ul_li_first_seperator_border_style"/>
+      <column xsi:type="boolean" name="hdr_r_trowbrow_sidebyside" nullable="false" default="0" comment="hdr_r_trowbrow_sidebyside"/>
+      <column xsi:type="varchar" length="50" name="hdr_top_list_font_size" nullable="true" comment="hdr_top_list_font_size"/>
+      <column xsi:type="varchar" length="50" name="hdr_desktop_height" nullable="true" comment="hdr_desktop_height"/>
+      <column xsi:type="varchar" length="50" name="hdr_mobile_height" nullable="true" comment="hdr_mobile_height"/>
+      <column xsi:type="boolean" name="hdr_minicart_counter_border_enabled" nullable="false" default="1" comment="hdr_minicart_counter_border_enabled"/>
+      <column xsi:type="varchar" length="50" name="hdr_minicart_counter_position" nullable="true" comment="hdr_minicart_counter_position"/>
+      <column xsi:type="varchar" length="50" name="hdr_minicart_counter_border_color" nullable="true" comment="hdr_minicart_counter_border_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_minicart_counter_background_color" nullable="true" comment="hdr_minicart_counter_background_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_minicart_counter_text_color" nullable="true" comment="hdr_minicart_counter_text_color"/>
+      <column xsi:type="varchar" length="50" name="hdr_minicart_counter_border_thickness" nullable="true" comment="hdr_minicart_counter_border_thickness"/>
+      <column xsi:type="varchar" length="50" name="hdr_minicart_counter_border_style" nullable="true" comment="hdr_minicart_counter_border_style"/>
+      <column xsi:type="varchar" length="50" name="hdr_search_icon_position" nullable="true" comment="hdr_search_icon_position"/>
+  </table>
+
+    <table name="elevate_themeoptions_footer" resource="default">
+        <column xsi:type="smallint" comment="entity_id" identity="true" name="entity_id" nullable="false" padding="6" unsigned="false" />
+        <constraint referenceId="PRIMARY" xsi:type="primary">
+            <column name="entity_id"/>
+        </constraint>
+        <column xsi:type="varchar" length="255" name="footer_options_name" nullable="false" comment="footer_options_name"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_bg_color" nullable="true" comment="ftr_m_bg_color"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_hdr_text_color" nullable="true" comment="ftr_m_hdr_text_color"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_font_size" nullable="true" comment="ftr_m_font_size"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_hdr_font_size" nullable="true" comment="ftr_m_hdr_font_size"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_hdr_font_weight" nullable="true" comment="ftr_m_hdr_font_weight"/>
+        <column xsi:type="boolean" name="ftr_m_hdr_text_transform_on" default="1" nullable="false" comment="ftr_m_hdr_text_transform_on"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_hdr_text_trans" nullable="true" comment="ftr_m_hdr_text_trans"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_hdr_margin" nullable="true" comment="ftr_m_hdr_margin"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_text_color" nullable="true" comment="ftr_m_text_color"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_text_hover_color" nullable="true" comment="ftr_m_text_hover_color"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_padding" nullable="true" comment="ftr_m_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_padding_desktop" nullable="true" comment="ftr_m_padding_desktop"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_li_padding" nullable="true" comment="ftr_m_li_padding"/>
+        <column xsi:type="boolean" name="ftr_m_border_on" default="1" nullable="false" comment="ftr_m_border_on"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_border_position" nullable="true" comment="ftr_m_border_position"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_border_thickness" nullable="true" comment="ftr_m_border_thickness"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_border_style" nullable="true" comment="ftr_m_border_style"/>
+        <column xsi:type="varchar" length="50" name="ftr_m_border_color" nullable="true" comment="ftr_m_border_color"/>
+        <column xsi:type="smallint" padding="2" name="ftr_blocks_numberof" unsigned="true" nullable="true" comment="ftr_blocks_numberof"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_small_tablet_width" nullable="true" comment="ftr_block_small_tablet_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_desktop_width" nullable="true" comment="ftr_block_desktop_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_desktop_padding" nullable="true" comment="ftr_block_desktop_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_small_tablet_padding" nullable="true" comment="ftr_block_small_tablet_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_mobile_padding" nullable="true" comment="ftr_block_mobile_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_1_small_tablet_width" nullable="true" comment="ftr_block_1_small_tablet_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_1_desktop_width" nullable="true" comment="ftr_block_1_desktop_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_1_desktop_padding" nullable="true" comment="ftr_block_1_desktop_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_1_small_tablet_padding" nullable="true" comment="ftr_block_1_small_tablet_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_1_mobile_padding" nullable="true" comment="ftr_block_1_mobile_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_2_small_tablet_width" nullable="true" comment="ftr_block_2_small_tablet_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_2_desktop_width" nullable="true" comment="ftr_block_2_desktop_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_2_desktop_padding" nullable="true" comment="ftr_block_2_desktop_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_2_small_tablet_padding" nullable="true" comment="ftr_block_2_small_tablet_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_2_mobile_padding" nullable="true" comment="ftr_block_2_mobile_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_3_desktop_width" nullable="true" comment="ftr_block_3_desktop_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_3_small_tablet_width" nullable="true" comment="ftr_block_3_small_tablet_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_3_desktop_padding" nullable="true" comment="ftr_block_3_desktop_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_3_small_tablet_padding" nullable="true" comment="ftr_block_3_small_tablet_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_3_mobile_padding" nullable="true" comment="ftr_block_3_mobile_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_4_small_tablet_width" nullable="true" comment="ftr_block_4_small_tablet_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_4_desktop_width" nullable="true" comment="ftr_block_4_desktop_width"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_4_desktop_padding" nullable="true" comment="ftr_block_4_desktop_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_4_small_tablet_padding" nullable="true" comment="ftr_block_4_small_tablet_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_block_4_mobile_padding" nullable="true" comment="ftr_block_4_mobile_padding"/>
+        <column xsi:type="varchar" length="50" name="ftr_links_col" nullable="true" comment="ftr_links_col"/>
+        <column xsi:type="varchar" length="50" name="ftr_links_ico" nullable="true" comment="ftr_links_ico"/>
+        <column xsi:type="varchar" length="50" name="ftr_links_decoration" nullable="true" comment="ftr_links_decoration"/>
+        <column xsi:type="boolean" name="ftr_input_search_btn_text_transform_on" default="1" nullable="false" comment="ftr_input_search_btn_text_transform_on"/>
+        <column xsi:type="varchar" length="50" name="ftr_input_search_btn_text_transform" nullable="true" comment="ftr_input_search_btn_text_transform"/>
+        <column xsi:type="varchar" length="50" name="ftr_input_search_btn_align" nullable="true" comment="ftr_input_search_btn_align"/>
+        <column xsi:type="varchar" length="50" name="ftr_input_placeholder_color" nullable="true" comment="ftr_input_placeholder_color"/>
+        <column xsi:type="varchar" length="50" name="ftr_copyright_text_color" nullable="true" comment="ftr_copyright_text_color"/>
+    </table>
+
+    <table name="elevate_themeoptions_translations" resource="default">
+        <column xsi:type="smallint" comment="entity_id" identity="true" name="entity_id" nullable="false" padding="6" unsigned="false" />
+        <constraint referenceId="PRIMARY" xsi:type="primary">
+            <column name="entity_id"/>
+        </constraint>
+        <column xsi:type="varchar" length="255" name="translations_name" nullable="false" comment="translations_name"/>
+        <column xsi:type="text" name="translations_content" nullable="true" comment="translations_content"/>
+        <column xsi:type="varchar" length="255" name="translations_area_code" nullable="false" comment="translations_area_code"/>
+    </table>
+</schema>

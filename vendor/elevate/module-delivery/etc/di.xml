@@ -1,0 +1,207 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Multishipping\Controller\Checkout\ShippingPost" type="Elevate\Delivery\Controller\Multishipping\Checkout\ShippingPost"/>
+
+    <preference for="Elevate\Delivery\Api\DeliveryMethodRepositoryInterface" type="Elevate\Delivery\Model\DeliveryMethodRepository"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryMethodInterface" type="Elevate\Delivery\Model\Data\DeliveryMethod"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryMethodSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\DeliveryMethod\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_deliverymethod</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryMethod\Collection</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Magento\Quote\Model\Quote\Address\ToOrderAddress">
+        <plugin name="delivery_attributes_quote_address_to_order_address" type="Elevate\Delivery\Plugin\DeliveryAttributesQuoteAddressToOrderAddress"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\QuoteManagement">
+        <plugin name="delivery_attributes_quote_to_order_address" type="Elevate\Delivery\Plugin\DeliveryAttributesQuoteAddressToOrderAddress"/>
+    </type>
+
+
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin disabled="false" name="add_delivery_attributes" sortOrder="10" type="Elevate\Delivery\Plugin\Magento\Sales\Api\OrderRepositoryInterface\OrderRepositoryPlugin"/>
+    </type>
+
+
+
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="elevate_delivery_checkout_model_defaultconfigprovider" type="Elevate\Delivery\Plugin\Checkout\Model\DefaultConfigProvider" />
+    </type>
+
+
+    <preference for="Elevate\Delivery\Api\DeliveryAreaRepositoryInterface" type="Elevate\Delivery\Model\DeliveryAreaRepository"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryAreaInterface" type="Elevate\Delivery\Model\Data\DeliveryArea"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryAreaSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\DeliveryArea\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_deliveryarea</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryArea\Collection</argument>
+        </arguments>
+    </virtualType>
+
+
+    <preference for="Elevate\Delivery\Api\HolidaydatesRepositoryInterface" type="Elevate\Delivery\Model\HolidaydatesRepository"/>
+
+    <preference for="Elevate\Delivery\Api\Data\HolidaydatesInterface" type="Elevate\Delivery\Model\Data\Holidaydates"/>
+    <preference for="Elevate\Delivery\Api\Data\HolidaydatesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\Holidaydates\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_holidaydates</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Holidaydates\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Elevate\Delivery\Model\Holidaydates\DataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_delivery_holidaydates_form_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Holidaydates\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_delivery_holidaydates_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Holidaydates\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="evholidaydatesMetadata" type="Elevate\Delivery\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Holidaydates</argument>
+            <argument name="modelClassName" xsi:type="string">Elevate\Delivery\Model\Holidaydates</argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\Delivery\Model\HolidaydatesRepository">
+        <arguments>
+            <argument name="evholidaydatesMetadata" xsi:type="object">evholidaydatesMetadata</argument>
+        </arguments>
+    </type>
+
+
+    <preference for="Elevate\Delivery\Api\DeliveryFeeRepositoryInterface" type="Elevate\Delivery\Model\DeliveryFeeRepository"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryFeeInterface" type="Elevate\Delivery\Model\Data\DeliveryFee"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryFeeSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\DeliveryFee\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_deliveryfee</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryFee\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Elevate\Delivery\Api\DeliveryRulesRepositoryInterface" type="Elevate\Delivery\Model\DeliveryRulesRepository"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesInterface" type="Elevate\Delivery\Model\Data\DeliveryRules"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\DeliveryRules\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_deliveryrules</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRules\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Elevate\Delivery\Api\DeliveryRulesCombinationsRepositoryInterface" type="Elevate\Delivery\Model\DeliveryRulesCombinationsRepository"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesCombinationsInterface" type="Elevate\Delivery\Model\Data\DeliveryRulesCombinations"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesCombinationsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\DeliveryRulesCombinations\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_deliveryrulescombinations</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesCombinations\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Elevate\Delivery\Api\DeliveryRulesProductsRepositoryInterface" type="Elevate\Delivery\Model\DeliveryRulesProductsRepository"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesProductsInterface" type="Elevate\Delivery\Model\Data\DeliveryRulesProducts"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesProductsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\DeliveryRulesProducts\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_deliveryrules_products</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesProducts\Collection</argument>
+        </arguments>
+    </virtualType>
+
+
+    <preference for="Elevate\Delivery\Api\DeliveryRulesTypeRepositoryInterface" type="Elevate\Delivery\Model\DeliveryRulesTypeRepository"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesTypeInterface" type="Elevate\Delivery\Model\Data\DeliveryRulesType"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesTypeSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\DeliveryRulesType\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_deliveryrules_type</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesType\Collection</argument>
+        </arguments>
+    </virtualType>
+
+
+    <preference for="Elevate\Delivery\Api\DeliveryProductsRepositoryInterface" type="Elevate\Delivery\Model\DeliveryProductsRepository"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryProductsInterface" type="Elevate\Delivery\Model\Data\DeliveryProducts"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryProductsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\DeliveryProducts\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_deliveryproducts</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryProducts\Collection</argument>
+        </arguments>
+    </virtualType>
+
+
+    <preference for="Elevate\Delivery\Api\DeliveryRulesFunctionsRepositoryInterface" type="Elevate\Delivery\Model\DeliveryRulesFunctionsRepository"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesFunctionsInterface" type="Elevate\Delivery\Model\Data\DeliveryRulesFunctions"/>
+    <preference for="Elevate\Delivery\Api\Data\DeliveryRulesFunctionsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\Delivery\Model\ResourceModel\DeliveryRulesFunctions\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_delivery_deliveryrules_functions</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesFunctions\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_delivery_deliverymethod_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryMethod\Grid\Collection</item>
+                <item name="elevate_delivery_deliveryarea_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryArea\Grid\Collection</item>
+                <item name="elevate_delivery_deliveryfee_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryFee\Grid\Collection</item>
+                <item name="elevate_delivery_deliveryrules_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRules\Grid\Collection</item>
+                <item name="elevate_delivery_deliveryrulescombinations_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesCombinations\Grid\Collection</item>
+                <item name="elevate_delivery_deliveryrulesproducts_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesProducts\Grid\Collection</item>
+                <item name="elevate_delivery_deliveryrulestype_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesType\Grid\Collection</item>
+                <item name="elevate_delivery_deliveryproducts_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryProducts\Grid\Collection</item>
+                <item name="elevate_delivery_deliveryrulesfunctions_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesFunctions\Grid\Collection</item>
+                <item name="elevate_delivery_holidaydates_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Holidaydates\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+
+    <virtualType name="Elevate\Delivery\Logger\Custom" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="info" xsi:type="object">Elevate\Delivery\Logger\Handler\Custom</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Elevate\Delivery\Controller\Delivery\Delivery">
+        <arguments>
+            <argument name="logger" xsi:type="object">Elevate\Delivery\Logger\Custom</argument>
+        </arguments>
+    </type>
+
+    <type name="Elevate\Delivery\Controller\Delivery\Getprice">
+        <arguments>
+            <argument name="logger" xsi:type="object">Elevate\Delivery\Logger\Custom</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="my_address_save_plugin" type="Elevate\Delivery\Plugin\ShippingInformationPlugin" sortOrder="10"/>
+    </type>
+
+    <!--<type name="Magento\Quote\Model\Quote\Address\Total\Shipping">
+         <plugin name="elevate_shippingtotal_plugin" type="Elevate\Delivery\Plugin\ShippingTotal" sortOrder="10"/>
+     </type>-->
+</config>

@@ -1,0 +1,75 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/**  @var $block \Magento\Checkout\Block\Cart\Grid */
+?>
+<style>
+
+</style>
+<?php $mergedCells = ($this->helper(Magento\Tax\Helper\Data::class)->displayCartBothPrices() ? 2: 1); ?>
+<?= $block->getChildHtml('form_before') ?>
+<form action="<?= $block->escapeUrl($block->getUrl('checkout/cart/updatePost')) ?>" method="post" id="form-validate" data-mage-init='{"Magento_Checkout/js/action/update-shopping-cart":
+              {"validationURL" : "<?= $block->escapeUrl($block->getUrl('checkout/cart/updateItemQty')) ?>",
+              "updateCartActionContainer": "#update_cart_action_container"}
+          }' class="form form-cart">
+    <?= $block->getBlockHtml('formkey') ?>
+    <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed': '' ?>">
+        <?php if ($block->getPagerHtml()) : ?>
+            <div class="cart-products-toolbar cart-products-toolbar-top toolbar" data-attribute="cart-products-toolbar-top"><?= $block->getPagerHtml() ?>
+            </div>
+        <?php endif ?>
+
+        <?php
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $settingsHelper = $objectManager->get('Elevate\CartAssignments\Helper\Settings');
+        $price_type = $settingsHelper->getPriceType();
+
+        
+        if ($price_type == 'ex_vat') {
+            $output_price_label = ' (Ex VAT)';
+        }
+$output_price_label = '';
+        ?>
+        <div class="cart_header_row row">
+                <div class="col-4 cart_row_heading_outer">
+                    <div class="cart_row_heading_inner">Description</div>
+                </div>
+                <div class="col-5 cart_row_heading_outer">
+                    <div class="cart_row_heading_inner">Offers</div>
+                </div>
+                <div class="col-3 cart_row_heading_outer">
+                    <div class="cart_row_heading_inner crhip">Price<?php echo $output_price_label; ?></div>
+                </div>
+        </div>
+        <div>
+            <?php foreach ($block->getItems() as $_item) : ?>
+                <?= $block->getItemHtml($_item) ?><?php endforeach ?>
+        </div>
+        <?php if ($block->getPagerHtml()) : ?>
+            <div class="cart-products-toolbar cart-products-toolbar-bottom toolbar" data-attribute="cart-products-toolbar-bottom"><?= $block->getPagerHtml() ?>
+            </div>
+        <?php endif ?>
+    </div>
+    <div class="cart main actions">
+        <?php if ($block->getContinueShoppingUrl()) : ?>
+            <a class="action continue" href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>" title="<?= $block->escapeHtmlAttr(__('Continue Shopping')) ?>">
+                <span><?= $block->escapeHtml(__('Continue Shopping')) ?></span> </a>
+        <?php endif; ?>
+        <button type="button" name="update_cart_action" data-cart-empty="" value="empty_cart" title="<?= $block->escapeHtmlAttr(__('Clear Basket')) ?>" class="action clear" id="empty_cart_button">
+            <span><?= $block->escapeHtml(__('Clear Basket')) ?></span>
+        </button>
+        <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="<?= $block->escapeHtmlAttr(__('Update Basket')) ?>" class="action update">
+            <span><?= $block->escapeHtml(__('Update Basket')) ?></span>
+        </button>
+        <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update=""/>
+    </div>
+</form>
+<?= $block->getChildHtml('checkout.cart.order.actions') ?>
+<?= $block->getChildHtml('shopping.cart.table.after') ?>
+

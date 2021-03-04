@@ -1,0 +1,110 @@
+<?php 
+$imageTeaserData = $block->getImageTeaserData();
+$imageTypeHelper = $this->helper(\MageSuite\ThemeHelpers\Helper\ImageType::class);
+$slide = $block->getSlide();
+$isSvg = $slide->isSvg();
+
+/**
+ * Image properties with support for conditional lazy loading.
+ */
+$imageSrc = $origImageSrc = $slide->getSrc();
+$hasImage = !empty($origImageSrc);
+if ($hasImage) {
+    $imageSrc = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+}
+$imageAlt = $slide->getAlt();
+$imageSrcset = $isSvg ? '' : $slide->getSrcSet();
+$imageSizes = $isSvg ? '' : $slide->getSizes();
+$imageWidth = $slide->getWidth();
+$imageHeight = $slide->getHeight();
+$isSlider = $block->getIsSlider();
+$isSliderMobile = $block->getIsSliderMobile();
+
+/**
+ * Contrast optimizers
+ */
+$contrastOptimizers = $slide->getOptimizers();
+$mirrorImage = $contrastOptimizers['mirror_image'];
+
+/**
+ * WebP support
+ */
+$isWebpSupported = $imageTypeHelper->supportsWebp($origImageSrc);
+$imageMimeType = $imageTypeHelper->getMimeType($origImageSrc);
+if ($isWebpSupported) {
+    $imageWebpSrcSet = $slide->getWebpSrcSet();
+}
+?>
+<?php if ($hasImage): ?>
+    <picture class="cs-image-teaser__figure">
+        <?php if ($isWebpSupported): ?>
+            <source
+                type="image/webp"
+                class="cs-image-teaser__image lazyload<?= ($isSlider || $isSliderMobile) ? ' swiper-lazy' : '' ?><?= $mirrorImage ? ' cs-image-teaser__image--mirror' : '' ?>"
+                alt="<?= $imageAlt ?>"
+                data-srcset="<?= $imageWebpSrcSet ?>"
+                <?php if ($imageSizes): ?>
+                    sizes="<?= $imageSizes ?>"
+                <?php endif; ?>
+                <?php if ($imageWidth): ?> 
+                    width="<?= $imageWidth ?>" 
+                <?php endif; ?>
+                <?php if ($imageHeight): ?> 
+                    height="<?= $imageHeight ?>" 
+                <?php endif; ?>
+            >
+        <?php endif; ?>
+        <source
+            type="<?= $imageMimeType ?>"
+            class="cs-image-teaser__image lazyload<?= ($isSlider || $isSliderMobile) ? ' swiper-lazy' : '' ?><?= $mirrorImage ? ' cs-image-teaser__image--mirror' : '' ?>"
+            alt="<?= $imageAlt ?>"
+            data-srcset="<?= $imageSrcset ?>"
+            <?php if ($imageSizes): ?>
+                sizes="<?= $imageSizes ?>"
+            <?php endif; ?>
+            <?php if ($imageWidth): ?> 
+                width="<?= $imageWidth ?>" 
+            <?php endif; ?>
+            <?php if ($imageHeight): ?>
+                height="<?= $imageHeight ?>" 
+            <?php endif; ?>           
+        >
+        <img
+            class="cs-image-teaser__image lazyload<?= ($isSlider || $isSliderMobile) ? ' swiper-lazy' : '' ?><?= $mirrorImage ? ' cs-image-teaser__image--mirror' : '' ?>"
+            alt="<?= $imageAlt ?>"
+            src="<?= $imageSrc ?>"
+            <?php if ($imageSrcset): ?>
+                data-srcset="<?= $imageSrcset ?>"
+            <?php endif; ?>
+            data-src="<?= $origImageSrc ?>"
+            <?php if ($imageSizes): ?>
+                sizes="<?= $imageSizes ?>"
+            <?php endif; ?>
+            <?php if ($imageWidth): ?> 
+                width="<?= $imageWidth ?>" 
+            <?php endif; ?>
+            <?php if ($imageHeight): ?> 
+                height="<?= $imageHeight ?>" 
+            <?php endif; ?>
+        >
+        <noscript>
+            <img
+                class="cs-image-teaser__image"
+                alt="<?= $imageAlt ?>"
+                src="<?= $origImageSrc ?>"
+                <?php if ($imageSrcset): ?> 
+                    srcset="<?= $imageSrcset ?>"
+                <?php endif; ?>
+                <?php if ($imageSizes): ?> 
+                    sizes="<?= $imageSizes ?>"
+                <?php endif; ?>
+                <?php if ($imageWidth): ?> 
+                    width="<?= $imageWidth ?>" 
+                <?php endif; ?>
+                <?php if ($imageHeight): ?> 
+                    height="<?= $imageHeight ?>" 
+                <?php endif; ?>
+            >
+        </noscript>
+    </picture>
+<?php endif; ?>

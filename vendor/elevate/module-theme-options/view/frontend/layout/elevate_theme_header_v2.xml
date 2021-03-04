@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="elevate_theme_default"/>
+    <body>
+        <referenceContainer name="header-main-outer">
+            <container name="header-main-top-outer" htmlTag="header" htmlId="hdr-mt-o" before="-">
+                <container name="header-main-top-inner" htmlTag="header" htmlId="hdr-mt-i" htmlClass="container">
+                    <container name="header-main-top-inner-one" htmlTag="div" htmlClass="hdr-mti-one">
+                        <block class="Magento\Cms\Block\Block" name="header_mti_one_cms">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">ev-hdr-maintopinner-one</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="header-main-top-inner-two" htmlTag="div" htmlClass="hdr-mti-two">
+                        <block class="Magento\Cms\Block\Block" name="header_mti_two_cms">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">ev-hdr-maintopinner-two</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="header-main-top-inner-three" htmlTag="div" htmlClass="hdr-mti-three">
+                        <block class="Magento\Cms\Block\Block" name="header_mti_three_cms">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">ev-hdr-maintopinner-three</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+        <move element="ev_vat_block" destination="header-main-top-inner-two" after="-"/>
+    </body>
+
+</page>

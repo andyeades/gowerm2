@@ -1,0 +1,125 @@
+
+
+//
+//  Collapsible navigation
+//  -----------------------------------------
+
+.block-collapsible-nav {
+    @include max-screen($collapsible-nav-maxscreen) {
+        left: 0;
+        top: -21px;
+        width: 100%;
+        z-index: 5;
+    }
+    .title {
+        color: $collapsible-nav-title-color;
+        padding: $collapsible-nav-title-padding;
+        @include max-screen($collapsible-nav-maxscreen) {
+            @if $collapsible-nav-title-background-on == 1 {
+                background: $collapsible-nav-title-background;
+            }
+            margin-bottom: 0;
+            @if $collapsible-nav-title-border-on == 1 {
+                border-bottom: $border-width--base solid $border-color--base;
+                border-top: $border-width--base solid $border-color--base;
+            }
+
+            cursor: pointer;
+            position: relative;
+
+
+            &:after {
+                position: absolute;
+                right: $indent--s;
+                //top: 0;
+            }
+
+            @if $collapsible-nav-icon-type == standard {
+                @include lib-icon-font(
+                    $-icon-font-content   : $icon-down,
+                    $-icon-font-size      : 14px,
+                    $-icon-font-text-hide : false,
+                    $-icon-font-position  : after,
+                    $-icon-font-display   : block
+                );
+
+
+
+                &.active {
+                    @include lib-icon-font-symbol(
+                        $-icon-font-content  : $icon-up,
+                        $-icon-font-position : after
+                    );
+                }
+            } @elseif $collapsible-nav-icon-type == bgimage {
+                &:after {
+                    content: '';
+                    background-image: $collapsible-nav-icon-closed-bgimage;
+                    background-size: contain;
+                    height: $collapsible-nav-icon-height;
+                    width: $collapsible-nav-icon-width;
+                }
+                &.active {
+                    &:after {
+                        background-image: $collapsible-nav-icon-expanded-bgimage;
+                    }
+                }
+
+            }
+
+        }
+        @include min-screen($collapsible-nav-off-minscreen) {
+            @include abs-visually-hidden();
+        }
+    }
+    .content {
+        @include lib-css(background, $collapsible-nav-background);
+        padding: 15px 0;
+        @include max-screen($collapsible-nav-maxscreen) {
+            border-bottom: $border-width--base solid $border-color--base;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+    }
+    .item {
+        margin: 3px 0 0;
+        width: $collapsible-nav-item-width;
+        &:first-child {
+            margin-top: 0;
+        }
+
+        a,
+        > strong {
+            border-left: 3px solid transparent;
+            @include lib-css(color, $collapsible-nav-color);
+            display: block;
+            padding: 5px 18px 5px 15px;
+        }
+
+        a {
+            width: 100%;
+            text-decoration: none;
+
+            &:hover {
+                @include lib-css(background, $collapsible-nav-item-hover-background);
+            }
+        }
+
+        &.current {
+            a,
+            > strong {
+                @include lib-css(border-color, $collapsible-nav-current-border-color);
+                @include lib-css(color, $collapsible-nav-current-color);
+                @include lib-css(font-weight, $collapsible-nav-current-font-weight);
+            }
+
+            a {
+                @include lib-css(border-color, $collapsible-nav-current-border-color);
+            }
+        }
+    }
+}
+

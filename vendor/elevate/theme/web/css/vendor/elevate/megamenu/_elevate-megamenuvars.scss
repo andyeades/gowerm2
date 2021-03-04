@@ -1,0 +1,272 @@
+// Overide Vars?
+
+$flex-box-center-menu: 1 !default; // Justify-content: center !default;
+
+$include-posturite-styles: 0 !default;
+
+// PAS Secondary Row Stuff
+$include-secondary-row-css: 0 !default;
+
+
+// Typography
+$e-pn-font-family: 'Montserrat', sans-serif !default;
+$e-pn-fontsize-mobile:          12px !default;
+
+
+$e-pn-align-items-desktop: center !default;
+
+$e-pn-a-letter-spacing-on: 1 !default;
+$e-pn-a-letter-spacing: 3.75px !default;
+
+$e-pn-a-white-space: nowrap !default;
+
+$e-pn-a-desktop-font-weight: 700 !default;
+$e-pn-a-desktop-letter-spacing-on: 0 !default;
+$e-pn-a-desktop-letter-spacing: 2px !default;
+
+$e-pn-li-a-fontweight-desktop: 700 !default;
+$e-pn-li-a-fontsize-desktop: 0.75rem !default;
+//$e-pn-li-a-desktop-lineheight: 40px !default;
+$e-pn-li-a-displaytype: flex !default;
+$e-pn-li-a-align-items-desktop: center !default;
+$e-pn-li-a-justify-content-desktop: center !default;
+$e-pn-li-a-desktop-text-transform-on: 1 !default;
+$e-pn-li-a-desktop-text-transform: uppercase !default;
+
+
+$ev-megamenu-a-text-decoration: none !default;
+
+$e-pn-li-alignitems: flex-start !default;
+$e-pn-li-flex: 1 1 auto !default;
+
+$e-pn-li-flex-desktop: 1 1 auto !default;
+$e-pn-li-white-space: nowrap !default;
+$e-pn-li-textalign: left !default;
+$e-pn-li-textalign-desktop: center !default;
+
+// Width & Visibility of Menu
+
+$ev-mm-nav-width-mobile: 260px !default;
+
+$mobile-menu-notvisible: $screen-md-min !default;
+$mobile-menu-visible-max: $screen-sm-max !default;
+
+$e-pn-a-desktop-border-right-on: 0 !default;
+$e-pn-a-desktop-border-right: 1px solid #FFFFFF !default;
+
+// Splits onto Two Lines when set to wrap (desktop)4
+
+
+$e-pn-flex-wrap-mobilemenu-notvisible: false !default;
+
+
+// Mobile Logo
+
+$cd-nav-trigger-text-align: center !default;
+
+// Element Heights
+
+$mobile-li-a-height: 50px !default;
+
+// Arrow
+
+$arrow-bg-color-mobile:               #FFFFFF !default;
+$arrow-color-mobile:                  #737373 !default;
+$goback-arrow-position:               'left' !default;
+
+
+
+
+
+
+
+$ev-overlay-bg-color: #2E3233 !default;
+
+
+
+
+
+
+// Posturite?
+$mobile-col-level-top-link-border-color: #FFF !default;
+$mobile-col-level-top-link-border: 1px solid $mobile-col-level-top-link-border-color !default;
+$col-level-top-link-color: #FFF !default;
+$col-level-top-link-color-hover: #FFF !default;
+$col-level-top-bg-color: #006548 !default;
+$col-level-top-link-color-active: #006548 !default;
+$col-level-top-link-bg-color-active: #F5F5F5 !default;
+$inner-menu-block-item-a-color: #006548 !default;
+
+
+// z-index
+
+$below-content: 5 !default;
+$content: 10 !default;
+$above-content: 15 !default;
+
+
+$e-pn-zindex: $above-content !default;
+$cd-overlay-isvisible-zindex: $below-content !default;
+
+
+$cd-overlay-bg-color: #2E3233 !default;
+$megamenu-border-color: #808080 !default;
+$cd-nav-trigger-color: #808080 !default;
+
+// Desktop
+
+$e-pn-li-a-desktop-color: #FFF !default;
+$e-pn-li-a-desktop-hover-color: #D9D9D9 !default;
+$e-pn-li-a-selected-desktop-color: darken($e-pn-li-a-desktop-color, 25%) !default;
+
+
+$e-pn-li-firstoftype-a-padding: false !default;
+$e-pn-li-firstoftype-a-padding-desktop: false !default;
+$e-pn-li-lastoftype-a-padding: false !default;
+$e-pn-li-lastoftype-a-padding-desktop: false !default;
+$e-pn-li-a-mobile-padding: 0 24px !default;
+$e-pn-li-a-desktop-padding: 0 10px !default;
+$e-pn-li-a-desktop-large-padding: 0 20px !default;
+
+$e-pn-a-border-bottom-on: 1 !default;
+$e-pn-a-border-bottom-color: #353535 !default;
+
+// Navigation size
+
+$e-pn-ul-mobile-a-color: #ffffff !default;
+$cd-nav-trigger-mob-menu-color: #FFF !default;
+$cd-pri-nav-displaytype: inline-block !default;
+
+
+$nav-bar-outer-bg-on: 1 !default;
+$nav-bar-outer-bg-color: #191c21 !default;
+$nav-bar-outer-position-desktop: relative !default;
+$e-pn-desktop-bg-color: #191c21 !default;
+$e-pn-mobile-bg-color: #191c21 !default;
+$e-pn-ul-a-mobile-color: #ffffff !default;
+
+
+// Dropdown Icon
+
+$mm-dropdown-icons-on:        1 !default;
+$dropdown-icon-color-after: #575757 !default;
+
+// Targets Links
+$e-pn-a-mobile-color: #FFFFFF !default;
+$e-pn-a-mobile-border-bottom-on: 1 !default;
+$e-pn-a-mobile-border-bottom-color: #FFFFFF !default;
+$e-pn-a-seeall-mobile-color: #FFFFFF !default;
+$e-pn-a-back-mobile-height: 50px !default;
+
+// Desktop
+
+$e-sn-desktop-width: 100% !default;
+$e-sn-desktop-padding:      30px 20px 30px 20px !default;
+$e-sn-desktop-bg-color:         #191c21 !default;
+//$e-sn-bg-color-mobile:         #191c21 !default;
+
+$e-sn-dropshadow-on: 1 !default;
+$e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
+
+$e-sn-desktop-border-on: 0 !default;
+$e-sn-desktop-border: 4px solid $megamenu-border-color !default;
+$e-sn-desktop-border-bottom: 2px solid $megamenu-border-color !default;
+$e-sn-desktop-border-radius-on: 0 !default;
+$e-sn-desktop-border-radius: 0 !default;
+
+
+$e-sn-a-desktop-color: #ffffff !default;
+$e-sn-a-desktop-fontsize: #ffffff !default;
+$e-sn-a-desktop-hover-color: darken($e-sn-a-desktop-color, 15%) !default;
+
+
+
+$e-sn-li-a-desktop-color: #FFF !default;
+$e-sn-li-a-desktop-fontweight: 700 !default;
+$e-sn-li-a-desktop-font-size: 1.2rem !default;
+$e-sn-li-a-desktop-margin-bottom: 8px !default;
+$e-sn-li-a-desktop-border-bottom-on: 0 !default;
+$e-sn-li-desktop-border-right-on: 0 !default;
+
+$e-sn-li-desktop-border-right: 1px solid #FFFFFF !default;
+$e-sn-li-a-desktop-border-bottom: 1px solid #FFFFFF !default;
+
+
+$e-sn-has-children-a-desktop-margin: 0 0 0.5rem 0 !default;
+// Mobile
+$e-sn-mobile-width: $ev-mm-nav-width-mobile !default;
+
+
+
+
+
+// Menu Style 3
+
+$m3-desktop-border-on:  1 !default;
+$m3-desktop-bg-color: #FFFFFF !default;
+$m3-desktop-border-color: #808080 !default;
+$m3-desktop-border: 4px solid $m3-desktop-border-color !default;
+$m3-desktop-ul-li-a-color: #2e3233 !default;
+$m3-desktop-ul-li-a-hover-color: darken($m3-desktop-ul-li-a-color, 15%) !default;
+$m3-desktop-ul-li-a-fontweight: 300 !default;
+$m3-desktop-ul-li-a-height: 1.625rem !default;
+$m3-desktop-ul-li-a-lineheight: 1.875rem !default;
+
+// Header In Li (nolink)
+
+$m3-desktop-li-a-textransform-on: 1 !default;
+$m3-desktop-li-a-textransform: uppercase !default;
+$m3-desktop-li-a-color: #2e3233 !default;
+$m3-desktop-li-a-font-size: 0.8125rem !default;
+$m3-desktop-li-a-margin: 0 !default;
+$m3-li-a-fontweight-desktop: 600 !default;
+
+$m3-ul-li-a-font-size-desktop: 0.8125rem !default;
+$m3-ul-li-a-font-weight-desktop: 400 !default;
+
+
+
+$m3-mobile-bg-color: #191c21 !default;
+$m3-mobile-border-color: #353535 !default;
+$m3-mobile-border: 1px solid $m3-mobile-border-color !default;
+$m3-mobile-ul-li-a-color: #FFFFFF !default;
+$m3-mobile-ul-li-a-hover-color: darken($m3-mobile-ul-li-a-color, 15%) !default;
+$m3-mobile-ul-li-a-fontweight: 300 !default;
+$m3-mobile-ul-li-a-height: 50px !default;
+$m3-mobile-ul-li-a-lineheight: $m3-mobile-ul-li-a-height !default;
+$m3-mobile-li-a-color: #FFFFFF !default;
+
+
+
+$cd-nav-trigger-mob-menu-color: #FFF !default;
+
+$e-pn-a-font-weight:            700 !default;
+$e-pn-a-height-mobile:          44px !default;
+$e-pn-a-lineheight-desktop:     0 !default; //Off
+$e-pn-a-height-desktop:         44px !default;
+$e-pn-displaytype:              inline-block !default;
+$e-pn-a-border-right:           none !default;
+
+
+
+$mb-see-all-border-col:          $white !default;
+$mb-see-all-col:                 $white !default;
+$mb-see-all-hover-col:           darken($white, 20%) !default;
+
+
+
+// Desktop
+
+
+$desktop-see-all-bg:                  #f0386c !default;
+$destkop-see-all-border-col:          #404040 !default;
+$desktop-see-all-col:                 $white !default;
+$desktop-see-all-hover-col:           darken($white, 20%) !default;
+
+$flyout-background-color:             #FFF !default;
+$flyout-border:                       1px solid $megamenu-border-color !default;
+$flyout-border-radius:                0 !default;
+$flyout-header-title-color:           $brand-primary !default;
+$flyout-header-title-font-size:       1.5rem !default;
+$flyout-header-title-margin:          15px 0 0 0 !default;
+

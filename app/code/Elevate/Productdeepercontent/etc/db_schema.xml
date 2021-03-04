@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="elevate_productdeepercontent_deepercontent Table" engine="innodb" name="elevate_productdeepercontent_deepercontent" resource="default">
+		<column comment="Entity Id" identity="true" name="deepercontent_id" nullable="false" padding="6" unsigned="true" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="deepercontent_id"/>
+		</constraint>
+		<column name="deepercontent" nullable="true" xsi:type="text"/>
+		<column length="255" name="deepercontent_title" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="deepercontent_image" nullable="true" xsi:type="varchar"/>
+	</table>
+</schema>

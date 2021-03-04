@@ -1,0 +1,189 @@
+<?php 
+$_product = $this->getProduct();
+
+$collectionCode = '';
+$collectionCode = $_product->getData('collection_code');
+$product_id = $_product->getId();
+
+?>
+
+
+        <style>
+        .more-from-collection div.price-final_price {                  
+    padding: 0 0.25rem;
+}
+.more-from-collection div.price-final_price {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    order: 10;
+}
+
+            .swiper-outer-container {
+                width: 100%;
+            }
+
+            .swiper-more-collection-container {
+                width: 100%;
+            }
+
+            .more-from-collection {
+                order: 5;
+            }
+
+            .more-from-collection .products-grid {
+                background: #f7f8fb;
+            }
+
+            .more-from-collection-inner {
+
+            }
+
+            .more-from-collection .prod-item-inner {
+                background-color: #fff;
+                height:           100%;
+                margin:           0 10px;
+                text-align:       center;
+            }
+
+            .more-from-collection .price-box {
+                min-height: 50px;
+            }
+
+            .more-from-collection .products-grid .prod-img {
+                overflow: initial;
+                position  initial;
+            }
+
+            /* Example wrapper */
+            .wrap {
+                position: relative;
+                margin:   3em 0;
+            }
+
+            .more-from-collection .product-icons {
+                display: none;
+            }
+
+
+            .more-from-collection .swiper-slide {
+                border:     none;
+                background: none;
+            }
+
+            .more-from-collectiom .swiper-slide {
+                background: none;
+            }
+
+            .more-from-collection .products-grid .product-name {
+                min-height: 102px;
+            }
+
+            @media screen and (min-width: 768px) {
+                .more-from-collection .products-grid .price-box > div {
+                    text-align: center;
+                }
+            }
+
+
+            .hide_morefrom{
+            display:none;
+            }
+        </style>
+     
+      <div id="more-from-block" class="more-from-collection show_ev_furniture_block hide_morefrom"> 
+      <div class="more-from-collection-inner">
+      <div class="section-title">More from this collection</div>
+      
+<div id="more_from_collection_container">
+    
+</div>
+                 </div>
+                 </div>
+                 <?php
+     $helper = $this->helper('Elevate\Promotions\Helper\Data');
+
+
+ $countdown_time = $helper->getConfig('elevate_promotions/countdown/countdown_time');
+       ?>
+
+<script>
+
+
+    function moreFromCollection(collection_code, product_id) {
+       
+        try {
+            jQuery('#more_from_collection_container').html("Loading Collection ...");
+            //   var mattress_sku = getUrlParameter('mattress');
+            jQuery.ajax({
+                url: '/elevate_widgets/ajax/getmorefromcollection?collection_code=' + collection_code + '&product_id=' + product_id,
+                dataType: 'json',
+                type: 'get',
+
+
+                success: function (data) {
+                    jQuery('#more_from_collection_container').html(data.html);
+                             
+                       
+                    if(!data.hide){                                                                    
+                    
+                        jQuery('#more-from-block').removeClass('hide_morefrom');
+                    }
+                    
+                    // console.log(data.list);
+                    //re-initiate quickview on new list
+                  ELEVATE.Promotions.init("<?php echo $countdown_time; ?>"); 
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+
+    }
+    moreFromCollection('<?php echo $collectionCode; ?>', '<?php echo $product_id; ?>');
+
+ 
+</script>
+     <?
+    $output_js = false;
+
+    if ($output_js == true) { ?>
+
+
+
+    <script>
+        require(['jquery', 'tinyslider'], function ($, tinyslider) {
+            jQuery(document).ready(function () {
+
+                morecollectionslider = tns({
+                    container: '#more-col-swiper',
+                    loop: false,
+                    gutter: 10,
+                    mouseDrag: true,
+                    items: 3,
+                    nav: false,
+                    controlsContainer: "#morecollection-nav",
+                    responsive: {
+                        0: {
+                            items: 2
+                        },
+                        480: {
+                            items: 2
+                        },
+                        768: {
+                            items: 3
+                        }
+                    }
+                });
+
+
+            });
+        });
+
+    </script>
+
+      <?php  }
+ ?>
+
+

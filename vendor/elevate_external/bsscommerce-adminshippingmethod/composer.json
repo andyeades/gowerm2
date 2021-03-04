@@ -1,0 +1,17 @@
+{
+  "name": "elevate_external/bsscommerce-adminshippingmethod",
+  "description": "Bss Admin Shipping Method",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+      "files": [
+        "registration.php"
+      ],
+      "psr-4": {
+        "Bss\\AdminShippingMethod\\": ""
+      }
+    }
+}

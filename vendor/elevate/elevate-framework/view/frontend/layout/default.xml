@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!--
+        <script src="Elevate_Framework::js/jquery.js"/>
+
+         Elevate Libraries
+        <script src="Elevate_Framework::js/elevate.spinner.js"/>
+
+        <css src="Elevate_Framework::css/font-awesome.css" />
+        <css src="Elevate_Framework::css/bootstrap_grid.css" />
+ -->
+    </head>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="elevate_before_body_end" template="Elevate_Framework::before_body_end.phtml" />
+        </referenceContainer>
+    </body>
+
+</page>

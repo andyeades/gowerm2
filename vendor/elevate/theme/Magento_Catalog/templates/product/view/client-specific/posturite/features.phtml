@@ -1,0 +1,9 @@
+<?php
+
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+
+
+?>
+<?= $_product->getProductFeatures(); ?>

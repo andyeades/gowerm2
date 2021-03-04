@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<carriers>
+			<deliveryoption>
+				<model>Elevate\Delivery\Model\Carrier\DeliveryOption</model>
+				<active>0</active>
+				<title>DeliveryOption</title>
+				<name>DeliveryOption</name>
+				<price>0.00</price>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+				<sallowspecific>0</sallowspecific>
+			</deliveryoption>
+		</carriers>
+		<delivery_options>
+			<general>
+				<testing/>
+			</general>
+            <cart>
+                <giftmessagenotice>0</giftmessagenotice>
+                <deliverydaynotice>0</deliverydaynotice>
+            </cart>
+            <checkout>
+                <selectfirstdateavailable>0</selectfirstdateavailable>
+                <selectfirstdateoptionavailable>0</selectfirstdateoptionavailable>
+            </checkout>
+		</delivery_options>
+	</default>
+</config>

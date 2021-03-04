@@ -1,0 +1,58 @@
+//
+//  Variables
+//  _____________________________________________
+
+$opc_wrapper_field_label_fontweight: 700 !default;
+
+$checkout-field-validation__border-color: $form-element-validation__border-error !default;
+
+.field {
+    &._error {
+        .control {
+            input,
+            select,
+            textarea {
+                @include lib-css(border-color, $checkout-field-validation__border-color);
+            }
+        }
+    }
+}
+
+.opc-wrapper {
+    .fieldset {
+        > .field {
+            > .label {
+                font-weight: $opc_wrapper_field_label_fontweight;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    //  ToDo UI: remove with global blank theme .field.required update
+    .opc-wrapper {
+        .fieldset {
+            > .field {
+                &.required,
+                &._required {
+                    position: relative;
+
+                    > label {
+                        //padding-right: 25px;
+
+                        &:after {
+                            display: inline-block;
+                           // margin-left: $indent__s;
+                           // position: absolute;
+                           // top: 9px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

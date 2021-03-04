@@ -1,0 +1,220 @@
+<?php 
+$helper = $this->helper('Elevate\Promotions\Helper\Data');
+
+
+ $countdown_time = $helper->getConfig('elevate_promotions/countdown/countdown_time');
+
+
+
+ $whitelist_array["HAPPY_BEDS_MIRAGE_NATURAL_WOOL.3924"] = '1';
+$whitelist_array["HAPPY_BEDS_NEW_SENSATION_1200_.663"] = '1';
+$whitelist_array["HAPPY_BEDS_MEMORY_STRESS_FREE_.547"] = '1';
+$whitelist_array["HAPPY_BEDS_BAMBOO_POCKET_1500_.1032"] = '1';
+$whitelist_array["HAPPY_BEDS_TENNYSON_4000_TWIN_.6173"] = '1';
+$whitelist_array["HAPPY_BEDS_SIGNATURE_SILVER_14.9698"] = '1';
+$whitelist_array["HAPPY_BEDS_AMETIST_CRYSTAL_250.289"] = '1';
+$whitelist_array["HAPPY_BEDS_WINDSOR_3000_PILLOW.7771"] = '1';
+$whitelist_array["HAPPY_BEDS_PEARL_CONTOUR_MEMOR.7856"] = '1';
+$whitelist_array["HAPPY_BEDS_MILK_VITALITY_2000_.2307"] = '1';
+$whitelist_array["HAPPY_BEDS_SUPREME_ORTHO_ORTHO.2079"] = '1';
+$whitelist_array["HAPPY_BEDS_NEPTUNE_QUILTED_MAT.4539"] = '1';
+$whitelist_array["HAPPY_BEDS_ANTI_BED_BUG_PILLOW.2765"] = '1';
+$whitelist_array["HAPPY_BEDS_SIGNATURE_PLATINUM_.9325"] = '1';
+$whitelist_array["HAPPY_BEDS_PREMIER_TRADITIONAL.2928"] = '1';
+$whitelist_array["HAPPY_BEDS_JEWEL_2000_POCKET_S.5101"] = '1';
+$whitelist_array["HAPPY_BEDS_SIGNATURE_2000_NATU.1332"] = '1';
+$whitelist_array["HAPPY_BEDS_STAR_TRADITIONAL_BO.8592"] = '1';
+$whitelist_array["HAPPY_BEDS_MEMBOUND_MEMORY_FOA.1350"] = '1';
+$whitelist_array["HAPPY_BEDS_SIGNATURE_GOLD_1800.2070"] = '1';
+$whitelist_array["HAPPY_BEDS_MAJESTIC_POCKET_SPR.6718"] = '1';
+$whitelist_array["HAPPY_BEDS_SIGNATURE_CRYSTAL_3.6402"] = '1';
+$whitelist_array["HAPPY_BEDS_AMBASSADOR_3000_ORT.4096"] = '1';
+$whitelist_array["HAPPY_BEDS_BAMBOO_VITALITY_200.8787"] = '1';
+$whitelist_array["HAPPY_BEDS_BERRINGTON_1200_POC.8874"] = '1';
+$whitelist_array["HAPPY_BEDS_ALOE_VERA_MEMORY_FO.3075"] = '1';
+$whitelist_array["HAPPY_BEDS_MEMORY_MAESTRO_MEMO.5198"] = '1';
+$whitelist_array["HAPPY_BEDS_SUPER_ORTHO_FIRM_OR.3709"] = '1';
+$whitelist_array["HAPPY_BEDS_ORTHO_ROYALE_ORTHOP.8680"] = '1';
+$whitelist_array["HAPPY_BEDS_POCKET_ECLIPSE_POCK.7580"] = '1';
+$whitelist_array["HAPPY_BEDS_GOLD_TUFTED_ORTHOPA.2231"] = '1';
+$whitelist_array["HAPPY_BEDS_MEMORY_FLEX_ORTHOPA.3576"] = '1';
+$whitelist_array["HAPPY_BEDS_CLIFTON_ROYALE_1000.3717"] = '1';
+$whitelist_array["HAPPY_BEDS_PINEREST_TRADITIONA.2364"] = '1';
+$whitelist_array["HAPPY_BEDS_COMPACT_PREMIER_SPR.9810"] = '1';
+$whitelist_array["HAPPY_BEDS_COMPACT_GOLD_TUFTED.5176"] = '1';
+$whitelist_array["HAPPY_BEDS_COMPACT_MEMBOUND_ME.624"] = '1';
+$whitelist_array["HAPPY_BEDS_COMPACT_ECLIPSE_POC.2065"] = '1';
+$whitelist_array["HAPPY_BEDS_RICHMOND_3000_POCKE.9570"] = '1';
+$whitelist_array["HAPPY_BEDS_LUNA_3000_POCKET_SP.7561"] = '1';
+$whitelist_array["HAPPY_BEDS_ANNIVERSARY_BACKCAR.9060"] = '1';
+$whitelist_array["HAPPY_BEDS_FARLEY_3000_POCKET_.7258"] = '1';
+$whitelist_array["HAPPY_BEDS_BROOKLYN_1400_POCKE.7542"] = '1';
+$whitelist_array["HAPPY_BEDS_MONZA_1000_POCKET_S.8491"] = '1';
+$whitelist_array["HAPPY_BEDS_COMFORT_ORTHO_1400_.8341"] = '1';
+$whitelist_array["HAPPY_BEDS_CASHMERE_3000_POCKE.9346"] = '1';
+$whitelist_array["HAPPY_BEDS_BALMORAL_3500_POCKE.2253"] = '1';
+$whitelist_array["HAPPY_BEDS_LAVENDER_3000_POCKE.6130"] = '1';
+$whitelist_array["BM_THEO_POCKET_SPRING_MATTRESS.5181"] = '1';
+$whitelist_array["BM_NOAH_MEMORY_FOAM_SPRING_MAT.8682"] = '1';
+$whitelist_array["BM_ETHAN_SPRING_MATTRESS.5284"] = '1';
+$whitelist_array["BM_CLAY_ORTHOPAEDIC_SPRING_MAT.4379"] = '1';
+$whitelist_array["CHILDRENS_BED_MATTRESS__KIDS_B.7826"] = '1';
+$whitelist_array["CHILDRENS_BED_MATTRESS__KIDS_B.7519"] = '1';
+$whitelist_array["IMPERIAL_WHITE_3500_MATTRESS.875"] = '1';
+$whitelist_array["FOREST_DREAM_3000_MATTRESS.3184"] = '1';
+$whitelist_array["CALMING_3000_MATTRESS.1415"] = '1';
+
+?>
+
+    <script>
+    
+
+    var ELEVATE = ELEVATE || {};
+
+    (function ($, window) {
+
+        ELEVATE.Promotions = (function () {
+
+
+            var processStart = null,
+                processStop =  null,
+                bindSubmit =  true,
+                element = jQuery('#product_addtocart_form'),
+                minicartSelector =  '[data-block="minicart"]',
+                messagesSelector =  '[data-placeholder="messages"]',
+                productStatusSelector =  '.stock.available',
+                addToCartButtonSelector =  '.ev_tocart2',
+                addToCartButtonDisabledClass =  'disabled',
+                addToCartButtonTextWhileAdding =  '',
+                addToCartButtonTextAdded =  '',
+                overrideUrl = false,
+                addToCartButtonTextDefault =  '',
+                urlParams = '';
+
+
+        
+
+            getTimeRemaining = function(endtime) {
+                var t = Date.parse(endtime) - Date.parse(new Date());
+                var seconds = Math.floor((t / 1000) % 60);
+                var minutes = Math.floor((t / 1000 / 60) % 60);
+                var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+                var days = Math.floor(t / (1000 * 60 * 60 * 24));
+                return {
+                    'total': t,
+                    'days': days,
+                    'hours': hours,
+                    'minutes': minutes,
+                    'seconds': seconds
+                };
+            },
+
+             initializeClock = function(id, endtime) {
+
+
+                      console.log(id + " .days");
+                var daysSpan = jQuery(id + " .days");
+                var hoursSpan = jQuery(id + " .hours");
+                var minutesSpan = jQuery(id + " .minutes");
+                var secondsSpan = jQuery(id + " .seconds");
+
+                function updateClock() {
+                    var t = getTimeRemaining(endtime);
+                          console.log((t.days));
+                    daysSpan.each(function () {
+                        jQuery(this).html(t.days);
+                    });
+                    hoursSpan.each(function () {
+                        jQuery(this).html(('0' + t.hours).slice(-2));
+                    });
+                    minutesSpan.each(function () {
+                        jQuery(this).html(('0' + t.minutes).slice(-2));
+                    });
+                    secondsSpan.each(function () {
+                        jQuery(this).html(('0' + t.seconds).slice(-2));
+                    });
+
+
+                    if (t.total <= 0) {
+                        clearInterval(timeinterval);
+
+                    }
+                }
+
+                updateClock();
+                var timeinterval = setInterval(updateClock, 1000);
+            },
+
+
+             init = function(promo_end_time, selector)
+            {
+                var deadline = new Date(promo_end_time);
+                
+            initializeClock(selector, deadline);
+            }
+            return {
+                init : function(promo_end_time, selector) {
+                    init(promo_end_time, selector);
+                }
+
+
+            };
+        }());
+
+    }(jQuery, window));
+
+    ELEVATE.Promotions.init("<?php echo $countdown_time; ?>", '.mainpromo');
+    ELEVATE.Promotions.init("<?php echo $countdown_time; ?>", '#subheading-bar');
+    
+    
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + '/' + dd + '/' + yyyy;
+document.write(today);
+
+var dateArr = {};
+dateArr["01"] = 'Jan';
+dateArr["02"] = 'Feb';
+dateArr["03"] = 'Mar';
+dateArr["04"] = 'Apr';
+dateArr["05"] = 'May';
+dateArr["06"] = 'Jun';
+dateArr["07"] = 'Jul';
+dateArr["08"] = 'Aug';
+dateArr["09"] = 'Sep';
+dateArr["10"] = 'Oct';
+dateArr["11"] = 'Nov';
+dateArr["12"] = 'Dec';
+
+
+
+
+
+                                                console.log(dateArr[mm]+ " "+dd+", "+yyyy+" 10:59:59");
+                                       ELEVATE.Promotions.init(dateArr[mm]+ " "+dd+", "+yyyy+" 10:59:59", '#countdown_timer_free');
+                 
+                 
+                 
+                 
+                 <?php
+                  $product = \Magento\Framework\App\ObjectManager::getInstance()
+    ->get(\Magento\Framework\Registry::class)
+    ->registry('current_product');
+               
+                  if($product && array_key_exists($product->getSku(), $whitelist_array)){
+                 
+                 
+                 ?>
+var today = new Date().getHours();
+console.log("TODAY:"+today);         
+if (today >= 0 && today < 11) {   
+  jQuery('.freedelwrap').show();
+} 
+                    <?php } ?>             
+            //var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+          
+</script>
+    

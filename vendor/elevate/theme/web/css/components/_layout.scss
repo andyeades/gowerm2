@@ -1,0 +1,337 @@
+$page_main_outer_margin: 1rem 0 0 0 !default;
+$page_main_outer_margin_homepage: 15px 0 0 0 !default;
+$page_main_outer_margin_with_breadcrumbs: 0 !default;
+
+
+// Two Column
+$twocol_column_main_width: 100vw !default;
+$twocol_column_main_maxwidth: 100% !default;
+
+$twocol_column_main_padding_desktopmd_single: $grid-gutter-width / 2 !default;
+$twocol_column_main_width_desktopmd: 75% !default;
+$twocol_column_main_padding_desktopmd: 0 $grid-gutter-width / 2 !default;
+
+$twocol_right_column_main_width: 100vw !default;
+
+$twocol_right_column_main_width_desktopmd: 70% !default;
+$twocol_right_column_main_padding_desktopmd: 0 $grid-gutter-width / 2 !default;
+
+$twocol_left_column_main_padding_desktopmd: 0 0 0 0;
+$twocol_right_column_main_padding_desktopmd: 0 $grid-gutter-width / 2 0 0 !default;
+
+$twocol_left_column_main_maxwidth_desktopmd: false !default;
+
+
+$twocol_singlesidebar_width: 100% !default;
+$twocol_singlesidebar_width_desktopmd: 25% !default;
+$twocol_right_singlesidebar_width: 100% !default;
+$twocol_right_singlesidebar_width_desktopmd: 30% !default;
+
+$twocol_singlesidebar_padding_desktopmd: $grid-gutter-width / 2 !default;
+
+$twocol_left_singlesidebar_padding_desktopmd: 0 $grid-gutter-width / 2 0 0 !default;
+$twocol_right_singlesidebar_padding_desktopmd: 0 0 0 $grid-gutter-width / 2 !default;
+
+
+.ev-flex-container {
+    display: flex;
+}
+
+
+// Sod this, Magento's mixins for layout are terrible and confusing, Richard is writing his own!
+
+// Magento's are too fucking abstracted to make any fucking sense
+
+$main_maincontent_order: false !default;
+$main_maincontent_width: false !default;
+
+main#main-content {
+    @include co(width, $main_maincontent_width);
+    @include co(order, $main_maincontent_order);
+}
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+
+    .column.main {
+
+        @include lib-css(padding-bottom, $indent__xl);
+        flex: 0 1 auto;
+        order: 2;
+        width: 100%;
+        @include min-screen($screen-md-min) {
+            min-height: 300px;
+
+
+        }
+    }
+
+
+}
+
+.column.main {
+    @include min-screen($desktop-min) {
+        padding-left: 0;
+    }
+}
+
+$twocol_left_pagewithfilter_column_main_width: $twocol_column_main_width !default;
+$twocol_left_pagewithfilter_column_main_width_desktopmd: 78% !default;
+$twocol_left_pagewithfilter_column_main_padding_desktopmd: 0 0 0 $grid-gutter-width / 2 !default;
+
+$twocol_left_pagewithfilter_singlesidebar_width: $twocol_singlesidebar_width !default;
+$twocol_left_pagewithfilter_singlesidebar_padding_desktopmd: 0 $grid-gutter-width 0 0 !default;
+$twocol_left_pagewithfilter_singlesidebar_width_desktopmd: 22% !default;
+
+.page-layout-2columns-left {
+    &.page-with-filter {
+        // Elevate Filter
+        .columns {
+            .column.main {
+                @include co(width, $twocol_left_pagewithfilter_column_main_width, $twocol_column_main_width);
+                @include min-screen($screen-md-min) {
+                    width: $twocol_left_pagewithfilter_column_main_width_desktopmd;
+                    padding: $twocol_left_pagewithfilter_column_main_padding_desktopmd;
+                }
+            }
+
+            .single-sidebar {
+                @include co(width, $twocol_left_pagewithfilter_singlesidebar_width, $twocol_singlesidebar_width);
+
+
+                @include min-screen($screen-md-min) {
+                    padding: $twocol_left_pagewithfilter_singlesidebar_padding_desktopmd;
+                    width: $twocol_left_pagewithfilter_singlesidebar_width_desktopmd;
+                }
+            }
+        }
+
+    }
+
+    .columns {
+        .column.main {
+            order: 3;
+            width: $twocol_column_main_width;
+            @include co(max-width, $twocol_column_main_maxwidth);
+            @include min-screen($screen-md-min) {
+                width: $twocol_column_main_width_desktopmd;
+                padding: $twocol_left_column_main_padding_desktopmd;
+                @include co(max-width, $twocol_left_column_main_maxwidth_desktopmd);
+            }
+
+        }
+
+        .single-sidebar {
+            order: 2;
+            flex: 0 1 auto;
+            flex-wrap: wrap;
+            width: $twocol_singlesidebar_width;
+
+
+            @include min-screen($screen-md-min) {
+                padding: $twocol_left_singlesidebar_padding_desktopmd;
+                width: $twocol_singlesidebar_width_desktopmd;
+            }
+            display: flex;
+
+            .sidebar-main {
+                width: 100vw;
+                position: relative;
+                flex: 0 1 auto;
+                @include min-screen($screen-md-min) {
+
+                    width: 100%;
+
+                }
+            }
+
+            .sidebar-additional {
+
+                width: 100%;
+                flex: 0 1 auto;
+            }
+        }
+    }
+}
+
+.page-layout-2columns-right {
+    .columns {
+        .column.main {
+            order: 2;
+            width: $twocol_right_column_main_width;
+            @include min-screen($screen-md-min) {
+                width: $twocol_right_column_main_width_desktopmd;
+                padding: $twocol_right_column_main_padding_desktopmd;
+            }
+
+        }
+
+        .single-sidebar {
+            order: 3;
+            flex: 0 1 auto;
+            flex-wrap: wrap;
+            width: $twocol_singlesidebar_width;
+
+
+            @include min-screen($screen-md-min) {
+                padding: $twocol_right_singlesidebar_padding_desktopmd;
+                width: $twocol_right_singlesidebar_width_desktopmd;
+            }
+            display: flex;
+
+            .sidebar-main {
+                width: 100vw;
+                position: relative;
+                flex: 0 1 auto;
+                @include min-screen($screen-md-min) {
+
+                    width: 100%;
+
+                }
+            }
+
+            .sidebar-additional {
+
+                width: 100%;
+                flex: 0 1 auto;
+            }
+        }
+    }
+}
+
+$page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize: false !default;
+$page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-mobilemax: false !default;
+$page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-mobiletabletmax: false !default;
+$page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktop: false !default;
+$page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktopmd: false !default;
+
+.page-layout-full_width_nobreadcrumbs_nomargintop_notitle {
+    h1 {
+        @include co(font-size, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize);
+        @include max-screen($mobile-max) {
+            @include co(font-size, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-mobilemax, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize);
+        }
+        @include max-screen($mobiletablet-max) {
+            @include co(font-size, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-mobiletabletmax, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-mobilemax, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize);
+        }
+
+        @include min-screen($desktop-min) {
+            @include co(font-size, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktop, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(font-size, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktopmd, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktop, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize);
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+@include max-screen($screen__m) {
+    .page-with-filter {
+        .columns {
+            .sidebar-main {
+                @include lib-vendor-prefix-order(0);
+            }
+        }
+    }
+}
+
+.sidebar-additional {
+    .block {
+        margin-bottom: $indent__base;
+
+        .block-title {
+            @include abs-block-title();
+        }
+    }
+}
+
+
+.page-layout-full_width_nomargintop,
+.page-layout-full_width_nobreadcrumbs_nomargintop {
+    #page-main-outer {
+        margin: 0;
+    }
+}
+
+
+.pagelayout-full_width,
+.pagelayout-full_width_nobreadcrumbs {
+    #page-main-outer {
+        margin: $page_main_outer_margin;
+    }
+}
+
+.page-layout-full_width_nobreadcrumbs_nomargintop {
+    #page-main-outer {
+
+    }
+}
+
+.margin-contenttop {
+    #page-main-outer {
+        margin: $page_main_outer_margin;
+    }
+}
+
+.nomargin-contenttop {
+    #page-main-outer {
+        margin: 0;
+
+    }
+}
+
+#page-main-outer {
+
+    margin: $page_main_outer_margin;
+
+    &.cms-index-index {
+        margin: $page_main_outer_margin_homepage;
+    }
+
+    &.nomargin-contenttop {
+        margin: 0;
+    }
+}
+
+
+.breadcrumbs,
+.page-wrapper > .page-bottom, {
+    padding-left: $layout__width-xs-indent;
+    padding-right: $layout__width-xs-indent;
+    @include min-screen($desktop-min) {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: $layout__max-width;
+    }
+}
+
+//.block.category.event,
+//.top-container
+//.page-header .header.panel,
+//.page-wrapper > .widget,
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($desktop-min) {
+
+
+    .page-main {
+        width: 100%;
+        flex: 1 0 auto;
+
+        .ie9 & {
+            width: auto;
+        }
+    }
+
+    .panel.header {
+        padding: 10px 20px;
+    }
+}

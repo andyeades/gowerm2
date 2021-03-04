@@ -1,0 +1,23 @@
+{
+  "name": "punchout2go/purchaseorder",
+  "description": "PunchOut2Go Purchase Order implementation for Magento 2; includes CSFR fix for Mage2.3+",
+  "require": {
+    "php": "~7.0.6|~7.1"
+  },
+  "suggest": {
+  },
+  "type": "magento2-module",
+  "version": "2.0.11",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Punchout2go\\Purchaseorder\\": ""
+    }
+  }
+}

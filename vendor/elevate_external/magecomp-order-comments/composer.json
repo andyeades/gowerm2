@@ -1,0 +1,27 @@
+{
+  "name": "elevate_external/magecomp-order-comments",
+  "description": "Magecomp Order Comment Extension - v1.0.2",
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2.0|~7.3.0"
+  },
+  "type": "magento2-module",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Magecomp",
+      "email": "support@magecomp.com",
+      "homepage": "https://magecomp.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Magecomp\\Ordercomment\\": ""
+    }
+  }
+}

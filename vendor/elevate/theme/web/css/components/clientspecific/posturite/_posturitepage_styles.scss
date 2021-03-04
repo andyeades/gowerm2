@@ -1,0 +1,278 @@
+@if $sitename == posturite {
+
+
+    // LHS Menus
+
+
+
+
+
+    .pdf {
+        background-image: url(/media/icons/pdf.svg);
+        background-repeat: no-repeat;
+        padding-left: 24px;
+        display: block;
+    }
+
+
+    .bootstrap-header {
+        padding: 50px 0;
+
+        .intro-lg {
+            font-size: 21px;
+        }
+
+        .call-to-action {
+            padding: 15px;
+            text-align: left;
+            border: solid #ffffff;
+            border: solid rgba(251, 251, 251, 0.4);
+            border-width: 1px;
+            border-radius: 3px;
+            margin-bottom: 15px;
+
+            p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    .call-to-action .btn-outline-inverse:hover {
+        color: #007cb0;
+    }
+
+    .bootstrap-header .call-to-action img {
+        float: left;
+        margin: 0 15px 15px 0;
+    }
+
+    .section-green {
+        color: #ffffff;
+        background-color: #006f51;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#02654a), to(#006f51));
+        background-image: -webkit-linear-gradient(top, #02654a 0, #006f51 100%);
+        background-image: linear-gradient(to bottom, #02654a, #006f51 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#02654A', endColorstr='#006F51', GradientType=0);
+        background-repeat: repeat-x;
+        background-size: cover;
+    }
+
+    .section-blue {
+        color: #ffffff;
+        background-color: #007cb0;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#0173a2), to(#007cb0));
+        background-image: -webkit-linear-gradient(top, #0173a2 0, #007cb0 100%);
+        background-image: linear-gradient(to bottom, #0173a2, #007cb0 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0173a2', endColorstr='#007CB0', GradientType=0);
+        background-repeat: repeat-x;
+        background-size: cover;
+    }
+
+    .section-green h1, .section-blue h1, .section-green h2, .section-blue h2, .section-green h3, .section-blue h3, .section-green a, .section-blue a {
+        color: #ffffff;
+    }
+
+
+    .h-block, .h-block-nolink {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .h-block:hover {
+        background: #f7f7f7;
+    }
+
+    .a-block {
+        display: block;
+        color: inherit;
+
+        &:hover, &:focus, &:hover {
+            text-decoration: none;
+            color: inherit;
+            outline: 0;
+        }
+    }
+
+    // Lead Times
+
+    .lead-time-top {
+        margin-bottom: 10px;
+        float: right;
+    }
+
+    #lead-time {
+        .label {
+            font-style: italic;
+            color: #777777;
+            font-size: 12px;
+            padding: 0;
+        }
+
+        .value {
+            color: #1b3864;
+        }
+    }
+
+    #lead-time-bottom .value {
+        color: #1b3864;
+    }
+
+    // Bootstrap Panels Customisation ==================================================================================
+
+    .panel-heading {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    .panel-posturite {
+        > .panel-heading {
+            background-image: -webkit-linear-gradient(top, #02906a 0%, #006f51 100%);
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#02906a), to(#006f51));
+            background-image: linear-gradient(to bottom, #02906a 0%, #006f51 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#02906A', endColorstr='#006F51', GradientType=0);
+            background-repeat: repeat-x;
+            color: #ffffff;
+        }
+
+        border-color: #006f51;
+    }
+
+    .panel-body {
+        h2 {
+            color: #006f51;
+            margin-bottom: 5px;
+        }
+
+        .workrite-user h2 {
+            color: #007cb0;
+        }
+    }
+
+    .login-form .panel-body {
+        padding: 20px;
+    }
+
+    // new bootstrap CMS content page
+
+    .cms-bootstrap-content {
+        margin-top: 30px;
+    }
+
+    .row.row-grid [class*="col-"] + [class*="col-"].a-block {
+        margin-top: 15px;
+    }
+
+    .cms-page-content {
+        font-size: 16px;
+    }
+
+
+
+    // Small devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+        .row.row-grid [class*="col-sm-"] + [class*="col-sm-"] {
+            margin-top: 0;
+        }
+
+
+
+        // WorkRite Landing Page
+
+        #workrite-hero {
+            padding: 150px 0;
+        }
+
+        .bootstrap-header .call-to-action img {
+            margin-bottom: 0;
+        }
+
+        .list-icon-group p {
+            text-align: left;
+        }
+    }
+
+    // Medium devices (desktops, 992px and up)
+    @media (min-width: 992px) {
+        .row.row-grid [class*="col-md-"] + [class*="col-md-"] {
+            margin-top: 0;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .inner-container .row {
+            display: -webkit-flex;
+            -webkit-flex-direction: column-reverse;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+    }
+
+    // Large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) {
+        .row.row-grid [class*="col-lg-"] + [class*="col-lg-"] {
+            margin-top: 0;
+        }
+
+        .call-out-title {
+            margin: 0 25%;
+        }
+    }
+
+    // Register Link Button - used for webinars
+
+    a.register {
+        padding: 10px 20px;
+        border: 2px solid #006f51;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #006f51;
+        text-transform: uppercase;
+        margin-top: 10px;
+
+        &:hover {
+            color: #ffffff;
+            background: #006f51;
+        }
+    }
+
+    // Pdf
+
+
+
+    .greystar {
+        color: #DDDDDD;
+
+    }
+
+    .goldstar {
+        color: #f2c12e;
+    }
+
+    .ratings .rating-box, #tab-container .rating-box {
+        float: left;
+        margin-right: 3px;
+    }
+
+    .rating .average {
+        font-size: 0;
+        line-height: 0;
+        text-indent: -999em;
+        overflow: hidden;
+    }
+
+    .panel-container .rating .average {
+        font-size: inherit;
+    }
+
+    .youtube-video {
+        margin-bottom: 20px;
+    }
+
+    img.lead-image {
+        margin-bottom: 25px;
+    }
+
+}

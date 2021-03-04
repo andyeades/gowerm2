@@ -1,0 +1,252 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+
+
+
+$checkout_link = $block->getUrl('checkout', ['_secure' => true]);
+$cart_link = $block->getUrl('checkout/cart', ['_secure' => true]);
+$minicart_no_items_text = $this->getMinicartNoItemText(); //text for no cart
+$custom_cart_icon_on = $this->getMinicartCustomCartIconOn();
+
+$cart_icon_class = $this->getMinicartCartIconClass();
+
+
+$custom_cart_icon_html = $this->getCustomCartIconHtml();
+$custom_cart_icon_styling = $this->getCustomCartIconStyling();
+$custom_cart_icon = $this->getCustomCartIcon();
+?>
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$scopeConfig = $objectManager->create('Magento\Framework\App\Config\ScopeConfigInterface');
+
+
+$price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    //inc_vat, ex_vat, both_vat (both vat usually with VAT switcher)
+     
+ if($price_type == 'inc_vat'){
+ ?>
+      <style>
+        #hdr-minicart-total .price-excluding-tax{
+                      display:none;
+        } 
+         #shopping-cart-inner .price-excluding-tax{
+                      display:none;
+        } 
+        
+      </style>
+ <?php
+ 
+ }else if($price_type == 'ex_vat'){
+    ?>
+      <style>
+        #hdr-minicart-total .price-including-tax{
+                     display:none;
+        }        
+         #shopping-cart-inner .price-including-tax{
+                      display:none;
+        }         
+      </style>
+ <?php
+ }   
+ ?>
+
+<?php if (!empty($custom_cart_icon_styling)) { ?>
+  <style>
+    <?= $custom_cart_icon_styling; ?>
+  </style>
+<?php } ?>
+
+<?php if ($custom_cart_icon_on == 1) {
+
+  $cart_icon_class = '';
+
+}?>
+
+         
+
+<style>
+#shopping-cart-wrap .arrow_box:after {
+    left: auto !important;
+    }
+         .shopping-cart .shopping-cart-items .item-name {
+  
+    padding: 0 0 0 0;
+   
+    color: #000;
+}
+  @media screen and (max-width: 767.98px){
+
+    #shopping-cart-inner{
+      display:none;
+    }
+  }
+  .hdr-minicart-total .price-including-tax:after, .hdr-minicart-total .price-excluding-tax:after{
+    content:'';
+  }
+
+</style>
+
+
+
+<div id="shopping-cart-wrap">
+  <a href="/checkout/cart" id="cart">
+    <div class="hdr-basket">
+
+      <i class="<?= $cart_icon_class; ?>"></i> <span id="minicart_counter" >&nbsp;</span>
+    </div>
+    <?php if ($custom_cart_icon_on == 1) { ?>
+        <?= $custom_cart_icon_html; ?>
+    <?php } ?>
+  </a>
+
+  <div id="shopping-cart-inner" style="position:absolute;display:none;right:0px;">
+    <div class="shopping-cart arrow_box" >
+      <div class="shopping-cart-header" style="display:none;">
+        <div class="shopping-cart-total" >
+          <span class="lighter-text">Total:</span>
+          <span id="grand_total" class="main-color-text"></span>
+        </div>
+      </div> <!--end shopping-cart-header -->
+      <div id="shopping-cart-items" style="display:none;"></div>
+      <div id="minicart_no_prods" style="display:none;"><? echo __($minicart_no_items_text); ?></div>
+      <div id="minicart_payment_options" style="display:none;">
+       <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action secondary" style="width:49%;">View Basket</a>
+          <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action primary" style="width:50%;">Checkout</a>
+      </div>
+    </div> <!--end shopping-cart -->
+  </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+    var ELEVATE = ELEVATE || {};
+
+
+    (function ($, window) {
+
+        ELEVATE.Minicart = (function (options) {
+
+            var self = this;
+            //TODO: Get this from admin?
+            var currency_symbol = "£"; // Get From admin?
+            var url = '/ev_addtocart/cart/get';
+
+            // url = url.replace("https://","http://"); // New Code
+            var data = '';
+
+
+
+
+            function getCart()
+            {
+
+
+                // jQuery('#ajax_loader').show();
+
+                jQuery.ajax({
+                    url: url,
+                    dataType: 'json',
+                    type: 'post',
+                    data: data,
+                    success: function (data) {
+
+                        var items_number = parseFloat(data.total_quantity);
+                        jQuery('#minicart_counter').html(items_number.toFixed());
+                        // TODO: Store check? Currency? etc? - or is this done in controller based on current store?
+                        var grand_total = parseFloat(data.grand_total).toFixed(2);
+                        var sub_total = parseFloat(data.sub_total).toFixed(2);
+                        jQuery('#hdr-minicart-total').html(currency_symbol + grand_total);
+
+                        if(data.total_items > 0){
+                            jQuery('#minicart_payment_options').show();
+                            jQuery('#minicart_no_prods').hide();
+                            jQuery('#shopping-cart-items').show();
+
+
+
+                        }
+                        else{
+                            jQuery('#shopping-cart-items').hide();
+                            jQuery('#minicart_no_prods').show();
+                            jQuery('#minicart_payment_options').hide();
+                        }
+
+
+
+                        var cart_items = '';
+                        if(data.has_basket){
+
+                            cart_items += '<ul id="shopping-cart-items" class="shopping-cart-items">';
+
+                            jQuery.each( data.item_data, function( key, value ) {
+
+
+                                var prod_id = value.id;
+                                var image = value.image;
+                                var prod_name = value.name;
+                                var prod_sku = value.sku;
+                                var prod_qty = value.qty;
+                              //  var prod_price = parseFloat(value.price_inc_vat).toFixed(2);
+                                var prod_price_div = '<span class="price-excluding-tax">'+currency_symbol + parseFloat(value.price_ex_vat).toFixed(2)+'</span><span class="price-including-tax">'+currency_symbol + parseFloat(value.price_inc_vat).toFixed(2)+'</span>';
+
+                                cart_items += '<li>';
+                                cart_items += '<img src="'+image+'" alt="item1" />';
+                                cart_items += '<div class="mcart-item-details">';
+                                cart_items += '<span class="item-name">'+prod_name+'</span>';
+                                cart_items += '<span class="item-price">'+prod_qty+' x '+prod_price_div+'</span>';
+
+                                cart_items += '</div>';
+                                cart_items += '</li>';
+
+                            });
+                            cart_items += '</ul>';
+                            jQuery('.shopping-cart-header').show();
+                            var price_div = '<span class="price-excluding-tax">'+currency_symbol + sub_total+'</span><span class="price-including-tax">'+currency_symbol + grand_total+'</span>';
+                            jQuery('.hdr-minicart-total').html(price_div);
+                            jQuery('#grand_total').html(currency_symbol + grand_total);
+                            jQuery('#shopping-cart-items').html(cart_items);
+                        }
+
+
+
+
+
+                    }
+                });
+            }
+
+            function attachEvents(){
+            }
+
+
+            return {
+                getCart : function() {
+                    getCart();
+                }
+            };
+
+        }());
+
+    }(jQuery.noConflict(), window));
+
+
+
+
+    ELEVATE.Minicart.getCart();
+
+</script>

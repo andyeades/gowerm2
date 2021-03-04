@@ -1,0 +1,15 @@
+{
+    "name": "elevate_external/module-fme-productattachments",
+    "description": "FME Product Attachments For Magento 2",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "FME\\Productattachments\\": ""
+        }
+    }
+}

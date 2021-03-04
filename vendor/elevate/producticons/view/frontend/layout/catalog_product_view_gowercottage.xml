@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<body>
+    <referenceContainer name="product.info.main">
+        <container name="ev.product.icons.pp.block1" htmlTag="div" htmlClass="ev-prod-icon-block-outer" before="-">
+            <block class="Elevate\ProductIcons\Block\Frontend\Producticons" name="ev.prod.icon.bock.pp.one.inner" template="Elevate_ProductIcons::icon-test.phtml"/>
+        </container>
+    </referenceContainer>
+</body>
+</page>

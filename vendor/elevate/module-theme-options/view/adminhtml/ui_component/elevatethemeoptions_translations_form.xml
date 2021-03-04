@@ -1,0 +1,112 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">elevatethemeoptions_translations_form.elevatethemeoptions_translations_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevatethemeoptions_translations_form</item>
+            <item name="deps" xsi:type="string">elevatethemeoptions_translations_form.elevatethemeoptions_translations_form_data_source</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="provider" xsi:type="string">elevatethemeoptions_translations_form.elevatethemeoptions_translations_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevatethemeoptions_translations_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="label" xsi:type="string" translate="true">Translations</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Translations\Edit\BackButton" name="back"/>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Translations\Edit\DeleteButton" name="delete"/>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Translations\Edit\SaveButton" name="save"/>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Translations\Edit\SaveAndContinueButton" name="save_and_continue"/>
+        </buttons>
+        <deps>
+            <dep>elevatethemeoptions_translations_form.elevatethemeoptions_translations_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="elevatethemeoptions_translations_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Elevate\Themeoptions\Model\Translations\DataProvider</argument>
+            <argument name="name" xsi:type="string">elevatethemeoptions_translations_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Elevate\Themeoptions\Model\Translations\DataProvider" name="elevatethemeoptions_translations_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label translate="true">General</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">header</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="translations_name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>translations_name</dataScope>
+                <label translate="false">Translations Name</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+            </settings>
+        </field>
+
+        <field name="translations_content" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>translations_content</dataScope>
+                <label translate="false">Translations Content</label>
+                <dataType>string</dataType>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="translations_area_code" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>translations_area_code</dataScope>
+                <label translate="false">Translations Area Code</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <tooltip>
+                <description translate="true">Area Code (en_GB, en_US) etc</description>
+            </tooltip>
+            </settings>
+        </field>
+    </fieldset>
+
+</form>

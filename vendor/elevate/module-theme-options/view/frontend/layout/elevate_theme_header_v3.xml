@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="elevate_theme_default"/>
+    <body>
+        <referenceContainer name="header.main.in.center" htmlClass="hdr-in-center hdr-conta" htmlTag="div">
+            <container name="header.main.in.center.logo" htmlClass="hdr-logo-wrap hdr-conta" htmlTag="div" before="-">
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="logo"></block>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="header.main.in.left.logo" remove="true"/>
+        <referenceBlock name="header_main_in_center_cms" remove="true"/>
+    </body>
+</page>

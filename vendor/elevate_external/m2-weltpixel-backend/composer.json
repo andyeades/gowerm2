@@ -1,0 +1,21 @@
+{
+    "name": "elevate_external/m2-weltpixel-backend",
+    "description": "WeltPixel Backend Module - V1.9.7",
+    "require": {
+        "magento/module-admin-notification": "*"
+    },
+    "type": "magento2-module",
+    "version": "",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "WeltPixel\\Backend\\": ""
+        }
+    }
+}

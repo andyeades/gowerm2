@@ -1,0 +1,390 @@
+// Generated Less from WeltPixel_FrontendOptions StoreView Template
+
+//
+//  Typography
+//  ---------------------------------------------
+
+//  Fonts
+$font-family__base: "Poppins", sans-serif;
+$icons__font-name: 'luma-icons';
+
+
+
+$breadcrumbs-background: transparent;
+$breadcrumbs__separator-color: inherit;
+$screen__l: 1024px;
+$screen__m: 768px;
+$screen__s: 640px;
+$screen__xl: 1440px;
+$screen__xs: 480px;
+$screen__xxs: 320px;
+$rating-icon__active__color: #000000;
+$rating-icon__color: #B3B3B3;
+$rating-icon__font-size: 12px;
+$button-primary__background: #ff301a;
+$button-primary__border: #ff301a;
+$button-primary__color: #FFFFFF;
+$button-primary__hover__background: #ff301a;
+$button-primary__hover__border: #ff301a;
+$button-primary__hover__color: #000000;
+$button-primary__line-height: 18px;
+$font-style__base: inherit;
+$font__letter-spacing: 1px;
+$font-weight__regular: 400;
+$text__color: #303030;
+$active__color: #333333;
+$error__color: #FF0A0A;
+$layout__max-width: 1200px;
+$page__background-color: #FFFFFF;
+$primary__color: #000000;
+$secondary__color: #292929;
+$link__color: #000000;
+$link__hover__color: #CCCCCC;
+$h6__font-color: #303030;
+$h6__font-family: 'Oswald', sans-serif;
+$h6__font-style: inherit;
+$h6__letter-spacing: 1px;
+$h6__font-weight: 600;
+$h5__font-color: #303030;
+$h5__font-family: 'Oswald', sans-serif;
+$h5__font-style: inherit;
+$h5__letter-spacing: 1px;
+$h5__font-weight: 600;
+$h4__font-color: #303030;
+$h4__font-family: 'Oswald', sans-serif;
+$h4__font-style: inherit;
+$h4__letter-spacing: 1px;
+$h4__font-weight: 600;
+$h3__font-color: #303030;
+$h3__font-family: 'Oswald', sans-serif;
+$h3__font-size: 28;
+$h3__font-style: inherit;
+$h3__letter-spacing: 1px;
+$h3__font-weight: 600;
+$h2__font-color: #303030;
+$h2__font-family: 'Oswald', sans-serif;
+$h2__font-style: inherit;
+$h2__letter-spacing: 1px;
+$h2__font-weight: 600;
+$h1__font-color: #303030;
+$h1__font-family: 'Oswald', sans-serif;
+$h1__font-size: 30px;
+$h1__font-style: inherit;
+$h1__letter-spacing: 1px;
+$h1__font-weight: 800;
+$h1__line-height: 60px;
+$form-element-input__font-weight: normal;
+$dropdown-list__background: #FFFFFF;
+$dropdown-list__border: #CCCCCC;
+$dropdown-list__shadow: 0px 20px 50px -20px rgba(0, 0, 0, 0.5);
+$dropdown-list-item__hover: #F4F4F4;
+$dropdown-list-pointer__border: #FFFFFF;
+
+
+$button__background: #232323;
+$button__border: #FFFFFF 1px solid;
+$button__border-radius: 1px;
+$button__color: #FFFFFF;
+$button__font-family: 'Poppins', sans-serif;
+$button__font-size: 18px;
+$button__font-weight: 400;
+$button__hover__background: #FFFFFF;
+$button__hover__border: #232323 1px solid;
+$button__hover__color: #000000;
+$button__line-height: 18px;
+$button__letter-spacing: 0px;
+
+
+@mixin default_buttons(){
+  background-color: $button__background;
+  border: $button__border;
+  @include b_r($button__border-radius);
+  transition-duration: 300ms;
+  transition-property: background-color;
+  letter-spacing: $button__letter-spacing;
+  span {
+    color: $button__color;
+    font-family: $button__font-family;
+    font-size: $button__font-size;
+    font-weight: $button__font-weight;
+    line-height: $button__line-height;
+  }
+  &:hover {
+    border-color: $button__hover__border;
+    background-color: $button__hover__background;
+    border: $button__hover__border;
+    span {
+      color: $button__hover__color;
+    }
+  }
+}
+
+$breadcrumbs__font-size: 12px;
+$breadcrumbs__font-style: normal;
+$breadcrumbs__separator-color: #FFF;;
+$breadcrumbs-current__color: #FFF;;
+$breadcrumbs-link__color: #FFF;;
+$breadcrumbs-link__hover__text-decoration: #FFF;;
+$icon__font-size: 16px;
+$icon_label__font-size: 13px;
+$old_price__line-through: 1;
+$contact_version: v1;
+$enable_block: 0;
+
+$text__color__muted: #7d7d7d;
+
+//  Weights
+$font-weight__light: 300;
+$font-weight__regular: 400;
+$font-weight__heavier: 500;
+$font-weight__semibold: 600;
+$font-weight__bold: 700;
+
+$icon__position: before;
+$icon__text-hide: false;
+$icon__height: 26px;
+$icon__width: 26px;
+$icon__margin: '';
+$icon__vertical-align: middle;
+
+
+$icon-font: $icons__font-name;
+$icon-font__position: $icon__position;
+$icon-font__text-hide: $icon__text-hide;
+$icon-font__margin: $icon__margin;
+$icon-font__size: inherit;
+$icon-font__line-height: $icon-font__size;
+$icon-font__color: inherit;
+$icon-font__color-hover: false;
+$icon-font__color-active: false;
+$icon-font__vertical-align: $icon__vertical-align;
+$icon-font__display: inline-block;
+
+$icon-settings: '\e606';
+$icon-remove: '\e616';
+
+//  Button with icon
+$button-icon__use: false;
+$button-icon__content: $icon-settings;
+$button-icon__font: $icon-font;
+$button-icon__font-size: 22px;
+$button-icon__line-height: $button-icon__font-size;
+$button-icon__color: inherit;
+$button-icon__margin: 0;
+$button-icon__vertical-align: top;
+$button-icon__position: $icon__position;
+$button-icon__text-hide: false;
+
+
+
+$button-icon__hover__font-color: inherit;
+$button-icon__active__font-color: inherit;
+
+$color-white: #fff;
+$color-black: #000;
+
+$color-gray19: #303030;
+$color-gray20: #333;
+$color-gray34: #575757;
+$color-gray37: #5e5e5e;
+$color-gray40: #666;
+$color-gray43: #6d6d6d;
+$color-gray46: #757575;
+$color-gray52: #858585;
+$color-gray55: #8c8c8c;
+$color-gray56: #8f8f8f;
+$color-gray60: #999;
+$color-gray62: #9e9e9e;
+$color-gray64: #a3a3a3;
+$color-gray68: #adadad;
+$color-gray76: #c2c2c2;
+$color-gray78: #c7c7c7;
+$color-gray79: #c9c9c9;
+$color-gray80: #ccc;
+$color-gray82: #d1d1d1;
+$color-gray89: #e3e3e3;
+$color-gray90: #e5e5e5;
+$color-gray91: #e8e8e8;
+$color-gray92: #ebebeb;
+$color-gray94: #f0f0f0;
+$color-gray95: #f2f2f2;
+$color-white-smoke: #f5f5f5;
+$color-white-dark-smoke: #efefef;
+$color-white-fog: #f8f8f8;
+
+$color-gray-light0: #f6f6f6;
+$color-gray-light01: #f4f4f4;
+$color-gray-light1: #e5efe5;
+$color-gray-light2: #bbb;
+$color-gray-light3: #aeaeae;
+$color-gray-light4: #cecece;
+$color-gray-light5: #c1c1c1;
+$color-gray-light6: #c5c5c5;
+
+$color-gray-middle1: #e4e4e4;
+$color-gray-middle2: #c6c6c6;
+$color-gray-middle3: #7e807e;
+$color-gray-middle4: #6e716e;
+$color-gray-middle5: #707070;
+
+$color-gray-darken0: #eee;
+$color-gray-darken1: #e2e2e2;
+$color-gray-darken2: #cdcdcd;
+$color-gray-darken3: #555;
+$color-gray-darken4: #494949;
+
+$color-red9: #ff0101;
+$color-red10: #e02b27;
+$color-red11: #b30000;
+$color-red12: #d10029;
+
+$color-orange-red1: #ff5501;
+$color-orange-red2: #ff5601; // Legacy orange
+$color-orange-red3: #ff5700; // Legacy orange
+$color-orange-red4: #fc5e10; // Legacy orange
+
+$color-dark-green1: #006400;
+
+$color-blue1: #1979c3;
+$color-blue2: #006bb4;
+$color-blue3: #00699D;
+$color-sky-blue1: #68a8e0;
+
+$color-pink1: #fae5e5;
+$color-dark-pink1: #800080;
+
+$color-brownie1: #6f4400;
+$color-brownie-light1: #c07600;
+
+$color-yellow-light1: #fdf0d5;
+$color-yellow-light2: #ffee9c;
+$color-yellow-light3: #d6ca8e;
+$color-yellow1: #ff0;
+
+//
+//  Color nesting
+//  ---------------------------------------------
+
+$primary__color: $color-gray20;
+$primary__color__dark: darken($primary__color, 35%); // #000
+$primary__color__darker: darken($primary__color, 13.5%); // #111
+$primary__color__lighter: lighten($primary__color, 29%); // #7d7d7d
+$primary__color__light: lighten($primary__color, 45%); // #a6a6a6
+
+$secondary__color: $color-gray91;
+$secondary__color__light: lighten($secondary__color, 5%);
+
+$page__background-color: $color-white;
+$panel__background-color: darken($page__background-color, 6%);
+
+$active__color: $color-orange-red1;
+$error__color: $color-red10;
+
+$icon-down: '\e622';
+$icon-up: '\e621';
+
+$color-white: #fff;
+$color-gray20: #333;
+$page__background-color: $color-white;
+$border-color__base: darken($page__background-color, 18%);
+$border-width__base: 1px;
+$panel__background-color: darken($page__background-color, 6%);
+$primary__color: $color-gray20;
+$text__color: $primary__color;
+//
+//  Button reset
+//  ---------------------------------------------
+
+@mixin lib-button-reset(){
+  background-image: none; // Reset unusual Firefox-on-Android default style
+  background: none;
+  -moz-box-sizing: content-box; // Hack: fix Firefox button line-height problem
+  border: 0;
+  box-shadow: none;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  text-shadow: none;
+  @include lib-css(font-weight, $font-weight__regular);
+
+  &:focus,
+  &:active {
+    background: none;
+    border: none;
+  }
+
+  &:hover {
+    background: none;
+    border: none;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none; // Disabling of clicks
+    @include lib-css(opacity, $button__disabled__opacity);
+  }
+}
+
+
+@mixin lib-rotate($_rotation){
+  -webkit-transform: rotate($_rotation); //  Use in 8 Safari
+  -ms-transform: rotate($_rotation); //  Use in 9 IE
+  transform: rotate($_rotation);
+}
+
+//
+//  Theme variables
+//  _____________________________________________
+
+//  Messages
+
+$header__background-color: false;
+$header-panel__background-color: $color-gray-middle4;
+$header-panel__text-color: $color-white;
+$header-icons-color: $color-gray46;
+$header-icons-color-hover: $color-gray20;
+
+$addto-color: $color-gray40;
+$addto-hover-color: $primary__color;
+$minicart-icons-color: $header-icons-color;
+$minicart-icons-color-hover: $header-icons-color-hover;
+
+$price-color: $color-gray34;
+$price-size: 22px;
+$price-size-desktop: 36px;
+
+$button__shadow: inset 0 1px 0 0 rgba(255, 255, 255, 1), inset 0 -1px 0 0 fade($border-color__base, 30); // Used for secondary button and catalog toolbar controls
+$button__shadow-active: inset 0 1px 0 0 fade($border-color__base, 80), inset 0 -1px 0 0 fade($border-color__base, 30); // Used for secondary button and catalog toolbar controls
+
+$h1__margin-bottom__desktop: $indent__xl;
+
+//  Footer
+$footer__background-color: $color-gray-light01;
+$footer-links-separator-border-color: $color-gray-light4;
+$footer-links-color: $color-gray34;
+$footer-links-color-hover: $color-gray20;
+$footer-links-color-current: $primary__color__light;
+
+//  Layered navigation
+$filter-title-background-color: $color-gray94;
+$filter-link: $color-gray-darken4;
+$filter-link-hover: darken($filter-link, 30%);
+$filter-quantity: $color-gray46;
+
+
+//
+//  Sidebar
+//  ---------------------------------------------
+$sidebar__background-color: $color-white-smoke;
+$collapsible-nav-background: $sidebar__background-color;
+$collapsible-nav-background: $sidebar__background-color;
+$collapsible-nav-color: $color-gray34;
+$collapsible-nav-current-border: 3px solid transparent;
+$collapsible-nav-current-border-color: $active__color;
+$collapsible-nav-current-color: $color-black;
+$collapsible-nav-current-font-weight: $font-weight__semibold;
+$collapsible-nav-delimiter__border-color: $color-gray82;
+$collapsible-nav-item-hover: $color-gray91;

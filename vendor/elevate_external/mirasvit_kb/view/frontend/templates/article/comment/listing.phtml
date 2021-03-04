@@ -1,0 +1,38 @@
+<?php
+/**
+ * @var \Mirasvit\Kb\Block\Article\Comment\Listing $block
+ */
+/**
+ * @var \Mirasvit\Kb\Model\Comment $comment
+ */
+?>
+<?php
+$collection   = $block->getCommentCollection();
+$lastCustomer = $collection->getFirstItem()->getId();
+$class        = 'left';
+?>
+
+<?= $block->getChildHtml('article.comment.form') ?>
+
+<?php if ($collection->count()): ?>
+    <?= $block->getToolbarHtml() ?>
+
+    <div class="fieldset kb-comment-listing">
+        <div class="legend"><span><?= __('Comments') ?></span></div>
+
+        <?php foreach ($collection as $comment): ?>
+            <div class="kb-comment-listing-item">
+                <div class="kb-comment-listing-item__header">
+                    <strong><?= $block->getCustomerName($comment) ?></strong>
+                    <span><?= $block->formatDate($comment->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?>  <?= $block->formatTime($comment->getCreatedAt(), \IntlDateFormatter::SHORT) ?></span>
+                </div>
+
+                <div class="kb-comment-listing-item__body">
+                    <?= $comment->getMessage() ?>
+                </div>
+            </div>
+        <?php endforeach ?>
+    </div>
+<?php else: ?>
+    <p><?= __('There are no comments yet') ?></p>
+<?php endif ?>

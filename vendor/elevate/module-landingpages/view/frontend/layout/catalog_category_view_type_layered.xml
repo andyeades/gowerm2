@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="page-with-filter"/>
+        <referenceBlock name="catalog.leftnav">
+            <action method="setTemplate" >
+                <argument name="template" xsi:type="string">Elevate_LandingPages::layer/view.phtml</argument>
+            </action>
+            <container name="layer.additional.info" as="layer_additional_info"/>
+            <container name="layer.content.before" as="layer_content_before"/>
+        </referenceBlock>
+        <referenceBlock name="catalog.navigation.renderer">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Elevate_LandingPages::layer/filter.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="category.description">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Elevate_LandingPages::category/description.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="category.cms">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Elevate_LandingPages::category/cms.phtml</argument>
+            </action>
+        </referenceBlock>
+        
+    
+
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="ev_ln_bottom_description" after="category.products"  template="Elevate_LandingPages::category/bottom_description.phtml" />
+        </referenceContainer>
+        
+    </body>
+</page>

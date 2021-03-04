@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+      <body>
+
+
+
+          <referenceContainer name="content">
+
+
+              <container name="ev.pp.keyfacts" htmlTag="div" htmlId="ev-prod-keyfacts-2" htmlClass="ev-prod-keyfacts ev-prod-keyfacts-2" before="product.info.details" >
+                  <block class="Elevate\ProductKeyFacts\Block\Keyfacts" name="ev.prod-keyfacts.inner-2" template="Elevate_ProductKeyFacts::mix-keyfacts.phtml" ifconfig="evkeyfacts/general/pp_block_1"/>
+              </container>
+          </referenceContainer>
+
+          <referenceContainer name="product.info.main">
+              <container name="ev.pp.keyfacts1" htmlTag="div" htmlId="ev-prod-keyfacts-1" htmlClass="ev-prod-keyfacts ev-prod-keyfacts-1" after="-">
+                  <block class="Elevate\ProductKeyFacts\Block\Keyfacts" name="ev.prod-keyfacts.inner-1" template="Elevate_ProductKeyFacts::long-keyfacts.phtml" ifconfig="evkeyfacts/general/pp_block_2"/>
+              </container>
+          </referenceContainer>
+    </body>
+</page>

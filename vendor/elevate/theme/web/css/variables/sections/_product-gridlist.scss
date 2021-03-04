@@ -1,0 +1,239 @@
+
+//
+//  Product Lists
+//  _____________________________________________
+
+
+$product-name-text-decoration: none !default;
+$product-name-text-decoration-hover: $link__hover__text-decoration !default;
+
+$toolbar-mode-icon-font-size: 26px !default;
+$product-h1-margin-bottom-desktop: $indent__base !default;
+
+$products-grid-list-margin: 0 !default;
+
+$using-compare-functionality: 0 !default;
+
+
+
+
+
+
+
+
+
+
+// Product Items Container (Outer for List/Grid)
+
+$pitems_margin_left: -5px !default;
+$pitems_margin_right: -5px !default;
+
+$pitems-margin-left-mobilemax: false !default;
+$pitems-margin-right-mobilemax: false !default;
+
+// Product Item  (for Both List/Grid)
+
+$pitems_item_pitemetails_sr_clear_order: 6 !default;
+$pitems_item_margin: 0 0 1.5rem 0 !default;
+$pitems_item_border_radius_on: 1 !default;
+$pitems_item_border_radius: 10px !default;
+$pitems_item_border_on: 1 !default;
+$pitems_item_border_color: $border-color !default;
+$pitems_item_border_position: all !default;
+$pitems_item_border_thickness: 1px !default;
+$pitems_item_border_style: solid !default;
+
+
+// Solid Color
+$pitems_item_bg_color_on: 1 !default;
+$pitems_item_bg_color: #FFF !default;
+// Gradient
+$pitems_item_background_on: 0 !default;
+$pitems_item_background: radial-gradient(circle, rgba(244, 246, 248, 1) 0%, rgba(255, 255, 255, 1) 21%, rgba(244, 246, 248, 1) 100%) !default;
+
+// Product Item Name
+
+$pitemname_order: 1 !default;
+$pitemname_min_height: 3.375rem !default;
+$pitemname_min_height_desktop: 3.375rem !default;
+
+$pitemname_margin: 0.5rem 0 !default;
+$pitemname_fontweight: 600 !default;
+$pitemname_padding: 0 0 2rem 0 !default;
+$pitemname_color: $theme_text_color_1 !default;
+$pitemname_hover_color: lighten($pitemname_color, 15%) !default;
+
+// Product Item Actions (Buttons)
+
+$product-item-border-color: $border-color !default;
+$product-item-border: 1px solid $border-color !default;
+$product-item-actions-show: 1 !default;
+$product-item-actions-secondary-show: 0 !default;
+$product-item-actions-padding: 0 0 20px !default;
+
+
+$pitems_action_primary_border_radius_on: 1 !default;
+$pitems_action_primary_border_radius: $border-radius !default;
+$pitems_action_primary_i_on: 0 !default;
+$pitems_action_primary_i_order: 1 !default;
+$pitems_action_primary_i_margin: 0 0.5rem 0 0 !default;
+
+$pitems_action_primary_i_height: 16px !default;
+$pitems_action_primary_i_width: 16px !default;
+$pitems_action_primary_i_background: url(/media/theme_assets/header/basket.svg) !default;
+$pitems_action_primary_span_order: 2 !default;
+$pitems_action_primary_font-size: 0.9375rem !default;
+$pitems_action_primary_font-size-mobilemax: false !default;
+$pitems_action_primary_fontweight: 600 !default;
+$pitems_action_primary_padding: 0.3125rem 0.75rem !default;
+
+$pitems_product_item_name_margin: false !default;
+$pitems_product_item_name_padding: 0 0.25rem !default;
+$pitems_product_item_name_font_size: $font_size__s !default;
+$pitems_product_item_name_fontfamily: false !default;
+
+
+$pitems_product_item_actions_action_color: false !default;
+$pitems_product_item_actions_action_fontfamily: false !default;
+$pitems_product_item_actions_action_texttransform: false !default;
+
+
+$pitems_product_sku_margin: 0 0 0.5rem 0 !default;
+
+// HB Icons
+$pitems_icons_enabled: 0 !default;
+
+
+
+
+
+// Product Items - Item (List/Grid)
+
+
+$pitems_product_reviews_summary_on: true !default;
+$pitems_product_reviews_summary_order: 5 !default;
+$pitems_product_reviews_summary_margin: 0 0 0.875rem 0 !default;
+$pitems_product_reviews_summary_justifycontent: center !default;
+
+
+// Used when Padding Around Item-Info
+
+$pitems-pimagephoto-width: false !default;
+
+$pitems_product_image_photo_border_radius_on: 0 !default;
+$pitems_product_image_photo_border_radius: $border-radius !default;
+
+// Product Grid
+
+
+//Reduces Padding on items on mobile when in 2 items per row
+$pgrid_item_reduce_padding_on_mobile: 0 !default;
+
+$pgrid_item_border_on: 0 !default;
+
+$pgrid_numberofitems_perrow_default: 2 !default;
+
+$pgrid_numberofitems_perrow_xs_min: 2 !default;
+$pgrid_numberofitems_perrow_sm_min: 3 !default;
+$pgrid_numberofitems_perrow_md_min: 4 !default;
+$pgrid_numberofitems_perrow_lg_min: 4 !default;
+$pgrid_numberofitems_perrow_xlg_min: 4 !default;
+
+
+
+// Grid - Addtocart
+
+$pgrid_addcart_action_on: 0 !default;
+$pgrid_addcart_pricebox_sidebyside: 0 !default;
+$pgrid_addcart_pricebox_sbs_pricebox_order: 1 !default;
+$pgrid_addcart_pricebox_sbs_pricebox_width: 60% !default;
+$pgrid_addcart_pricebox_sbs_addcart_order: 2 !default;
+$pgrid_addcart_pricebox_sbs_addcart_width: 40% !default;
+
+
+$pgrid_pricebox_pricelabel_disabled: 0 !default;
+$pgrid_price_box_min_height: 59px !default;
+$pgrid-price-box-margin: false !default;
+$pgrid_price_box_order: 10 !default;
+$pgrid_price_box_justifycontent_desktop: center !default;
+$pgrid_price_box_justifycontent: center !default;
+$pgrid_price_box_prices_width: 100% !default;
+$pgrid_price_box_prices_width_desktop: 100% !default;
+$pgrid-price-box-alignitems: false !default;
+
+$pgrid-product-item-inner-align-items: false !default;
+$pgrid_product_item_inner_order: 11 !default;
+$pgrid_text_align: center !default;
+
+$pgrid_price_box_was_now_prices_display_mode: row !default;
+
+$pgrid_noicons_price_box_padding: 0 0.25rem !default;
+
+
+// Grid - Item
+
+// Product Grid Border
+// 1 == internal borders (ala PAS)
+// 2 == around items (with spacing)
+
+
+$pgrid_item_border_type: 2 !default;
+$pgrid_item_padding_border_type1: 0 !default;
+$pgrid_item_padding: 0 5px !default;
+$pgrid_item_padding-mobiletabletmax: false !default;
+$pgrid_item_padding-mobilemax: false !default;
+
+
+$pgrid_item_info_padding: 0 0 1.25rem 0 !default;
+$pgrid_item_info_padding_desktop: 0 0 1.25rem 0 !default;
+
+
+$pgrid_item_photo_flex: 0 1 auto !default;
+
+$pgrid-overflow: false !default;
+
+// Grid - Item - Details
+$pgrid_item_pitemdetails_alignitems: center !default;
+$pgrid_item_pitemdetails_justifycontent: center !default;
+$pgrid-item-pitemdetails-height: false !default;
+$pgrid_item_pitemdetails_flex: 1 0 auto !default;
+$pgrid_item_pitemdetails_child_flex: 0 1 auto !default;
+$pgrid_item_pitemdetails_child_width: 100% !default;
+
+
+// Product List
+
+$plist_product_reviews_summary_justifycontent: flex-start !default;
+
+$plist_product_item_name_width: 100% !default;
+$plist_product_item_name_font_size: 0.9375rem !default;
+
+$plist_item_border_on: 1 !default;
+$plist_item_padding: 2rem 0 0 0 !default;
+$plist_item_info_padding: 1.5rem !default;
+
+
+
+
+$products_related_product_item_details_padding: 0 0.25rem !default;
+
+
+$category_page_title-font-family: false !default;
+$category_page_title_font_size: 1.5rem !default;
+$category_page_title_font_weight: 600 !default;
+$category_page_title_margin: 0 0 0.5rem 0 !default;
+$category_page_title_line_height: 2.25rem !default;
+$category_page_title_text_align: left !default;
+
+$category_page_title_font_size-desktop: 1.5rem !default;
+$category_page_title_font_weight-desktop: 600 !default;
+$category_page_title_margin-desktop: 0 0 0.5rem 0 !default;
+$category_page_title_line_height-desktop: 2.25rem !default;
+$category_page_title_text_align-desktop: left !default;
+
+
+
+$category_description_line_height: 1.25rem !default;
+$category_description_h2_font_size: 1.125rem !default;
+$category_description_h2_font_weight: 600 !default;
+$category_description_h2_margin: 1rem 0 0.5rem 0 !default;

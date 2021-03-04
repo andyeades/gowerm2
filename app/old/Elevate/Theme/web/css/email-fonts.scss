@@ -1,0 +1,23 @@
+//  Fonts for Emails
+
+@import 'vendor/magento-ui/variables';
+
+@import 'variables/elevate_variables';
+@import 'components/email/email-variables'; // Theme variables for emails
+
+@import 'vendor/magento-ui/lib'; // Global lib
+@import 'vendor/magento-ui/variables/email'; // Global email variables
+
+// Mixins
+@import "mixins/media-queries";
+
+
+//  Output @font-face declarations
+
+$media-common: true;
+
+//  Font stylesheet @import is wrapped in a media query in order to prevent it from causing problems in Outlook
+
+@media screen {
+    @import 'components/typography';
+}

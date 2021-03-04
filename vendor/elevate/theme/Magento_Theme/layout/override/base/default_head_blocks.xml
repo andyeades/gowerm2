@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <css src="mage/calendar.css"/>
+        <script src="Elevate_Framework::js/jquery.js" data-po-cmp-ignore="" data-po-cmp-ignore-merge="" />
+        <script src="js/vendor/bootstrap/util.js" />
+        <script src="js/vendor/bootstrap/modal.js" />
+        <script src="js/vendor/bootstrap/scrollspy.js" />
+        <script src="js/vendor/bootstrap/collapse.js"/>
+        <script src="requirejs/require.js" />
+        <script src="mage/polyfill.js" />
+
+
+
+        <!-- This one is for quick gulpfile testing -->
+        <!--<css src="css/dist/styles-s.css"/>-->
+        <remove src="css/styles-m.css"/>
+        <remove src="css/styles-l.css"/>
+    </head>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Js\Components" name="head.components" as="components" template="Magento_Theme::js/components.phtml" before="-"/>
+        </referenceContainer>
+    </body>
+</page>

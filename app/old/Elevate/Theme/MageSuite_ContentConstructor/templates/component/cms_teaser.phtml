@@ -1,0 +1,39 @@
+<?php
+/** @var $block \MageSuite\ContentConstructorFrontend\Block\Component\CmsTeaser */
+$componentConfiguration = $block->getData();
+
+/** @var \MageSuite\ContentConstructorFrontend\Model\Component\CmsTeaser $viewModel */
+$viewModel = $block->getViewModel();
+$slides = $viewModel->getSlides();
+
+$componentConfiguration['scenario'] = array_merge(
+    [
+        'teaserWidth' => ['id' => 'container'],
+        'desktopLayout' => ['id' => $componentConfiguration['currentScenario']['desktopLayout']['id']],
+        'contentPlacement' => ['id' => 'over'],
+        'mobileLayout' => ['id' => $componentConfiguration['currentScenario']['mobileLayout']['id']]
+    ],
+    $componentConfiguration['scenario'] ?? []
+);
+
+$componentConfiguration['items'] = $slides;
+
+foreach ($componentConfiguration['items'] as $key => &$item) {
+    $componentConfiguration['items'][$key] = array_merge($item, ['content_align' => $componentConfiguration['content_align']]);
+}
+
+$itemsOptions = $block->getVar('cms_teaser/items_options');
+if ($itemsOptions) {
+    foreach ($componentConfiguration['items'] as $key => &$item) {
+        $componentConfiguration['items'][$key] = array_merge($item, $itemsOptions);
+    }
+}
+
+echo $this->getLayout()
+    ->createBlock('MageSuite\ContentConstructorFrontend\Block\Component\ImageTeaser')
+    ->setData($componentConfiguration)
+    ->setMix('cs-image-teaser--cms-teaser ' . $block->getMix())
+    ->setContainerMix('cs-container--cms-teaser ' . $block->getContainerMix())
+    ->toHtml();
+
+?>

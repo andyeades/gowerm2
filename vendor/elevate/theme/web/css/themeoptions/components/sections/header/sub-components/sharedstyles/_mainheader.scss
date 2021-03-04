@@ -1,0 +1,471 @@
+// Main Header Container
+
+$hdr-mi-flex: 0 1 auto !default;
+$hdr-logo-img-padding-mobilemenumax: 10px !default;
+$hdr-logo-img-max-height-mobilemenumax: 34px !default;
+$hdr-logo-img-max-height-desktop: 60px !default;
+
+
+$hdr-main-border-on-mobile: 1 !default;
+
+
+$hdr-main-border-color-mobile: #0e1936 !default;
+$hdr-main-border-position-mobile: bottom !default;
+$hdr-main-border-thickness-mobile: 2px !default;
+$hdr-main-border-style-mobile: solid !default;
+$hdr-main-outer-zindex: false !default;
+
+$hdr-mi-padding-leftright-mobilemenumax: false !default;
+$hdr-mi-padding-topbtm: 0 !default;
+$hdr-mi-padding-topbtm-desktop: 0 !default;
+$hdr-mi-height: 100% !default;
+
+
+$include-header-dropdown-content: false !default;
+
+$hdr-conta-hover-svg-fill: false !default;
+
+$hdr-acc-dropdowncontent-border: 1px solid #d0ded9 !default;
+$hdr-acc-dropdowncontent-top: 0 !default;
+$hdr-acc-dropdowncontent-left: 0 !default;
+$hdr-acc-dropdowncontent-color: #000 !default;
+$hdr-acc-dropdowncontent-background: #ffffff !default;
+$hdr-acc-dropdowncontent-padding: 0.875rem !default;
+$hdr-acc-dropdowncontent-transform: translate3d(0px, 0px, 0px) !default;
+$hdr-acc-dropdowncontent-boxshadow: rgba(0, 0, 0, 0.13) 0 2px 4px 0 !default;
+$hdr-acc-dropdowncontent-zindex: 2 !default;
+$hdr-acc-dropdowncontent-border-bottom-left-radius: false !default;
+$hdr-acc-dropdowncontent-border-bottom-right-radius: false !default;
+$hdr-acc-dropdowncontent-border-radius: false !default;
+
+// TA Link
+
+$hdr-acc-ta-link-start-color: #3a6e5d !default;
+$hdr-acc-ta-link-start-background: unset !default;
+$hdr-acc-ta-link-start-fontsize: 0.8125rem !default;
+$hdr-acc-ta-link-start-hover-color: #ff7567 !default;
+$hdr-acc-ta-link-start-hover-text-decoration: underline !default;
+
+
+#hdr-mo {
+    @include co(height, $hdr-desktop-height);
+    @include co(font-size, $hdr-general-font-size, $font-size-base);
+    @include co(background, $hdr-main-outer-background);
+    @include co(z-index, $hdr-main-outer-zindex);
+
+    @include max-screen($mobile-menu-visible-max) {
+        height: $hdr-mobile-height;
+        @if $hdr-main-border-on-mobile == 1 {
+            @include elevate-border($hdr-main-border-color-mobile, $hdr-main-border-thickness-mobile, $hdr-main-border-style-mobile, $hdr-main-border-position-mobile);
+        }
+    }
+
+    a {
+        @include co(height, $hdr-main-height);
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+
+}
+
+
+#hdr-mi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $hdr-mi-height;
+    padding-top: $hdr-mi-padding-topbtm;
+    padding-bottom: $hdr-mi-padding-topbtm;
+    @include max-screen($mobile-menu-visible-max) {
+        @include co(padding-left, $hdr-mi-padding-leftright-mobilemenumax);
+        @include co(padding-right, $hdr-mi-padding-leftright-mobilemenumax);
+    }
+
+    > div {
+        flex: $hdr-mi-flex;
+        @if $hdr-r-trowbrow-sidebyside != 1 {
+            flex-wrap: wrap;
+        }
+    }
+
+    @include min-screen($mobile-menu-notvisible) {
+        padding-top: $hdr-mi-padding-topbtm-desktop;
+        padding-bottom: $hdr-mi-padding-topbtm-desktop;
+    }
+
+    .hdr-in-right {
+        @include co(flex, $hdr-mi-hdr-in-right-flex, $hdr-mi-flex)
+    }
+}
+
+// Header Search
+
+.btn-searchheader {
+    background: none;
+    border: none;
+}
+
+
+#hdr-mto {
+    @if ($hdr-main-top-outer-bg-color != null) {
+        background-color: $hdr-main-top-outer-bg-color;
+    }
+
+    @include max-screen($screen-xs-max) {
+        display: none;
+    }
+}
+
+#hdr-mti {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.hdr-mti-i {
+    flex: 0 1 auto;
+    width: 100%;
+
+    @include min-screen($screen-md-min) {
+        width: 50%;
+    }
+}
+
+.hdr-mti-ilc {
+    @include screen($screen-sm-min, $screen-sm-max) {
+        width: 70%;
+    }
+}
+
+.hdr-mti-irc {
+    @include screen($screen-sm-min, $screen-sm-max) {
+        width: 30%;
+    }
+}
+
+
+#hdr-mmo {
+    @include co(background, $hdr-main-outer-background);
+    @include co(border-bottom, $hdr-main-mid-outer-border-style);
+    @if ($hdr-main-mid-outer-border-bottom != null) {
+        border: $hdr-main-mid-outer-border-style;
+    }
+
+    @include min-screen($desktop-min) {
+        padding: $hdr-main-mid-desktop-padding;
+    }
+}
+
+
+#hdr-mmi {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.hdr-mmi-i {
+    flex: 0 1 auto;
+    width: 50%;
+}
+
+
+.hdr-mmi-i-l {
+    width: 20%;
+}
+
+.hdr-mmi-i-r {
+    width: 80%;
+}
+
+#header-main-mid-inner {
+
+}
+
+.logo {
+    img {
+        @include img-responsive;
+        @include max-screen($mobile-menu-visible-max) {
+            @include co(margin, $hdr-logo-img-margin-mobilemax);
+            @include co(padding, $hdr-logo-img-padding-mobilemenumax);
+            @include co(max-height, $hdr-logo-img-max-height-mobilemenumax);
+        }
+        @include min-screen($mobile-menu-notvisible) {
+            @include co(max-height, $hdr-logo-img-max-height-desktop);
+        }
+    }
+}
+
+
+#header-main-bottom-outer {
+    @include co(background, $hdr-main-bottom-outer-background-color);
+}
+
+.cd-nav-trigger {
+
+    @include co(color, $hdr-mobile-nav-trigger-color);
+    display: flex;
+    flex-wrap: wrap;
+    @include co(align-items, $hdr-mobile-nav-trigger-align-items);
+    justify-content: center;
+    flex-direction: column;
+
+
+    .mob-menu-label {
+        color: $hdr-mobile-menu-label-text-color;
+        position: relative;
+        font-size: 10px;
+        @include co(font-family, $hdr-mobile-menu-label-fontfamily);
+    }
+
+    @include min-screen($mobile-menu-notvisible) {
+        display: none;
+    }
+    @include max-screen($mobile-menu-visible-max) {
+        left: 10px;
+    }
+}
+
+
+
+@if $include-header-dropdown-content != false {
+    #hdr-mo {
+        .hover {
+            .hdr-top-list {
+                $hdr-mo-hover-hdr-toplist-border-bottom-left-radius: false !default;
+                $hdr-mo-hover-hdr-toplist-border-bottom-right-radius: false !default;
+                $hdr-mo-hover-hdr-toplist-background: false !default;
+
+                    @include co(border-bottom-left-radius, $hdr-mo-hover-hdr-toplist-border-bottom-left-radius);
+                    @include co(border-bottom-right-radius, $hdr-mo-hover-hdr-toplist-border-bottom-right-radius);
+                    @include co(background, $hdr-mo-hover-hdr-toplist-background);
+
+            }
+        }
+    }
+
+    #my-acc-signout {
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        margin-top: 10px;
+        a {
+            span {
+                text-align: left;
+                display: block;
+                float: left;
+            }
+            img {
+                width: 16px;
+                float: right;
+                display: block;
+                margin-top: 2px;
+            }
+        }
+    }
+
+
+    .dropdown-content {
+        display: none;
+
+        @include co(border, $hdr-acc-dropdowncontent-border);
+        @include co(top, $hdr-acc-dropdowncontent-top);
+        @include co(left, $hdr-acc-dropdowncontent-left);
+        @include co(color, $hdr-acc-dropdowncontent-color);
+        @include co(background, $hdr-acc-dropdowncontent-background);
+        @include co(padding, $hdr-acc-dropdowncontent-padding);
+        @include co(transform, $hdr-acc-dropdowncontent-transform);
+        @include co(box-shadow, $hdr-acc-dropdowncontent-boxshadow);
+        @include co(z-index, $hdr-acc-dropdowncontent-zindex);
+        @include co(border-radius, $hdr-acc-dropdowncontent-border-radius);
+        @include co(border-bottom-left-radius, $hdr-acc-dropdowncontent-border-bottom-left-radius);
+        @include co(border-bottom-right-radius, $hdr-acc-dropdowncontent-border-bottom-right-radius);
+        position: absolute;
+        min-width: 186px;
+        zoom: 1;
+        line-height: normal;
+        margin: 0;
+        overflow: visible !important;
+        text-transform: initial !important;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top: 0;
+        @include max-screen($mobile-menu-visible-max) {
+            display: none;
+        }
+
+        #hdr-mo {
+            a {
+                @include min-screen($mobile-menu-notvisible) {
+                    text-decoration: none;
+                    color: black;
+                }
+            }
+        }
+
+
+        ul {
+            @include min-screen($mobile-menu-notvisible) {
+                list-style-type: none;
+            }
+        }
+
+        a {
+            @include min-screen($mobile-menu-notvisible) {
+                color: black;
+                text-decoration: none;
+                display: block;
+            }
+        }
+
+        $hdr-acc-dropdowncontent-primary-btn-background: false !default;
+
+        .action.primary.btn.btn_acc_signin {
+            @include min-screen($mobile-menu-notvisible) {
+                width: 100%;
+
+                @include co(background, $hdr-acc-dropdowncontent-primary-btn-background);
+                border: none;
+            }
+            &:hover {
+                @include min-screen($mobile-menu-notvisible) {
+                    opacity: 0.8;
+                }
+
+            }
+
+        }
+    }
+
+    .ta_list_wrap {
+        @include min-screen($mobile-menu-notvisible) {
+            border-top: 1px solid #ccc;
+            margin-top: 10px;
+            padding-top: 13px;
+            text-align: left;
+        }
+        .hide_line {
+            @include min-screen($mobile-menu-notvisible) {
+                border: none;
+                padding-top: 0 !important;
+            }
+        }
+    }
+
+    @media only screen and (min-width: 992px) {
+        .ta_new_customer {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .ta_link_new {
+            font-size: 13px;
+            background-color: unset;
+        }
+
+        .ta_link_start {
+
+
+
+
+                @include co(color, $hdr-acc-ta-link-start-color);
+                @include co(background, $hdr-acc-ta-link-start-background);
+                @include co(font-size, $hdr-acc-ta-link-start-fontsize);
+            &:hover {
+
+
+
+                @include co(color, $hdr-acc-ta-link-start-hover-color);
+                @include co(text-decoration, $hdr-acc-ta-link-start-hover-text-decoration);
+            }
+        }
+
+
+
+        .ta_new_customer {
+            margin-top: 0;
+            padding: 10px 0;
+            li {
+                padding: 3px;
+            }
+        }
+
+        #header-top .hdr-acc-link-n,
+        .hdr-signinreg-sep,
+        .sign-in {
+            transition: none !important;
+        }
+
+        .hover {
+
+
+            .hdr-acc-li-mobile svg {
+                fill: #577367 !important;
+            }
+
+            div#ta_new_customer {
+                display: block !important;
+            }
+
+            .dropdown-content {
+                display: block !important;
+            }
+            .hdr-myacc-link span {
+                color: #577367;
+            }
+            .hdr-acc-link-n, .hdr-signinreg-sep, .sign-in {
+                color: #577367 !important;
+                transition: none !important;
+            }
+        }
+
+        .hdr-in-right > div {
+            flex: 0 1 auto;
+            position: relative;
+        }
+
+
+
+        #header-top {
+            #hdr-mo {
+                ul {
+                    text-align: left;
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    margin-top: 10px;
+                    padding-top: 10px;
+                }
+                a:hover {
+                    color: #3a6e5d;
+                }
+            }
+        }
+
+
+
+
+
+        .showme {
+            display: block !important;
+        }
+
+
+    }
+
+
+
+    .hdr-conta {
+        .hover {
+            svg {
+                @include co(fill, $hdr-conta-hover-svg-fill);
+            }
+        }
+
+    }
+}

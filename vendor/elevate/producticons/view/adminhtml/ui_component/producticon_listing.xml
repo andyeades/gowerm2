@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">producticon_listing.producticon_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>product_columns</spinner>
+        <deps>
+            <dep>producticon_listing.producticon_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="producticon_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="cacheRequests" xsi:type="boolean">false</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Elevate_ProductIcons::index</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="producticon_listing_data_source">
+            <settings>
+                <requestFieldName>icon_id</requestFieldName>
+                <primaryFieldName>icon_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="params" xsi:type="array">
+                        <item name="filters_modifier" xsi:type="array"/>
+                    </item>
+                    <item name="observers" xsi:type="array">
+                        <item name="filters" xsi:type="object">Magento\Catalog\Ui\Component\Listing\Filters</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <statefull>
+                    <property name="applied" xsi:type="boolean">false</property>
+                </statefull>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="product_columns" class="Magento\Catalog\Ui\Component\Listing\Columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">relatedProductGrid</item>
+                    <item name="target" xsi:type="string">selectProduct</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+            <selectionsColumn name="ids">
+                <settings>
+                    <indexField>icon_id</indexField>
+                    <resizeEnabled>false</resizeEnabled>
+                    <resizeDefaultWidth>55</resizeDefaultWidth>
+                </settings>
+            </selectionsColumn>
+            <column name="icon_id">
+                <settings>
+                    <filter>textRange</filter>
+                    <label translate="true">ID</label>
+                    <sorting>asc</sorting>
+                </settings>
+            </column>
+            <column name="icon_title">
+                <settings>
+                    <filter>text</filter>
+                    <editor>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <editorType>text</editorType>
+                    </editor>
+                    <label translate="true">Title/Alt</label>
+                </settings>
+            </column>
+            <column name="icon_url" class="Elevate\ProductIcons\Ui\Component\Listing\Column\Image">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Product Icon</item>
+                        <item name="sortOrder" xsi:type="number">30</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                        <item name="altField" xsi:type="string">Icon Image</item>
+                        <item name="has_preview" xsi:type="string">1</item>
+                        <item name="sortable" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </column>
+            <column name="icon_start_date" class="Magento\Ui\Component\Listing\Columns\Date">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="filter" xsi:type="string">dateRange</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                        <item name="dataType" xsi:type="string">date</item>
+                        <item name="label" xsi:type="string" translate="true">Start Date</item>
+                    </item>
+
+                </argument>
+                <settings>
+                    <editor>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                    </editor>
+                </settings>
+            </column>
+            <column name="icon_end_date" class="Magento\Ui\Component\Listing\Columns\Date">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="filter" xsi:type="string">dateRange</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                        <item name="dataType" xsi:type="string">date</item>
+                        <item name="label" xsi:type="string" translate="true">End Date</item>
+                    </item>
+
+                </argument>
+                <settings>
+                    <editor>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                    </editor>
+                </settings>
+            </column>
+        </columns>
+</listing>

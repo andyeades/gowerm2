@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">elevate_megamenu_form.elevate_megamenu_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevate_megamenu_form</item>
+            <item name="deps" xsi:type="string">elevate_megamenu_form.elevate_megamenu_form_data_source</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="provider" xsi:type="string">elevate_megamenu_form.elevate_megamenu_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevate_megamenu_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Elevate\Megamenu\Block\Adminhtml\Megamenu\Edit\Button\Save"/>
+            <button name="delete" class="Elevate\Megamenu\Block\Adminhtml\Megamenu\Edit\Button\Delete"/>
+            <button name="back" class="Elevate\Megamenu\Block\Adminhtml\Megamenu\Edit\Button\Back"/>
+        </buttons>
+        <deps>
+            <dep>elevate_megamenu_form.elevate_megamenu_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="elevate_megamenu_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Elevate\Megamenu\Ui\DataProvider\Megamenu\Form\MegamenuDataProvider</argument>
+            <argument name="name" xsi:type="string">elevate_megamenu_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+
+
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="elevate_megamenu/index/save"/>
+        </settings>
+        <dataProvider class="Elevate\Megamenu\Ui\DataProvider\Megamenu\Form\MegamenuDataProvider" name="elevate_megamenu_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Megamenu Item Information</label>
+        </settings>
+
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>entity_id</dataScope>
+                <label translate="false">Entity ID</label>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="menu_name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>menu_name</dataScope>
+                <label translate="true">Menu Name</label>
+                <required>true</required>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+
+            </settings>
+        </field>
+        <field name="menu_link" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>menu_link</dataScope>
+                <label translate="true">Menu Link</label>
+                <required>false</required>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="menu_icon" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>menu_icon</dataScope>
+                <label translate="true">Menu Icon</label>
+                <required>false</required>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="enabled" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>enabled</dataScope>
+                <label translate="true">Enabled</label>
+                <dataType>boolean</dataType>
+                <visible>true</visible>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>checkbox</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <field name="position" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>position</dataScope>
+                <label translate="true">Position</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <tooltip>
+                    <description translate="true">Enter a numeric value upto 4 digits in length.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="show_type" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>show_type</dataScope>
+                <label translate="true">Show Type</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description translate="true">Show on Desktop/Mobile/Both</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Megamenu\Model\Config\Source\ShowType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="menu_type" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>menu_type</dataScope>
+                <label translate="true">Menu Type</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description translate="true">Menu Type (Style of Dropdown)</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Megamenu\Model\Config\Source\Type"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="start_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">YYYY-MM-dd hh:mm:ss</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="pickerDateTimeFormat" xsi:type="string">YYYY-MM-dd hh:mm:ss</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Start Date</label>
+                <visible>true</visible>
+                <dataScope>start_date</dataScope>
+                <tooltip>
+                    <description translate="true">If required set a date to start displaying this item.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="end_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">YYYY-MM-dd hh:mm:ss</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="pickerDateTimeFormat" xsi:type="string">YYYY-MM-dd hh:mm:ss</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">End Date</label>
+                <visible>true</visible>
+                <dataScope>end_date</dataScope>
+                <tooltip>
+                    <description translate="true">If required set a date to stop displaying this item</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="menu_dropdownicon" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>menu_dropdownicon</dataScope>
+                <label translate="true">Show Dropdown Icon</label>
+                <dataType>boolean</dataType>
+                <visible>true</visible>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>checkbox</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="menu_content" sortOrder="150" formElement="textarea">
+            <settings>
+                <dataScope>menu_content</dataScope>
+                <dataType>string</dataType>
+                <label translate="true">Menu Content</label>
+            </settings>
+        </field>
+        <field name="menu_columns" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>menu_columns</dataScope>
+                <label translate="true">Menu Columns</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description translate="true">Menu Columns</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Megamenu\Model\Config\Source\Columns"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="menu_align" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>menu_align</dataScope>
+                <label translate="true">Menu Align</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description translate="true">Menu Align (Dropdown Align)</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Megamenu\Model\Config\Source\Align"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="custom_toplevel_html_on" sortOrder="120" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>custom_toplevel_html_on</dataScope>
+                <label translate="true">Custom TopLevel HTML on</label>
+                <dataType>boolean</dataType>
+                <visible>true</visible>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>checkbox</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="custom_toplevel_html" sortOrder="120" formElement="textarea">
+            <settings>
+                <dataScope>custom_toplevel_html</dataScope>
+                <dataType>string</dataType>
+                <label translate="true">Custom HTML For TopLevel</label>
+            </settings>
+        </field>
+
+        <field name="menu_content" sortOrder="150" formElement="textarea">
+            <settings>
+                <dataScope>menu_content</dataScope>
+                <dataType>string</dataType>
+                <label translate="true">Menu Content</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>

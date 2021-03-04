@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!--<script src="js/vendor/bootstrap/scrollspy.js" />-->
+    </head>
+    <body>
+        <attribute name="class" value="kbase"/>
+        <referenceBlock name="sidebar.additional" remove="true"/>
+
+        <move element="page.main.title" destination="kb.article.view" before="-"/>
+
+        <referenceContainer name="content">
+            <block name="kb.article.view" class="Mirasvit\Kb\Block\Article\View" template="Mirasvit_Kb::article/view.phtml" cacheable="false">
+
+                <block class="Mirasvit\Kb\Block\Article\Comment\Listing" name="article.comment.listing" template="article/comment/listing.phtml">
+                    <block class="Mirasvit\Kb\Block\Article\Comment\Form" name="article.comment.form" template="article/comment/form.phtml"/>
+
+                    <block class="Mirasvit\Kb\Block\Article\Comment\Listing\Toolbar" name="article.comment.listing.toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                        <block class="Magento\Theme\Block\Html\Pager" name="article.comment.listing.toolbar.pager"/>
+                    </block>
+
+                    <action method="setToolbarBlockName">
+                        <argument name="name" xsi:type="string">article.comment.listing.toolbar</argument>
+                    </action>
+                </block>
+
+                <block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha" name="msp-recaptcha" after="-"
+                       ifconfig="kb/comments/enable_recaptcha" template="MSP_ReCaptcha::msp_recaptcha.phtml">
+                    <arguments>
+                        <argument name="jsLayout" xsi:type="array">
+                            <item name="components" xsi:type="array">
+                                <item name="msp-recaptcha" xsi:type="array">
+                                    <item name="component" xsi:type="string">MSP_ReCaptcha/js/reCaptcha</item>
+                                    <item name="zone" xsi:type="string">contact</item>
+                                </item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

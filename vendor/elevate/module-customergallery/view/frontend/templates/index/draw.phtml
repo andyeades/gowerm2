@@ -1,0 +1,1063 @@
+<link rel="stylesheet" type="text/css" href="https://www.happybeds.co.uk/skin/frontend/happybeds/default/bootstrap/dist/elevate-list-4.css" media="all">
+
+<link rel="stylesheet" type="text/css" href="https://www.happybeds.co.uk/media/jquery.mosaic.min.css" media="all">
+<script type="text/javascript" src="https://www.happybeds.co.uk/media/jquery.mosaic.min.js" media="all"></script>
+
+
+<style>
+.image-outer {
+    padding-left: 7px;
+    padding-right: 7px;
+    position: relative;
+    border-radius: 10px;
+}
+    #main-header{
+        display:none;
+    }
+    #subheading-bar{
+        display:none;
+    }
+    .ajax:hover{
+        cursor:pointer;
+        opacity:0.8;
+    }
+    .mosaic.jQueryMosaic {
+        margin-top: 30px;
+    }
+    code {
+        white-space: initial !important;
+    }
+    .buttons-set button.button {
+        font-size: 16px;
+    }
+    .sale-off-products {
+        display:none;
+    }
+    .page {
+        background-color:#316a81;
+    }
+    .containerpage, .page, {
+        background-color:#316a81;
+    }
+    div#home-newsletter {
+        margin: 0;
+    }
+    .ev-flex-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .ev-flex-item {
+        flex: 0 1 auto;
+    }
+
+
+
+    @media only screen and (max-width: 767px){
+        div#terms {
+            text-align: center !important;
+        }
+        #footer-social{
+            text-align:center !important;
+        }
+        .hide_mobile {
+
+
+            width: 100% !important;
+
+        }
+        #homepage-slider {
+
+        }
+
+    }
+
+    @media only screen and (min-width:991px){
+
+        .ev-flex-md-4 {width: 33.33333%; }
+        .ev-flex-md-8 {width: 66.66667%; }
+        .ev-flex-item-padding-left { padding-left: 15px;}
+    }
+
+
+    .form-list label {
+        color: #000000;
+    }
+    .terms p, .terms ul li {
+        font-size: 12px !important;
+        padding: 0px !important;
+    }
+    .form-list label {
+        margin-top: 3px;
+        padding-left: 5px;
+    }
+
+
+    <!--
+    .main-promo-banner {
+
+    }
+    .main-promo-banner-top {
+        margin-bottom: 30px;
+    }
+    .main-promo-banner-top img {
+        width: 100%;
+        height:auto;
+        max-width:100%;
+    }
+    .promo-banner-link {
+
+    }
+    .main-promo-text-content {
+        font-size: 110%;
+        margin-bottom:30px;
+    }
+    .main-promo-text-content a {
+        color: #47a8a2;
+    }
+    .main-promo-text-content a:hover {
+        color: #006b7f;
+
+    }
+    .main-promo-social-post-links {
+
+    }
+    .main-promo-social-post-links ul {
+        text-align: center;
+    }
+    .main-promo-social-post-links ul li {
+        display: inline-block;
+    }
+    .promo-social-post {
+
+    }
+    .promo-social-post-link {
+
+    }
+    .promo-desktop {
+
+    }
+    .promo-mobile {
+
+    }
+    .promo-social-link-outer {
+        background-image: url(https://www.happybeds.co.uk/form/sleep-survey/win-a-bed-social-background.jpg);
+        background: #FA2192;
+        margin-bottom: 30px;
+    }
+    .promo-social-link-outer:hover {
+        text-decoration: none;
+        transition: all .5s ease-in;
+    }
+    .promo-social-link-outer .btn {
+        text-decoration: none;
+        transition: all .5s ease-in;
+        font-weight: 600;
+        border-radius: 0;
+        background: #FCC10F;
+        border-color:#FCC10F;
+        color: #2E2A65;
+        white-space: initial;
+        width: 100%;
+
+    }
+    .promo-social-link-outer .btn:hover {
+        text-decoration: none;
+        transition: all .5s ease-in;
+        background: #2E2A65;
+        border-color:#2E2A65;
+        color: #FCC10F;
+    }
+    .promo-social-link-outer a {
+        display:block;
+        text-decoration: none;
+        transition: all .5s ease-in;
+        padding:40px;
+        text-transform: uppercase;
+        font-weight: 600;
+        border-radius: 0;
+        cursor: pointer;
+    }
+    .promo-social-link-outer a:hover {
+        text-decoration: none;
+        transition: all .5s ease-in;
+    }
+
+    .promo-social-post-link  {
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        height: 78px;
+        width: 78px;
+        line-height: 78px;
+        margin-bottom:25px;
+        font-size: 55px;
+        color: #fff;
+        transition: all .5s ease-in;
+        border-radius:78px;
+        background-clip: padding-box;
+    }
+
+    .promo-social-post-link i {
+        position: relative;
+        vertical-align: middle;
+        line-height: 78px;
+    }
+
+    .promo-banner-link img {
+        width: 100%;
+        height:auto;
+        max-width:100%;
+    }
+    .main-promo-banner-bottom {
+
+        background-color: #0e1936;
+        min-height: 150px;
+        padding:  25px;
+        text-align: center;
+    }
+    .main-promo-banner-bottom h3 {
+        font-size: 24px;
+        color: white !important;
+        margin-bottom:24px;
+    }
+    .main-promo-banner-bottom .btn {
+        margin-bottom: 24px;
+        text-transform: uppercase;
+        font-weight: 600;
+        border-radius: 0;
+        width: 50%;
+        height: 50px;
+        font-size: 20px;
+        line-height: 38px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .promo-desktop {
+            display: none;
+        }
+        .promo-mobile {
+            display:block;
+        }
+
+        .main-promo-banner-bottom {
+
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .promo-mobile {
+            display: none;
+        }
+
+        .promo-desktop {
+            display: block;
+        }
+
+        .main-promo-banner-bottom {
+
+        }
+    }
+    @media only screen and (max-width: 991px) and (min-width: 768px) {
+        .promo-social-link-outer a {
+            padding: 40px 0;
+        }
+        .promo-social-link-outer .btn {
+            font-size:11px;
+        }
+    }
+    -->
+
+    .validation-advice {
+        color: #ffffff;
+    }
+    p.required{
+        color: #000000;
+
+    }
+    .buttons-set{
+        margin: 0 !important;
+    }
+
+    .webforms-success-text {
+        border: 1px solid #FCC10F;
+        padding: 1rem 1.5rem;
+        background: #FCC10F;
+        border-radius: 5px;
+        color: #2E2A65;
+        font-size: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+    .myimin {
+        background-color: white;
+        padding: 9px 5px;
+        border: 1px solid #e9e4e4;
+    }
+    .col-md-4.myim3 {
+        padding: 0px 4px;
+    }
+    div#field_tpn1qb14 label {
+        margin-left: 10px;
+    }
+    .form-list .field {
+        float: left;
+        width: 100%;
+        clear: both;
+        padding-right: 0;
+        padding-left: 0;
+        margin-top: 22px;
+    }
+
+    .buttons-set button.button {
+        float: right;
+        margin-left: 5px;
+        width: 100%;
+        height: 51px;
+        background: #FCC10F;
+        border-color: #FCC10F;
+        color:#2E2A65;
+    }
+    .buttons-set button.button:hover {
+        text-decoration: none;
+        transition: all .5s ease-in;
+        background: #2E2A65;
+        border-color:#2E2A65;
+        color: #FCC10F;
+    }
+    ..list-select{
+        padding:0px !important;
+    }
+    .list-select li {
+        float: left;
+        width: 48%;
+        min-height: 252px;
+        margin: 1%;
+        border: 1px solid #ccc;
+        background: #f0f0fc;
+        text-align: center;
+        padding: 2px;
+    }
+    .list-select img {
+        max-width:100%;
+    }
+    .page{
+        /* background-color: #f0f0f0;*/
+    }
+    #sswrap{
+        padding: 40px;
+        background-color: #f0f0f0;
+    }
+    .menu-bg, .breadcrumbs-outer{
+        display:none;
+    }
+    .page-content-wrap-ev {
+        padding: 20px;
+    }
+    #mc-embedded-subscribe {
+        background-color: #ef386c !important;
+        text-transform: none;
+        font-weight: bold !important;
+        width: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+        height: 50px !important;
+        margin-top: 20px !important;
+        font-size: 19px !important;
+    }
+    .page-content-wrap-ev {
+        padding: 20px;
+        background: #ffffff;
+        /* margin-top: 20px; */
+    }
+
+    .signup-form #footer-social ul {
+        border: 0px;
+    }
+    .page-content-wrap-ev p, .page-content-wrap-ev li {
+        font-size: 15px;
+        padding-top: 15px;
+    }
+
+    .ev-wraper .fa-1-5x {
+        font-size:40px;
+    }
+
+    .ev-wraper td {
+        border: none!important;
+    }
+
+    .ev-wraper .share-this-title, .ev-wraper i.fa{
+        color: #ffffff;
+    }
+
+    #mc_embed_signup .mc-field-group input {
+        color: #000000;
+    }
+
+    div#mc_embed_signup a {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+    #mc_embed_signup #mce-success-response {
+        color: #ffffff;
+    }
+
+    #homepage-slider {
+        height: auto;
+        background: none;
+        background-size: cover;
+
+        margin: 0 auto;
+    }
+    .hide_mobile{display:none}
+    .hide_desktop{display:block;}
+
+    @media only screen and (max-width:767px){
+        .hide_mobile{display:block !important;}
+        .hide_desktop{display:none !important;}
+    }
+
+    @media only screen and (max-width:991px){
+        .cdp code {
+            padding: 0 !important;
+
+            background: none !important;
+        }
+        .signup-form {
+            margin-top: 20px !important;
+        }
+
+        .contents-wrapper-ev{
+            display:flex;
+            flex-direction: row-reverse;
+            flex-flow: wrap;
+        }
+
+
+
+
+</style>
+<style>
+    .test img {
+      max-width: 120%;
+      max-height: 120%;
+        width: 120%;
+        height: 120%;
+        margin-left: -10%;
+        margin-top: -5%;
+    }
+
+    .container.test {
+        margin-bottom: 30px;
+    }
+
+    /* delte above */
+    .image-outer {
+        float:left;
+
+        padding-left: 7px;
+        padding-right: 7px;
+        height: 300px ;
+        overflow: hidden;
+        width: 23% ;
+        margin: 0px ;
+        margin-top: 20px;
+        margin: 1% ;
+    }
+
+    .image-outer .fa-plus-circle {
+        font-size: 25px;
+        color: #f0386c;
+        float: right;
+        padding-left: 9px;
+
+    }
+
+    .circ_out{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: right;
+        background-color: #ffffff54;
+        color: black;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        -webkit-transition: .5s ease;
+        transition: .5s ease;
+    }
+
+
+    .user-handle-hidden {
+        display: block;
+        min-width: 150px;
+        text-align: center;
+        float: left;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        margin: 0 auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        text-align: center;
+        color: #ffffff;
+    }
+
+
+    main#page-main-outer {
+      background-color: #316a81;
+      margin: 0;
+    }
+    .image-outer:hover {
+        cursor: pointer;
+        /*		opacity: 0.5;*/
+    }
+
+    .image-outer:hover .overlay {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+
+
+
+    .popup-title {
+        margin-top: 10px;
+        margin-bottom: 2px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+
+    a#btn-cart-view {
+        width: 90%;
+        padding: 5px;
+        margin-top: 10px;
+    }
+
+
+
+
+    .top-intro {
+        text-align: center;
+        border-top: 3px solid black;
+        border-bottom: 3px solid black;
+        margin-bottom: 15px;
+    }
+
+
+    @media screen and (max-width: 991.98px){
+
+        .customergallery-index-index .container.test {
+            padding: 0;
+        }
+        .image-outer{
+            width:100% !important;
+            padding: 15px;
+            margin-left:0px !important;
+            margin-right:0px !important;
+        }
+        #colour_filter, #room_filter, #draw_school, #draw_age, #draw_region {
+            width: 100% !important;
+            margin: 5px 0px !important;
+        }
+        .filters {
+            text-align: center;
+            padding: 0 !important;
+        }
+        #main_wrap{
+            padding: 20px;
+        }
+        .mobin{
+            width: 100% !important;
+            display: block;
+            padding: 0 !important;
+            margin: 0px !important;
+        }
+
+        .row {
+            padding-bottom: 0!important;
+            padding-top: 0!important;
+        }
+
+
+
+    }
+
+
+    #colour_filter, #room_filter, #draw_school, #draw_age, #draw_region {
+        display: inline;
+        width: auto;
+        width: 250px;
+        background: #ececec;
+        color: #000;
+        border: none;
+        text-transform: uppercase;
+        font-weight: 400;
+        border-radius: 0!important;
+        -webkit-appearance: none;
+        margin-left: 20px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: 600;
+      height:43px;
+    }
+
+    .filters {
+        text-align: center;
+        padding: 20px;
+    }
+
+
+
+
+    .ajax {
+        position: relative;
+    }
+
+    .top-intro h1 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .top-intro p {
+        font-size: 17px;
+        margin-top: 15px;
+    }
+
+    .image-outer {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .popup-right-content #ev_price, .popup-right-content #ev_msrp{
+        text-decoration: line-through;
+    }
+
+    .popup-right-content #ev-special-wrap {
+        color: #cb2727;
+    }
+
+    .review-date {
+        margin-top: 15px;
+    }
+
+    #ev-msrp-wrap, #ev-price-wrap {
+        color: #6b6b6b;
+    }
+    .cross_line{
+        display: inline-block;
+        position: relative;
+        padding: 14px;
+        border-top: solid 2px #fff;
+        border-bottom: solid 2px #fff;
+        text-decoration: none;
+        font-weight: bold;
+        margin:10px;
+        text-transform: uppercase;
+        color: white !important;
+        font-size: 18px;
+
+    }
+    .cross_line:before, .cross_line:after{
+        content: '';
+        position: absolute;
+        top: -7px;
+        width: 2px;
+        height: -webkit-calc(100% + 14px);
+        height: calc(100% + 14px);
+        background-color: white;
+        transition: .3s;
+    }
+    .cross_line:before {left: 7px;}
+    .cross_line:after {right: 7px;}
+    .cross_line:hover:before{
+        top: 0px;
+        left:0;
+        height: 100%;
+    }
+    .cross_line:hover:after{
+        top: 0px;
+        right: 0;
+        height: 100%;
+    }
+</style>
+
+<div id="homepage-slider">
+    <img class="hide_desktop" src="https://www.happybeds.co.uk/media/Bed-Design-Post-Competition-Header.jpg" style="width: 100%;">
+    <img class="hide_mobile" src="https://www.happybeds.co.uk/media/bed-design-mobile.jpg" style="width: 100%;">
+</div>
+<div class="container">
+    <div class="row">
+
+
+        <div  style="
+    color: #ececec;
+    padding-top: 20px;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+" id="main_wrap">
+            <h1> Bed Drawing Competition</h1>
+            <p> We challenged school children of the UK to design their dream bed, and the standard of responses we received was absolutely phenomenal.</p>
+
+            <p> We were sent hundreds of amazing beds from talented young bed designers, but only 10 could be shortlisted by our judges.</p>
+
+            <p> So without further ado, here they are: the most out-of-this-world bed designs, reimagined by our graphic designer. Congratulations to our finalists, and thanks to everyone who took part!</p>
+        </div>
+
+        <?php
+
+
+        if(isset($_GET['winner']) && $_GET['winner'] == 2) {
+
+            ?>
+            <div class="container" style="    margin: 0 auto;
+    text-align: center;
+    padding: 25px;">
+                <h2 style="color:white;">Here are our 10 finalists</h2>
+                <p style="color:white;">Please find our finalists selected, see the <a style="color:white;text-decoration:underline;" href="/kids-dream-bedrooms/competition-entries">full list of entries here</a></p>
+            </div>
+            <?
+        }
+        else{
+            ?>
+
+            <div class="container" style="    margin: 0 auto;
+    text-align: center;
+    padding: 25px;">
+                <a href="/kids-dream-bedrooms/competition-entries?winner=2" class="cross_line">
+                    Show Finalists
+                </a>
+                <a  style="display:none;" href="/kids-dream-bedrooms/competition-entries?winner=1" class="cross_line">
+                    Show Winner
+                </a>
+            </div>
+            <?php
+
+        }
+
+        ?>
+
+    </div>
+
+    <div class="filters">
+        <?php
+
+
+
+        //echo "<pre>";
+        //
+        //print_r($socialposts->getData());
+        //die;
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+
+        $evHlpr = $objectManager->get("Magento\Eav\Model\Config");
+
+        $attribute = $evHlpr->getAttribute('catalog_product', '$name');
+        $attributeOptions = $attribute->getSource()->getAllOptions();
+        foreach($attributeOptions AS $key=>$value){
+
+            $array_lookup[$value['value']] = $value['label'];
+        }
+
+
+ $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+        $readConnection = $resource->getConnection();
+
+
+
+        $query = "SELECT DISTINCT(draw_region) FROM elevate_customergallery_items WHERE (status = 1) AND (draw_region != '')  AND location = 'draw'";
+        $results = $readConnection->fetchAll($query);
+
+        echo '<select id="draw_region" name="draw_region" onchange="ELEVATE.CustomerGallery.attachEventHandlersLoad();">';
+        echo '<option value="">Filter by Region</option>';
+
+        foreach($results as $result){
+            echo '<option value="'.$result['draw_region'].'">'.$result['draw_region'].'</option>';
+        }
+        echo "</select>";
+        //   $collection = Mage::getModel('customergallery/items')->getCollection()
+        //                  ->addFieldToFilter('status', 1);
+
+        //getProductId();
+        $query = "SELECT DISTINCT(draw_age) as 'draw_age' FROM elevate_customergallery_items WHERE (status = 1) AND (draw_age != '')  AND location = 'draw' ORDER BY draw_age+0 asc";
+        $results = $readConnection->fetchAll($query);
+
+        echo '<select id="draw_age" name="draw_age" onchange="ELEVATE.CustomerGallery.attachEventHandlersLoad();">';
+        echo '<option value="">Filter by Age</option>';
+
+        foreach($results as $result){
+            echo '<option value="'.$result['draw_age'].'">'.$result['draw_age'].'</option>';
+        }
+        echo "</select>";
+
+        $query = "SELECT DISTINCT(draw_school) FROM elevate_customergallery_items WHERE (status = 1) AND (draw_school != '')  AND location = 'draw'";
+        $results = $readConnection->fetchAll($query);
+
+        echo '<select id="draw_school" name="draw_school" onchange="ELEVATE.CustomerGallery.attachEventHandlersLoad();">';
+        echo '<option value="">Filter by School</option>';
+
+        foreach($results as $result){
+            echo '<option value="'.$result['draw_school'].'">'.$result['draw_school'].'</option>';
+        }
+        echo "</select>";
+
+        $winner = '';
+        if(isset($_GET['winner'])){
+
+          $winner = $_GET['winner'];
+        }
+        ?>
+
+        <input type="hidden" name="winner" id="winner" value="<?php echo $winner; ?>" />
+
+    </div>
+
+</div>
+
+
+
+<div class="container test">
+    <div class="col-md-12 mobin">
+
+        <div id="full_swap">
+            <div id="insert_anchor"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #loadmore {
+        margin: 0 auto;
+        margin-top:15px;
+        /* width: 600px; */
+        text-align: center;
+        cursor: pointer;
+        padding: 0 15px 0 15px;
+      clear:both;
+    }
+
+    #loadmore span {
+        background-color: #f0f0f0;
+        padding: 12px;
+        width: 100%;
+        display: block;
+        text-align: center;
+        border: 1px solid #ccc;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    #loadmore span:hover {
+        opcity:0.8;
+
+    }
+</style>
+<!-- Load More Button -->
+<div id="loadmore">
+    <span>Load More</span>
+</div>
+<input type="hidden" id="socialpagenumber" value="1">
+<!-- End Load More Button -->
+
+<div style="clear:both;"></div>
+
+<script type="text/javascript">
+
+    var ELEVATE = ELEVATE || {};
+
+    // wrap code in a closure to allow use of $
+    (function ($) {
+
+        ELEVATE.CustomerGallery = (function () {
+
+            var clickTimeout;
+
+            var init = function()
+                {
+                    attachEventHandlers();
+                },
+                attachEventHandlersLoad = function(){
+                    clearTimeout(clickTimeout);
+
+
+                    var page = 1;
+
+                    jQuery('#socialpagenumber').val(2);
+
+                    clickTimeout = setTimeout(function(){
+
+
+                        var draw_region = jQuery('#draw_region').val();
+                        var winner = jQuery('#winner').val();
+                        var draw_age = jQuery('#draw_age').val();
+                        var draw_school = jQuery('#draw_school').val();
+                        //prevent ajax caching
+                        var tS=new Date().getTime();
+                        var url = '/customer-gallery/index/postkids' + '?ts=' + tS + '&p='+ page + '&winner='+ winner  + '&draw_region='+ draw_region + '&draw_age='+ draw_age + '&draw_school='+ draw_school;
+                        var data = '';
+
+                        try {
+                            var searchbuttonwidth = jQuery('#loadmore').outerWidth();
+                            jQuery('#loadmore').html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>').css({"min-width": searchbuttonwidth});
+
+
+
+                            jQuery.ajax({
+                                url: url,
+                                dataType: 'json',
+                                type: 'get',
+                                success: function (data) {
+
+
+                                    jQuery('#full_swap').html(data.html+'<div id="insert_anchor"></div>');
+                                    jQuery('#loadmore').html('<span>Load More</span>');
+
+                                    if(data.more == 0){
+                                        jQuery('#loadmore').hide();
+                                    }
+                                    else{
+                                        jQuery('#loadmore').show();
+                                    }
+                                }
+                            });
+                        } catch (e) {
+                        }
+
+
+                    }, 500);
+
+
+
+                }
+            attachEventHandlers = function(){
+
+
+
+
+                clearTimeout(clickTimeout);
+
+
+                var page = parseFloat(jQuery('#socialpagenumber').val());
+
+                clickTimeout = setTimeout(function(){
+                    jQuery('#socialpagenumber').val(page+1);
+                    var colour_val = jQuery('#colour_filter').val();
+                    var room_val = jQuery('#room_filter').val();
+                    var winner = jQuery('#winner').val();
+                    //prevent ajax caching
+                    var tS=new Date().getTime();
+                    var url = '/customer-gallery/index/postkids' + '?ts=' + tS + '&p='+ page + '&winner='+ winner  + '&colour_filter='+ colour_val + '&room_filter='+ room_val;
+                    var data = '';
+
+                    try {
+                        var searchbuttonwidth = jQuery('#loadmore').outerWidth();
+                        jQuery('#loadmore').html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>').css({"max-width": "600px"});
+
+
+
+                        jQuery.ajax({
+                            url: url,
+                            dataType: 'json',
+                            type: 'get',
+                            success: function (data) {
+
+
+                                jQuery('#insert_anchor').append(data.html);
+                                jQuery('#loadmore').html('<span>Load More</span>');
+                                if(data.more == 0){
+                                    jQuery('#loadmore').hide();
+                                }
+                                else{
+                                    jQuery('#loadmore').show();
+                                }
+
+                            }
+                        });
+                    } catch (e) {
+                    }
+
+
+                }, 500);
+
+
+
+            }
+
+            return {
+                init: function () {
+                    init();
+                },
+                attachEventHandlers: function () {
+                    attachEventHandlers();
+                },
+                attachEventHandlersLoad: function () {
+                    attachEventHandlersLoad();
+                }
+            };
+        }());
+
+    }(jQuery.noConflict()));
+
+    ELEVATE.CustomerGallery.init();
+
+    jQuery('#loadmore').click(function() {
+        ELEVATE.CustomerGallery.attachEventHandlers();
+    });
+
+</script>
+
+
+<style>
+    .hide_me{
+        display:none !important;
+    }
+</style>
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="addtocartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer hide_me" >
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+

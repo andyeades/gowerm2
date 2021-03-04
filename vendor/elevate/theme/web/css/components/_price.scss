@@ -1,0 +1,86 @@
+//  Prices
+
+$price_incex_price_padding: 0 0.3125rem 0 0 !default;
+
+@mixin price-style-1() {
+    .price {
+        &-tier_price .price-excluding-tax,
+        &-tier_price .price-including-tax {
+            display: inline;
+        }
+    }
+}
+
+@mixin price-style-2() {
+    .price {
+        &-including-tax,
+        &-excluding-tax {
+            display: inline !important;
+
+        }
+
+        &-including-tax:before {
+            content: ' / ';
+        }
+
+        &-including-tax:after {
+            content: '("attr(data-label)")';
+        }
+    }
+}
+
+
+
+@mixin price-style-3() {
+    .price-including-tax,
+    .price-excluding-tax {
+        .price {
+
+            padding: $price_incex_price_padding;
+        }
+
+        .cart-tax-total {
+            cursor: pointer;
+            padding-right: 12px;
+            position: relative;
+            @include lib-icon-font(
+                    $icon-down,
+                $_icon-font-size        : 1rem,
+                $_icon-font-line-height : 10px,
+                $_icon-font-margin      : 3px 0 0 0,
+                $_icon-font-position    : after
+            );
+
+            &:after {
+                position: absolute;
+                right: -$indent__s;
+                top: 3px;
+            }
+
+            &-expanded {
+                @include lib-icon-font-symbol(
+                    $_icon-font-content  : $icon-up,
+                    $_icon-font-position : after
+                );
+            }
+        }
+    }
+
+    .price-including-tax + .price-excluding-tax,
+    .weee[data-label] {
+        display: block;
+
+        &:before {
+            //@include lib-font-size(11);
+        }
+
+        &:after {
+            content: attr(data-label) ' ';
+        }
+
+    }
+}
+
+
+@include price-style-1();
+@include price-style-3();

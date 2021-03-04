@@ -1,0 +1,20 @@
+{
+    "name": "elevate_external/firebear_configurableproducts",
+    "description": "Pre-selected configurable product options, change URL on the fly and other improvements",
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+	    "files": [
+	        "registration.php"
+	    ],
+	    "psr-4": {
+            "Firebear\\ConfigurableProducts\\": ""
+        }
+    }
+}

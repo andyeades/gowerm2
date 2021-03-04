@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <head>
+        <link src="css/page-customer-account.css"/>
+    </head>
+    <body>
+        <referenceBlock name="sidebar.main.account_nav">
+            <arguments>
+                <argument name="block_title" translate="true" xsi:type="string">Account Links</argument>
+                <argument name="block_css" xsi:type="string">block-collapsible-nav</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-my-credit-cards-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-billing-agreements-link" remove="true"/>
+
+    </body>
+</page>

@@ -1,0 +1,24 @@
+{
+    "name": "elevate_external/weltpixel-google-tag-manager",
+    "description": "WeltPixel GoogleAnalyticsEnhancedEcommerce Module - V1.9.7",
+    "require": {
+        "magento/module-backend": "*",
+        "magento/module-catalog": "*",
+        "magento/module-checkout": "*",
+        "magento/module-sales": "*",
+        "magento/module-theme": "*"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "WeltPixel\\GoogleTagManager\\": ""
+        }
+    }
+}

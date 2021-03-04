@@ -1,0 +1,13 @@
+{
+  "name": "elevate_external/webshopapps-matrixrate",
+  "description": "WebShopApps Matrix Rates",
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "WebShopApps\\MatrixRate\\": ""
+    }
+  }
+}

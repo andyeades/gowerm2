@@ -1,0 +1,433 @@
+
+// Vars
+// - Set to null to not include
+
+// Main Header
+$hdr_main_height: false !default;
+$hdr_main_top_outer_bg_color: null !default;
+
+$hdr_main_mid_mobile_padding: 20px 0 !default;
+$hdr_main_mid_desktop_padding: 0 !default;
+
+$hdr_main_mid_outer_border: null !default;
+$hdr_main_mid_outer_border_color: #e2eaf1 !default;
+$hdr_main_mid_outer_border_bottom: null !default;
+$hdr_main_mid_outer_border_style: false !default;
+
+$hdr_main_bottom_outer_background_color: false !default;
+
+$hdr_mi_hdr_in_right_flex: 0 1 auto !default;
+
+// Top Links
+$hdr_top_font_size: 12px !default;
+$hdr_top_bg_color: transparent !default;
+$hdr_top_font_weight: 600 !default;
+$hdr_top_li_margin: 10px 0 !default;
+$hdr_top_link_color: $body-color !default;
+
+$hdr_top_link_hover_color: darken($body-color, 15%) !default;
+$hdr_top_break_icon: '\007C' !default;
+
+$hdr_mobile_menu_label_fontfamily: false !default;
+$hdr_mobile_menu_icon_height: $hdr_mobile_height - 20 !default;
+$hdr_mobile_search_icon_height: $hdr_mobile_height -20 !default;
+$hdr_mobile_menu_label_text_color: $hdr-general-color !default;
+$hdr_mobile_nav_trigger_color: $hdr-general-color !default;
+$hdr_mobile_nav_trigger_align_items: flex-start !default;
+$hdr_mobile_nav_trigger_height: auto !default;
+
+// Vars
+// - Set to null to not include
+
+
+// Logo
+
+$hdr_logo_img_margin_mobilemax: false !default;
+$hdr_logo_wrap_width: 20% !default;
+$hdr_logo_wrap_width_mobilemax: 100% !default;
+$hdr_logo_wrap_alignitems_mobilemax: center !default;
+$hdr_logo_wrap_margin_mobilemax: false !default;
+$hdr_logo_wrap_justifycontent_mobilemax: center !default;
+$hdr_logo_wrap_display_mobilemax: flex !default;
+
+$hdr_logo_wrap_order: 1 !default;
+
+// General
+
+$hdr_mobile_height: 44px !default;
+$hdr_desktop_height: 76px !default;
+
+$hdr_general_color: #0e1936 !default;
+
+$hdr_link_color: #0e1936 !default;
+$hdr_link_hover_color: lighten($hdr_link_color, 15%) !default;
+$hdr_link_text_decoration: none !default;
+
+// Main hdr
+$hdr_general_font_size: 14px !default;
+$hdr_font_size:  14px !default;
+
+$hdr_main_outer_background: false !default;
+
+// hdr Text Color
+
+$hdr_text_color: $hdr_general_color !default;
+
+
+// Search
+
+$hdr_search_box_style: expands !default;
+
+$hdr_search_icon_width: 20px !default;
+$hdr_search_icon_height: 20px !default;
+
+$hdr_search_icon_position: left !default;
+
+
+// Defaults are for LEFT icon position
+$hdr_search_input_padding: 6px 10px 6px 5px !default;
+$hdr_search_input_padding_desktop: 6px 10px 6px 5px !default;
+$hdr_search_input_order: 2 !default;
+$hdr_search_input_order_desktop: 2 !default;
+
+
+$hdr_search_input_display_desktop: false !default;
+$hdr_search_input_display_desktopmd: false !default;
+$hdr_search_input_zindex_desktop: 0 !default;
+
+$hdr_search_input_focus_filter: false !default;
+$hdr_search_input_focus_filter_desktop: false !default;
+
+
+$hdr_search_input_padding_mobilemax: false !default;
+$hdr_search_input_font_size: $hdr_font_size !default;
+$hdr_search_input_bg_color: transparent !default;
+$hdr_search_text_color: $hdr_general_color !default;
+$hdr_search_icon_color: $hdr_general_color !default;
+$hdr_search_placeholder_text_color: #B7B7B7 !default;
+$hdr_search_input_text_color: $hdr_general_color !default;
+
+// Used in Conjuction with
+
+$hdr_search_input_show_search_padding: false !default;
+$hdr_search_input_show-search_padding_desktop: false !default;
+
+$hdr_search_input_show_search_width: false !default;
+$hdr_search_input_show_search_width_desktop: false !default;
+
+$hdr_search_input_transition_desktop: false !default;
+$hdr_search_input_transition: false !default;
+
+$hdr_search_input_width: false !default;
+$hdr_search_input_width_desktop: false !default;
+
+// Search
+
+
+
+
+
+
+
+$hdr_search_wrap_width_desktop: false !default;
+$hdr_search_wrap_width: 80% !default;
+$hdr_search_wrap_order: 2 !default;
+$hdr_search_wrap_border_on: 0 !default;
+$hdr_search_wrap_border_position: bottom !default;
+$hdr_search_wrap_border_thickness: 2px !default;
+$hdr_search_wrap_border_style: solid !default;
+$hdr_search_wrap_border_color: $hdr_general_color !default;
+$hdr_search_wrap_margin: false !default;
+$hdr_search_wrap_height: 66px !default;
+$hdr_search_wrap_padding_top: 10px !default;
+$hdr_search_wrap_padding_bottom: 10px !default;
+$hdr_search_wrap_heightcalc: 0;
+@if $hdr_search_wrap_border_on == 1 {
+    $hdr_search_wrap_heightcalc: $hdr_search_wrap_border_thickness;
+}
+
+$hdr_search_wrap_padding: $hdr_search_wrap_padding_top 0 $hdr_search_wrap_padding_bottom 0 !default;
+
+$hdr_search_wrap_width_mobilemax: 100% !default;
+$hdr_search_wrap_height_mobilemax: 66px !default;
+$hdr_search_wrap_top_mobilemax: $hdr-mobile-height !default;
+$hdr_search_wrap_zindex_mobilemax: 9999 !default;
+
+$hdr_search_wrap_backgroundcolor_mobilemax: #FFFFFF !default;
+$hdr_search_wrap_padding_mobilemax: 10px 0 !default;
+$hdr_search_wrap_margin_mobilemax: false !default;
+$hdr_search_wrap_left_mobilemax: 0 !default;
+$hdr_search_wrap_right_mobilemax: false !default;
+
+$hdr_search_wrap_display_mobilemax: block !default;
+
+$hdr_search_wrap_position_mobilemax: absolute !default;
+$hdr_search_wrap_opacity_mobilemax: 0 !default;
+$hdr_search_wrap_visibility_mobilemax: hidden !default;
+$hdr_search_wrap_transition_mobilemax: opacity .3s 0s, visibility 0s .3s !default;
+
+$hdr_search_wrap_isvisible_opacity_mobilemax: 1 !default;
+$hdr_search_wrap_isvisible_visibility_mobilemax: visible !default;
+$hdr_search_wrap_isvisible_transition_mobilemax: opacity .3s 0s, visibility 0s .0s !default;
+
+
+
+
+$hdr_search_wrap_form_padding_mobilemax: 0 15px !default;
+
+// hdr in left
+
+$hdr_in_left_display_mobilemax: false !default;
+$hdr_in_left_width_desktop: 45% !default;
+$hdr_in_left_width_desktop_large: 45% !default;
+$hdr_in_left_width: 30% !default;
+
+$hdr_in_left_alignitems: center !default;
+$hdr_in_left_display: flex !default;
+$hdr_in_left_order: 2 !default;
+$hdr_in_left_height: false !default;
+$hdr_in_left_justifycontent: center !default;
+
+$hdr_in_left_order_mobilemenunotvisible: 1 !default;
+
+$hdr_in_left_div_flex: 0 1 auto !default;
+
+$hdr_search_wrap_flex_desktop: false !default;
+$hdr_search_wrap_flex: false !default;
+
+
+// hdr in mobile left
+
+$hdr_in_mobile_left_alignitems: center !default;
+$hdr_in_mobile_left_display: flex !default;
+$hdr_in_mobile_left_order: 1 !default;
+$hdr_in_mobile_left_width: 35% !default;
+$hdr_in_mobile_left_height: $hdr_mobile_height !default;
+$hdr_in_mobile_left_justifycontent: center !default;
+$hdr_in_mobile_left_display_mobilemenunotvisible: none !default;
+$hdr_in_mobile_left_svg_fill: $hdr_search_icon_color !default;
+$hdr_mobile_menu_icon_height: 24px !default;
+$hdr_mobile_search_icon_height: 24px !default;
+
+
+$hdr_in_mobile_left_div_display: flex !default;
+$hdr_in_mobile_left_div_alignitems: center !default;
+$hdr_in_mobile_left_div_justifycontent: center !default;
+$hdr_in_mobile_left_div_flex: 0 1 auto !default;
+$hdr_in_mobile_left_div_width: 50% !default;
+$hdr_in_mobile_left_div_height: false !default;
+$hdr_in_mobile_left_div_order: false !default;
+$hdr_in_mobile_left_div_firstoftype_margin: false !default;
+
+// Hdr in Center
+
+$hdr_in_center_width: 20% !default;
+$hdr_in_center_width_desktop: false !default;
+$hdr_in_center_width_desktopmd: false !default;
+$hdr_in_center_order: 2 !default;
+$hdr_in_center_display_mobilemax: none !default;
+
+
+
+
+
+//hdr Right
+
+$hdr_in_right_flex: flex !default;
+
+
+$hdr_in_right_order: 3 !default;
+$hdr_in_right_width: 35% !default;
+$hdr_in_right_width_desktop: 35% !default;
+$hdr_in_right_width_desktop_large: 35% !default;
+
+$hdr_in_right_justifycontent_desktop: false !default;
+$hdr_in_right_justifycontent: false !default;
+$hdr_in_right_alignitems: center !default;
+$hdr_in_right_display: flex !default;
+$hdr_right_link_color: $hdr_general_color !default;
+
+$hdr_in_right_display_mobilemenumax: flex !default;
+$hdr_in_right_alignitems_mobilemenumax: center !default;
+$hdr_in_right_justifycontent_mobilemenumax: center !default;
+
+
+$hdr_r_trow_width: 50% !default;
+$hdr_r_trow_order: 1 !default;
+$hdr_r_trow_justifycontent_mobilemax: center !default;
+$hdr_r_trow_alignitems: center !default;
+$hdr_r_trow_display: flex !default;
+
+$hdr_r_trow_text_align_desktop: $hdr_r_trow_text_align !default;
+$hdr_r_trow_height_desktop: $hdr_r_trow_height !default;
+
+$hdr_r_trowbrow_sidebyside: 0 !default;
+$hdr_r_trowbrow_sidebyside_flex_direction: row !default;
+
+@if $hdr_r_trowbrow_sidebyside == 1 {
+    $hdr_r_trow_width_desktop: 50% !default;
+}
+    $hdr_r_trow_width_desktop: 100% !default;
+$hdr_r_trow_margin_desktop: false !default;
+
+
+$hdr_r_trowbrow_sidebyside_flex_direction: row !default;
+
+
+
+$hdr_r_trow_ul_li_first_icon: 0 !default;
+$hdr_r_trow_ul_li_first_icon_padding: 0 0.9375rem 0 0 !default;
+$hdr_r_trow_ul_li_first_seperator_padding: 0 0.9375rem 0 0 !default;
+$hdr_r_trow_ul_li_first_seperator_next_padding: 0 0 0 0.9375rem !default;
+
+$hdr_r_brow_margin_desktop: false !default;
+$hdr_r_brow_margin_md_min: 0 15px 0 0 !default;
+$hdr_r_brow_margin_xlg_min: 0 30px 0 0 !default;
+
+
+
+
+
+
+$hdr_r_brow_width: 50% !default;
+$hdr_r_brow_order: 2 !default;
+
+
+$hdr_r_brow_width_desktop: 100% !default;
+
+$hdr_r_trow_text_align: right !default;
+$hdr_r_trow_height: 36px !default;
+$hdr_r_trow_ul_li_padding: 0 10px !default;
+$hdr_r_trow_ul_li_padding_desktop: false !default;
+$hdr_r_trow_ul_li_fontweight: 600 !default;
+$hdr_r_trow_ul_li_a_color: $hdr_text_color !default;
+$hdr_r_trow_ul_li_a_transition: 0.5s color ease-in-out !default;
+$hdr_r_trow_ul_li_a_alignitems: center !default;
+$hdr_r_trow_ul_li_a_hover_color: darken($hdr_r_trow_ul_li_a_color, 15%) !default;
+$hdr_r_trow_ul_li_a_hover_transition: $hdr_r_trow_ul_li_a_transition !default;
+
+$hdr_r_trow_link_color_alt1: #7E808D !default;
+$hdr_r_trow_link_hover_color_alt1: darken($hdr_r_trow_link_color_alt1, 15%) !default;
+
+$hdr_r_trow_link_color_alt2: #4AABB5 !default;
+$hdr_r_trow_link_hover_color_alt2: darken($hdr_r_trow_link_color_alt2, 15%) !default;
+
+$hdr_top_list_justifycontent: false !default;
+$hdr_top_list_display: flex !default;
+$hdr_top_list_flex: 0 1 auto !default;
+$hdr_top_list_textalign: center !default;
+$hdr_top_list_width: false !default;
+$hdr_top_list_height: false !default;
+$hdr_top_list_lineheight: false !default;
+$hdr_top_list_fontsize: 12px !default;
+$hdr_top_list_li_color: $hdr_general_color !default;
+
+$hdr_top_list_bottom_row_styling: 0 !default;
+$hdr_top_list_bottom_row_color: #D4DDDA !default;
+
+$hdr_r_trow_ul_li_first_seperator_padding: 0 0.9375rem 0 0 !default;
+$hdr_r_trow_ul_li_first_seperator_next_padding: 0 0 0 0.9375rem !default;
+
+$hdr_r_trow_ul_li_first_seperator: 0 !default;
+$hdr_r_trow_ul_li_first_seperator_border_color: #555555 !default;
+$hdr_r_trow_ul_li_first_seperator_border: 1px solid $hdr_r_trow_ul_li_first_seperator_border_color !default;
+
+
+$hdr_r_trow_ul_li_a_display: flex !default;
+$hdr_r_trow_ul_li_a_color: $hdr_link_color !default;
+$hdr_r_trow_ul_li_a_fontweight: 700 !default;
+
+$hdr_r_trow_ul_li_a_hover_color: $hdr_link_hover-color !default;
+$hdr_r_trow_ul_li_a_alignitems: center !default;
+$hdr_r_trow_ul_li_first_icon: 0 !default;
+$hdr_r_trow_ul_li_first_icon_padding: 0 0.9375rem 0 0 !default;
+$hdr_r_trow_ul_li_first_seperator_padding: 0 0.9375rem 0 0 !default;
+$hdr_r_trow_ul_li_first_seperator_next_padding: 0 0 0 0.9375rem !default;
+
+
+//hdr myacc link
+
+
+$hdr_myacc_link_padding: 0 !default;
+$hdr_myacc_link_padding_desktop: false !default;
+$hdr_myacc_link_height: false !default;
+$hdr_myacc_link_width: false !default;
+$hdr_myacc_link_height_desktop: false !default;
+$hdr_myacc_link_width_desktop: false !default;
+$hdr_myacc_link_backgroundcolor: false !default;
+$hdr_myacc_link_backgroundcolor_desktop: false !default;
+$hdr_myacc_link_border_radius: false !default;
+$hdr_myacc_link_border_radius_desktop: false !default;
+$hdr_myacc_link_fontsize: 0.75rem !default;
+$hdr_myacc_link_font_size: 1rem !default;
+$hdr_myacc_link_alignitems: false !default;
+$hdr_myacc_link_display: false !default;
+
+
+$hdr_myacc_link_svg_width_desktop: 24px !default;
+$hdr_myacc_link_svg_fill_desktop: #FFFFFF !default;
+$hdr_myacc_link_svg_color_desktop: #FFFFFF !default;
+$hdr_myacc_link_padding_desktop: 0 0.9375rem 0 0 !default;
+$hdr_myacc_link_svg_margin_desktop: false !default;
+
+$hdr_myacc_link_svg_width: 24px !default;
+$hdr_myacc_link_svg_fill: #0e1936 !default;
+$hdr_myacc_link_svg_color: #0e1936 !default;
+$hdr_myacc_link_svg_margin: false !default;
+
+
+
+
+$hdr_mobile_acc_link_width_mobile: 24px !default;
+$hdr_mobile_acc_link_fill_mobile: #0e1936 !default;
+$hdr_mobile_acc_link_color_mobile: #0e1936 !default;
+
+$hdr_mobile_acc_li_mobile_padding_desktop: 0 !default;
+$hdr_mobile_acc_li_mobile_padding: 0 !default;
+$hdr_mobile_acc_link_fontsize: 0.75rem !default;
+$hdr_mobile_acc_link_font_size: 1rem !default;
+
+$hdr_mobile_acc_link_width_desktop: 24px !default;
+$hdr_mobile_acc_link_fill_desktop: #FFFFFF !default;
+$hdr_mobile_acc_link_color_desktop: #FFFFFF !default;
+
+
+
+
+
+
+
+$hdr_myacc_link_span_hidetext: false !default;
+
+$hdr_acc_li_mobile_on: 0 !default;
+$hdr_acc_li_icon_enabled: 1 !default;
+$hdr_acc_li_icon_display_type: both !default;
+$hdr_acc_li_mobile_display_mobilemenumax: none !default;
+
+// Used For Specific Case
+$hdr_lihdraccli_myacc_link_width: 100% !default;
+$hdr_lihdraccli_myacc_link_textalign: left !default;
+$hdr_lihdraccli_myacc_link_height_mobiletabletmax: 100% !default;
+
+
+$hdr_lihdraccli_myacc_link_svg_width_mobilemenumax: false !default;
+$hdr_lihdraccli_myacc_link_span_texthide_mobilemenumax: false !default;
+
+// Top List
+
+$hdr_top_list_line_height: 1.5 !default;
+$hdr_top_list_font_size: 0.75rem !default;
+$hdr_top_list_background_color: false !default;
+$hdr_top_list_background_color_desktop: false !default;
+$hdr_top_list_padding: false !default;
+$hdr_top_list_padding_desktop: false !default;
+$hdr_top_list_borderradius: false !default;
+$hdr_top_list_align_items: center !default;
+
+$hdr-top-hdr-top-list-margin-mobilemenunotvisible: false !default;
+$hdr-top-hdr-top-list-width-mobilemenunotvisible: false !default;
+
+$hdr_mo_top_list_margin: 0 0 0 auto !default;
+$hdr_mo_top_list_padding_desktop: false !default;
+$hdr_mo_top_list_padding: false !default;
+$hdr_mo_top_list_borderradius: false !default;

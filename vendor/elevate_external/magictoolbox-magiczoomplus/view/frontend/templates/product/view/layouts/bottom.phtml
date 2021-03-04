@@ -1,0 +1,152 @@
+<?php
+
+/**
+ * @var $block \MagicToolbox\MagicZoomPlus\Block\Template
+ */
+
+$id = $block->getData('id');
+$mainHTML = $block->getData('mainHTML');
+$selectorsArray = $block->getData('selectorsArray');
+$selectorMaxWidth = $block->getData('selectorMaxWidth');
+$additionalClasses = $block->getData('additionalClasses');
+$scrollOptions = $block->getData('scrollOptions');
+$thumbSwitcherOptions = $block->getData('thumbSwitcherOptions');
+
+$breakpoint = "768px";
+
+$dataOptions = 'data-options="arrows: outside;loop:true;autostart:false;orientation: horizontal;items:[[320,2],[375,3],[480,4],[560,5],[768,6],[992,8]];lazyLoad:true;"';
+?>
+<div class="MagicToolboxContainer selectorsBottom minWidth"<?= $thumbSwitcherOptions ?>>
+    <?= $mainHTML; ?>
+<?php
+if (count($selectorsArray)) {
+?>
+    <div class="MagicToolboxSelectorsContainer<?php if (count($selectorsArray) == 1) echo ' hidden-container' ?>">
+        <div id="MagicToolboxSelectors<?= $id ?>" class="<?= $additionalClasses ?>"<?= $scrollOptions ?>>
+        <?= join("\n\t\t", $selectorsArray); ?>
+        </div>
+    </div>
+<?php
+}
+?>
+</div>
+
+    
+    
+<script>
+    var ELEVATE = ELEVATE || {};
+
+
+    (function ($, window) {
+
+        ELEVATE.MagicScrollFix = (function (options) {
+
+            var self = this;
+            // Need to make this pull from admin maybe?
+            var id = <?= $id ?>;
+            var current_settings = '';
+            var mobile_options = {
+                step:1,
+                arrows:'outside',
+                loop:'infinite',
+                autostart:false,
+                orientation:'horizontal',
+                items:[[320,3],[375,3],[480,4],[560,5],[768,6],[992,8]],
+                lazyLoad:true,
+            }
+            var desktop_options = {
+                step:1,
+                autostart:false,
+                loop:'infinite',
+                arrows:'outside',
+                orientation:'vertical',
+                items:[[768,6],[992,6]],
+            }
+           // var desktop_options_string = 'loop:infinite;step:1;arrows:outside;autostart:false;orientation:vertical;items:[[768,6],[992,6]];';
+           // var mobile_options_string = 'step:1;arrows:outside;loop:infinite;autostart:false;orientation: horizontal;items:[[320,3],[375,3],[480,4],[560,5],[768,6],[992,8]];lazyLoad:true;';
+                  var desktop_options_string = 'loop:infinite;step:1;arrows:outside;autostart:false;orientation:horizontal;items:[[768,5],[992,3]];';
+        var mobile_options_string = 'step:1;arrows:outside;loop:infinite;autostart:false;orientation: horizontal;items:[[320,3],[375,3],[480,4],[560,5],[768,6],[992,8]];lazyLoad:true;';
+
+            var window_width = jQuery(window).width();
+
+            var default_options = {
+                enableHistory           : true
+            };
+            //call like (self.options.enableHistory
+            this.options = $.extend(true, {}, default_options, typeof options === 'object' && options);
+
+
+
+            function init()
+            {
+
+                if (ELEVATE.Resizer.getIsDesktop() == true) {
+                    current_settings = 'desktop';
+                    jQuery('#MagicToolboxSelectors<?= $id ?>').attr('data-options',desktop_options_string);
+                    MagicScroll.updateOptions('MagicToolboxSelectors<?=$id?>',desktop_options);
+                    MagicScroll.refresh('MagicToolboxSelectors<?=$id?>');
+                } else {
+                    current_settings = 'mobile';
+                    jQuery('#MagicToolboxSelectors<?= $id ?>').attr('data-options',mobile_options_string);
+                    MagicScroll.updateOptions('MagicToolboxSelectors<?=$id?>',mobile_options);
+                    MagicScroll.refresh('MagicToolboxSelectors<?=$id?>');
+                }
+                jQuery(window).on('resize', function () {
+                    if (ELEVATE.Resizer.getIsDesktop() == true) {
+
+                        if (current_settings != 'desktop') {
+                            console.log('current settings != desktop -switch to desktop');
+                            jQuery('#MagicToolboxSelectors<?= $id ?>').attr('data-options',desktop_options_string);
+                            MagicScroll.updateOptions('MagicToolboxSelectors<?=$id?>',desktop_options);
+                            MagicScroll.refresh('MagicToolboxSelectors<?=$id?>');
+                            current_settings = 'desktop';
+                        } else {
+                            console.log('current settings must == desktop but dont do anything?');
+                        }
+
+
+                    } else {
+                        if (current_settings == 'desktop') {
+                            console.log('current settings == desktop - switch to mobile');
+                            jQuery('#MagicToolboxSelectors<?= $id ?>').attr('data-options',mobile_options_string);
+                            MagicScroll.updateOptions('MagicToolboxSelectors<?=$id?>',mobile_options);
+                            MagicScroll.refresh('MagicToolboxSelectors<?=$id?>');
+                            current_settings = 'mobile';
+                        } else {
+                            console.log('current settings must == mobile but dont do anything?');
+                        }
+
+                    }
+
+                });
+
+            }
+
+
+            return {
+                init : function() {
+                    init();
+                },
+
+            };
+
+        }());
+
+    }(jQuery.noConflict(), window))
+
+
+    jQuery(document).ready(function () {
+        ELEVATE.Resizer.init();
+        ELEVATE.MagicScrollFix.init();
+
+
+
+
+
+
+
+
+    });
+
+
+</script>

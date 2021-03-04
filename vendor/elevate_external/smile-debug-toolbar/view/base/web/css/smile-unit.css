@@ -1,0 +1,56 @@
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module
+ * to newer versions in the future.
+ */
+
+.st-value-time-h,
+.st-value-time-m,
+.st-value-time-s,
+.st-value-time-ms {
+    text-align: right !important;
+    white-space: nowrap;
+}
+
+.st-value-time-h:after  { content: ' h'; }
+.st-value-time-m:after  { content: ' m'; }
+.st-value-time-s:after  { content: ' s'; }
+.st-value-time-ms:after { content: ' ms'; }
+
+.st-value-size-o,
+.st-value-size-ko,
+.st-value-size-mo,
+.st-value-size-go {
+    text-align: right !important;
+    white-space: nowrap;
+}
+
+.st-value-size-o:after  { content: ' o'; }
+.st-value-size-ko:after { content: ' Ko'; }
+.st-value-size-mo:after { content: ' Mo'; }
+.st-value-size-go:after { content: ' Go'; }
+
+.st-value-number {
+    text-align: right !important;
+    white-space: nowrap;
+}
+
+.st-value-date,
+.st-value-hour,
+.st-value-datetime {
+    text-align: center !important;
+    white-space: nowrap;
+}
+
+.st-value-center {
+    text-align: center !important;
+}
+
+.st-value-text {
+    text-align: left !important;
+}
+
+.st-value-nowrap {
+    white-space: nowrap;
+}

@@ -1,0 +1,179 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<style>
+        /*star rating*/
+
+        span.ev_ln_filter-label p {
+    margin-bottom: 00px;
+}
+.ev_ln_filter span.ev_ln_filter-label {
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+</style>
+<?php
+/**
+ * Category layered navigation state
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation\State
+ */
+
+ /* Happy Beds Firmness */
+$filter_override['mattress_firmness']['label']['-1']['name'] = ['Soft'];
+$filter_override['mattress_firmness']['label']['0']['name'] = ['Soft'];
+$filter_override['mattress_firmness']['label']['1']['name'] = ['Soft'];
+$filter_override['mattress_firmness']['label']['2']['name'] = ['Soft'];
+
+$filter_override['mattress_firmness']['label']['3']['name'] = ['Soft', 'Soft / Medium'];
+
+$filter_override['mattress_firmness']['label']['4']['name'] = ['Soft / Medium'];
+$filter_override['mattress_firmness']['label']['5']['name'] = ['Soft / Medium'];
+$filter_override['mattress_firmness']['label']['6']['name'] = ['Soft / Medium'];
+
+$filter_override['mattress_firmness']['label']['7']['name'] = ['Soft / Medium', 'Medium'];
+
+$filter_override['mattress_firmness']['label']['8']['name'] = ['Medium'];
+$filter_override['mattress_firmness']['label']['9']['name'] = ['Medium'];
+$filter_override['mattress_firmness']['label']['10']['name'] = ['Medium'];
+$filter_override['mattress_firmness']['label']['11']['name'] = ['Medium', 'Medium / Firm'];
+
+$filter_override['mattress_firmness']['label']['12']['name'] = ['Medium / Firm'];
+$filter_override['mattress_firmness']['label']['13']['name'] = ['Medium / Firm'];
+$filter_override['mattress_firmness']['label']['14']['name'] = ['Medium / Firm'];
+$filter_override['mattress_firmness']['label']['15']['name'] = ['Medium / Firm', 'Firm'];
+
+
+$filter_override['mattress_firmness']['label']['16']['name'] = ['Firm'];
+$filter_override['mattress_firmness']['label']['17']['name'] = ['Firm'];
+$filter_override['mattress_firmness']['label']['18']['name'] = ['Firm'];
+$filter_override['mattress_firmness']['label']['19']['name'] = ['Firm'];
+$filter_override['mattress_firmness']['url']['soft'] = 'soft';
+$filter_override['mattress_firmness']['url']['soft_medium'] = 'soft_medium';
+$filter_override['mattress_firmness']['url']['medium'] = 'medium';
+$filter_override['mattress_firmness']['url']['medium_firm'] = 'medium_firm';
+$filter_override['mattress_firmness']['url']['firm'] = 'firm';
+
+$filter_count = 0;
+?>
+
+<?php $_filters = $block->getActiveFilters() ?>
+<?php if (!empty($_filters)): ?>
+<div class="ev_ln_filter_state">
+    <strong class="ev_ln_filter-current-subtitle"
+            role="heading"
+            aria-level="2"
+            data-count="<?= count($_filters) ?>"><?= /* @escapeNotVerified */ __('Applied Filters') ?></strong>
+    <ol class="ev_ln_items">
+        <?php foreach ($_filters as $_filter){
+
+          $attribute_code = ($_filter->getFilter()->getRequestVar() != 'cat') ? $_filter->getFilter()->getAttributeModel()->getAttributeCode(): 0;
+        //$attribute_code = $filterItem->getFilter()->getAttributeModel()->getAttributeCode();
+
+
+
+        $filter_item_name = $_filter->getLabel();
+
+                //filter overide
+                if($attribute_code == 'filter_rating'){
+
+
+                    $rating_label_number = $filter_item_name;
+
+                    $has_rating = false;
+                    if($rating_label_number >= 4){$has_rating = true;
+                        $filter_item_name = '<div class="fa fa-star starchecked"></div>';
+                        $filter_item_name .= '<div class="fa fa-star starchecked"></div>';
+                        $filter_item_name .= '<div class="fa fa-star starchecked"></div>';
+                        $filter_item_name .= '<div class="fa fa-star starchecked"></div>';
+                    }
+                    else if($rating_label_number >= 3){$has_rating = true;
+                        $filter_item_name = '<div class="fa fa-star starchecked"></div>';
+                        $filter_item_name .= '<div class="fa fa-star starchecked"></div>';
+                        $filter_item_name .= '<div class="fa fa-star starchecked"></div>';
+                        $filter_item_name .= '<div class="fa fa-star "></div>';
+                    }
+                    else if($rating_label_number >= 2){
+                        $has_rating = true;
+                        $filter_item_name = '<div class="fa fa-star starchecked"></div>';
+                        $filter_item_name .= '<div class="fa fa-star starchecked"></div>';
+                        $filter_item_name .= '<div class="fa fa-star "></div>';
+                        $filter_item_name .= '<div class="fa fa-star "></div>';
+                    }
+                    else if($rating_label_number >= 1){
+                        $filter_item_name = '<div class="fa fa-star starchecked"></div>';
+                        $filter_item_name .= '<div class="fa fa-star "></div>';
+                        $filter_item_name .= '<div class="fa fa-star "></div>';
+                        $filter_item_name .= '<div class="fa fa-star "></div>';
+                        $has_rating = true;
+                    }
+                    else{
+                        // $filter_item_name .= '<div class="fa fa-star "></div>';
+                        // $filter_item_name .= '<div class="fa fa-star "></div>';
+                        // $filter_item_name .= '<div class="fa fa-star "></div>';
+                        // $filter_item_name .= '<div class="fa fa-star "></div>';
+                    }
+
+                    if($has_rating){
+
+                        $filter_item_name .= '<div class="fa fa-star"></div>';
+                        $filter_item_name .= '<p style="display: inline-block;margin-left:5px;"> &amp; Up</p>';
+                    }
+                }
+                else{
+
+                $filter_item_name = $block->escapeHtml(__($_filter->getName())) . " : " . $block->stripTags($_filter->getLabel());
+                }
+
+         ?>
+
+
+
+            <li class="item layerclick">
+                <span class="ev_ln_filter-label"><?= $filter_item_name ?></span>
+
+                <?php
+                $clearLinkUrl = $_filter->getClearLinkUrl();
+                $currentFilterName = $block->escapeHtml(__($_filter->getName())) . " " . $block->stripTags($_filter->getLabel());
+                if ($clearLinkUrl):
+                    ?>
+                    <a class="ev_ln_action previous" href="<?= /* @escapeNotVerified */ $_filter->getRemoveUrl() ?>"
+                       title="<?= /* @escapeNotVerified */ __('Previous') ?>">
+                        <span><?= /* @escapeNotVerified */ __('Previous') ?></span>
+                    </a>
+                    <a class="ev_ln_action remove"
+                       title="<?= $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
+                       href="<?= /* @escapeNotVerified */ $clearLinkUrl ?>">
+                        <span><?= $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?></span>
+                    </a>
+                <?php else: ?>
+                    <a class="ev_ln_action remove" href="<?= /* @escapeNotVerified */ $_filter->getRemoveUrl() ?>"
+                       title="<?= /* @escapeNotVerified */ $block->escapeHtml(__('Remove')) . " " . $currentFilterName ?>">
+                      <i class="fa fa-times-circle"></i>
+                    </a>
+                <?php endif; ?>
+            </li>
+        <?php
+        $filter_count ++;
+
+        } ?>
+    </ol>
+</div>
+<script>
+if(<?php echo $filter_count;?> > 0){
+
+    jQuery("<span>(<?php echo $filter_count;?>)</span>").appendTo(jQuery('.ev_ln_toolbar_btn'));
+}
+
+</script>
+<?php endif; ?>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="GenerateFeedCommand" xsi:type="object">Elevate\DataFeeds\Console\Command\GenerateFeedCommand</item>
+                <item name="GenerateAllFeedsCommand" xsi:type="object">Elevate\DataFeeds\Console\Command\GenerateAllFeedsCommand</item>
+                <item name="ListFeedsCommand" xsi:type="object">Elevate\DataFeeds\Console\Command\ListFeedsCommand</item>
+
+            </argument>
+        </arguments>
+    </type>
+</config>

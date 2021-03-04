@@ -1,0 +1,18 @@
+<nav class="cd-main-header">
+  <ul class="cd-primary-nav">
+      <?php // Get Our Content From Menu ?>
+      <?php $html_array = $this->getHtml(); ?>
+      <?php echo $html_array[0]; ?>
+
+      <?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Magento_Search::form.mini.phtml")->toHtml();?>
+      <?php echo $html_array[1]; ?>
+  </ul>
+</nav>
+
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        ELEVATE.Megamenu.init();
+    });
+</script>

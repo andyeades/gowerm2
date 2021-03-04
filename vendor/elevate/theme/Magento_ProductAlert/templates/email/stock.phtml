@@ -1,0 +1,117 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\ProductAlert\Block\Email\Stock */
+?>
+
+
+
+
+<?php if ($products = $block->getProducts()) { ?>
+
+    <style>
+        .gt a {
+            color: #0b1938 !important;
+        }
+    </style>
+
+
+            <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" class="mcnImageContentContainer" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;min-width:100%;">
+                <tbody>
+                <tr>
+                    <td class="mcnImageContent" valign="top" style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 0; text-align:center;">
+    <p><?= $block->escapeHtml(__('A product you requested to receive a stock notification about has now come back into stock and is available to order.')) ?></p>
+                        <table style="width: 100%;">
+                <?php
+                //Get Object Manager Instance
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+
+                            foreach ($products as $product) { ?>
+                                <tr>
+                                    <?php
+
+
+
+                $image_output = '';
+                if ($product->getTypeId() == 'simple') {
+                    //Load product by product id
+                    $parentIds = $objectManager->create('Magento\GroupedProduct\Model\Product\Type\Grouped')->getParentIdsByChild($product->getId());
+                    if (!$parentIds) {
+                        //Load product by product id
+                        $parentIds = $objectManager->create('Magento\ConfigurableProduct\Model\Product\Type\Configurable')->getParentIdsByChild($product->getId());
+
+                        if (isset($parentIds[0])) {
+
+                            $parent = $objectManager->create('Magento\Catalog\Product\Model')->load($parentIds[0]);
+
+                            $image_output = $block->getImage($parent, 'product_thumbnail_image', ['class' => 'photo image','height' => '75px','width' => '75px'])->toHtml();
+
+                        } else {
+                            $image_output = $block->getImage($product, 'product_thumbnail_image', ['class' => 'photo image','height' => '75px','width' => '75px'])->toHtml();
+                        }
+                    } else {
+                        $image_output = $block->getImage($product, 'product_thumbnail_image', ['class' => 'photo image','height' => '75px','width' => '75px'])->toHtml();
+                    }
+
+                } else {
+                    $image_output = $block->getImage($product, 'product_thumbnail_image', ['class' => 'photo image','height' => '75px','width' => '75px'])->toHtml();
+                }
+
+                ?>
+
+                <td class="col photo">
+                    <a href="<?= $block->escapeUrl($product->getProductUrl()) ?>" title="<?= $block->escapeHtmlAttr($product->getName()) ?>" class="product photo" style="">
+                        <?= $image_output ?>
+                    </a>
+
+                </td>
+                <td class="col item">
+                    <p>
+                        <strong class="product name">
+                            <a href="<?= $block->escapeUrl($product->getProductUrl()) ?>"><?= $block->escapeHtml($product->getName()) ?></a>
+                        </strong>
+                    </p>
+                    <?php if ($shortDescription = $block->getFilteredContent($product->getShortDescription())) : ?>
+                        <p><small><?= /* @noEscape */
+                                $shortDescription ?></small></p>
+                    <?php endif; ?>
+                    <?= $block->getProductPriceHtml(
+                        $product, \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE, \Magento\Framework\Pricing\Render::ZONE_EMAIL, [
+                                     'display_label' => __('Price:')
+                                 ]
+                    ); ?>
+                    <p>
+                        <small><a href="<?= $block->escapeUrl($block->getProductUnsubscribeUrl($product->getId())) ?>"><?= $block->escapeHtml(__('Click here to stop alerts for this product.')) ?></a></small>
+                    </p>
+                </td>
+            </tr>
+        <?php } ?>
+    </table><p>
+        <a href="<?= $block->escapeUrl($block->getUnsubscribeUrl()) ?>"><?= $block->escapeHtml(__('Unsubscribe from all stock alerts')) ?></a>
+    </p>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
+        <tbody class="mcnButtonBlockOuter">
+        <tr>
+            <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
+                <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 3px;">
+                    <tbody>
+                    <tr>
+                        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Helvetica; font-size: 18px; padding: 18px;">
+                            <a class="mcnButton " title="Update Settings" href="<?= $product->getProductUrl() ?>" target="_self" style="font-weight: bold;letter-spacing: -0.5px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Shop Now</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<?php } ?>

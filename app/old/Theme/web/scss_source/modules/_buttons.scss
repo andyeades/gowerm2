@@ -1,0 +1,34 @@
+
+
+
+
+.theme-pearl {
+  button.action {
+    @include button-variant(white, $color-pas-orange, $color-pas-orange);
+    span {
+      font-size: 1.2rem;
+    }
+
+  }
+  .action.primary {
+    @include button-variant(white, $color-pas-orange, $color-pas-orange);
+    span {
+      font-size: 1.2rem;
+    }
+    border-radius: $standard-button-radius;
+  }
+}
+
+.theme-pearl.store-view-default {
+  button {
+    @include button-variant(white,$color-pas-orange, $color-pas-orange);
+    span {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+
+#ev_checkoutnow {
+  display: none;
+}

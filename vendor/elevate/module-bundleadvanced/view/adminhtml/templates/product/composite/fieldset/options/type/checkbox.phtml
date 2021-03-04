@@ -1,0 +1,46 @@
+<?php
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Elevate\BundleAdvanced\Block\Adminhtml\Catalog\Product\Composite\Fieldset\Options\Type\Checkbox */
+?>
+<?php $option = $block->getOption(); ?>
+<?php $selections = $option->getSelections(); ?>
+<?php $skipSaleableCheck = $this->helper('Magento\Catalog\Helper\Product')->getSkipSaleableCheck(); ?>
+
+<div class="field admin__field options">
+    <label class="label admin__field-label">
+        <span><?= $block->escapeHtml($option->getTitle()) ?></span>
+    </label>
+    <div class="control admin__field-control">
+        <div class="nested <?php if ($option->getDecoratedIsLast()):?> last<?php endif;?>">
+            <?php foreach ($selections as $selection): ?>
+                <?php if (!$selection->isSaleable() && !$skipSaleableCheck): ?>
+                    <?php continue; ?>
+                <?php endif;?>
+                <div class="field choice admin__field admin__field-option">
+                    <input
+                            class="change-container-classname  checkbox bundle-option-<?= /* @noEscape */ $option->getId() ?>"
+                            id="bundle-option-<?= /* @noEscape */ $option->getId() ?>-<?= /* @noEscape */ $selection->getSelectionId() ?>"
+                            type="checkbox"
+                            style="display: none"
+                            name="bundle_option[<?= /* @noEscape */ $option->getId() ?>][<?= /* @noEscape */ $selection->getId() ?>]"
+                            checked="checked"
+                            value="<?= /* @noEscape */ $selection->getSelectionId() ?>"
+                            onclick="ProductConfigure.bundleControl.changeSelection(this)"
+                            price="<?= /* @noEscape */ $block->getSelectionPrice($selection) ?>" />
+
+                    <label class="admin__field-label">
+                        <?php $this->setFormatProduct($selection); ?>
+                        <?= /* @noEscape */ $selection->getSelectionQty() * 1 ?> x
+                        <span class="product-name"><?= $block->escapeHtml($selection->getName()) ?></span>
+                        <!--<span class="price-notice"><?= /* @noEscape */ $block->renderPriceString($selection)?></span>-->
+                    </label>
+
+                    <?php if ($option->getRequired()): ?>
+                        <?= /* @noEscape */ $block->setValidationContainer('bundle-option-' . $option->getId() . '-' . $selection->getSelectionId(), 'bundle-option-' . $option->getId() . '-container') ?>
+                    <?php endif;?>
+                </div>
+            <?php endforeach; ?>
+    </div>
+</div>

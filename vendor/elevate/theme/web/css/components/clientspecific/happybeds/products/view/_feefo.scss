@@ -1,0 +1,126 @@
+@if $sitename == happybeds {
+    $feefoouter-width-mobilemax: auto !default;
+    $feefoouter-width-mobiletabletmax: max-content !default;
+    $feefo-image-width: 160px !default;
+    $feefo-image-width-desktop: 181px !default;
+
+
+
+    .feefo-image {
+        order: 3;
+        flex: 0 0 auto;
+
+        img {
+          width: $feefo-image-width;
+            @include min-screen($desktop-min) {
+               width: $feefo-image-width-desktop;
+            }
+        }
+
+        @include screen($screen-sm-min, $screen-sm-max) {
+            text-align: center;
+        }
+        @include max-screen($mobilemax) {
+            margin-top: 1rem;
+        }
+        @include max-screen($screen-sm-max) {
+
+            //margin-top: 1rem;
+            //width: 100%;
+        }
+    }
+
+
+    #feefoouter {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+
+        @include max-screen($mobiletablet-max) {
+            justify-content: center;
+        }
+        @include screen($mobiletablet-min, $mobiletablet-max) {
+
+            width: $feefoouter-width-mobiletabletmax;
+        }
+        @include min-screen($desktop-min) {
+            width: 70%;
+        }
+        @include max-screen($mobilemax) {
+            width: 270px;
+        }
+
+        > div {
+            flex: 0 1 auto;
+        }
+
+        > .sr-clear,
+        > .feefo-count {
+            @include max-screen($screen-sm-max) {
+            }
+        }
+
+        > .sr-clear {
+            flex: 0 0 auto;
+            width: auto;
+            margin-bottom: 0;
+        }
+
+        > .feefo-count {
+            order: 2;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 15px;
+            margin: 0 0.875rem;
+            flex: 1 1 auto;
+            text-align: right;
+            @include max-screen($mobiletablet-max) {
+                flex: 0 1 auto;
+                position: relative;
+                top: 3px;
+            }
+            @include min-screen($desktop-medium-min) {
+                text-align: center;
+            }
+        }
+
+        border: 1px solid #f0f0f0;
+        border-radius: 5px;
+        padding: 10px;
+        height: auto;
+        @include min-screen($desktop-min) {
+            width: 100%;
+        }
+
+        @include min-screen($desktop-medium-min) {
+            height: 48px;
+        }
+        @include max-screen($screen-sm-max) {
+            margin: 0 auto;
+        }
+    }
+
+    @include max-screen($mobiletablet-max) {
+
+        #feefoouterwrap {
+            text-align: center;
+        }
+
+    }
+
+    .feefowidget__global {
+        padding: 0 !important;
+    }
+
+    .feefowidget-global-container-body-content-controls, .feefowidget-accordion-trigger {
+        display: none;
+    }
+
+    .feefowidget-global-container:first-child .feefowidget-global-container-header:first-child {
+        display: none;
+    }
+    .feefowidget-header-information-title {
+        display: none !important;
+    }
+}

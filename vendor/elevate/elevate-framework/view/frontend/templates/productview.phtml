@@ -1,0 +1,46 @@
+<?php
+$pp_scroll = false;
+
+
+$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+if (strpos($url,'posturite') !== false) {
+    $pp_scroll = false;
+}
+
+?>
+<?php $_mobileHelper = $this->helper('Elevate\MobileDetect\Helper\Data'); ?>
+<?php $positionProductInfo = 1; // $_helper->getPositionProductInfo($_helper->getStoreId()) ?>
+<?php $isMobile = $_mobileHelper->isMobile() ?>
+<div id="swipeOff"></div>
+<style>
+  @media only screen and (min-width: 768px) {
+    .product.media{
+      align-items: flex-start;
+    }
+    .pp-fixed-height{
+
+    }
+.pp-fixed{
+  position: fixed;
+  top: 0px;
+}
+
+  }
+
+</style>
+<?php
+if($pp_scroll){
+?>
+<script>
+require(['jquery', 'productPage', 'mage/mage', 'mage/ie-class-fixer', 'mage/gallery/gallery'],
+	function ($) {
+        window.positionProductInfo = '<?php echo $positionProductInfo ?>';
+        window.isMobile = '<?php echo $isMobile ?>';
+		productPage.load();
+	}
+);
+</script>
+
+<?php
+}
+?>

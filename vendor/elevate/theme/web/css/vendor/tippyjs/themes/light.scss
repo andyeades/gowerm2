@@ -1,0 +1,36 @@
+@import '../_mixins.scss';
+@import '../_vars.scss';
+
+$tippyjs-color: white;
+
+.#{$tippyjs-namespace-prefix}-box[data-theme~='light'] {
+  color: #26323d;
+  box-shadow: 0 0 20px 4px rgba(154, 161, 177, 0.15),
+    0 4px 80px -8px rgba(36, 40, 47, 0.25),
+    0 4px 4px -2px rgba(91, 94, 105, 0.15);
+  background-color: $tippyjs-color;
+
+  &[data-placement^='top'] > .#{$tippyjs-namespace-prefix}-arrow::before {
+    border-top-color: $tippyjs-color;
+  }
+
+  &[data-placement^='bottom'] > .#{$tippyjs-namespace-prefix}-arrow::before {
+    border-bottom-color: $tippyjs-color;
+  }
+
+  &[data-placement^='left'] > .#{$tippyjs-namespace-prefix}-arrow::before {
+    border-left-color: $tippyjs-color;
+  }
+
+  &[data-placement^='right'] > .#{$tippyjs-namespace-prefix}-arrow::before {
+    border-right-color: $tippyjs-color;
+  }
+
+  > .#{$tippyjs-namespace-prefix}-backdrop {
+    background-color: $tippyjs-color;
+  }
+
+  > .#{$tippyjs-namespace-prefix}-svg-arrow {
+    fill: $tippyjs-color;
+  }
+}

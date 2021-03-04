@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2020 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="elevate_bundleadvanced" frontName="elevate_bundleadvanced">
+            <module name="Elevate_BundleAdvanced" before="Magento_Backend" />
+        </route>
+    </router>
+</config>

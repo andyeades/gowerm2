@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 PunchOut2Go. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="punchout2go" translate="label" sortOrder="1000">
+            <label>PunchOut2Go</label>
+        </tab>
+        <section id="punchout2go_xframe" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>X-Frame</label>
+            <tab>punchout2go</tab>
+            <resource>Punchout2go_Xframe::config_xframe</resource>
+            <group id="system" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>System</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Enable (all sessions)</comment>
+                </field>
+                <field id="punchout_only" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Restrict to PunchOut</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Only use during active punchout-sessions</comment>
+                </field>
+                <field id="logging" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Logging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Basic Logging (only during active sessions)</comment>
+                </field>
+                <field id="extended_logging" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Extended Logging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Logs in every call</comment>
+                </field>
+                <!--
+                <field id="log_to_punchout" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Log to PunchOut</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Write to PunchOut Log File</comment>
+                </field>
+                -->
+            </group>
+            <group id="store" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Store</label>
+                <field id="comment" translate="label comment" type="note" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notice</label>
+                    <frontend_model>Punchout2go\Xframe\Block\Forms\Config\Comment</frontend_model>
+                    <comment>This module only works if the webserver forced configuration is disable pub/.htaccess</comment>
+                </field>
+
+                <field id="header" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Value</label>
+                    <comment>SAMEORIGIN, ALLOW-FROM</comment>
+                </field>
+                <field id="off" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Remove X-Frame</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>!! Do not use in production !!</comment>
+                </field>
+            </group>
+            <group id="advanced" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Advanced</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use advanced mapping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Enable advanced mapping by user attribute</comment>
+                </field>
+                <field id="user_attribute" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>User Attribute</label>
+                    <comment>ie.. group_id</comment>
+                </field>
+                <field id="header_advanced" translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="0">
+                    <label>User Header</label>
+                    <frontend_model>Punchout2go\Xframe\Block\Adminhtml\Form\Field\Keyvalue</frontend_model>
+                    <backend_model>Punchout2go\Xframe\Model\System\Config\Backend\Keyvalue</backend_model>
+                    <comment>
+                        <![CDATA[
+                        * = default for any unmatched customers<br>
+                        _no_customer = use with no customer<br>
+                        value=>ALLOW = disable x-frame-option header
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="current_version" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Version</label>
+                <field id="version" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Current Versions</label>
+                    <frontend_model>Punchout2go\Xframe\Block\Forms\Config\Version</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,17 @@
+{
+  "name": "elevate_external/apptrian-facebook-pixel",
+  "description": "Adds Facebook Pixel and Facebook Server-Side API with standard events and Dynamic Ads code on appropriate pages. Supports Advanced Matching (if the customer is logged in) and has the ability to add custom parameters. Passes W3C validation. Easy to install and use. V4.0.1",
+  "type": "magento2-module",
+  "license": [
+    "EULA"
+  ],
+  "require": {
+    "php": "~5.5|~7.0"
+  },
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Apptrian\\FacebookPixel\\": ""
+    }
+  }
+}

@@ -1,0 +1,941 @@
+<!--
+
+
+<link rel="stylesheet" type="text/css" href="/js/webforms/opentip/opentip.css"/>
+<link rel="stylesheet" type="text/css" href="/skin/frontend/base/default/webforms/form.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="/skin/frontend/base/default/webforms/results.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="/skin/frontend/base/default/webforms/stars.css" media="all"/>
+
+<script type="text/javascript" src="/js/webforms/logic.js"></script>
+<script type="text/javascript" src="/js/webforms/dropzone.js"></script>
+<script type="text/javascript" src="/js/webforms/opentip/opentip-native-excanvas.min.js"></script>
+<script type="text/javascript" src="/js/webforms/multistep.js"></script>
+<script type="text/javascript" src="/skin/frontend/happybeds/default/bootstrap/js/slick.min.js"></script>
+-->
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-580f7e82adb58548"></script>
+
+<?php
+/** @var \Mirasvit\Kb\Block\Article\View $block */
+$article = $block->getArticleByRepo();
+$article_id = $article->getArticleId();
+$article_categories = $block->getArticle()->getCategories();
+$tags = $block->getTags();
+$articlesections_obj = $block->getArticleSections($article_id);
+$articlesections = $articlesections_obj->getItems();
+
+$article_header_image = '/media/wysiwyg/kbarticles/header-images/' . $article->getArticleHeaderImage();
+$article_title = $article->getName();
+
+$helper = $block->getHelper();
+//$currentUrl = $this->helper('core/url')->getCurrentUrl();
+
+?>
+<style>
+    .sidebarcheck.stickymy {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing:  antialiased;
+        font-smoothing:          antialiased;
+        transform:               translateZ(0);
+        -webkit-transform:       translateZ(0);
+    }
+
+    a.conQLShLink {
+        display:         block;
+        margin:          0;
+        padding:         2px 0 2px 25px;
+        min-height:      12px;
+        font-size:       12px;
+        line-height:     1.4em;
+        color:           #191919;
+        text-decoration: none;
+    }
+
+    .affix {
+        top:      initial;
+        position: initial;
+    }
+
+    .conQLShDot {
+        position:         absolute;
+        left:             2px;
+        display:          block;
+        margin:           -6px 0 0;
+        width:            8px;
+        height:           8px;
+        border-color:     #b2b2b2;
+        border-radius:    8px;
+        background-color: #fff;
+    }
+
+    .conQLShItm.active a .conQLShDot {
+        background-color: #f0376c;
+        border-color:     #f0376c;
+    }
+
+    .conQLSh {
+        display:    none;
+        margin:     0;
+        padding:    5px 0 0;
+        list-style: none;
+    }
+
+
+
+
+    .ev_question_faq {
+        padding: 0px !important;
+    }
+
+
+
+
+    .faq-accordion-open-close {
+        float: right;
+    }
+
+
+    .about-author {
+        -webkit-box-shadow: none;
+        box-shadow:         none;
+        background:         #fff;
+        padding:            0 0 10px 0;
+        border:             1px solid #d8d8d8;
+        /*    margin-bottom: 30px;*/
+        margin-top:         30px;
+        border:             none;
+    }
+
+    .author-headshot {
+        float: left;
+    }
+
+    .author-headshot img {
+        border-radius: 50%;
+        width:         64px;
+    }
+
+    .about-author .author {
+        margin-top:     15px;
+        left:           11px;
+        position:       relative;
+        border:         none;
+        font-style:     normal !important;
+        letter-spacing: 0 !important;
+        font-size:      16px !important;
+        line-height:    20px !important;
+        float:          none;
+        color:          #757575;
+    }
+
+
+    .testjgstyle {
+        bottom: 822px;
+        top:    initial !important;
+    }
+
+    .stickymy {
+        transition: all 0.5s ease 0s;
+    }
+
+    .morecontent span {
+        display: none;
+    }
+
+    .morelink {
+        display: inline-block;
+    }
+
+    .read-all-link {
+        font-size:   13px;
+        display:     inline-block;
+        float:       right;
+        padding-top: 10px;
+    }
+
+
+
+
+</style>
+
+<article class="kb-article-view-article">
+
+    <div class="container">
+        <div class="row kb-article-row">
+            <div class="left-sidebar-sharing col-md-1 hidden-xs">
+
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_inline_share_toolbox_g09t sidebar-addthis sticky" style="    clear: both;
+    position: absolute;
+    top: initial;"></div>
+
+
+            </div>
+            <div class="col-xs-12 col-sm-8 kb-article-wrapper">
+                <div id="kb-article-view-inner" class="kb-article-view-inner">
+
+                    <h1><?php echo $_article->getName() ?></h1>
+
+                    <?php $role = Mage::getModel('admin/user')->getCollection()->addFieldToFilter('user_id', $_article->getUserId());
+
+                    $gravataremailhash = md5($role->getFirstItem()->getEmail());
+                    //    echo $role->getFirstItem()->getFirstname();
+                    //    die;
+
+                    //$author2 = Mage::getModel('wordpress/user')->load(18);
+                    $author = Mage::getModel('wordpress/user')->loadByEmail($role->getFirstItem()->getEmail());
+                    //$authors = Mage::getModel('wordpress/user');
+                    //echo $this->escapeHtml($author->getMetaValue('description'));
+
+                    //   foreach($authors as $author){
+                    //	   echo "<pre>";
+                    //	   print_r($author);
+                    //	   die;
+                    //	   echo $author['email'];
+                    //	   die;
+                    //	   if($role->getFirstItem()->getEmail() == $author->getUserEmail()){
+                    //		   $author2 = Mage::getModel('wordpress/user')->load(18);
+                    //	$authorDescription = $this->escapeHtml($author2->getMetaValue('description'));
+                    //	}
+                    //   }
+                    //
+                    //	echo $authorDescription;
+                    //	die;
+
+                    //
+
+                    ?>
+
+                    <?php if ($_article->getShowAuthor() == 1) { ?>
+
+
+                        <div class="about-author">
+                            <div class="author-headshot">
+                                <!--<img class="headshot" src="https://www.gravatar.com/avatar/<?php echo $gravataremailhash ?>?d=&amp;s=139" alt="author" >-->
+                                <?php $url = str_replace('http://', 'https://', $author->getGravatarUrl()); ?>
+                                <img class="headshot" src="<?php echo $url; ?>" alt="author"/>
+
+                            </div>
+                            <p class="author">
+                                <span class="author-name"><?php echo $role->getFirstItem()->getFirstname() . " " . $role->getFirstItem()->getLastname(); ?></span> - <?php echo date('F j Y', strtotime($_article->getCreatedAt())) ?>
+                                <span class="auth-description more"><?php echo $this->escapeHtml($author->getMetaValue('description')) ?></span>
+                            </p>
+
+                        </div>
+
+                    <?php } ?>
+
+
+                    <img src="<?php echo $article_header_image; ?>" class="img-responsive"/>
+
+
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <div class="addthis_inline_share_toolbox_g09t main-content-addthis"></div>
+
+
+                    <?php echo $_article->getTextHtml() ?>
+                    <div class="kb-article-sections">
+
+
+                        <?php foreach ($_articlesections as $articlesection) { ?><?php $url_to_output = $this->getSectionUrl($articlesection->asec_name); ?>
+                            <div class="kb-article-section-inner">
+                                <h2 class="" id="<?php echo preg_replace('/[^a-zA-Z0-9_ -]/s', '', $url_to_output); ?>"><?php echo $articlesection->asec_name; ?></h2>
+                                <div class="">
+                                    <?php echo $articlesection->asec_value; ?>
+                                </div>
+                                <?php
+                                $articlesection_id = $articlesection->articlesection_id;
+                                $articlesubsections = $this->getArticlesubsections($articlesection_id);
+
+                                ?>
+                                <?php if ($articlesubsections->count() > 0) { ?>
+                                    <div class="kb-article-sub-sections">
+
+                                        <?php foreach ($articlesubsections as $articlesubsection) { ?>
+
+                                            <?php $url_to_output = $this->getSectionUrl($articlesubsection->asecsub_name); ?>
+
+
+                                            <div class="faq-wrapper kb-article-sub-section-inner">
+                                                <div class="ev_content_block ev_question_faq">
+                                                    <h3 class="faq-item-header" id="<?php echo $url_to_output; ?>"><?php echo $articlesubsection->asecsub_name; ?>
+                                                        <i class="faq-accordion-open-close fa fa-chevron-right"></i></h3>
+                                                    <div class="faq-content">
+                                                        <?php echo $articlesubsection->asecsub_value; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="kb-categories col-xs-12 col-sm-6">
+                            <?php $disable_category = 1; ?>
+                            <?php if ($disable_category != 1) { ?><?php echo $this->__('Categories:') ?><?php foreach ($categories as $category) { ?>
+                                <a class="label happybeds-label" href="<?php echo $category->getUrl() ?>"><?php echo $category->getName() ?></a>
+                            <?php } ?><?php } ?>
+                        </div>
+
+                        <!--
+          <div class="kb-share-bottom col-xs-12 col-sm-6">
+            <div class="share-this-block">
+              <div class="share-this-block-inner">
+              <?php $companyname = Mage::app()->getWebsite()->getName(); ?>
+              <?php $emailsubjecttext = "Check Out the " . $article_title . " on the " . $companyname . " Website"; ?>
+              <?php $emailmailto = rawurlencode($emailsubjecttext); ?>
+              <?php $emailbody = rawurlencode($currentUrl); ?>
+
+              <?php $linktext = $article_title; ?> <?php $the_link = urlencode($linktext); ?>
+              <?php $the_title = urlencode($article_title); ?>
+              <?php $the_url = urlencode($currentUrl); ?>
+              <?php $the_image_url = urlencode($article_header_image); ?>
+              <?php
+
+                        $email_a_friend_on = 0;
+                        $pinterest_on = 0;
+                        $googleplus_on = 0;
+
+                        ?>
+
+              <div class="share-this-left">
+                <i class="share-this-ico fa fa-3x fa-share-alt"></i>
+                <div class="share-this-title">Share This</div>
+              </div>
+              <div class="share-icons">
+
+                <?php if ($email_a_friend_on == 1) { ?>
+
+                  <a class="share-ico-mail" href="<?php //echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><i class="fa fa-envelope"></i></a>
+                <?php } else { ?>
+                  <a target="_blank" href="mailto:?subject=<?php echo $emailmailto; ?>&body=<?php echo $emailbody; ?>" class="share-ico-mail"><i class="fa fa-envelope"></i></a>
+                <?php } ?>
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $the_url; ?>" class="soc-ico-fb share-ico-facebook"><i class="fa fa-facebook-f"></i></a>
+                <?php if ($pinterest_on == 1) { ?>
+                  <a target="_blank" href="http://pinterest.com/pin/create/button/?url=<?php echo $the_url; ?>&media=<?php echo $the_image_url; ?>&description=<?php echo $the_title; ?> " class="pin-it-button" count-layout="horizontal"><i class="fa fa-pinterest"></i></a>
+                <?php } ?>
+                <?php if ($googleplus_on == 1) { ?>
+                  <a target="_blank" href="https://plus.google.com/share?url=<? echo $the_url; ?>" class="share-ico-googleplus"><i class="fa fa-google-plus"></i></a>
+                <?php } ?>
+
+                <a target="_blank" href="https://twitter.com/intent/tweet?text=<?php echo $the_link ?>&url=<?php echo $the_url ?>" class="soc-ico-twit share-ico-twitter"><i class="fa fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+          </div>
+-->
+                    </div>
+
+                    <?php if ($_tags->count()): ?>
+                        <div class="kb-tags">
+                            <?php echo __('Tags:') ?>
+                            <?php foreach ($_tags as $_tag): ?>
+                                <a class="label happybeds-label" href="<?php echo $_tag->getUrl() ?>"><?php echo $_tag->getName() ?></a>&nbsp;
+                            <?php endforeach ?>
+                        </div>
+                    <?php endif ?>
+
+                    <?php if ($this->isRatingEnabled()): ?>
+                        <div class="kb-helpful bg-info">
+                            <div class="kb-helpful-header-title">Was this article helpful?</div>
+                            <?php if (!$this->getVoteResult()): ?>
+                                <a class="kb-helpful-yes btn btn-success" href="<?php echo $this->getVoteUrl(5) ?>"><?php echo $this->__('Helpful') ?></a>
+                                <a class="kb-helpful-no btn btn-danger" href="<?php echo $this->getVoteUrl(1) ?>"><?php echo $this->__('Not helpful') ?></a>
+                            <?php else: ?><?php if ($this->getVoteResult() == 5): ?><?php if ($_article->getPostiveVoteNum() > 1): ?><?php echo $this->__('You and %s people found this helpful.', $_article->getPostiveVoteNum()) ?><?php else: ?><?php echo $this->__('You found this helpful.') ?><?php endif ?><?php endif ?><?php endif ?>
+                        </div>
+                    <?php endif ?>
+
+                </div>
+
+                <?php
+                $relatedIds = explode(', ', $_article->getRelatedArticleIds());
+                $relatedArticles = Mage::getModel('kb/article')->getCollection()->addFieldToFilter('article_id', array('in' => $relatedIds))->addFieldToFilter('main_table.is_active', true)->addStoreIdFilter(Mage::app()->getStore()->getId())->setPageSize(4)->setOrder('position', 'asc');
+
+                //		foreach($relatedArticles as $relatedArticle){
+                //			echo $relatedArticle->getName();
+                //			echo "<br/>";
+                //		}
+
+                ?>
+
+                <?php if ($relatedArticles->count()) { ?>
+                    <div class="homepage-block featured-articles">
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="section-title-outer">
+                                    <div class="section-title-inner">
+                                        <div class="section-title">Related Articles</div>
+                                        <div class="read-all-link"><a href="/help-and-advice">All Articles</a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <?php foreach ($relatedArticles as $relatedArticle) { ?>
+
+
+                                <div class="col-md-4">
+                                    <div class="featured-cat-outer">
+
+                                        <div class="featured-cat-img">
+
+                                            <?php
+
+                                            $defaultImg = "/skin/frontend/happybeds/default/images/meta-images/opengraph-homepage.png";
+
+                                            if (!empty($relatedArticle->getArticleHeaderImage())) {
+                                                $img = "/media/wysiwyg/kbarticles/header-images/" . $relatedArticle->getArticleHeaderImage();
+                                            }
+
+                                            if (file_exists($img)) {
+                                                $img = $img;
+                                            } else {
+                                                $img = $defaultImg;
+                                            }
+                                            ?>
+
+                                            <a href="<?php echo $relatedArticle->getUrlKey() ?>">
+
+                                                <img src="<?php echo $img; ?>" alt="<?php echo $relatedArticle->getName(); ?>" class="img-responsive"/>
+                                            </a>
+                                        </div>
+                                        <a class="featured-cat-link a-block" href="<?php echo $relatedArticle->getUrlKey() ?>"><?php echo $relatedArticle->getName(); ?></a>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
+
+                            <a href="/help-and-advice" class="btn btn-hbred more-posts">View All Articles</a>
+
+
+                        </div>
+
+                    </div>
+
+                <?php } ?>
+            </div>
+            <div id="kb-article-sidebar-outer" class="opened-up col-xs-12 col-sm-3">
+
+                <div class="stickymy">
+                    <div class="kb-article-sidebar ">
+
+
+                        <div class="kb-article-tg">
+                            <div id="kb-article-tg-title" class="kb-article-tg-title">
+                                In this guide
+                                <div class="open-close-sidebaritem"><i class="fa fa-chevron-down"></i></div>
+                            </div>
+                            <div id="kb-article-tg-list-outer">
+
+                                <ul class="kb-article-tg-list-pri nav">
+                                    <?php
+                                    $i = 1;
+                                    $len = count($_articlesections);
+
+                                    ?>
+                                    <?php foreach ($_articlesections as $articlesection) { ?><?php
+                                        $articlesection_id = $articlesection->articlesection_id;
+                                        $articlesubsections = $this->getArticlesubsections($articlesection_id);
+                                        $url_to_output = $this->getSectionUrl($articlesection->asec_name);
+                                        if ($articlesubsections->count() > 0) {
+                                            $parent_name = $url_to_output;
+                                        }
+                                        ?>
+
+                                        <li class="kb-article-tg-list-outer  <?php if ($i == 1) {
+                                            echo 'conQLHItmFirst';
+                                        }
+                                        if ($i == $len) {
+                                            echo "conQLHItmLast";
+                                        } ?> <?php if ($articlesubsections->count() > 0) {
+                                            echo 'kb-article-tg-list-outer-with-inners';
+                                        } ?>"<?php if ($articlesubsections->count() > 0) {
+                                            echo 'data-parent-name="' . $parent_name . '"';
+                                        } ?>>
+                                            <a href="#<?php echo preg_replace('/[^a-zA-Z0-9_ -]/s', '', $url_to_output); ?>" class="kb-article-tg-list-openclose smooth-goto">
+                                                <span class="conQLHLine"></span> <span class="conQLHDot"></span>
+                                                <?php echo $articlesection->asec_name; ?>
+                                            </a>
+                                            <?php if ($articlesubsections->count() > 0) { ?>
+                                                <ul class="conQLSh">
+                                                    <?php foreach ($articlesubsections as $articlesubsection) { ?>
+                                                        <li class="conQLShItm" data-section-parent="<?php echo $parent_name; ?>">
+
+                                                            <?php $url_to_output = $this->getSectionUrl($articlesubsection->asecsub_name); ?>
+                                                            <a class="conQLShLink" href="#<?php echo preg_replace('/[^a-zA-Z0-9_ -]/s', '', $url_to_output); ?>">
+                                                                <span class="conQLShDot"></span>
+                                                                <?php echo $articlesubsection->asecsub_name; ?>
+                                                            </a>
+
+                                                        </li>
+
+                                                    <?php } ?>
+                                                </ul>
+                                            <? } ?>
+
+                                            <span class="conQLLine"></span>
+                                        </li>
+
+
+                                        <?php $i++ ?><?php } ?>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="guide-search-wrap">
+
+                            <div class="block-title">
+                                <strong><span>Search Guides</span></strong>
+                            </div>
+                            <form action="<?php echo Mage::getUrl('kb/article/s') ?>" method="GET" id="kb-s-form">
+                                <input name='s' id='s' placeholder="<?php echo $this->__('Search Guides') ?>" class="input-text required-entry" value="<?php echo $this->getQuery() ?>">
+                                <button type="submit" title="Submit" class="btn button btn-hbgreen">Search</button>
+                            </form>
+                        </div>
+
+
+                        <?php
+
+                        //        if($post->getMetaValue2('meta-box-text') || $post->getMetaValue2('meta-box-text2')){
+                        //
+                        //
+                        //            if($post->getMetaValue2('meta-box-text')){
+                        //                $id = $post->getMetaValue2('meta-box-text');
+                        //            }
+                        //
+                        //             if($post->getMetaValue2('meta-box-text2')){
+                        //                $id = $post->getMetaValue2('meta-box-text2');
+                        //            }
+
+                        //    $id = 5;
+                        //
+                        //                echo $this->getLayout()->createBlock('core/template')
+                        //                    ->setTemplate('elevate/blog/slider.phtml')
+                        //                    ->setData("id",$id)
+                        //                    ->toHtml();
+
+                        //        }
+
+                        ?>
+
+
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            var dataForm = new VarienForm('kb-s-form', true);
+                            //]]>
+                        </script>
+
+
+                        <!--
+                                      <div id="categories-wrap">
+                                                          <div class="block-title">
+                            <strong><span>Categories</span></strong>
+                        </div>
+
+                        <div class="block-content">
+                            <ul class="level0" id="wp-category-list">
+                                <li class="level0 item active odd">
+                                    <a href="/help-and-advice/customer-services">Customer Service</a>
+
+                                </li>
+                                <li class="level0 item even">
+                                    <a href="/help-and-advice/help-to-buy">Help To Buy</a>
+                                </li>
+                                <li class="level0 item odd">
+                                    <a href="/help-and-advice/product-care">Product Care</a>
+
+                                </li>
+                                <li class="level0 item last odd">
+                                    <a href="/blog">Inspire Me</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                                      </div>
+                        -->
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="additonal-content-bottom"></div>
+
+    </div>
+    <div class="sticky-stopper"></div>
+</article>
+
+
+<script>
+
+    jQuery(document).ready(function () {
+
+
+        jQuery(".kb-article-tg-list-outer").click(function () {
+
+            if (jQuery(this).closest("li").children("ul").length) {
+
+//                   event.preventDefault();
+                console.log("Has UL");
+
+                jQuery(this).children("ul").show().slideDown();
+
+            } else {
+                jQuery(".kb-article-tg-list-outer").removeClass("active");
+                jQuery(this).addClass("active");
+                jQuery(".conQLSh").hide().slideUp();
+            }
+        });
+
+
+        jQuery('.faq-item-header').click(function () {
+            console.log("clicked");
+            jQuery(this).next('.faq-content').slideToggle();
+            if (jQuery(this).children('.faq-accordion-open-close').hasClass("fa-chevron-right")) {
+                jQuery(this).children('.faq-accordion-open-close').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+            } else {
+                jQuery(this).children('.faq-accordion-open-close').removeClass('fa-chevron-down').addClass('fa-chevron-right');
+            }
+        });
+
+
+        //adds in the data attribute
+        jQuery("body").scrollspy({
+            target: ".kb-article-sidebar",
+            offset: 0
+        });
+
+
+        var MqL = 768;
+        var scrollTimer, wasTooBig = 0, lastScrollFireTime = 0;
+
+        jQuery(window).on('resize', function () {
+
+            (!window.requestAnimationFrame) ? setTimeout(ev_moveNavigation, 10) : window.requestAnimationFrame(ev_moveNavigation);
+        });
+        jQuery(window).on('scroll', function () {
+
+            var minScrollTime = 50;
+            var now = new Date().getTime();
+            var sidebar_element_height = jQuery('.kb-article-sidebar').outerHeight();
+            var footer_height = jQuery('#elevate-footer').outerHeight();
+            var newsletter_wrapper_height = jQuery('#home-newsletter').outerHeight();
+            var page_bottom_height = footer_height + newsletter_wrapper_height + 17;
+
+            var evfooterheight = 822;
+
+            console.log(evfooterheight);
+
+            processScroll();
+
+            function processScroll() {
+                var current_pos = document.documentElement.scrollTop;
+                var total_page_height = document.documentElement.scrollHeight;
+                var total_height_for_calc = current_pos + page_bottom_height + sidebar_element_height;
+
+                if (total_height_for_calc > total_page_height) {
+                    //console.log("Too big!");
+                    if (ev_checkWindowWidth() === true) {
+                        // Desktop
+//                console.log('ProcessScroll ev_checkWindowWidth desktop');
+
+//                jQuery('.kb-article-sidebar').removeClass('affix');
+//				  console.log(page_bottom_height);
+
+//			                  jQuery('.kb-article-sidebar').css({"bottom": evfooterheight});
+//                jQuery('.kb-article-sidebar').css({ "top": "initial"});
+                        wasTooBig = 1;
+//				  console.log("gone over footer");
+                    }
+
+                }
+                if (total_height_for_calc < total_page_height & wasTooBig === 1) {
+                    //console.log("Not too big!");
+//				jQuery('.kb-article-sidebar').css({ "top": "0"});
+
+
+                    //  jQuery('.kb-article-sidebar').addClass('affix');
+                    wasTooBig = 0;
+                }
+            }
+
+            if (!scrollTimer) {
+                if (now - lastScrollFireTime > (3 * minScrollTime)) {
+                    processScroll();   // fire immediately on first scroll
+                    lastScrollFireTime = now;
+                }
+                scrollTimer = setTimeout(function () {
+                    scrollTimer = null;
+                    lastScrollFireTime = new Date().getTime();
+                    processScroll();
+                }, minScrollTime);
+            }
+        });
+        jQuery('.kb-article-sidebar').on('activate.bs.scrollspy', function () {
+            var activeitem = jQuery('.kb-article-tg-list-pri li.active');
+            //console.log(activeitem);
+            if (jQuery(activeitem).hasClass('kb-article-tg-list-outer')) {
+
+                var data_parent_name = jQuery(activeitem).attr('data-parent-name');
+                var itemstohide = jQuery('.kb-article-tg-list-inner[data-section-parent]');
+                var itemstoshow = jQuery('.kb-article-tg-list-inner[data-section-parent="' + data_parent_name + '"]');
+                jQuery.each(itemstohide, function (index, value) {
+                    jQuery(value).hide();
+                });
+                jQuery.each(itemstoshow, function (index, value) {
+                    jQuery(value).show();
+                });
+            }
+
+            if (jQuery(activeitem).hasClass('kb-article-tg-list-inner')) {
+                //console.log('list inner');
+                var data_section_parent = jQuery(activeitem).attr('data-section-parent');
+                jQuery(activeitem).parent().find('[data-section-parent="' + data_section_parent + '"]').show();
+
+            }
+
+
+//            jQuery(".conQLSh").slideUp();
+
+
+        });
+
+        jQuery('.kb-article-sidebar .conQLSh').on('activate.bs.scrollspy', function () {
+//            jQuery(this).slideDown();
+
+        })
+
+
+//        jQuery('.kb-article-tg-list-outer').click(function () {
+//          var selected = jQuery(this);
+//          var data_parent_name = jQuery(this).attr('data-parent-name');
+//
+//          // FInd all LI with attribute and show
+//          // if Active class goes onto another outer li , then trigger hide.
+//          var itemstoshow = jQuery('.kb-article-tg-list-inner[data-section-parent="'+ data_parent_name +'"]');
+//          var itemstohide = jQuery('.kb-article-tg-list-inner[data-section-parent]');
+//
+//          jQuery.each(itemstohide, function(index,value){
+//            jQuery(value).hide();
+//          });
+//
+//          jQuery.each(itemstoshow, function(index,value){
+//            jQuery(value).show();
+//          });
+//
+//          if (data_parent_name = jQuery(this).find("[data-section-parent='"+ data_parent_name +"']").is(':visible')) {
+//            jQuery('#kb-article-tg-list-outer').slideUp();
+//            jQuery('#kb-article-tg-title .open-close-sidebaritem i').removeClass('fa-minus').addClass('fa-plus');
+//          } else {
+//            jQuery('#kb-article-tg-list-outer').slideDown();
+//            jQuery('#kb-article-tg-title .open-close-sidebaritem i').removeClass('fa-plus').addClass('fa-minus');
+//          }
+//
+//
+//        });
+
+        jQuery('.kb-article-sidebar').on('affix.bs.affix', function () {
+            ev_recalcaffixwidth();
+        });
+        jQuery('.kb-article-sidebar').on('affix-top.bs.affix', function () {
+
+
+            jQuery('.kb-article-sidebar').css('width', '');
+        });
+
+
+        function ev_recalcaffixwidth() {
+            var windowcheck = ev_checkWindowWidth();
+            var size_element = jQuery('#kb-article-sidebar-outer').width();
+            console.log("Recalc Affix Width");
+            console.log(size_element);
+            if (windowcheck === true) {
+                jQuery('.kb-article-sidebar').css('width', size_element + 'px');
+            } else {
+                jQuery('.kb-article-sidebar').css('width', '');
+                jQuery('.kb-article-sidebar').css('width', '100%;');
+            }
+        }
+
+        function ev_checkWindowWidth() {
+            //check window width (scrollbar included)
+            var e = window,
+                a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+
+            var width = e[a + 'Width'];
+
+            if (width >= MqL) {
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+
+        function ev_moveNavigation() {
+            var desktop = ev_checkWindowWidth();
+            var guidesearchbox = jQuery('#guide-search-wrap');
+            var guidesaddtionalcontent = jQuery('#categories-wrap');
+
+            if (desktop === true) {
+                jQuery('.kb-article-sidebar').affix('checkPosition');
+                ev_openuparticlesidebar();
+                ev_recalcaffixwidth();
+                guidesearchbox.detach().appendTo('.kb-article-sidebar');
+                guidesaddtionalcontent.detach().appendTo('.kb-article-sidebar');
+
+            }
+
+            if (desktop === false) {
+
+                jQuery('.smooth-goto').on('click', function () {
+                    jQuery('html, body').animate({scrollTop: jQuery(this.hash).offset().top - 70}, 1000);
+                    ev_closeuparticlesidebar();
+                    return false;
+                });
+
+                jQuery('.kb-article-sidebar').affix();
+                jQuery('#kb-article-tg-list-outer').hide();
+                ev_closeuparticlesidebar();
+                ev_recalcaffixwidth();
+
+                jQuery('.kb-article-tg-list-outer').click(function () {
+                    var selected = jQuery(this);
+                    ev_closeuparticlesidebar();
+                });
+
+                guidesearchbox.detach().appendTo('#additonal-content-bottom');
+                guidesaddtionalcontent.detach().appendTo('#additonal-content-bottom');
+
+                // Configure/customize these variables.
+                var showChar = 50;  // How many characters are shown by default
+                var ellipsestext = "...";
+                var moretext = "Show more >";
+                var lesstext = "Show less";
+
+
+                jQuery('.more').each(function () {
+                    var content = jQuery(this).html();
+
+                    if (content.length > showChar) {
+
+                        var c = content.substr(0, showChar);
+                        var h = content.substr(showChar, content.length - showChar);
+
+                        var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+                        jQuery(this).html(html);
+                    }
+
+                });
+
+                jQuery(".morelink").click(function () {
+                    if (jQuery(this).hasClass("less")) {
+                        jQuery(this).removeClass("less");
+                        jQuery(this).html(moretext);
+                    } else {
+                        jQuery(this).addClass("less");
+                        jQuery(this).html(lesstext);
+                    }
+                    jQuery(this).parent().prev().toggle();
+                    jQuery(this).prev().toggle();
+                    return false;
+                });
+
+
+            }
+        }
+
+        function ev_openuparticlesidebar() {
+            jQuery('#kb-article-tg-list-outer').slideDown();
+            jQuery('#kb-article-tg-title .open-close-sidebaritem i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+            jQuery('#kb-article-sidebar-outer').addClass('opened-up').removeClass('closed-up');
+//		  jQuery('body').css("overflow", "hidden");
+        }
+
+        function ev_closeuparticlesidebar() {
+            jQuery('#kb-article-tg-list-outer').slideUp();
+            jQuery('#kb-article-tg-title .open-close-sidebaritem i').removeClass('fa-chevron-down').addClass('fa-chevron-right');
+            jQuery('#kb-article-sidebar-outer').removeClass('opened-up').addClass('closed-up');
+        }
+
+        jQuery('.kb-article-tg-title').click(function () {
+            var selected = jQuery(this);
+            if (jQuery('#kb-article-tg-list-outer').is(':visible')) {
+                ev_closeuparticlesidebar();
+            } else {
+                ev_openuparticlesidebar();
+            }
+
+
+        });
+
+        ev_moveNavigation();
+    });
+
+    (function ($) {
+
+        console.log("document ready!");
+
+        var $sticky = $('.stickymy');
+        var $stickyrStopper = $('.sticky-stopper');
+        if (!!$sticky.offset()) { // make sure ".sticky" element exists
+
+
+            var stickyTop = parseFloat($sticky.offset().top);
+            var stickOffset = 0;
+            var stickyStopperPosition = parseFloat($stickyrStopper.offset().top);
+            var stopPoint = parseFloat(stickyStopperPosition);
+            var diff = parseFloat(stopPoint + stickOffset);
+
+            $(window).scroll(function (e) { // scroll event
+                var generalSidebarHeight = $('.stickymy').innerHeight();
+                e.preventDefault();
+                var windowTop = $(window).scrollTop(); // returns number
+                console.log("stopPoint::" + stopPoint);
+                console.log("HEIGHT::" + generalSidebarHeight);
+                console.log("windowTop::" + windowTop);
+                console.log("diff::" + diff);
+                console.log("stickyTop::" + stickyTop);
+                console.log("amount::" + parseFloat(windowTop + stickOffset));
+                if (stopPoint > windowTop + stickOffset + generalSidebarHeight) {
+
+                    var mytop = windowTop - stickyTop;
+
+
+                    if (mytop < 0) {
+                        mytop = 0;
+                    }
+                    $sticky.css({position: 'relative', top: mytop});
+                    console.log("TWO");
+                } else {
+                    // $sticky.css({position: 'relative', top: 'initial'});
+                    console.log("THREE");
+                }
+            });
+
+        }
+//    $(document).on('mousewheel DOMMouseScroll MozMousePixelScroll', function (event, delta) {
+//      console.log('mousewheel');
+//      //you could trigger window scroll handler
+//      $(window).triggerHandler('scroll');
+//    });
+
+        // Backbone code in here
+    })(jQuery);
+
+
+</script>

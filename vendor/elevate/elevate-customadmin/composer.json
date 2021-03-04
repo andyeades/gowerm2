@@ -1,0 +1,13 @@
+{
+  "name": "elevate/elevate-customadmin",
+  "description": "Elevate CustomAdmin",
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Elevate\\CustomAdmin\\": ""
+    }
+  }
+}

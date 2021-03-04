@@ -1,0 +1,35 @@
+<?php
+
+namespace Elevate\EmailDesign\Model\Config\Source;
+use Magento\Framework\Option\ArrayInterface;
+/**
+ * Class FontStyle
+ * @package Elevate\EmailDesign\Model\Config\Source
+ */
+class FontStyle implements ArrayInterface
+{
+    /**
+     * @var array
+     */
+    protected $_styles = array(
+        'inherit' => 'Inherit (from its parent)',
+        'normal' => 'Normal',
+        'initial' => 'Initial',
+        'italic' => 'Italic',
+        'oblique' => 'Oblique'
+    );
+    /**
+     * @return array
+     */
+    public function toOptionArray()
+    {
+        $options = array();
+        foreach ($this->_styles as $id => $style) :
+            $options[] = array(
+                'value' => $id,
+                'label' => $style
+            );
+        endforeach;
+        return $options;
+    }
+}

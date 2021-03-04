@@ -1,0 +1,1259 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">elevatethemeoptions_footer_form.elevatethemeoptions_footer_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevatethemeoptions_footer_form</item>
+            <item name="deps" xsi:type="string">elevatethemeoptions_footer_form.elevatethemeoptions_footer_form_data_source</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="provider" xsi:type="string">elevatethemeoptions_footer_form.elevatethemeoptions_footer_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevatethemeoptions_footer_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="label" xsi:type="string" translate="true">hanges</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Footer\Edit\BackButton" name="back"/>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Footer\Edit\DeleteButton" name="delete"/>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Footer\Edit\SaveButton" name="save"/>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Footer\Edit\SaveAndContinueButton" name="save_and_continue"/>
+        </buttons>
+        <deps>
+            <dep>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="elevatethemeoptions_footer_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Elevate\Themeoptions\Model\Footer\DataProvider</argument>
+            <argument name="name" xsi:type="string">elevatethemeoptions_footer_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Elevate\Themeoptions\Model\Footer\DataProvider" name="elevatethemeoptions_footer_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label translate="true">General</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">header</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="footer_options_name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>footer_options_name</dataScope>
+                <label translate="false">Footer Options Name</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="ftr_blocks_numberof" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>ftr_blocks_numberof</dataScope>
+                <label translate="false">Number of Main Footer Blocks</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        
+    </fieldset>
+    <fieldset name="footermaintypographycolor">
+        <settings>
+            <label translate="true">Footer - Main Typography and Color</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+
+        <field name="ftr_m_bg_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                    <item name="default" xsi:type="string">#000000</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Footer Main Background Color</label>
+                <tooltip>
+                    <description translate="true">Footer Main Background Color</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>ftr_m_bg_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="ftr_m_text_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                    <item name="default" xsi:type="string">#FFFFFF</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Footer Main Text/Link Color</label>
+                <tooltip>
+                    <description translate="true">Footer Main Text/Link Color.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>ftr_m_text_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="ftr_m_text_hover_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                    <item name="default" xsi:type="string">#FFFFFF</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Footer Main Text/Link Hover Color</label>
+                <tooltip>
+                    <description translate="true">Footer Main Text/Link Hover Color.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>ftr_m_text_hover_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+
+        <field name="ftr_m_font_size" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">rem/px</description>
+                </tooltip>
+                <dataScope>ftr_m_font_size</dataScope>
+                <label translate="false">Footer Main Font Size</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_m_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">Padding (rem/px)</description>
+                </tooltip>
+                <dataScope>ftr_m_padding</dataScope>
+                <label translate="false">Footer Main Padding (Mobile)</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+        </field>
+        <field name="ftr_m_padding_desktop" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">Padding (rem/px)</description>
+                </tooltip>
+                <dataScope>ftr_m_padding_desktop</dataScope>
+                <label translate="false">Footer Main Padding (Desktop)</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+        </field>
+        <field name="ftr_m_hdr_text_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                    <item name="default" xsi:type="string">#FFFFFF</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Footer Main Header Text Color</label>
+                <tooltip>
+                    <description translate="true">Footer Main Header Text Color.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>ftr_m_hdr_text_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="ftr_m_hdr_font_size" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">rem/px</description>
+                </tooltip>
+                <dataScope>ftr_m_hdr_font_size</dataScope>
+                <label translate="false">Footer Main Block Header Font Size</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_m_hdr_font_weight" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Footer Main Block Header Font Weight </label>
+                <dataScope>ftr_m_hdr_font_weight</dataScope>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">If the weight isn't included with the font being used it may not look different to the nearest option (i.e. if 600 is selected but only 400 and 700 are included it will use 700 in the browser).</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\Fontweight"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="ftr_m_hdr_text_transform_on" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Footer Main Header Text Transform On</label>
+                <dataScope>ftr_m_hdr_text_transform_on</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>0</value>
+                            <actions>
+                                <action name="0">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_hdr_text_trans</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>1</value>
+                            <actions>
+                                <action name="0">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_hdr_text_trans</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="ftr_m_hdr_text_trans" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Footer Main Block Header Text Transform</label>
+                <dataScope>ftr_m_hdr_text_trans</dataScope>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">Text Transform (Uppercase, Lowercase, etc)</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\TextTransform"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="ftr_m_hdr_margin" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">Margin (rem/px)</description>
+                </tooltip>
+                <dataScope>ftr_m_hdr_margin</dataScope>
+                <label translate="false">Footer Main Block Header Margin</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+        </field>
+        <field name="ftr_m_li_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">Padding on each List Item (rem/px)</description>
+                </tooltip>
+                <dataScope>ftr_m_li_padding</dataScope>
+                <label translate="false">Footer Block List Item Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+        </field>
+
+        <field name="ftr_m_border_on" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Footer Main Border On</label>
+                <dataScope>ftr_m_border_on</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>0</value>
+                            <actions>
+                                <action name="0">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_border_position</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_border_thickness</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_border_style</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_border_color</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>1</value>
+                            <actions>
+                                <action name="0">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_border_position</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_border_thickness</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="2">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_border_style</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="3">
+                                    <target>elevatethemeoptions_footer_form.elevatethemeoptions_footer_form.footermaintypographycolor.ftr_m_border_color</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="ftr_m_border_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footermaintypographycolor</item>
+                    <item name="default" xsi:type="string">#000000</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Border Color</label>
+                <tooltip>
+                    <description translate="true">Border color.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>ftr_m_border_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="ftr_m_border_position" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">all</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Border Position</label>
+                <dataScope>ftr_m_border_position</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\BorderPosition"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="ftr_m_border_style" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">solid</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Border Style</label>
+                <dataScope>ftr_m_border_style</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\BorderStyle"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="ftr_m_border_thickness" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">1px</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Border Thickness</label>
+                <dataScope>ftr_m_border_thickness</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\BorderThickness"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="footerblockdefaults">
+        <settings>
+            <label translate="true">Footer Blocks</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+
+        <field name="ftr_block_small_tablet_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockdefaults</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_small_tablet_width</dataScope>
+                <label translate="false">Footer Block Small Tablet Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_small_tablet_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockdefaults</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_small_tablet_padding</dataScope>
+                <label translate="false">Footer Block Small Tablet Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_desktop_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockdefaults</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_desktop_width</dataScope>
+                <label translate="false">Footer Block Desktop Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_desktop_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockdefaults</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px)</description>
+                </tooltip>
+                <dataScope>ftr_block_desktop_padding</dataScope>
+                <label translate="false">Footer Block Desktop Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_mobile_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockdefaults</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - Affects - by default - upto 479.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_mobile_padding</dataScope>
+                <label translate="false">Footer Block Mobile Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+
+    <fieldset name="footerblockone">
+        <settings>
+            <label translate="true">Footer Block One</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+        <field name="ftr_block_1_small_tablet_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockone</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_1_small_tablet_width</dataScope>
+                <label translate="false">Footer Block 1 Small Tablet Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_1_small_tablet_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockone</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_1_small_tablet_padding</dataScope>
+                <label translate="false">Footer Block 1 Small Tablet Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_1_desktop_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockone</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_1_desktop_width</dataScope>
+                <label translate="false">Footer Block 1 Desktop Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_1_desktop_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockone</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px)</description>
+                </tooltip>
+                <dataScope>ftr_block_1_desktop_padding</dataScope>
+                <label translate="false">Footer Block 1 Desktop Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_1_mobile_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockone</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - Affects - by default - upto 479.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_1_mobile_padding</dataScope>
+                <label translate="false">Footer Block 1 Mobile Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        
+        
+    </fieldset>
+
+    <fieldset name="footerblocktwo">
+        <settings>
+            <label translate="true">Footer Block Two</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+        <field name="ftr_block_2_small_tablet_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblocktwo</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_2_small_tablet_width</dataScope>
+                <label translate="false">Footer Block 2 Small Tablet Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_2_small_tablet_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblocktwo</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_2_small_tablet_padding</dataScope>
+                <label translate="false">Footer Block 2 Small Tablet Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_2_desktop_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblocktwo</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_2_desktop_width</dataScope>
+                <label translate="false">Footer Block 2 Desktop Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_2_desktop_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblocktwo</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px)</description>
+                </tooltip>
+                <dataScope>ftr_block_2_desktop_padding</dataScope>
+                <label translate="false">Footer Block 2 Desktop Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_2_mobile_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblocktwo</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - Affects - by default - upto 479.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_2_mobile_padding</dataScope>
+                <label translate="false">Footer Block 2 Mobile Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+
+    </fieldset>
+
+    <fieldset name="footerblockthree">
+        <settings>
+            <label translate="true">Footer Block Three</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+        <field name="ftr_block_3_small_tablet_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockthree</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_3_small_tablet_width</dataScope>
+                <label translate="false">Footer Block 3 Small Tablet Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_3_small_tablet_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockthree</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_3_small_tablet_padding</dataScope>
+                <label translate="false">Footer Block 3 Small Tablet Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_3_desktop_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockthree</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_3_desktop_width</dataScope>
+                <label translate="false">Footer Block 3 Desktop Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_3_desktop_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockthree</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px)</description>
+                </tooltip>
+                <dataScope>ftr_block_3_desktop_padding</dataScope>
+                <label translate="false">Footer Block 3 Desktop Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_3_mobile_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockthree</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - Affects - by default - upto 479.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_3_mobile_padding</dataScope>
+                <label translate="false">Footer Block 3 Mobile Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+
+    </fieldset>
+
+    <fieldset name="footerblockfour">
+        <settings>
+            <label translate="true">Footer Block Four</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+        <field name="ftr_block_4_small_tablet_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockfour</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_4_small_tablet_width</dataScope>
+                <label translate="false">Footer Block 4 Small Tablet Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_4_small_tablet_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockfour</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_4_small_tablet_padding</dataScope>
+                <label translate="false">Footer Block 4 Small Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_4_desktop_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockfour</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - normally appears between 480px-767.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_4_desktop_width</dataScope>
+                <label translate="false">Footer Block 4 Desktop Width</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_4_desktop_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockfour</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px)</description>
+                </tooltip>
+                <dataScope>ftr_block_4_desktop_padding</dataScope>
+                <label translate="false">Footer Block 4 Desktop Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftr_block_4_mobile_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">footerblockfour</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">(px) - Affects - by default - upto 479.98px</description>
+                </tooltip>
+                <dataScope>ftr_block_4_mobile_padding</dataScope>
+                <label translate="false">Footer Block 4 Mobile Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+
+    </fieldset>
+
+
+    <fieldset name="copyright">
+        <settings>
+            <label translate="true">Copyright</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+        <field name="ftr_copyright_text_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">copyright</item>
+                    <item name="default" xsi:type="string">#FFFFFF</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Footer Copyright Color</label>
+                <tooltip>
+                    <description translate="true">Footer Copyright Color</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>ftr_copyright_text_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+    </fieldset>
+
+</form>

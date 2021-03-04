@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="elevate_megamenu" resource="default">
+      <column xsi:type="smallint" comment="entity_id" identity="true" name="entity_id" nullable="false" padding="6" unsigned="false" />
+      <constraint referenceId="PRIMARY" xsi:type="primary">
+          <column name="entity_id"/>
+      </constraint>
+      <column xsi:type="varchar" length="255" name="menu_name" nullable="false" comment="menu_name"/>
+      <column xsi:type="varchar" length="255" name="menu_link" nullable="true" comment="menu_link"/>
+      <column xsi:type="varchar" length="255" name="menu_icon" nullable="true" comment="menu_icon"/>
+      <column xsi:type="boolean" name="custom_toplevel_html_on" nullable="false" default="0" comment="custom_toplevel_html_on"/>
+      <column xsi:type="text" name="custom_toplevel_html" nullable="false" comment="custom_toplevel_html"/>
+      <column xsi:type="boolean" name="enabled" nullable="false" default="1" comment="enabled"/>
+      <column xsi:type="int" name="position" padding="11" unsigned="true" nullable="false" default="0" comment="position" />
+      <column xsi:type="int" name="show_type" padding="11" unsigned="true" nullable="false" default="1" comment="Display on Mobile/Desktop/Both"/>
+      <column xsi:type="datetime" name="start_date" default="0" comment="Start Date"/>
+      <column xsi:type="datetime" name="end_date" default="0" comment="End Date"/>
+      <column xsi:type="text" name="menu_content" nullable="true" comment="Menu Content"/>
+      <column xsi:type="smallint" name="menu_type" padding="6" unsigned="true" nullable="false" default="3" comment="Menu Type"/>
+      <column xsi:type="smallint" name="menu_align" padding="6" unsigned="true" nullable="false" default="1" comment="Menu Align"/>
+      <column xsi:type="varchar" length="255" name="menu_columns" nullable="false" default="5" comment="Menu Columns"/>
+      <column xsi:type="smallint" name="menu_dropdownicon" padding="6" unsigned="true" nullable="false" default="0" comment="Dropdown Icon"/>
+  </table>
+</schema>

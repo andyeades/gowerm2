@@ -1,0 +1,13 @@
+{
+  "name": "elevate/module-datafeeds",
+  "description": "Data Feeds module for marketplaces / csv exports",
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Elevate\\DataFeeds\\": ""
+    }
+  }
+}

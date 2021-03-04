@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="elevate_cartassignments_cartassignments Table" engine="innodb" name="elevate_cartassignments_cartassignments" resource="default">
+		<column comment="Entity Id" identity="true" name="cartassignments_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="cartassignments_id"/>
+		</constraint>
+		<column name="enable_addon" nullable="true" xsi:type="boolean"/>
+		<column length="255" name="title" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="addon_type" nullable="true" xsi:type="varchar"/>
+		<column identity="false" name="template_id" nullable="true" xsi:type="int"/>
+		<column name="description" nullable="true" xsi:type="text"/>
+		<column name="start_date" nullable="true" xsi:type="timestamp"/>
+		<column name="end_date" nullable="true" xsi:type="timestamp"/>
+		<column length="255" name="sku" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="product_match_attribute_one_parent" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="product_match_attribute_one_child" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="product_match_attribute_two_parent" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="product_match_attribute_two_child" nullable="true" xsi:type="varchar"/>
+		<column name="assigned_categories" nullable="true" xsi:type="text"/>
+		<column name="conditions" nullable="true" xsi:type="text"/>
+		<column name="assigned_skus" nullable="true" xsi:type="text"/>
+		<column name="categories_blacklist" nullable="true" xsi:type="text"/>
+		<column name="product_blacklist" nullable="true" xsi:type="text"/>
+		<column name="store_ids" nullable="true" xsi:type="text"/>
+		<column name="dependant_addon_ids" nullable="true" xsi:type="text"/>
+		<column name="dependant_addon_blacklist" nullable="true" xsi:type="text"/>
+		<column length="255" name="link_type" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="link_url" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="link_static_block_id" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="link_text" nullable="true" xsi:type="varchar"/>
+		<column name="link_style" nullable="true" xsi:type="text"/>
+		<column name="promotion_message" nullable="true" xsi:type="text"/>
+		<column name="enable_postcode" nullable="true" xsi:type="boolean"/>
+		<column name="enable_countdown_timer" nullable="true" xsi:type="boolean"/>
+		<column name="countdown_time" nullable="true" xsi:type="timestamp"/>
+		<column length="255" name="countdown_background_colour" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="countdown_font_colour" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="countdown_font_colour_overlay" nullable="true" xsi:type="varchar"/>
+		<column name="enable_image_overlay_banner" nullable="true" xsi:type="text"/>
+		<column name="custom_icon" nullable="true" xsi:type="text"/>
+		<column name="enable_quantity" nullable="true" xsi:type="boolean"/>
+		<column name="match_quantity" nullable="true" xsi:type="boolean"/>
+		<column length="255" name="cap_qty_type" nullable="true" xsi:type="varchar"/>
+		<column identity="false" name="cap_qty_amount" nullable="true" xsi:type="int"/>
+		<column name="force_free_shipping" nullable="true" xsi:type="boolean"/>
+		<column name="discount_amount" nullable="true" precision="12" scale="4" xsi:type="decimal"/>
+		<column name="discount_percentage" nullable="true" precision="12" scale="4" xsi:type="decimal"/>
+		<column identity="false" name="discount_rule_id" nullable="true" xsi:type="int"/>
+		<column identity="false" name="position" nullable="true" xsi:type="int"/>
+	</table>
+	<table comment="elevate_cartassignments_quoteitemassignments Table" engine="innodb" name="elevate_cartassignments_quoteitemassignments" resource="default">
+		<column comment="Entity Id" identity="true" name="quoteitemassignments_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="quoteitemassignments_id"/>
+		</constraint>
+		<column identity="false" name="linked_quote_item_id" nullable="true" xsi:type="int"/>
+		<column identity="false" name="parent_quote_item_id" nullable="true" xsi:type="int"/>
+		<column identity="false" name="quote_id" nullable="true" xsi:type="int"/>
+		<column identity="false" name="addon_id" nullable="true" xsi:type="int"/>
+		<column identity="false" name="template_item_id" nullable="true" xsi:type="int"/>
+		<column length="255" name="location" nullable="true" xsi:type="varchar"/>
+		<column name="created_at" nullable="true" xsi:type="timestamp"/>
+		<column name="updated_at" nullable="true" xsi:type="timestamp"/>
+		<column identity="false" name="qty" nullable="true" xsi:type="int"/>
+	</table>
+    <table name="elevate_cartassignments_store" resource="default" engine="innodb" comment="Cart Assignments To Store Linkage Table">
+        <column xsi:type="smallint" name="cartassignments_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store ID"/>
+    </table>
+    <table name="elevate_cartassignments_categories" resource="default" engine="innodb" comment="Cart Assignments To Category Linkage Table">
+        <column xsi:type="smallint" name="cartassignments_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="category_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Category ID"/>
+    </table>
+    <table name="elevate_cartassignments_categories_blacklist" resource="default" engine="innodb" comment="Cart Assignments To Category Linkage Table">
+        <column xsi:type="smallint" name="cartassignments_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="category_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Category ID"/>
+    </table>
+    <table name="elevate_cartassignments_products" resource="default" engine="innodb" comment="Cart Assignments To Product Linkage Table">
+        <column xsi:type="smallint" name="cartassignments_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="product_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store ID"/>
+    </table>
+    <table name="elevate_cartassignments_products_blacklist" resource="default" engine="innodb" comment="Cart Assignments To Product Linkage Table">
+        <column xsi:type="smallint" name="cartassignments_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="product_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Product ID"/>
+    </table>
+
+    <table name="sales_order_item" resource="default" engine="innodb">
+        <column name="parent_purchase" nullable="true" xsi:type="text"/>
+    </table>
+
+</schema>

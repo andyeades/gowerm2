@@ -1,0 +1,124 @@
+@if $sitename == posturite {
+
+
+
+    $contentsection-h1-fontsize: 2.5rem !default;
+    $contentsection-h2-fontsize: 1.75rem !default;
+    $contentsection-h2-margin: 0 0 0.75rem !default;
+    $contentsection-h2-fontweight: 500 !default;
+
+    $contentsection-h3-fontsize: 1.5rem !default;
+    $contentsection-h3-margin: 0 0 0.75rem !default;
+    $contentsection-h3-fontweight: 500 !default;
+
+    $contentsection-padding: 5rem 0 !default;
+    $contentsection-textalign: left !default;
+
+
+    // Lead
+
+    $contentsection-lead-fontsize: 1rem !default;
+    $contentsection-lead-fontsize-desktop: 1.25rem !default;
+    $contentsection-lead-margin: 0 0 1.25rem !default;
+
+    .middle-banner {
+        background-color: $ps-color-convert-19;
+        opacity: .8;
+        padding: 230px 0;
+        min-height: 300px;
+
+        @include min-screen($desktop-min) {
+            min-height: 400px;
+        }
+
+        &.consulting {
+            background-image: $ps-url-convert-199;
+        }
+
+        &.f2f-training {
+            background-image: $ps-url-convert-200;
+        }
+
+        &.agile-working {
+            background-image: $ps-url-convert-201;
+        }
+
+        &.input-selection {
+            background-image: none;
+            background-color: $ps-color-convert-236;
+            opacity: 1;
+            @include min-screen($desktop-min) {
+                background-image: $ps-url-convert-244;
+            }
+        }
+
+        &.work-through {
+            background-image: none;
+            background-color: $ps-color-convert-237;
+            opacity: 1;
+            @include min-screen($desktop-min) {
+                background-image: $ps-url-convert-245;
+            }
+        }
+
+        &.product-knowledge {
+            background-image: none;
+            background-color: $ps-color-convert-238;
+            opacity: 1;
+            @include min-screen($desktop-min) {
+                background-image: $ps-url-convert-246;
+            }
+        }
+
+        &.seating-projects {
+            background-image: $ps-url-convert-203;
+        }
+
+        &.what-is-ergonomics {
+            background-image: $ps-url-convert-205;
+        }
+    }
+
+    .content-section {
+        padding: $contentsection-padding;
+        text-align: $contentsection-textalign;
+        h1 {
+            font-size: $contentsection-h1-fontsize;
+        }
+        h2 {
+            font-size: $contentsection-h2-fontsize;
+            font-weight: $contentsection-h2-fontweight;
+            margin: $contentsection-h2-margin;
+        }
+        h3 {
+            font-size: $contentsection-h3-fontsize;
+            font-weight: $contentsection-h3-fontweight;
+            margin: $contentsection-h3-margin;
+        }
+
+
+    }
+
+    .lead {
+        .testimonials &,
+        .content-section & {
+            font-size: $contentsection-lead-fontsize;
+            margin: $contentsection-lead-margin;
+            @include min-screen($desktop-min) {
+                @include co(font-size, $contentsection-lead-fontsize-desktop, $contentsection-lead-fontsize);
+
+            }
+        }
+
+    }
+
+
+
+
+
+
+    #contact-us.content-section {
+
+    }
+}
+

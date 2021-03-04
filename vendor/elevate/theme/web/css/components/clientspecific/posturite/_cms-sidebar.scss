@@ -1,0 +1,321 @@
+$sidebar-nav-filter-count-on: 0 !default;
+$sidebar-nav-filter-block-title-on: 0 !default;
+
+$sidebar-nav-filter-item-margin: 0 0 0.75rem !default;
+
+
+// DT
+$sidebar-nav-filter-title-fontweight: 300 !default;
+$sidebar-nav-filter-title-padding: 0 0 0.5rem !default;
+$sidebar-nav-filter-title-margin: 0 0 0.75rem !default;
+$sidebar-nav-filter-item-lineheight: 1.25rem !default;
+
+$sidebar-nav-filter-title-border-on: 1 !default;
+$sidebar-nav-filter-title-border-position: bottom !default;
+$sidebar-nav-filter-title-border-color: $border-color !default;
+$sidebar-nav-filter-title-border-style: solid !default;
+$sidebar-nav-filter-title-border-thickness: 1px !default;
+$sidebar-nav-filter-title-border-radius-on: 0 !default;
+$sidebar-nav-filter-title-border-radius: $border-radius !default;
+
+$navbar-posturite-padding: 1rem 0 !default;
+$navbar-posturite-navbartitle-a-color: #235e4b !default;
+$navbar-posturite-navbartitle-a-fontweight: 600 !default;
+$navbar-posturite-navbartitle-a-fontsize: 0.875rem !default;
+
+$navbar-posturite-navbartoggler-margin: 0 1rem 0 0 !default;
+
+$navbar-posturite-navbartoggler-border-on: 0 !default;
+$navbar-posturite-navbartoggler-icon-width: 1rem !default;
+$navbar-posturite-navbartoggler-icon-height: 1rem !default;
+$navbar-posturite-navbartoggler-icon-expanded-bgimage: url('data:image/svg+xml;utf8,<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 1331l-166 165q-19 19-45 19t-45-19l-531-531-531 531q-19 19-45 19t-45-19l-166-165q-19-19-19-45.5t19-45.5l742-741q19-19 45-19t45 19l742 741q19 19 19 45.5t-19 45.5z"/></svg>') !default;
+$navbar-posturite-navbartoggler-icon-closed-bgimage: url('data:image/svg+xml;utf8,<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"/></svg>') !default;
+
+
+
+$navbar-posturite-navlink-padding: 0.5rem 0 !default;
+$navbar-posturite-navlink-color: #333333 !default;
+$navbar-posturite-navlink-hover-color: #777777 !default;
+$navbar-posturite-navitem-padding: 5px 18px 5px 15px !default;
+$navbar-posturite-navitem-level1-padding: 5px 18px 5px 30px !default;
+$navbar-posturite-navitem-level1-margin: 0 !default;
+
+// active
+
+$navbar-posturite-navitem-active-fontweight: 700 !default;
+
+// Visible on Collapsed Menu before opening
+
+$navbar-posturite-navbarbrand-margin: 0 0 0 1.125rem !default;
+$navbar-posturite-navbarbrand-color: #235e4b !default;
+$navbar-posturite-navbarbrand-hover-color: #235e4b !default;
+$navbar-posturite-navbarbrand-fontsize: 0.875rem !default;
+$navbar-posturite-navbarbrand-fontweight: 600 !default;
+
+// Turns off Navbar Title li below collpase (if using the navbar brand header on mobile)
+$navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
+
+@if $sitename == posturite {
+    // CMS PAGE HEIRACHY SIDEBAR VERTICAL NAV
+
+
+    .navbar-posturite {
+        background-color: #f4f6f8;
+        border-radius: $border-radius;
+        padding: $navbar-posturite-padding;
+        @include max-screen($desktop-sm-max) {
+            margin-bottom: 1rem;
+        }
+
+        .navbar-toggler {
+            margin: $navbar-posturite-navbartoggler-margin;
+
+            @if $navbar-posturite-navbartoggler-border-on != 1 {
+                border: none;
+            }
+
+            &.collapsed {
+                .navbar-toggler-icon {
+                    background-image: $navbar-posturite-navbartoggler-icon-closed-bgimage;
+                }
+            }
+            .navbar-toggler-icon {
+                height: $navbar-posturite-navbartoggler-icon-height;
+                width: $navbar-posturite-navbartoggler-icon-width;
+                background-image: $navbar-posturite-navbartoggler-icon-expanded-bgimage;
+            }
+            &:focus {
+                outline: none;
+            }
+            &:active {
+                box-shadow: unset;
+            }
+        }
+
+
+        .navbar-title {
+            @include max-screen($desktop-sm-max) {
+                @if $navbar-posturite-navbartitle-off-belowcollapse == 1 {
+                    display: none;
+                }
+            }
+
+            > a {
+                color: $navbar-posturite-navbartitle-a-color;
+                font-weight: $navbar-posturite-navbartitle-a-fontweight;
+                font-size: $navbar-posturite-navbartitle-a-fontsize;
+            }
+        }
+        .navbar-header {
+            border-bottom: 1px solid #dddddd;
+            padding: 0 0 10px 0;
+        }
+
+        .navbar-brand {
+            color: $navbar-posturite-navbarbrand-color;
+            margin: $navbar-posturite-navbarbrand-margin;
+            font-size: $navbar-posturite-navbarbrand-fontsize;
+            font-weight: $navbar-posturite-navbarbrand-fontweight;
+
+            @include min-screen($desktop-medium-min) {
+                display: none;
+            }
+
+            &:hover, &:focus {
+                color: $navbar-posturite-navbarbrand-hover-color;
+            }
+
+        }
+
+        .navbar-text {
+            color: #777777;
+        }
+
+
+
+        .nav-link {
+            padding: $navbar-posturite-navlink-padding;
+            color: $navbar-posturite-navlink-color;
+
+            &:hover {
+                color: $navbar-posturite-navlink-hover-color;
+            }
+        }
+
+        .btn-link {
+            color: #777777;
+
+            &:hover, &:focus {
+                color: #333333;
+            }
+
+            &[disabled]:hover {
+                color: #cccccc;
+            }
+        }
+
+
+
+        .nav-item {
+            a {
+                padding:  $navbar-posturite-navitem-padding;
+                border-left: 3px solid transparent;
+
+                &.active {
+                    color: #575757;
+                    display: block;
+                    padding: 5px 18px 5px 15px;
+                    border-color: #255f4c;
+                    font-weight: $navbar-posturite-navitem-active-fontweight;
+                }
+            }
+            &.level1 {
+                a {
+                    margin:  $navbar-posturite-navitem-level1-margin;
+                    padding: $navbar-posturite-navitem-level1-padding;
+                }
+            }
+        }
+
+
+        .block.filter {
+            .title {
+                @if $sidebar-nav-filter-block-title-on != 1 {
+                    display: none;
+                }
+            }
+        }
+        .options {
+            dt {
+                @include co(font-weight, $sidebar-nav-filter-title-fontweight, $dt--font-weight);
+                margin: $sidebar-nav-filter-title-margin;
+                padding: $sidebar-nav-filter-title-padding;
+                @if $sidebar-nav-filter-title-border-on == 1 {
+                    @include elevate-border($sidebar-nav-filter-title-border-color, $sidebar-nav-filter-title-border-thickness, $sidebar-nav-filter-title-border-style, $sidebar-nav-filter-title-border-position);
+                    @if $sidebar-nav-filter-title-border-radius-on == 1 {
+                        border-radius: $sidebar-nav-filter-title-border-radius;
+                    }
+                }
+            }
+            .items {
+                li {
+                    line-height: $sidebar-nav-filter-item-lineheight;
+                    margin: $sidebar-nav-filter-item-margin;
+                    .count {
+                        @if $sidebar-nav-filter-count-on != 1 {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    @media (max-width: 767px) {
+        .navbar-posturite .navbar-nav .open .dropdown-menu > {
+            li > a {
+                color: #777777;
+
+                &:hover, &:focus {
+                    color: #333333;
+                    background-color: transparent;
+                }
+            }
+
+            .active > a {
+                color: #555555;
+                background-color: #e7e7e7;
+
+                &:hover, &:focus {
+                    color: #555555;
+                    background-color: #e7e7e7;
+                }
+            }
+
+            .disabled > a {
+                color: #cccccc;
+                background-color: transparent;
+
+                &:hover, &:focus {
+                    color: #cccccc;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+    fieldset[disabled] .navbar-posturite .btn-link:hover, .navbar-posturite .btn-link[disabled]:focus, fieldset[disabled] .navbar-posturite .btn-link:focus {
+        color: #cccccc;
+    }
+
+
+
+
+    // End Posturite Bootstrap Sidebar Nav
+
+    .sidebar-nav-block {
+        float: left;
+        display: inline;
+        margin-right: 0;
+        padding-right: 20px;
+        width: 25%;
+
+        ul {
+            &.sidebar-nav {
+                margin-bottom: 20px;
+            }
+
+            &.level0 .level1 a {
+                padding-left: 28px;
+                background-image: url("../images/nav-sprite.png");
+                background-repeat: no-repeat;
+                background-position: 15px 14px;
+            }
+        }
+    }
+
+    .sidebar-nav a, .nav-title span {
+        color: #333333;
+        background-color: #fafafa;
+        display: block;
+        padding: 10px;
+        margin-bottom: 0;
+        border-bottom: 1px solid #dddddd;
+    }
+
+
+    .sidebar-nav a {
+        &:hover {
+            background-color: #dddddd;
+            text-decoration: none;
+        }
+       &.active {
+           background-color: #006f51;
+           color: #ffffff;
+       }
+    }
+
+    .nav-title {
+        span {
+            text-transform: uppercase;
+            background-color: #666666;
+            color: #ffffff;
+            background-image: url("../images/arrow-sprite.png");
+            background-repeat: no-repeat;
+            background-position: 206px 18px;
+            &:hover {
+                background-color: #444444;
+            }
+        }
+
+        a {
+            padding: 0;
+            border-bottom: 0;
+
+            &.active span {
+                background-color: #444444;
+            }
+        }
+    }
+}

@@ -1,0 +1,493 @@
+$pview-desc-justifycontent: false !default;
+$pview-desc-width: false !default;
+$pview-desc-color: false !default;
+$pview-desc-textalign: false !default;
+$pview-desc-fontsize: false !default;
+$pview-desc-lineheight: false !default;
+$pview-desc-fontfamily: false !default;
+
+
+$pview-desc-outer-background: false !default;
+$pview-desc-outer-padding: false !default;
+$pview-desc-outer-padding-desktop: false !default;
+$pview-desc-outer-display: false !default;
+$pview-desc-outer-textalign: false !default;
+$pview-desc-outer-flexwrap: false !default;
+$pview-desc-outer-divs-flex: false !default;
+$pview-desc-outer-divs-width: false !default;
+
+$pview-desc-outer-width: false !default;
+$pview-desc-outer-width-desktop: false !default;
+
+$pview-desc-outer-justifycontent: false !default;
+$pview-desc-outer-margin: false !default;
+$pview-desc-outer-margin-desktop: false !default;
+
+$pview-desc-inner-padding: false !default;
+$pview-desc-inner-padding-desktop: false !default;
+$pview-desc-inner-display: false !default;
+$pview-desc-inner-textalign: false !default;
+$pview-desc-inner-flexwrap: false !default;
+$pview-desc-inner-divs-flex: false !default;
+$pview-desc-inner-divs-width: false !default;
+
+$pview-desc-inner-width: false !default;
+$pview-desc-inner-width-desktop: false !default;
+
+$pview-desc-inner-justifycontent: false !default;
+$pview-desc-inner-margin: false !default;
+$pview-desc-inner-margin-desktop: false !default;
+
+
+$pview-desc-quote-icon-justifycontent: false !default;
+$pview-desc-quote-icon-width: false !default;
+$pview-desc-quote-icon-textalign: false !default;
+$pview-desc-quote-icon-fontsize: false !default;
+$pview-desc-quote-icon-color: false !default;
+$pview-desc-quote-icon-padding: false !default;
+$pview-desc-quote-icon-margin: false !default;
+$pview-desc-quote-icon-i-backgroundurl: false !default;
+$pview-desc-quote-icon-i-height: false !default;
+$pview-desc-quote-icon-i-width: false !default;
+$pview-desc-quote-icon-i-backgroundsize: false !default;
+$pview-desc-quote-icon-i-backgroundrepeat: false !default;
+$pview-desc-quote-icon-i-display: false !default;
+$pview-desc-quote-icon-i-position: false !default;
+$pview-desc-quote-icon-i-margin: false !default;
+
+
+$pview-desc-header-quote-justifycontent: false !default;
+$pview-desc-header-quote-width: false !default;
+$pview-desc-header-quote-width-desktop: false !default;
+$pview-desc-header-quote-textalign: false !default;
+$pview-desc-header-quote-fontsize: false !default;
+$pview-desc-header-quote-color: false !default;
+$pview-desc-header-quote-padding: false !default;
+$pview-desc-header-quote-margin: false !default;
+$pview-desc-header-quote-fontfamily: false !default;
+$pview-desc-header-quote-border: false !default;
+$pview-desc-header-quote-border-position: false !default;
+
+
+.pview-description-outer {
+    @include co(background, $pview-desc-outer-background);
+    @include co(text-align, $pview-desc-outer-textalign);
+    @include co(width, $pview-desc-outer-width);
+    @include co(display, $pview-desc-outer-display);
+    @include co(flex-wrap, $pview-desc-outer-flexwrap);
+    @include co(justify-content, $pview-desc-outer-justifycontent);
+    @include co(margin, $pview-desc-outer-margin);
+    @include co(padding, $pview-desc-outer-padding);
+
+    > div {
+        @include co(flex, $pview-desc-outer-divs-flex);
+        @include co(width, $pview-desc-outer-divs-width);
+    }
+
+    @include min-screen($desktop-min) {
+        @include co(margin, $pview-desc-outer-margin-desktop, $pview-desc-outer-margin);
+        @include co(width, $pview-desc-outer-width-desktop, $pview-desc-outer-width);
+        @include co(padding, $pview-desc-outer-padding-desktop, $pview-desc-outer-padding);
+    }
+}
+
+.pview-description-inner {
+    @include co(text-align, $pview-desc-inner-textalign);
+    @include co(width, $pview-desc-inner-width);
+    @include co(display, $pview-desc-inner-display);
+    @include co(flex-wrap, $pview-desc-inner-flexwrap);
+    @include co(justify-content, $pview-desc-inner-justifycontent);
+    @include co(margin, $pview-desc-inner-margin);
+    @include co(padding, $pview-desc-inner-padding);
+
+    > div {
+        @include co(flex, $pview-desc-inner-divs-flex);
+        @include co(width, $pview-desc-inner-divs-width);
+    }
+
+    @include min-screen($desktop-min) {
+        @include co(margin, $pview-desc-inner-margin-desktop, $pview-desc-inner-margin);
+        @include co(width, $pview-desc-inner-width-desktop, $pview-desc-inner-width);
+        @include co(padding, $pview-desc-inner-padding-desktop, $pview-desc-inner-padding);
+    }
+}
+
+.pview-description {
+    @include co(color, $pview-desc-color);
+    @include co(text-align, $pview-desc-textalign);
+    @include co(width, $pview-desc-width);
+    @include co(justify-content, $pview-desc-justifycontent);
+    @include co(font-size, $pview-desc-fontsize);
+    @include co(line-height, $pview-desc-lineheight);
+    @include co(font-family, $pview-desc-fontfamily);
+}
+
+.pview-description-header-quote {
+    @include co(color, $pview-desc-header-quote-color);
+    @include co(text-align, $pview-desc-header-quote-textalign);
+    @include co(width, $pview-desc-header-quote-width);
+    @include co(font-size, $pview-desc-header-quote-fontsize);
+    @include co(justify-content, $pview-desc-header-quote-justifycontent);
+    @include co(padding, $pview-desc-header-quote-padding);
+    @include co(margin, $pview-desc-header-quote-margin);
+    @include co(font-family, $pview-desc-header-quote-fontfamily);
+    @if $pview-desc-header-quote-border-position == bottom {
+        @include co(border-bottom, $pview-desc-header-quote-border);
+    }
+    @if $pview-desc-header-quote-border-position == top {
+        @include co(border-top, $pview-desc-header-quote-border);
+    }
+
+    @if $pview-desc-header-quote-border-position == all {
+        @include co(border, $pview-desc-header-quote-border);
+    }
+
+    @include min-screen($desktop-min) {
+        @include co(width, $pview-desc-header-quote-width-desktop, $pview-desc-header-quote-width);
+    }
+}
+
+.pview-description-quote-icon {
+    @include co(color, $pview-desc-quote-icon-color);
+    @include co(text-align, $pview-desc-quote-icon-textalign);
+    @include co(width, $pview-desc-quote-icon-width);
+    @include co(font-size, $pview-desc-quote-icon-fontsize);
+    @include co(justify-content, $pview-desc-quote-icon-justifycontent);
+    @include co(padding, $pview-desc-quote-icon-padding);
+    @include co(margin, $pview-desc-quote-icon-margin);
+
+    i {
+
+
+        @include co(background, $pview-desc-quote-icon-i-backgroundurl);
+        @include co(height, $pview-desc-quote-icon-i-height);
+        @include co(width, $pview-desc-quote-icon-i-width);
+        @include co(background-size, $pview-desc-quote-icon-i-backgroundsize);
+        @include co(background-repeat, $pview-desc-quote-icon-i-backgroundrepeat);
+        @include co(display, $pview-desc-quote-icon-i-display);
+        @include co(position, $pview-desc-quote-icon-i-position);
+        @include co(margin, $pview-desc-quote-icon-i-margin);
+    }
+}
+
+
+$pview-desc-deepercontent-include: false !default;
+
+@if $pview-desc-deepercontent-include == true {
+
+    // Picture Side By Side
+
+
+    $pview-desc-deepercontent-outer-fontfamily: false !default;
+    $pview-desc-deepercontent-outer-background: false !default;
+    $pview-desc-deepercontent-outer-padding: false !default;
+    $pview-desc-deepercontent-outer-padding-desktop: false !default;
+    $pview-desc-deepercontent-outer-display: false !default;
+    $pview-desc-deepercontent-outer-textalign: false !default;
+    $pview-desc-deepercontent-outer-flexwrap: false !default;
+    $pview-desc-deepercontent-outer-divs-flex: false !default;
+    $pview-desc-deepercontent-outer-divs-width: false !default;
+
+    $pview-desc-deepercontent-outer-width: false !default;
+    $pview-desc-deepercontent-outer-width-desktop: false !default;
+
+    $pview-desc-deepercontent-outer-justifycontent: false !default;
+    $pview-desc-deepercontent-outer-margin: false !default;
+    $pview-desc-deepercontent-outer-margin-desktop: false !default;
+
+
+    $pview-desc-deepercontent-item-display: false !default;
+    $pview-desc-deepercontent-item-flexwrap: false !default;
+    $pview-desc-deepercontent-item-justifycontent: false !default;
+    $pview-desc-deepercontent-item-width: false !default;
+    $pview-desc-deepercontent-item-textalign: false !default;
+    $pview-desc-deepercontent-item-fontsize: false !default;
+    $pview-desc-deepercontent-item-color: false !default;
+    $pview-desc-deepercontent-item-padding: false !default;
+    $pview-desc-deepercontent-item-margin: false !default;
+
+
+    $pview-desc-deepercontent-row-display: flex !default;
+
+
+    $pview-desc-deepercontent-row-justifycontent: false !default;
+    $pview-desc-deepercontent-row-width: false !default;
+    $pview-desc-deepercontent-row-width-desktop: false !default;
+    $pview-desc-deepercontent-row-textalign: false !default;
+    $pview-desc-deepercontent-row-fontsize: false !default;
+
+    $pview-desc-deepercontent-row-color: false !default;
+    $pview-desc-deepercontent-row-padding: false !default;
+    $pview-desc-deepercontent-row-margin: 0 0 3rem 0 !default;
+    $pview-desc-deepercontent-row-margin-desktop: 0 0 5rem 0 !default;
+    $pview-desc-deepercontent-row-margin-desktopmd: 0 0 5rem 0 !default;
+    $pview-desc-deepercontent-row-fontfamily: false !default;
+    $pview-desc-deepercontent-row-border: false !default;
+    $pview-desc-deepercontent-row-border-position: false !default;
+    $pview-desc-deepercontent-row-flexwrap: false !default;
+    $pview-desc-deepercontent-row-flexwrap-desktop: false !default;
+    $pview-desc-deepercontent-row-flexwrap-desktopmd: false !default;
+    $pview-desc-deepercontent-row-divs-flex: false !default;
+    $pview-desc-deepercontent-row-divs-width: false !default;
+
+
+    $pview-desc-deepercontent-icon-justifycontent: false !default;
+    $pview-desc-deepercontent-icon-width: false !default;
+    $pview-desc-deepercontent-icon-textalign: false !default;
+    $pview-desc-deepercontent-icon-fontsize: false !default;
+    $pview-desc-deepercontent-icon-color: false !default;
+    $pview-desc-deepercontent-icon-padding: false !default;
+    $pview-desc-deepercontent-icon-margin: false !default;
+    $pview-desc-deepercontent-icon-backgroundimage: false !default;
+    $pview-desc-deepercontent-icon-backgroundsize: false !default;
+    $pview-desc-deepercontent-icon-height: false !default;
+    $pview-desc-deepercontent-icon-width: false !default;
+
+
+    $pview-desc-deepercontent-title-fontsize: 1.5rem !default;
+    $pview-desc-deepercontent-title-fontsize-desktop: 1.5rem !default;
+    $pview-desc-deepercontent-title-fontsize-desktopmd: 1.75rem !default;
+
+    $pview-desc-deepercontent-title-fontweight: 700 !default;
+    $pview-desc-deepercontent-title-justifycontent: false !default;
+    $pview-desc-deepercontent-title-width: false !default;
+    $pview-desc-deepercontent-title-textalign: center !default;
+    $pview-desc-deepercontent-title-textalign-desktop: initial !default;
+    $pview-desc-deepercontent-title-textalign-desktopmd: false !default;
+
+
+    $pview-desc-deepercontent-title-color: false !default;
+    $pview-desc-deepercontent-title-padding: false !default;
+
+    $pview-desc-deepercontent-title-margin: 1rem 0 2rem !default;
+    $pview-desc-deepercontent-title-margin-desktop: 1rem 0 2rem !default;
+    $pview-desc-deepercontent-title-margin-desktopmd: 1rem 0 2rem !default;
+
+    $pview-desc-deepercontent-desc-lineheight: 2.25rem !default;
+    $pview-desc-deepercontent-desc-fontsize: 1.125rem !default;
+
+
+    $pview-desc-deepercontent-desc-justifycontent: false !default;
+
+    $pview-desc-deepercontent-desc-width: false !default;
+    $pview-desc-deepercontent-desc-width-desktop: false !default;
+    $pview-desc-deepercontent-desc-width-desktopmd: false !default;
+
+    $pview-desc-deepercontent-desc-textalign: center !default;
+    $pview-desc-deepercontent-desc-textalign-desktop: initial !default;
+    $pview-desc-deepercontent-desc-textalign-desktopmd: false !default;
+
+    $pview-desc-deepercontent-desc-color: false !default;
+
+    $pview-desc-deepercontent-desc-padding: false !default;
+    $pview-desc-deepercontent-desc-margin: false !default;
+
+
+    .pview-desc-deepercontent-outer {
+        @include co(font-family, $pview-desc-deepercontent-outer-fontfamily);
+        @include co(background, $pview-desc-deepercontent-outer-background);
+        @include co(text-align, $pview-desc-deepercontent-outer-textalign);
+        @include co(width, $pview-desc-deepercontent-outer-width);
+        @include co(display, $pview-desc-deepercontent-outer-display);
+        @include co(flex-wrap, $pview-desc-deepercontent-outer-flexwrap);
+        @include co(justify-content, $pview-desc-deepercontent-outer-justifycontent);
+        @include co(margin, $pview-desc-deepercontent-outer-margin);
+        @include co(padding, $pview-desc-deepercontent-outer-padding);
+
+        @include min-screen($desktop-min) {
+            @include co(margin, $pview-desc-deepercontent-outer-margin-desktop, $pview-desc-deepercontent-outer-margin);
+            @include co(width, $pview-desc-deepercontent-outer-width-desktop, $pview-desc-deepercontent-outer-width);
+            @include co(padding, $pview-desc-deepercontent-outer-padding-desktop, $pview-desc-deepercontent-outer-padding);
+        }
+    }
+
+    $pview-desc-deepercontent-row-img-order: 1 !default;
+    $pview-desc-deepercontent-row-img-order-desktop: 1 !default;
+    $pview-desc-deepercontent-row-img-order-desktopmd: 1 !default;
+    $pview-desc-deepercontent-row-reverse-img-order: 1 !default;
+    $pview-desc-deepercontent-row-reverse-img-order-desktop: 2 !default;
+    $pview-desc-deepercontent-row-reverse-img-order-desktopmd: 2 !default;
+
+    $pview-desc-deepercontent-row-img-width: 100% !default;
+    $pview-desc-deepercontent-row-img-width-desktop: 50% !default;
+    $pview-desc-deepercontent-row-img-width-desktopmd: 50% !default;
+    $pview-desc-deepercontent-row-img-padding-mobilemax: 0 $grid-gutter-width / 4 !default;
+    $pview-desc-deepercontent-row-img-padding: false !default;
+    $pview-desc-deepercontent-row-img-padding-desktop: 0 0 0 3.25rem !default;
+    $pview-desc-deepercontent-row-reverse-img-width: 100% !default;
+    $pview-desc-deepercontent-row-reverse-img-width-desktop: 50% !default;
+    $pview-desc-deepercontent-row-reverse-img-width-desktopmd: 50% !default;
+
+    $pview-desc-deepercontent-row-img-flex: 0 1 auto !default;
+    $pview-desc-deepercontent-row-img-flex-desktop: 0 1 auto !default;
+    $pview-desc-deepercontent-row-content-padding-mobilemax: 0 $grid-gutter-width-mobile / 2 !default;
+    $pview-desc-deepercontent-row-content-padding: false !default;
+    $pview-desc-deepercontent-row-content-padding-desktop: 0 3.25rem !default;
+    $pview-desc-deepercontent-row-content-padding-desktopmd: 0 3.25rem !default;
+
+    $pview-desc-deepercontent-row-content-flex: 0 1 auto !default;
+    $pview-desc-deepercontent-row-content-flex-desktop: 0 1 auto !default;
+    $pview-desc-deepercontent-row-content-flex-desktopmd: 0 1 auto !default;
+
+    $pview-desc-deepercontent-row-content-order: 2 !default;
+    $pview-desc-deepercontent-row-content-order-desktop: 2 !default;
+    $pview-desc-deepercontent-row-content-order-desktopmd: 2 !default;
+    $pview-desc-deepercontent-row-reverse-content-order: 1 !default;
+    $pview-desc-deepercontent-row-reverse-content-order-desktop: 1 !default;
+    $pview-desc-deepercontent-row-reverse-content-order-desktopmd: 1 !default;
+
+
+    $pview-desc-deepercontent-row-content-width: 100% !default;
+    $pview-desc-deepercontent-row-content-width-desktop: 50% !default;
+    $pview-desc-deepercontent-row-content-width-desktopmd: 50% !default;
+    $pview-desc-deepercontent-row-reverse-content-width: 100% !default;
+    $pview-desc-deepercontent-row-reverse-content-width-desktop: 50% !default;
+    $pview-desc-deepercontent-row-reverse-content-width-desktopmd: 50% !default;
+
+    $pview-desc-deepercontent-img-img-width: 100% !default;
+
+    .pview-desc-deepercontent-img {
+        img {
+            @include co(width, $pview-desc-deepercontent-img-img-width);
+        }
+
+
+    }
+
+    .pview-desc-deepercontent-row {
+        @include co(display, $pview-desc-deepercontent-row-display);
+        @include co(flex-wrap, $pview-desc-deepercontent-row-flexwrap);
+        @include co(color, $pview-desc-deepercontent-row-color);
+        @include co(text-align, $pview-desc-deepercontent-row-textalign);
+        @include co(width, $pview-desc-deepercontent-row-width);
+        @include co(font-size, $pview-desc-deepercontent-row-fontsize);
+        @include co(justify-content, $pview-desc-deepercontent-row-justifycontent);
+        @include co(padding, $pview-desc-deepercontent-row-padding);
+        @include co(margin, $pview-desc-deepercontent-row-margin);
+        @include co(font-family, $pview-desc-deepercontent-row-fontfamily);
+
+        @include min-screen($desktop-min) {
+            @include co(flex-wrap, $pview-desc-deepercontent-row-flexwrap-desktop, $pview-desc-deepercontent-row-flexwrap);
+            @include co(margin, $pview-desc-deepercontent-row-margin-desktop,$pview-desc-deepercontent-row-margin);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(margin, $pview-desc-deepercontent-row-margin-desktopmd, $pview-desc-deepercontent-row-margin-desktop,$pview-desc-deepercontent-row-margin);
+            @include co(flex-wrap, $pview-desc-deepercontent-row-flexwrap-desktopmd, $pview-desc-deepercontent-row-flexwrap-desktop, $pview-desc-deepercontent-row-flexwrap);
+        }
+
+        .pview-desc-deepercontent-img {
+            @include co(order, $pview-desc-deepercontent-row-img-order);
+            @include co(width, $pview-desc-deepercontent-row-img-width);
+            @include co(flex, $pview-desc-deepercontent-row-img-flex);
+            @include co(padding, $pview-desc-deepercontent-row-img-padding);
+            @include max-screen($mobilemax) {
+                @include co(padding, $pview-desc-deepercontent-row-img-padding-mobilemax, $pview-desc-deepercontent-row-img-padding);
+            }
+            @include min-screen($desktop-min) {
+                @include co(order, $pview-desc-deepercontent-row-img-order-desktop, $pview-desc-deepercontent-row-img-order);
+                @include co(width, $pview-desc-deepercontent-row-img-width-desktop, $pview-desc-deepercontent-row-img-width);
+                @include co(flex, $pview-desc-deepercontent-row-img-flex-desktop, $pview-desc-deepercontent-row-img-flex);
+                @include co(padding, $pview-desc-deepercontent-row-img-padding-desktop, $pview-desc-deepercontent-row-img-padding);
+            }
+        }
+
+        .pview-desc-deepercontent-content {
+            @include co(order, $pview-desc-deepercontent-row-content-order);
+            @include co(width, $pview-desc-deepercontent-row-content-width);
+            @include co(flex, $pview-desc-deepercontent-row-content-flex);
+            @include co(padding, $pview-desc-deepercontent-row-content-padding);
+            @include max-screen($mobilemax) {
+                @include co(padding, $pview-desc-deepercontent-row-content-padding, $pview-desc-deepercontent-row-content-padding);
+            }
+            @include min-screen($desktop-min) {
+                @include co(order, $pview-desc-deepercontent-row-content-order-desktop, $pview-desc-deepercontent-row-content-order);
+                @include co(width, $pview-desc-deepercontent-row-content-width-desktop, $pview-desc-deepercontent-row-content-width);
+                @include co(flex, $pview-desc-deepercontent-row-content-flex-desktop, $pview-desc-deepercontent-row-content-flex);
+                @include co(padding, $pview-desc-deepercontent-row-content-padding-desktop, $pview-desc-deepercontent-row-content-padding);
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(order, $pview-desc-deepercontent-row-content-order-desktopmd, $pview-desc-deepercontent-row-content-order-desktop, $pview-desc-deepercontent-row-content-order);
+                @include co(width, $pview-desc-deepercontent-row-content-width-desktopmd, $pview-desc-deepercontent-row-content-width-desktop, $pview-desc-deepercontent-row-content-width);
+                @include co(flex, $pview-desc-deepercontent-row-content-flex-desktopmd, $pview-desc-deepercontent-row-content-flex-desktop, $pview-desc-deepercontent-row-content-flex);
+                @include co(padding, $pview-desc-deepercontent-row-content-padding-desktopmd, $pview-desc-deepercontent-row-content-padding-desktop, $pview-desc-deepercontent-row-content-padding);
+            }
+        }
+    }
+
+
+    .pview-desc-deepercontent-row-reverse {
+        .pview-desc-deepercontent-img {
+            @include co(order, $pview-desc-deepercontent-row-reverse-img-order);
+            @include co(width, $pview-desc-deepercontent-row-reverse-img-width);
+            @include min-screen($desktop-min) {
+                @include co(order, $pview-desc-deepercontent-row-reverse-img-order-desktop, $pview-desc-deepercontent-row-reverse-img-order);
+                @include co(width, $pview-desc-deepercontent-row-reverse-img-width-desktop, $pview-desc-deepercontent-row-reverse-img-width);
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(order, $pview-desc-deepercontent-row-reverse-img-order-desktopmd, $pview-desc-deepercontent-row-reverse-img-order-desktop, $pview-desc-deepercontent-row-reverse-img-order);
+                @include co(width, $pview-desc-deepercontent-row-reverse-img-width-desktopmd, $pview-desc-deepercontent-row-reverse-img-width-desktop, $pview-desc-deepercontent-row-reverse-img-width);
+            }
+        }
+
+        .pview-desc-deepercontent-content {
+            @include co(order, $pview-desc-deepercontent-row-reverse-content-order);
+            @include co(width, $pview-desc-deepercontent-row-reverse-content-width);
+            @include min-screen($desktop-min) {
+                @include co(order, $pview-desc-deepercontent-row-reverse-content-order-desktop, $pview-desc-deepercontent-row-reverse-content-order);
+                @include co(width, $pview-desc-deepercontent-row-reverse-content-width-desktop, $pview-desc-deepercontent-row-reverse-content-width);
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(order, $pview-desc-deepercontent-row-reverse-content-order-desktopmd, $pview-desc-deepercontent-row-reverse-content-order-desktop, $pview-desc-deepercontent-row-reverse-content-order);
+                @include co(width, $pview-desc-deepercontent-row-reverse-content-width-desktopmd,$pview-desc-deepercontent-row-reverse-content-width-desktop, $pview-desc-deepercontent-row-reverse-content-width);
+            }
+        }
+    }
+    .pview-desc-deepercontent-img {
+
+    }
+    .pview-desc-deepercontent-content {
+
+    }
+
+    .pview-desc-deepercontent-title {
+        @include co(color, $pview-desc-deepercontent-title-color);
+        @include co(text-align, $pview-desc-deepercontent-title-textalign);
+        @include co(width, $pview-desc-deepercontent-title-width);
+        @include co(font-size, $pview-desc-deepercontent-title-fontsize);
+        @include co(font-weight, $pview-desc-deepercontent-title-fontweight);
+        @include co(justify-content, $pview-desc-deepercontent-title-justifycontent);
+        @include co(padding, $pview-desc-deepercontent-title-padding);
+        @include co(margin, $pview-desc-deepercontent-title-margin);
+        @include min-screen($desktop-min) {
+            @include co(font-size, $pview-desc-deepercontent-title-fontsize-desktop, $pview-desc-deepercontent-title-fontsize);
+            @include co(margin, $pview-desc-deepercontent-title-margin-desktop, $pview-desc-deepercontent-title-margin);
+            @include co(text-align, $pview-desc-deepercontent-title-textalign-desktop, $pview-desc-deepercontent-title-textalign);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(text-align, $pview-desc-deepercontent-title-textalign-desktopmd, $pview-desc-deepercontent-title-textalign-desktop, $pview-desc-deepercontent-title-textalign);
+            @include co(font-size, $pview-desc-deepercontent-title-fontsize-desktopmd,$pview-desc-deepercontent-title-fontsize-desktop, $pview-desc-deepercontent-title-fontsize);
+            @include co(margin, $pview-desc-deepercontent-title-margin-desktopmd,$pview-desc-deepercontent-title-margin-desktop, $pview-desc-deepercontent-title-margin);
+        }
+    }
+
+
+    .pview-desc-deepercontent-desc {
+        @include co(color, $pview-desc-deepercontent-desc-color);
+        @include co(text-align, $pview-desc-deepercontent-desc-textalign);
+        @include co(width, $pview-desc-deepercontent-desc-width);
+        @include co(font-size, $pview-desc-deepercontent-desc-fontsize);
+        @include co(line-height, $pview-desc-deepercontent-desc-lineheight);
+        @include co(justify-content, $pview-desc-deepercontent-desc-justifycontent);
+        @include co(padding, $pview-desc-deepercontent-desc-padding);
+        @include co(margin, $pview-desc-deepercontent-desc-margin);
+        @include min-screen($desktop-min) {
+            @include co(width, $pview-desc-deepercontent-desc-width-desktop, $pview-desc-deepercontent-desc-width);
+            @include co(text-align, $pview-desc-deepercontent-desc-textalign-desktop, $pview-desc-deepercontent-desc-textalign);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(text-align, $pview-desc-deepercontent-desc-textalign-desktopmd, $pview-desc-deepercontent-desc-textalign-desktop, $pview-desc-deepercontent-desc-textalign);
+            @include co(width, $pview-desc-deepercontent-desc-width-desktopmd,$pview-desc-deepercontent-desc-width-desktop, $pview-desc-deepercontent-desc-width);
+        }
+    }
+
+}

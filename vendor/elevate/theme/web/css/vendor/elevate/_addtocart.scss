@@ -1,0 +1,94 @@
+#ev_checkoutnow {
+  width: 100%;
+  vertical-align: top;
+  text-align: center;
+  margin-top: 10px;
+  background-color: #dc0833;
+  border: 1px solid #dc0833;
+}
+
+.ev_hideme {
+  display: none !important;
+}
+
+
+// Makes it same height as Button When Spinner is switched in.
+$ev_tocart2_spinner_height: 30px !default;
+$ev_tocart2_spinner_width: 30px !default;
+$ev_tocart2_borderthickness: $btn-border-width * 2 !default;
+
+$ev_tocart2_rem_height: $pview_btc_a_button_lineheight + convertrem($ev_tocart2_borderthickness);
+$ev_tocart2_withspinner_height: convertrem($ev_tocart2_spinner_height) + convertrem($ev_tocart2_borderthickness);
+$ev_tocart2_margin: ($ev_tocart2_rem_height - $ev_tocart2_withspinner_height) / 2 auto;
+
+
+
+// Popup?
+
+$ev_addtocart_modal_button_padding: 0.9375rem 0 !default;
+
+$ev_addtocart_modal_button_bg_color_on: 0 !default;
+$ev_addtocart_modal_button_bg_color: #FFF !default;
+
+
+$ev_addtocart_modal_button_fontsize: 1rem !default;
+$ev_addtocart_modal_button_fontweight: 700 !default;
+
+
+$ev_addtocart_modal_button_border_radius_on: 1 !default;
+$ev_addtocart_modal_button_border_radius: 5px !default;
+
+
+$ev_addtocart_modal_button_border_on: 0 !default;
+$ev_addtocart_modal_button_border_color: $border-color !default;
+$ev_addtocart_modal_button_border_position: all !default;
+$ev_addtocart_modal_button_border_thickness: 1px !default;
+$ev_addtocart_modal_button_border_style: solid !default;
+
+
+$ev_addtocart_modal_button_texttransform_on: 1 !default;
+$ev_addtocart_modal_button_texttransform: uppercase !default;
+
+$ev_addtocart_modal_button_transition:  background-color .5s ease-in, color .5s ease-in !default;
+
+$ev_addtocart_modal_button_width_mobile: 100% !default;
+$ev_addtocart_modal_button_width_desktop: 50% !default;
+$ev_addtocart_modal_button_margin_mobile: 0 0 1rem 0 !default;
+$ev_addtocart_modal_button_margin_desktop: 0 0.25rem !default;
+
+.add-to-cart {
+    .action.button {
+        cursor: pointer;
+        padding: $ev_addtocart_modal_button_padding;
+        margin: $ev_addtocart_modal_button_margin_mobile;
+        @include co(font-weight, $ev_addtocart_modal_button_fontweight, $font-weight-normal);
+        @include ev-fontsize-output($ev_addtocart_modal_button_fontsize);
+        width: $ev_addtocart_modal_button_width_mobile;
+        @if $ev_addtocart_modal_button_bg_color_on == 1 {
+            background: $ev_addtocart_modal_button_bg_color;
+        }
+        @if $ev_addtocart_modal_button_border_radius_on == 1 {
+            border-radius: $ev_addtocart_modal_button_border_radius;
+        }
+        @if $ev_addtocart_modal_button_border_on == 1 {
+            @include elevate-border($ev_addtocart_modal_button_border_color, $ev_addtocart_modal_button_border_thickness, $ev_addtocart_modal_button_border_style, $ev_addtocart_modal_button_border_position);
+
+        }
+        @if $ev_addtocart_modal_button_texttransform_on == 1 {
+            text-transform: $ev_addtocart_modal_button_texttransform;
+        }
+        @include min-screen($desktop-min) {
+            margin: $ev_addtocart_modal_button_margin_desktop;
+            width: $ev_addtocart_modal_button_width_desktop;
+        }
+    }
+}
+
+
+.ev_tocart2 {
+    .spinner-fading-circle {
+        height: $ev_tocart2_spinner_height;
+        width: $ev_tocart2_spinner_width;
+        margin: $ev_tocart2_margin;
+    }
+}

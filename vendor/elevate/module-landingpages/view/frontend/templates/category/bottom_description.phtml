@@ -1,0 +1,106 @@
+<style>
+#ev_ln_btm_description_wrapper h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 1rem 0 .5rem;
+}
+div#ev_ln_btm_description_wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#ev_ln_btm_description_wrapper h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 1rem 0 .5rem;
+}
+#ev_ln_btm_description_wrapper h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 1rem 0 .5rem;
+}
+#ev_ln_btm_description_wrapper ul {
+    list-style-type: initial;
+    margin-left: 23px;
+    margin-top: 20px;
+}
+</style>
+<div id="ev_ln_btm_description_wrapper">
+<?php 
+
+
+/*
+
+    array(
+                'value' => 'onload_default_ajax_no',
+                'label' => 'Onload = Default Description, Ajax = No Description',
+            ),
+            array(
+                'value' => 'onload_default_ajax_default',
+                'label' => 'Onload = Default Description, Ajax = Default Description',
+            ),
+            array(
+                'value' => 'onload_default_ajax_ajax',
+                'label' => 'Onload = Default Description, Ajax = Ajax Description',
+            ),
+            array(
+                'value' => 'onload_no_ajax_ajax',
+                'label' => 'Onload = No Description, Ajax = Ajax Description',
+            ) 
+
+*/
+
+
+   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+   $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+$filterProvider = $objectManager->create('\Magento\Cms\Model\Template\FilterProvider');
+$storeManager = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+
+
+   
+   $ev_landingpages_btm_desc = $category->getData('ev_landingpages_btm_desc');
+   $ev_landingpages_btm_desc_type = $category->getData('ev_landingpages_btm_desc_type');
+   $ev_landingpages_btm_desc_ajax = $category->getData('ev_landingpages_btm_desc_ajax');
+        
+   
+   $bottom_description = '';
+ 
+ 
+ 
+//get block
+$bottom_description =  $this->getLayout()
+->createBlock('Magento\Cms\Block\Block')
+->setBlockId('CATFooter_'.$category->getId())
+->toHtml();
+
+//$this->getLayout()->createBlock('cms/block')->setBlockId('CATFooter_'.$category->getId())->toHtml()
+ 
+ 
+   
+   if($ev_landingpages_btm_desc_type == 'onload_default_ajax_no' || $ev_landingpages_btm_desc_type == 'onload_default_ajax_default' || $ev_landingpages_btm_desc_type == 'onload_default_ajax_ajax' ){
+        $bottom_description = $ev_landingpages_btm_desc;
+   }
+   
+   
+ 
+$is_landing_page =$objectManager->get('Magento\Framework\Registry')->registry('elevate_landingpage');
+
+if($is_landing_page){
+ $landing_page_data =$objectManager->get('Magento\Framework\Registry')->registry('elevate_landingpage_data');
+              
+  $landing_page_btm_desc = $landing_page_data['page_bottom_description']; 
+     if(!empty($landing_page_btm_desc)){
+       $bottom_description = $landing_page_btm_desc;
+     }
+}
+
+
+if(!empty($bottom_description)){
+
+echo "<hr style=\"margin-bottom: 46px;\">";
+}   
+echo $filterProvider->getBlockFilter()
+                    ->setStoreId($storeManager->getStore()->getId())
+                    ->filter($bottom_description);
+
+?>
+</div>

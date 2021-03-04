@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="elevate" translate="label" sortOrder="100">
+            <label>Elevate Extensions</label>
+        </tab>
+        <section id="elevate_promotions" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sitewide Promotions</label>
+            <tab>elevate</tab>
+            <resource>Elevate_Promotions::elevate_promotions</resource>
+            <group id="sitewide" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>USP Banner Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Top Bar?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="type" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Type of USP Bar?</label>
+                    <source_model>Elevate\Promotions\Model\Config\Source\SitewideType</source_model>
+                </field>
+                
+                
+                 <field id="background_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>USP Background Colour</label>
+                     <comment>#f6f8fb</comment>
+                </field>
+                <field id="font_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promotion font colour</label>
+                     <comment>#000000</comment>
+                </field>
+                <field id="promo_text" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promotion Label</label>
+                    <comment>e.g Black Friday</comment>
+                </field>
+                  <field id="promo_pill_colour_bkg" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pill Background Colour</label>
+                    <comment>#000000</comment>
+                
+                </field>
+                <field id="promo_pill_colour_font" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pill Font Colour</label>
+                    <comment>#000000</comment>
+                  
+                </field>
+                <field id="promo_subtext_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Strapline Colour</label>
+                    <comment>#000000</comment>
+                  
+                </field>
+                <field id="promo_subtext" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Strapline Label</label>
+                    <comment>e.g Whilst Stocks Last</comment>
+                </field>
+                <field id="invert_colours" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Invert the header colours</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                
+                <field id="usp_bar_1_text" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>[#1] USP Bar - Main Text</label>
+                    <depends>
+                        <field id="type">usp_bar</field>
+                    </depends>
+                </field>
+              
+                <field id="text_bar_name" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Bar Main Promo Name</label>
+                    <depends>
+                        <field id="type" separator=",">text_bar,text_bar_countdown</field>
+                    </depends>
+                </field>
+                <field id="text_bar_text" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Text Bar Centered Promo Text</label>
+                <depends>
+                    <field id="type" separator=",">text_bar,text_bar_countdown</field>
+                </depends>
+            </field>
+                <field id="text_bar_btn_text" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Text</label>
+                    <depends>
+                        <field id="type" separator=",">text_bar,text_bar_countdown</field>
+                    </depends>
+                </field>
+                <field id="days_text" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Days Text</label>
+                    <depends>
+                        <field id="type" separator=",">text_bar_countdown,countdown_bar</field>
+                    </depends>
+                </field>
+                <field id="hours_text" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hours Text</label>
+                    <depends>
+                        <field id="type" separator=",">text_bar_countdown,countdown_bar</field>
+                    </depends>
+                </field>
+                <field id="minutes_text" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minutes Text</label>
+                    <depends>
+                        <field id="type" separator=",">text_bar_countdown,countdown_bar</field>
+                    </depends>
+                </field>
+                <field id="seconds_text" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Seconds Text</label>
+                    <depends>
+                        <field id="type" separator=",">text_bar_countdown,countdown_bar</field>
+                    </depends>
+                </field>
+                <field id="right_strapline" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Right Strapline</label>
+                    <depends>
+                        <field id="type" separator=",">text_bar</field>
+                    </depends>
+                    <comment>If this has data it overrides the button</comment>
+                </field>
+            </group> 
+            <group id="above_header" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Above Header</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Above Header Bar?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="top_bar_content" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Above Header Content</label>
+                </field>
+
+            </group>
+
+   
+
+
+
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="is_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is Enabled?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="end_date" translate="label" type="date" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promotion End Date</label>
+                    <frontend_model>Elevate\Promotions\Block\Adminhtml\System\Config\Date</frontend_model>
+                </field>
+                <field id="start_date" translate="label" type="date" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promotion Start Date</label>
+                    <frontend_model>Elevate\Promotions\Block\Adminhtml\System\Config\Date</frontend_model>
+                </field>
+              
+                  <field id="megamenu_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Mega Menu Colour</label>
+                </field>
+          
+                <field id="product_skus" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Limit to the following SKU</label>
+                    <comment>Provide a comma seperated list of configurable SKU</comment>
+                </field>
+                <field id="product_blacklist" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SKU Blacklist</label>
+                    <comment>These will never show in the promotions</comment>
+                </field>
+                 <field id="sort_order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promotion Sort order</label>
+                    <comment>Priority order when multiple promotions conflict</comment>
+                </field>
+                <field id="override_usp" translate="label" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Override USP</label>
+                </field>
+            </group>
+
+
+
+
+            <group id="countdown" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Countdown Settings</label>
+
+            <field id="countdown_time" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Countdown Time</label>
+                <comment>March 01, 2019 00:00:00</comment>
+            </field>
+
+                <field id="countdown_pp_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Countdown Timer on Product Page?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="countdown_list_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Countdown Timer on Listing Page?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="countdown_list_background_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Countdown Listing Background HEX Colour</label>
+                    <comment>#000000</comment>
+                </field>
+                <field id="countdown_list_font_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Countdown Listing Font HEX Colour</label>
+                    <comment>#000000</comment>
+                </field>
+
+                <field id="countdown_list_font_colour_over" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Countdown Listing Font HEX Colour Text Overlay</label>
+                    <comment>#000000</comment>
+                </field>
+                <field id="countdown_pp_background_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Page countdown background</label>
+                    <comment>#000000</comment>
+                </field>
+
+                <field id="altcountdown_list_background_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ALT Countdown Listing Background HEX Colour</label>
+                    <comment>#000000</comment>
+                </field>
+                <field id="altcountdown_list_font_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ALT Countdown Listing Font HEX Colour</label>
+                    <comment>#000000</comment>
+                </field>
+                <field id="altcountdown_list_font_colour_over" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ALT Countdown Listing Font HEX Colour Text Overlay</label>
+                    <comment>#000000</comment>
+                </field>
+                <field id="altcategories" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ALT categories</label>
+                    <comment>comma seperated list of category ids</comment>
+                </field>
+                <field id="countdown_banner_image" translate="label" type="image" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Countdown PP  Banner Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">logo</upload_dir>
+                    <base_url type="media" scope_info="1">logo</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png, svg.]]></comment>
+                </field>
+            </group>
+
+
+
+            <group id="productpage" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Product Page</label>
+            <field id="enable_pp_promo" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Product Page Promotion Banner?</label>
+                <comment>This enables the block with countdown by default</comment>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+                <field id="enable_pp_promo_static" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Product Page Promotion Static Block Banner?</label>
+                    <comment>You need to have (Custom Block Code Product Page) Set</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sitewide_custom_block_pp" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Block Code Product Page</label>
+                </field>
+             
+                    
+                 <field id="background_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>USP Background Colour</label>
+                     <comment>#f6f8fb</comment>
+                </field>
+                <field id="font_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promotion font colour</label>
+                     <comment>#000000</comment>
+                </field>
+                <field id="promo_text" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promotion Label</label>
+                    <comment>e.g Black Friday</comment>
+                </field>
+                <field id="promo_subtext_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Strapline Colour</label>
+                    <comment>#000000</comment>
+                    <comment>e.g Whilst Stocks Last</comment>
+                </field>
+                <field id="promo_subtext" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Strapline Label</label>
+                    <comment>e.g Whilst Stocks Last</comment>
+                </field>
+                 <field id="enable_overlay" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Image Overlay?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                     <comment>Follows general settings like whitelisting</comment>                    
+                </field>              
+                <field id="image_overlay_background_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Overlay Background Colour</label>
+                </field>
+                <field id="image_overlay_font_colour" translate="label" type="text" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Overlay Font Colour</label>
+                </field>               
+                <field id="image_overlay_text" translate="label" type="text" sortOrder="52" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Overlay Text</label>
+                </field>
+             
+            </group>
+ 
+            <group id="category_pages" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Category Page</label>
+               <field id="enable_overlay" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Image Overlay?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                     <comment>Follows general settings like whitelisting</comment>                    
+                </field>              
+                <field id="promo_listing_background_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Overlay Background Colour</label>
+                </field>
+                <field id="promo_listing_font_colour" translate="label" type="text" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Overlay Font Colour</label>
+                </field>               
+                <field id="promo_listing_text" translate="label" type="text" sortOrder="52" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Overlay Text</label>
+                </field>
+                <field id="promo_text_listing" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Category Promo Text</label>
+                </field>
+            </group>
+
+
+                
+
+
+
+            <group id="dynamicpage" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Dynamic Page Template Settings</label>
+
+                <field id="background_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Colour</label>
+                    <comment>#000000</comment>
+                </field>
+                <field id="wasrrp_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>WAS/RRP Colour</label>
+                    <comment>#000000</comment>
+                </field>
+                <field id="name_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Name Colour</label>
+                    <comment>#000000</comment>
+                </field>
+                <field id="left_colour" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Left Colour</label>
+                    <comment>#000000</comment>
+                </field>
+
+                <field id="top_image_desktop" translate="label" type="image" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Top Image Desktop</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">logo</upload_dir>
+                    <base_url type="media" scope_info="1">logo</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png, svg.]]></comment>
+                </field>
+                <field id="top_image_mobile" translate="label" type="image" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Top Image Mobile</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">logo</upload_dir>
+                    <base_url type="media" scope_info="1">logo</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png, svg.]]></comment>
+                </field>
+
+            </group>
+
+
+
+        </section>
+    </system>
+</config>

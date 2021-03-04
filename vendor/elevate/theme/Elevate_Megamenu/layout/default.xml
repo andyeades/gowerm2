@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="catalog.topnav" remove="true" />
+    <head>
+        <remove src="Elevate_Megamenu::styles.css" />
+        <link src="Elevate_Megamenu::js/megamenu.js" />
+    </head>
+    <body>
+        <referenceContainer name="nav-bar-inner">
+            <block name="mymegamenu" class="Elevate\Megamenu\Block\Frontend\Megamenu" template="Elevate_Megamenu::megamenu.phtml" before="-"/>
+        </referenceContainer>
+    </body>
+</page>
+

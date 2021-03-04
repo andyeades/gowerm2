@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2019 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_OptionsManagement
+ */
+-->
+<!--
+/**
+ * Copyright © 2018 Aitoc. All rights reserved.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_catalog_product_save_entity_after">
+        <observer name="aitoc_optionsmanagement" instance="Aitoc\OptionsManagement\Observer\AdminCatalogProductSaveEntityAfter" />
+    </event>
+</config>

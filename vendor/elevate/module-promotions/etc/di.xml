@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Elevate\Promotions\Api\PromotionsRepositoryInterface" type="Elevate\Promotions\Model\PromotionsRepository"/>
+	<preference for="Elevate\Promotions\Api\Data\PromotionsInterface" type="Elevate\Promotions\Model\Data\Promotions"/>
+	<preference for="Elevate\Promotions\Api\Data\PromotionsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Elevate\Promotions\Model\ResourceModel\Promotions\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">elevate_promotions_promotions</argument>
+			<argument name="resourceModel" xsi:type="string">Elevate\Promotions\Model\ResourceModel\Promotions\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="elevate_promotions_promotions_listing_data_source" xsi:type="string">Elevate\Promotions\Model\ResourceModel\Promotions\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

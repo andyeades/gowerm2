@@ -1,0 +1,683 @@
+<?php
+
+$product_id = $block->getProduct()->getId();
+
+$productCollection = $block->itemsFactory()->create()->getCollection()
+    ->addFieldToFilter('product_id', $product_id)
+    ->addFieldToFilter('status', 1);
+
+
+?> 
+
+<?php if (count($productCollection) > 0) {
+
+  ?>
+
+  <style>
+.more-from-collection2.show_ev_furniture_block {
+    order: 3;
+}
+
+    .products-grid {
+      margin-top: 0;
+    }
+
+    #more-col-swiper2 {
+      width:  90%;
+      margin: 0 auto;
+    }
+
+    img#largeImage {
+      width:      100%;
+      object-fit: cover;
+    }
+
+    .top-intro {
+      text-align:    center;
+      margin-bottom: 15px;
+    }
+
+    /* Slider */
+    .slick-slider {
+      position:                    relative;
+      display:                     block;
+      box-sizing:                  border-box;
+
+      -webkit-user-select:         none;
+      -moz-user-select:            none;
+      -ms-user-select:             none;
+      user-select:                 none;
+
+      -webkit-touch-callout:       none;
+      -khtml-user-select:          none;
+      -ms-touch-action:            pan-y;
+      touch-action:                pan-y;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .slick-list {
+      position: relative;
+
+      display:  block;
+      overflow: hidden;
+
+      margin:   0;
+      padding:  0;
+    }
+
+    .slick-list:focus {
+      outline: none;
+    }
+
+    .slick-list.dragging {
+      cursor: pointer;
+      cursor: hand;
+    }
+
+    .slick-slider .slick-track,
+    .slick-slider .slick-list {
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform:    translate3d(0, 0, 0);
+      -ms-transform:     translate3d(0, 0, 0);
+      -o-transform:      translate3d(0, 0, 0);
+      transform:         translate3d(0, 0, 0);
+    }
+
+    .slick-track {
+      position:     relative;
+      top:          0;
+      left:         0;
+
+      display:      block;
+      margin-left:  auto;
+      margin-right: auto;
+    }
+
+    .slick-track:before,
+    .slick-track:after {
+      display: table;
+
+      content: '';
+    }
+
+    .slick-track:after {
+      clear: both;
+    }
+
+    .slick-loading .slick-track {
+      visibility: hidden;
+    }
+
+    .slick-slide {
+      display:    none;
+      float:      left;
+
+      height:     100%;
+      min-height: 1px;
+    }
+
+    [dir='rtl'] .slick-slide {
+      float: right;
+    }
+
+    .slick-slide img {
+      display: block;
+    }
+
+    .slick-slide.slick-loading img {
+      display: none;
+    }
+
+    .slick-slide.dragging img {
+      pointer-events: none;
+    }
+
+    .slick-initialized .slick-slide {
+      display: block;
+      outline: none;
+    }
+
+    .slick-loading .slick-slide {
+      visibility: hidden;
+    }
+
+    .slick-vertical .slick-slide {
+      display: block;
+
+      height:  auto;
+
+      border:  1px solid transparent;
+    }
+
+    .slick-arrow.slick-hidden {
+      display: none;
+    }
+
+    .swiper-outer-container {
+      width: 100%;
+    }
+
+    .swiper-more-collection-container {
+      width: 100%;
+    }
+
+    #more-col-swiper2 {
+      width: 90%;
+    }
+
+    /* Example wrapper */
+    .wrap {
+      position: relative;
+      margin:   3em 0;
+    }
+
+
+    /* Slick Slider Fix */
+    * {
+      min-height: 0;
+      min-width:  0;
+    }
+
+    .slick-prev, .slick-next {
+      z-index:           1;
+      border-radius:     3px;
+      position:          absolute;
+      top:               50%;
+      display:           block;
+      width:             30px;
+      height:            30px;
+      line-height:       32px;
+      padding:           0;
+      -webkit-transform: translate(0, -50%);
+      -ms-transform:     translate(0, -50%);
+      transform:         translate(0, -50%);
+      cursor:            pointer;
+      color:             black;
+      border:            none;
+      outline:           none;
+      text-align:        center;
+    }
+
+    .slick-prev:hover,
+    .slick-prev:focus,
+    .slick-next:hover,
+    .slick-next:focus {
+      /*      background-color: #e4114d;*/
+    }
+
+    .slick-prev:hover:before,
+    .slick-prev:focus:before,
+    .slick-next:hover:before,
+    .slick-next:focus:before {
+      opacity: 1;
+    }
+
+    .slick-prev.slick-disabled:before,
+    .slick-next.slick-disabled:before {
+      opacity: .25;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+    }
+
+    .slick-prev {
+      left: -35px;
+    }
+
+    .slick-next {
+      right: -35px;
+    }
+
+    @media (max-width: 1500px) and (min-width: 1450px) {
+
+      .slick-prev, .slick-next {
+        width: 15px;
+      }
+
+      .slick-prev {
+        left: -10px;
+      }
+
+      .slick-next {
+        right: -10px;
+      }
+    }
+
+    @media (max-width: 1449.98px) and (min-width: 1170px) {
+      .slick-prev, .slick-next {
+        width: 15px;
+      }
+
+      .slick-prev {
+        left: -12px;
+      }
+
+      .slick-next {
+        right: -15px;
+      }
+    }
+
+    @media (max-width: 1169.98px) and (min-width: 992px) {
+      .slick-prev, .slick-next {
+        width: 15px;
+      }
+
+      .slick-prev {
+        left: -10px;
+      }
+
+      .slick-next {
+        right: -10px;
+      }
+    }
+
+    @media (max-width: 991.98px) {
+
+
+      .main-img-holder {
+        display: none;
+      }
+
+      #more-col-swiper2 {
+        width: 100%;
+      }
+
+      #largeImage {
+        width:      100%;
+        height:     100% !important;
+        object-fit: cover;
+      }
+
+      .slick-prev, .slick-next {
+        width: 15px;
+      }
+
+      .slick-prev {
+        left: -10px;
+      }
+
+      .slick-next {
+        right: -10px;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .slick-prev, .slick-next {
+        width:   12px;
+        z-index: 1;
+      }
+
+      .slick-prev {
+        left: -5px;
+      }
+
+      .slick-next {
+        right: -5px;
+      }
+    }
+
+    .prod-item-inner img {
+      width:  100%;
+      height: auto;
+    }
+
+    .image-outer {
+      position: relative;
+    }
+
+    .image-outer .fa-plus-circle {
+      font-size: 25px;
+      color:     #f0386c;
+      position:  absolute;
+      right:     15px;
+      bottom:    15px;
+    }
+
+
+    .overlay {
+      position:           absolute;
+      top:                0;
+      bottom:             0;
+      left:               0;
+      right:              0;
+      height:             100%;
+      width:              100%;
+      opacity:            0;
+      -webkit-transition: .5s ease;
+      transition:         .5s ease;
+    }
+
+
+    .user-handle-hidden {
+      display:           block;
+      min-width:         150px;
+      text-align:        center;
+      float:             left;
+      display:           -webkit-box;
+      display:           -ms-flexbox;
+      display:           flex;
+      -webkit-box-pack:  center;
+      -ms-flex-pack:     center;
+      justify-content:   center;
+      margin:            0 auto;
+      position:          absolute;
+      top:               50%;
+      left:              50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform:         translate(-50%, -50%);
+      -ms-transform:     translate(-50%, -50%);
+      text-align:        center;
+      color:             #ffffff;
+    }
+
+
+    .image-outer:hover {
+      cursor: pointer;
+      /*		opacity: 0.5;*/
+    }
+
+    .image-outer:hover .overlay {
+      opacity:          1;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .swiper-more-collection-container p {
+      font-size: 15px;
+      text-align: center;
+      margin: 0 auto;
+      width: 80%;
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+    .swiper-more-collection-container h3 {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+
+
+
+.more-from-collection2.show_ev_furniture_block {
+  background-color: #f0f0f0;
+  padding: 18px 0 3px;
+  margin: 50px 0
+}
+
+.products-grid .product-firmness {
+  width: 100%
+}
+
+.products-grid .product-name {
+  margin: 10px 0;
+  padding: 0 5px;
+  min-height: 68px;
+  width: 100%
+}
+
+.products-grid .actions,
+.products-grid .elements {
+  width: 100%
+}
+
+.products-grid .product-icons {
+  display: flex;
+  width: 100%;
+  height: 86px
+}
+
+.products-grid .product-icons>img {
+  flex: 0 1 auto;
+  width: 50%;
+  padding: 0 2px
+}
+
+.products-grid .price-box {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column
+}
+
+.products-grid .price-box.no-prod-icons {
+  width: 100%
+}
+
+.products-grid .price-box.with-prod-icons {
+  justify-content: center;
+  width: 100%
+}
+
+.products-grid .prod-price-now {
+  font-size: 14px
+}
+
+.products-grid .product-firmness {
+  min-height: 20px
+}
+
+.products-grid .product-firmness img {
+  margin: 0 auto;
+  text-align: center
+}
+              img#largeImage {
+    margin-bottom: 15px;
+}
+  </style>
+
+    <?php 
+    
+    $uNameSymbol = '';
+    $moreOutput = '
+
+  <div class="more-from-collection2 show_ev_furniture_block">
+    <div class="more-from-collection-inner2">
+      <div class="container">
+      <div class="row">
+      <div class="col-md-8 use-this-height">
+        <div class="flex-fix">
+        <div class="products-grid">
+
+        <div class="swiper-outer-container">
+
+        <div class="swiper-more-collection-container">
+<div class="top-intro">
+<div><img style="    width: 30px;" src="/media/productpage/fb_icon.png" />
+<img  style="    width: 30px;" src="/media/productpage/insta_icon.png" />
+</div>
+<h3>Styled in real homes!</h3>
+<p>Take a look at how our customers have styled this fabulous bed in their homes! Tag <span style="color:#e4114d">@HappyBeds</span> on social media to be featured on our feed.</p>
+</div>
+          <div id="more-col-swiper2" class="slider-box">
+         ';
+
+    $displayMoreCollection = false;
+
+    $social_gallery_images = [];
+
+    $i = 0;
+         $large_image = false;
+    foreach ($productCollection->getData() as $_productLoop) {
+           if(!$large_image){
+           $large_image = "/media".$_productLoop['image'];
+           }
+//        $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($_productLoop->getId());
+
+        $displayMoreCollection = true;
+
+        $social_gallery_images = [];
+
+        array_push($social_gallery_images, $_productLoop['image'], $_productLoop['additional_image_2'], $_productLoop['additional_image_3'], $_productLoop['additional_image_4'], $_productLoop['additional_image_5']);
+
+
+        if ($_productLoop['post_type'] == 1) {
+            $uNameSymbol = '@';
+        }
+
+
+
+        if ($_productLoop['post_type'] == 2) {
+            $uNameSymbol = '@';
+        }
+
+
+        $j = 0;
+
+        foreach ($social_gallery_images as $key => $val) {
+            if ($val) {
+                $moreOutput .= '<div class="slick-slide">
+                    <div class="prod-item-inner image-outer">
+
+                        <div class="ajax2.1 thumb" data-link="/mattress/product/gallerypopup/id/' . $_productLoop['product_id'] . '/itemid/' . $_productLoop['items_id'] . '/productpage/yes">';
+
+                //      foreach ($social_gallery_images as $key => $val) {
+                $moreOutput .= '<img class="lazyload" data-src="/media' . $_productLoop['image'] . '" data-id="' . $_productLoop['items_id'] . '" src="/media' . $_productLoop['image'] . '" />';
+                //      }
+
+                $moreOutput .= '<i class="fa fa-plus-circle" aria-hidden="true"></i>
+<div class="overlay">
+                           <div class="user-handle-hidden ' . $i . '">' . $uNameSymbol . ' ' . $_productLoop['name'] . '
+</div>
+              </div>
+		</div>
+
+                          ';
+
+                $moreOutput .= '
+                    </div>
+                    </div>';  //end slick-slide
+                $j++;
+            }
+        }
+        $i++;
+        unset($social_gallery_images);
+        $social_gallery_images = [];
+    }
+
+    $moreOutput .= '</div>
+        </div>
+      </div>
+
+      </div>
+        </div>
+      </div>
+          <div class="col-md-4" style="padding-left:0;">
+    <img id="largeImage" src="'.$large_image.'" class="main-img-holder"/>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>';
+
+    if ($displayMoreCollection && $i > 4 || $j > 4) {
+        //  if ($displayMoreCollection) {?>
+
+
+        <?php
+        echo $moreOutput; ?>
+
+      <script>
+          require(
+              ['jquery', 'slickjs'],
+              function($, slick)
+              {
+
+
+
+                  jQuery(document).ready(function () {
+              jQuery('#more-col-swiper2').slick({
+                  slidesToShow: 5,
+                  slidesToScroll: 5,
+                  prevArrow: '<div class="slick-prev"><i class="fa fa-chevron-left"></i></div>',
+                  nextArrow: '<div class="slick-next"><i class="fa fa-chevron-right"></i></div>',
+                  responsive: [
+                      {
+                          breakpoint: 992,
+                          settings: {
+                              slidesToScroll: 3,
+                              slidesToShow: 3
+                          }
+                      },
+                      {
+                          breakpoint: 768,
+                          settings: {
+                              slidesToScroll: 3,
+                              slidesToShow: 3
+                          }
+                      },
+                      {
+                          breakpoint: 480,
+                          settings: {
+                              slidesToScroll: 1,
+                              slidesToShow: 1
+                          }
+                      }
+                  ]
+              });
+          });
+
+              }
+          );
+      </script>
+
+      <!-- Modal -->
+      <div class="modal fade" id="infoModal2" tabindex="-1" role="dialog" aria-labelledby="addtocartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer hide_me">
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    
+
+      <script>
+          function resize() {
+              height = jQuery(".use-this-height").height();
+              height = height - 12;
+              jQuery("#largeImage").css("height", height);
+          }
+
+          var wwidth = jQuery(window).width();
+          var wheight = jQuery(window).height();
+
+
+          jQuery(document).ready(function () {
+              //console.log(jQuery(".slick-active").children().children().find("img").attr('src'));
+
+              var images = jQuery(".slick-active").children().children().find("img").attr('src');
+              //console.log(jQuery(".slick-active").children().children().find("img").attr('src'));
+            if(images) {
+                jQuery('#largeImage').attr('src', images.replace('thumb', 'large'));
+            }
+              jQuery('.overlay').click(function () {
+                  if (wwidth > 991) {
+                      jQuery('#largeImage').attr('src', jQuery(this).parent().find("img").attr('src').replace('thumb', 'large'));
+                      jQuery('#description').html($(this).attr('alt'));
+                  }
+              });
+              resize();
+              jQuery(window).resize(function () {
+                  resize();
+              });
+          });
+
+      </script>
+
+        <?php
+    }
+    ?>
+
+
+
+
+<?php } ?>

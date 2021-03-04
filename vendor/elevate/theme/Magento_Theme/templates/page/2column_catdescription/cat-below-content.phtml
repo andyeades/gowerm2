@@ -1,0 +1,135 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+$current_category_landing_page = $category->getLandingPage();
+/** @var $block Magento\Framework\View\Element\Template */
+
+
+
+
+if ($current_category_landing_page) {
+
+    if ($block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($current_category_landing_page)) {
+
+        $blockname = str_replace(' ', '-', strtolower($category->getName()));
+
+        echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($blockname . '-category-bottom')->toHtml();
+    }
+}
+?>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+
+
+        jQuery(".tabs li a").click(function(event) {
+            event.preventDefault();
+            jQuery(".tabs li a").removeClass("active");
+            jQuery(this).addClass("active");
+            jQuery(".tab-content").hide();
+            jQuery(jQuery(this).attr("href")).show();
+        });
+
+
+
+        // checking if the dom element exists
+        jQuery(".owl-one").owlCarousel({
+            loop: true,
+            navigation: false,
+            pagination: false,
+            slideSpeed: 300,
+            addClassActive: true,
+            center: true,
+            autoWidth: true
+        });
+
+        owl1 = jQuery(".owl-one").owlCarousel();
+        jQuery(".prev2").click(function() {
+            owl1.trigger("prev.owl.carousel");
+        });
+
+        jQuery(".next2").click(function() {
+            owl1.trigger("next.owl.carousel");
+        });
+
+
+
+
+        owl2 = jQuery(".owl-two").owlCarousel();
+        jQuery(".prev").click(function() {
+            owl2.trigger("prev.owl.carousel");
+        });
+
+        jQuery(".next").click(function() {
+            owl2.trigger("next.owl.carousel");
+        });
+
+
+        jQuery(".owl-three").owlCarousel({
+            loop: true,
+            margin: 30,
+            navigation: false,
+            pagination: false,
+            slideSpeed: 300,
+            addClassActive: true,
+            center: true,
+            autoWidth: true,
+            dots: false
+        });
+
+        owl3 = jQuery(".owl-three").owlCarousel();
+        jQuery(".prev3").click(function() {
+            owl3.trigger("prev.owl.carousel");
+        });
+
+        jQuery(".next3").click(function() {
+            owl3.trigger("next.owl.carousel");
+        });
+
+        (function($) {
+            console.log("document ready!");
+            var $sticky = $('.sticky');
+            var $stickyrStopper = $('.sticky-stopper');
+            if (!!$sticky.offset()) {
+                var generalSidebarHeight = $sticky.innerHeight();
+                var stickyTop = $sticky.offset().top;
+                var stickOffset = 0;
+                var stickyStopperPosition = $stickyrStopper.offset().top;
+                var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+                var diff = stopPoint + stickOffset;
+                $(window).scroll(function(e) {
+                    e.preventDefault();
+                    var windowTop = $(window).scrollTop();
+                    console.log("stopPoint::" + stopPoint);
+                    console.log("windowTop::" + windowTop);
+                    console.log("diff::" + diff);
+                    console.log("stickyTop::" + stickyTop);
+                    console.log("amount::" + windowTop + stickOffset);
+                    if (stopPoint < (windowTop + stickOffset)) {
+                        $sticky.css({
+                            position: 'relative',
+                            top: diff - stickyTop
+                        });
+                    } else if (stickyTop < windowTop + stickOffset) {
+                        $sticky.css({
+                            position: 'relative',
+                            top: windowTop - stickyTop
+                        });
+                    } else {
+                        $sticky.css({
+                            position: 'relative',
+                            top: 'initial'
+                        });
+                    }
+                });
+            }
+            $(document).on('mousewheel DOMMouseScroll MozMousePixelScroll', function(event, delta) {
+                console.log('mousewheel');
+                $(window).triggerHandler('scroll');
+            });
+        })(jQuery);
+
+
+    });
+
+</script>

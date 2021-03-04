@@ -1,0 +1,352 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<script type="text/javascript" src="<?= $block->getViewFileUrl('Elevate_CartAssignments::js/elevate.cart.js') ?>"></script>
+
+<?php
+
+$url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+?>
+
+<? if (isset($_GET['debug'])) {
+    $debug = true;
+} ?>
+
+
+<input type="hidden" style="display:none;" id="current_postcode" value=""/>
+
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$cart = $objectManager->get('\Magento\Checkout\Model\Cart');
+
+$totalItems = $cart->getQuote()->getItemsCount();
+$totalQuantity = (int)$cart->getQuote()->getItemsQty();
+$subTotal = $cart->getQuote()->getSubtotal();
+$grandTotal = $cart->getQuote()->getGrandTotal();
+?>
+<style>
+  .spinner-fading-circle {
+    margin: 0px auto;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    display: block;
+  }
+  .checkout-cart-index tr.totals.shipping .value {
+    display: none;
+}
+<?php
+  $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+  if (strpos($url,'posturite') !== false)
+  {
+?>
+
+  div#payment-request-button-cart {
+    display: none;
+  }
+  <?
+  }
+  ?>
+
+
+
+  <?php
+  $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+  if (strpos($url,'happybeds') !== false)
+  {
+?>
+
+  tr.totals-tax {
+    display: none;
+}
+ .table th, .table td {
+    padding: 0.75rem 0rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+  <?
+  }
+  ?>
+</style>
+<div id="stickyBar">
+    <div class="container">
+        <div id="stickybar-row" class="row">
+            <div id="stickybar-logodetails" class="col-md-4">
+
+
+                <img class="stickybar-logo img-responsive" src="/media/posturite_logo_colored.svg">
+                <div id="toprowtotals">
+                    <span id="tritemquantity"><?php echo $totalQuantity; ?></span> Item, Total
+                    <span id="tritemtotal"><span class="price">&pound;<?php echo number_format((float)$grandTotal, 2); ?></span></span>
+                </div>
+            </div>
+            <div id="stickybar-checkout" class="col-md-8">
+                <ul class="checkout-types">
+                    <li>
+                        <style>
+
+                        </style>
+                        <button type="button" title="Checkout Now" id="btn-checkout" class="action primary checkout" onclick="window.location='/checkout';this.disabled = true;">
+                            <span><span>Proceed to checkout</span></span></button>
+
+                        <div class="second_checkout_button" style="display:none;">
+                            <button type="button" title="Proceed To Checkout" id="btn-checkout" class="action primary checkout" onclick="window.location='/checkout';this.disabled = true;">
+
+
+
+                <span style="height: 50px;"><span>
+        <div class="ev-checkout-lock ">
+            <img style="  float: left;
+    height: 31px;
+    margin-top: 8px;
+    margin-left: 18px;" src="/media/Checkout-Button-3.png"/>
+
+         <div style="
+    padding-top: 3px;
+    margin-left: 38px;
+    float: left;
+">
+          <p style="display: inline;font-size: 17px;">Checkout</p> <p style="font-weight:100;display:inline;font-size: 17px;">Securely</p>
+          </div>
+                </div>
+          </span></span>
+
+                                <div style="clear:both;"></div>
+
+                            </button>
+
+
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="payment-icons cf">
+                    <div class="ftr-card-stripe" style="
+                    background-repeat: no-repeat;
+    float: left;
+    filter: invert(1);
+    background-image:url('/media/theme_assets/footer/powered_by_stripe@3x.png');
+    background-size: 166px;
+    height: 37px;
+    width: 171px;
+"></div>
+                    <div class="ftr-cards-visa-mastercard" style="
+    float: left;
+    background-repeat: no-repeat;
+        background-image: url('/media/theme_assets/footer/visa-mastercard.png');
+    background-size: 184px;
+    height: 35px;
+    width: 184px;
+    margin: 0 0.5rem;
+"></div>
+                    <div class="ftr-card-paypal" style="
+    float: left;
+    background-repeat: no-repeat;
+    filter: invert(1);
+    background-size: 112px;
+    height: 39px;
+    width: 112px;
+    background-position-y: 5px;
+    margin-right: 0;
+    background-image: url('/media/theme_assets/footer/paypal-300-white.png');
+"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function () {
+        console.log("ready!");
+
+        var wrap = jQuery("body");
+
+        jQuery(window).on("scroll", function (e) {
+            var scroll = jQuery(window).scrollTop();
+            if (scroll > 176) {
+
+                wrap.addClass("stickyshow");
+            } else {
+
+                wrap.removeClass("stickyshow");
+            }
+
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    function addItemPopup(item_id, prod_id, type) {
+        var tS = new Date().getTime();
+
+        var url = '/ev_cartassignments/addon/getaddons?itemid=' + item_id + '&prodid=' + prod_id + '&type=' + type + '&ts=' + tS;
+
+        var data;
+
+        jQuery.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'get',
+            data: data,
+            success: function (data) {
+
+                jQuery("#mattcontainer_" + item_id).html(data.list);
+
+
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+
+    }
+
+
+</script>
+<?php
+
+// print_r($contactObject);
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$cart = $objectManager->get('\Magento\Checkout\Model\Cart');
+
+$debug = false;
+if (isset($_GET['debug'])) {
+    if ($_GET['debug'] == 1) {
+        $debug = true;
+    }
+}
+if ($debug) {
+
+    echo "QUOTE ID = " . $cart->getQuote()->getId() . "<br>";
+    echo "<table class='table'>";
+}
+$itemsVisible = $cart->getQuote()->getAllVisibleItems();
+foreach ($itemsVisible as $item) {
+    $productName = $item->getProduct()->getName();
+    $productPrice = $item->getProduct()->getPrice();
+
+    $type_id = $item->getProduct()->getTypeId();
+    $result = '';
+    if ($type_id == 'configurable') {
+
+
+        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+        $connection = $resource->getConnection();
+        $tableName = $resource->getTableName('quote_item');
+        $attribute_information = "Select item_id FROM " . $tableName . " where parent_item_id = '" . $item->getId() . "'"; //check for the  custom attribute condition". WHERE id = " . $manufacture . ";";
+        // fetchOne it return the one value
+        $result = $connection->fetchOne($attribute_information);
+    }
+    if ($debug) {
+        echo "<tr>";
+        echo "<td>" . $item->getId() . $result . "</td><td>" . $productName . "</td><td>" . $productPrice . "</td><td>" . $item->getQty() . "</td><td>" . $item->getParentPurchase() . "</td>";
+        echo "</tr>";
+    }
+    if (is_numeric($item->getItemId()) && $item->getProduct()->getAttributeSetId() == 11) {
+        $items = json_decode($item->getEvCartassignmentsData(), true);
+
+        if (is_array($items)) {
+            foreach ($items as $key3 => $val3) {
+                $topMattressObject = $cart->getQuote()->getItemById($val3['id']);
+                // $topMattressObject = Mage::getModel('sales/quote_item')->load($val3['id']);
+                $has_linked_item = false;
+                $has_linked_remove_id = $val3['id'];
+                $has_linked_remove_type = $val3['type'];
+                if ($topMattressObject) {
+                    if (is_numeric($topMattressObject->getItemId())) {
+
+                        $items_inner = json_decode($topMattressObject->getParentPurchase(), true);
+
+                        foreach ($items_inner as $key4 => $val4) {
+
+                            if ($val4 == $item->getId()) {
+                                $has_linked_item = true;
+                            }
+
+                        }
+                    }
+                }
+                if (!$has_linked_item) {
+
+                    //remove existing ones for this item in the arr
+                    foreach ($items as $key7 => $val8) {
+                        if ($val8['id'] == $has_linked_remove_id && $val8['type'] == $has_linked_remove_type) {
+                            unset($items[$key7]);
+                        }
+                    }
+
+                    $items = json_encode($items);
+
+                    ///   $item->setParentPurchase(($items))->save();
+
+                }
+
+                //$key3 = top, bottom etc on the bed, does it match the current type check?
+
+                //   echo $_item->getId()."|".$val3."|||||".$key3."|".$val2['type']."<br />";
+                //if($_item->getId() == $val3 && $key3 == $val2['type']){
+
+                // unset($remove_me_array[$_item->getId()]);
+                // }
+                // else{
+
+                // $remove_me_array[$val3] = $key3;
+                // }
+            }
+        }
+    }
+
+}
+if ($debug) {
+    echo "</table>";
+}
+?>
+
+<?php
+/**
+ * Shopping cart template
+ *
+ * @var $block \Magento\Checkout\Block\Cart
+ */
+
+if ($block->getItemsCount()) {
+    // phpcs:ignore Magento2.Security.LanguageConstruct.DirectOutput
+    echo $block->getChildHtml('with-items');
+} else {
+    // phpcs:ignore Magento2.Security.LanguageConstruct.DirectOutput
+    echo $block->getChildHtml('no-items');
+}
+?>
+
+
+
+<?php
+
+//$current_postcode = 'NP205AA';
+
+$coreSession = $objectManager->get('Magento\Framework\Session\SessionManagerInterface');
+$coreSession->start();
+// Set Session
+
+$current_postcode = $coreSession->getPostcode();
+// $current_postcode = Mage::getSingleton('core/session')->getPostcode();
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+

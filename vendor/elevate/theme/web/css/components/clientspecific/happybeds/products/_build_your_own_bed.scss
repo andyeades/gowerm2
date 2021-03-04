@@ -1,0 +1,1554 @@
+@if $sitename == happybeds {
+
+
+    $byob-desc-wrap-h2-textalign: center !default;
+    $byob-desc-wrap-h2-textalign-desktopmd: left !default;
+    $byob-desc-wrap-h2-padding-desktopmd: 0 0 1.25rem 0 !default;
+    $byob-desc-wrap-h2-padding: 0 0 1.25rem 0 !default;
+
+    $byob-pow-margin-leftright-mobile: -($grid-gutter-width-mobile) !default;
+    $byob-pow-margin-leftright-mobiletablet: -($grid-gutter-width / 2) !default;
+
+    $byob-ppmb-margin-leftright-mobile: -($grid-gutter-width-mobile) !default;
+    $byob-ppmb-margin-leftright-mobiletablet: -($grid-gutter-width / 2) !default;
+
+
+    // Tabs
+    $byob-tabs-li-current-zindex: 4 !default;
+    $byob-tabs-container-tabmenu-width: 15% !default;
+    $byob-tabs-container-tabmenu-width-desktop: 18% !default;
+
+    $byob-tabs-container-tab-width: 75% !default;
+    $byob-tabs-container-tab-width-desktop: 82% !default;
+    $byob-tabs-tab0-padding: 2.5rem !default;
+    $byob-tabs-tab0-padding-desktop: 94px 30px 30px 30px !default;
+
+
+    // Button
+
+    $byob-next-button-width: 140px !default;
+    $byob-next-button-width-desktop: 140px !default;
+    $byob-next-button-margin: 0 auto !default;
+    $byob-next-button-margin-desktop: 0 30px 0 auto !default;
+
+
+    // Grey Options Wrap (the Hows it looking so far bit)
+
+    $byob-gow-padding: 0 0.9375rem 1.5rem !default;
+    $byob-gow-padding-desktop: 0 1.5rem 1.5rem !default;
+
+
+    $byob-btm-o-width-mobile: 100% !default;
+    $byob-btm-o-width-desktop: 100% !default;
+
+    $byob-btm-m-width-mobile: 100% !default;
+    $byob-btm-m-width-desktop: 100% !default;
+
+
+    // Outer Containers
+
+    $byob-product-media-width: 100% !default;
+    $byob-product-media-width-desktopmd: 55% !default;
+
+    $byob-product-info-main-width: 100% !default;
+    $byob-product-info-main-width-desktopmd: 45% !default;
+
+    //checked Label
+
+    $byob-checked-label-border-color: #f0376b !default;
+
+
+    $mytab-pane-text-color: #2c2c2c !default;
+
+    .ev-divans-outer,
+    .ev-bespokebeds-outer,
+    .ev-headboards-outer,
+    .product-build-your-own-bed {
+
+
+        #pinfo-btm-o {
+            width: $byob-btm-o-width-mobile;
+            @include min-screen($desktop-min) {
+                width: $byob-btm-o-width-desktop;
+            }
+
+            #pinfo-btm-m {
+                width: $byob-btm-m-width-mobile;
+                @include min-screen($desktop-min) {
+                    width: $byob-btm-m-width-desktop;
+                }
+            }
+        }
+
+        .product-info-main {
+            width: $byob-product-info-main-width;
+            @include min-screen($desktop-md-min) {
+                @include co(width, $byob-product-info-main-width-desktopmd, $byob-product-info-main-width);
+            }
+
+        }
+
+        .product.media {
+            width: $byob-product-media-width;
+            @include min-screen($desktop-md-min) {
+                @include co(width, $byob-product-media-width-desktopmd, $byob-product-media-width);
+            }
+
+        }
+    }
+
+    .product-build-your-own-bed,
+    .product-view-divans {
+
+
+
+        #what-makes-it-great {
+            margin: 0;
+
+            .tabbable.tabs-left {
+                .nav-tabs {
+                    >li {
+                        >a {
+                            border: none;
+                            min-height: 60px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .product-options-bottom .add-to-cart {
+            width: 100%;
+            float: right;
+            text-align: right;
+            display: none;
+        }
+
+        .dynamic_image_items {
+            border-radius: 7px;
+            -moz-border-radius: 7px;
+            -webkit-border-radius: 7px;
+        }
+
+        .container.product-details,
+        .product-info {
+            width: 100% !important;
+        }
+
+        .breadcrumb {
+            display: none !important;
+        }
+
+        .product-details h1 {
+            margin: 0;
+            padding: 0;
+            border: none;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .swiper-slide {
+            background: 0 0 !important;
+        }
+
+        .product-options {
+            background-color: initial !important;
+        }
+
+        .bespoke-this {
+            background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(130, 91, 0, 1) 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 255, 255, 0)), color-stop(100%, rgba(130, 91, 0, 1)));
+            background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(130, 91, 0, 1) 100%);
+            background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(130, 91, 0, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(130, 91, 0, 1) 100%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, rgba(130, 91, 0, 1) 100%);
+        }
+
+        .tooltip {
+            opacity: 1 !important;
+        }
+
+        #subheading-bar {
+            display: none !important;
+        }
+
+        #messages_product_view {
+            display: none !important;
+        }
+
+        .new_container {
+            width: 100%;
+        }
+
+        .nav-tabs a {
+            display: block !important;
+        }
+
+        .swiper-slide {
+            width: 100% !important;
+        }
+
+        .c_sel {
+            float: right;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            background: #fff;
+        }
+
+        #paging li {
+
+            width: 39px;
+            margin: 0 2px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            padding: 5px 5px;
+            float: left;
+            cursor: pointer;
+        }
+
+        .option-name.option-name-custom.small-color-font {
+            font-size: 11px;
+            text-align: center;
+            margin-top: 1px;
+        }
+
+        button#modal-footer-btn-confirm a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #mattress_paging_lower {
+            float: right;
+            margin: 5px 0 20px 0;
+        }
+
+        div#mattress_paging {
+            float: right;
+        }
+
+        #change_button {
+            cursor: pointer;
+            color: #fff;
+            background-color: #a4a4a4;
+
+            &:hover {
+                opacity: .8;
+            }
+        }
+
+
+        #config-image-wrapper img {
+            position: absolute;
+        }
+
+
+
+        #mattress_price {
+            display: none;
+        }
+
+        .circle {
+            color: #000;
+            background-color: #fff;
+            padding: 0 7px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 11px;
+            margin-right: 3px;
+            font-size: 15px;
+        }
+
+
+        #ul-moreviews li img {
+            cursor: pointer;
+        }
+
+
+
+
+
+        .product-options dt {
+            padding-top: 10px;
+            font-weight: 400;
+            border-bottom: 1px solid #ebecef;
+            padding-bottom: 8px;
+        }
+
+        #options--list li {
+            background-color: #fff;
+
+            float: left;
+            padding: 0;
+            margin: 0;
+            width: 57px;
+            border: none;
+            height: 93px;
+        }
+
+        dl {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        #tab-6 ul.price {
+            height: 20px;
+
+            li {
+                height: 20px;
+            }
+        }
+
+        .product-options {
+            margin-top: 50px;
+            background: 0 0 !important;
+
+            dt label {
+                text-transform: uppercase;
+                margin-bottom: 0;
+                font-weight: 700;
+                font-size: 20px;
+                padding: 10px 0 4px 0;
+            }
+
+            dd label:hover {
+                padding: 0;
+                border: 2px solid #f0f0f0;
+                color: #333;
+                cursor: pointer;
+            }
+
+            input[type=radio]:checked+label {
+                border: 2px solid #f0376b;
+                padding: 0;
+            }
+        }
+
+
+        .product-details .product-options-std {
+            background: 0 0;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .input-box:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        #tab-0 {
+            display: block;
+
+            .button {
+                margin: 0 auto !important;
+            }
+        }
+
+        .breadcrumbs-outer {
+            display: none;
+        }
+
+        .hidetoggle {
+            display: none;
+        }
+
+
+        .pages li a {
+            margin: 0 5px;
+        }
+
+        .products-grid .tech-ico-outer {
+            margin-right: 0;
+        }
+
+        #state_filters,
+        .layered-nav-choose_size {
+            display: none !important;
+        }
+
+        .hb-pages ol>.active>span {
+            padding: 7px 17.5px;
+            margin-right: 4.5px;
+        }
+
+        dd#ppmattress #myRadioGroup label {
+            padding: 10px;
+        }
+
+        .option-name.option-name-custom.small-color-font {
+            margin-top: 0;
+        }
+
+        @media (max-width: 900px) {
+            #draw_toggler .toggle_label {
+                margin-left: 27px;
+            }
+        }
+
+        .firmness-rating-outer {
+            margin-bottom: 10px;
+        }
+
+        .products-grid img.img-responsive {
+            width: 100%;
+        }
+
+    }
+
+    .product-build-your-own-bed {
+        .product-info-main {
+            order: 2;
+            width: 45%;
+            margin-left: auto;
+        }
+        .columns {
+            width: 100%;
+        }
+
+        #what-makes-it-great {
+            display: flex;
+            flex-direction: column;
+            background-color: initial;
+            float: none;
+
+        }
+
+        .byobed-outer {
+            @include max-screen($screen-sm-max) {
+                padding-bottom: 15px;
+            }
+        }
+
+        #product-page-midpage-block {
+            margin-top: 0;
+
+        }
+    }
+
+    .bs-modal {
+        .doyouneedmattress {
+            margin: 1.5rem 0;
+            display: block;
+            width: 100%;
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+    .bs-modal-footer {
+        .add-to-cart {
+            .action {
+                @include min-screen($desktop-min) {
+                    &:first-of-type {
+                        margin-right: 10px;
+                    }
+                    &:nth-of-type(2) {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .byobed-outer {
+        width: 100%;
+        background-color: #cbcbcd;
+
+        input[type="radio"]:checked + label {
+            border: 3px solid $byob-checked-label-border-color;
+            padding: 0;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            z-index: 1;
+        }
+
+        .container {
+            padding: 0;
+        }
+
+        .cont-mob {
+            @include max-screen($screen-xs-max) {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .swiper-container {
+            margin-top: 51px;
+        }
+
+        .swiper-slide {
+            margin-bottom: 2rem;
+
+            .cd-primary-nav2 {
+
+                transition: none !important;
+            }
+        }
+
+        .leftpart {
+            width: 100%;
+
+            @include min-screen($screen-lg-min) {
+                width: 60%;
+            }
+        }
+
+        .rightpart {
+            width: 100%;
+
+            @include min-screen($screen-lg-min) {
+                width: 40%;
+                padding-bottom: 2rem;
+            }
+        }
+
+
+        #ppmattress {
+            > p {
+                text-align: left;
+                float: left;
+                padding: 10px;
+            }
+        }
+
+
+        .hideprice {
+            display: none;
+        }
+
+        #14-inch {
+            margin-bottom: 20px !important;
+        }
+
+
+        .product-options ul.options-list {
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .c_sel {
+            display: none;
+        }
+
+        .product-options {
+            dl {
+                @include max-screen($screen-xs-max) {
+                    padding: 0 10px;
+                }
+
+            }
+        }
+
+        div#mt_prices {
+            float: right;
+            margin-top: 10px;
+        }
+
+        #selected_mattress {
+            .product-image img {
+                width: 100px;
+            }
+
+            .price {
+                float: right;
+                width: 200px;
+            }
+
+            .product-name {
+                float: none;
+                text-align: right;
+                display: block;
+                width: 100%;
+            }
+
+            .product-image {
+                float: left;
+            }
+
+            .price-black {
+                width: 201px;
+                float: right;
+                height: 17px;
+                font-size: 15px;
+                background-color: #f0f0f0;
+                color: #f0376b;
+            }
+
+            .price-grey {
+                width: 200px;
+                bottom: 0;
+                font-size: 11px;
+                height: 20px;
+                background-color: #f0f0f0;
+                float: left;
+            }
+
+            img {
+                width: 40%;
+                height: auto;
+                float: left;
+                background-color: white;
+                padding: 2px;
+                margin: 0;
+                border: 2px solid #979ba4;
+            }
+
+            .quickwrap .img-responsive {
+                width: 100px;
+                float: left;
+            }
+
+            .firmness-rating-outer {
+                display: none;
+            }
+
+            .product-grid {
+                width: 100%;
+                background-color: #f0f0f0;
+                padding: 32px;
+            }
+
+            .row {
+                margin: 0;
+            }
+
+            .listIcons,
+            .new,
+            .sale,
+            .tension {
+                display: none;
+            }
+        }
+
+        .mattress_selected {
+            clear: both;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+
+        div#mt_price {
+            color: #db2727;
+            font-weight: bold;
+        }
+
+        #tab-6 ul.price {
+            height: 20px;
+            float: right;
+            width: 50%;
+            text-align: right;
+        }
+
+        label {
+            display: inline-block;
+        }
+
+        label img {
+            pointer-events: none;
+            margin: 0 auto;
+        }
+
+
+        #change_button {
+            width: 100%;
+            cursor: pointer;
+            border-radius: 2px;
+            color: white;
+            background-color: #00858d;
+            margin-top: 10px;
+        }
+
+
+        .corner-ribbon.shadow {
+            box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+        }
+
+
+        .corner-ribbon.green {
+            background: #f0376b;
+            color: white;
+            font-size: 15px;
+            padding: 2px 15px;
+            text-align: center;
+            float: left;
+            width: 100%;
+            display: block;
+
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 467px) {
+
+
+            .corner-ribbon.green {
+                font-size: 10px !important;
+            }
+
+            #selected_mattress .price li {
+                width: 100% !important;
+                display: block;
+                float: none;
+            }
+
+
+            div#divan_price {
+                font-size: 12px;
+            }
+
+            div#mattress_price {
+                font-size: 12px;
+            }
+
+            div#total_price {
+                font-size: 12px;
+            }
+        }
+
+        .switch-light {
+            display: block;
+        }
+
+        .button {
+            &:active {
+                outline: none;
+                box-shadow: none;
+            }
+
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
+        }
+
+
+    }
+    .byobed-outer {
+        .sml-t-txt {
+            @include max-screen($mobilemax) {
+                width: 100%;
+                height: 20px;
+            }
+
+        }
+    }
+
+
+    #grey_options_wrap {
+        padding: $byob-gow-padding;
+        width: 100%;
+        margin: 0;
+        background-color: white;
+        min-height: 160px;
+
+        @include max-screen($screen-xs-mid-max) {
+            min-height: 175px;
+        }
+        @include min-screen($desktop-min) {
+            @include co(padding, $byob-gow-padding-desktop, $byob-gow-padding);
+        }
+
+        h4 {
+            margin-top: 1rem;
+        }
+
+        .btn-cart {
+            margin-top: 1rem;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            @include max-screen($mobiletablet-max) {
+                width: auto;
+            }
+        }
+
+        .red_price {
+            color: #db3737;
+
+            font-size: 14px;
+            text-transform: uppercase;
+            @include max-screen($mobiletablet-max) {
+                display: block;
+            }
+            @include min-screen($desktop-min) {
+                margin-left: 9px;
+            }
+        }
+    }
+
+    .tab-content {
+        padding: 0;
+        display: none;
+
+        dt {
+            @include max-screen($mobiletablet-max) {
+                padding-top: 0;
+            }
+
+            label {
+                text-transform: uppercase;
+            }
+        }
+    }
+    .swatch45 {
+        width: 100%;
+
+        span {
+            width: 100%;
+            min-height: 51px;
+            display: inline-block;
+            background-size: contain !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+            @include min-screen($screen-sm-min) {
+                height: 102px;
+            }
+
+
+        }
+
+        .bespoke-sub-size {
+            height: auto !important;
+            display: inline-block;
+            padding-left: 0.25em;
+            width: auto;
+
+            @include max-screen($screen-xs-mid-max) {
+                clear: both;
+                display: block;
+                padding-left: 0;
+                width: 100%;
+            }
+
+            @include min-screen($screen-md-min) {
+            }
+        }
+    }
+
+    #tab-0 {
+        display: block;
+        padding: $byob-tabs-tab0-padding;
+        text-align: center;
+
+        @include min-screen($desktop-min) {
+            @include co(padding, $byob-tabs-tab0-padding-desktop, $byob-tabs-tab0-padding);
+        }
+
+        .btn-cart {
+            margin-top: 1.25rem;
+            @include max-screen($mobiletablet-max) {
+                width: 100%;
+            }
+        }
+    }
+
+
+    #tab-6 {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        ul.price {
+            @include max-screen($screen-xs-mid-max) {
+                height: auto;
+            }
+        }
+
+        ul.price li {
+            height: 20px;
+            width: 47%;
+            margin-top: 17px;
+        }
+
+    }
+
+    #tabs-container {
+        display: flex;
+
+
+    }
+
+    .tabs-menu {
+        flex: 1 1 auto;
+        margin-right: -1px;
+        width: $byob-tabs-container-tabmenu-width;
+
+        @include min-screen($desktop-min) {
+            @include co(width, $byob-tabs-container-tabmenu-width-desktop, $byob-tabs-container-tabmenu-width);
+        }
+
+        img {
+            width: 100%;
+            padding: 14px 15px 0 15px;
+            height: 64px;
+
+            @include max-screen($screen-xs-mid-max) {
+                padding: 8px 8px 0 8px;
+                height: 54px;
+            }
+        }
+
+        > li {
+            &:nth-of-type(2) {
+                @include max-screen($mobiletablet-max) {
+                    padding-bottom: 0.5rem;
+                }
+            }
+        }
+
+        a {
+            color: #5a5a5a;
+            transition: initial;
+
+            span {
+                @include max-screen($screen-xs-mid-max) {
+                    font-size: 9px;
+                }
+            }
+
+            > span {
+                display: block;
+                text-align: center;
+
+            }
+
+            .aligner-tab {
+                > span {
+                    display: block;
+                    @include min-screen($screen-xs-min) {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+
+
+        li {
+            border: 1px solid #c1c2c5;
+            background-color: #E7E7EA;
+            border-bottom: none;
+
+            width: 100%;
+            display: block;
+            line-height: 28px;
+            margin-right: -1px !important;
+
+            &:last-child {
+                border-bottom: 1px solid #c2c2c5;
+            }
+
+            a {
+                padding: 0;
+                text-transform: uppercase;
+                color: #80858d;
+                text-decoration: none;
+            }
+
+            &.current {
+                position: relative;
+                background-color: #f0376b !important;
+                color: white !important;
+                z-index: $byob-tabs-li-current-zindex;
+
+                img {
+                    filter: grayscale(100%) brightness(180) contrast(100%);
+                }
+
+                a {
+                    color: white;
+                }
+            }
+        }
+
+
+    }
+
+
+    // Next Button
+    .byob-next {
+        width: $byob-next-button-width;
+        margin: $byob-next-button-margin;
+        @include min-screen($desktop-min) {
+            @include co(margin, $byob-next-button-margin-desktop, $byob-next-button-margin);
+            @include co(width, $byob-next-button-width-desktop, $byob-next-button-width);
+        }
+    }
+    .tab {
+        flex: 1 1 auto;
+        width: $byob-tabs-container-tab-width;
+        border: 1px solid #d4d4d1;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        > div {
+            flex: 1 1 auto;
+            width: 100%;
+        }
+
+        @include min-screen($desktop-min) {
+            @include co(width, $byob-tabs-container-tab-width-desktop, $byob-tabs-container-tab-width);
+        }
+
+        ul {
+
+            padding: 0;
+            margin-bottom: 0;
+        }
+
+        li {
+            background-color: initial;
+
+            padding: 0;
+            @include max-screen($screen-xs-mid-max) {
+                height: auto !important;
+            }
+        }
+
+        $byob-options-list-li-padding: 0 !default;
+        $byob-options-list-li-padding-desktop: 1% !default;
+        $byob-options-list-width: 33.33333% !default;
+        $byob-options-list-width-desktop: 20% !default;
+        $byob-options-list-grid-margin: 1rem 0 0 0 !default;
+
+        $byob-options-list-66-width: 33.33333% !default;
+        $byob-options-list-66-width-desktop: 33.33333% !default;
+
+        $byob-options-list-padding: 0 !default;
+        $byob-options-list-padding-desktop: 0 0.625rem 0.625rem !default;
+
+
+        $byob-options82list-li-width: 33.3333% !default;
+        $byob-options84list-li-width: 33.3333% !default;
+        $byob-options85list-li-width: 33.3333% !default;
+        $byob-options86list-li-width: 33.3333% !default;
+
+
+        // options
+        .options-list {
+            display: flex;
+            flex-wrap: wrap;
+            padding: $byob-options-list-padding;
+            @include min-screen($desktop-min) {
+                @include co(padding, $byob-options-list-padding-desktop, $byob-options-list-padding);
+            }
+
+            li {
+                flex: 0 1 auto;
+                width: $byob-options-list-width;
+                padding: $byob-options-list-li-padding;
+                text-align: center;
+                @include min-screen($desktop-min) {
+                    @include co(padding, $byob-options-list-li-padding-desktop, $byob-options-list-li-padding);
+                    @include co(width, $byob-options-list-width-desktop, $byob-options-list-width);
+                }
+            }
+
+            h2 {
+                font-size: 1.25rem;
+                width: 100%;
+                margin: 0 0 10px 1.5rem;
+                @include min-screen($desktop-min) {
+                    font-size: 1.5rem;
+                    margin: 0 0 10px 10px;
+                }
+            }
+
+            .grid {
+                margin: $byob-options-list-grid-margin;
+            }
+
+            #nohead {
+                height: auto;
+            }
+
+            label {
+                overflow: hidden;
+                width: 96%;
+                border: 2px solid #fff;
+            }
+
+        }
+
+        #options-82-list {
+            li {
+                @include min-screen($desktop-min) {
+                    width: $byob-options82list-li-width;
+                }
+            }
+
+        }
+
+        #options-84-list {
+            li {
+                @include min-screen($desktop-min) {
+                    width: $byob-options84list-li-width;
+                }
+            }
+
+        }
+
+        #options-85-list {
+            li {
+                @include min-screen($desktop-min) {
+                    width: $byob-options85list-li-width;
+                }
+            }
+
+        }
+
+        #options-86-list {
+            li {
+                @include min-screen($desktop-min) {
+                    width: $byob-options86list-li-width;
+                }
+            }
+
+        }
+
+        #options-82-list,
+        #options-85-list,
+        #options-86-list {
+            padding: 0 15px;
+        }
+
+        .allheads {
+            .hb-image-bkg {
+
+            }
+        }
+
+        #options-66-list {
+            li {
+                flex: 0 1 auto;
+                width: $byob-options-list-66-width;
+                padding: 1%;
+                text-align: center;
+                @include min-screen($desktop-min) {
+                    width: $byob-options-list-66-width-desktop;
+                }
+            }
+        }
+    }
+
+    #product-options-wrapper {
+        @include max-screen($mobiletablet-max) {
+            margin-left: $byob-ppmb-margin-leftright-mobiletablet;
+            margin-right: $byob-ppmb-margin-leftright-mobiletablet;
+        }
+        @include max-screen($mobilemax) {
+            margin-left: $byob-ppmb-margin-leftright-mobile;
+            margin-right: $byob-ppmb-margin-leftright-mobile;
+        }
+    }
+    #topreviews {
+        @include min-screen($desktop-md-min) {
+            padding-right: 15px;
+        }
+    }
+
+    #product-page-midpage-block {
+        margin-top: 0;
+        background-color: #3d4557;
+        margin-bottom: 21px;
+        padding-top: 1.25rem;
+        padding-bottom: 15px;
+        //padding-left: 15px;
+        //padding-right: 15px;
+        @include max-screen($mobiletablet-max) {
+            margin-left: $byob-ppmb-margin-leftright-mobiletablet;
+            margin-right: $byob-ppmb-margin-leftright-mobiletablet;
+        }
+        @include max-screen($mobilemax) {
+            //  padding-left: 7.5px;
+            //  padding-right: 7.5px;
+            margin-left: $byob-ppmb-margin-leftright-mobile;
+            margin-right: $byob-ppmb-margin-leftright-mobile;
+        }
+        @include min-screen($desktop-md-min) {
+            padding: 20px;
+        }
+
+        #what-makes-it-great {
+            @include max-screen($desktop-sm-max) {
+                border-radius: unset;
+            }
+            @include max-screen($mobilemax) {
+
+            }
+        }
+
+        .firmness-rating-bottom {
+            @include screen($mobiletablet-min, $mobiletablet-max) {
+                margin-left: 0;
+                padding: 0 15px;
+                margin-right: 0;
+            }
+
+        }
+
+    }
+    .dimensions-outer {
+        background-color: #dfdfe1;
+        padding: 0 0.5rem 0.5rem;
+        color: white;
+        @include min-screen($desktop-min) {
+            padding: 0 0 0.5rem;
+        }
+    }
+    .tr_review_wrap {
+        color: white;
+        @include min-screen($desktop-min) {
+            padding: 0 0.5rem;
+        }
+        @include min-screen($screen-lg-min) {
+            .product-build-your-own-bed & {
+                margin-right: 51px;
+            }
+
+        }
+
+        .feefowidget-rating-wrapper {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+
+
+            @include min-screen($mobiletablet-min) {
+                width: 50%;
+                text-align: left;
+            }
+
+            > span {
+                display: inline-block;
+                font-size: 11px;
+                margin-left: 8px;
+                margin-top: 4px;
+                font-style: italic;
+            }
+        }
+
+        .tr_ca {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin-top: 0.315rem;
+
+            @include min-screen($mobiletablet-min) {
+                width: 50%;
+                text-align: right;
+                margin-top: 0;
+            }
+        }
+
+        .tr_ca {
+
+        }
+
+        .tr_review {
+            padding: 1rem;
+            margin: 10px 0;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 29px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            @include min-screen($desktop-min) {
+                text-align: left;
+                padding: 10px 20px 31px 0;
+            }
+        }
+    }
+
+
+    #byob-desc-wrap {
+        .firmness-rating-bottom {
+            @include max-screen($mobiletablet-max) {
+                //padding: 0;
+            }
+        }
+
+        h2 {
+            text-align: $byob-desc-wrap-h2-textalign;
+            padding: $byob-desc-wrap-h2-padding;
+            color: white;
+            @include min-screen($desktop-md-min) {
+                @include co(padding, $byob-desc-wrap-h2-padding-desktopmd, $byob-desc-wrap-h2-padding);
+                @include co(text-align, $byob-desc-wrap-h2-textalign-desktopmd, $byob-desc-wrap-h2-textalign);
+            }
+
+
+        }
+    }
+
+
+    #div-tab-2 {
+
+        > a > span {
+            font-size: 11px;
+
+            @include max-screen($screen-xs-mid-max) {
+                font-size: 9px;
+            }
+        }
+
+        .sml-t-txt {
+
+
+            &:nth-of-type(2) {
+                @include max-screen($screen-xs-mid-max) {
+                    display: none;
+                }
+            }
+
+        }
+    }
+
+    .div-tab {
+        .sml-t-txt {
+            font-size: 11px;
+
+            @include max-screen($screen-xs-mid-max) {
+                font-size: 9px;
+            }
+        }
+    }
+
+    #mytabs {
+
+
+        display: flex;
+        background: #fff;
+
+        li {
+
+            cursor: pointer;
+            flex: 1;
+            padding: 13px;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+
+            &:last-of-type {
+                border-right: unset;
+            }
+
+            &:nth-of-type(odd) {
+
+
+            }
+
+            a {
+                text-transform: uppercase;
+            }
+
+            &.active {
+                background-color: #00acb6;
+                color: #fff;
+
+                a {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    $byob-filters-buttongroup-btn-width: 25% !default;
+    $byob-filters-buttongroup-btn-width-mobilemax: 33.33333% !default;
+    .guide-text-wrap h3 {
+        margin-bottom: 11px;
+    }
+    .filters-button-group {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1rem 0;
+
+        &.button-group {
+            //padding: 0 $grid-gutter-width/2;
+            @include max-screen($mobile-max) {
+                padding: 0 $grid-gutter-width-mobile;
+            }
+        }
+
+        .button {
+            flex: 0 1 auto;
+            width: $byob-filters-buttongroup-btn-width;
+            padding: 0;
+            background-color: unset;
+            border: 2px solid transparent;
+            cursor: pointer;
+            @include max-screen($mobile-max) {
+                @include co(width, $byob-filters-buttongroup-btn-width-mobilemax, $byob-filters-buttongroup-btn-width);
+            }
+
+            > img {
+                padding: 0.5rem;
+                @include img-responsive();
+                margin: 0 auto;
+            }
+        }
+    }
+
+
+    .btn-default, .button {
+        color: #fff;
+        background-color: #00acb6;
+        border-color: #00949d;
+    }
+
+
+    .ev-prod-keyfacts {
+        display: none;
+    }
+
+
+    .is-checked {
+        border: 2px solid #343434 !important;
+    }
+    .hideheadboard {
+        display: none;
+    }
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .spinner-fading-circle {
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        position: relative;
+        margin: 0 auto;
+    }
+    .product-add-form {
+        margin-bottom: 20px;
+    }
+    span.large-4.columns.float-left {
+        width: 100%;
+    }
+    #page-main-outer {
+        margin: 0;
+        background: #cbcbcd;
+    }
+    button.btn.btn-info {
+        margin-right: 30px;
+    }
+    .product-reviews-summary, #linked-products-outer, .product-info-price, .page-title-wrapper {
+        display: none;
+    }
+    div#product-options-wrapper {
+        margin-top: 100px;
+    }
+    .product-options-bottom {
+        display: none;
+    }
+    .media, .byobed-in {
+
+        display: block;
+    }
+
+    .byobed-in {
+        display: flex;
+
+        @include max-screen($screen-md-max) {
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        >div {
+            flex: 0 1 auto;
+
+        }
+    }
+
+    .product-add-form {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+    }
+
+    .breadcrumbs {
+        display: none;
+    }
+
+    #tab-0 h4 {
+        margin-bottom: 20px;
+    }
+    .base-depth-img, .colourspan {
+
+        padding: 1px;
+    }
+    #dynamic_shadow {
+        position: relative;
+    }
+    #dynamic_product_images {
+
+        height: auto;
+    }
+    h1#bespokeh1 {
+        font-size: 21px;
+    }
+    .tab-content dt {
+        padding-top: 10px;
+        font-weight: 400;
+        border-bottom: 1px solid #ebecef;
+        padding-bottom: 8px;
+        margin: 0 21px 21px;
+    }
+    .byobed-outer .tab-content dt label {
+        text-transform: uppercase;
+        margin-bottom: 0;
+        font-weight: 700;
+        font-size: 20px;
+        padding: 10px 0 4px;
+    }
+
+    .mytab-pane {
+        color: $mytab-pane-text-color;
+
+        h3,
+        p {
+            padding: 0 10px;
+        }
+
+    }
+    .btn-cart:hover {
+
+        opacity: 0.8;
+    }
+    #nohead {
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .itclick {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 42px;
+        border-bottom: 1px solid #ccc;
+        height: 105px;
+        margin: 0;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

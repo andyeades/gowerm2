@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+<type name="Magento\Config\Model\Config\Backend\Image">
+    <arguments>
+        <argument name="extensions" xsi:type="array">
+            <item name="allowed" xsi:type="array">
+                <item name="svg" xsi:type="string">text/plain</item>
+            </item>
+            <item name="image_allowed" xsi:type="array">
+                <item name="svg" xsi:type="string">text/plain</item>
+            </item>
+            <item name="media_allowed" xsi:type="array">
+                <item name="svg" xsi:type="string">text/plain</item>
+            </item>
+        </argument>
+    </arguments>
+</type>
+    <type name="Elevate\AddToCart\Model\ImageUploader">
+<arguments>
+    <!-- Temporary file stored in pub/media/faq/tmp/icon -->
+    <argument name="baseTmpPath" xsi:type="string">elevate/tmp/addtocart</argument>
+    <argument name="basePath" xsi:type="string">elevate/addtocart</argument>
+    <argument name="allowedExtensions" xsi:type="array">
+        <item name="jpg" xsi:type="string">jpg</item>
+        <item name="jpeg" xsi:type="string">jpeg</item>
+        <item name="gif" xsi:type="string">gif</item>
+        <item name="png" xsi:type="string">png</item>
+        <item name="svg" xsi:type="string">svg</item>
+    </argument>
+</arguments>
+</type>
+</config>

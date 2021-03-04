@@ -1,0 +1,18 @@
+//
+//  Checkout Estimated Total
+//  ---------------------------------------------
+
+.opc-estimated-wrapper {
+    display: none;
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .opc-estimated-wrapper {
+        display: none;
+    }
+}

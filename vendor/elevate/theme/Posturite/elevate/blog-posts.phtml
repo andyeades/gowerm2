@@ -1,0 +1,261 @@
+
+
+<style>
+    .swiper-pagination-bullet-active {
+        background: #056b43 !important;
+    }
+
+    .content img:hover {
+        opacity: 0.8;
+    }
+
+    ul.nav.nav-pills.tabs {
+        margin: 0 auto;
+        /* width: 370px; */
+        text-transform: uppercase;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+
+    .nav-pills>li {
+        float: left;
+        */: center;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+
+    .nav-pills {
+        text-align: center;
+    }
+
+    .owl-theme .owl-controls {
+        margin-bottom: 20px;
+    }
+
+
+
+    .owl-carousel {
+        position: relative;
+    }
+
+    .owl-prev,
+    .owl-next {
+        position: absolute;
+        top: 50%;
+        margin-top: -10px;
+    }
+    
+    
+
+    .customNavigationOwl {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        z-index: 999;
+    }
+    
+    
+    .blog-wrap .customNavigationOwl {
+        top: 40%;
+    }
+
+
+
+    
+    
+    .test,
+                        .test2 {
+                            width: 30%;
+                            height: 100%;
+                            pointer-events: none;
+                        }
+
+                        .hide_mob {
+                            display: block;
+                        }
+
+                        .show_mob {
+                            display: none;
+                        }
+
+                        @media screen and (max-width: 30000px) {
+                            .mobile_home_box {
+                                background-color: #006a42;
+                                bottom: 0;
+                                position: absolute;
+                                width: 100%;
+                                opacity: 0.6;
+                                text-align: center;
+                                height: 162px;
+                                left: 0;
+                            }
+                            .mobile_home_text {
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                text-align: center;
+                                width: 100%;
+                            }
+
+                            .mobile_home_text h2,
+                            .mobile_home_text p,
+                            .mobile_home_text a {
+                                color: white;
+                            }
+
+                            .mobile_home_text h2 {
+                                font-size: 16px;
+                                margin-bottom: 5px;
+                            }
+                            .mobile_home_text .home-btn-content {
+                                width: 80%;
+                                background-color: white;
+                                text-transform: uppercase;
+                                margin-top: 0px;
+                                height: 42px;
+                                margin-bottom: 8px;
+                                color: black;
+                                font-size: 16px;
+                                padding-top: 12px;
+                            }
+                        }
+
+                        @media screen and (min-width: 601px) {
+                            width: 200px;
+                        }
+
+                        .cms-index-index .btn-posturite:active {
+                            box-shadow: none;
+                        }
+    
+    
+    
+</style>
+
+
+
+
+<?php
+$categoryName = $this->getCategory(); 
+
+?>
+
+        <div class="blog-wrap" style="position:relative">
+            <div class="customNavigationOwl">
+                <a class="prev swiper-button-prev swiper-button-black"></a>
+                <a class="next swiper-button-next swiper-button-black"></a>
+
+
+            </div>
+            <div class="blog-style">
+                <div class="blog-slider">
+                    <div class="container-fluid">
+                            <div class="row-heading">
+                                <h2 class="decorated"><span>From the Blog</span></h2>
+                            </div>
+
+
+                            <?php $posts = Mage::getResourceModel('wordpress/post_collection')
+	->addPostTypeFilter('post')
+//    ->addTermFilter($categoryName, 'category', 'name')
+	->setOrderByPostDate()
+	->addIsViewableFilter()
+	->setPageSize(6);
+                            
+                            if($categoryName){
+                                   $posts->addTermFilter($categoryName, 'category', 'name');
+                            }
+                        
+                        $posts->load(); 
+                                    
+                                    ?>
+
+
+
+
+
+
+                            <div class="owl-wrapper blog">
+
+                                <div class="owl-carousel owl-two owl-theme">
+
+
+
+                                    <?php if (count($posts) > 0): ?>
+                                    <?php foreach($posts as $post): ?>
+                                    <div class="featured-cat-outer jgtest">
+
+                                        <?php
+      $imageZoom = false;                                          
+if ($image = $post->getFeaturedImage()){
+    $first_img = str_replace('-150x150', '', $image->getAvailableImage());
+     $imageZoom = false;  
+}else{
+$first_img = '';
+$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->getPostContent(), $matches);
+$first_img = $matches [1][0];
+    $imageZoom = true;   
+
+if(empty($first_img)){ //Defines a default image
+$first_img = "/media/catalog/product/placeholder/default/image.jpg";
+}
+}
+?>
+                                            <div class="featured-cat-img <?php if($imageZoom == true){ ?>zoom<?php } ?>">
+
+                                                <a href="<?php echo $post->getPermalink() ?>">
+            <img src="<?php echo $first_img ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>" /> 
+        </a>
+                                            </div>
+                                            <a class="featured-cat-link" href="<?php echo $post->getPermalink() ?>"><?php echo $this->escapeHtml($post->getPostTitle()) ?></a>
+                                    </div>
+
+                                    <?php endforeach; ?>
+                                    <?php endif; ?>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    <div style="clear:both;"></div>
+                </div>
+
+            </div>
+        </div>
+
+    <div style="clear:both;"></div>
+    <script type="text/javascript">
+        jQuery(function() {});
+
+        jQuery(document).ready(function() {
+
+            jQuery(".owl-two").owlCarousel({
+                loop: true,
+                margin: 30,
+                 responsiveClass:true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+            
+                
+            owl2 = jQuery(".owl-two").owlCarousel();
+            jQuery(".prev").click(function() {
+                owl2.trigger("prev.owl.carousel");
+            });
+
+            jQuery(".next").click(function() {
+                owl2.trigger("next.owl.carousel");
+            });
+        });
+    </script>

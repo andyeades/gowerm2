@@ -1,0 +1,33 @@
+<?php
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2019 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_OptionsManagement
+ */
+?>
+<?php
+/**
+ * Copyright © 2018 Aitoc. All rights reserved.
+ */
+
+/** @var \Aitoc\OptionsManagement\Block\Adminhtml\Template\Edit\AssignProducts $block */
+/** @var \Aitoc\OptionsManagement\Block\Adminhtml\Template\Edit\Tab\Product $blockGrid */
+$blockGrid = $block->getBlockGrid();
+$gridJsObjectName = $blockGrid->getJsObjectName();
+?>
+<?php  echo $block->getGridHtml(); ?>
+<input type="hidden" name="template_products" id="in_template_products" data-form-part="option_template_edit" value="" />
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Aitoc_OptionsManagement/js/template/assign-products": {
+                "selectedProducts": <?php /* @escapeNotVerified */ echo $block->getProductsJson(); ?>,
+                "gridJsObjectName": <?php /* @escapeNotVerified */ echo '"' . $gridJsObjectName . '"' ?: '{}'; ?>
+            }
+        }
+    }
+</script>
+<!-- @todo remove when "UI components" will support such initialization -->
+<script>
+    require('mage/apply/main').apply();
+</script>

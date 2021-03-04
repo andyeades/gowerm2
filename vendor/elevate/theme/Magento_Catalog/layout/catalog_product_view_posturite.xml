@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="css/styles-product-shared.css"/>
+        <link src="css/styles-product-view.css"/>
+    </head>
+    <body>
+
+        <referenceBlock name="addto" remove="true"/>
+        <!--<referenceBlock name="breadcrumbs" remove="true" />-->
+        <referenceBlock name="product.info.overview" remove="true"/>
+        <referenceBlock name="product-info-qanda" remove="true"/>
+        <referenceBlock name="product-info-instructions" remove="true"/>
+        <referenceBlock name="product-info-specifications" remove="true"/>
+        <referenceBlock name="product.info.addto.bundle" remove="true"/>
+
+
+        <!--<container name="ev.pp.breadcrumbs" htmlTag="div" htmlId="ev-pp-breadcrumbs" after="page.top">
+            <block class="Magento\Catalog\Block\Breadcrumbs" name="pp_breadcrumbs" />
+        </container>-->
+
+
+
+
+
+        <move element="product.info.sku" destination="product.info.price" after="-"/>
+        <move element="product.info.stock.sku" destination="ev.stock.ordertimes" before="-"/>
+        <move element="page.main.title" destination="product.info.media" before="-"/>
+        <move element="bundle.options.container" destination="product.info.main" after="ev.stock.ordertimes"/>
+
+
+
+
+
+
+        <referenceContainer name="product.info.main">
+            <container name="ev.pp.stickybarouter" htmlTag="div" htmlId="ev-pp-stickybarouter" before="-">
+                <container name="ev.pp.stickybar" htmlTag="div" htmlClass="container" before="-">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.stickybarform" template="Magento_Catalog::product/view/client-specific/posturite/stickybarform.phtml">
+
+                    <block class="Magento\Catalog\Block\Product\View" name="ev.pp.stickybar.inner" template="Magento_Catalog::product/view/client-specific/posturite/stickybar.phtml" cacheable="false">
+                        <block class="Magento\Catalog\Pricing\Render" name="product.price.final.alt">
+                            <arguments>
+                                <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                                <argument name="price_type_code" xsi:type="string">final_price</argument>
+                                <argument name="zone" xsi:type="string">item_view</argument>
+                            </arguments>
+                        </block>
+                    </block>
+                    </block>
+
+                </container>
+
+            </container>
+            <container name="ev.pp.shortdescription" htmlTag="div" htmlId="ev-pp-shortdescription" after="product.info.price" before="bundle.options.container">
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.shortdesc" template="Magento_Catalog::product/view/shortdescription.phtml" >
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                        <argument name="at_code" xsi:type="string">short_description</argument>
+                        <argument name="css_class" xsi:type="string">overview</argument>
+                        <argument name="at_label" xsi:type="string">none</argument>
+                        <argument name="number_of_chars" xsi:type="string">130</argument>
+                        <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
+                    </arguments>
+                </block>
+            </container>
+            <container name="ev.stock.ordertimes" htmlTag="div" htmlId="ev-pp-stockorder" after="ev.pp.shortdescription">
+                <block class="Magento\Catalog\Block\Product\View" name="ev.pp.ordertimes"  template="Magento_Catalog::product/view/ordertimes.phtml" before="-"/>
+            </container>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.leadtime" template="Magento_Catalog::product/view/leadtime.phtml" after="-"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.bottlesize" template="Magento_Catalog::product/view/brand.phtml" before="-"/>
+            <container name="ev.pp.keyfacts" htmlTag="div" htmlId="ev-prod-keyfacts-3" htmlClass="ev-prod-keyfacts ev-prod-keyfacts-3" after="product.info.main" before="product.info.details" >
+                <block class="Magento\Catalog\Block\Product\View"
+                       name="product.info.keyfeatures"
+                       template="Magento_Catalog::product/view/keyfeatures.phtml"
+                       ifconfig="evkeyfacts/general/pp_block_3"/>
+            </container>
+
+
+
+        </referenceContainer>
+        <referenceContainer name="product.info.media" htmlClass="product media">
+
+        </referenceContainer>
+
+        <referenceBlock name="product.info.media">
+            <container name="ev.product.info.extrahint" after="-">
+                <container name="ev.product.info.social" label="Product social links container" htmlTag="div" htmlClass="product-social-links">
+                    <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.addto.wishlist"
+                           template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
+
+                    <block class="Magento\Catalog\Block\Product\View\AddTo\Compare" name="view.addto.compare" after="view.addto.wishlist"
+                           template="Magento_Catalog::product/view/addto/compare.phtml" >
+                        <arguments>
+                            <argument name="addToCompareViewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\Checker\AddToCompareAvailability</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Catalog\Block\Product\View" name="ev.product.info.share" template="Magento_Catalog::product/view/addto/share.phtml" ifconfig="theme_options/productpage/enable_evproductmailto"/>
+                </container>
+            </container>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <container name="ev.product.info.bottom.outer" htmlTag="div" htmlId="pinfo-btm-o" after="product.info.media">
+
+                <container name="ev.product.info.bottom.main" htmlTag="div" htmlId="pinfo-btm-m">
+                    <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.info.psidebar" template="Magento_Catalog::product/view/bottom/p-sidebar-j.phtml" before="-" />
+                </container>
+                <container name="ev.product.info.bottom.side" htmlTag="div" htmlId="pinfo-btm-s">
+                    <!-- Posturite -->
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.delivery" template="Magento_Catalog::product/view/bottom/p-delivery.phtml" before="-" />
+                    <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.info.psidebar" template="Magento_Catalog::product/view/bottom/p-sidebar.phtml" before="-" />
+                </container>
+            </container>
+        </referenceContainer>
+
+
+            <referenceBlock name="product.info.description" template="Magento_Catalog::product/view/client-specific/posturite/prod-description.phtml">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getDescription</argument>
+                    <argument name="at_code" xsi:type="string">description</argument>
+                    <argument name="css_class" xsi:type="string">description</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Details</argument>
+                    <argument name="sort_order" xsi:type="string">10</argument>
+                </arguments>
+            </referenceBlock>
+
+        <referenceBlock name="product.info.details" template="Magento_Catalog::product/view/client-specific/posturite/details-posturite.phtml">
+                <block class="Magento\Catalog\Block\Product\View"
+                       name="product-info-features"
+                       template="Magento_Catalog::product/view/client-specific/posturite/features.phtml"
+                       group="detailed_info" after="product.info.description">
+                    <arguments>
+                        <argument name="sort_order" xsi:type="string">10</argument>
+                        <argument name="title" translate="true" xsi:type="string">Features</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Catalog\Block\Product\View"
+                       name="product-info-specificiations"
+                       template="Magento_Catalog::product/view/client-specific/posturite/specifications.phtml"
+                       group="detailed_info" after="product.info.specificiations">
+                    <arguments>
+                        <argument name="title" translate="true" xsi:type="string">Specifications</argument>
+                        <argument name="sort_order" xsi:type="string">30</argument>
+                    </arguments>
+                </block>
+            <block class="FME\Productattachments\Block\Productattachments"
+                   name="product-info-support"
+                   template="Magento_Catalog::product/view/client-specific/posturite/support.phtml"
+                   group="detailed_info" after="product.info.specifications">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Support</argument>
+                    <argument name="sort_order" xsi:type="string">60</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Catalog\Block\Product\View"
+                   name="product-info-faqs"
+                   template="Magento_Catalog::product/view/client-specific/posturite/faq.phtml"
+                   group="detailed_info" after="product.info.faqs">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Faq</argument>
+                    <argument name="sort_order" xsi:type="string">70</argument>
+                </arguments>
+            </block>
+                <block class="Magento\Catalog\Block\Product\View" name="product-info-reviews" template="Magento_Catalog::product/view/client-specific/posturite/reviews.phtml" group="detailed_info">
+                    <arguments>
+                        <argument name="title" translate="true" xsi:type="string">Product Reviews <![CDATA[<span class="testtag"></span>]]></argument>
+                        <argument name="sort_order" xsi:type="string">90</argument>
+                    </arguments>
+                </block>
+        </referenceBlock>
+
+        <!--<move element="product.info.media.magiczoomplus" destination="pinfo.media.sticky.container" after="-"/>
+        <move element="product.info.media.video" destination="pinfo.media.sticky.container" after="product.info.media.magiczoomplus"/>-->
+
+        <move element="catalog.product.related" destination="ev.product.info.bottom.side" after="product.info.psidebar"/>
+        <move element="product.info.details" destination="ev.product.info.bottom.main"/>
+        <referenceBlock name="pattachments.tab" remove="true"/>
+        <referenceBlock name="elevate.pinfobtms.advert.space" remove="true"/>
+        <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
+        <referenceBlock name="skip_gallery_after.target" remove="true"/>
+        <!-- Remove Original Containers -->
+        <referenceContainer name="product.info.addto" remove="true"/>
+        <referenceContainer name="product.info.social" remove="true"/>
+        <!--<referenceBlock name="product.attributes" remove="true"/>-->
+    </body>
+</page>

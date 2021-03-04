@@ -1,0 +1,19 @@
+
+<div class="order-comments-sub">
+                <span data-bind="i18n: 'Please enter your order comments here.'">
+                </span>
+</div>
+<form class="form order-comment-form" id="comment-form">
+    <div class="payment-option-inner">
+        <div class="field">
+            <label class="label">
+                <span data-bind="i18n: 'Enter comment'"></span>
+            </label>
+            <div class="control">
+                <textarea class="input-text order-comment order-comment-input" name="comment-code" rows="4" data-bind="value: comment,valueUpdate:'afterkeydown',attr:{placeholder: $t('Order Comment')} " ></textarea>
+                <p data-bind="if: hasMaxLength()">Remaining characters: <span class="order-comment-form__characters" data-bind="text: remainingCharacters"></span></p>
+            </div>
+        </div>
+    </div>
+</form>
+

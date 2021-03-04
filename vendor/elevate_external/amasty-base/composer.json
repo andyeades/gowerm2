@@ -1,0 +1,19 @@
+{
+    "name": "elevate_external/amasty-base",
+    "description": "Amasty Base",
+    "require": {
+        "php": "^7.1.0"
+    },
+    "type": "magento2-module",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\Base\\": ""
+        }
+    }
+}

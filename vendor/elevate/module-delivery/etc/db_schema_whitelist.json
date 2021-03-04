@@ -1,0 +1,166 @@
+{
+    "elevate_delivery_deliverymethod": {
+        "column": {
+            "deliverymethod_id": true,
+            "deliveryarea_id": true,
+            "name": true,
+            "internal_name": true,
+            "day1": true,
+            "day2": true,
+            "day3": true,
+            "day4": true,
+            "day5": true,
+            "day6": true,
+            "day7": true,
+            "enabled": true,
+            "start_time": true,
+            "end_time": true,
+            "before_time": true,
+            "deliveryteamnumber": true,
+            "deliveryteamability": true,
+            "delivery_desc": true,
+            "delivery_desc_checkout": true,
+            "workingdays_min": true,
+            "workingdays_max": true,
+            "call_day_before": true,
+            "date_range_selection": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "elevate_delivery_deliveryarea": {
+        "column": {
+            "deliveryarea_id": true,
+            "store_id": true,
+            "name": true,
+            "enabled": true,
+            "postcodes": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "elevate_delivery_deliveryfee": {
+        "column": {
+            "deliveryfee_id": true,
+            "deliveryarea_id": true,
+            "deliverymethod_id": true,
+            "day": true,
+            "fee": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_06FDCD537257ABCB5327EC9970CE3E3C": true,
+            "FK_2F55E1BE87196CA38EC2566F1DE56130": true
+        }
+    },
+    "elevate_delivery_deliveryrules_functions": {
+        "column": {
+            "deliveryrulesfunction_id": true,
+            "deliveryrules_function": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "elevate_delivery_deliveryproducts": {
+        "column": {
+            "deliveryproducts_id": true,
+            "deliverymethod_id": true,
+            "product_id": true,
+            "product_sku": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "elevate_delivery_deliveryrules_type": {
+        "column": {
+            "deliveryrules_type_id": true,
+            "rule_type": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "elevate_delivery_deliveryrules": {
+        "column": {
+            "deliveryrules_id": true,
+            "deliveryarea_id": true,
+            "deliverymethod_id": true,
+            "deliveryrules_type_id": true,
+            "deliveryrulesfunction_id": true,
+            "rule_mode": true,
+            "rule_operator": true,
+            "rule_quantity": true,
+            "rule_function": true,
+            "rule_sort_value": true,
+            "rule_stop_continue": true,
+            "rule_enable": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_7A1404F27C43D821873EF9B8197FD82F": true,
+            "FK_3C0C296865A5D641E2B15D066A931C29": true,
+            "FK_E3A09DF4E679F93AAFED5D7C4942014A": true,
+            "FK_AA38A472280AFBD3A3119108AD9717D6": true
+        }
+    },
+    "elevate_delivery_deliveryrulescombinations": {
+        "column": {
+            "deliveryrulescombinations_id": true,
+            "deliveryrules_ids": true,
+            "deliveryrulesfunction_id": true,
+            "combo_area_id": true,
+            "combo_rule_function": true,
+            "combo_rule_sort_value": true,
+            "combo_rule_stop_continue": true,
+            "combo_rule_enable": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_6B10F22A784688A8CF1C4355E578F98E": true
+        }
+    },
+    "elevate_delivery_deliveryrules_products": {
+        "column": {
+            "deliveryrulesproducts_id": true,
+            "deliveryrules_id": true,
+            "product_id": true,
+            "product_sku": true,
+            "attribute_set_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_3CC832004A01C4C680956601289E4489": true
+        }
+    },
+    "elevate_delivery_holidaydates": {
+        "column": {
+            "deliveryholidaydates_id": true,
+            "start_date": true,
+            "end_date": true,
+            "deliveryholidaytitle": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "delivery_date_selected": true,
+            "delivery_option_selected": true,
+            "delivery_area_selected": true,
+            "delivery_selected_summarytext": true
+        }
+    },
+    "sales_order_address": {
+        "column": {
+            "delivery_date_selected": true,
+            "delivery_option_selected": true,
+            "delivery_area_selected": true,
+            "delivery_selected_summarytext": true
+        }
+    }
+}

@@ -1,0 +1,21 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="webforms" sortOrder="100">
+        <settings>
+            <label translate="true">Web-forms</label>
+        </settings>
+        <insertListing name="customer_result_listing">
+            <settings>
+                <autoRender>true</autoRender>
+                <ns>customer_result_listing</ns>
+                <externalProvider>customer_result_listing.customer_result_listing_data_source</externalProvider>
+                <exports>
+                    <link name="customer_id">${ $.externalProvider }:params.customer_id</link>
+                </exports>
+                <imports>
+                    <link name="customer_id">${ $.provider }:data.customer.entity_id</link>
+                </imports>
+            </settings>
+        </insertListing>
+    </fieldset>
+</form>

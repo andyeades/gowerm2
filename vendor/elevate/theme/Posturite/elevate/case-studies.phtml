@@ -1,0 +1,56 @@
+<section>
+    <div id="container" class="container">
+        <div class="row">
+
+
+<?php
+//1004 S1 header cat
+
+$case_studies_root_category_id = 1006;
+$category = Mage::getModel('catalog/category')->load($case_studies_root_category_id);
+
+$collection = Mage::getResourceModel('catalog/category_collection')
+                  ->addAttributeToSelect('*')
+                  ->addAttributeToFilter('is_active', array('in' => array(0,1)))
+                  ->addAttributeToFilter('parent_id', $case_studies_root_category_id )
+                  ->addAttributeToSort('category_name', 'asc');
+
+foreach($collection as $subcategory) {
+
+    $category_classes = $subcategory->getUnspsc();
+    //$category_image_url = $subcategory->getImageUrl();
+    $cat = Mage::getModel('catalog/category')->load($subcategory->getId());
+    $category_image_url = $cat->getImageUrl();
+    $category_desc = $cat->getDescription();
+    $category_url = $subcategory->getUrlKey();
+
+    ?>
+
+    <div class="product-element col-xs-12 col-sm-6 col-md-4 <?= $category_classes; ?>" style="display: block;">
+        <div class="product-element-wrap">
+            <a href="/help-advice/help-me-choose/case-studies/<?php echo $category_url; ?>" class="a-block">
+                <img src="<?php echo $category_image_url; ?>">
+                <div class="before">
+                    <div class="content">
+                        <h4><?php echo $subcategory->getName(); ?></h4>
+                        <hr class="divider">
+                    </div>
+                </div>
+                <div class="after">
+                    <div class="content">
+                        <h4>Introduction</h4>
+                        <hr class="divider">
+                        <p><?php echo $category_desc; ?></p>
+                        <p>Read more ›</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+<?php } ?>
+
+
+        </div>
+    </div>
+</section>

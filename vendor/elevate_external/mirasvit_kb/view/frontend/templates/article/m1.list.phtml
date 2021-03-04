@@ -1,0 +1,50 @@
+<?php
+$_collection = $this->getArticleCollection();
+
+?>
+<style>
+    .article-item {
+        border-bottom: 2px solid #f0f0f0;
+        padding: 15px 0px;
+        margin-bottom: 10px;
+    }
+    a.name {
+        font-weight: bold;
+        font-size: 15px;
+    }
+    .pager {
+        padding-bottom:0px;
+    }
+    a.rmore {
+        text-decoration: underline;
+    }
+</style>
+
+
+
+
+<div class="kb-article-list">
+    <?php if ($_collection->count()):?>
+        <?php echo $this->getChildHtml('kb.toolbar')?>
+
+        <?php foreach($_collection as $_article):?>
+        <div class="article-item">
+            <a class="name" href="<?php echo $_article->getUrl()?>"><?php echo $_article->getName() ?></a>
+            <div class="info">
+
+                <?php if ($_article->getRating() && $this->isRatingEnabled()): ?>
+                    <div class="rating-box">
+                        <div class="rating" style="width:<?php echo $_article->getRating()*20 ?>%;"></div>
+                    </div>
+                <?php endif ?>
+            </div>
+            <p><?php echo $this->getPreviewText($_article) ?> <a class="rmore" href="<?php echo $_article->getUrl()?>">Read More</a></p>
+        </div>
+    <?php endforeach ?>
+
+    <?php echo $this->getChildHtml('kb.toolbar')?>
+        <script type="text/javascript">decorateTable('article-table')</script>
+    <?php else: ?>
+        <p><?php echo $this->__("The are no articles") ?></p>
+    <?php endif ?>
+</div>

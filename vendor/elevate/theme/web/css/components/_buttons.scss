@@ -1,0 +1,163 @@
+
+
+button {
+    // Resets Safari Button Issues'
+    -webkit-appearance: none;
+    font-weight: $btn_global_font_weight;
+    @if $btn_global_border_radius_on == 1 {
+        border-radius: $btn_global_border_radius;
+    }
+    &:active {
+        @include lib-css(box-shadow, $button__shadow);
+    }
+
+}
+
+$btn-big-padding: 0.9375rem 0 !default;
+$btn-big-fontsize: 1rem !default;
+$btn-big-fontweight: 700 !default;
+$btn-big-borderradius_on: 1 !default;
+$btn-big-border-radius: 5px !default;
+$btn-big-texttransform_on: 1 !default;
+$btn-big-textransform: uppercase !default;
+$btn-big-transition: background-color .5s ease-in, color .5s ease-in !default;
+
+div[type=button] {
+    // Resets Safari Button Issues'
+    -webkit-appearance: none;
+}
+
+$link-action-text-decoration: false !default;
+
+.link-action {
+    @include co(text-decoration, $link-action-text-decoration);
+}
+
+.action {
+    &:not(.link-action) {
+
+        @extend .btn;
+        // Resets Safari Button Issues'
+        -webkit-appearance: none;
+        @include button-variant($action-primary-bg-color, $action-primary-border-color);
+        @if $btn_global_border_radius_on == 1 {
+            border-radius: $btn_global_border_radius;
+        }
+        font-weight: $btn_global_font_weight;
+        @include co(font-family, $btn_global_fontfamily);
+    }
+
+
+}
+.btn-big {
+    @if $btn-big-borderradius_on == 1 {
+        border-radius: $btn-big-border-radius;
+    }
+    font-weight: $btn-big-fontweight;
+    padding: $btn-big-padding;
+    font-size: $btn-big-fontsize;
+    @if $btn-big-texttransform_on == 1 {
+        text-transform: $btn-big-textransform;
+    }
+}
+
+.btn-hbred {
+  @include button-variant($action-primary-bg-color, $action-primary-border-color);
+}
+
+.action.primary.tocart {
+  @include button-variant($action-tocart-bg-color, $action-tocart-border-color);
+}
+
+.btn-action-primary {
+    //@include button-variant($action-primary-bg-color, $action-primary-border-color);
+}
+
+
+
+
+
+
+
+
+.show {
+    >.action.primary.checkout.dropdown-toggle {
+        @include co(color, $show-action-primary-checkout-dropdowntoggle-color);
+        @include co(background-color, $show-action-primary-checkout-dropdowntoggle-background-color);
+        @include co(border-color, $show-action-primary-checkout-dropdowntoggle-border-color);
+    }
+}
+
+
+
+
+.action.primary.checkout {
+    @include button-variant($checkout_btn_bgcolor, $checkout_btn_bordercolor);
+    @include co(border-radius, $checkout_btn_border_radius);
+    @include co(color, $checkout-btn-color);
+    @include co(display, $checkout-btn-display);
+    &:hover {
+        @include co(color, $checkout-btn-hover-color);
+        @include co(background-color, $checkout-btn-hover-background-color);
+        @include co(border-color, $checkout-btn-hover-border-color);
+    }
+    &:not(:disabled) {
+        &.active,
+        .active {
+            @include co(color, $checkout-btn-not-disabled-active-color);
+            @include co(background-color, $checkout-btn-not-disabled-active-background-color);
+            @include co(border-color, $checkout-btn-not-disabled-active-border-color);
+        }
+    }
+    &:focus,
+    .focus {
+        @include co(color, $checkout-btn-focus-color);
+        @include co(background-color, $checkout-btn-focus-background-color);
+        @include co(border-color, $checkout-btn-focus-border-color);
+    }
+    &:disabled,
+    .disabled {
+        @include co(color, $checkout-btn-disabled-color);
+        @include co(background-color, $checkout-btn-disabled-background-color);
+        @include co(border-color, $checkout-btn-disabled-border-color);
+    }
+}
+
+
+.btn.action.secondary,
+.secondary .action ,
+a.action.secondary,
+.action.secondary {
+    &:not(.link-action) {
+
+        @include button-variant($action_secondary_bg_color, $action_secondary_border_color);
+    }
+}
+
+
+.btn.action.tertiary,
+.tertiary .action,
+a.action.tertiary,
+.action.tertiary {
+    &:not(.link-action) {
+
+        @include button-variant($action_tertiary_bg_color, $action_tertiary_border_color);
+    }
+}
+
+.btn-50-wide {
+    width: 50%;
+}
+
+$btn_outline_bg_color: white !default;
+$btn_outline_border_color: #000 !default;
+$btn_outline_color: #000 !default;
+$btn_outline_border_width: 2px !default;
+
+.btn-outline {
+    @include button-variant($btn_outline_bg_color, $btn_outline_border_color);
+    border-width: $btn_outline_border_width;
+}
+
+
+

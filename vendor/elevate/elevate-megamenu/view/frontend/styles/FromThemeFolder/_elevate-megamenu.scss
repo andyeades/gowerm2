@@ -1,0 +1,175 @@
+$flex-box-center-menu: 1; // Justify-content: center;
+
+$include-posturite-styles: 0;
+
+// PAS Secondary Row Stuff
+$include-secondary-row-css: 0;
+
+// Typography
+
+$primary-font: 'Montserrat', sans-serif;
+$header-font: 'Montserrat', sans-serif;
+
+
+// Search size
+
+$search-height-mobile: 50px;
+$search-height-desktop: 120px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+$e-pn-a-desktop-border-right-on: 0;
+$e-pn-a-desktop-border-right: 1px solid #FFFFFF;
+
+
+$goback-arrow-position: 'left';
+$mobile-arrow-color: #737373;
+
+/* Not Used
+$mobile-arrow-col-hover-color-amount: 10%;
+$mobile-arrow-col-hover-color-mode: lighten;
+*/
+
+
+
+
+$has-children-ul-li-a-desktop-height: 30px;
+$has-children-ul-li-a-desktop-height: 30px;
+$has-children-ul-li-a-desktop-border-bottom-on: 0;
+$has-children-ul-li-a-desktop-border-bottom: 1px solid #08152F;
+$has-children-ul-li-a-desktop-fontsize: 14px;
+$has-children-ul-li-a-desktop-color: #08152F;
+$has-children-ul-li-a-desktop-hover-color: #08152F;
+$has-children-ul-li-a-desktop-texttransform-on: 1;
+$has-children-ul-li-a-desktop-texttransform: uppercase;
+
+$has-children-li-a-desktop-height: 30px;
+$has-children-li-a-desktop-height: 30px;
+$has-children-li-a-desktop-border-bottom-on: 0;
+$has-children-li-a-desktop-border-bottom: 1px solid #08152F;
+$has-children-li-a-desktop-fontsize: 13px;
+$has-children-li-a-desktop-color: #08152F;
+$has-children-li-a-desktop-hover-color: #08152F;
+$has-children-li-a-desktop-texttransform-on: 1;
+$has-children-li-a-desktop-texttransform: uppercase;
+
+$dropdown-icon-color-after: #575757;
+
+$desktop-see-all-bg: #575757;
+$destkop-see-all-border-col: #404040;
+$desktop-see-all-col: #ffffff;
+$desktop-see-all-hover-col: darken(#ffffff, 20%);
+
+$flyout-background-color: #ffffff;
+$flyout-border: 1px solid $megamenu-border-color;
+$flyout-border-radius: 0;
+$flyout-header-title-color: #575757;
+$flyout-header-title-font-size: 1.5rem;
+$flyout-header-title-margin: 15px 0 0 0;
+
+
+// Menu Style 1
+
+$m1-desk-bg-color: #FFF;
+$m1-desk-border-color: #575757;
+$m1-desk-border: 4px solid $m1-desk-border-color;
+$m1-desk-ul-li-a-color: #575757;
+$m1-desk-ul-li-a-fontweight: 300;
+$m1-desk-ul-li-a-height: 30px;
+$m1-desk-ul-li-a-lineheight: 30px;
+
+$m1-desk-li-a-color: #575757;
+
+// Menu Style 2
+
+$m2-desk-bg-color: #FFF;
+$m2-desk-border-color: #575757;
+$m2-desk-border: 4px solid $m2-desk-border-color;
+$m2-desk-ul-li-a-color: #575757;
+$m2-desk-ul-li-a-fontweight: 300;
+$m2-desk-ul-li-a-height: 30px;
+$m2-desk-ul-li-a-lineheight: 30px;
+
+$m2-desk-li-a-color: #575757;
+
+
+
+/* Posturite? */
+$mobile-col-level-top-link-border-color: #FFF;
+$mobile-col-level-top-link-border: 1px solid $mobile-col-level-top-link-border-color;
+$col-level-top-link-color: #FFF;
+$col-level-top-link-color-hover: #FFF;
+$col-level-top-bg-color: #006548;
+$col-level-top-link-color-active: #006548;
+$col-level-top-link-bg-color-active: #F5F5F5;
+$inner-menu-block-item-a-color: #006548;
+
+
+$screen-lowerthan-iphone6: 376px;
+
+$screen-xs-mid-min: 377px;
+$screen-xs-mid-max: 479.98px;
+
+$screen-xs-min: 480px;
+$screen-xs-max: 767.98px;
+
+$screen-sm-min: 768px;
+$screen-sm-max: 991.98px;
+
+$screen-md-min: 992px;
+$screen-md-max: 1169.98px;
+
+$screen-lg-min: 1170px;
+$screen-lg-max: 1469.98px;
+
+$screen-xlg-min: 1470px;
+
+// Mobile Header
+// breakpoints
+$XS: 26.667em;
+$S: $screen-xs-min;
+$M: $screen-sm-min;
+$ML: $screen-md-min;
+$L: $screen-lg-min;
+$maxM: $screen-xs-max;
+$maxL: $screen-md-max;
+
+$mobile-menu-notvisible: $screen-md-min;
+$mobile-menu-visible-max: $screen-sm-max;
+
+
+$secondary-row-item-inner-padding: 10px;
+
+$m3-sr-item-title-color: white;
+$m3-sr-item-title-fontsize: 1.6rem;
+$m3-sr-item-title-fontweight: 700;
+$m3-sr-item-text-transform-on: 1;
+$m3-sr-item-text-transform: uppercase;
+
+$m3-sr-item-text-color: #FFF;
+$m3-sr-item-content-cl-i-fontsize: 80px;
+$m3-sr-item-content-text-fontsize: 12px;
+
+
+$m3-sr-item-prod-bg-color: #3b393b;
+
+
+$m3-sr-item-prod-text-color: white;
+$m3-sr-item-prod-details-padding: 10px;
+$m3-sr-item-title-border-color: #FFF;
+$m3-sr-item-title-border-bottom: 1px solid $m3-sr-item-title-border-color;
+$m3-sr-item-title-margin-bottom: 20px;
+$m3-sr-item-title-padding-bottom: 15px;
+$m3-sr-item-title-margin-right: 15px;
+
+$m3-sr-item-prod-title-margin-bottom: 15px;

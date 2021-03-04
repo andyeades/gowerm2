@@ -1,0 +1,13 @@
+{
+  "name": "elevate/module-shell",
+  "description": "Elevate Shell",
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Elevate\\Shell\\": ""
+    }
+  }
+}

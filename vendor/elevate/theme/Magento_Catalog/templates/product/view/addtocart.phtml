@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+  <div class="">
+    <?php if ($block->shouldRenderQuantity()): ?>
+    <div class="field qty">
+      <div class="qty-selector">
+        <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></label>
+        <div class="control">
+
+          <?php
+          $prodQty = ($this->getProductDefaultQty() * 1);
+          $strQty = '<select id="qtySelect" name="qty" id="qty" class="required-entry form-control" ';
+          $strQty .= 'data-validate="'.$block->escapeHtml(json_encode($block->getQuantityValidators())).'">';
+          $strQty .= '<option value="">Choose Qty</option>';
+          for ($qtyCnt = 1; $qtyCnt <= 10; $qtyCnt++) {
+            $strSelect = '';
+            if ($prodQty == $qtyCnt)
+              $strSelect = 'selected="selected"';
+            $strQty .= '<option ' . $strSelect . ' value="' . $qtyCnt . '">' . $qtyCnt . '</option>';
+          }
+          $strQty .= '</select>';
+          echo $strQty;
+          ?>
+        </div>
+      </div>
+    </div>
+      <?php endif; ?>
+  </div>
+  <div class="actions">
+            <button type="submit"
+                    title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button">
+              <i class="fa fa fa-shopping-cart"></i>
+              <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span>
+            </button>
+            <?php echo $block->getChildHtml('', true) ?>
+
+  </div>
+</div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php if (!$block->isRedirectToCartEnabled()) : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "catalogAddToCart": {
+                "bindSubmit": false
+            }
+        }
+    }
+</script>
+<?php endif; ?>

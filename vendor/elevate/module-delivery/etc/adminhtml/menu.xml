@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Elevate_Delivery::delivery" module="Elevate_Delivery" resource="Elevate_Delivery::delivery" sortOrder="9999" title="Delivery" parent="Elevate_Core::menu"/>
+		<add action="deliveryoptions/configuration/index" id="Elevate_Delivery::configuration_index" module="Elevate_Delivery" parent="Elevate_Delivery::delivery" resource="Elevate_Delivery::configuration_index" sortOrder="9999" title="Delivery Configuration"/>
+		<add action="elevate_delivery/deliverymethod/index" id="Elevate_Delivery::elevate_delivery_deliverymethod" module="Elevate_Delivery" parent="Elevate_Delivery::delivery" resource="Magento_Backend::content" sortOrder="9999" title="Delivery Methods"/>
+		<add action="elevate_delivery/deliveryarea/index" id="Elevate_Delivery::elevate_delivery_deliveryarea" module="Elevate_Delivery" parent="Elevate_Delivery::delivery" resource="Magento_Backend::content" sortOrder="9999" title="Delivery Areas"/>
+		<add action="elevate_delivery/deliveryfee/index" id="Elevate_Delivery::elevate_delivery_deliveryfee" module="Elevate_Delivery" parent="Elevate_Delivery::delivery" resource="Magento_Backend::content" sortOrder="9999" title="Delivery Fees"/>
+        <add action="elevate_delivery/holidaydates/index" id="Elevate_Delivery::elevate_delivery_holidaydates" module="Elevate_Delivery" parent="Elevate_Delivery::delivery" resource="Magento_Backend::content" sortOrder="9999" title="Holiday Dates"/>
+        <add action="elevate_delivery/deliveryproduct/importdata" id="Elevate_Delivery::elevate_delivery_deliveryproductimportdata" module="Elevate_Delivery" parent="Elevate_Delivery::delivery" resource="Magento_Backend::content" sortOrder="9999" title="Import Data"/>
+        <add action="elevate_delivery/index/index" id="Elevate_Delivery::elevate_delivery_index" module="Elevate_Delivery" parent="Elevate_Delivery::delivery" resource="Magento_Backend::content" sortOrder="9999" title="Test"/>
+</menu>
+</config>

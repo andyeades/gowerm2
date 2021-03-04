@@ -1,0 +1,104 @@
+$ev-prod-icon-block-pp-border-on: 1;
+$ev-prod-icon-block-pp-border-color: #CCCCCC;
+$ev-prod-icon-block-pp-border: 1px solid $ev-prod-icon-block-pp-border-color;
+$ev-prod-icon-block-pp-border-top: 1px solid $ev-prod-icon-block-pp-border-color;
+$ev-prod-icon-block-pp-border-bottom: 1px solid $ev-prod-icon-block-pp-border-color;
+
+$pp-1-prod-icon-outer-width: 10%;
+$pp-1-prod-icon-margin: 20px 0 20px 0;
+
+.ev-prod-icon-block {
+
+}
+
+// Ev Prod Icon Block 1 - Standard Position - Product Page below price
+
+
+
+.ev-prod-icon-block-pp-1 {
+  margin-top: 35px;
+
+  @include min-screen($screen-sm-min) {
+    width: 95%;
+  }
+
+  @if ($ev-prod-icon-block-pp-border-on == 1) {
+    border-top: $ev-prod-icon-block-pp-border;
+    border-bottom: $ev-prod-icon-block-pp-border;
+  }
+
+  .ev-product-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: $pp-1-prod-icon-margin;
+    align-items: center;
+  }
+  .ev-product-icon-outer {
+    flex: 0 1 auto;
+    margin-left: 0.9rem;
+    margin-right: 0.9rem;
+    @include max-screen($screen-xs-mid-max) {
+      width: 25%;
+      margin-right: 0;
+      margin-left: 0;
+    }
+    @include min-screen($screen-lg-min) {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+    @include screen($screen-sm-min, $screen-sm-max) {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+  .ev-product-icon-outer.ev-product-icon-outer-custom-right {
+
+    @include min-screen($screen-sm-min) {
+      margin-left: auto;
+    }
+  }
+  .ev-product-icon-inner {
+    width: 60px;
+    @include max-screen($screen-xs-mid-max) {
+      margin: 0 auto;
+    }
+  }
+  .ev-product-icon-inner.ev-product-icon-outer-custom-right {
+      width: 121px;
+      margin: 0;
+      @include max-screen($screen-xs-mid-max) {
+        max-width: 100%;
+        vertical-align: middle
+      }
+    @include screen($screen-sm-min, $screen-sm-max) {
+      width: 100px;
+    }
+      @include min-screen($screen-md-min) {
+        float:right;
+      }
+      img {
+        vertical-align: middle;
+      }
+
+
+  }
+  .ev-product-icon-outer-custom-right.ev-product-icon-outer {
+
+    @include min-screen($screen-xs-min) {
+      width: auto;
+    }
+    .ev-product-icon-inner {
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+  .ev-product-icon-inner {
+
+  }
+}
+
+.no-icon-pp-1 {
+  border-top: unset;
+}
+

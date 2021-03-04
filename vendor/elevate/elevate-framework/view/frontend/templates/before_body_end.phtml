@@ -1,0 +1,24 @@
+<script src="<?= $block->getViewFileUrl('Elevate_Framework::js/elevate.spinner.js')?>"></script>
+<script src="<?= $block->getViewFileUrl('Elevate_Framework::js/elevate.lightbox.js')?>"></script>
+
+
+
+<!--<script src="<?= $block->getViewFileUrl('Elevate_Framework::js/popper.min.js')?>"></script>
+<script src="<?= $block->getViewFileUrl('Elevate_Framework::js/tippy.all.js')?>"></script>
+-->
+
+
+
+
+<?php
+//initialise the script with the settings from admin ?>
+<script>
+
+    // Utility
+    if (!("ontouchstart" in document.documentElement)) {
+        document.documentElement.className += " no-touch";
+    }
+
+    ELEVATE.Spinner.init();
+    ELEVATE.Lightbox.init();
+</script>

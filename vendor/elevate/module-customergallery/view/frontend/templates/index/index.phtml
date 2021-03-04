@@ -1,0 +1,426 @@
+<style>
+    *, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+    
+  .test img {
+    width: 100%;
+	  height: auto;
+  }
+	
+.container.test {
+    margin-bottom: 30px;
+}
+	
+	/* delte above */
+
+  .image-outer {
+    position: relative;
+  }
+
+  .image-outer .fa-plus-circle {
+    font-size: 25px;
+    color: #f0386c;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+  }
+    
+    
+    .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    -webkit-transition: .5s ease;
+    transition: .5s ease;
+}
+    
+    
+ .user-handle-hidden {
+    display: block;
+    min-width: 150px;
+    text-align: center;
+    float: left;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    text-align: center;
+     color: #ffffff;
+}
+    
+
+	
+	.image-outer:hover {
+		cursor: pointer;
+/*		opacity: 0.5;*/
+	}
+    
+        .image-outer:hover .overlay {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+	
+	
+
+	
+	.popup-title {
+    margin-top: 10px;
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 600;
+}
+	
+	
+a#btn-cart-view {
+    width: 90%;
+    padding: 5px;
+    margin-top: 10px;
+}
+	
+	
+
+    
+.top-intro {
+    text-align: center;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    margin-bottom: 15px;
+}
+    
+  
+    @media screen and (max-width: 991.98px){
+        
+        .customergallery-index-index .container.test {
+    padding: 0;
+}
+    .image-outer {
+        padding: 15px   
+    }
+    
+    .row {
+    padding-bottom: 0!important;
+    padding-top: 0!important;
+}
+        
+        .popup-left-content{
+            display: none;
+        }
+        
+        #colour_filter, #room_filter {
+    width: auto !important;
+    }
+    }
+    
+    
+#colour_filter, #room_filter {
+    display: inline;
+    width: auto;
+    width: 250px;
+    background: #ececec;
+    color: #000;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    border-radius: 0!important;
+    -webkit-appearance: none;
+    margin-left: 20px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+    
+    .filters {
+    text-align: center;
+    padding: 20px;
+}
+    
+
+
+
+    .ajax {
+    position: relative;
+}
+    
+    .top-intro h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+    
+    .top-intro p {
+    font-size: 17px;
+    margin-top: 15px;
+}
+    
+    .image-outer {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.popup-right-content #ev_price, .popup-right-content #ev_msrp{
+    text-decoration: line-through;
+}
+    
+.popup-right-content #ev-special-wrap {
+    color: #cb2727;
+}
+    
+    .review-date {
+    margin-top: 15px;
+}
+
+    #ev-msrp-wrap, #ev-price-wrap {
+    color: #6b6b6b;
+}
+    
+#loadmore {
+    margin: 0 auto;
+    margin-top:15px;
+    /* width: 600px; */
+    text-align: center;
+    cursor: pointer;
+    padding: 0 15px 0 15px;
+}
+
+#loadmore span {
+    background-color: #f0f0f0;
+    padding: 12px;
+ 
+    display: block;
+    text-align: center;
+    border: 1px solid #ccc;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+}
+#loadmore span:hover {
+  opcity:0.8;
+
+}
+</style>
+
+
+<div class="container">
+    <div class="row">
+
+
+      <div class="col-md-12">
+<div class="top-intro">
+<h1>Our Products, Your Home</h1>
+<h2>Styled, snapped, shared and shoppable!</h2>
+
+<p>Need inspiration? See and shop our favourite customer images from our feed. Or share your interior style by tagging @HappyBeds in your Happy Beds furniture images for a chance to feature in our feed.
+</p>
+</div>
+        </div>
+        </div>
+    
+</div>
+
+
+            
+<div class="container test">
+
+    
+   <div id="full_swap" class="row">
+   
+    <div id="insert_anchor"></div>
+
+</div> 
+</div>	 
+
+
+<!-- Load More Button -->
+<div id="loadmore">
+    <span>Load More</span>
+</div>
+<input type="hidden" id="socialpagenumber" value="1">
+<!-- End Load More Button -->
+
+<div style="clear:both;"></div>
+
+
+<script type="text/javascript">
+
+var ELEVATE = ELEVATE || {};
+
+// wrap code in a closure to allow use of $
+(function ($) {
+
+    ELEVATE.CustomerGallery = (function () {
+
+        var clickTimeout;
+
+        var init = function()
+        {
+        attachEventHandlersLoad();
+        },
+        attachEventHandlersLoad = function(){
+       clearTimeout(clickTimeout);
+       
+
+        var page = 1;
+     
+         jQuery('#socialpagenumber').val(2);
+                    
+               clickTimeout = setTimeout(function(){
+              
+              
+              var colour_val = jQuery('#colour_filter').val();
+              var room_val = jQuery('#room_filter').val();
+   
+               //prevent ajax caching 
+               var tS=new Date().getTime();
+               var url = '/customer-gallery/index/posts' + '?ts=' + tS + '&p='+ page + '&colour_filter='+ colour_val + '&room_filter='+ room_val;
+               var data = '';
+                         
+              try {
+            var searchbuttonwidth = jQuery('#loadmore').outerWidth();
+            jQuery('#loadmore').html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>').css({"min-width": searchbuttonwidth});
+                       
+                    
+                             console.log("OUTPUT1");
+                              jQuery.ajax({
+                                url: url,
+                                dataType: 'json',
+                                type: 'get',
+                                success: function (data) {
+                                      console.log("OUTPUT2");  
+                                  console.log(data);
+                       jQuery('#full_swap').html(data.html+'<div id="insert_anchor"></div>');      
+                       jQuery('#loadmore').html('<span>Load More</span>');
+                       
+                                 if(data.more == 0){
+                            jQuery('#loadmore').hide();
+                           }
+                           else{
+                             jQuery('#loadmore').show();
+                           }
+                                }
+                              });
+                            } catch (e) {
+                            }    
+    
+    
+              }, 500);    
+                
+                  
+        
+        }
+        attachEventHandlers = function(){
+   
+   
+
+
+        clearTimeout(clickTimeout);
+       
+
+        var page = parseFloat(jQuery('#socialpagenumber').val());
+     
+               clickTimeout = setTimeout(function(){
+          jQuery('#socialpagenumber').val(page+1);               
+              var colour_val = jQuery('#colour_filter').val();
+              var room_val = jQuery('#room_filter').val();
+   
+               //prevent ajax caching 
+               var tS=new Date().getTime();
+               var url = '/customer-gallery/index/posts' + '?ts=' + tS + '&p='+ page + '&colour_filter='+ colour_val + '&room_filter='+ room_val;
+               var data = '';
+                         
+              try {
+            var searchbuttonwidth = jQuery('#loadmore').outerWidth();
+            jQuery('#loadmore').html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>').css({"max-width": "600px"});
+        
+               
+                                  console.log("RQUEST1");
+                              jQuery.ajax({
+                                url: url,
+                                dataType: 'json',
+                                type: 'get',
+                                success: function (data) {
+                                   
+                                   console.log(data);
+                       jQuery('#insert_anchor').append(data.html);      
+                       jQuery('#loadmore').html('<span>Load More</span>');
+                                 if(data.more == 0){
+                            jQuery('#loadmore').hide();
+                           }
+                           else{
+                             jQuery('#loadmore').show();
+                           }
+                       
+                                }
+                              });
+                            } catch (e) {
+                            }    
+    
+    
+              }, 500);    
+                
+          
+        
+        }
+
+        return {
+            init: function () {
+                init();
+            },
+            attachEventHandlers: function () {
+                attachEventHandlers();
+            },
+            attachEventHandlersLoad: function () {
+                attachEventHandlersLoad();
+            }
+        };
+    }());
+
+}(jQuery.noConflict()));
+
+ELEVATE.CustomerGallery.init();
+   
+        jQuery('#loadmore').click(function() {
+ELEVATE.CustomerGallery.attachEventHandlers();      
+        });
+        
+</script>
+
+
+        <style>
+        .hide_me{
+        display:none !important;
+        }
+        </style>
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="addtocartModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+		
+		</div>
+        <div class="modal-footer hide_me" >
+        
+        </div>
+    </div>
+
+  </div>
+</div>
+

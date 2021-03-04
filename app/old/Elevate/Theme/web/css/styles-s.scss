@@ -1,0 +1,47 @@
+// Mixins
+@import "mixins/media-queries";
+@import "mixins/bootstrap-mixins";
+@import "mixins/rj-mixins";
+
+// Variables
+
+@import 'vendor/magento-ui/variables';
+@import "variables/elevate_variables";
+
+
+// Vendor libs
+@import 'vendor/normalize/lib'; // Normalize.css
+@import 'vendor/magento-ui/lib'; // Magento UI
+@import 'vendor/owl-carousel/owl.carousel'; // Owl Carousel
+
+// Reset default styles with magento-reset
+@import 'components/reset';
+
+// Theme blocks
+@import 'components/actions-toolbar';
+@import 'components/breadcrumbs';
+@import 'components/buttons';
+@import 'components/extends';
+@import 'components/forms';
+@import 'components/icons';
+@import 'components/layout';
+
+@import 'components/loaders';
+@import 'components/messages';
+@import 'components/navigation';
+@import 'components/pages'; // Theme pager
+@import 'components/popups';
+@import 'components/price';
+@import 'components/sections';
+@import 'components/tables';
+@import 'components/tooltips';
+@import 'components/typography';
+
+@import 'components/sections/footer/footer';
+
+//@import 'components/pages/product-page';
+//@import 'components/pages/category-page';
+
+// Components styles (modal/sliding panel)
+@import 'components/modals/modals'; // from lib
+@import 'components/modals/modals_extend'; // local

@@ -1,0 +1,34 @@
+$fme-prod-attachments-category-title-margin: 1rem 0 !default;
+$fme-prod-attachment-rowitem-margin: 0 0 0.75rem 0 !default;
+$fme-prod-attachment-embed-container-margin: 0 0 0.75rem 0 !default;
+
+$fme-prod-attachments-category-title-fontsize: 0.9375rem !default;
+
+
+@if $sitename == posturite {
+    .fme-prod-attachment-row {
+        > div {
+            margin: $fme-prod-attachment-rowitem-margin;
+        }
+        .content-wrap {
+            display: flex;
+            align-items: center;
+
+        }
+        .embed-container {
+            margin: $fme-prod-attachment-embed-container-margin;
+        }
+    }
+    .pattach-icon {
+        height: 20px;
+        width: 20px;
+    }
+    .fme-prod-attachments-categorytitle {
+        font-size: $fme-prod-attachments-category-title-fontsize;
+        margin: $fme-prod-attachments-category-title-margin;
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+
+}

@@ -1,0 +1,71 @@
+<?php
+
+$registry = $this->_helperFactory->get('Magento\Framework\Registry'); ?>
+<?php $_productId = $registry->registry('product')->getId() ?>
+<?php $helper = $this->helper('Elevate\Discontinuedproducts\Helper\Data');
+
+$product = $this->getProduct();
+
+$childProducts = $product->getTypeInstance()->getUsedProducts($product);
+
+$all_oos = false;
+
+$oos_array = array();
+$productcount = 0;
+$oos_count = 0;
+
+foreach ($childProducts as $product) {
+    $stockitem = $helper->getStockItem($product->getId())->getData();
+
+    if ($stockitem['is_in_stock'] != 1) {
+        $oos_count++;
+        $oos_array[] = $stockitem;
+    }
+
+    $productcount++;
+}
+
+if ($oos_count === $productcount) {
+    $childProductsA = $helper->getChildProducts($_productId);
+
+    if (!empty($childProductsA)) { ?>
+
+        <div class="out-of-stock-child-products">
+            <div class="fieldset">
+                <div class="field configurable">
+                    <label class="label" for="attribute136" style="font-weight: bold"><span><?php echo __('Choose Size') ?></span></label>
+                    <div class="control">
+                        <select name="product_id" id="oos_product_select" title="<?php echo __('Choose Size') ?>" class="input-text">
+                            <option value=""><?php echo __('Choose an Option...') ?></option>
+                            <?php foreach ($childProductsA as $key => $value): ?>
+
+
+                                <option value="<?php echo $key ?>"><?php echo $value ?> - Out of Stock</option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            jQuery('#oos_product_select').change(function () {
+                var new_id = jQuery('#oos_product_select option:selected').val();
+                jQuery('#product_addtocart_form input[name="selected_configurable_option"]').val(new_id);
+                var id = jQuery('#product_addtocart_form input[name="selected_configurable_option"]').val();
+                jQuery('.amxnotif-block .notification-container input[name="product_id"]').val(id);
+                jQuery('.amxnotif-block').show();
+            });
+        </script>
+
+        <style>
+            #complete_hide {
+                display: none;
+            }
+        </style>
+
+    <?php } ?>
+
+<?php } ?>
+
+

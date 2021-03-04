@@ -1,0 +1,77 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+
+?>
+
+
+<?php if ($block->isContentMode() || $block->isMixedMode()) :?>
+  <div class="category-cms">
+
+        <div class="short-category">
+      <?= $block->getCmsBlockHtml() ?>
+
+    </div>
+  </div>
+
+  <div class="rmlink" style="text-align:center;">
+    <a href="#" class="read-btn read">Read more</a>
+  </div>
+<style>
+ #page-title-heading{
+ display:none !important;
+ }
+  .short-category {
+    line-height: 2;
+    transition: none;
+    -webkit-transition: none;
+
+    max-height: 126px;
+    overflow: hidden;
+  }
+  .transition_change{
+
+
+  }
+</style>
+  <script type="text/javascript">
+
+      require([
+              'jquery'
+          ], function ($) {
+
+          $(".rmlink .read").click(function () {
+                  var descriptionheight = $(".short-category").height();
+                  var descriptionfullheight = $(".short-category").outerHeight();
+                  var descriptionfullheight = $(".short-category").outerHeight();
+
+                  if (descriptionheight == 126) {
+                      $('.short-category').css("max-height", "100%");
+                      $('.short-category').addClass("transition_change");
+
+                      $('.rmlink .read').text('Read Less');
+                  } else {
+                      $('.short-category').css("max-height", "126px");
+                      $('.short-category').removeClass("transition_change");
+                      $('.rmlink .read').text('Read More');
+                  }
+                  // prevent jump-down
+                  return false;
+
+              });
+
+          }
+      );
+
+
+  </script>
+<?php endif; ?>

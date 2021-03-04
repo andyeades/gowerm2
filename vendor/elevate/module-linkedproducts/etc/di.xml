@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="elevate_linkedproducts_generate" xsi:type="object">Elevate\LinkedProducts\Cron\LinkedProductsFromGroupCode</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--<preference for="Magento\Catalog\Model\Product" type="Elevate\LinkedProducts\Model\Product"/>
+    <preference for="Magento\Catalog\Model\Product\Link" type="Elevate\LinkedProducts\Model\Catalog\Product\Link"/>
+    <preference for="Magento\Catalog\Model\Product\Link\Proxy" type="Elevate\LinkedProducts\Model\Catalog\Product\Link\Proxy"/>-->
+
+    <type name="Magento\Catalog\Model\Product\Initialization\Helper\ProductLinks">
+        <plugin sortOrder="4" name="afterInitializeLinks" type="Elevate\LinkedProducts\Model\Product\Initialization\Helper\ProductLinks"/>
+    </type>
+
+    <!--For version 2.1.2-->
+    <preference for="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Related" type="Elevate\LinkedProducts\Ui\DataProvider\Product\Form\Modifier\Related"/>
+
+    <type name="Magento\Catalog\Model\Product\LinkTypeProvider">
+        <arguments>
+            <argument name="linkTypes" xsi:type="array">
+                <item name="linkedproducts" xsi:type="const">Elevate\LinkedProducts\Model\Catalog\Product\Link::LINK_TYPE_LINKEDPRODUCTS</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Model\ProductLink\CollectionProvider">
+        <arguments>
+            <argument name="providers" xsi:type="array">
+                <item name="linkedproducts" xsi:type="object">Elevate\LinkedProducts\Model\Product\Link\CollectionProvider\LinkedProducts</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_producticons_listing_data_source" xsi:type="string">Elevate\ProductIcons\Model\ResourceModel\Producticons\Grid\Collection</item>
+                <item name="elevate_producticons_form_data_source" xsi:type="string">Elevate\ProductIcons\Model\ResourceModel\Producticons\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="custom-tab-grid-with-content" xsi:type="array">
+                    <item name="class" xsi:type="string">Elevate\ProductIcons\Ui\DataProvider\Product\Form\Modifier\CustomTab</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+                <item name="something" xsi:type="array">
+                    <item name="class" xsi:type="string">Elevate\ProductIcons\Ui\DataProvider\Product\Form\Modifier\Icon</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Elevate\ProductIcons\Ui\DataProvider\Producticons\Form\ProducticonsDataProvider" >
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_producticons_form_data_source" xsi:type="string">Elevate\ProductIcons\Model\ResourceModel\Producticons\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Elevate\ProductIcons\Model\ResourceModel\Producticons\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_producticons</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\ProductIcons\Model\ResourceModel\Producticons</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="producticonsMetadata" type="Elevate\ProductIcons\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Elevate\ProductIcons\Model\ResourceModel\Producticons</argument>
+            <argument name="modelClassName" xsi:type="string">Elevate\ProductIcons\Model\Producticons</argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\ProductIcons\Model\ProducticonsRepository">
+        <arguments>
+            <argument name="producticonsMetadata" xsi:type="object">producticonsMetadata</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Elevate\ProductIcons\Ui\DataProvider\Producticons\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool"></virtualType>
+
+
+    <virtualType name="Elevate\ProductIcons\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="advancedInventory" xsi:type="array">
+                    <item name="class" xsi:type="string">Elevate\ProductIcons\Ui\DataProvider\Product\Form\Modifier\ProductIcons</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+    <preference for="Elevate\ProductIcons\Api\ProducticonsRepositoryInterface" type="Elevate\ProductIcons\Model\ProducticonsRepository"/>
+    <preference for="Elevate\ProductIcons\Api\Data\ProducticonsInterface" type="Elevate\ProductIcons\Model\Producticons"/>
+    <preference for="Elevate\ProductIcons\Api\Data\ProducticonsSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <type name="Magento\Config\Model\Config\Backend\Image">
+        <arguments>
+            <argument name="extensions" xsi:type="array">
+                <item name="allowed" xsi:type="array">
+                    <item name="svg" xsi:type="number">1</item>
+                </item>
+                <item name="image_allowed" xsi:type="array">
+                    <item name="svg" xsi:type="number">1</item>
+                </item>
+                <item name="media_allowed" xsi:type="array">
+                    <item name="svg" xsi:type="number">1</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Elevate\ProductIcons\Model\ImageUploader">
+        <arguments>
+            <!-- Temporary file stored in pub/media/faq/tmp/icon -->
+            <argument name="baseTmpPath" xsi:type="string">elevate/tmp/producticons</argument>
+            <argument name="basePath" xsi:type="string">elevate/producticons</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="svg" xsi:type="string">svg</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

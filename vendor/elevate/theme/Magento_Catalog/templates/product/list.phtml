@@ -1,0 +1,785 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+
+<?php
+
+$myarr = array();
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$moduleManager = $objectManager->get('\Magento\Framework\Module\Manager');
+
+
+/**/
+if ($moduleManager->isEnabled('Elevate_Themeoptions')) {
+    $evThemeOptionsHelper =  $this->helper('Elevate\Themeoptions\Helper\ProductList');
+
+    $show_addtocart = $evThemeOptionsHelper->isProductItemsAddToCartEnabled();
+    //echo "show_addtocart".$show_addtocart;
+    $show_addtolinks = $evThemeOptionsHelper->isProductItemsAddToLinksEnabled();
+
+
+} else {
+    $show_addtocart = false;
+    $show_addtolinks = false;
+}
+
+
+$show_firmness = false;
+
+  $show_firmness_js = false;
+
+
+/* currently only used by HB */
+if ($moduleManager->isEnabled('Elevate_Firmness')) {
+
+    $show_firmness = true;
+    $_firmnessHelper = $this->helper('Elevate\Firmness\Helper\Data');
+    $_firmnessHelperDivans = $this->helper('Elevate\Firmness\Helper\Divans');
+    echo $_firmnessHelper->getListCss();
+    echo $_firmnessHelper->getFirmnessCss();
+       ?>
+        <script>var firmnessProducts = {};</script>
+       <?php
+    //hb divans
+    $colour_lookup_array_divan = $_firmnessHelper->getDivanColourLookup();
+
+    $show_percent_off = 1;
+
+}
+/**/
+if ($moduleManager->isEnabled('Elevate_Reviews')) {
+    $show_reviews = true;
+    $_reviewHelper = $this->helper('Elevate\Reviews\Helper\Data');
+
+    echo $_reviewHelper->getReviewListCss();
+
+} else {
+    $show_reviews = false;
+}
+
+$cat_id = false;
+//current category
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+//echo $category->getParentCategory()->getName();
+if ($category) {
+    $cat_id = $category->getId();
+}
+$show_break_banners = false;
+//if (is_numeric($cat_id)) {
+// $category = $category->getParentCategory();
+//}
+
+//needs admin setting
+$banner_match_cats[33] = 1;
+$banner_match_cats[66] = 1;
+if ($cat_id) {
+    if (array_key_exists($cat_id, $banner_match_cats)) {
+
+        $show_break_banners = true;
+    }
+}
+$landing_page = $objectManager->get('Magento\Framework\Registry')->registry('elevate_landingpage_data');
+
+if (isset($landing_page['landingpage_id'])) {
+    $landing_page_id = $landing_page['landingpage_id'];
+
+    $banner_match_landing[5356] = 1;
+    $banner_match_landing[5455] = 1;
+    $banner_match_landing[5554] = 1;
+    $banner_match_landing[5719] = 1;
+    $banner_match_landing[5752] = 1;
+    $banner_match_landing[5785] = 1;
+    $banner_match_landing[5950] = 1;
+    $banner_match_landing[6233] = 1;
+    $banner_match_landing[6243] = 1;
+    $banner_match_landing[6244] = 1;
+    $banner_match_landing[6245] = 1;
+    $banner_match_landing[6274] = 1;
+    $banner_match_landing[6275] = 1;
+
+    if (is_numeric($landing_page_id)) {
+        if (array_key_exists($landing_page_id, $banner_match_landing)) {
+
+            $show_break_banners = true;
+        }
+    }
+}
+
+$promotion_helper = $this->helper('Elevate\Promotions\Helper\Data');
+$sitewide_enable = $promotion_helper->getConfig('elevate_promotions/sitewide/enable');
+
+$global_promotion_enabled = $promotion_helper->getConfig('elevate_promotions/general/is_enabled');
+$global_promotion_listing_text = $promotion_helper->getConfig('elevate_promotions/category_pages/promo_text_listing');
+
+$elevate_promotion_promo_text_listing = $promotion_helper->getConfig('elevate_promotions/category_pages/promo_listing_text');
+$elevate_promotion_enable_overlay = $promotion_helper->getConfig('elevate_promotions/category_pages/enable_overlay');
+$elevate_promotion_promo_listing_background_colour = $promotion_helper->getConfig('elevate_promotions/category_pages/promo_listing_background_colour');
+$elevate_promotion_promo_listing_font_colour = $promotion_helper->getConfig('elevate_promotions/category_pages/promo_listing_font_colour');
+
+$global_promotion_background_colour = $promotion_helper->getConfig('elevate_promotions/general/background_colour');
+$global_promotion_font_colour = $promotion_helper->getConfig('elevate_promotions/general/font_colour');
+$global_blacklist = explode(',', $promotion_helper->getConfig('elevate_promotions/general/product_blacklist'));
+$global_blacklist = array_flip($global_blacklist);
+$_gpsku = $promotion_helper->getConfig('elevate_promotions/general/product_skus');
+
+$global_promotion_countdown_list_enable = $promotion_helper->getConfig('elevate_promotions/countdown/countdown_list_enable');
+$global_promotion_countdown_time = $promotion_helper->getConfig('elevate_promotions/countdown/countdown_time');
+$global_promotion_countdown_banner_image = $promotion_helper->getConfig('elevate_promotions/countdown/countdown_banner_image');
+
+$global_promotion_countdown_list_font_colour = $promotion_helper->getConfig('elevate_promotions/countdown/countdown_list_font_colour');
+$global_promotion_countdown_list_background_colour = $promotion_helper->getConfig('elevate_promotions/countdown/countdown_list_background_colour');
+$global_promotion_countdown_list_font_colour_over = $promotion_helper->getConfig('elevate_promotions/countdown/countdown_list_font_colour_over');
+
+$altglobal_promotion_countdown_list_font_colour = $promotion_helper->getConfig('elevate_promotions/countdown/altcountdown_list_font_colour');
+$altglobal_promotion_countdown_list_background_colour = $promotion_helper->getConfig('elevate_promotions/countdown/altcountdown_list_background_colour');
+$altglobal_promotion_countdown_list_font_colour_over = $promotion_helper->getConfig('elevate_promotions/countdown/altcountdown_list_font_colour_over');
+$altglobal_promotion_cats = $promotion_helper->getConfig('elevate_promotions/countdown/altcategories');
+
+$cats_exp = explode(',', $altglobal_promotion_cats);
+$cats_exp = array_flip($cats_exp);
+
+$altcat = $category;
+
+if ($altcat) {
+
+    $altcat_id = $altcat->getId();
+
+    if (array_key_exists($altcat_id, $cats_exp)) {
+        $global_promotion_countdown_list_font_colour = $altglobal_promotion_countdown_list_font_colour;
+        $global_promotion_countdown_list_background_colour = $altglobal_promotion_countdown_list_background_colour;
+        $global_promotion_countdown_list_font_colour_over = $altglobal_promotion_countdown_list_font_colour_over;
+    }
+}
+
+$global_promotion = false;
+$global_promotion_skus = array();
+
+if ($_gpsku == '') {
+
+    $global_promotion = true;
+
+} else {
+    $global_promotion_skus = explode(',', $_gpsku);
+    $global_promotion_skus = array_flip($global_promotion_skus);
+}
+
+?>
+
+
+<style>
+
+
+    @media screen and (max-width: 991.98px) {
+
+        .break_border_mobile {
+
+            width:  100%;
+            height: 100%;
+        }
+
+        .break_border_mobile_outer {
+
+            width: 100% !important;
+
+        }
+
+
+    }
+
+
+
+
+    .prod-item-inner .elements {
+        margin-top: 5px;
+    }
+
+    ul.countdown_timer {
+        float:        right;
+        margin-right: 10px;
+        width:        100%;
+        margin:       0 !important;
+    }
+
+    .countdown_timer li {
+        float:  left;
+        width:  23%;
+        margin: 1%;
+    }
+
+    .dblock {
+        background-color: <?php echo $global_promotion_countdown_list_background_colour; ?>;
+        color: <?php echo $global_promotion_countdown_list_font_colour_over; ?> !important;
+        border-radius: 4px;
+        color:         white;
+        height:        24px;
+        line-height:   25px;
+    }
+
+    .dtext {
+        color: <?php echo $global_promotion_countdown_list_font_colour; ?> !important;
+    }
+
+    @media only screen and (max-width: 480px) {
+        .dtext {
+            font-size: 8px;
+        }
+    }
+
+    .save-icon.save-icon2 {
+            color: <?php echo $elevate_promotion_promo_listing_font_colour; ?> !important;
+        background-color: <?php echo $elevate_promotion_promo_listing_background_colour; ?> !important;
+    }
+
+    .showme {
+        display: block !important;
+    }
+
+    .save-iconbf {
+        bottom:           0px !important;
+        background-color: #194b04 !important;
+        width:            100% !important;
+        text-transform:   uppercase;
+        position:         absolute !important;
+        top:              initial !important;
+    }
+
+    .frame .slidee {
+        text-align: center;
+        display:    block;
+        width:      auto;
+        margin:     0 auto;
+        margin-top: 10px;
+    }
+
+    .frame .slidee li {
+        display:      inline-block;
+        height:       41px;
+        width:        50px;
+        border:       0px solid #fff;
+        padding:      0px;
+        margin-right: 0px;
+        color:        #000 !important;
+        cursor:       pointer;
+        min-width:    47px;
+        width:        43px;
+        text-align:   center;
+    }
+
+    .colourspan {
+        width: 38px;
+    }
+
+    .countdown_timer li {
+        float: left;
+    }
+</style>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty">
+        <div><?php /* @escapeNotVerified */
+            echo __('We can\'t find products matching the selection.') ?></div>
+    </div>
+<?php else: ?><?php echo $block->getToolbarHtml() ?><?php echo $block->getAdditionalHtml() ?><?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $image = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $image = 'category_page_list';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+    <div class="products wrapper <?php /* @escapeNotVerified */
+    echo $viewMode; ?> products-<?php /* @escapeNotVerified */
+    echo $viewMode; ?>">
+        <?php $iterator = 1; ?>
+        <?php $styles_output = 0; ?>
+
+        <ol class="products list items product-items">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+
+            <?php foreach ($_productCollection as $_product): ?><?php /* @escapeNotVerified */
+                $attributeSetId = $_product->getAttributeSetId();
+                $item_output_class = '';
+
+                if ($show_firmness == true) {
+                    $has_producticons = $_firmnessHelper->doesProductHaveIcons($_product);
+                    if ($has_producticons == true) {
+                        $item_output_class = 'has-picons';
+                    } else {
+                        $item_output_class = "no-picons";
+                    }
+                }
+
+                $percent = 0;
+                $percent2 = 0;
+                $product_price = '0.00';
+                $product_special_price = '0.00';
+
+                $product_price = (float)$_product->getPriceInfo()->getPrice('regular_price')->getValue();
+                //get $_product special price
+                $product_special_price = (float)$_product->getFinalPrice();
+
+
+                    $difference = $product_price - $product_special_price;
+
+                    if ($difference > 0) {
+                        $percent = $difference / $product_price;
+                    } else {
+                        $percent = 0;
+                    }
+
+
+                $percent_friendly = number_format($percent * 100, 0) . '%';
+                $percent_friendly2 = number_format($percent2 * 100, 0) . '%';
+
+                $now = date("Y-m-d");
+
+                if ($show_break_banners) {
+                    if ($iterator == 7 || $iterator == 19) {
+                        /*
+
+                                                echo '<a href="/max-white-wooden-combination-bed-1293256" style="-webkit-box-flex: 0;
+                            -ms-flex: 0 1 auto;
+                            flex: 0 1 auto;
+                            width: 50%;
+                            margin-bottom: 10px;
+                            text-align: center;" class="break_border_mobile_outer"><img class="break_border_mobile" style="border: 1px solid #e6eaf3;
+                            border-radius: 10px;" src="https://www.happybeds.co.uk/media/MAX_BED2.jpg" /></a>';
+                                  */
+                    }
+
+                }
+
+                echo ($iterator++ == 1) ? '<li class="item product product-item ' . $item_output_class . '">': '</li><li class="item product product-item ' . $item_output_class . '">' ?>
+
+
+                <div class="product-item-info" data-container="product-grid">
+                    <?php
+
+                    $productImage = $block->getImage($_product, $image);
+                    if ($pos != NULL) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;' . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    ?>
+
+
+
+                    <?php // Product Image ?>
+
+                    <?php
+                    //$grid_hover_image = $_product->getGridHoverImage();
+                    $grid_hover_image_check = $_product->getGridHoverImage();
+                    $grid_hover_image = $this->helper('Magento\Catalog\Helper\Image')->init($_product, 'hover_product_list', array('height' => '300' , 'width'=> '300'))->getUrl();
+
+                    //$grid_hover_image_img = $block->getImage($_product, 'grid_hover_image');
+                    if (!empty($grid_hover_image) && (strpos($grid_hover_image, 'placeholder') == false)) { ?>
+
+                    <a href="<?php /* @escapeNotVerified */
+                    echo $_product->getProductUrl() ?>" class="product photo product-item-photo product-image-hover-enable" style="background-image: url(<?php echo $grid_hover_image; ?>)" tabindex="-1">
+
+                    <?php } else { ?>
+                        <a href="<?php /* @escapeNotVerified */
+                    echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                 <?php   } ?>
+
+                        <?php // Product Image
+
+                        //headboards
+                        if ($_product->getId() >= '1291586' && $_product->getId() <= '1291599') {
+                            $current_colour = false;
+                            if (isset($_GET['headboard_colour'])) {
+                                $current_colour = $colour_lookup_array_divan[$_GET['headboard_colour']];
+                            }
+
+                            $single_option = true;
+
+                            if (isset($_GET['headboard_colour'])) {
+                                if (strpos($_GET['headboard_colour'], ',') !== false) {
+                                    $single_option = false;
+                                }
+                            }
+
+                            $end_string = str_replace(' ', '-', strtolower($_product->getResource()->getAttribute('default_hb_style')->getFrontend()->getValue($_product)));
+
+                            $head_type = strtolower($_product->getResource()->getAttribute('configurator_headboard')->getFrontend()->getValue($_product)) . "_" . $end_string;
+                            $head_type_exp = explode(' ', $_product->getName());
+                            $head_type = strtolower($head_type_exp[0]) . '_' . $end_string;
+
+                            if (isset($_GET['headboard_colour']) && $_GET['headboard_colour'] && $single_option) {
+                                $image_source = '/media/new_configurator/headboard-swatch/' . $current_colour['colour'] . '/' . $head_type . '_4ft6_' . $current_colour['number'] . '.jpg';
+                            } else {
+                                $image_source = '';
+                                //$image_source = $this->helper('catalog/image')->init($_product, 'small_image')->resize(350);
+                            }
+
+                            ?>
+                            <img class="lazyload" src="/media/loader.jpg" data-src="<?php echo $image_source; ?>" alt="<?php echo $this->stripTags($_product->getName(), NULL, true); ?>"/>
+                        <?php }
+                        //end divan image
+
+                        //start bespoke image
+                        if ($attributeSetId == '9' && $_product->getSku() != 'BESPOKE_SWATCH') {
+                            //end
+                            if ($styles_output != 1) {
+                                echo $_firmnessHelper->getBespokeListCss();
+                                $styles_output = 1;
+                            }
+                            echo $_firmnessHelperDivans->getDivans($_product);
+                        } //end bespoke image
+                        else {
+                            $blackfriday = true; ?>
+
+                            <?php if ((number_format($percent * 100, 0) > 0)) { ?>
+
+                                <?php if (array_key_exists($_product->getSku(), $myarr)) {
+
+                                } else {
+                                        // Stop it doing the "100% OFF" thing
+                                    if ($percent * 100 != 100) { ?>
+                                          <div class="p-img-icon save-icon"><?php echo $percent_friendly; ?> OFF</div>
+                                   <?php } ?>
+
+                                <?php }
+
+                            }
+                 if ($elevate_promotion_enable_overlay) {
+                               if ((array_key_exists($_product->getSku(), $global_promotion_skus) || $global_promotion) && !array_key_exists($_product->getSku(), $global_blacklist)) { ?>
+
+
+
+
+                                        <div class="p-img-icon save-icon save-icon2 save-iconbf"><? echo $elevate_promotion_promo_text_listing; ?></div>
+
+                                    <?php
+                                    }
+                            }
+                            echo $productImage->toHtml();
+                        }
+                        ?>
+                    </a>
+                    <div class="product details product-item-details">
+                        <?php
+                        $_productNameStripped = $block->stripTags($_product->getName(), NULL, true);
+
+                        ?>
+
+                        <a class="product name product-item-name product-item-link" href="<?php /* @escapeNotVerified */
+                        echo $_product->getProductUrl() ?>">
+                            <?php /* @escapeNotVerified */
+                            echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                        </a>
+
+
+                        <?php
+                        if ($_product->getId() >= '1291586' && $_product->getId() <= '1291599') {
+                            echo $_firmnessHelper->headboardSwatches($_product);
+                        }
+                        ?>
+
+
+
+
+
+
+
+
+
+
+
+
+                        <?php if ($show_reviews) {
+
+                            echo $_reviewHelper->getReviewListHtml($_product);
+                        } ?>
+
+                        <?php // TODO: Make this an actual toggle
+                        $some_admin_flag = 0;
+                        if ($some_admin_flag == 1) {
+
+                         if (strcmp($viewMode, "list") == 0) { ?>
+                            <div class="product product-sku">Product Code: <?php echo $_product->getSku(); ?></div>
+                        <?php }
+                        }
+                        ?>
+                        <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
+
+                        <?php   if ($global_promotion_enabled) {
+                        if ((array_key_exists($_product->getSku(), $global_promotion_skus) || $global_promotion) && !array_key_exists($_product->getSku(), $global_blacklist)) {
+                            if ($global_promotion_countdown_list_enable) {
+                                ?>
+                              <div class="elements">
+                                <ul class="countdown_timer" style="float: right;margin-right: 10px;">
+                                  <li>
+                                    <div class="dblock days"></div>
+                                    <div class="dtext">DAYS</div>
+                                  </li>
+                                  <li>
+                                    <div class="dblock hours"></div>
+                                    <div class="dtext">HOURS</div>
+                                  </li>
+                                  <li>
+                                    <div class="dblock minutes"></div>
+                                    <div class="dtext">MINUTES</div>
+                                  </li>
+                                  <li>
+                                    <div class="dblock seconds"></div>
+
+                                    <div class="dtext">SECONDS</div>
+                                  </li>
+                                </ul>
+                              </div>
+                                <?php
+                            }
+                        }
+                    } ?>
+                        <?php echo $block->getProductDetailsHtml($_product); ?>
+
+                        <?php
+                        // TODO: Make this an actual toggle
+                        $some_admin_flag = 0;
+                        if ($some_admin_flag == 1) {
+                            if (strcmp($viewMode, "list") == 0) { ?>
+
+
+
+                            <div class="product product-list-sub-details">
+                                <ul>
+                                    <?php if ($_product->isSaleable()) { ?><?php if ($_product->getIsSalable()) { ?>
+                                        <li><?php /* @escapeNotVerified */
+                                            echo __('In stock') ?></li>
+                                    <?php } else { ?>
+                                        <li><?php /* @escapeNotVerified */
+                                            echo __('Out of stock') ?></li>
+                                    <?php } ?><?php } ?>
+                                </ul>
+                            </div>
+                        <?php }
+                        }
+
+                        //Happybeds Divans - More Colours Link
+
+                        if ($attributeSetId == '9' && $_product->getSku() != 'BESPOKE_SWATCH') { ?>
+                            <div class="color-more-avail" style="width: 100%;text-align: center;margin: 0 auto;padding: 6px;text-transform: uppercase;">
+                                <img class="lazyload" src="/media/loader.jpg" data-src="https://www.happybeds.co.uk/media/wheel.jpg" style="width: 19px; padding-right: 10px;"> More Colours & Storage Available
+                            </div>
+                        <?php }
+
+                        if ($show_firmness && $_product->getMattressFirmness() > 0) {
+                                                                          $show_firmness_js = true;
+                                      ?>
+                    <script>
+
+
+
+                      firmnessProducts[<?php echo $_product->getId(); ?>] =  '<?php echo $_product->getResource()->getAttribute('mattress_firmness')->getFrontend()->getValue($_product); ?>';
+                    </script>
+
+                            <?php
+                            echo $_firmnessHelper->getFirmnessGridHtml($_product->getId());
+                        }
+
+                        ?>
+                        <?php
+                        $attributeSetId = $_product->getAttributeSetId();
+                        if ($attributeSetId == '9' || $attributeSetId == '11' || $attributeSetId == '14' || $attributeSetId == '16') { ?><?php
+                            $product_icons = $_firmnessHelper->showMattressCategoryIconsNew($_product);
+                            if (!empty($product_icons)) { ?>
+                                <div class="product-icons"><?php echo $product_icons; ?></div>
+                            <?php } ?>
+
+                        <?php } ?>
+                        <?php /* @escapeNotVerified */
+                        echo $block->getProductPrice($_product);
+
+                        // Stop Div Output
+                        if ($showDescription == true || $show_addtocart == 1 || $show_addtolinks == 1) {
+                            ?>
+
+                            <div class="product-item-inner">
+                                <?php if ($showDescription): ?>
+                                    <div class="product description product-item-description">
+                                        <?php /* @escapeNotVerified */
+                                        echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                                        <a href="<?php /* @escapeNotVerified */
+                                        echo $_product->getProductUrl() ?>" title="<?php /* @escapeNotVerified */
+                                        echo $_productNameStripped ?>" class="action more"><?php /* @escapeNotVerified */
+                                            echo __('Learn More') ?></a>
+                                    </div>
+                                <?php endif;
+
+                                if ($show_addtocart == 1 || $show_addtolinks == 1) {
+                                ?>
+
+                                <div class="product actions product-item-actions"<?php echo strpos($pos, $viewMode . '-actions') ? $position: ''; ?>>
+
+                                    <?php
+
+                                    if ($show_addtocart == 1) { ?>
+                                        <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $block->escapeHtmlAttr($position) : '' ?>>
+                                            <?php if ($_product->isSaleable()) :?>
+                                                <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                                <form data-role="tocart-form"
+                                                      data-product-sku="<?= $block->escapeHtmlAttr($_product->getSku()) ?>"
+                                                      action="<?= $block->escapeUrl($postParams['action']) ?>"
+                                                      method="post">
+                                                    <input type="hidden"
+                                                           name="product"
+                                                           value="<?= /* @noEscape */ $postParams['data']['product'] ?>">
+                                                    <input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
+                                                           value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <button type="submit"
+                                                            title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                            class="action tocart primary"><i></i>
+                                                        <span><?= $block->escapeHtml(__('Add To Cart')) ?></span>
+                                                    </button>
+                                                </form>
+                                            <?php else :?>
+                                                <?php if ($_product->isAvailable()) :?>
+                                                    <div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+                                                <?php else :?>
+                                                    <div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php }
+                                    if ($show_addtolinks == 1) { ?>
+                                        <div data-role="add-to-links" class="actions-secondary"<?php echo strpos($pos, $viewMode . '-secondary') ? $position: ''; ?>>
+                                            <?php if (strcmp($viewMode, "list") == 0) { ?>
+                                                <div class="prod-list-details"><a href="<?php /* @escapeNotVerified */
+                                                    echo $_product->getProductUrl() ?>" title="<?php /* @escapeNotVerified */
+                                                    echo $_productNameStripped ?>" class="btn product-list-details-link">Details
+                                                        <i class="fa fa-chevron-right"></i></a></div>
+                                            <?php } else { ?><?php if ($addToBlock = $block->getChildBlock('addto')): ?><?php echo $addToBlock->setProduct($_product)->getChildHtml(); ?><?php endif; ?><?php } ?>
+
+                                            ?>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                        <?php
+                            }
+                        }
+
+
+
+                        ?>
+
+                    </div>
+                </div>
+                <?php echo ($iterator == count($_productCollection) + 1) ? '</li>': '' ?><?php endforeach; ?>
+        </ol>
+    </div>
+    <?php echo $block->getToolbarHtml(); ?>
+
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {}
+            }
+        }
+
+
+
+        </script>
+
+    <?php endif; ?><?php endif; ?>
+
+
+    <?php
+          if ($show_firmness_js) {
+
+                                      ?>
+
+                        <script type="text/javascript">
+                        var firmnessRequest = {};
+
+                      firmnessRequest['products'] = firmnessProducts;
+
+
+                     jQuery.ajax({
+                         url: '/ev_firmness/index/getlistfirmness',
+                         dataType: 'json',
+                         type: 'post',
+                         data: firmnessRequest,
+
+                         success: function (data) {
+
+                            jQuery.each(data.html, function(index,jsonObject){
+
+                            var product_id = index;
+
+                            var firm_slide_message = jsonObject.firm_slide_message;
+                            var firm_slide_class = jsonObject.firm_slide_class;
+
+                            var selectormatch = jsonObject.selectormatch;
+                            var whereontrack = jsonObject.whereontrack;
+                            var original_mattress_firmness = jsonObject.original_mattress_firmness;
+                            var whereontrack2 = jsonObject.whereontrack2;
+
+                                 //set the slider positions
+                                  jQuery('#firmness_slider_'+product_id+' .bwsliderhandleone').css('left', whereontrack+'%')
+                                  jQuery('#firmness_slider_'+product_id+' .bwsliderhandletwo').css('left', whereontrack2+'%')
+
+                                //mattress not suitable message
+
+
+                                  if(firm_slide_class == 'firm_opacity'){
+                                jQuery('#firmness_slider_'+product_id+' #not_suited_wrap').addClass('firmness_not_suited');
+                                  jQuery('#firmness_slider_'+product_id+' #not_suited_wrap').html(firm_slide_message);
+                                }
+
+
+});
+                         //loop throught each product and set the placer on the list
+
+                             jQuery('#inject_firmness').html(data.html);
+                             console.log(data);
+
+                         }
+                     });
+                 </script>
+                            <?php
+                           // echo $_firmnessHelper->getFirmnessGridHtml($_product->getMattressFirmness());
+                        }
+
+                        ?>
+                        <?php
+     $helper = $this->helper('Elevate\Promotions\Helper\Data');
+
+
+ $countdown_time = $helper->getConfig('elevate_promotions/countdown/countdown_time');
+    
+    
+       ?>
+       <script>
+                  ELEVATE.Promotions.init("<?php echo $countdown_time; ?>"); 
+    </script>

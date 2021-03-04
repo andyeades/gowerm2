@@ -1,0 +1,510 @@
+@if $sitename == posturite {
+    // Landing page form
+
+
+
+    .row .bootstrap-form ul {
+        li {
+            margin-bottom: 0;
+        }
+    }
+
+    // Unique Styling?
+
+    #workrite-home h4.block-call-to-action {
+        background: rgb(37, 141, 200);
+    }
+
+    #office-environments-home h4.block-call-to-action {
+        background: rgb(255, 103, 15);
+    }
+
+    #company-intro-home {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #dedede;
+
+        h2 {
+            color: #006f51;
+            padding: 10px;
+        }
+
+        a {
+            margin-left: 10px;
+        }
+    }
+
+    #customer-services-home .home-block-inner-content {
+        background: url("../images/service-images/customer-services.jpg") right bottom no-repeat #ffffff;
+    }
+
+    #workstation-assessment-home .home-block-inner-content {
+        background: url("../images/service-images/home-services-canvas.jpg") left top no-repeat #ffffff;
+    }
+
+    #workrite-home .home-block-inner-content {
+        background: url("../images/service-images/home-services-canvas.jpg") -304px top no-repeat #ffffff;
+    }
+
+    #online-shopping-home .home-block-inner-content {
+        background: url("../images/service-images/home-services-canvas.jpg") -609px top no-repeat #ffffff;
+    }
+
+    #office-environments-home .home-block-inner-content {
+        background: url("../images/service-images/home-services-canvas.jpg") left -256px no-repeat #ffffff;
+    }
+
+    #events-seminars-home .home-block-inner-content {
+        background: url("../images/service-images/home-services-canvas.jpg") right -253px no-repeat #ffffff;
+    }
+
+    #online-shopping-home p {
+        margin-bottom: 0;
+    }
+
+    .testimonial-block {
+        background: #ffffff;
+        padding: 10px;
+        margin-bottom: 15px;
+        position: relative;
+        margin-top: 40px;
+        border-radius: 4px;
+        border: 1px solid #dddddd;
+
+        p {
+            margin-bottom: 0;
+        }
+
+        .client-quote {
+            font-weight: bold;
+            width: 170px;
+            margin: 0 auto;
+        }
+
+        .open-quote {
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            width: 29px;
+            height: 29px;
+            background: url("../images/Quotation-Marks.png") left top no-repeat transparent;
+        }
+
+        .closed-quote {
+            position: absolute;
+            bottom: -15px;
+            right: 10px;
+            width: 29px;
+            height: 29px;
+            background: url("../images/Quotation-Marks.png") right top no-repeat transparent;
+        }
+
+        .client-quotie {
+            margin-top: 10px !important;
+            font-style: italic;
+            color: #a48354;
+            width: 170px;
+            margin: 0 auto;
+        }
+    }
+
+    .column-content .testimonial-block {
+        .client-quote, .client-quotie {
+            width: 220px !important;
+        }
+    }
+
+
+    .full-width-form {
+
+        /*Sortoption alignment - https://m2.posturite.co.uk/forms/demo-homeworker-products-order-form*/
+
+
+        .field {
+            &.choice {
+                display: flex;
+                align-items: center;
+            }
+            .choice {
+                input {
+                    margin: 0;
+                }
+                label {
+                    margin: 0 0 0 8px;
+                }
+            }
+        }
+
+        .fieldset .legend {
+            border: none;
+            background: none;
+            padding: 0;
+            color: #006548;
+            margin-bottom: 20px;
+        }
+
+        .form-list {
+            .input-box {
+                display: block;
+                clear: both;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            label {
+                float: left;
+                color: #555555;
+                position: relative;
+                z-index: 0;
+                font-size: 16px;
+                margin-bottom: 14px;
+                font-weight: bold;
+            }
+
+            .control label {
+                margin-bottom: 0;
+                font-weight: normal;
+            }
+
+            input.input-text {
+                width: 596px;
+            }
+            .field {
+                width: 100%;
+                margin-bottom: 9px;
+            }
+
+            select {
+                width: 614px;
+            }
+
+            .input-box {
+                display: block;
+                clear: both;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            textarea {
+                height: 10em;
+            }
+            .validation-advice {
+                position: initial;
+                float: none;
+            }
+        }
+    }
+
+    .CMS-page-content {
+        .full-width-form .webform {
+            margin-top: 0;
+            padding: 20px;
+            background: #f8f8f8;
+        }
+
+        .fieldset h2 {
+            color: #006f51;
+        }
+    }
+
+
+    // 1 Column Bootstrap
+
+    .content-section {
+        padding: 80px 0;
+        text-align: left;
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            @include min-screen($desktop-min) {
+                font-size: 40px;
+            }
+        }
+
+        h2 {
+            font-size: 21px;
+            @include min-screen($desktop-min) {
+                font-size: 28px;
+            }
+
+        }
+        &.img-banner {
+            text-align: center;
+            @include min-screen($desktop-min) {
+                text-align: center;
+                padding: 152px 0;
+            }
+        }
+    }
+
+
+    .call-out-title {
+        background: #ffffff;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 20px 30px;
+        margin: 0 5%;
+        display: inline-block;
+
+        h1 {
+            color: #006f51;
+        }
+    }
+
+    .featurette-image {
+        margin-top: 20px;
+    }
+
+    .embed-responsive {
+        padding-top: 20px;
+    }
+
+    .list-icon-group p {
+        margin: 0;
+        padding: 8px 0;
+        text-align: center;
+    }
+
+    // Active Working
+
+    #active-working-hero {
+        background: #006f51;
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: url(../images/evolve-hero.png) no-repeat top 30% center scroll;
+        background-size: cover;
+        padding: 200px 0;
+    }
+
+    #sit-stand-products img {
+        margin-bottom: 25px;
+    }
+
+    .content-section {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    #sit-stand-products h2 {
+        font-size: 24px;
+    }
+
+    // Workrite
+
+    #workrite-page .service-intro-block {
+        background: url("../images/service-images/workrite-services.jpg") top right no-repeat #f4f4f4;
+    }
+
+    #office-environments-page .service-intro-block {
+        background: url("../images/service-images/office-environments-services.jpg") top right no-repeat #f4f4f4;
+    }
+
+    #enablement-page .service-intro-block {
+        background: url("../images/service-images/enablement-hero.jpg") top left no-repeat #f4f4f4;
+    }
+
+    #workrite-page {
+        .service-intro-content h2 {
+            color: #0d8dcd;
+        }
+
+        .action-link.external-link {
+            color: #0075b0;
+        }
+    }
+
+
+    #workrite-hero {
+        background: #006f51;
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: url(/media/workrite/workrite-hero.png) no-repeat bottom 30% center scroll;
+        background-size: cover;
+        padding: 50px 0;
+
+        h2 {
+            color: #555555;
+            margin-bottom: 34px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    // E-learning Courses
+
+    .elearning-item {
+        img {
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #006f51;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+        }
+    }
+
+
+    // Divisons?
+
+    .divisions-container {
+        border: 1px solid #cccccc;
+        float: left;
+        background-image: url("../images/posturite-background.jpg");
+        background-position: top left;
+        background-repeat: no-repeat;
+        height: 400px;
+        position: relative;
+
+        li {
+            float: left;
+            display: inline;
+            width: 236px;
+            height: 261px;
+
+            #workrite, #medirite, #office-environments {
+                display: none;
+            }
+
+            &.last {
+                width: 238px;
+            }
+        }
+    }
+
+    .division-information-container {
+        width: 236px;
+        height: 261px;
+
+        // Fallback for web browsers that doesn't support RGBa
+        background: rgb(256, 256, 256);
+
+        // RGBa with 0.6 opacity
+        background: rgba(256, 256, 256, 0.6);
+        // stylelint-disable-next-line function-name-case
+        filter: progid:dximagetransform.microsoft.gradient(startColorstr=#99ffff, endColorstr=#99ffff); // sass-lint:disable-line space-after-colon
+    }
+
+    #posturite .division-information {
+        background: rgb(0, 111, 81);
+    }
+
+    #workrite .division-information {
+        background: rgb(0, 117, 176);
+    }
+
+    #medirite .division-information {
+        background: rgb(0, 155, 58);
+    }
+
+    #office-environments .division-information {
+        background: rgb(199, 91, 18);
+    }
+
+    .division-information-container {
+        p, a {
+            color: #ffffff;
+        }
+
+        h3 {
+            color: #eeeeee;
+        }
+
+        a {
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .division-information {
+            padding: 15px;
+        }
+    }
+
+    .last-division-information-container {
+        width: 238px;
+    }
+
+    .division-logo-container {
+        position: absolute;
+        bottom: 0;
+        width: 221px;
+        padding: 5px 7px;
+        border-right: 1px solid #cccccc;
+        border-top: 1px solid #cccccc;
+        background: url("../images/division-inactive-gradient.gif") repeat-x top left #fdfdfd;
+        text-decoration: none;
+    }
+
+    .last-division-logo-container {
+        width: 224px;
+    }
+
+    .division-logo-container {
+        p {
+            text-align: center;
+        }
+
+        a {
+            color: #555555;
+        }
+
+        &:hover {
+            background: url("../images/division-active-gradient.gif") repeat-x top left #e4e5e6;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+
+    #division-active {
+        background: url("../images/division-active-gradient.gif") repeat-x top left #e4e5e6;
+        border-top: none;
+    }
+
+    // Divisions Block Home
+
+    .divisions-block {
+        border: 1px solid #cccccc;
+        float: left;
+
+        img {
+            margin: 8px;
+        }
+
+        li {
+            float: left;
+            width: 236px;
+            background: #ffffff;
+            border-right: 1px solid #cccccc;
+
+            &.last-division-container {
+                width: 232px;
+                border-right: 0;
+            }
+        }
+
+        .division-information {
+            padding: 15px;
+            border-top: 1px solid #cccccc;
+            background: #eeeeee;
+        }
+
+        li {
+            h3 {
+                font-size: 1.2em;
+            }
+
+            p {
+                margin-bottom: 3px;
+            }
+        }
+    }
+}

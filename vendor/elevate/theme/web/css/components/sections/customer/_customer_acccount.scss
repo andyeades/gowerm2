@@ -1,0 +1,47 @@
+
+
+
+$account-link-action-edit-after-border-thickness: 1px !default;
+$account-link-action-edit-after-border-type: solid !default;
+$account-link-action-edit-after-border-color: $border-color !default;
+$account-link-action-edit-after-height: 0.75rem !default;
+$account-link-action-edit-after-margin: 0 0.375rem !default;
+$account-link-action-edit-after-vertical-align: -1px !default;
+
+@mixin link-action-breaker($link-action-border-thickness, $link-action-border-type, $link-action-border-color, $link-action-height, $link-action-margin, $link-action-verticalalign) {
+    content: '';
+    display: inline-block;
+    @include co(border-left, $link-action-border-thickness $link-action-border-type $link-action-border-color);
+    @include co(height, $link-action-height);
+    @include co(margin, $link-action-margin);
+    @include co(vertical-align, $link-action-verticalalign);
+}
+
+
+.box-information {
+    .link-action.edit {
+        &:after {
+        @include link-action-breaker($account-link-action-edit-after-border-thickness,$account-link-action-edit-after-border-type,$account-link-action-edit-after-border-color, $account-link-action-edit-after-height,$account-link-action-edit-after-margin, $account-link-action-edit-after-vertical-align);
+        }
+    }
+}
+
+
+//Address
+
+$customer-account-address-block-addresses-default: 0 0 2rem 0 !default;
+$customer-account-address-top-actions-bar-margin: 0 0 3.25rem 0 !default;
+$customer-account-address-top-actions-bar-primary-float: none !default;
+
+.customer-address-index {
+    .block-addresses-default {
+        @include co(margin, $customer-account-address-block-addresses-default);
+    }
+}
+
+.customer-account-address-top-actions-bar {
+    @include co(margin, $customer-account-address-top-actions-bar-margin);
+    .primary {
+        @include co(float, $customer-account-address-top-actions-bar-primary-float);
+    }
+}

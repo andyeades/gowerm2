@@ -1,0 +1,2741 @@
+$catalog-product-view-pagemainouter-margin-mobilemax: 0 !default;
+
+
+.catalog-product-view {
+    #page-main-outer {
+        @include max-screen($mobile-max) {
+            margin: $catalog-product-view-pagemainouter-margin-mobilemax;
+        }
+    }
+    .page-main {
+        @if $pview-page-main-stretch-content-on-mobile == 1 {
+            @include max-screen($mobiletablet-max) {
+                margin-left: - $grid-gutter-width-mobile;
+                margin-right: - $grid-gutter-width-mobile;
+            }
+        }
+        @if $pview-page-main-stretch-content-on-mobiletablet == 1 {
+            @include screen($mobiletablet-min, $mobiletablet-max) {
+                margin-left: - $grid-gutter-width / 2;
+                margin-right: - $grid-gutter-width / 2;
+            }
+        }
+    }
+    .column.main {
+        display: flex;
+        flex-wrap: wrap;
+
+        align-items: $pview-column-main-align-items;
+
+        > div {
+            flex: 0 1 auto;
+        }
+
+
+    }
+}
+
+// Related Products
+
+.block.related,
+.block.upsell {
+    flex: 1 1 auto;
+    order: 5;
+
+    @include min-screen($screen-md-min) {
+        @include co(width, $pview-relprod-width-desktopmd);
+    }
+
+    .product-items {
+        margin: $pview-block-rp-pitems-margin;
+
+    }
+
+    .title {
+
+        @if $pview-block-rp-title-border-on == 1 {
+            @include elevate-border($pview-block-rp-title-border-color, $pview-block-rp-title-border-thickness, $pview-block-rp-title-border-style, $pview-block-rp-title-border-position);
+        }
+
+        > strong {
+            @include co(letter-spacing, $pview-block-rp-title-letter-spacing);
+            @include co(font-weight, $pview-block-rp-title-fontweight, $strong-b-font-weight);
+            @include co(font-size, $pview-block-rp-title-font-size);
+            @include co(color, $pview-block-rp-title-color);
+
+        }
+
+        @include co(text-align, $pview-block-rp-title-textalign);
+
+        @include co(margin, $pview-block-rp-title-margin);
+        @include co(padding, $pview-block-rp-title-padding);
+    }
+
+
+    .product-item-actions {
+        @include co(display, $pview-relprod-productitemactions-display);
+    }
+
+    .products-grid {
+        .product-item {
+            @include co(width, $pview-block-rp-item-width);
+            @include co(padding, $pview-block-rp-item-padding);
+            @include min-screen($desktop-min) {
+                @include co(width, $pview-block-rp-item-width-desktop, $pview-block-rp-item-width);
+                @include co(padding, $pview-block-rp-item-padding-desktop, $pview-block-rp-item-padding);
+            }
+
+            .product-item-info {
+                @include co(display, $pview-block-rp-items-display);
+                @include co(border-radius, $pview-block-rp-items-borderradius);
+                @include co(flex-direction, $pview-block-rp-items-flex-direction);
+                @include co(flex-wrap, $pview-block-rp-items-flexwrap);
+                @include co(padding, $pview-block-rp-items-padding, $pgrid-item-info-padding);
+                @include co(filter, $pview-block-rp-items-filter);
+                // If Background On For Grid (General Styles) - then we need to disable if we don't want it on this grid as well
+                @if ($pview-block-rp-items-background-on == 1) {
+                    @if ($pitems-item-bg-color-on == 1) or ($pitems-item-background-on == 1) {
+                        @if ($pview-block-rp-items-background != $pitems-item-bg-color) or ($pview-block-rp-items-background != $pitems-item-background) {
+                            background: $pview-block-rp-items-background;
+                        }
+                    }
+                } @else {
+                    @if ($pitems-item-bg-color-on == 1) or ($pitems-item-background-on == 1) {
+                        background: none;
+                    }
+                }
+
+                @include min-screen($desktop-min) {
+                    @include co(padding, $pview-block-rp-items-padding-desktop, $pgrid-item-info-padding-desktop);
+                }
+
+
+                > a, > div {
+                    @include co(flex, $pview-block-rp-item-children-flex);
+                }
+
+                .product-item-photo {
+                    @include co(width, $pview-block-rp-item-image-width);
+                }
+
+                .product-item-details {
+                    @include co(width, $pview-block-rp-item-details-width);
+                    @include co(padding, $pview-block-rp-item-details-padding);
+                }
+
+                .product-item-name {
+
+                    @include co(padding, $pview-block-rp-item-details-item-name-padding);
+                    @include co(margin, $pview-block-rp-item-details-item-name-margin);
+                    @include co(font-size, $pview-block-rp-item-details-item-name-font-size, $pitems-product-item-name-font-size);
+                    @include co(min-height, $pview-block-rp-item-details-item-name-minheight);
+                }
+
+                @if $pview-block-rp-item-border-on == 1 {
+                    @include elevate-border($pview-block-rp-item-border-color, $pview-block-rp-item-border-thickness, $pview-block-rp-item-border-style, $pview-block-rp-item-border-position);
+                } @else {
+                    border: none;
+                }
+
+                .product-item-link {
+                    @include co(color, $pview-block-rp-item-link-color);
+                }
+
+                .price-box {
+                    @include co(justify-content, $pview-block-rp-item-justifycontent, $pgrid-price-box-justifycontent);
+                    @include co(margin, $pview-block-rp-item-pricebox-margin);
+                    @include co(min-height, $pview-block-rp-item-pricebox-min-height);
+
+                    .price {
+                        font-size: $pview-block-rp-item-price-prices-fontsize;
+                        font-weight: $pview-block-rp-item-price-prices-fontweight;
+                    }
+
+
+                    @if $pview-block-rp-item-price-labels-on != 1 {
+                        .price-label {
+                            display: none;
+                        }
+                        .price-wrapper {
+                            &:after, &:before {
+                                content: none;
+                            }
+                        }
+
+                    } @else {
+                        $pview-block-rp-item-price-pricelabel-fontsize: 0.75rem !default;
+                        $pview-block-rp-item-price-afterbefore-fontsize: 0.75rem !default;
+                        .price-label {
+                            font-size: $pview-block-rp-item-price-pricelabel-fontsize;
+                        }
+                        .price-wrapper {
+                            &:after, &:before {
+                                font-size: $pview-block-rp-item-price-afterbefore-fontsize;
+                            }
+                        }
+                    }
+                }
+
+                .product-item-actions {
+                    @include co(order, $pview-block-rp-item-details-item-actions-order);
+                }
+            }
+
+        }
+    }
+}
+
+.product.info.detailed {
+
+    @include co(clear, $pview-info-detailed-clear);
+    @include co(order, $pview-info-detailed-order);
+    @include co(margin, $pview-info-detailed-margin);
+    @include co(width, $pview-info-detailed-width-mobile);
+
+
+    @include min-screen($desktop-min) {
+        @include co(margin, $pview-info-detailed-margin-desktop, $pview-info-detailed-margin);
+        @include co(width, $pview-info-detailed-width-desktop, $pview-info-detailed-width-mobile);
+        @include co-notzero(padding, $pview-info-detailed-padding-desktop);
+
+
+    }
+    @include min-screen($desktop-md-min) {
+        @include co(padding, $pview-info-detailed-padding-desktopmd, $pview-info-detailed-padding-desktop);
+
+    }
+    @include min-screen($desktop-lg-min) {
+        @include co(padding, $pview-info-detailed-padding-desktoplg, $pview-info-detailed-padding-desktopmd);
+    }
+
+
+    @include min-screen($desktop-xl-min) {
+        @include co(padding, $pview-info-detailed-padding-desktopxl, $pview-info-detailed-padding-desktoplg);
+    }
+
+    // RJ - Fix for BS 4.4 removing Pulls
+    .pull-left, .pull-right {
+        flex: 0 1 auto;
+    }
+
+    .pull-right {
+        order: 1;
+    }
+
+    .pull-left {
+        order: 0;
+    }
+
+    .product.attribute.description {
+        h2 {
+            font-size: $pview-description-h2-fontsize;
+            margin: $pview-description-h2-margin;
+        }
+
+
+    }
+
+    .additional-attributes {
+        width: auto;
+        @include lib-table-resize(
+            $-th-padding-left: 0,
+            $-th-padding-right: $indent--m,
+            $-th-padding-bottom: $indent--s,
+            $-td-padding-bottom: $indent--s
+        );
+    }
+}
+
+
+#ev-prod-keyfacts-3 {
+    order: $pview-keyfeatures-outer-order;
+    margin: $pview-keyfeatures-outer-margin;
+    width: $pview-info-detailed-width-mobile;
+    @include min-screen($desktop-min) {
+        width: $pview-info-detailed-width-desktop;
+    }
+}
+
+.prod-page-keyfeatures {
+
+    @include co(padding, $pview-keyfeatures-padding);
+    @include co(margin, $pview-keyfeatures-margin);
+    @include co(color, $pview-keyfeatures-color);
+    @include co(background, $pview-keyfeatures-bg-color);
+
+
+    @include max-screen($mobiletablet-max) {
+        padding: $pview-keyfeatures-mobilepadding;
+    }
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    li {
+        flex: 0 1 auto;
+        @include min-screen($desktop-min) {
+            width: 50%;
+        }
+        list-style-type: $pview-keyfeatures-li-style-type;
+        list-style-position: $pview-keyfeatures-li-style-position;
+        padding: $pview-keyfeatures-li-padding;
+        text-indent: $pview-keyfeatures-li-text-indent;
+
+        &:before {
+            content: $pview-keyfeatures-li-before-content;
+            color: $pview-keyfeatures-li-before-color;
+            margin: $pview-keyfeatures-li-before-margin;
+            font-weight: $pview-keyfeatures-li-before-fontweight;
+            font-size: $pview-keyfeatures-li-before-fontsize;
+        }
+    }
+
+    h4 {
+        text-transform: $pview-keyfeatures-h4-text-transform;
+        font-size: $pview-keyfeatures-h4-font-size;
+        font-weight: $pview-keyfeatures-h4-fontweight;
+        padding: $pview-keyfeatures-h4-padding;
+        margin: $pview-keyfeatures-h4-margin;
+    }
+}
+
+.product-info-main {
+    @include co(width, $pview-info-main-width);
+    @include co(order, $pview-info-main-order);
+    @include co(border-radius, $pview-info-main-border-radius);
+    @include co(background, $pview-info-main-bg-color);
+    @include co(box-shadow, $pview-info-main-box-shadow);
+    @include co(padding, $pview-info-main-padding);
+    @include co(margin, $pview-info-main-margin);
+    @include co(display, $pview-info-main-display);
+    @include co(flex-wrap, $pview-info-main-flexwrap);
+    @include co(height, $pview-info-main-height);
+    @include co(align-content, $pview-info-main-aligncontent);
+    @include co(justify-content, $pview-info-main-justifycontent);
+    @include co(text-align, $pview-info-main-textalign);
+
+    @include min-screen($desktop-min) {
+        @include co(float, $pview-info-main-float-desktop);
+        @include co(order, $pview-info-main-order-desktop, $pview-info-main-order);
+        @include co(width, $pview-info-main-width-desktop, $pview-info-main-width);
+        @include co(margin, $pview-info-main-margin-desktop, $pview-info-main-margin);
+        @include co(height, $pview-info-main-height-desktop, $pview-info-main-height);
+        @include co(justify-content, $pview-info-main-justifycontent-desktop, $pview-info-main-justifycontent);
+        @include co(text-align, $pview-info-main-textalign-desktop, $pview-info-main-textalign);
+    }
+
+    @include min-screen($desktop-md-min) {
+        @include co(float, $pview-info-main-float-desktopmd, $pview-info-main-float-desktop);
+        @include co(order, $pview-info-main-order-desktopmd, $pview-info-main-order-desktop);
+        @include co(width, $pview-info-main-width-desktopmd, $pview-info-main-width-desktop);
+        @include co(margin, $pview-info-main-margin-desktopmd, $pview-info-main-margin-desktop);
+        @include co(justify-content, $pview-info-main-justifycontent-desktopmd, $pview-info-main-justifycontent-desktop, $pview-info-main-justifycontent);
+        @include co(text-align, $pview-info-main-textalign-desktopmd, $pview-info-main-textalign-desktop, $pview-info-main-textalign);
+    }
+
+    > div {
+        @include co(flex, $pview-info-main-div-flex);
+    }
+
+
+    @if $pview-page-title-location == 'product-info-main' {
+
+        .page-title-wrapper {
+            @include co(padding, $pview-page-title-wrapper-padding);
+            @include co(margin, $pview-page-title-wrapper-margin);
+            @include co(width, $pview-page-title-wrapper-width);
+        }
+
+    }
+
+    .product-reviews-summary {
+        justify-content: $pview-reviews-summary-mobile-alignment;
+        @include min-screen($desktop-min) {
+            justify-content: $pview-reviews-summary-desktop-alignment;
+        }
+    }
+
+    .stock {
+        &.available,
+        &.unavailable {
+            display: flex;
+            font-weight: $font-weight--bold;
+            margin-right: $indent--base;
+            @if $pview-stock-text-transform-on == 1 {
+                text-transform: $pview-stock-text-transform;
+            }
+
+            vertical-align: top;
+        }
+
+        > span, > i {
+            flex: 0 1 auto;
+        }
+
+        &.available {
+            color: $pview-stock-available-color;
+        }
+
+        &.unavailable {
+            color: $pview-stock-unavailable-color;
+        }
+
+        i {
+
+        }
+    }
+
+    .product {
+        &.attribute {
+            &.sku {
+                @if $pview-display-sku == 1 {
+                    @include co(text-align, $pview-sku-textalign);
+
+                    @include min-screen($desktop-min) {
+                        @include co(text-align, $pview-sku-textalign-desktop, $pview-sku-textalign);
+                    }
+
+                    @include co-notzero(margin, $pview-sku-margin);
+                    @if $pview-sku-label-color != $pview-sku-color {
+                        @include ev-color-output($pview-sku-label-color);
+                    } @else {
+                        @include ev-color-output($pview-sku-color);
+                    }
+
+                    @if $pview-sku-label-fontweight != $pview-sku-fontweight {
+                        font-weight: $pview-sku-label-fontweight;
+                    } @else {
+                        font-weight: $pview-sku-fontweight;
+                    }
+                    > .type {
+                        // Override Strong Default
+                        @if $pview-sku-label-fontweight != '700' {
+                            font-weight: $pview-sku-label-fontweight;
+                        }
+                    }
+                    > .value {
+                        display: inline-block;
+                        vertical-align: top;
+                        word-break: break-all;
+                        @if $pview-sku-label-color != $pview-sku-color {
+                            @include ev-color-output($pview-sku-color);
+                        }
+                        @if $pview-sku-label-fontweight != $pview-sku-fontweight {
+                            font-weight: $pview-sku-fontweight;
+                        }
+                    }
+
+                    .type {
+                        //0.3125rem
+                        margin: $pview-sku-type-margin;
+                    }
+
+                    &.overview {
+                        margin: $indent--base 0;
+                    }
+                } @else {
+                    // TODO: Remove this - if admin switch is on to remove xml
+                    display: none;
+                }
+
+
+            }
+            &.overview {
+                @include co(display, $pview-attribute-overview-display);
+                @include max-screen($desktop-sm-max) {
+                    @include co(display, $pview-attribute-overview-display-desktopsmmax);
+                }
+            }
+        }
+
+        &.alert {
+            margin: $indent--s 0;
+        }
+    }
+}
+
+.product-info-price {
+    @include co-notzero(margin, $pview-pinfoprice-margin);
+    @include co(width, $pview-pinfoprice-width);
+    @include co(order, $pview-pinfoprice-order);
+}
+
+
+$pinfo-price-prodoptbottom-price-inc-ex-fontweight: $font-weight--bold !default;
+.product-info-price,
+.product-options-bottom {
+    .price-box {
+        display: flex;
+        flex-wrap: wrap;
+        @include co(padding, $pview-price-box-padding);
+        @include co(width, $pview-price-box-width);
+        @include co(line-height, $pview-price-lineheight);
+        @include co(text-align, $pview-price-text-align);
+        @include co(margin, $pview-price-box-margin);
+        @include min-screen($desktop-min) {
+            @include co(margin, $pview-price-box-margin-desktop, $pview-price-box-margin);
+            @include co(width, $pview-price-box-width-desktop, $pview-price-box-width);
+            @include co(text-align, $pview-price-text-align-desktop, $pview-price-text-align);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(margin, $pview-price-box-margin-desktopmd, $pview-price-box-margin-desktop, $pview-price-box-margin);
+            @include co(width, $pview-price-box-width-desktopmd, $pview-price-box-width-desktop, $pview-price-box-width);
+            @include co(text-align, $pview-price-text-align-desktopmd, $pview-price-text-align-desktop, $pview-price-text-align);
+        }
+
+        > span, div, p {
+            flex: 0 1 auto;
+            width: 100%;
+        }
+
+        .minimal-price {
+            > .price-container {
+                > .price-label {
+                    @if $pview-minimal-price-label-on != 1 {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .normal-price {
+
+        }
+
+        .special-price {
+            order: $pview-price-special-order;
+        }
+
+        .old-price {
+            order: $pview-price-old-order;
+
+            @if $pview-price-old-linethrough == true {
+                text-decoration: line-through;
+            }
+        }
+
+        .price-including-tax + .price-excluding-tax,
+        .weee + .price-excluding-tax,
+        .weee {
+            margin-bottom: $indent--xs;
+
+            .price {
+                @include co(font-weight, $pinfo-price-prodoptbottom-price-inc-ex-fontweight);
+            }
+        }
+
+        .price {
+            white-space: nowrap;
+        }
+    }
+
+    .special-price {
+        @include margin($pview-special-price-desktop-margin);
+
+        .price-label {
+            @include font-size($pview-special-price-label-desktop-font-size);
+            @if $pview-special-price-label-text-transform != false {
+                text-transform: $pview-special-price-label-text-transform;
+            }
+            @if $pview-special-price-label-font-weight != $pview-special-price-font-weight {
+                font-weight: $pview-special-price-label-font-weight;
+            }
+        }
+
+        .price-container {
+            > span {
+                @if $pview-special-price-label-font-weight == $pview-special-price-font-weight {
+                    font-weight: $pview-special-price-label-font-weight;
+                }
+            }
+        }
+
+
+        .price-wrapper .price {
+            @include font-size($pview-special-price-desktop-font-size);
+            @if $pview-special-price-font-weight != $pview-special-price-label-font-weight {
+                font-weight: $pview-special-price-font-weight;
+            }
+        }
+    }
+
+    .old-price {
+        @include margin($pview-old-price-desktop-margin);
+
+
+        .price-label {
+
+            @include co(display, $pview-old-price-label-display);
+            @include co(font-size, $pview-old-price-label-fontsize, $old-price-font-size);
+            @include co(text-transform, $pview-old-price-label-text-transform, $old-price-label-texttransform);
+            @include co(margin, $pview-old-price-label-margin);
+            @include co(font-weight, $pview-old-price-label-fontweight, $pview-old-price-font-weight);
+
+            @include min-screen($desktop-min) {
+                @include co(display, $pview-old-price-label-display-desktop, $pview-old-price-label-display);
+            }
+
+        }
+
+        .price-container {
+            > span {
+                @if $pview-old-price-label-fontweight == $pview-old-price-font-weight {
+                    font-weight: $pview-old-price-label-fontweight;
+                }
+            }
+        }
+
+
+        .price-wrapper .price {
+            @include font-size($pview-old-price-desktop-font-size);
+            @if $pview-old-price-font-weight != $pview-old-price-label-fontweight {
+                font-weight: $pview-old-price-font-weight;
+            }
+        }
+    }
+
+    .main-price, .normal-price {
+        @include margin($pview-normal-price-desktop-margin);
+
+
+        .price-label {
+            @include font-size($pview-normal-price-label-desktop-font-size);
+            @if $pview-normal-price-label-text-transform != false {
+                text-transform: $pview-normal-price-label-text-transform;
+            }
+            @if $pview-normal-price-label-font-weight != $pview-normal-price-font-weight {
+                font-weight: $pview-normal-price-label-font-weight;
+            }
+        }
+
+        .price-container {
+            > span {
+                @if $pview-normal-price-label-font-weight == $pview-normal-price-font-weight {
+                    font-weight: $pview-normal-price-label-font-weight;
+                }
+            }
+        }
+
+
+        .price-wrapper .price {
+            @include font-size($pview-normal-price-desktop-font-size);
+            @if $pview-normal-price-font-weight != $pview-normal-price-label-font-weight {
+                font-weight: $pview-normal-price-font-weight;
+            }
+        }
+    }
+
+    .old-price,
+    .special-price {
+        .price-label {
+            &:after {
+                content: ': ';
+            }
+        }
+    }
+
+
+    @if $pview-pinfopricepotionsbottom-addtolinks-on == 1 {
+        .product-addto-links {
+            margin: $indent--base 0;
+        }
+
+        .action.tocompare {
+            @include lib-button();
+            @include lib-link-as-button();
+            @include lib-css(border-radius, $button--border-radius);
+            @include lib-button-s();
+            vertical-align: top;
+        }
+    }
+
+}
+
+
+.box-tocart {
+    @include co(display, $pview-boxtocart-display);
+    @include co(align-items, $pview-boxtocart-align-items);
+    @include co(background, $pview-boxtocart-background);
+    @include co(width, $pview-boxtocart-width);
+    @include co(border-radius, $pview-boxtocart-borderradius);
+    @include co(border-bottom-left-radius, $pview-boxtocart-borderradius-bottomleft);
+    @include co(border-bottom-right-radius, $pview-boxtocart-borderradius-bottomright);
+    @include co(margin, $pview-boxtocart-margin);
+    @include co(padding, $pview-boxtocart-padding);
+    @include co(justify-content, $pview-boxtocart-justifycontent);
+    @include min-screen($desktop-min) {
+        @include co(border-radius, $pview-boxtocart-borderradius-desktop, $pview-boxtocart-borderradius);
+        @include co(margin, $pview-boxtocart-margin-desktop, $pview-boxtocart-margin);
+        @include co(padding, $pview-boxtocart-padding-desktop, $pview-boxtocart-padding);
+        @include co(justify-content, $pview-boxtocart-justifycontent-desktop, $pview-boxtocart-justifycontent);
+    }
+    @include min-screen($desktop-md-min) {
+        @include co(margin, $pview-boxtocart-margin-desktopmd, $pview-boxtocart-margin-desktop, $pview-boxtocart-margin);
+        @include co(border-radius, $pview-boxtocart-borderradius-desktopmd, $pview-boxtocart-borderradius-desktop, $pview-boxtocart-borderradius);
+        @include co(justify-content, $pview-boxtocart-justifycontent-desktopmd, $pview-boxtocart-justifycontent-desktop, $pview-boxtocart-justifycontent);
+        @include co(padding, $pview-boxtocart-padding-desktopmd, $pview-boxtocart-padding-desktop, $pview-boxtocart-padding);
+    }
+
+
+    @include max-screen($mobiletablet-max) {
+        flex-wrap: wrap;
+        text-align: $pview-boxtocart-mobile-alignment;
+    }
+
+
+    > div {
+
+        @include co(flex, $pview-boxtocart-div-flex);
+    }
+
+    .qty-incrementer-container {
+        &.stacked {
+            display: flex;
+            flex-direction: column;
+            @include co(align-items, $qty-incrementer-container-alignitems);
+            @include co(flex-direction, $qty-incrementer-container-display);
+            @include co(flex-direction, $qty-incrementer-container-flex-direction);
+            @include co(margin, $qty-incrementer-container-stacked-margin);
+            > button, > div {
+                @include co(border-radius, $qty-incrementer-container-stacked-buttons-borderradius);
+                &:first-of-type {
+                    @include co(margin, $qty-incrementer-container-stacked-buttons-fot-margin);
+                }
+                &:last-of-type {
+                    @include co(margin, $qty-incrementer-container-stacked-buttons-lot-margin);
+                }
+                @include co(background, $qty-incrementer-container-stacked-buttons-background);
+                @include co(border, $qty-incrementer-container-stacked-buttons-border);
+                @include co(color, $qty-incrementer-container-stacked-buttons-color);
+                @include co(height, $qty-incrementer-container-stacked-buttons-height);
+                @include co(width, $qty-incrementer-container-stacked-buttons-width);
+                @include co(display, $qty-incrementer-container-stacked-buttons-display);
+                @include co(justify-content, $qty-incrementer-container-stacked-buttons-justifycontent);
+                @include co(align-items, $qty-incrementer-container-stacked-buttons-alignitems);
+                @include co(font-size, $qty-incrementer-container-stacked-buttons-fontsize);
+                &:hover {
+                    @include co(background, $qty-incrementer-container-stacked-buttons-hover-background);
+                    @include co(color, $qty-incrementer-container-stacked-buttons-hover-color);
+                }
+
+            }
+        }
+
+    }
+
+    .field.qty {
+
+
+        @include co(display, $pview-boxtocart-fieldqty-display);
+        @include co(align-items, $pview-boxtocart-fieldqty-alignitems);
+        @include co(width, $pview-boxtocart-fieldqty-width);
+        @include co(justify-content, $pview-boxtocart-fieldqty-justifycontent);
+        @include co(background, $pview-addtocart-fieldqty-background);
+        @include co(border-radius, $pview-addtocart-fieldqty-borderradius);
+        @include co(margin, $pview-boxtocart-fieldqty-margin);
+
+        @include max-screen($mobiletablet-max) {
+            @include co(width, $pview-boxtocart-fieldqty-width-mobiletabletmax);
+            @include co(margin, $pview-boxtocart-fieldqty-margin-mobile);
+        }
+        @include min-screen($desktop-min) {
+            @include co(margin, $pview-boxtocart-fieldqty-margin-desktop);
+            @include co(width, $pview-boxtocart-fieldqty-width-desktop, $pview-boxtocart-fieldqty-width);
+            @include co(justify-content, $pview-boxtocart-fieldqty-justifycontent-desktop, $pview-boxtocart-fieldqty-justifycontent);
+
+            @if $pview-boxtocart-qty-arrangement-desktop == 'column' {
+                @if $pview-boxtocart-qty-arrangement != 'column' {
+                    flex-wrap: wrap;
+                }
+            } @else {
+                flex-wrap: unset;
+            }
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(margin, $pview-boxtocart-fieldqty-margin-desktopmd, $pview-boxtocart-fieldqty-margin-desktop);
+            @include co(width, $pview-boxtocart-fieldqty-width-desktopmd, $pview-boxtocart-fieldqty-width-desktop, $pview-boxtocart-fieldqty-width);
+            @include co(justify-content, $pview-boxtocart-fieldqty-justifycontent-desktopmd, $pview-boxtocart-fieldqty-justifycontent-desktop, $pview-boxtocart-fieldqty-justifycontent);
+
+            @if $pview-boxtocart-qty-arrangement-desktopmd == 'column' {
+                @if $pview-boxtocart-qty-arrangement != 'column' {
+                    flex-wrap: wrap;
+                }
+            } @else {
+                flex-wrap: unset;
+            }
+        }
+
+        @if $pview-boxtocart-qty-arrangement == 'column' {
+            flex-wrap: wrap;
+        }
+
+        > label, > div {
+            flex: 0 1 auto;
+
+
+
+            @if $pview-boxtocart-qty-arrangement == 'column' {
+                width: $pview-boxtocart-fieldqty-label-column-width;
+            }
+            @include min-screen($desktop-min) {
+                @if $pview-boxtocart-qty-arrangement-desktop == 'column' {
+                    @include co(width, $pview-boxtocart-fieldqty-label-column-width-desktop, $pview-boxtocart-fieldqty-label-column-width);
+                } @else {
+                    @include co(width, $pview-boxtocart-fieldqty-label-row-width-desktop, $pview-boxtocart-fieldqty-label-column-width);
+                }
+            }
+        }
+
+        .control {
+            @include co(display, $pview-boxtocart-fieldqty-control-display);
+        }
+
+        label {
+
+            @if $pview-boxtocart-fieldqty-label-on == 1 {
+                margin: $pview-boxtocart-fieldqty-label-margin;
+                @if $pview-boxtocart-fieldqty-label-text-transform-on == 1 {
+                    text-transform: $pview-boxtocart-fieldqty-label-text-transform;
+                }
+                font-weight: $pview-boxtocart-fieldqty-label-font-weight;
+
+                @if $pview-boxtocart-qty-arrangement == 'row' {
+                    padding: $pview-boxtocart-fieldqty-label-row-padding;
+                } @else {
+                    width: $pview-boxtocart-fieldqty-label-column-width;
+                }
+                @if $pview-boxtocart-qty-arrangement-desktop != 'row' {
+                    @include min-screen($desktop-min) {
+                        padding: initial;
+                    }
+                }
+
+            } @else {
+                @include sr-only();
+            }
+        }
+    }
+
+    .qtySelect {
+        display: $pview-boxtocart-qty-select-display;
+        vertical-align: $pview-boxtocart-qty-select-valign;
+        width: $pview-boxtocart-qty-select-width;
+        height: $pview-boxtocart-qty-select-height;
+        padding: $pview-boxtocart-qty-select-padding;
+        font-weight: $pview-boxtocart-qty-select-fontweight;
+        @include co(margin, $pview-boxtocart-qty-select-margin);
+        @include co(font-size, $pview-boxtocart-qty-select-fontsize, $select--font-size);
+        @if $pview-boxtocart-qty-border-radius-on == 1 {
+            border-radius: $pview-boxtocart-qty-border-radius;
+        }
+
+    }
+
+    .input-text.qty {
+
+        @if $pview-boxtocart-qty-border-on != 1 {
+            border: none;
+        }
+        @include co(font-family, $pview-boxtocart-qty-fontfamily);
+        @include co(font-size, $pview-boxtocart-qty-fontsize, $form-element-input--font-size);
+        @include co(font-weight, $pview-boxtocart-qty-fontweight, $form-element-input--font-weight);
+        @include co(background, $pview-addtocart-qty-background);
+        @include co(color, $pview-addtocart-qty-color);
+
+        @if $pview-boxtocart-qty-border-radius-on == 1 {
+            @include co(border-radius, $pview-boxtocart-qty-border-radius, $form-element-input--border-radius);
+        }
+
+        @include co(border, $pview-boxtocart-qty-border, $form-element-input--border);
+        @if $pview-boxtocart-qty-arrangement == 'column' {
+            height: $pview-boxtocart-qty-column-height;
+            width: $pview-boxtocart-qty-column-width;
+        }
+        @if $pview-boxtocart-qty-arrangement == 'row' {
+            height: $pview-boxtocart-qty-row-height;
+            width: $pview-boxtocart-qty-row-width;
+        }
+        text-align: center;
+
+    }
+
+
+    .actions {
+        display: flex;
+        align-items: $pview-boxtocart-actions-alignitems;
+        flex-wrap: $pview-boxtocart-actions-flexwrap;
+
+        @include co(text-align, $pview-boxtocart-actions-textalign);
+        @include co(width, $pview-boxtocart-actions-width);
+        @include co(justify-content, $pview-boxtocart-actions-justifycontent);
+        @include min-screen($desktop-min) {
+            @include co(width, $pview-boxtocart-actions-width-desktop, $pview-boxtocart-actions-width);
+            @include co(justify-content, $pview-boxtocart-actions-justifycontent-desktop, $pview-boxtocart-actions-justifycontent);
+        }
+
+
+        @if ($pview-boxtocart-actions-action-sidebyside) {
+
+        }
+
+        .action {
+            @include co(font-family, $pview-boxtocart-actions-btn-fontfamily);
+            @include co(font-weight, $pview-boxtocart-actions-btn-fontweight, $btn-font-weight);
+            @include button-size($pview-btc-a-button-padding-vertical, $pview-btc-a-button-padding-horizontal, $pview-btc-a-button-fontsize, $pview-btc-a-button-lineheight, $pview-btc-a-button-border-radius);
+
+            @if $pview-boxtocart-actions-button-border-radius-on == 1 {
+                border-radius: $pview-boxtocart-actions-button-border-radius;
+            }
+
+            @if $pview-boxtocart-actions-btn-text-transform-on == 1 {
+                text-transform: $pview-boxtocart-actions-btn-text-transform;
+            }
+            width: $pview-boxtocart-actions-button-width;
+            @include min-screen($desktop-min) {
+                @include co(width, $pview-boxtocart-actions-button-width-desktop, $pview-boxtocart-actions-button-width);
+                margin: $pview-boxtocart-actions-button-margin-desktop;
+                &:nth-last-of-type {
+                    margin: unset;
+                }
+            }
+
+            &.primary {
+                @include button-variant($pview-addtocart-btn-bgcolor, $pview-addtocart-btn-bgcolor);
+                @include co(font-weight, $pview-addtocart-btn-font-weight, $pview-boxtocart-actions-btn-fontweight);
+                @include co(color, $pview-addtocart-btn-color);
+                @if $pview-addtocart-btn-border-radius-on == 1 {
+                    @if $pview-boxtocart-actions-button-border-radius-on == 1 {
+                        @include co(border-radius, $pview-addtocart-btn-border-radius, $pview-boxtocart-actions-button-border-radius);
+                    } @else {
+                        border-radius: $pview-addtocart-btn-border-radius;
+                    }
+                }
+                @if $pview-addtocart-btn-text-transform-on == 1 {
+                    @include co(text-transform, $pview-addtocart-btn-text-transform, $pview-addtocart-btn-text-transform);
+                }
+
+
+                @if $pview-addtocart-btn-icon-on == 1 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    > span, > i {
+                        flex: 0 1 auto;
+                    }
+                    > span {
+                        @if $pview-addtocart-btn-icon-position == left {
+                            order: 2;
+                        } @else {
+                            order: 1;
+                        }
+                    }
+                    > i {
+                        background: $pview-addtocart-btn-icon-url;
+                        height: $pview-addtocart-btn-icon-height;
+                        width: $pview-addtocart-btn-icon-width;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        display: inline-block;
+                        position: relative;
+                        margin: $pview-addtocart-btn-icon-margin;
+                        @if $pview-addtocart-btn-icon-position == left {
+                            order: 1;
+                        } @else {
+                            order: 2;
+                        }
+                    }
+                }
+            }
+
+            &.secondary {
+                @include button-variant($pview-actions-secondary-bgcolor, $pview-actions-secondary-bgcolor);
+
+                &.addtoquote {
+
+                }
+            }
+
+        }
+
+        #ev_checkoutnow {
+            @include button-size(0, 2rem, 0.875rem, 2.875rem, false);
+        }
+    }
+
+    &.inside_qty_container {
+        @include co(margin, $pview-insideqtycontainer-boxtcart-margin);
+        .field.qty {
+            > div {
+                width: $pview-insideqtycontainer-control-width;
+            }
+        }
+
+        .control {
+
+
+            align-items: $pview-insideqtycontainer-control-alignitems;
+            display: flex;
+            padding: $pview-insideqtycontainer-control-padding;
+            background: $pview-insideqtycontainer-control-bgcolor;
+            border: $pview-insideqtycontainer-control-border;
+            border-color: $pview-insideqtycontainer-control-border-color;
+            @if $pview-insideqtycontainer-control-border-radius-on == 1 {
+                border-radius: $pview-insideqtycontainer-control-border-radius;
+            }
+        }
+
+        .qtySelect, .input-text.qty {
+            border: unset;
+
+        }
+
+        .input-text.qty {
+
+        }
+    }
+}
+
+.product-info-stock-sku {
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+
+    > i, > p {
+        flex: 0 1 auto;
+    }
+
+    > p {
+        margin-left: 0.5rem;
+        font-size: 0.8125rem;
+        margin-bottom: 0;
+    }
+}
+
+
+.pp-order-info-outer {
+    display: flex;
+    align-content: flex-start;
+    padding: 1rem 0;
+
+    > i, > div {
+        flex: 0 1 auto;
+    }
+
+    > div {
+        font-weight: 700;
+        margin-left: 0.5rem;
+        font-size: 0.8125rem;
+        display: flex;
+        flex-wrap: wrap;
+
+        > div {
+            flex: 0 1 auto;
+            width: 100%;
+            font-weight: 700;
+
+            &:nth-child(2) {
+                font-weight: 500;
+
+                > a {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+
+}
+
+
+.pp-icon {
+    display: block;
+    width: $pview-ppicon-width;
+    height: $pview-ppicon-height;
+
+    > svg {
+        height: $pview-ppicon-height;
+        width: $pview-ppicon-width;
+    }
+
+    &.pp-icon-clock {
+        > svg {
+            fill: $pview-ppicon-iconclock-color;
+
+            > * {
+                fill: $pview-ppicon-iconclock-color;
+            }
+        }
+    }
+
+    &.pp-icon-tick {
+        > svg {
+            fill: $pview-ppicon-icontick-color;
+
+            > * {
+                fill: $pview-ppicon-icontick-color;
+            }
+        }
+    }
+}
+
+$pview-product-options-bottom-margin: false !default;
+$pview-product-options-bottom-margin-desktopsm-max: false !default;
+
+$pview-product-options-bottom-padding: false !default;
+$pview-product-options-bottom-padding-desktopsm-max: false !default;
+
+.product-options-bottom {
+    @include co(margin, $pview-product-options-bottom-margin);
+    @include co(padding, $pview-product-options-bottom-padding);
+    @include max-screen($desktop-sm-max) {
+        @include co(margin, $pview-product-options-bottom-margin-desktopsm-max,$pview-product-options-bottom-margin);
+        @include co(padding, $pview-product-options-bottom-padding-desktopsm-max,$pview-product-options-bottom-padding);
+    }
+}
+
+.catalog-product-view {
+    .page-title {
+
+        @if $h1-color != false {
+            @include co(color, $pview-page-title-color, $h1-color);
+        }
+
+        @include co(text-align, $pview-page-title-text-align);
+        @include co(font-size, $pview-page-title-fontsize);
+        @include co(margin, $pview-page-title-margin);
+        @include co(font-weight, $pview-page-title-font-weight, $h1--font-weight);
+
+        @include min-screen($desktop-min) {
+
+            @include co(font-size, $pview-page-title-fontsize-desktop, $pview-page-title-fontsize);
+            @include co(margin, $pview-page-title-margin-desktop, $pview-page-title-margin);
+            @include co(text-align, $pview-page-title-text-align-desktop, $pview-page-title-text-align);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(font-size, $pview-page-title-fontsize-desktopmd,  $pview-page-title-fontsize-desktop, $pview-page-title-fontsize);
+            @include co(margin, $pview-page-title-margin-desktopmd, $pview-page-title-margin-desktop, $pview-page-title-margin);
+            @include co(text-align, $pview-page-title-text-align-desktopmd, $pview-page-title-text-align-desktop, $pview-page-title-text-align);
+        }
+    }
+}
+
+$ev-pp-productmedia-stickyimage-pos-top: 100px !default;
+$ev-pp-productmedia-stickyimage-padding: 2rem 70px 0 0 !default;
+
+.ev-pp-stickybar-show {
+    .product.media {
+        &.stickyimage {
+            top: $ev-pp-productmedia-stickyimage-pos-top;
+            padding: $ev-pp-productmedia-stickyimage-padding;
+        }
+    }
+
+}
+
+$ev-mediaproddetails-flexdirection-mobilemax: column !default;
+
+$ev-mediaproddetails-padding-mobilemax: 0 !default;
+
+$ev-mediaproddetails-flexwrap: wrap !default;
+#ev-mediaproddetails {
+    @include co(flex-wrap, $ev-mediaproddetails-flexwrap);
+    @include max-screen($mobilemax) {
+        @include co(flex-direction, $ev-mediaproddetails-flexdirection-mobilemax);
+        @include co(padding, $ev-mediaproddetails-padding-mobilemax);
+
+    }
+
+}
+
+
+
+
+.icon-pdf {
+    fill: red;
+}
+
+.text-icon-text-section-title {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    color: white;
+}
+.text-icon-icon-icon {
+    max-width: 80%;
+}
+.text-icon-text {
+    margin-bottom: 0;
+    font-size: 1.125rem;
+    color: white;
+}
+
+
+.text-icon-text-section-title {
+    @include min-screen($desktop-large-min) {
+        font-size: 3.75rem;
+        line-height: 3.75rem;
+    }
+
+}
+
+@if $sitename = happybeds {
+
+    $icons-section-iconstitlerow-padding: 1.5rem 0 0 0 !default;
+    $icons-section-iconstitlerow-padding-desktop: 3rem 0 0 0 !default;
+    $icons-section-iconstitlerow-margin: false !default;
+    $icons-section-iconstitlerow-margin-desktop: false !default;
+
+
+    $icons-section-iconstitlerow-h3-fontweight: 500 !default;
+    $icons-section-iconstitlerow-h3-textalign: center !default;
+    $icons-section-iconstitlerow-h3-textalign-desktop: left !default;
+    $icons-section-iconstitlerow-h3-padding-top: 1.5rem !default;
+    $icons-section-iconstitlerow-h3-padding-top-desktop: 3rem !default;
+    $icons-section-iconstitlerow-h3-padding-bottom: 1.5rem !default;
+    $icons-section-iconstitlerow-h3-padding-bottom-desktop: 3rem !default;
+    $icons-section-iconstitlerow-h3-margin: false !default;
+    $icons-section-iconstitlerow-h3-margin-desktop: false !default;
+    $icons-section-iconstitlerow-h3-fontsize: 1.5rem !default;
+    $icons-section-iconstitlerow-h3-fontsize-desktop: 2rem !default;
+
+    $icons-section-icon-element-textalign: center !default;
+    $icons-section-icon-element-textalign-desktop: center !default;
+    $icons-section-icon-element-padding: 0 2rem !default;
+    $icons-section-icon-element-padding-desktop: 0 4rem !default;
+    $icons-section-icon-element-margin: false !default;
+    $icons-section-icon-element-margin-desktop: false !default;
+    $icons-section-icon-element-fontsize: false !default;
+    $icons-section-icon-element-fontsize-desktop: false !default;
+
+
+    $icons-section-inner-row-container-padding: false !default;
+    $icons-section-inner-row-container-padding-desktop: false !default;
+    $icons-section-inner-row-container-margin: false !default;
+    $icons-section-inner-row-container-margin-desktop: false !default;
+
+
+    $icons-section-icon-section-list-padding: false !default;
+    $icons-section-icon-section-list-padding-desktop: false !default;
+    $icons-section-icon-section-list-margin-bottom: 0  !default;
+    $icons-section-icon-section-list-margin-bottom-desktop: 0 !default;
+
+    $icon-section-icon-section-duo-header-padding: false !default;
+    $icon-section-icon-section-duo-header-padding-desktop: false !default;
+    $icon-section-icon-section-duo-header-textalign: center !default;
+    $icon-section-icon-section-duo-header-textalign-desktop: left !default;
+    $icon-section-icon-section-duo-header-fontsize: 1.5rem !default;
+    $icon-section-icon-section-duo-header-fontsize-desktop: 2.375rem !default;
+    $icon-section-icon-section-duo-header-margin-bottom: 2rem  !default;
+    $icon-section-icon-section-duo-header-margin-bottom-desktop: 2rem !default;
+
+    $icon-section-icon-section-duo-content-padding: false !default;
+    $icon-section-icon-section-duo-content-padding-desktop: false !default;
+    $icon-section-icon-section-duo-content-fontsize: 0.875rem !default;
+    $icon-section-icon-section-duo-content-fontsize-desktop: 1rem !default;
+    $icon-section-icon-section-duo-content-margin-bottom: 0  !default;
+    $icon-section-icon-section-duo-content-margin-bottom-desktop: 0 !default;
+
+    $icon-section-duo-padding: 2rem 0 0 !default;
+    $icon-section-duo-textalign: false !default;
+    $icon-section-duo-textalign-desktop: false !default;
+    $icon-section-duo-padding-desktop: 3rem 0 0 !default;
+    $icon-section-duo-margin: false !default;
+    $icon-section-duo-margin-desktop: false !default;
+
+    $icon-section-duo-bg: #000 !default;
+    $icon-section-duo-bg-desktop: #000 !default;
+
+
+    $icon-panel-row-title-fontweight: false !default;
+    $icon-panel-row-title-textalign: center !default;
+
+    $icon-panel-row-title-textalign-desktop: left !default;
+    $icon-panel-row-title-padding: false !default;
+    $icon-panel-row-title-padding-desktop: false !default;
+    $icon-panel-row-title-margin-bottom: 1rem !default;
+    $icon-panel-row-title-margin-bottom-desktop: 0.5rem !default;
+    $icon-panel-row-title-fontsize: 1.5rem !default;
+    $icon-panel-row-title-fontsize-desktop: 2.5rem !default;
+    $icon-panel-row-title-fontsize-desktop-large: 3.75rem !default;
+
+
+    .outer-row-container {
+        .grid-row-image-title-subtext {
+            font-size: 1.875rem;
+        }
+
+        .grid-row-first {
+            padding: 4rem 0;
+        }
+
+        .grid-row-second {
+            padding: 4.5rem 0;
+        }
+
+
+        .grid-row-copy {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .grid-row-image-title {
+            font-size: 2.5rem;
+            color: white;
+            text-transform: uppercase;
+            @include min-screen($desktop-large-min) {
+                font-size: 4.5rem;
+            }
+        }
+    }
+
+    .icon-section-duo {
+        @include co(padding, $icon-section-duo-padding);
+        @include co(margin, $icon-section-duo-margin);
+        @include co(text-align, $icon-section-duo-textalign);
+        @include co(background, $icon-section-duo-bg);
+        @include min-screen($desktop-min) {
+            @include co(text-align, $icon-section-duo-textalign-desktop, $icon-section-duo-textalign);
+            @include co(margin, $icon-section-duo-margin-desktop, $icon-section-duo-margin);
+            @include co(padding, $icon-section-duo-padding-desktop, $icon-section-duo-padding);
+            @include co(background, $icon-section-duo-bg-desktop, $icon-section-duo-bg);
+        }
+        .icon-section-duo-header {
+            @include co(font-size, $icon-section-icon-section-duo-header-fontsize);
+            @include co(padding, $icon-section-icon-section-duo-header-padding);
+            @include co(text-align, $icon-section-icon-section-duo-header-textalign);
+            @include co(margin-bottom, $icon-section-icon-section-duo-header-margin-bottom);
+            @include min-screen($desktop-min) {
+                @include co(margin-bottom, $icon-section-icon-section-duo-header-margin-bottom-desktop, $icon-section-icon-section-duo-header-margin-bottom);
+                @include co(text-align, $icon-section-icon-section-duo-header-textalign-desktop, $icon-section-icon-section-duo-header-textalign);
+                @include co(padding, $icon-section-icon-section-duo-header-padding-desktop, $icon-section-icon-section-duo-header-padding);
+                @include co(font-size, $icon-section-icon-section-duo-header-fontsize-desktop, $icon-section-icon-section-duo-header-fontsize);
+            }
+        }
+        .icon-section-duo-content {
+            @include co(font-size, $icon-section-icon-section-duo-content-fontsize);
+            @include co(padding, $icon-section-icon-section-duo-content-padding);
+            @include co(margin-bottom, $icon-section-icon-section-duo-content-margin-bottom);
+            @include min-screen($desktop-min) {
+                @include co(margin-bottom, $icon-section-icon-section-duo-content-margin-bottom-desktop, $icon-section-icon-section-duo-content-margin-bottom);
+                @include co(padding, $icon-section-icon-section-duo-content-padding-desktop, $icon-section-icon-section-duo-content-padding);
+                @include co(font-size, $icon-section-icon-section-duo-content-fontsize-desktop, $icon-section-icon-section-duo-content-fontsize);
+            }
+        }
+
+    }
+    .icon-section-duo-item {
+        color: white;
+        margin-bottom: 3rem;
+
+    }
+    .icon-section-duo-item-title {
+        margin-bottom: 0.25rem;
+    }
+
+
+    .icon-section-outer-container {
+        padding-top: 1rem;
+    }
+    .icon-section-duo-item-content {
+        font-size: 1rem;
+    }
+
+    .icon-section {
+        .iconrow-subtext {
+            font-size: 0.75rem;
+        }
+        .icon-panel-row-title {
+            @include co(font-size, $icon-panel-row-title-fontsize);
+            @include co(font-weight, $icon-panel-row-title-fontweight);
+            @include co(padding, $icon-panel-row-title-padding);
+            @include co(margin-bottom, $icon-panel-row-title-margin-bottom);
+            @include co(text-align, $icon-panel-row-title-textalign);
+
+            @include min-screen($desktop-min) {
+                @include co(text-align, $icon-panel-row-title-textalign-desktop, $icon-panel-row-title-textalign);
+                @include co(font-size, $icon-panel-row-title-fontsize-desktop, $icon-panel-row-title-fontsize);
+                @include co(margin-bottom, $icon-panel-row-title-margin-bottom-desktop, $icon-panel-row-title-margin-bottom);
+                @include co(padding, $icon-panel-row-title-padding-desktop, $icon-panel-row-title-padding);
+            }
+            @include min-screen($desktop-lg-min) {
+                @include co(font-size, $icon-panel-row-title-fontsize-desktop-large, $icon-panel-row-title-fontsize-desktop, $icon-panel-row-title-fontsize);
+            }
+        }
+    }
+
+    .icons-section {
+        .icon-element-image-caption {
+            padding-top: 1.25rem;
+            padding-bottom: 0;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .icon-element-image-caption-alt {
+            padding-top: 1.25rem;
+            padding-bottom: 0;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .icons-element-image {
+            max-height: 190px;
+        }
+        .icon-element-image {
+            max-height: 125px;
+        }
+
+        .icons-section-padding {
+            padding: 4rem 0;
+        }
+
+        .icon-section-list {
+            @include co(padding, $icons-section-icon-section-list-padding);
+            @include co(margin-bottom, $icons-section-icon-section-list-margin-bottom);
+            @include min-screen($desktop-min) {
+                @include co(margin-bottom, $icons-section-icon-section-list-margin-bottom-desktop, $icons-section-icon-section-list-margin-bottom);
+                @include co(padding, $icons-section-icon-section-list-padding-desktop, $icons-section-icon-section-list-padding);
+            }
+        }
+        .inner-row-container {
+            @include co(padding, $icons-section-inner-row-container-padding);
+            @include co(margin, $icons-section-inner-row-container-margin);
+            @include min-screen($desktop-min) {
+                @include co(margin, $icons-section-inner-row-container-margin-desktop, $icons-section-inner-row-container-margin);
+                @include co(padding, $icons-section-inner-row-container-padding-desktop, $icons-section-inner-row-container-padding);
+            }
+        }
+        .icons-header-subcopy {
+            font-size: 1.15rem;
+            font-weight: 300;
+            padding-top: 0.5rem;
+            padding-bottom: 1.5rem;
+        }
+        .icons-element-disclaimer {
+            font-size: 0.75rem;
+        }
+        .icons-title-row {
+            @include co(padding, $icons-section-iconstitlerow-padding);
+            @include co(margin, $icons-section-iconstitlerow-margin);
+            @include min-screen($desktop-min) {
+                @include co(margin, $icons-section-iconstitlerow-margin-desktop, $icons-section-iconstitlerow-margin);
+                @include co(padding, $icons-section-iconstitlerow-padding-desktop, $icons-section-iconstitlerow-padding);
+            }
+            h3 {
+                @include co(font-size, $icons-section-iconstitlerow-h3-fontsize);
+                @include co(font-weight, $icons-section-iconstitlerow-h3-fontweight);
+                @include co(padding-top, $icons-section-iconstitlerow-h3-padding-top);
+                @include co(padding-bottom, $icons-section-iconstitlerow-h3-padding-bottom);
+                @include co(margin, $icons-section-iconstitlerow-h3-margin);
+                @include co(text-align, $icons-section-iconstitlerow-h3-textalign);
+
+                @include min-screen($desktop-min) {
+                    @include co(text-align, $icons-section-iconstitlerow-h3-textalign-desktop, $icons-section-iconstitlerow-h3-textalign);
+                    @include co(font-size, $icons-section-iconstitlerow-h3-fontsize-desktop, $icons-section-iconstitlerow-h3-fontsize);
+                    @include co(margin, $icons-section-iconstitlerow-h3-margin-desktop, $icons-section-iconstitlerow-h3-margin);
+                    @include co(padding-top, $icons-section-iconstitlerow-h3-padding-top-desktop, $icons-section-iconstitlerow-h3-padding-top);
+                    @include co(padding-bottom, $icons-section-iconstitlerow-h3-padding-bottom-desktop, $icons-section-iconstitlerow-h3-padding-bottom);
+                }
+            }
+
+        }
+
+        .icon-element {
+            @include co(padding, $icons-section-icon-element-padding);
+            @include co(margin, $icons-section-icon-element-margin);
+            @include co(text-align, $icons-section-icon-element-textalign);
+            @include min-screen($desktop-min) {
+                @include co(text-align, $icons-section-icon-element-textalign-desktop, $icons-section-icon-element-textalign);
+                @include co(margin, $icons-section-icon-element-margin-desktop, $icons-section-icon-element-margin);
+                @include co(padding, $icons-section-icon-element-padding-desktop, $icons-section-icon-element-padding);
+            }
+        }
+
+    }
+
+
+    $icons-section-type1-icons-row-padding: false !default;
+    $icons-section-type1-icons-row-padding-desktop: false !default;
+    $icons-section-type1-icons-row-margin: false !default;
+    $icons-section-type1-icons-row-margin-desktop: false !default;
+
+    $icons-section-type1-icons-section-header-padding-top: 0 !default;
+    $icons-section-type1-icons-section-header-padding-top-desktop: 0 !default;
+    $icons-section-type1-icons-section-header-padding-bottom: 0.25rem !default;
+    $icons-section-type1-icons-section-header-padding-bottom-desktop: 0.25rem !default;
+
+
+    .icons-section-type1 {
+        .icons-row {
+            @include co(padding, $icons-section-type1-icons-row-padding);
+            @include co(margin, $icons-section-type1-icons-row-margin);
+            @include min-screen($desktop-min) {
+                @include co(margin, $icons-section-type1-icons-row-margin-desktop, $icons-section-type1-icons-row-margin);
+                @include co(padding, $icons-section-type1-icons-row-padding-desktop, $icons-section-type1-icons-row-padding);
+            }
+        }
+        .icons-title-row {
+            h3.icons-section-header {
+
+                @include co(padding-top, $icons-section-type1-icons-section-header-padding-top);
+                @include co(padding-bottom, $icons-section-type1-icons-section-header-padding-bottom);
+                @include min-screen($desktop-min) {
+
+                    @include co(padding-top, $icons-section-type1-icons-section-header-padding-top-desktop, $icons-section-type1-icons-section-header-padding-top);
+                    @include co(padding-bottom, $icons-section-type1-icons-section-header-padding-bottom-desktop, $icons-section-type1-icons-section-header-padding-bottom);
+                }
+            }
+        }
+
+    }
+    .icons-section-type2  {
+        .icon-section-duo-item {color: #333;}
+
+    }
+    $cross-section-padding: 2rem 0 !default;
+    $cross-section-padding-desktop: 0 0 3rem 0 !default;
+    $cross-section-bg: linear-gradient(180deg, #fff 15%, #8cd539 0) !default;
+    $cross-section-bg-desktop: linear-gradient(180deg, #fff 30%, #8cd539 0) !default;
+    $cross-section-img-minheight: false !default;
+    $cross-section-img-minheight-desktop: false !default;
+    $cross-section-img-padding: false !default;
+    $cross-section-img-padding-desktop: false !default;
+    $cross-section-img-margin: false !default;
+    $cross-section-img-margin-desktop: false !default;
+
+
+    $cross-section-innerrowcontainer-padding: false !default;
+    $cross-section-innerrowcontainer-padding-desktop: false !default;
+    $cross-section-innerrowcontainer-margin: false !default;
+    $cross-section-innerrowcontainer-margin-desktop: 0 1.5rem !default;
+
+
+    $cross-section-list-item-color: white !default;
+    $cross-section-list-item-justify-content: center !default;
+    $cross-section-list-item-justify-content-desktop: center !default;
+
+    $cross-section-list-item-align-items: center !default;
+    $cross-section-list-item-align-items-desktop: center !default;
+
+    $cross-section-list-item-text-align: center !default;
+    $cross-section-list-item-text-align-desktop: center !default;
+
+
+    $cross-section-list-item-fontweight: 300 !default;
+    $cross-section-list-item-flex: 0 1 auto !default;
+    $cross-section-list-item-flex-desktop: 0 1 auto !default;
+    $cross-section-list-item-fontsize: 1.25rem !default;
+    $cross-section-list-item-fontsize-desktop: 1.25rem !default;
+    $cross-section-list-item-width: false !default;
+    $cross-section-list-item-width-desktop: 50% !default;
+
+
+
+
+    $cross-section-list-item-padding: false !default;
+    $cross-section-list-item-padding-desktop: false !default;
+    $cross-section-list-item-margin: false !default;
+    $cross-section-list-item-margin-desktop: 0 0 2rem !default;
+
+    $cross-section-row-color: false !default;
+    $cross-section-row-justify-content: center !default;
+    $cross-section-row-justify-content-desktop: center !default;
+    $cross-section-row-fontweight: false !default;
+    $cross-section-row-flex: false !default;
+    $cross-section-row-flex-desktop: false !default;
+    $cross-section-row-fontsize: false !default;
+    $cross-section-row-fontsize-desktop: false !default;
+    $cross-section-row-width: false !default;
+    $cross-section-row-width-desktop: false !default;
+
+
+
+
+    $cross-section-row-padding: false !default;
+    $cross-section-row-padding-desktop: false !default;
+    $cross-section-row-margin: false !default;
+    $cross-section-row-margin-desktop: 0 0 2rem !default;
+
+    .full-width-video {
+        background-size: cover;
+        height: 55vw;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .full-width-video:before {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        position: absolute;
+        content: "";
+        background: rgba(0, 0, 0, .6);
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    .full-width-video-link {
+        font-size: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        position: absolute;
+        display:   block;
+    }
+    .details-section {
+        padding-top: 1rem;
+        padding-bottom: 3rem;
+    }
+    .details-section-title {
+        font-size: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    .details-section-item-title {
+        font-size: 1.5rem;
+    }
+    .details-section-list {
+        list-style-type: none;
+        line-height: 1.75rem;
+        font-size: 1rem;
+        font-weight: 300;
+    }
+    .details-section-list-item-icon {
+        height: 20px;
+        margin-right: 4px;
+    }
+    .details-section-list-item-strong {
+        font-weight: 600;
+    }
+
+    .icon-panel-row-content {
+        font-size: 1rem;
+    }
+
+    .cross-section {
+
+        @include co(background, $cross-section-bg);
+        @include co(padding, $cross-section-padding);
+        @include min-screen($desktop-min) {
+            @include co(padding, $cross-section-padding-desktop, $cross-section-padding);
+            @include co(background, $cross-section-bg-desktop, $cross-section-bg);
+        }
+
+        .inner-row-container {
+            @include co(padding, $cross-section-innerrowcontainer-padding);
+            @include co(margin, $cross-section-innerrowcontainer-margin);
+
+            @include min-screen($desktop-min) {
+                @include co(margin, $cross-section-innerrowcontainer-margin-desktop, $cross-section-innerrowcontainer-margin);
+                @include co(padding, $cross-section-innerrowcontainer-padding-desktop, $cross-section-innerrowcontainer-padding);
+            }
+
+        }
+        .cross-section-list {
+            list-style-type: none;
+            display: flex;
+
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .cross-section-list-item-number {
+            border-radius: 100%;
+            height: 30px;
+            width: 30px;
+            background: white;
+            margin-right: 0.75rem;
+            justify-content: center;
+            align-items: center;
+            flex: 0 0 auto;
+            color: #8cd539;
+            display: flex;
+        }
+
+        .cross-section-row {
+            @include co(padding, $cross-section-row-padding);
+            @include co(margin, $cross-section-row-margin);
+            @include co(color, $cross-section-row-color);
+            @include co(justify-content, $cross-section-row-justify-content);
+            @include co(font-weight, $cross-section-row-fontweight);
+            @include co(flex, $cross-section-row-flex);
+            @include co(font-size, $cross-section-row-fontsize);
+            @include co(width, $cross-section-row-width);
+            @include min-screen($desktop-min) {
+                @include co(justify-content, $cross-section-row-justify-content-desktop, $cross-section-row-justify-content);
+                @include co(font-size, $cross-section-row-fontsize-desktop, $cross-section-row-fontsize);
+                @include co(flex, $cross-section-row-flex-desktop, $cross-section-row-flex);
+                @include co(margin, $cross-section-row-margin-desktop, $cross-section-row-margin);
+                @include co(padding, $cross-section-row-padding-desktop, $cross-section-row-padding);
+                @include co(width, $cross-section-row-width-desktop, $cross-section-row-width);
+            }
+        }
+
+        .cross-section-list-item {
+            @include co(padding, $cross-section-list-item-padding);
+            @include co(margin, $cross-section-list-item-margin);
+            @include co(color, $cross-section-list-item-color);
+            @include co(justify-content, $cross-section-list-item-justify-content);
+            @include co(align-items, $cross-section-list-item-align-items);
+            @include co(text-align, $cross-section-list-item-text-align);
+            @include co(font-weight, $cross-section-list-item-fontweight);
+            @include co(flex, $cross-section-list-item-flex);
+            @include co(font-size, $cross-section-list-item-fontsize);
+            @include co(width, $cross-section-list-item-width);
+            @include min-screen($desktop-min) {
+                @include co(align-items, $cross-section-list-item-align-items-desktop, $cross-section-list-item-align-items);
+                @include co(text-align, $cross-section-list-item-text-align-desktop, $cross-section-list-item-text-align);
+                @include co(justify-content, $cross-section-list-item-justify-content-desktop, $cross-section-list-item-justify-content);
+                @include co(font-size, $cross-section-list-item-fontsize-desktop, $cross-section-list-item-fontsize);
+                @include co(flex, $cross-section-list-item-flex-desktop, $cross-section-list-item-flex);
+                @include co(margin, $cross-section-list-item-margin-desktop, $cross-section-list-item-margin);
+                @include co(padding, $cross-section-list-item-padding-desktop, $cross-section-list-item-padding);
+                @include co(width, $cross-section-list-item-width-desktop, $cross-section-list-item-width);
+            }
+        }
+
+        .cross-section-img {
+            @include co(padding, $cross-section-img-padding);
+            @include co(margin, $cross-section-img-margin);
+            @include co(min-height, $cross-section-img-minheight);
+            @include min-screen($desktop-min) {
+                @include co(margin, $cross-section-img-margin-desktop, $cross-section-img-margin);
+                @include co(padding, $cross-section-img-padding-desktop, $cross-section-img-padding);
+                @include co(min-height, $cross-section-img-minheight-desktop, $cross-section-img-minheight);
+            }
+        }
+
+    }
+}
+
+
+.product.media {
+
+    &.stickyimage {
+        position: sticky;
+        top: 25px;
+    }
+
+    &.notstickyimage {
+        margin-top: auto;
+
+    }
+
+    &.stickyimage, &.notstickyimage {
+        .page-title-wrapper {
+            display: none;
+        }
+    }
+
+    @if $pview-sticky-image == true {
+        overflow: hidden;
+    }
+
+
+    @if $pview-page-title-location == 'product.media' {
+        .page-title-wrapper {
+            flex: 0 1 auto;
+            width: 100%;
+        }
+    }
+
+    @include co(flex-wrap, $pview-media-flexwrap);
+    @include co(align-items, $pview-media-alignitems);
+    @include co(justify-content, $pview-media-justifycontent);
+    @include co(order, $pview-media-order);
+    @include co(width, $pview-media-width);
+    @include co(margin, $pview-media-margin);
+    @include co(padding, $pview-media-padding);
+    @include co(height, $pview-media-height);
+    @include co(min-height, $pview-media-minheight);
+    @include co(display, $pview-media-display);
+
+    @include max-screen($mobilemax) {
+        @include co(width, $pview-media-width-mobilemax, $pview-media-width);
+        @include co(margin, $pview-media-margin-mobilemax, $pview-media-margin);
+        @include co(height, $pview-media-height-mobilemax, $pview-media-height);
+        @include co(min-height, $pview-media-minheight-mobilemax, $pview-media-minheight);
+    }
+
+
+    @include min-screen($desktop-min) {
+        @include co(order, $pview-media-order-desktop, $pview-media-order);
+        @include co(margin, $pview-media-margin-desktop, $pview-media-margin);
+        @include co(padding, $pview-media-padding-desktop, $pview-media-padding);
+        @include co(width, $pview-media-width-desktop, $pview-media-width);
+        @include co(height, $pview-media-height-desktopmin, $pview-media-height);
+        @include co(min-height, $pview-media-minheight-desktopmin, $pview-media-minheight);
+    }
+    @include min-screen($desktop-medium-min) {
+        @include co(order, $pview-media-order-desktop-medium, $pview-media-order-desktop, $pview-media-order);
+        @include co(margin, $pview-media-margin-desktop-medium, $pview-media-margin-desktop, $pview-media-margin);
+        @include co(padding, $pview-media-padding-desktop-medium, $pview-media-padding-desktop, $pview-media-padding);
+        @include co(width, $pview-media-width-desktop-medium, $pview-media-width-desktop, $pview-media-width);
+        @include co(height, $pview-media-height-desktopmd, $pview-media-height-desktopmin, $pview-media-height);
+        @include co(min-height, $pview-media-minheight-desktopmd, $pview-media-minheight-desktopmin, $pview-media-minheight);
+    }
+
+
+    .placeholder .photo.container {
+        max-width: 100%;
+    }
+
+    .notice {
+        @include lib-css(color, $text--color--muted);
+        @include font-size($font-size--s);
+        @include margin($indent--s 0);
+    }
+
+    // Main Image
+
+
+    // Figure gets Added to the Dom from the img element - so need to style .MagicZoom for initial load
+    .MagicZoom,
+    figure.mz-figure {
+        @if $pview-media-figure-border-radius-mobilemax-on == 1 {
+            @include max-screen($mobilemax) {
+                border-radius: $pview-media-figure-border-radius-mobilemax;
+            }
+        } @else {
+            @if $pview-media-figure-border-radius-on == 1 {
+                @include max-screen($mobilemax) {
+                    border-radius: unset;
+                }
+            }
+        }
+
+        @if $pview-media-figure-border-radius-on == 1 {
+            border-radius: $pview-media-figure-border-radius;
+        }
+    }
+
+    .mz-thumb {
+        img {
+            @include co(height, $pview-media-thumb-img-height);
+            @include co(width, $pview-media-thumb-img-width);
+            @if $pview-media-thumb-border-radius-on == 1 {
+                border-radius: $pview-media-thumb-border-radius;
+            }
+            @if $pview-media-thumb-vertical-align != false {
+                vertical-align: $pview-media-thumb-vertical-align;
+            }
+            @include min-screen($desktop-min) {
+                @if $pview-media-thumb-vertical-align-desktop != false {
+                    vertical-align: $pview-media-thumb-vertical-align-desktop;
+                }
+            }
+        }
+
+    }
+
+    // If Not Using Magic Zoom?
+
+
+    .product.thumbs {
+        @include margin($indent--base 0 $indent--l);
+    }
+
+    .items.thumbs {
+        @include lib-list-inline();
+
+        .active {
+            display: block;
+            line-height: 1;
+        }
+    }
+
+
+    .MagicToolboxSelectorsContainer {
+
+    }
+
+    .MagicScroll {
+
+    }
+
+}
+
+
+.product-add-form {
+    &.product-add-form-empty {
+        display: none;
+    }
+
+    @include co(background, $pview-addform-bg-color);
+    @include co(box-shadow, $pview-addform-box-shadow);
+    @include co(padding, $pview-addform-padding);
+    @include co(margin, $pview-addform-margin);
+    @include co(width, $pview-addform-width);
+    @include co(order, $pview-addform-order);
+    @if $pview-addform-border-on == 1 {
+        border: $pview-addform-border;
+        @if $pview-addform-border-radius-on == 1 {
+            @include rj-border-radius($pview-addform-border-radius);
+
+        }
+
+    }
+
+
+    @include max-screen($mobilemax) {
+        @include co(margin, $pview-addform-margin-mobile);
+        @if $pview-addform-border-radius-mobile-on != 1 {
+            @if $pview-addform-border-radius-on == 1 {
+                border-radius: 0;
+            }
+        }
+    }
+    @include screen($mobiletablet-min, $mobiletablet-max) {
+        @if $pview-addform-border-radius-on-mobiletablet != 1 {
+            border-radius: 0;
+        }
+    }
+
+
+    @include min-screen($desktop-min) {
+        @include abs-revert-field-type();
+        @include co(padding, $pview-addform-padding-desktop, $pview-addform-padding);
+        @include co(margin, $pview-addform-margin-desktop, $pview-addform-margin);
+    }
+
+}
+
+
+.field.choice {
+    display: flex;
+    align-items: center;
+
+    > input, > label {
+        flex: 0 1 auto;
+    }
+
+    > .checkbox {
+
+    }
+
+    > label {
+        margin: 0;
+    }
+}
+
+#ev-prod-short-desc {
+    @include co(padding, $ev-prod-short-desc-padding);
+    @include co(margin, $ev-prod-short-desc-margin);
+    @include co(order, $ev-prod-short-desc-order);
+    @include co(font-family, $ev-prod-short-desc-fontfamily);
+    @include co(font-size, $ev-prod-short-desc-fontsize);
+    @include co(text-align, $ev-prod-short-desc-textalign);
+    @include min-screen($desktop-min) {
+        @include co(text-align, $ev-prod-short-desc-textalign-desktop, $ev-prod-short-desc-textalign);
+    }
+    @include min-screen($desktop-md-min) {
+        @include co(text-align, $ev-prod-short-desc-textalign-desktopmd, $ev-prod-short-desc-textalign-desktop, $ev-prod-short-desc-textalign);
+    }
+}
+
+$ev-pp-stickybar-bgcolor: #e9eeef !default;
+$ev-pp-stickybar-boxshadow: 0 3px 15px rgba(100, 100, 100, 0.49) !default;
+
+.ev-pp-stickybar {
+    position: fixed;
+    z-index: 9999999;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    height: 100px;
+
+    @include co(background-color, $ev-pp-stickybar-bgcolor);
+
+    &.sticky-show {
+        @include min-screen($desktop-min) {
+            display: flex;
+            top: 0;
+            @include co(box-shadow, $ev-pp-stickybar-boxshadow);
+
+            .container {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+    }
+
+    .container {
+        > div {
+            flex: 0 1 auto;
+
+            &.sticky-stock-status {
+                flex: 1 1 auto;
+            }
+
+            &.sticky-box-tocart {
+                @include screen($desktop-min, $desktop-md-min) {
+
+                }
+            }
+        }
+    }
+
+    .product-add-form {
+        margin: 0;
+        padding: 0;
+        background-color: unset;
+        border: unset;
+    }
+
+    .sticky-stock-status {
+        width: 30%;
+        padding: 0 1rem;
+        @include max-screen($desktop-sm-max) {
+            width: 45%;
+            padding: 0;
+        }
+    }
+
+    .sticky-price {
+        flex: 1 1 auto;
+        padding: 0 1rem;
+
+        .product-info-price {
+            margin: 0;
+        }
+    }
+
+    .sticky-box-tocart {
+        min-width: 286px;
+        padding: 0 1rem;
+        margin: 0;
+
+        @include max-screen($desktop-sm-max) {
+            padding: 0;
+        }
+
+        .field.qty {
+            justify-content: flex-end;
+        }
+    }
+}
+
+.aw-sbp__bundle-options-container {
+    .fieldset-bundle-options {
+        margin: 0;
+
+        .legend {
+            display: none;
+
+            + br {
+                display: none;
+            }
+        }
+    }
+}
+
+.aw-sbp__hidden-container {
+    display: none;
+}
+
+
+
+#pinfo-btm-o {
+    @include co(flex, $pinfo-btm-o-flex);
+    @include co(order, $pinfo-btm-o-order);
+    @include co(width, $pinfo-btm-o-width);
+    @include co(display, $pinfo-btm-o-display);
+    @include co(flex-wrap, $pinfo-btm-o-flexwrap);
+    @include co(position, $pinfo-btm-o-position);
+    @include co(background, $pinfo-btm-o-background);
+    @include co(margin, $pinfo-btm-o-margin);
+
+    > div {
+        flex: 0 1 auto;
+    }
+
+    #pinfo-btm-m {
+        display: flex;
+        flex-wrap: wrap;
+
+        @include co(width, $pinfo-btm-m-width);
+        @include co(padding, $pinfo-btm-m-padding);
+        @include co(margin, $pinfo-btm-m-margin);
+        @include min-screen($desktop-min) {
+            @include co(width, $pinfo-btm-m-width-desktop, $pinfo-btm-m-width);
+            @include co(margin, $pinfo-btm-m-margin-desktop, $pinfo-btm-m-margin);
+            @include co(padding, $pinfo-btm-m-padding-desktop, $pinfo-btm-m-padding);
+        }
+        @if $pview-sticky-image == true {
+            position: relative;
+            z-index: 999999;
+        }
+    }
+
+    #pinfo-btm-s {
+        width: $pinfo-btm-s-width-mobile;
+        @include min-screen($desktop-min) {
+            width: $pinfo-btm-s-width-desktop;
+        }
+        .related {
+            @include co(display, $pinfo-btm-s-related-display);
+            @include max-screen($desktop-sm-max) {
+                @include co(display, $pinfo-btm-s-related-display-desktopsm-max);
+            }
+        }
+    }
+
+
+}
+
+$pview-info-btm-btm-include: false !default;
+
+$pview-info-btm-btm-display: flex !default;
+$pview-info-btm-btm-flexwrap: wrap !default;
+$pview-info-btm-btm-width: 100% !default;
+$pview-info-btm-btm-width-desktop: 100% !default;
+$pview-info-btm-btm-margin: false !default;
+$pview-info-btm-btm-margin-desktop: false !default;
+$pview-info-btm-btm-padding: false !default;
+$pview-info-btm-btm-padding-desktop: false !default;
+
+$dit-active-afterbefore-border: false !default;
+$dit-active-afterbefore-position: false !default;
+$dit-active-afterbefore-height: false !default;
+$dit-active-afterbefore-content: false !default;
+$dit-active-afterbefore-width: false !default;
+
+
+//$dit-active-after-height: 3px !default;
+//$dit-active-after-width: 10px !default;
+//$dit-active-after-bgcolor: $theme-brand-color-2 !default;
+//$dit-active-after-margin: 0 auto !default;
+//$dit-active-after-top: 11px !default;
+
+$dit-position-desktop: false !default;
+$dit-fontfamily-desktop: false !default;
+$dit-margin-desktop: false !default;
+$dit-width-desktop: false !default;
+$dit-textalign-desktop: false !default;
+$dit-texttransform-desktop: false !default;
+
+$dit-active-after-position: false !default;
+$dit-active-after-top: false !default;
+$dit-active-after-left: false !default;
+$dit-active-after-height: false !default;
+$dit-active-after-display: false !default;
+$dit-active-after-width: false !default;
+$dit-active-after-background: false !default;
+$dit-active-after-content: false !default;
+$dit-active-after-margin: false !default;
+$dit-active-after-borderbottomcolor: false !default;
+$dit-active-after-zindex: false !default;
+
+$dit-active-before-borderbottomcolor: false !default;
+$dit-active-before-position: false !default;
+$dit-active-before-top: false !default;
+$dit-active-before-left: false !default;
+$dit-active-before-zindex: false !default;
+
+$dic-fontsize-desktop: false !default;
+$dic-lineheight-desktop: false !default;
+$dic-textalign-desktop: false !default;
+
+@if $pview-info-btm-btm-include == true {
+    .pview-info-btm-btm {
+        @include co(display, $pview-info-btm-btm-display);
+        @include co(flex-wrap, $pview-info-btm-btm-flexwrap);
+        @include co(width, $pview-info-btm-btm-width);
+        @include co(padding, $pview-info-btm-btm-padding);
+        @include co(margin, $pview-info-btm-btm-margin);
+        @include min-screen($desktop-min) {
+            @include co(width, $pview-info-btm-btm-width-desktop, $pview-info-btm-btm-width);
+            @include co(margin, $pview-info-btm-btm-margin-desktop, $pview-info-btm-btm-margin);
+            @include co(padding, $pview-info-btm-btm-padding-desktop, $pview-info-btm-btm-padding);
+        }
+    }
+}
+
+
+ul.colour-swatches-container {
+
+}
+
+.product-view-colour-swatches {
+    @include co(padding, $pview-options-wrapper-padding);
+    @include min-screen($desktop-min) {
+        @include co(padding, $pview-options-wrapper-padding-desktop, $pview-options-wrapper-padding);
+    }
+
+    .colour-swatches-label {
+        padding: $pview-color-swatches-lbl-padding;
+        @include ev-fontsize-output($pview-color-swatches-lbl-font-size);
+        @if $pview-color-swatches-lbl-text-transform-on == 1 {
+            text-transform: $pview-color-swatches-lbl-text-transform;
+        }
+        text-align: $pview-color-swatches-lbl-text-align;
+    }
+}
+
+.product-options-wrapper {
+    @include co(padding, $pview-options-wrapper-padding);
+    @include min-screen($desktop-min) {
+        @include co(padding, $pview-options-wrapper-padding-desktop, $pview-options-wrapper-padding);
+    }
+    @include min-screen($desktop-md-min) {
+        @include co(padding, $pview-options-wrapper-padding-desktopmd, $pview-options-wrapper-padding-desktop, $pview-options-wrapper-padding);
+    }
+
+    .fieldset {
+        > .field {
+            > .label {
+                @include ev-fontsize-output($pview-options-wrapper-fieldset-field-label-fontsize);
+
+                @if ($pview-options-wrapper-fieldset-field-label-fontweight != $form-field-label--font-weight) {
+                    font-weight: $pview-options-wrapper-fieldset-field-label-fontweight;
+                }
+                @if ($pview-options-wrapper-fieldset-field-label-margin != $form-field-type-label-block--margin) {
+                    margin: $pview-options-wrapper-fieldset-field-label-margin;
+                }
+
+            }
+        }
+    }
+
+    .fieldset-product-options-inner {
+        .legend {
+            @include lib-css(font-weight, $font-weight--bold);
+            @include lib-css(margin, 0 0 $indent--xs);
+            @include lib-font-size(14px);
+            border: none;
+            display: inline-block;
+            float: none;
+            padding: 0;
+        }
+
+        //  Date & Time custom option (Affect Time that goes only after Date)
+        input.datetime-picker {
+            ~ select.datetime-picker {
+                margin-top: $indent--s;
+            }
+        }
+
+        &.required,
+        &._required {
+            .legend {
+                &:after {
+                    content: '*';
+                    @include lib-typography(
+                        $-font-size: $form-field-label-asterisk--font-size,
+                        $-color: $form-field-label-asterisk--color,
+                        $-font-family: $form-field-label-asterisk--font-family,
+                        $-font-weight: $form-field-label-asterisk--font-weight,
+                        $-line-height: $form-field-label-asterisk--line-height,
+                        $-font-style: $form-field-label-asterisk--font-style
+                    );
+                    @include lib-css(margin, $form-field-label-asterisk--margin);
+                }
+            }
+        }
+    }
+
+    .field {
+        .note {
+            display: block;
+        }
+
+        .price-notice {
+            .price-including-tax,
+            .price-excluding-tax,
+            .weee {
+                @include ev-fontsize-output($pview-options-wrapper-pricenotice-fontsize);
+                white-space: nowrap;
+            }
+
+            .price-including-tax + .price-excluding-tax {
+                display: inline-block;
+                @include ev-fontsize-output($pview-options-wrapper-pricenotice-fontsize);
+
+                &:before {
+                    content: '(' attr(data-label) ': ';
+                }
+
+                &:after {
+                    content: ')';
+
+                }
+            }
+        }
+    }
+}
+
+
+.prices-tier {
+    @include abs-reset-list();
+    @include lib-css(background, $sidebar--background-color);
+    margin: $indent--s 0;
+    padding: $indent--s (0.75 * $indent--base);
+
+    .price-container {
+        display: inline-block;
+    }
+
+    .price-including-tax,
+    .price-excluding-tax,
+    .weee {
+        display: inline-block;
+
+        .price {
+            @include lib-font-size(14);
+            font-weight: $font-weight--bold;
+        }
+    }
+}
+
+.ui-dialog-titlebar-close {
+    @include lib-button-as-link();
+}
+
+//
+//  Tabs
+//  ---------------------------------------------
+
+
+.ptab-flex-row {
+    display: flex;
+    align-items: center;
+    @include max-screen($mobilemax) {
+        flex-wrap: wrap;
+    }
+
+    > div {
+        flex: 0 1 auto;
+        @include max-screen($mobilemax) {
+
+            width: $ptab-flex-row-item-width-mobile;
+        }
+    }
+}
+
+.ptab-label {
+
+}
+
+
+.ptab-additionalcontent {
+    display: flex;
+
+    > div {
+        flex: 0 1 auto;
+
+    }
+
+    @include co-notzero(margin, $ptab-addtionalcontent-margin);
+    @include co-notzero(padding, $ptab-addtionalcontent-padding);
+    @if $ptab-addtionalcontent-texttransform-on == 1 {
+        text-transform: $ptab-addtionalcontent-texttransform;
+    }
+    font-weight: $ptab-addtionalcontent-fontweight;
+    font-size: $ptab-addtionalcontent-fontsize;
+
+    .star-rating {
+        margin: $ptab-additionalcontent-sr-margin;
+
+        > span {
+            overflow: visible;
+
+            &:before {
+                top: 5px;
+            }
+        }
+    }
+}
+
+.ptab-rating-count {
+    @include co-notzero(margin, $ptab-ratingcount-margin);
+}
+
+
+// Happybeds Specific
+
+#product-info-dimensions {
+    .row {
+        // TODO: Temp Fix for Bootstrap 4 Issues after Migration
+        display: initial !important;
+    }
+}
+
+#product-info-instructions {
+    padding: 0;
+}
+
+// End Happybeds Specific
+
+.pa_category {
+    @include max-screen($mobilemax) {
+        padding: 0 $grid-gutter-width-mobile;
+    }
+
+    @include max-screen($mobiletablet-max) {
+        padding: 0 $grid-gutter-width / 2;
+    }
+    @include min-screen($desktop-min) {
+        padding: 0 $grid-gutter-width / 2;
+    }
+    margin-top: 20px;
+
+    .alt-link.alt-link-bold {
+        color: #006b7f;
+        font-weight: 700;
+
+        &:hover {
+            color: #002b33;
+        }
+    }
+
+    .content-wrap {
+        border: 1px solid gray;
+        border-radius: 10px;
+        text-align: center;
+        padding: 30px;
+        margin: 20px 0 20px 0;
+
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 50px;
+            margin-bottom: 10px;
+        }
+
+        .prod-attach-size {
+            display: block;
+            font-size: 0.625rem;
+        }
+    }
+
+    h2 {
+
+        color: #0e1936;
+        display: inline-block;
+        padding-bottom: 10px;
+        position: relative;
+        top: 3px;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+}
+
+.product.data.items {
+
+
+    @if $pview-producttabs-desktop == accordion {
+
+
+        @include lib-data-accordion(
+            $-accordion-control-font-family: $tab-control--font-family,
+            $-accordion-control-font-size: $pview-desc-tab-title-font-size,
+            $-accordion-control-font-style: $tab-control--font-style,
+            $-accordion-control-font-weight: $pview-desc-tab-title-fontweight,
+            $-accordion-control-line-height: $pview-desc-tab-title-lineheight,
+            $-accordion-control-border-top: $tab-control--border-width solid $tab-control--border-color,
+            $-accordion-control-border-right: false,
+            $-accordion-control-border-bottom: false,
+            $-accordion-control-border-left: false,
+            $-accordion-control-background-color: $tab-control--background-color,
+            $-accordion-control-color: $tab-control--color,
+            $-accordion-control-text-decoration: $tab-control--text-decoration,
+            $-accordion-control-color-visited: $tab-control--color,
+            $-accordion-control-text-decoration-visited: $tab-control--text-decoration,
+            $-accordion-control-background-color-hover: lighten($tab-control--background-color, 5%),
+            $-accordion-control-color-hover: $tab-control--color,
+            $-accordion-control-text-decoration-hover: $tab-control--text-decoration,
+            $-accordion-control-background-color-active: lighten($tab-control--background-color, 15%),
+            $-accordion-control-color-active: $text--color,
+            $-accordion-control-text-decoration-active: $tab-control--text-decoration,
+            $-accordion-control-height: false,
+            $-accordion-control-margin-bottom: false,
+            $-accordion-control-padding-top: $pview-desc-tab-title-padding-top,
+            $-accordion-control-padding-right: $pview-desc-tab-title-padding-right,
+            $-accordion-control-padding-bottom: $pview-desc-tab-title-padding-bottom,
+            $-accordion-control-padding-left: $pview-desc-tab-title-padding-left,
+            $-accordion-content-background-color: lighten($tab-control--background-color, 15%),
+            $-accordion-content-border: $tab-content--border,
+            $-accordion-content-margin: 0 0 $indent--xs,
+            $-accordion-content-padding: $tab-content--padding-top $tab-content--padding-right $tab-content--padding-bottom $tab-content--padding-left
+        );
+        margin-bottom: $indent--base;
+
+        .data.item {
+            display: block;
+
+            > a {
+                @include co(text-transform, $pview-data-items-accordion-control-text-transform);
+
+            }
+        }
+
+        .data.item {
+            &.title {
+                position: relative;
+                @if $pview-page-main-stretch-content-on-mobile == 1 {
+                    @include max-screen($mobiletablet-max) {
+                        > a {
+                            padding-left: 15px;
+                        }
+                    }
+                }
+                @if $pview-page-main-stretch-content-on-mobiletablet == 1 {
+                    @include screen($mobiletablet-min, $mobiletablet-max) {
+                        > a {
+                            padding-left: 15px;
+                        }
+                    }
+                }
+
+                > .fa {
+                    position: absolute;
+                    right: 0;
+                    line-height: $pview-desc-tab-title-lineheight;
+                    font-size: $pview-desc-tab-title-font-size;
+                    padding: $pview-desc-tab-title-padding-top 0 $pview-desc-tab-title-padding-bottom 0;
+                    color: $pview-desc-tab-title-accordion-icon-color;
+                    @if $pview-page-main-stretch-content-on-mobile == 1 {
+                        @include max-screen($mobiletablet-max) {
+                            right: 15px;
+                        }
+                    }
+                    @if $pview-page-main-stretch-content-on-mobiletablet == 1 {
+                        @include screen($mobiletablet-min, $mobiletablet-max) {
+                            right: 15px;
+                        }
+                    }
+                }
+            }
+
+            &.active {
+                > .fa {
+                    color: $pview-desc-tab-title-accordion-icon-color-active;
+                }
+
+                > a {
+                    border-bottom: unset;
+                }
+            }
+        }
+
+        > .switch {
+            @include co(text-transform, $pview-desc-tab-title-text-transform);
+
+        }
+    } @else {
+
+        @include max-screen($mobiletablet-max) {
+            @include lib-data-accordion(
+                $-accordion-control-font-family: $tab-control--font-family,
+                $-accordion-control-font-size: $pview-desc-tab-title-font-size,
+                $-accordion-control-font-style: $tab-control--font-style,
+                $-accordion-control-font-weight: $pview-desc-tab-title-fontweight,
+                $-accordion-control-line-height: $pview-desc-tab-title-lineheight,
+                $-accordion-control-border-top: $tab-control--border-width solid $tab-control--border-color,
+                $-accordion-control-border-right: false,
+                $-accordion-control-border-bottom: false,
+                $-accordion-control-border-left: false,
+                $-accordion-control-background-color: $tab-control--background-color,
+                $-accordion-control-color: $tab-control--color,
+                $-accordion-control-text-decoration: $tab-control--text-decoration,
+                $-accordion-control-color-visited: $tab-control--color,
+                $-accordion-control-text-decoration-visited: $tab-control--text-decoration,
+                $-accordion-control-background-color-hover: lighten($tab-control--background-color, 5%),
+                $-accordion-control-color-hover: $tab-control--color,
+                $-accordion-control-text-decoration-hover: $tab-control--text-decoration,
+                $-accordion-control-background-color-active: lighten($tab-control--background-color, 15%),
+                $-accordion-control-color-active: $text--color,
+                $-accordion-control-text-decoration-active: $tab-control--text-decoration,
+                $-accordion-control-height: false,
+                $-accordion-control-margin-bottom: false,
+                $-accordion-control-padding-top: $pview-desc-tab-title-padding-top,
+                $-accordion-control-padding-right: $pview-desc-tab-title-padding-right,
+                $-accordion-control-padding-bottom: $pview-desc-tab-title-padding-bottom,
+                $-accordion-control-padding-left: $pview-desc-tab-title-padding-left,
+                $-accordion-content-background-color: lighten($tab-control--background-color, 15%),
+                $-accordion-content-border: $tab-content--border,
+                $-accordion-content-margin: 0 0 $indent--xs,
+                $-accordion-content-padding: $tab-content--padding-top $tab-content--padding-right $tab-content--padding-bottom $tab-content--padding-left
+            );
+        }
+
+
+        @include min-screen($desktop-min) {
+
+            .data.item.title.active {
+
+                &:after, &:before {
+                    @include co(border, $dit-active-afterbefore-border);
+                    @include co(position, $dit-active-afterbefore-position);
+                    @include co(height, $dit-active-afterbefore-height);
+                    @include co(content, $dit-active-afterbefore-content);
+                    @include co(width, $dit-active-afterbefore-width);
+                }
+
+                &:after {
+
+                    @include co(border-bottom-color, $dit-active-after-borderbottomcolor);
+                    @include co(position, $dit-active-after-position);
+                    @include co(top, $dit-active-after-top);
+                    @include co(left, $dit-active-after-left);
+                    @include co(height, $dit-active-after-height);
+                    @include co(display, $dit-active-after-display);
+                    @include co(width, $dit-active-after-width);
+                    @include co(background, $dit-active-after-background);
+                    @include co(content, $dit-active-after-content);
+                    @include co(margin, $dit-active-after-margin);
+                    @include co(z-index, $dit-active-after-zindex);
+                }
+
+
+                &:before {
+                    @include co(border-bottom-color, $dit-active-before-borderbottomcolor);
+                    @include co(position, $dit-active-before-position);
+                    @include co(top, $dit-active-before-top);
+                    @include co(left, $dit-active-before-left);
+                    @include co(z-index, $dit-active-before-zindex);
+                }
+            }
+            .data.item {
+                &.title {
+                    @include co(position, $dit-position-desktop);
+                    @include co(font-family, $dit-fontfamily-desktop);
+                    @include co(text-transform, $dit-texttransform-desktop);
+                    @include co(margin, $dit-margin-desktop);
+                    @include co(width, $dit-width-desktop);
+                    @include co(text-align, $dit-textalign-desktop);
+
+                    > span {
+                        display: none;
+                    }
+
+                    &.active {
+                        &::after {
+
+                        }
+                    }
+                }
+
+                &.content {
+                    @include co(font-size, $dic-fontsize-desktop);
+                    @include co(line-height, $dic-lineheight-desktop);
+                    @include co(text-align, $dic-textalign-desktop);
+
+                    @if $ev-tab-content-border-on == 1 {
+                        @include elevate-border($ev-tab-content-border-color, $ev-tab-content-border-thickness, $ev-tab-content-border-style, $ev-tab-content-border-position);
+                    }
+
+                }
+
+            }
+
+            @if $tab-control--height == false {
+                $tab-content--margin-top: $tab-control--border-width + $tab-control--padding-top + $tab-control--padding-bottom;
+            }
+            $tab-content--margin-top: $tab-control--height + $tab-control--border-width + $tab-control--padding-top + $tab-control--padding-bottom !default;
+
+            $tab-content--border-top-status: 0 !global;
+
+
+            @include lib-data-tabs(
+                $-tab-control-font-family: $tab-control--font-family,
+                $-tab-control-font-size: $tab-control--font-size,
+                $-tab-control-font-style: $tab-control--font-style,
+                $-tab-control-font-weight: $tab-control--font-weight,
+                $-tab-control-line-height: $tab-control--line-height,
+                $-tab-control-background-color: $tab-control--background-color,
+                $-tab-control-color: $tab-control--color,
+                $-tab-control-text-decoration: $tab-control--text-decoration,
+                $-tab-control-color-visited: $tab-control--color,
+                $-tab-control-text-decoration-visited: $tab-control--text-decoration,
+                $-tab-control-background-color-hover: $tab-control--hover--background-color,
+                $-tab-control-color-hover: $tab-control--hover--color,
+                $-tab-control-text-decoration-hover: $tab-control--text-decoration,
+                $-tab-control-background-color-active: $tab-control--active--background-color,
+                $-tab-control-color-active: $tab-control--active--color,
+                $-tab-control-text-decoration-active: $tab-control--text-decoration,
+                $-tab-control-height: $tab-control--height,
+                $-tab-control-margin-right: $tab-control--margin-right,
+                $-tab-control-padding-top: $tab-control--padding-top,
+                $-tab-control-padding-right: $tab-control--padding-right,
+                $-tab-control-padding-bottom: $tab-control--padding-bottom,
+                $-tab-control-padding-left: $tab-control--padding-left,
+                $-tab-control-border-width: $tab-control--border-width,
+                $-tab-control-border-color: $tab-control--border-color,
+                    // RJ-Elevate 2017 Allows for Seperated Tabs from Content (1 for border, 0 for no border)
+
+                $-tab-control-border-bottom: 1,
+                $-tab-content-background-color: $tab-content--background-color,
+                $-tab-content-border: $tab-content--border,
+                $-tab-content-border-top-status: $tab-content--border-top-status,
+                $-tab-content-margin-top: $tab-content--margin-top,
+                $-tab-content-padding-top: $tab-content--padding-top,
+                $-tab-content-padding-right: $tab-content--padding-right,
+                $-tab-content-padding-bottom: $tab-content--padding-bottom,
+                $-tab-content-padding-left: $tab-content--padding-left);
+        }
+    }
+
+
+    margin-bottom: $indent--base;
+
+
+    .data.item.active {
+        > a {
+            $dia-a-borderbottom: unset !default;
+            @include co(border-bottom, $dia-a-borderbottom);
+        }
+    }
+
+    > .item.title {
+        $pview-desc-itemtitle-switch-border: false !default;
+        $pview-desc-itemtitle-switch-border-color: false !default;
+        $pview-desc-itemtitle-switch-border-position: "top-bottom" !default;
+        $pview-desc-itemtitle-switch-border-thickness: false !default;
+        $pview-desc-itemtitle-switch-border-style: false !default;
+        .switch {
+            @include co(text-align, $pview-desc-itemtitle-switch-textalign);
+            @include min-screen($desktop-min) {
+                @include co(text-align, $pview-desc-itemtitle-switch-textalign-desktop, $pview-desc-itemtitle-switch-textalign);
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(text-align, $pview-desc-itemtitle-switch-textalign-desktopmd, $pview-desc-itemtitle-switch-textalign-desktop, $pview-desc-itemtitle-switch-textalign);
+            }
+        }
+        @include min-screen($desktop-min) {
+            .switch {
+
+
+                @if $pview-desc-itemtitle-switch-border != false {
+                    @include elevate-border($pview-desc-itemtitle-switch-border-color, $pview-desc-itemtitle-switch-border-thickness, $pview-desc-itemtitle-switch-border-style, $pview-desc-itemtitle-switch-border-position);
+
+                }
+
+
+                //@include co(border, $pview-desc-tab-title-text-transform);
+            }
+            &:first-of-type {
+                .switch {
+                    @include co(border-right, $pview-desc-itemtitle-switch-border-thickness $pview-desc-itemtitle-switch-border-style $pview-desc-itemtitle-switch-border-color);
+                }
+
+            }
+        }
+    }
+
+    > .switch {
+        @include co(text-transform, $pview-desc-tab-title-text-transform);
+    }
+}
+
+

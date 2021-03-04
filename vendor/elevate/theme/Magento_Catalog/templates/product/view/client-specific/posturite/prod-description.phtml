@@ -1,0 +1,23 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+
+
+$description = $_product->getDescription();
+$short_description = $_product->getShortDescription();
+
+
+if (strlen($description) > 1) {
+    echo '<div class="prod-description">';
+    echo $description;
+    echo '</div>';
+} else {
+    echo '<div class="prod-description">';
+    echo $short_description;
+    echo '</div>';
+}
+?>
+
+
+

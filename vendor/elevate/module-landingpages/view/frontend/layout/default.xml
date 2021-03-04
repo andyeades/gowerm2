@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- Uncomment below line on pain of death - RJ -->
+        <!-- <link src="Elevate_LandingPages::css/landingpages.css"/>-->
+        <!--and for JS-->
+
+        <link src="Elevate_LandingPages::js/landingpages.js"/>
+
+    </head>
+    <!-- Add the initiation script for ajax at bottom of page -->
+    <referenceContainer name="after.body.start">
+        <block class="Magento\Framework\View\Element\Template" name="landingpages.initiate.afterbodystart"  template="Elevate_LandingPages::css.phtml"/>
+    </referenceContainer>
+    <!-- Add the initiation script for ajax at bottom of page -->
+    <referenceContainer name="before.body.end">
+                <block class="Magento\Framework\View\Element\Template" name="landingpages.initiate.beforebody"  template="Elevate_LandingPages::init.phtml"/>
+    </referenceContainer>
+
+    <referenceBlock name="product_list_toolbar">
+        <action method="setTemplate">
+            <argument name="template" xsi:type="string">Elevate_LandingPages::product/list/toolbar.phtml</argument>
+        </action>
+    </referenceBlock>
+
+</page>

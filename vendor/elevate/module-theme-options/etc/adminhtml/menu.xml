@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Elevate_Themeoptions::top_level" module="Elevate_Themeoptions" parent="Elevate_Core::menu" resource="Magento_Backend::content" sortOrder="9999" title="Theme Options"/>
+
+        <add action="elevatethemeoptions/translations/index" id="Elevate_Themeoptions::evtranslations_index" module="Elevate_Themeoptions" parent="Elevate_Themeoptions::top_level" resource="Elevate_Themeoptions::translations" sortOrder="9999" title="i18n Translations
+"/>
+
+        <add action="adminhtml/system_config/edit/section/theme_options" id="Elevate_Themeoptions::config_elevatethemeoptions" module="Elevate_Themeoptions" parent="Elevate_Themeoptions::top_level" resource="Magento_Config::config" sortOrder="9999" title="Configuration"/>
+	</menu>
+</config>

@@ -1,0 +1,193 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mirasvit\Kb\Api\Service\Article\ArticleManagementInterface"
+                type="Mirasvit\Kb\Service\Article\ArticleManagement" />
+    <preference for="Mirasvit\Kb\Api\Service\Articlesections\ArticlesectionsManagementInterface"
+                type="Mirasvit\Kb\Service\Articlesections\ArticlesectionsManagement" />
+    <preference for="Mirasvit\Kb\Api\Service\Articlesubsections\ArticlesubsectionsManagementInterface"
+                type="Mirasvit\Kb\Service\Articlesubsections\ArticlesubsectionsManagement" />
+    <preference for="Mirasvit\Kb\Api\Service\Category\CategoryManagementInterface"
+                type="Mirasvit\Kb\Service\Category\CategoryManagement" />
+    <preference for="Mirasvit\Kb\Api\Service\Category\CategoryManagement\SaveInterface"
+                type="Mirasvit\Kb\Service\Category\CategoryManagement\Save" />
+    <preference for="Mirasvit\Kb\Api\Data\SitemapInterface" type="Mirasvit\Kb\Service\Sitemap" />
+    <preference for="Magento\Sitemap\Model\Sitemap" type="Mirasvit\Kb\Model\Sitemap" />
+
+    <type name="Mirasvit\Kb\Model\ArticleRepository">
+        <arguments>
+            <argument name="articleMetadata" xsi:type="object">articleMetadata</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="articleMetadata" type="Mirasvit\Kb\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Article</argument>
+            <argument name="modelClassName" xsi:type="string">Mirasvit\Kb\Model\Article</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Mirasvit\Kb\Model\ArticlesectionsRepository">
+        <arguments>
+            <argument name="articlesectionsMetadata" xsi:type="object">articlesectionsMetadata</argument>
+        </arguments>
+    </type>
+
+
+    <virtualType name="articlesectionsMetadata" type="Mirasvit\Kb\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Articlesections</argument>
+            <argument name="modelClassName" xsi:type="string">Mirasvit\Kb\Model\Articlesections</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Mirasvit\Kb\Model\ArticlesubsectionsRepository">
+        <arguments>
+            <argument name="articlesubsectionsMetadata" xsi:type="object">articlesubsectionsMetadata</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="articlesubsectionsMetadata" type="Mirasvit\Kb\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Articlesubsections</argument>
+            <argument name="modelClassName" xsi:type="string">Mirasvit\Kb\Model\Articlesubsections</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Mirasvit\Kb\Model\ArticleCategoryRepository">
+        <arguments>
+            <argument name="metadata" xsi:type="object">articleCategoryMetadata</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="articleCategoryMetadata" type="Mirasvit\Kb\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Mirasvit\Kb\Model\ResourceModel\ArticleCategory</argument>
+            <argument name="modelClassName" xsi:type="string">Mirasvit\Kb\Model\ArticleCategory</argument>
+        </arguments>
+    </virtualType>
+
+
+
+    <preference for="Mirasvit\Kb\Api\ArticleRepositoryInterface" type="Mirasvit\Kb\Model\ArticleRepository"/>
+    <preference for="Mirasvit\Kb\Api\Data\ArticleInterface" type="Mirasvit\Kb\Model\Data\Article"/>
+    <preference for="Mirasvit\Kb\Api\Data\ArticleSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <preference for="Mirasvit\Kb\Api\ArticlesectionsRepositoryInterface" type="Mirasvit\Kb\Model\ArticlesectionsRepository"/>
+    <preference for="Mirasvit\Kb\Api\Data\ArticlesectionsInterface" type="Mirasvit\Kb\Model\Data\Articlesections"/>
+    <preference for="Mirasvit\Kb\Api\Data\ArticlesectionsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+
+    <preference for="Mirasvit\Kb\Api\ArticlesubsectionsRepositoryInterface" type="Mirasvit\Kb\Model\ArticlesubsectionsRepository"/>
+    <preference for="Mirasvit\Kb\Api\Data\ArticlesubsectionsInterface" type="Mirasvit\Kb\Model\Data\Articlesubsections"/>
+    <preference for="Mirasvit\Kb\Api\Data\ArticlesubsectionsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+
+    <preference for="Mirasvit\Kb\Api\ArticleCategoryRepositoryInterface" type="Mirasvit\Kb\Model\ArticleCategoryRepository"/>
+    <preference for="Mirasvit\Kb\Api\Data\ArticleCategoryInterface" type="Mirasvit\Kb\Model\Data\ArticleCategory"/>
+    <preference for="Mirasvit\Kb\Api\Data\ArticleCategorySearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="kb_article_listing_data_source"
+                      xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Article\Grid\Collection</item>
+                <item name="kb_comment_listing_data_source"
+                      xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Comment\Grid\Collection</item>
+                <item name="kb_articlesections_listing_data_source"
+                      xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Articlesections\Grid\Collection</item>
+                <item name="kb_articlesubsections_listing_data_source"
+                      xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Articlesubsections\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mirasvit\Kb\Model\ResourceModel\Articlesections\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mst_kb_articlesections</argument>
+            <argument name="eventPrefix" xsi:type="string">kb_articlesections_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">articlesections_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Articlesections</argument>
+        </arguments>
+    </type>
+    <type name="Mirasvit\Kb\Model\ResourceModel\Articlesubsections\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mst_kb_articlesubsections</argument>
+            <argument name="eventPrefix" xsi:type="string">kb_articlesubsections_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">articlesubsections_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Articlesubsections</argument>
+        </arguments>
+    </type>
+    <type name="Mirasvit\Kb\Model\ResourceModel\Article\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mst_kb_article</argument>
+            <argument name="eventPrefix" xsi:type="string">kb_article_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">article_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Article</argument>
+        </arguments>
+    </type>
+    <virtualType name="ArticleGridDataProvider" type="Mirasvit\Kb\Ui\Component\DataProvider\ArticleGridDataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Mirasvit\Kb\Model\ResourceModel\Article\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">KbGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="ArticlesectionsGridDataProvider" type="Mirasvit\Kb\Ui\Component\DataProvider\ArticlesectionsGridDataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Mirasvit\Kb\Model\ResourceModel\Articlesections\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">KbGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ArticlesubsectionsGridDataProvider" type="Mirasvit\Kb\Ui\Component\DataProvider\ArticlesubsectionsGridDataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Mirasvit\Kb\Model\ResourceModel\Articlesubsections\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">KbGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Mirasvit\Kb\Model\ResourceModel\Comment\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mst_kb_comments</argument>
+            <argument name="eventPrefix" xsi:type="string">kb_comment_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">comment_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Mirasvit\Kb\Model\ResourceModel\Comment</argument>
+        </arguments>
+    </type>
+    <virtualType name="CommentGridDataProvider" type="Mirasvit\Kb\Ui\Component\DataProvider\CommentGridDataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Mirasvit\Kb\Model\ResourceModel\Comment\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">KbGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="KbGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Mirasvit\Kb\Model\Provider\Failure\LocalCommentsObserver"
+                 type="MSP\ReCaptcha\Model\Provider\Failure\ObserverRedirectFailure">
+        <arguments>
+            <argument name="redirectUrlProvider"
+                      xsi:type="object">Mirasvit\Kb\Model\Provider\Failure\RedirectUrl\LocalComments</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Mirasvit\Kb\Model\Provider\IsCheckRequired\Frontend\LocalComments"
+                 type="MSP\ReCaptcha\Model\IsCheckRequired">
+        <arguments>
+            <argument name="enableConfigFlag"
+                      xsi:type="string">kb/comments/enable_recaptcha</argument>
+            <argument name="area" xsi:type="string">frontend</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Mirasvit\Kb\Observer\Frontend\LocalCommentsObserver"
+                 type="MSP\ReCaptcha\Observer\ReCaptchaObserver">
+        <arguments>
+            <argument name="isCheckRequired"
+                      xsi:type="object">Mirasvit\Kb\Model\Provider\IsCheckRequired\Frontend\LocalComments</argument>
+            <argument name="failureProvider"
+                      xsi:type="object">Mirasvit\Kb\Model\Provider\Failure\LocalCommentsObserver</argument>
+        </arguments>
+    </virtualType>
+</config>

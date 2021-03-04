@@ -1,0 +1,14 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+<table name="quote_item">
+    <column xsi:type="varchar" name="line_number" nullable="false" length="12" comment="PO Line Number"/>
+</table>
+<table name="sales_order_item">
+    <column xsi:type="varchar" name="line_number" nullable="false" length="12" comment="PO Line Number"/>
+</table>
+<table name="quote">
+    <column xsi:type="varchar" name="order_request_id" nullable="false" length="255" comment="Order Request ID from PunchOut2Go"/>
+</table>
+<table name="sales_order">
+    <column xsi:type="varchar" name="order_request_id" nullable="false" length="255" comment="Order Request ID from PunchOut2Go"/>
+</table>
+</schema>

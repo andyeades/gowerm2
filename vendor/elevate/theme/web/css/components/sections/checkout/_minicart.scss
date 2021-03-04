@@ -1,0 +1,211 @@
+//colors
+$white: #ffffff;
+$color_silver_chalice_approx: #a8a8a8;
+$color_cadet_blue_approx: #abb0be;
+$color_cornflower_blue_approx: #6394f8;
+$color_mercury_approx: #e8e8e8;
+$color_east_bay_approx: #515783;
+
+$minicart_main_text_color: $body-color;
+
+//Dropdown Container
+
+$minicart_dropdown_container_bg_color: #FFFFFF !default;
+$minicart_dropdown_container_margin: 1.25rem 0 !default;
+$minicart_dropdown_container_zindex: 5 !default;
+$minicart_dropdown_container_width: 320px !default;
+$minicart_dropdown_container_padding: 1.25rem !default;
+$minicart_dropdown_container_border_radius_on: 1 !default;
+$minicart_dropdown_container_border_radius: 0.1875rem !default;
+
+$minicart_dropdown_container_width_desktop: 600px !default;
+
+// Mini Cart Header
+$minicart_header_border_on: 0 !default;
+$minicart_header_border_position: "bottom" !default;
+$minicart_header_border_thickness: 1px !default;
+$minicart_header_border_style: solid !default;
+$minicart_header_border_color: #313d57 !default;
+$minicart_header_padding: 0 0 0.9375rem 0 !default;
+
+
+$minicart_total_text_align: right !default;
+
+$minicart_items_padding: 0 !default;
+$minicart_items_item_align_items: center !default;
+
+
+//
+
+$minicart_counter_background_color: $theme-brand-color-2 !default;
+$minicart_counter_text_color: $theme-general-color-1 !default;
+$minicart_counter_border_thickness: 1px !default;
+$minicart_counter_border_style: solid !default;
+$minicart_counter_border_color: $theme-general-color-1 !default;
+$minicart_counter_position: 'right-centre-offset' !default;
+$minicart_counter_cssposition: relative !default;
+$minicart_counter_cssposition_desktop: relative !default;
+
+// Items
+
+$minicart-item-name-padding: 0 0 0.5rem !default;
+$minicart-item-name-fontsize: 0.8125rem !default;
+
+
+
+$minicart_item_price_color: $theme-brand-color-2 !default;
+$minicart_item_price_margin: 0 0.5rem 0 0 !default;
+$minicart_item_qty_color: $theme-general-color-1 !default;
+
+
+//Button
+$bnt_minicart_checkout_fontsize: 1rem !default;
+$btn_minicart_checkout_width: 100% !default;
+$btn_minicart_checkout_bg_color: $theme-brand-color-2 !default;
+$btn_minicart_checkout_border_color: $theme-brand-color-2 !default;
+
+
+$minicart_basket_order: 1 !default;
+$minicart_basket_side_order: 2 !default;
+
+
+$minicart_total_color: #00acb6 !default;
+$minicart_total_fontsize: 1rem !default;
+$minicart_total_fontweight: 700 !default;
+$minicart_total_text_align: right !default;
+$minicart_total_padding: 0 !default;
+
+
+$minicart_shoppingcartwrap_a_align: center !default;
+$minicart_shoppingcartwrap_a_justifycontent: center !default;
+$minicart_shoppingcartwrap_bg_on_desktop: 0 !default;
+$minicart_shoppingcartwrap_bg_color_desktop: #466c5c !default;
+$minicart_shoppingcartwrap_padding_desktop: 0 !default;
+
+$minicart_shoppingcartwrap_border_radius_on: 0 !default;
+$minicart_shoppingcartwrap_border_radius: 1.875rem !default;
+
+$minicart_shoppingcartwrap_bottom_row_styling: 0 !default;
+
+$minicart_basket_btm_row_color: #E6E6E6 !default;
+$minicart_basket_btm_row_font_size: 0.75rem !default;
+$minicart_basket_btm_row_font_weight: 300 !default;
+
+$minicart_basket_label_fontsize: 0.75rem !default;
+$minicart_basket_label_fontweight: 400 !default;
+$minicart_basket_label_color: #7e808d !default;
+$minicart_basket_text_align: left !default;
+
+$minicart_custom_minicart_icon_on: 0 !default;
+$minicart_custom_minicart_icon_url: '../images/header/basket.svg' !default;
+$minicart_custom_minicart_icon_height: 38px !default;
+$minicart_custom_minicart_icon_width: 29px !default;
+
+$minicart_default_icon_font_size: 1.5rem !default;
+
+
+// Product Image
+
+$minicart_prod_img_margin: 0 0.75rem 0 0 !default;
+$minicart_prod_img_width: 75px !default;
+$minicart_prod_img_border_radius_on: 1 !default;
+$minicart_prod_img_border_radius: $border-radius !default;
+$minicart_prod_img_align_self: flex-start !default;
+
+
+// Product Options
+
+$minicart_productoptions_margin: 1rem 0 0 0 !default;
+$minicart_productoptions_item_options_margin: 1rem 0 0 0 !default;
+$minicart_productoptions_item_options_label_margin: 0.375rem 0 0 0 !default;
+
+$mcart_item_message_margin: 0.3rem 0 0 0 !default;
+
+// Items
+
+$hdr-minicart-item-name-padding: 0.625rem 0 0 0 !default;
+$hdr-minicart-item-name-fontsize: 0.8125rem !default;
+
+
+$minicart-shoppingcartheader-lightertext: #abb0be !default;
+
+.shopping-cart-header {
+    .lighter-text {
+        @include co(color, $minicart-shoppingcartheader-lightertext);
+    }
+}
+
+.shopping-cart-items {
+    padding: $minicart_items_padding;
+
+    li {
+        //flex-wrap: wrap;
+        margin-bottom: 18px;
+        list-style-type: none;
+        display: flex;
+        align-items: $minicart_items_item_align_items;
+        > img, > div {
+            flex: 0 1 auto;
+        }
+    }
+
+    img {
+        align-self: $minicart_prod_img_align_self;
+
+        margin: $minicart_prod_img_margin;
+        width: $minicart_prod_img_width;
+        @if $minicart_prod_img_border_radius_on == 1 {
+            border-radius: $minicart_prod_img_border_radius;
+        }
+    }
+    .mcart-item-details {
+        //width: 100%;
+    }
+    .mcart-item-message {
+        display: none;
+        width: 100%;
+        order: 5;
+        margin: $mcart_item_message_margin;
+    }
+
+    .item-name {
+        display: block;
+        @include co(padding, $hdr-minicart-item-name-padding);
+        @include co(font-size, $hdr-minicart-item-name-fontsize);
+        width: 100%;
+    }
+
+    .item-price {
+        color: $minicart_item_price_color;
+        margin: $minicart_item_price_margin;
+        .subtotal {
+            display: inline;
+            .price-including-tax,
+            .price-excluding-tax {
+                display: inline;
+
+            }
+        }
+    }
+
+    .item-quantity {
+        color: $minicart_item_qty_color;
+    }
+    .product.options {
+        margin: $minicart_productoptions_margin;
+        .toggle {
+            cursor: pointer;
+        }
+        .item-options {
+            margin: $minicart_productoptions_item_options_margin;
+            .label {
+                margin: $minicart_productoptions_item_options_label_margin;
+            }
+        }
+    }
+}
+
+
+.checkout-container {
+
+}

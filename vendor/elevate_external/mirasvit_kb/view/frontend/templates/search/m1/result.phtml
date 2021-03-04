@@ -1,0 +1,44 @@
+<style>
+.kb-got-question-header {
+    height: auto;
+    padding: 100px 0;
+    margin-bottom: 20px;
+}
+</style>  
+
+<div class="kb-got-question-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 style="
+    text-transform: uppercase;
+    color: white;
+    font-size: 39px;
+">Help &amp; Advice</h1>
+           <div class="kb-got-question-header-search-row">
+          <form action="<?php echo Mage::getUrl('kb/article/s') ?>" method="GET" id="kb-s-form">
+            <input name='s' id='s' placeholder="<?php echo $this->__('What can we help you with?') ?>" class="input-text required-entry" value="<?php echo $this->getQuery() ?>">
+            <button type="submit" title="Submit" class="btn btn-hbred">Search</button>
+          </form>
+
+            <script type="text/javascript">
+              //<![CDATA[
+              var dataForm = new VarienForm('kb-s-form', true);
+              //]]>
+            </script>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+        <div class="row">
+          <div class="col-xs-12"><div class="kb-search-result" style="border:none;">
+   <!-- <h1><?php //echo $this->__('Search by') ?> "<?php //echo $this->getQuery()?>"</h1>-->
+    <?php echo $this->getChildHtml('kb.article.list'); ?>
+</div>
+</div>
+</div>
+</div>

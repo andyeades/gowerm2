@@ -1,0 +1,195 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+/** @var $block \Magento\Catalog\Block\Product\View\Attributes */
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+
+/** @var $storeManager Magento\Store\Model\StoreManagerInterface */
+$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+
+$currentStoreId = $storeManager->getStore()->getId();
+$current_url = $storeManager->getStore()->getCurrentUrl();
+$is_customer_logged_in = $customerSession->isLoggedIn();
+
+$feefo_helper = '';
+$product_attachment_helper = '';
+
+/** @var $_helper Magento\Catalog\Helper\Output */
+$_helper = $objectManager->get('Magento\Catalog\Helper\Output');
+
+$pid = $product->getId();
+
+$_additional = $block->getAdditionalData();
+
+//echo '<pre>';
+//print_r($_additional);
+//exit;
+
+        foreach ($_additional as $_data) {
+
+
+            if (strtolower($_data['label']) == 'sku') {
+                continue;
+            }
+
+            ?>
+
+            <?php if ($_data['value'] != "No") { ?>
+
+
+                <?php
+
+                $showcontent = false;
+                if ($_data['code'] == "product_features") {
+                    $product_features = '<div class="additional-data-wrap">';
+                    $product_features .= '<div class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $product_features .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                    $product_features .= '</div>';
+                    $showcontent = true;
+
+                }
+
+                if ($_data['code'] == "product_specification") {
+                    $product_specification = '<div class="additional-data-wrap">';
+                    $product_specification .= '<div class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $product_specification .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                    $product_specification .= '</div>';
+                    $showcontent = true;
+                }
+                if ($_data['code'] == "product_faqs") {
+                    $product_faqs = '<div class="additional-data-wrap">';
+                    $product_faqs .= '<div class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $product_faqs .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                    $product_faqs .= '</div>';
+                    $showcontent = true;
+                }
+
+                if ($_data['code'] == "product_bulk_purchasing") {
+                    $product_bulk_purchasing = '<div class="additional-data-wrap">';
+                    $product_bulk_purchasing .= '<div class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $product_bulk_purchasing .= '<div class="additonal-data-content">' . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_bulk_purchasing')->toHtml() . '</div>';
+                    $product_bulk_purchasing .= '</div>';
+                    $showcontent = true;
+                }
+
+                if ($_data['code'] == "product_bulk_assessment") {
+                    $product_bulk_assessment = '<div class="additional-data-wrap">';
+                    $product_bulk_assessment .= '<div class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $product_bulk_assessment .= '<div class="additonal-data-content">' . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_bulk_assessment')->toHtml() . '</div>';
+                    $product_bulk_assessment .= '</div>';
+                    $showcontent = true;
+                }
+
+                if ($_data['code'] == "product_delivery_returns") {
+                    $product_delivery_returns = '<div class="additional-data-wrap">';
+                    $product_delivery_returns .= '<div id="pinfo-delreturns" class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $product_delivery_returns .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                    $product_delivery_returns .= '</div>';
+                    $showcontent = true;
+
+                }
+
+                if ($_data['code'] == "product_documentation") {
+                    $product_documentation = '<div class="additional-data-wrap">';
+                    $product_documentation .= '<div class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $product_documentation .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                    $product_documentation .= '</div>';
+                    $showcontent = true;
+
+                }
+
+                if ($_data['code'] == "product_instock_chairs") {
+                    $product_instock_chairs = '<div class="additional-data-wrap">';
+                    $product_instock_chairs .= '<div class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $product_instock_chairs .= '<div class="additonal-data-content">' . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_instock_chairs')->toHtml() . '</div>';
+                    $product_instock_chairs .= '</div>';
+                    $showcontent = true;
+
+                }
+
+                /*if($_data['code'] == "delivery_returns"){
+                    $code = 'delivery_'.$_data['value'];
+                    //calling return block here
+                    $code_returns = 'returns_'.$product->getAttributeText('returns');
+                    $delivery_returns .= '<div class="additional-data-wrap">';
+                    $delivery_returns .= '<div class="additional-data-title">'.$block->escapeHtml($_data["label"]).'</div>';
+                    $delivery_returns .= '<div class="additonal-data-content">'.$block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($code)->toHtml() . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($code_returns)->toHtml().'</div>';
+                    $delivery_returns .= '</div>';
+                    $showcontent = true;
+
+                }*/
+
+                if ($_data['code'] == "delivery") {
+                    //calling return block here
+                    $code_returns = 'returns_' . $product->getAttributeText('returns');
+                    $delivery_returns = '<div class="additional-data-wrap">';
+                    $delivery_returns .= '<div id="pinfo-delreturns" class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $delivery_returns .= '<div class="additonal-data-content">' . $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_lead_times')->toHtml();
+
+                    if ($_data['value'] == 'courier_only') {
+                        if ($currentStoreId == 4) {
+                            $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_courier_only')->toHtml() . '</div>';
+                        } else {
+                            $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_courier_only_microsites')->toHtml() . '</div>';
+                        }
+                    } elseif ($_data['value'] == 'downloadable_software') {
+                        $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_downloadable_software')->toHtml() . '</div>';
+
+                    } else {
+                        if ($currentStoreId == 4) {
+                            $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_courier_product_care')->toHtml() . '</div>';
+                        } else {
+                            $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('delivery_courier_product_care_microsites')->toHtml() . '</div>';
+                        }
+                    }
+                    $delivery_returns .= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($code_returns)->toHtml();
+                    $delivery_returns .= '</div>';
+                    $showcontent = true;
+
+                }
+
+                if ($_data['code'] == "product_terms") {
+                    $product_terms = '<div class="additional-data-wrap">';
+                    $product_terms .= '<div class="additional-data-title">' . $block->escapeHtml($_data["label"]) . '</div>';
+                    $product_terms .= '<div class="additonal-data-content">' . $_helper->productAttribute($product, $_data['value'], $_data['code']) . '</div>';
+                    $product_terms .= '</div>';
+                    $showcontent = true;
+                }
+
+                ?>
+
+
+            <?php } ?>
+
+        <?php } ?>
+
+
+
+    <div class="panel-container">
+
+        <?php
+
+        if (isset($product_delivery_returns)) {
+            echo $product_delivery_returns;
+        }
+
+        if (isset($delivery_returns)) {
+            echo $delivery_returns;
+        }
+
+        if (isset($product_instock_chairs)) {
+            echo $product_instock_chairs;
+        }
+
+        if (isset($product_bulk_assessment)) {
+            echo $product_bulk_assessment;
+        }
+
+        if (isset($product_bulk_purchasing)) {
+            echo $product_bulk_purchasing;
+        }
+
+        ?>
+
+
+    </div>

@@ -1,0 +1,121 @@
+<?php
+/**
+ * @var $block \Elevate\ProductKeyFacts\Block\Keyfacts
+ */
+
+$product = $block->getCurrentProduct();
+
+
+$show_title = $block->getLinkedProductShowProductPageSectionTitle();
+$title = $block->getLinkedProductProductPageSectionTitle();
+
+?>
+<style>
+ @media only screen and (min-width: 768px){
+#promoimage {
+    width: 95%;
+    margin-top:10px;
+}
+}
+.ev_is_text {
+    clear: both;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: block;
+}
+
+.linked-products-item a {
+    display: block;
+    padding: 0.8rem 1.4rem;
+}
+ .linked-products-item {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    background: #f0f0f0;
+    margin: 0 15px 5px 0;
+    outline: none !important;
+    border: none !important;
+    position: initial;
+    min-width: 2.5rem;
+    width: auto;
+    height: auto;
+    max-width: initial;
+    padding: 0;
+    font-weight: 700;
+    border-radius: 0.4rem;
+    background-clip: padding-box;
+    line-height: 2.4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    width: 47%;
+    display: block;
+    float: left;
+    display: block;
+}
+@media only screen and (max-width: 968px){
+
+.linked-products-item {
+      width: 100% !important;
+      float:none !important;
+
+}
+.mob100{
+width:100% !important;
+
+padding:0px !important;
+}
+ }
+</style>
+<div style="clear:both;"></div>
+<div style="display:none !important;
+    padding-right: 35px;
+    margin-bottom: 25px;
+    display: block;
+    clear: both;
+">
+
+</div>
+
+<?php if($product->getLinkedProductsProducts()){ ?>
+  <div id="linked-products-outer">
+    <?php if ($show_title === 1) { ?>
+        <div class="ev-linked-prods-title"><?= $title; ?></div>
+   <?php } ?>
+
+
+    <?php
+
+  $has_swatch_class = '';
+  $html = '';
+    foreach ($product->getLinkedProductsProducts() as $linkedProduct) {
+      $colour_code = $linkedProduct->getData('swatch_colour_code');
+      $active = '';
+      if ($product->getSku() == $linkedProduct->getSku()) {
+        $active = 'linked-active';
+      }
+
+      if (!empty($colour_code)) {
+
+        $html .= '<div class="linked-products-item-colour ' . $active . '"><a style="background-color:' . $colour_code . ';" href="' . $linkedProduct->getProductUrl() . '"> &nbsp; </a></div>';
+      } else {
+      $swatch_name = $linkedProduct->getName();
+      if(!empty($linkedProduct->getSwatchText())){
+             $swatch_name = $linkedProduct->getSwatchText();
+      }
+
+            $has_swatch_class = 'ev_is_text';
+        $html .= '<div class="linked-products-item ' . $active . '"><a href="' . $linkedProduct->getProductUrl() . '">' . $swatch_name . '</a></div>';
+      }
+    }
+
+    ?>
+      <div id="linked-products" class="<?php echo $has_swatch_class; ?>">
+      <?php echo $html; ?>
+  </div>
+
+
+</div>
+<?   } ?>
+

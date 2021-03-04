@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\CatalogImportExport\Model\Import\Product" type="Elevate\Discontinuedproducts\Model\CatalogImportExport\Import\Product" />
+    <preference for="Magento\CatalogImportExport\Model\Export\Product" type="Elevate\Discontinuedproducts\Model\CatalogImportExport\Export\Product" />
+
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="related" xsi:type="array">
+                    <item name="class" xsi:type="string">Elevate\Discontinuedproducts\Ui\DataProvider\Product\Form\Modifier\Related</item>
+                    <item name="sortOrder" xsi:type="number">200</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
+
+
+

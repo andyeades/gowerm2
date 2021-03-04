@@ -1,0 +1,22 @@
+{
+    "name": "elevate/module-productkeyfacts",
+    "description": "Displays KeyFacts From Product Attributes",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "richard.jones@elevateweb.co.uk",
+            "name": "Richard Jones"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Elevate\\ProductKeyFacts\\": ""
+        }
+    }
+}

@@ -1,0 +1,202 @@
+// Elevate variables
+
+$color-checkout-proceed: #00b62d;
+$border-color: #eeeeee;
+$category-page-border: 1px solid #eeeeee;
+$header-font-family: "Oswald", sans-serif;
+
+
+$standard-transition:         all 500ms ease-in;
+$alternate-transition:        all 500ms ease-in-out;
+
+$page-title-font-weight: $font-weight__heavier;
+
+// Buttons
+$button__shadow                            : inset 0 2px 1px rgba(0, 0, 0, 0.12);
+
+$standard-button-radius: 2.5rem;
+
+$toolbar-mode-icon-font-size: 16px;
+$toolbar-background: transparent;
+$toolbar-element-background: $color-gray94;
+$toolbar-element__color: $color-gray37;
+$pager-action__background: $toolbar-element-background;
+$pager-action__hover__background: darken($toolbar-element-background, 7%);
+$pager__font-weight: $font-weight__bold;
+
+
+// Number of columns in the grid.
+$grid-columns: 12;
+// Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width: 30px;
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+
+// Small screen / tablet
+//$container-tablet:             ((720px + $grid-gutter-width));
+$container-tablet: 100%;
+// For `$screen-sm-min` and up.
+$container-sm: $container-tablet;
+
+// Medium screen / desktop
+//$container-desktop:            ((940px + $grid-gutter-width));
+$container-desktop: 100%;
+// For `$screen-md-min` and up.
+$container-md: $container-desktop;
+
+// Large screen / wide desktop
+//$container-large-desktop:      ((1140px + $grid-gutter-width));
+$container-large-desktop: 100%;
+// For `$screen-lg-min` and up.
+$container-lg: $container-large-desktop;
+
+// Large screen / wide desktop
+$container-extra-large-desktop: ((1410px + $grid-gutter-width));
+// For `$screen-lg-min` and up.
+$container-xlg: $container-extra-large-desktop;
+
+
+$screen-lowerthan-iphone6: 376px;
+
+$screen-xs-mid-min: 377px;
+$screen-xs-mid-max: 479.98px;
+
+$screen-xs-min: 480px;
+$screen-xs-max: 767.98px;
+
+$screen-sm-min: 768px;
+$screen-sm-max: 991.98px;
+
+$screen-md-min: 992px;
+$screen-md-max: 1169.98px;
+
+$screen-lg-min: 1170px;
+$screen-lg-max: 1469.98px;
+
+$screen-xlg-min: 1470px;
+
+//
+//  Typography
+//  ---------------------------------------------
+
+//  Headings
+$h1__margin-bottom__desktop                                   : $indent__xl !default;
+
+//
+//  Layout grid
+//  ---------------------------------------------
+
+//  Header
+$header-icons-color                                           : $color-gray56;
+$header-icons-color-hover                                     : $color-gray20;
+
+
+// Minicart
+
+$minicart-icons-color                      : $header-icons-color;
+$minicart-icons-color-hover                : $header-icons-color-hover;
+
+//
+//  Icons
+//  ---------------------------------------------
+//
+
+$icon-edit                                                    : '\e606' !default;
+
+//
+//  Popups
+//  ---------------------------------------------
+
+//  Checkout tooltip
+$checkout-tooltip-icon-arrow__font-size                       : 12px !default;
+$checkout-tooltip-icon__font-size                             : 21px !default;
+
+$checkout-tooltip-content-mobile__right                       : -($indent__s) !default;
+$checkout-tooltip-content-mobile__top                         : 30px + $checkout-tooltip-icon-arrow__font-size !default;
+$checkout-tooltip-content__background-color                   : $color-gray-light01 !default;
+$checkout-tooltip-content__padding                            : 12px !default;
+$checkout-tooltip-content__border-width                       : 1px !default;
+
+$checkout-tooltip-content__border-color                       : $color-gray60 !default;
+$checkout-tooltip-content__font-size                          : $font-size__base !default;
+$checkout-tooltip-content__width                              : 270px !default;
+$checkout-tooltip-content__active__border-color               : darken($checkout-tooltip-content__border-color, 20%) !default;
+$checkout-tooltip-icon-arrow__left                            : -( $checkout-tooltip-content__padding + $checkout-tooltip-icon-arrow__font-size - $checkout-tooltip-content__border-width) !default;
+
+$checkout-billing-address-details__line-height                : 27px !default;
+
+// Checkout
+$checkout-step-title__padding                                 : $indent__s !default;
+$checkout-step-title__border                                  : $border-width__base solid $color-gray80 !default;
+$checkout-step-title__font-size                               : 26px !default;
+$checkout-step-title__font-weight                             : $font-weight__light !default;
+$checkout-sidebar__columns                                    : 4 !default;
+$checkout-shipping-address__max-width                         : 500px !default;
+
+//
+//  Sidebar
+//  ---------------------------------------------
+
+// Used in cart sidebar, Checkout sidebar, Tier Prices, My account navigation, Rating block background
+$sidebar__background-color                                    : $color-white-smoke !default;
+
+//
+//  Variables missing in extend.scss
+//  ---------------------------------------------
+
+$addto-color                                                  : $primary__color !default;
+$addto-hover-color                                            : $link__hover__color !default;
+
+//
+//  Product
+//  ---------------------------------------------
+
+$product-name-link__color                                     : $text__color !default;
+$product-name-link__color__active                             : $text__color !default;
+$product-name-link__color__hover                              : $text__color !default;
+$product-name-link__color__visited                            : $text__color !default;
+
+$product-name-link__text-decoration                           : none !default;
+$product-name-link__text-decoration__active                   : $link__hover__text-decoration !default;
+$product-name-link__text-decoration__hover                    : $link__hover__text-decoration !default;
+$product-name-link__text-decoration__visited                  : $link__hover__text-decoration !default;
+
+//
+//  Breadcrumbs variables
+//  _____________________________________________
+
+$breadcrumbs__container-margin                   : 0 0 15px;
+$breadcrumbs-icon__font-size                     : 10px;
+$breadcrumbs-icon__font-margin                   : 0 $indent__s;
+
+//  Current page
+$breadcrumbs-current__color                      : $color-gray-middle5;
+
+//
+//  Link
+//  ---------------------------------------------
+
+$breadcrumbs-link__color                         : $link__color;
+
+//  Visited
+$breadcrumbs-link__visited__color                : $breadcrumbs-link__color;
+
+//  Hover
+$breadcrumbs-link__hover__color                  : $breadcrumbs-link__color;
+
+//  Active
+$breadcrumbs-link__active__color                 : $breadcrumbs-link__color;
+
+
+//  Layered navigation
+$filter-title-background-color: $color-gray94;
+$filter-link: $color-gray-darken4;
+$filter-link-hover: darken($filter-link, 30%);
+$filter-quantity: $color-gray46;
+
+// Footer
+
+$copyright__background-color: $color-gray-middle4;

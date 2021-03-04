@@ -1,0 +1,87 @@
+<?php
+/**
+ * @var $block \Elevate\Discontinuedproducts\Block\Discontinuedproducts
+ */
+
+/**
+ * @var $product \Magento\Catalog\Model\Product
+ */
+
+/**
+ * @var $discontinued_product_alt \Magento\Catalog\Model\Product
+ */
+
+// Create Variable to Have Max Number of Product Page Alternatives to Show?
+$product_page_alternatives_to_show_max = 3;
+
+// Also Admin Message for "Maybe you'd like....
+
+$product_page_alternatives_section_title_on = $block->getDiscontinuedProductShowProductPageSectionTitle();
+
+$product_page_alternatives_section_title = $block->getDiscontinuedProductProductPageSectionTitle();
+
+
+$product = $block->getCurrentProduct(); ?>
+
+<?php if ($product->getProductDiscontinued() == 1 && !$product->isSaleable()) { ?>
+
+    <?php if ($product->getDiscontinuedproductsProducts()) { ?>
+
+    <div id="ev-da-outer">
+
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Product Discontinued</h4>
+            <p>Unfortunately this product has been discontinued.</p>
+    </div>
+
+    <div class="ev-discprod-alternatives">
+        <?php if ($product_page_alternatives_section_title_on == 1) { ?>
+            <div class="section-title">
+                <?= $product_page_alternatives_section_title; ?>
+            </div>
+        <?php } ?>
+
+
+        <div class="products wrapper grid products-grid">
+            <ol class="products list items product-items">
+                <?php $count = 0;?>
+                <?php foreach ($product->getDiscontinuedproductsProducts() as $discontinued_product_alt) { ?>
+                    <?php if ($count === 3) {
+                        break;
+                    } ?>
+                <li class="item product product-item">
+                    <div class="product-item-info" data-container="product-grid">
+                        <a href="" class="product photo product-item-photo" tabindex="-1">
+                            <?= $block->getImage(
+                                $discontinued_product_alt, 'product_thumbnail_image', [
+                                                             'class'      => 'product-image-photo lazyload img-responsive',
+                                                             'max-height' => '320px',
+                                                             'max-width'  => '320px',
+                                                             'alt'        => $discontinued_product_alt->getName()
+                                                         ]
+                            )->toHtml(); ?>
+                </a>
+                        <div class="product details product-item-details">
+
+                    <a class="product name product-item-name product-item-link" href="<?= $discontinued_product_alt->getProductUrl() ?>"> <?= $discontinued_product_alt->getName(); ?> </a>
+
+                    <div class="sr-clear"></div>
+                    <div class="price-box">
+                        <?= $block->getProductPrice($discontinued_product_alt); ?>
+                    </div>
+                    <div class="product-item-inner">
+
+                    </div>
+                </div>
+                    </div>
+                 </li>
+                    <?php $count++; ?>
+            <?php } ?>
+            </ol>
+        </div>
+    </div>
+
+<?php } ?>
+    </div>
+
+<?php } ?>

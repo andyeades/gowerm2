@@ -1,0 +1,283 @@
+//colors
+$mage_calendar_color_0: #ff8400;
+$mage_calendar_color_1: #ff9635;
+$mage_calendar_color_2: #000000;
+$mage_calendar_color_3: #ffffff;
+$mage_calendar_color_4: #efefef;
+$mage_calendar_color_5: rgba(0, 0, 0, 0.35);
+$mage_calendar_color_6: #cfcfcf;
+$mage_calendar_color_7: #f9eae7;
+$mage_calendar_color_8: #f3d7d2;
+$mage_calendar_color_9: #ffdf66;
+$mage_calendar_color_10: #dadada;
+$mage_calendar_color_11: #f98b25;
+$mage_calendar_color_12: #f9f9f9;
+$mage_calendar_color_13: #959595;
+
+.ui-datepicker {
+    display: none;
+    z-index: 999999 !important;
+    padding: 15px;
+    border: $mage_calendar_color_3 4px solid;
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    background: $mage_calendar_color_4;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 5px 5px 10px 0 $mage_calendar_color_5;
+    width: auto;
+    .ui-datepicker-header {
+        position: relative;
+        padding: 0.2em 0;
+        background: transparent;
+        border: none;
+        padding-bottom: 10px;
+    }
+    .ui-datepicker-prev {
+        position: absolute;
+        top: 2px;
+        width: 1.8em;
+        height: 1.8em;
+        cursor: pointer;
+        left: 2px;
+        span {
+            display: block;
+            position: absolute;
+            left: 50%;
+            margin-left: -8px;
+            top: 50%;
+            margin-top: -5px;
+            font-size: 0;
+            width: 0;
+            height: 0;
+            border: solid;
+            border-width: 5px 8px 5px 0;
+            border-color: transparent $mage_calendar_color_1 transparent transparent;
+        }
+    }
+    .ui-datepicker-next {
+        position: absolute;
+        top: 2px;
+        width: 1.8em;
+        height: 1.8em;
+        cursor: pointer;
+        right: 2px;
+        span {
+            display: block;
+            position: absolute;
+            left: 50%;
+            margin-left: -8px;
+            top: 50%;
+            font-size: 0;
+            width: 0;
+            height: 0;
+            border: solid;
+            border-width: 5px 8px 5px 0;
+            border-color: transparent $mage_calendar_color_1 transparent transparent;
+            margin-left: 0;
+            margin-top: -5px;
+            border-width: 5px 0 5px 8px;
+            border-color: transparent transparent transparent $mage_calendar_color_1;
+        }
+    }
+    .ui-datepicker-title {
+        margin: 0 2.3em;
+        line-height: 1.8em;
+        text-align: center;
+        select {
+            font-size: 1em;
+            margin: 1px 0;
+        }
+        .ui-datepicker-month {
+            width: 47%;
+            margin-right: 6%;
+        }
+        .ui-datepicker-year {
+            width: 47%;
+        }
+    }
+    table {
+        width: 100%;
+        font-size: 0.9em;
+    }
+    td {
+        span {
+            display: block;
+            padding: 4px;
+            text-align: right;
+            text-decoration: none;
+            color: $mage_calendar_color_2;
+        }
+        a {
+            display: block;
+            padding: 4px;
+            text-align: right;
+            text-decoration: none;
+            color: $mage_calendar_color_2;
+        }
+    }
+    .ui-datepicker-buttonpane {
+        overflow: hidden;
+        padding-top: 10px;
+        border-top: $mage_calendar_color_6 1px solid;
+        button {
+            border-style: initial;
+            padding: 0.5rem;
+            @include button-variant($action-primary-bg-color, $action-primary-border-color);
+            float: right;
+            &.ui-datepicker-current {
+                float: left;
+            }
+        }
+    }
+    .ui-datepicker-calendar {
+        background: $mage_calendar_color_3;
+        border: $mage_calendar_color_6 1px solid;
+        border-collapse: collapse;
+        td {
+            border: $mage_calendar_color_6 1px solid;
+            a {
+                padding: 4px;
+                display: block;
+            }
+            .ui-state-hover {
+                background: $mage_calendar_color_7;
+            }
+        }
+        th {
+            background: $mage_calendar_color_4;
+            border: $mage_calendar_color_6 1px solid;
+            padding: 4px;
+            text-transform: uppercase;
+        }
+        .ui-datepicker-week-col {
+            text-align: center;
+            border: $mage_calendar_color_6 1px solid;
+        }
+        .ui-datepicker-today {
+            background: $mage_calendar_color_8;
+        }
+        .ui-state-active {
+            background: $mage_calendar_color_9;
+        }
+        .ui-state-disabled {
+            background: $mage_calendar_color_12;
+            span {
+                color: $mage_calendar_color_13;
+            }
+        }
+    }
+    .ui-datepicker-next-hover span {
+        border-color: transparent $mage_calendar_color_0 transparent transparent;
+    }
+    .ui-datepicker-prev-hover span {
+        border-color: transparent $mage_calendar_color_0 transparent transparent;
+    }
+    select.ui-datepicker-month-year {
+        width: 100%;
+    }
+}
+.ui-datepicker-rtl {
+    direction: rtl;
+    .ui-datepicker-prev {
+        right: 2px;
+        left: auto;
+        &:hover {
+            right: 1px;
+            left: auto;
+        }
+    }
+    .ui-datepicker-next {
+        left: 2px;
+        right: auto;
+        &:hover {
+            left: 1px;
+            right: auto;
+        }
+    }
+    .ui-datepicker-buttonpane {
+        clear: right;
+        button {
+            float: left;
+            &.ui-datepicker-current {
+                float: right;
+            }
+        }
+    }
+    .ui-datepicker-group {
+        float: right;
+    }
+    .ui-datepicker-group-last .ui-datepicker-header {
+        border-right-width: 0;
+        border-left-width: 1px;
+    }
+    .ui-datepicker-group-middle .ui-datepicker-header {
+        border-right-width: 0;
+        border-left-width: 1px;
+    }
+}
+.ui-timepicker-div {
+    padding: 10px 0 5px;
+    .ui-widget-header {
+        margin-bottom: 8px;
+    }
+    dl {
+        text-align: left;
+        dt {
+            height: 25px;
+            margin-bottom: -22px;
+        }
+        .ui_tpicker_time_label {
+            margin-bottom: -25px;
+        }
+        dd {
+            margin: 0 10px 10px 65px;
+            margin: 0 0 10px 65px;
+        }
+    }
+    td {
+        font-size: 90%;
+    }
+}
+.ui-tpicker-grid-label {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+.ui-slider {
+    position: relative;
+    text-align: left;
+    .ui-slider-handle {
+        position: absolute;
+        z-index: 2;
+        cursor: default;
+    }
+}
+.ui-slider-horizontal {
+    height: 10px;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 10px;
+    border: none;
+    background: $mage_calendar_color_10;
+    .ui-slider-handle {
+        margin-left: -5px;
+    }
+}
+.ui-slider-handle {
+    height: 10px;
+    width: 10px;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 10px;
+    background: $mage_calendar_color_11;
+    display: block;
+    position: absolute;
+}
+.ui-datepicker-cover {
+    position: absolute;
+    z-index: -1;
+    filter: mask();
+    top: -4px;
+    left: -4px;
+    width: 200px;
+    height: 200px;
+}

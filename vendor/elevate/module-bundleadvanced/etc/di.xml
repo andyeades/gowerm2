@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2020 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Elevate\BundleAdvanced\Api\BundleProductManagementInterface" type="Elevate\BundleAdvanced\Model\Service\BundleProductService" />
+    <preference for="Magento\Bundle\Model\ResourceModel\Indexer\Stock" type="Elevate\BundleAdvanced\Model\ResourceModel\Indexer\Stock" />
+    <preference for="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option" type="Elevate\BundleAdvanced\Block\Catalog\Product\View\Type\Bundle\Option" />
+    <type name="Magento\Bundle\Model\Product\Type">
+        <plugin name="elevate_bundleadvanced" type="Elevate\BundleAdvanced\Plugin\Model\Bundle\ProductTypePlugin" />
+    </type>
+    <virtualType name="Magento\Bundle\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
+        <arguments>
+            <argument name="prices" xsi:type="array">
+                <item name="regular_price" xsi:type="string">Elevate\BundleAdvanced\Pricing\Price\RegularPrice</item>
+                <item name="final_price" xsi:type="string">Elevate\BundleAdvanced\Pricing\Price\FinalPrice</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\BundleAdvanced\Model\Product\Layout\Handle\Resolver">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="sales_order_create_configureProductToAdd" xsi:type="string">elevate_bundleadvanced_overrides_bundle_product</item>
+                <item name="sales_order_create_configureQuoteItems" xsi:type="string">elevate_bundleadvanced_overrides_bundle_product</item>
+                <item name="catalog_product_view" xsi:type="string">elevate_bundleadvanced_overrides_bundle_product</item>
+                <item name="checkout_cart_configure" xsi:type="string">elevate_bundleadvanced_overrides_bundle_product</item>
+                <item name="wishlist_index_configure" xsi:type="string">elevate_bundleadvanced_overrides_bundle_product</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Model\Cart">
+        <plugin name="elevate_bundleadvanced" type="Elevate\BundleAdvanced\Plugin\Model\AdvancedCheckout\CartPlugin" />
+    </type>
+</config>

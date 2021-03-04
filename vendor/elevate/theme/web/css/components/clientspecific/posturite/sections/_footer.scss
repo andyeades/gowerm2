@@ -1,0 +1,124 @@
+@if $sitename == posturite {
+
+    #footer-block-4 {
+        ul {
+            display: block !important;
+        }
+    }
+    #ev-footer {
+        .container {
+            @include max-screen($mobiletablet-max) {
+                padding: 0;
+            }
+        }
+    }
+
+
+    $ftr-blk-4-sib-padding: 2.5rem 0 0 0 !default;
+    $ftr-blk-4-sib-bgcolor: #E9EEEF !default;
+    $ftr-blk-4-sib-textalign: center !default;
+    $ftr-blk-4-sib-inb-mid-bgcolor: #E9EEEF !default;
+    $ftr-blk-4-sib-inb-btm-bgcolor: #E0E7E7 !default;
+
+
+    $ftr-blk-4-sib-inb-top-logo-url: url(../images/posturite/posturite_logo_colored.png) !default;
+    $ftr-blk-4-sib-inb-top-logo-height: 50px !default;
+    $ftr-blk-4-sib-inb-top-logo-width: 140px !default;
+    $ftr-blk-4-sib-inb-top-logo-backgroundsize: contain !default;
+    $ftr-blk-4-sib-inb-top-logo-margin: 0 auto !default;
+
+
+    $ftr-blk-4-sib-inb-top-address-margin: 3rem 0 1.5rem 0 !default;
+    $ftr-blk-4-sib-inb-top-address-display: flex !default;
+
+    $ftr-sib-inb-mid-padding: 1.25rem 0 !default;
+
+    $ftr-blk-4-sib-inb-mid-border-on: 1 !default;
+    $ftr-blk-4-sib-inb-mid-border-position: "top" !default;
+    $ftr-blk-4-sib-inb-mid-border-thickness: 2px !default;
+    $ftr-blk-4-sib-inb-mid-border-type: solid !default;
+    $ftr-blk-4-sib-inb-mid-border-color: #DFE7E7 !default;
+
+    $ftr-blk-4-sib-inb-mid-hdr-color: $ftr-m-text-color !default;
+    $ftr-blk-4-sib-inb-mid-hdr-fontweight: 300 !default;
+    $ftr-blk-4-sib-inb-mid-hdr-margin: 0.875rem 0 0.75rem 0 !default;
+
+    $ftr-blk-4-sib-inb-btm-padding: 1.25rem 0 0 0 !default;
+    $ftr-blk-4-sib-inb-btm-hdr-color: #9EB6AE !default;
+    $ftr-blk-4-sib-inb-btm-hdr-fontweight: 300 !default;
+    $ftr-blk-4-sib-inb-btm-hdr-margin: 0.875rem 0 0.75rem 0 !default;
+
+    $ftr-blk-4-sib-inb-mid-a-color: #335c4b !default;
+    $ftr-blk-4-sib-inb-mid-a-fontweight: 600 !default;
+    $ftr-blk-4-sib-inb-mid-a-hover-color: darken($ftr-blk-4-sib-inb-mid-a-color, 15%) !default;
+
+
+    #footer-block-4 {
+        .ftr-sib {
+            background-color: $ftr-blk-4-sib-bgcolor;
+            text-align: $ftr-blk-4-sib-textalign;
+            padding: $ftr-blk-4-sib-padding;
+        }
+
+        .ftr-sib-inb-top {
+
+        }
+
+        .ftr-sib-inb-top-logo {
+            background-image: $ftr-blk-4-sib-inb-top-logo-url;
+            background-repeat: no-repeat;
+            background-size: $ftr-blk-4-sib-inb-top-logo-backgroundsize;
+            height: $ftr-blk-4-sib-inb-top-logo-height;
+            width: $ftr-blk-4-sib-inb-top-logo-width;
+            background-position: center;
+            margin: $ftr-blk-4-sib-inb-top-logo-margin;
+
+        }
+
+        .ftr-sib-inb-top-address {
+            display: $ftr-blk-4-sib-inb-top-address-display;
+            flex-wrap: wrap;
+            margin: $ftr-blk-4-sib-inb-top-address-margin;
+
+            > span {
+                flex: 0 1 auto;
+                width: 100%;
+            }
+        }
+
+        .ftr-sib-inb-mid {
+            padding: $ftr-sib-inb-mid-padding;
+            background-color: $ftr-blk-4-sib-inb-mid-bgcolor;
+            @if $ftr-blk-4-sib-inb-mid-border-on == 1 {
+                @include elevate-border($ftr-blk-4-sib-inb-mid-border-color, $ftr-blk-4-sib-inb-mid-border-thickness, $ftr-blk-4-sib-inb-mid-border-type, $ftr-blk-4-sib-inb-mid-border-position)
+            }
+
+            .ftr-sib-inb-mid-hdr {
+                @include co(color, $ftr-blk-4-sib-inb-mid-hdr-color, $ftr-m-text-color);
+
+                font-weight: $ftr-blk-4-sib-inb-mid-hdr-fontweight;
+                margin: $ftr-blk-4-sib-inb-mid-hdr-margin;
+            }
+
+            .ftr-sib-inb-btm-hdr {
+                color: $ftr-blk-4-sib-inb-mid-hdr-color;
+                font-weight: $ftr-blk-4-sib-inb-mid-hdr-fontweight;
+                margin: $ftr-blk-4-sib-inb-mid-hdr-margin;
+            }
+
+            a {
+                font-weight: $ftr-blk-4-sib-inb-mid-a-fontweight;
+                color: $ftr-blk-4-sib-inb-mid-a-color;
+
+                &:hover {
+                    color: $ftr-blk-4-sib-inb-mid-a-hover-color;
+                }
+            }
+        }
+
+        .ftr-sib-inb-btm {
+            background-color: $ftr-blk-4-sib-inb-btm-bgcolor;
+            padding: $ftr-blk-4-sib-inb-btm-padding;
+        }
+    }
+}

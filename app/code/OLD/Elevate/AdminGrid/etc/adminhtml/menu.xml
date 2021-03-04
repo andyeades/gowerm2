@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Module AdminGrid New Admin Menu
+ * @package Module/AdminGrid
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add action="elevate/customrule/index" id="Elevate_Microsite::microsite_customrule" module="Elevate_Microsite" resource="Elevate_Microsite::CustomRule" sortOrder="22" title="CustomRule"/>
+	</menu>
+</config>

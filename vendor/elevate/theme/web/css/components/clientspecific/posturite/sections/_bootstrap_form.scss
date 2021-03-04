@@ -1,0 +1,121 @@
+@if $sitename == posturite {
+
+    $bs-form-webforms-fieldset-padding: 0 !default;
+    $bs-form-webforms-fieldset-field-padding: 0 !default;
+    $bootstrap-form-formlist-width: 100% !default;
+    $bootstrap-form-formlist-margin: 0 auto !default;
+    $bootstrap-form-formlist-width-desktop: 50% !default;
+    $bootstrap-form-formlist-margin-desktop: 0 auto !default;
+
+    .bootstrap-form {
+        .webforms {
+            .fieldset {
+                padding: $bs-form-webforms-fieldset-padding;
+            }
+            .field {
+                padding: $bs-form-webforms-fieldset-field-padding;
+            }
+        }
+        .webforms .fieldset,
+        .form-list {
+            width: $bootstrap-form-formlist-width;
+            margin: $bootstrap-form-formlist-margin;
+            @include min-screen($desktop-min) {
+                width: $bootstrap-form-formlist-width-desktop;
+                margin: $bootstrap-form-formlist-margin-desktop;
+            }
+            label, .label {
+                &.required em {
+                    font-style: normal;
+                    position: relative;
+                    float: none;
+                    left: 0;
+                }
+            }
+
+
+            .input-box input.input-text , select {
+                height: $input-height-lg;
+                line-height: $input-line-height-lg;
+                @include border-radius($input-border-radius-lg);
+            }
+            select {
+                padding: $input-padding-y-lg $input-padding-x-lg;
+            }
+
+            .input-box {
+                //padding: $input-padding-y-lg 0;
+                text-align: center;
+
+            }
+
+            .field {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            textarea {
+                width: 100%;
+                padding: 10px;
+                text-align: left;
+                height: 10em;
+            }
+
+            select {
+                width: 100%;
+            }
+
+            input.input-text {
+                width: 100%;
+            }
+        }
+
+        .actions-toolbar {
+            padding: 0;
+            margin: 0 auto !important;
+            width: 100%;
+            > .primary {
+                float: none;
+                >.action.primary {
+                    @extend .btn-posturite;
+                }
+            }
+            @include min-screen($desktop-min) {
+                width: 50%;
+            }
+            p.required {
+                font-size: 0.75rem;
+                text-align: right;
+                color: $ps-color-convert-44;
+                clear: both;
+                margin: 0 0 10px;
+            }
+            button {
+                @extend .btn;
+                @extend .btn-posturite;
+                color: white;
+            }
+        }
+
+        input {
+            &.input-text {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            &.textarea {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+
+        select {
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .fieldset .legend {
+            display: none;
+        }
+    }
+}

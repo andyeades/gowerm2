@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Elevate_ProductIcons::parent" title="ProductIcons" parent="Elevate_Core::menu" module="Elevate_ProductIcons" sortOrder="100" resource="Elevate_ProductIcons::parent"/>
+        <add id="Elevate_ProductIcons::index" title="ProductIcons Index" module="Elevate_ProductIcons" sortOrder="10" action="producticons/index" resource="Elevate_ProductIcons::index" parent="Elevate_ProductIcons::parent"/>
+
+    </menu>
+</config>

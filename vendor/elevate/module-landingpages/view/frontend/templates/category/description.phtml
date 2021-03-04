@@ -1,0 +1,197 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+?>
+<style>
+  .products.wrapper~.toolbar .pages {
+    display: flex;
+    width: auto;
+    margin: auto;
+  }
+  #top_pages a{
+
+    display: inline-block;
+    color: #000;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 5px 16px 5px 16px;
+    font-weight: 500;
+    background-color: #fff;
+    text-decoration: none;
+    border: solid 1px #e6e6e6;
+    box-sizing: border-box;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0 6px 0 0px;
+  }
+  #top_pages a:hover{
+    background-color:#006b7f;
+    color:white;
+  }
+  #top_pages{
+    margin-bottom:10px;
+  }
+  #top_pages span{ margin-right:10px; }
+  
+    <?php
+  $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+  if (strpos($url,'posturite') !== false)
+  {
+  
+  ?>
+    .rmclink{text-align:center;}
+  
+  <?php } ?>
+</style>
+
+
+<?php $readmore = $block->getCurrentCategory()->getData('ev_landingpages_hide_readmore');
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$filterProvider = $objectManager->create('\Magento\Cms\Model\Template\FilterProvider');
+$storeManager = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+
+
+/*
+ * [ev_landingpages_btm_desc] => THIS IS MY BOTTOM DESCRIPTION
+    [ev_landingpages_btm_desc_ajax] =>
+    [ev_landingpages_btm_desc_type] => none
+    [ev_landingpages_exclude_filters] =>
+    [ev_landingpages_h1_override] =>
+    [ev_landingpages_hide_readmore] => 0
+    [ev_landingpages_include_filters] =>
+    [ev_landingpages_top_desc_ajax] =>
+    [ev_landingpages_top_desc_type] => none
+    [ev_landingpages_top_pages] =>
+    [feefo_business_category] =>
+    [filter_exclude] => bed_type_hmc,colour_filter,color
+    [filter_include] =>
+    [filter_price_range] =>
+    [h1_override] =>
+ * */
+
+?>
+
+
+
+<?php if ($_description = $block->getCurrentCategory()->getDescription()): ?>
+    <div class="category-description">
+
+
+   <?php
+        echo $filterProvider->getBlockFilter()
+                            ->setStoreId($storeManager->getStore()->getId())
+                            ->filter($this->helper('Magento\Catalog\Helper\Output')->categoryAttribute($block->getCurrentCategory(), $_description, 'description'));
+
+        ?>
+
+    </div>
+    <?php if($readmore != 1){ ?>
+  <div class="rmclink">
+    <a href="#" class="read-btn read">Read more</a>
+  </div>
+    <style>
+      .category-description {
+        line-height: 2;
+        transition: none;
+        -webkit-transition: none;
+
+        max-height: 126px;
+        overflow: hidden;
+      }
+      .transition_change{
+
+
+      }
+    </style>
+        <?php } ?>
+
+    <?php if($readmore != 1){ ?>
+  <script type="text/javascript">
+
+      require([
+              'jquery'
+          ], function ($) {
+
+              $(".rmclink .read").click(function () {
+                  var descriptionheight = $(".category-description").height();
+                  var descriptionfullheight = $(".category-description").outerHeight();
+                  var descriptionfullheight = $(".category-description").outerHeight();
+
+                  if (descriptionheight == 126) {
+                      $('.category-description').css("max-height", "100%");
+                      $('.category-description').addClass("transition_change");
+
+                      $('.rmclink .read').text('Read Less');
+                  } else {
+                      $('.category-description').css("max-height", "126px");
+                      $('.category-description').removeClass("transition_change");
+                      $('.rmclink .read').text('Read More');
+                  }
+                  // prevent jump-down
+                  return false;
+
+              });
+
+          }
+      );
+
+
+  </script>
+<?php } ?>
+<?php endif; ?>
+<?php
+
+
+$top_pages = $block->getCurrentCategory()->getTopPages();
+
+if(!empty($top_pages)){
+    $filtered = false;
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $stateFilter = $objectManager->create('\Magento\LayeredNavigation\Block\Navigation\State');
+    $selectedFilters = $stateFilter->getActiveFilters();
+    foreach($selectedFilters as $filter){
+      $filtered = true;
+       // echo $filter->getName(); // Filter name like Color, Size etc
+       // echo $filter->getLabel(); // Filter value like Black, Blue, Small, Large etc
+    }
+
+    if(!empty(!$filtered)){
+?>
+<style>
+  #top_pages{
+    padding: 8px;
+    background-color: #f6f8fb;
+  }
+  @media screen and (max-width: 991.98px){
+    #top_pages a {
+      display: inline-block;
+      width: 48%;
+      margin: 1%;
+      text-align: center;
+    }
+  }
+</style>
+<div id="top_pages">
+
+
+    <?php
+
+    echo $top_pages;
+    ?>
+
+</div>
+
+<?php } } ?>

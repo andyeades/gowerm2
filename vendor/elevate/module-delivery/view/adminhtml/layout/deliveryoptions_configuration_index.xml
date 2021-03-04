@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<page layout="admin-1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="elevate_admin_common_css"/>
+	<body>
+		<referenceContainer name="content">
+			<block class="Elevate\Delivery\Block\Adminhtml\Configuration\Index" name="configuration.index" template="Elevate_Delivery::configuration/index.phtml"/>
+		</referenceContainer>
+	</body>
+</page>

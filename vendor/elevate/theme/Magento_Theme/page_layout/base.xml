@@ -1,0 +1,39 @@
+<?xml version="1.0"?><!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="empty"/>
+
+
+    <referenceContainer name="page.wrapper">
+    <container name="header-main-outer" htmlTag="header" htmlId="hdr-mo">
+        <container name="header-main-inner" htmlTag="header" htmlId="hdr-mi" htmlClass="container">
+            <container name="header.top.links" htmlClass="hdr-top-links" htmlTag="div" before="-">
+                <container name="header.top.links.left" htmlClass="hdr-top-links hdr-top-links-left" htmlTag="div" before="-"></container>
+                <container name="header.top.links.right" htmlClass="hdr-top-links hdr-top-links-right" htmlTag="div" after="-"></container>
+            </container>
+        </container>
+    </container>
+    <container name="nav-bar-outer" htmlTag="div" htmlId="nav-bar-outer" after="header-main-outer" before="page.top">
+        <container name="nav-bar-container" htmlTag="div" htmlClass="container">
+            <container name="nav-bar-inner" htmlTag="div" htmlId="nav-bar-inner"></container>
+        </container>
+    </container>
+
+    <container name="page.top" as="page_top" label="After Page Header" after="nav-main-outer"></container>
+    <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" as="breadcrumbs" after="page.top"/>
+    <container name="page-main-outer" htmlTag="main" htmlId="page-main-outer" after="breadcrumbs" before="breadcrumbs">
+        <container name="page-main-outer-inner" htmlTag="div">
+            <container name="main.content" htmlTag="div" htmlId="maincontent" htmlClass="page-main">
+                <container name="columns.top" label="Before Main Columns"/>
+                <container name="columns" htmlTag="div" htmlClass="columns">
+                    <container name="main" label="Main Content Container" htmlTag="div" htmlClass="column main"/>
+                </container>
+            </container>
+        </container>
+    </container>
+</referenceContainer>
+</layout>

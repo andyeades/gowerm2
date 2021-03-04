@@ -1,0 +1,18 @@
+<?php
+// @codingStandardsIgnoreFile
+/** @var $block View */
+
+use Magento\Catalog\Block\Product\View;
+
+$customerLoginUrl = $block->getUrl('customer/account/login');
+$customerRegisterUrl = $block->getUrl('customer/account/create');
+?>
+
+<?php $_product = $block->getProduct(); ?>
+<?php if ($_product->isSaleable()): ?>
+    <div class="box-tocart">
+        <p class="firebear-hide-price">
+            <?php echo __('Please <a href="%1" title="Login"> Login </a> or <a href="%2" title="Register"> Register </a> to buy this product', $customerLoginUrl, $customerRegisterUrl); ?>
+        </p>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,173 @@
+@if $sitename == happybeds {
+
+    $wmig-title-inner-color: #0e1936 !default;
+    $wmig-title-outer-border-color: #8b8f9a !default;
+    $wmig-brow-inner-color: #0e1936 !default;
+    $wmig-brow-bg-color: #00acb6 !default;
+
+    $wmig-width: 100% !default;
+    $wmig-width-desktopmd: 50% !default;
+    $wmig-border-radius-on: 1 !default;
+    $wmig-border-radius: 10px !default;
+
+    $wmig-inner-padding: 20px !default;
+    $wmig-inner-padding-sm: 40px 20px !default;
+
+    $firmness-rating-bottom-padding: 1.25rem 0 0 0 !default;
+
+    $firmness-rating-bottom-container-align-items: flex-start !default;
+
+    $firmness-rating-outer-width: 100% !default;
+    $firmness-rating-outer-width-desktopmd: 50% !default;
+
+    $firmness-wmig-outer-width: 100% !default;
+    $firmness-wmig-outer-order: 3 !default;
+
+    $catalog-product-view-page-main-stretch-content-on-mobile: 1 !default;
+    $catalog-product-view-page-main-stretch-content-on-mobiletablet: 1 !default;
+
+    #product-page-midpage-block {
+        background-color: #3d4557;
+        margin-bottom: 21px;
+        margin-top: 15px;
+        @include min-screen($desktop-min) {
+            padding-bottom: 15px;
+        }
+    }
+
+
+    .firmness-rating-bottom {
+        padding: $firmness-rating-bottom-padding;
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: $firmness-rating-bottom-container-align-items;
+
+            > div {
+                flex: 0 1 auto;
+            }
+        }
+
+        @if $catalog-product-view-page-main-stretch-content-on-mobile == 1 {
+            @include max-screen($mobilemax) {
+
+                position: relative;
+                display: block;
+                margin-left: -($grid-gutter-width-mobile);
+                margin-right: -($grid-gutter-width-mobile);
+            }
+
+        }
+        @if $catalog-product-view-page-main-stretch-content-on-mobiletablet == 1 {
+            @include screen($mobiletablet-min, $mobiletablet-max) {
+
+                position: relative;
+                display: block;
+                margin-left: -($grid-gutter-width / 2);
+                margin-right: -($grid-gutter-width / 2);
+            }
+
+        }
+
+    }
+    .firmness-wmig-outer {
+        width: $firmness-wmig-outer-width;
+        order: $firmness-wmig-outer-order;
+    }
+    #firmness-rating-outer {
+        width: $firmness-rating-outer-width;
+        @include min-screen($desktop-medium-min) {
+            @include co(width, $firmness-rating-outer-width-desktopmd, $firmness-rating-outer-width);
+        }
+    }
+    #what-makes-it-great {
+        width: $wmig-width;
+
+
+        #product-page-midpage-block & {
+            @if $wmig-border-radius-on == 1 {
+                border-radius: $wmig-border-radius;
+            }
+            background-color: #fff;
+            overflow: hidden;
+
+        }
+
+        @include min-screen($desktop-medium-min) {
+            @include co(width, $wmig-width-desktopmd, $wmig-width);
+        }
+
+        .what-makes-it-great-toprow-outer {
+
+            .what-makes-it-great-inner {
+                padding: $wmig-inner-padding;
+                @include min-screen($desktop-min) {
+                    padding: $wmig-inner-padding-sm;
+                }
+                @include max-screen($screen-xs-max) {
+
+                    margin-right: 0;
+                }
+
+                #what-makes-it-great-title-outer {
+                    border-bottom: 1px solid $wmig-title-outer-border-color;
+
+                    #what-makes-it-great-title-inner {
+                        color: $wmig-title-inner-color;
+                        text-align: center;
+                        text-transform: uppercase;
+                        font-size: 26px;
+                        letter-spacing: 0.5px;
+                        padding-bottom: 10px;
+                        font-weight: 600;
+                        @include rj-clearfix();
+                        @include max-screen($screen-xs-max) {
+                            font-size: 22px;
+                        }
+                    }
+                }
+
+                #what-makes-it-great-icon-row {
+                    margin-top: 20px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align: center;
+                    @include rj-clearfix();
+                    @include screen($screen-xs-min, $screen-xs-max) {
+                        margin-left: -15px;
+                        margin-right: -15px;
+                    }
+                    @include screen($screen-sm-min, $screen-lg-max) {
+                        margin-top: 25px;
+                    }
+                }
+            }
+        }
+
+        .what-makes-it-great-bottom-row {
+            background-color: $wmig-brow-bg-color;
+
+            .what-makes-it-great-bottom-row-inner {
+                padding: 40px 20px;
+                color: $wmig-brow-inner-color;
+                text-align: center;
+                font-size: 14px;
+                position: relative;
+                @include max-screen($screen-xs-max) {
+
+                    padding: 30px;
+                    margin-right: 0;
+                    font-size: 12px;
+                }
+
+            }
+        }
+
+        #what-makes-it-great-tab-content {
+            color: white;
+        }
+    }
+}
+
+@import "tech-icons";

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+            <elevate_addtocart>
+                <minicart>
+                    <cart_icon_class>fa fa-shopping-cart</cart_icon_class>
+                    <custom_cart_icon_on>0</custom_cart_icon_on>
+                    <custom_cart_icon_html><![CDATA[<div class="hdr-basket-side">
+                        <div class="hdr-basket-right">
+                            <div class="basket-label">My Basket</div>
+                            <span id="hdr-minicart-total" class="hdr-minicart-total">£0.00</span>
+                        </div>
+                    </div>]]></custom_cart_icon_html>
+                    <custom_cart_icon_styling>
+                        <![CDATA[ ]]>
+                    </custom_cart_icon_styling>
+                </minicart>
+                <productview>
+                    <qty_label_text>Quantity</qty_label_text>
+                    <qty_display_type>input</qty_display_type>
+                    <qty_select_max>100</qty_select_max>
+                    <actions_position>outside_qty_container</actions_position>
+                </productview>
+            </elevate_addtocart>
+    </default>
+</config>

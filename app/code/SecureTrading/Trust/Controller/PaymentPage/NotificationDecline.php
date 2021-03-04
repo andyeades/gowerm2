@@ -1,0 +1,67 @@
+<?php
+
+namespace SecureTrading\Trust\Controller\PaymentPage;
+
+use Magento\Framework\App\CsrfAwareActionInterface;
+use Magento\Framework\App\Request\InvalidRequestException;
+use Magento\Framework\App\RequestInterface;
+use Magento\Sales\Model\Order;
+
+/**
+ * Class NotificationDecline
+ *
+ * @package SecureTrading\Trust\Controller\PaymentPage
+ */
+class NotificationDecline extends Response implements CsrfAwareActionInterface
+{
+	/**
+	 * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|\Magento\Framework\Controller\ResultInterface
+	 */
+	public function execute()
+	{
+		$this->logger->debug('--- Notification Decline ---');
+		try {
+			$responseParams = $this->getRequest()->getParams();
+			if (!empty($responseParams)) {
+				$this->logger->debug('--- Notification Decline Params: ', array($responseParams));
+				$orderIncrementId = $this->getRequest()->getParam('orderreference', null);
+				/** @var Order $order */
+				$order = $this->orderFactory->create()->loadByIncrementId($orderIncrementId);
+
+				if (empty($order->getId())) {
+					$this->messageManager->addError(__("Something went wrong. Please try again later."));
+				}
+
+				$errorCode = $this->getRequest()->getParam('errorcode', null);
+				$this->logger->debug('--- Notification Decline Error Code: ' . $errorCode . '---');
+
+				$order->addCommentToStatusHistory(__('Transaction has been declined. Request reference: %1', $responseParams['requestreference']));
+				$order->save();
+
+			}
+		} catch (\Exception $exception) {
+			$this->logger->debug('--- Notification Decline Error Msg: ' . $exception->getMessage() . '---');
+
+			$this->messageManager->addError(__($exception->getMessage()));
+		}
+		$this->getResponse()->setHttpResponseCode(200);
+	}
+
+	/**
+	 * @param RequestInterface $request
+	 * @return InvalidRequestException|null
+	 */
+	public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
+	{
+		return null;
+	}
+
+	/**
+	 * @param RequestInterface $request
+	 * @return bool|null
+	 */
+	public function validateForCsrf(RequestInterface $request): ?bool
+	{
+		return true;
+	}
+}

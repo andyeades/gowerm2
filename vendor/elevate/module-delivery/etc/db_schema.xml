@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="elevate_delivery_deliverymethod" resource="default" engine="innodb" comment="Delivery Area">
+    <column xsi:type="int" name="deliverymethod_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="int" name="deliveryarea_id" padding="10" unsigned="true" nullable="false" identity="false" comment="deliveryarea_id"/>
+    <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+    <column xsi:type="varchar" name="internal_name" nullable="false" length="255" comment="Name"/>
+    <column xsi:type="int" name="day1" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="day1"/>
+    <column xsi:type="int" name="day2" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="day2"/>
+    <column xsi:type="int" name="day3" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="day3"/>
+    <column xsi:type="int" name="day4" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="day4"/>
+    <column xsi:type="int" name="day5" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="day5"/>
+    <column xsi:type="int" name="day6" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="day6"/>
+    <column xsi:type="int" name="day7" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="day7"/>
+    <column xsi:type="int" name="enabled" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="Enabled"/>
+      <column xsi:type="int" name="is_fallback_method" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="Is this method a fallback method (i.e. added to all products in area)"/>
+    <column xsi:type="datetime" name="start_time" on_update="false" nullable="true" comment="start_time"/>
+    <column xsi:type="datetime" name="end_time" on_update="false" nullable="true" comment="end_time"/>
+    <column xsi:type="datetime" name="before_time" on_update="false" nullable="true" comment="before_time"/>
+    <column xsi:type="int" name="deliveryteamnumber" padding="11" unsigned="false" nullable="false" identity="false" default="1" comment="Delivery Team Number"/>
+    <column xsi:type="varchar" name="deliveryteamability" nullable="true" length="255" comment="Delivery Team Ability"/>
+    <column xsi:type="text" name="delivery_desc" nullable="true" comment="Delivery Description"/>
+    <column xsi:type="text" name="delivery_desc_checkout" nullable="true" comment="Delivery Description on Checkout"/>
+    <column xsi:type="int" name="workingdays_min" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Working Days Min"/>
+    <column xsi:type="int" name="workingdays_max" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Working Days Max"/>
+    <column xsi:type="int" name="call_day_before" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Call Day Before"/>
+    <column xsi:type="int" name="date_range_selection" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Date Range Selection"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="deliverymethod_id"/>
+      <column name="deliveryarea_id"/>
+    </constraint>
+      <constraint xsi:type="foreign" referenceId="FK_DELIVERYMETHOD_AREAID" table="elevate_delivery_deliverymethod" column="deliveryarea_id" referenceTable="elevate_delivery_deliveryarea" referenceColumn="deliveryarea_id" onDelete="CASCADE"/>
+  </table>
+  <table name="elevate_delivery_deliveryarea" resource="default" engine="innodb" comment="Delivery Area">
+    <column xsi:type="int" name="deliveryarea_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="int" name="store_id" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Store ID"/>
+    <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+    <column xsi:type="int" name="enabled" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="Enabled"/>
+    <column xsi:type="text" name="postcodes" nullable="true" comment="Name"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="deliveryarea_id"/>
+    </constraint>
+  </table>
+  <table name="elevate_delivery_deliveryfee" resource="default" engine="innodb" comment="Delivery Fee">
+    <column xsi:type="int" name="deliveryfee_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="int" name="deliveryarea_id" padding="10" unsigned="true" nullable="false" identity="false" comment="deliveryarea_id"/>
+    <column xsi:type="int" name="deliverymethod_id" padding="10" unsigned="true" nullable="false" identity="false" comment="deliverymethod_id"/>
+    <column xsi:type="int" name="day" padding="11" unsigned="false" nullable="true" identity="false" default="0" comment="Day of Week"/>
+    <column xsi:type="decimal" name="fee" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="fee"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="deliveryfee_id"/>
+      <column name="deliveryarea_id"/>
+      <column name="deliverymethod_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_06FDCD537257ABCB5327EC9970CE3E3C" table="elevate_delivery_deliveryfee" column="deliveryarea_id" referenceTable="elevate_delivery_deliveryarea" referenceColumn="deliveryarea_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_2F55E1BE87196CA38EC2566F1DE56130" table="elevate_delivery_deliveryfee" column="deliverymethod_id" referenceTable="elevate_delivery_deliverymethod" referenceColumn="deliverymethod_id" onDelete="CASCADE"/>
+  </table>
+  <table name="elevate_delivery_deliveryrules_functions" resource="default" engine="innodb" comment="Delivery Rules Functions">
+    <column xsi:type="int" name="deliveryrulesfunction_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="varchar" name="deliveryrules_function" nullable="false" length="255" comment="deliveryrules_function"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="deliveryrulesfunction_id"/>
+    </constraint>
+  </table>
+  <table name="elevate_delivery_deliveryproducts" resource="default" engine="innodb" comment="Delivery Products">
+    <column xsi:type="int" name="deliveryproducts_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="int" name="deliverymethod_id" padding="10" unsigned="true" nullable="false" identity="false" comment="deliverymethod_id"/>
+    <column xsi:type="varchar" name="product_id" nullable="false" length="255" comment="product_id"/>
+    <column xsi:type="varchar" name="product_sku" nullable="false" length="255" comment="product_sku"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="deliveryproducts_id"/>
+      <column name="deliverymethod_id"/>
+    </constraint>
+  </table>
+  <table name="elevate_delivery_deliveryrules_type" resource="default" engine="innodb" comment="Delivery Products">
+    <column xsi:type="int" name="deliveryrules_type_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="varchar" name="rule_type" nullable="false" length="255" comment="rule_type"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="deliveryrules_type_id"/>
+    </constraint>
+  </table>
+
+
+  <table name="elevate_delivery_deliveryrules" resource="default" engine="innodb" comment="Delivery Rules">
+    <column xsi:type="int" name="deliveryrules_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+      <column xsi:type="int" name="deliveryarea_id" padding="10" unsigned="true" nullable="true" identity="false" comment="deliveryarea_id"/>
+    <column xsi:type="int" name="deliverymethod_id" padding="10" unsigned="true" nullable="true" identity="false" comment="deliverymethod_id"/>
+    <column xsi:type="int" name="deliveryrules_type_id" padding="10" unsigned="true" nullable="false" identity="false" comment="deliveryrules_type_id"/>
+      <column xsi:type="int" name="deliveryrulesfunction_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Delivery Rules Function ID"/>
+      <column xsi:type="varchar" name="rule_mode" nullable="false" length="255" comment="rule_mode"/>
+    <column xsi:type="varchar" name="rule_operator" nullable="false" length="255" comment="rule_operator"/>
+    <column xsi:type="varchar" name="rule_quantity" nullable="false" length="255" comment="rule qty"/>
+      <column xsi:type="varchar" name="rule_value" nullable="true" length="255" comment="rule value (to test agaisnt)"/>
+    <column xsi:type="varchar" name="rule_function" nullable="true" length="255" comment="rule function"/>
+    <column xsi:type="int" name="rule_sort_value" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="rule_sort_value"/>
+    <column xsi:type="varchar" name="rule_stop_continue" nullable="true" length="255" comment="rule_stop_continue"/>
+    <column xsi:type="int" name="rule_enable" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="rule_enable"/>
+
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="deliveryrules_id"/>
+      <column name="deliveryrules_type_id"/>
+      <column name="deliveryrulesfunction_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_7A1404F27C43D821873EF9B8197FD82F" table="elevate_delivery_deliveryrules" column="deliverymethod_id" referenceTable="elevate_delivery_deliverymethod" referenceColumn="deliverymethod_id" onDelete="CASCADE"/>
+      <constraint xsi:type="foreign" referenceId="FK_DELIVERYRULES_DELIVERYAREA_ID" table="elevate_delivery_deliveryrules" column="deliveryarea_id" referenceTable="elevate_delivery_deliveryarea" referenceColumn="deliveryarea_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_E3A09DF4E679F93AAFED5D7C4942014A" table="elevate_delivery_deliveryrules" column="deliveryrules_type_id" referenceTable="elevate_delivery_deliveryrules_type" referenceColumn="deliveryrules_type_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_AA38A472280AFBD3A3119108AD9717D6" table="elevate_delivery_deliveryrules" column="deliveryrulesfunction_id" referenceTable="elevate_delivery_deliveryrules_functions" referenceColumn="deliveryrulesfunction_id" onDelete="CASCADE"/>
+  </table>
+
+    <table name="elevate_delivery_deliveryrulescombinations" resource="default" engine="innodb" comment="Delivery Rules Combinations">
+        <column xsi:type="int" name="deliveryrulescombinations_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="deliveryrules_ids" nullable="false" length="255" comment="Delivery Rules IDS"/>
+        <column xsi:type="int" name="deliveryrulesfunction_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Combo Area ID"/>
+        <column xsi:type="int" name="combo_area_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Combo Area ID"/>
+        <column xsi:type="varchar" name="combo_rule_function" nullable="false" length="255" comment="rule function"/>
+        <column xsi:type="int" name="combo_rule_sort_value" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="rule_sort_value"/>
+        <column xsi:type="varchar" name="combo_rule_stop_continue" nullable="false" length="255" comment="rule_stop_continue"/>
+        <column xsi:type="int" name="combo_rule_enable" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="rule_enable"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="deliveryrulescombinations_id"/>
+            <column name="deliveryrulesfunction_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_DELIVERYRULESCOMBINATIONS_DELIVERY_FUNCTION" table="elevate_delivery_deliveryrulescombinations" column="deliveryrulesfunction_id" referenceTable="elevate_delivery_deliveryrules_functions" referenceColumn="deliveryrulesfunction_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_DELIVERYRULESCOMBINATIONS_DELIVERYAREA" table="elevate_delivery_deliveryrulescombinations" column="combo_area_id" referenceTable="elevate_delivery_deliveryarea" referenceColumn="deliveryarea_id" onDelete="CASCADE"/>
+    </table>
+
+  <table name="elevate_delivery_deliveryrules_products" resource="default" engine="innodb" comment="Delivery Rules Products">
+    <column xsi:type="int" name="deliveryrulesproducts_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="int" name="deliveryrules_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Delivery Rules ID"/>
+    <column xsi:type="varchar" name="product_id" nullable="false" length="255" comment="product_id"/>
+    <column xsi:type="varchar" name="product_sku" nullable="false" length="255" comment="product_sku"/>
+    <column xsi:type="varchar" name="attribute_set_id" nullable="false" length="255" comment="attribute_set_id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="deliveryrulesproducts_id"/>
+      <column name="deliveryrules_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_3CC832004A01C4C680956601289E4489" table="elevate_delivery_deliveryrules_products" column="deliveryrules_id" referenceTable="elevate_delivery_deliveryrules" referenceColumn="deliveryrules_id" onDelete="CASCADE"/>
+  </table>
+    <table name="elevate_delivery_holidaydates" resource="default" engine="innodb" comment="Delivery Holiday Dates">
+        <column xsi:type="int" name="deliveryholidaydates_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="datetime" name="start_date" on_update="false" nullable="true" comment="start_time"/>
+        <column xsi:type="datetime" name="end_date" on_update="false" nullable="true" comment="end_time"/>
+        <column xsi:type="varchar" name="deliveryholidaytitle" nullable="false" length="255" comment="title"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="deliveryholidaydates_id"/>
+        </constraint>
+    </table>
+  <table name="quote_address" resource="default">
+    <column xsi:type="text" name="delivery_date_selected" nullable="false" comment="Delivery Date"/>
+    <column xsi:type="text" name="delivery_option_selected" nullable="false" comment="Delivery Date"/>
+    <column xsi:type="text" name="delivery_area_selected" nullable="false" comment="Delivery Area Selected"/>
+    <column xsi:type="text" name="delivery_selected_summarytext" nullable="false" comment="Summary Text"/>
+      <column xsi:type="varchar" name="detailed_delivery_info_dates" length="512" comment="Detailed Delivery Info Dates"/>
+      <column xsi:type="smallint" name="detailed_delivery_teamnumber" padding="2" unsigned="false" nullable="true" identity="false" comment="Detailed Delivery Team Number"/>
+      <column xsi:type="text" name="ev_giftmessagemessage" nullable="false" comment="Gift Message Order"/>
+  </table>
+  <table name="sales_order_address" resource="default">
+    <column xsi:type="text" name="delivery_date_selected" nullable="false" comment="Delivery Date"/>
+    <column xsi:type="text" name="delivery_option_selected" nullable="false" comment="Delivery Date"/>
+    <column xsi:type="text" name="delivery_area_selected" nullable="false" comment="Delivery Area Selected"/>
+    <column xsi:type="text" name="delivery_selected_summarytext" nullable="false" comment="Summary Text"/>
+      <column xsi:type="varchar" name="detailed_delivery_info_dates" length="512" comment="Detailed Delivery Info Dates"/>
+      <column xsi:type="smallint" name="detailed_delivery_teamnumber" padding="2" unsigned="false" nullable="true" identity="false" comment="Detailed Delivery Team Number"/>
+      <column xsi:type="text" name="ev_giftmessagemessage" nullable="false" comment="Gift Message Order"/>
+  </table>
+
+    <table name="quote" resource="checkout" comment="Sales Flat Quote">
+        <column xsi:type="varchar" name="detailed_delivery_info" length="512" comment="Detailed Delivery Info"/>
+        <column xsi:type="varchar" name="detailed_delivery_info_dates" length="512" comment="Detailed Delivery Info Dates"/>
+        <column xsi:type="smallint" name="detailed_delivery_teamnumber" padding="2" unsigned="false" nullable="true" identity="false"
+                comment="Detailed Delivery Team Number"/>
+        <column xsi:type="text" name="ev_giftmessagemessage" nullable="false" comment="Gift Message Order"/>
+    </table>
+    <table name="sales_order" resource="sales" comment="Sales Flat Order">
+        <column xsi:type="varchar" name="detailed_delivery_info" length="512" comment="Detailed Delivery Info"/>
+        <column xsi:type="varchar" name="detailed_delivery_info_dates" length="512" comment="Detailed Delivery Info Dates"/>
+        <column xsi:type="smallint" name="detailed_delivery_teamnumber" padding="2" unsigned="false" nullable="true" identity="false"
+                comment="Detailed Delivery Team Number"/>
+        <column xsi:type="text" name="ev_giftmessagemessage" nullable="false" comment="Gift Message Order"/>
+    </table>
+</schema>

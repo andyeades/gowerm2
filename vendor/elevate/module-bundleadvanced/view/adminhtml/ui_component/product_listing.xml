@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Copyright 2020 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="aw-sbp-duplicate-as-sbp">
+                <settings>
+                    <url path="elevate_bundleadvanced/bundleadvanced/massDuplicate"/>
+                    <type>elevate-bundleadvanced-duplicate-as-bundleadvanced</type>
+                    <label translate="true">Duplicate As Simple Bundle</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>

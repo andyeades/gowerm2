@@ -1,0 +1,17 @@
+$ev-prod-keyfacts-display: false !default;
+$ev-prod-keyfacts-display-desktopmd: false !default;
+
+.ev-prod-keyfacts {
+ @include co(display, $ev-prod-keyfacts-display);
+    @include min-screen($desktop-md-min) {
+        @include co(display, $ev-prod-keyfacts-display-desktopmd, $ev-prod-keyfacts-display);
+    }
+}
+
+.catalog-product-view {
+  .ev-prod-keyfacts {
+    width: 100%;
+
+    order: 2000;
+  }
+}

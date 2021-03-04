@@ -1,0 +1,670 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: 0;
+  height: auto;
+  line-height: 100%;
+  outline: none;
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table td {
+  vertical-align: top;
+}
+
+html {
+  font-size: 62.5%;
+  font-size-adjust: 100%;
+}
+
+body {
+  color: #333;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.42857;
+  font-size: 1.4rem;
+}
+
+p {
+  margin-top: 0;
+}
+
+p {
+  margin-bottom: 0.1rem;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted #d1d1d1;
+  cursor: help;
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+mark {
+  background: #f0f0f0;
+  color: black;
+}
+
+small,
+.small {
+  font-size: 2rem;
+}
+
+hr {
+  border: 0;
+  border-top: 0.1rem solid #d1d1d1;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+sub,
+sup {
+  font-size: 71.42857%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+dfn {
+  font-style: italic;
+}
+
+h1 {
+  font-weight: 300;
+  line-height: 1.1;
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 0.2rem;
+}
+
+h2 {
+  font-weight: 300;
+  line-height: 1.1;
+  font-size: 3rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.2rem;
+}
+
+h3 {
+  font-weight: 300;
+  line-height: 1.1;
+  font-size: 2rem;
+  margin-top: 0.15rem;
+  margin-bottom: 0.1rem;
+}
+
+h4 {
+  font-weight: 700;
+  line-height: 1.1;
+  font-size: 1.4rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+h5 {
+  font-weight: 700;
+  line-height: 1.1;
+  font-size: 2rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+h6 {
+  font-weight: 700;
+  line-height: 1.1;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+h1 small,
+h1 .small,
+h2 small,
+h2 .small,
+h3 small,
+h3 .small,
+h4 small,
+h4 .small,
+h5 small,
+h5 .small,
+h6 small,
+h6 .small {
+  color: #333;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+}
+
+a,
+.alink {
+  color: #1979c3;
+  text-decoration: none;
+}
+
+a:hover,
+.alink:hover {
+  color: #006bb4;
+  text-decoration: underline;
+}
+
+a:active,
+.alink:active {
+  color: #ff5501;
+  text-decoration: underline;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+ul > li,
+ol > li {
+  margin-top: 0;
+  margin-bottom: 0.1rem;
+}
+
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin-bottom: 0;
+}
+
+dl {
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+dt {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+dd {
+  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+code {
+  background: #f0f0f0;
+  color: #111111;
+  padding: 2px 4px;
+  font-size: 2rem;
+  white-space: nowrap;
+}
+
+kbd {
+  background: #f0f0f0;
+  color: #111111;
+  padding: 2px 4px;
+  font-size: 2rem;
+}
+
+pre {
+  background: #f0f0f0;
+  border: 0.1rem solid #d1d1d1;
+  color: #111111;
+  line-height: 1.42857;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  font-size: 2rem;
+  display: block;
+  word-wrap: break-word;
+}
+
+pre code {
+  background-color: transparent;
+  border-radius: 0;
+  color: inherit;
+  font-size: inherit;
+  padding: 0;
+  white-space: pre-wrap;
+}
+
+blockquote {
+  border-left: 0 solid #d1d1d1;
+  margin: 0 0 2rem 4rem;
+  padding: 0;
+  color: #333;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.42857;
+  font-size: 1.4rem;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+  margin-bottom: 0;
+}
+
+blockquote footer,
+blockquote small,
+blockquote .small {
+  color: #333;
+  line-height: 1.42857;
+  font-size: 1rem;
+  display: block;
+}
+
+blockquote footer:before,
+blockquote small:before,
+blockquote .small:before {
+  content: "— ";
+}
+
+blockquote cite {
+  font-style: normal;
+}
+
+blockquote:before, blockquote:after {
+  content: '';
+}
+
+q {
+  quotes: none;
+}
+
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+cite {
+  font-style: normal;
+}
+
+body {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  text-align: left;
+}
+
+th,
+td {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #1979c3;
+  text-decoration: none;
+}
+
+html,
+body {
+  background-color: #fff;
+}
+
+.wrapper {
+  margin: 0 auto;
+}
+
+.wrapper-inner {
+  padding-bottom: 3rem;
+  width: 100%;
+}
+
+.main {
+  margin: 0 auto;
+  text-align: left;
+  width: 600px;
+}
+
+.header {
+  padding: 1rem 1rem 0;
+}
+
+.main-content {
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.footer {
+  padding: 0 1rem 1rem;
+}
+
+.button > tr > td {
+  padding-bottom: 1rem;
+}
+
+.button .inner-wrapper td {
+  border-radius: 3px;
+  background-color: green;
+}
+
+.button .inner-wrapper td a {
+  border-radius: 3px;
+  border: 1px solid green;
+  color: #fff;
+  display: inline-block;
+  font-size: 1.4rem;
+  padding: 7px 15px;
+  text-decoration: none;
+}
+
+.message-info,
+.message-gift {
+  width: 100%;
+}
+
+.message-info td,
+.message-gift td {
+  background-color: #fdf0d5;
+  border: 1px solid false;
+  color: #333;
+  margin: 0;
+  padding: 1rem;
+}
+
+.message-info td a,
+.message-gift td a {
+  color: #1979c3;
+}
+
+.message-info td h1,
+.message-info td h2,
+.message-info td h3,
+.message-info td h4,
+.message-info td h5,
+.message-info td h6,
+.message-gift td h1,
+.message-gift td h2,
+.message-gift td h3,
+.message-gift td h4,
+.message-gift td h5,
+.message-gift td h6 {
+  margin-top: 0;
+}
+
+.message-details {
+  margin-bottom: 1rem;
+}
+
+.message-details b {
+  font-weight: bold;
+}
+
+.message-details td {
+  padding-bottom: 0.5rem;
+}
+
+.message-details td b {
+  margin-right: 1rem;
+}
+
+.email-items .bundle-option-label > td {
+  padding: 0 1rem 0 3rem;
+}
+
+.email-items .bundle-option-value > td {
+  padding: 0 1rem 1rem;
+}
+
+.email-items .bundle-option-value > td.item-info {
+  padding: 0 1rem 1rem 4rem;
+}
+
+.email-items tr.bundle-option-value + tr > td.item-extra {
+  padding-top: 1rem;
+}
+
+.email-summary h1 {
+  margin-bottom: 0.5rem;
+}
+
+.order-details {
+  width: 100%;
+}
+
+.order-details tr > .address-details,
+.order-details tr > .method-info {
+  padding: 1rem 1rem 1rem 0;
+  width: 50%;
+}
+
+.order-details tr > .address-details h3,
+.order-details tr > .method-info h3 {
+  margin-top: 0;
+}
+
+.order-details tr + .method-info > td {
+  padding: 0 0 1rem;
+}
+
+.order-details .payment-method {
+  margin-bottom: 1rem;
+}
+
+.order-details .payment-method .title {
+  font-weight: 400;
+}
+
+.order-details .payment-method .data.table > caption {
+  display: none;
+}
+
+.order-details .payment-method .data.table th {
+  padding-right: 1rem;
+}
+
+.address-details a {
+  color: #333 !important;
+  cursor: default !important;
+  text-decoration: none !important;
+}
+
+.shipment-track {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+}
+
+.shipment-track th {
+  text-align: left;
+}
+
+.shipment-track > tbody > tr > th,
+.shipment-track > tbody > tr > td,
+.shipment-track > tfoot > tr > th,
+.shipment-track > tfoot > tr > td {
+  vertical-align: top;
+}
+
+.shipment-track > thead > tr > th,
+.shipment-track > thead > tr > td {
+  vertical-align: bottom;
+}
+
+.shipment-track > thead > tr > th,
+.shipment-track > thead > tr > td,
+.shipment-track > tbody > tr > th,
+.shipment-track > tbody > tr > td,
+.shipment-track > tfoot > tr > th,
+.shipment-track > tfoot > tr > td {
+  padding: 0 1rem;
+}
+
+.shipment-track thead > tr > th,
+.shipment-track thead > tr > td,
+.shipment-track tbody > tr > th,
+.shipment-track tbody > tr > td {
+  background-color: #f2f2f2;
+  padding: 1rem;
+  width: 50%;
+}
+
+.shipment-track thead > tr + tr th,
+.shipment-track thead > tr + tr td,
+.shipment-track tbody > tr + tr th,
+.shipment-track tbody > tr + tr td {
+  padding-top: 0;
+}
+
+.email-items {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  border: 0.1rem solid #d1d1d1;
+}
+
+.email-items th {
+  text-align: left;
+}
+
+.email-items > tbody > tr > th,
+.email-items > tbody > tr > td,
+.email-items > tfoot > tr > th,
+.email-items > tfoot > tr > td {
+  vertical-align: top;
+}
+
+.email-items > thead > tr > th,
+.email-items > thead > tr > td {
+  vertical-align: bottom;
+}
+
+.email-items > thead > tr > th,
+.email-items > thead > tr > td,
+.email-items > tbody > tr > th,
+.email-items > tbody > tr > td,
+.email-items > tfoot > tr > th,
+.email-items > tfoot > tr > td {
+  padding: 0 1rem;
+}
+
+.email-items thead > tr > th,
+.email-items thead > tr > td,
+.email-items tfoot > tr > th,
+.email-items tfoot > tr > td {
+  background-color: #f2f2f2;
+}
+
+.email-items > thead > tr > th,
+.email-items > tbody > tr > th {
+  padding: 1rem;
+}
+
+.email-items > thead > tr > td,
+.email-items > tbody > tr > td {
+  padding: 1rem;
+}
+
+.email-items > thead > tr > td.message-gift,
+.email-items > tbody > tr > td.message-gift {
+  border-top: none;
+  padding-top: 0;
+}
+
+.email-items > tbody > tr > th,
+.email-items > tbody > tr > td,
+.email-items > tfoot > tr > th,
+.email-items > tfoot > tr > td {
+  border-top: 0.1rem solid #d1d1d1;
+}
+
+.email-items > tbody > tr + tr > th,
+.email-items > tbody > tr + tr > td,
+.email-items > tfoot > tr + tr > th,
+.email-items > tfoot > tr + tr > td {
+  border-top: 0;
+}
+
+.email-items p {
+  margin-bottom: 0;
+}
+
+.email-items .product-name {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.email-items .has-extra .sku {
+  margin-bottom: 1rem;
+}
+
+.email-items .item-info dl {
+  margin-bottom: 0;
+  padding-left: 2rem;
+}
+
+.email-items .item-info dl dt,
+.email-items .item-info dl dd {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.email-items .item-info dl dd {
+  padding-left: 1rem;
+}
+
+.email-items .item-qty {
+  text-align: center;
+}
+
+.email-items .item-price,
+.email-items .item-subtotal {
+  text-align: right;
+}
+
+.email-items .item-extra {
+  padding-top: 0;
+}
+
+.email-items .order-totals > tr > th {
+  font-weight: 400;
+}
+
+.email-items .order-totals > tr > th,
+.email-items .order-totals > tr > td {
+  padding: 1rem;
+  text-align: right;
+}
+
+.email-items .order-totals > tr + tr th,
+.email-items .order-totals > tr + tr td {
+  padding-top: 0;
+}
+
+.email-items .order-totals .price {
+  white-space: nowrap;
+}

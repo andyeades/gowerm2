@@ -1,0 +1,391 @@
+$actions-border-radius-on: 1 !default;
+$actions-border-radius: 5px !default;
+$actions-font-size: 0.75rem !default;
+$actions-font-weight: 600 !default;
+$actions-padding: 0.5rem 0.75rem !default;
+
+$actions-text-transform-on: 0 !default;
+$actions-text-transform: uppercase !default;
+
+
+$customeracc-actions-border-radius-on: 1 !default;
+$customeracc-actions-border-radius: 5px !default;
+$customeracc-actions-font-size: 0.75rem !default;
+$customeracc-actions-font-weight: 600 !default;
+$customeracc-actions-padding: 0.5rem 0.75rem !default;
+
+$customeracc-actions-text-transform-on: 0 !default;
+$customeracc-actions-text-transform: uppercase !default;
+
+
+$loginc-blocktitle-fontsize: 1rem !default;
+$loginc-blocktitle-margin: 0 0 1rem 0 !default;
+$loginc-blocktitle-padding: 0 0 0.75rem 0 !default;
+
+
+$loginc-blocktitle-border-on: 1 !default;
+
+$loginc-blocktitle-border-color: $border-color !default;
+$loginc-blocktitle-border-position: bottom !default;
+$loginc-blocktitle-border-thickness: 1px !default;
+$loginc-blocktitle-border-style: solid !default;
+
+$loginc-actions-border-radius-on: 1 !default;
+$loginc-actions-border-radius: 5px !default;
+$loginc-actions-font-size: 0.875rem !default;
+$loginc-actions-font-weight: 600 !default;
+$loginc-actions-padding: 0.75rem 1.5rem !default;
+
+$loginc-actions-text-transform-on: 0 !default;
+$loginc-actions-text-transform: uppercase !default;
+
+
+// Applies to Both New Account/Existing
+
+$loginc-blocks-width: 100% !default;
+$loginc-blocks-width-desktopmd: 50% !default;
+$loginc-blocks-padding: 0.9375rem !default;
+$loginc-blocks-padding-desktopmd: 0.9375rem !default;
+
+
+$loginc-newaccount-order: 1 !default;
+$loginc-newaccount-width: 100% !default;
+$loginc-newaccount-width-desktopmd: 50% !default;
+
+$loginc-existing-overflow: false !default;
+
+$loginc-existing-order: 2 !default;
+$loginc-existing-width: 100% !default;
+$loginc-existing-width-desktopmd: 50% !default;
+
+
+// Fixing .action turning all into buttons
+$loginc-actionstoolbar-display: flex !default;
+$loginc-actionstoolbar-alignitems: center !default;
+$loginc-actionstoolbar-items-flex: 0 1 auto !default;
+$loginc-actionstoolbar-padding: false !default;
+$loginc-actionstoolbar-padding-desktop: 0 20% 0 0 !default;
+$loginc-actionstoolbar-width: false !default;
+$loginc-actionstoolbar-width-desktop: 80% !default;
+$loginc-actionstoolbar-primary-margin: 0 0 0 auto !default;
+$loginc-actionstoolbar-primary-order: 2 !default;
+$loginc-actionstoolbar-primary-action-margin: 0 !default;
+$loginc-actionstoolbar-secondary-order: 1 !default;
+$loginc-action-remind-textdecoration: underline !default;
+
+$loginc-actionstoolbar-secondary-actionremind-fontsize: $font-size-base !default;
+
+
+$loginc-rememberme-label-margin: 0 0 0 0.375rem !default;
+$loginc-rememberme-tooltip-margin: 0 0 0 0.625rem !default;
+
+$loginc-checkbox-border-radius-on: 1 !default;
+$loginc-checkbox-border-radius: 5px !default;
+
+$create-account-legend-border-on: 1 !default;
+$create-account-legend-padding: 0 0 0.5rem 0 !default;
+
+$create-account-legend-border-color: $border-color !default;
+$create-account-legend-border-position: bottom !default;
+$create-account-legend-border-thickness: 1px !default;
+$create-account-legend-border-style: solid !default;
+
+
+$loginforms-legend-border-on: 1 !default;
+$loginforms-legend-padding: 0 0 0.5rem 0 !default;
+
+$loginforms-legend-border-color: $border-color !default;
+$loginforms-legend-border-position: bottom !default;
+$loginforms-legend-border-thickness: 1px !default;
+$loginforms-legend-border-style: solid !default;
+
+
+
+.login-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .checkbox {
+        @if $loginc-checkbox-border-radius-on == 1 {
+            border-radius: $loginc-checkbox-border-radius;
+        }
+    }
+
+
+    .block-customer-login {
+        @include co(width, $loginc-existing-width, $loginc-blocks-width);
+        order: $loginc-existing-order;
+        @include min-screen($desktop-medium-min) {
+            @include co(width, $loginc-existing-width-desktopmd, $loginc-blocks-width-desktopmd);
+        }
+        .actions-toolbar {
+            @include co(display, $loginc-actionstoolbar-display);
+            @include co(align-items, $loginc-actionstoolbar-alignitems);
+            @include co(width, $loginc-actionstoolbar-width);
+            @include co(padding, $loginc-actionstoolbar-padding);
+
+            @include min-screen($desktop-min) {
+                @include co(padding, $loginc-actionstoolbar-padding-desktop, $loginc-actionstoolbar-padding);
+                @include co(width, $loginc-actionstoolbar-width-desktop, $loginc-actionstoolbar-width);
+            }
+            .primary,
+            .secondary {
+                @include co(flex, $loginc-actionstoolbar-items-flex);
+            }
+            .primary {
+                @include co(margin, $loginc-actionstoolbar-primary-margin);
+                @include co(order, $loginc-actionstoolbar-primary-order);
+                .action {
+                    @include co(margin, $loginc-actionstoolbar-primary-action-margin);
+                }
+            }
+            .secondary {
+                @include co(order, $loginc-actionstoolbar-secondary-order);
+                .action.remind {
+                    background-color: unset;
+                    padding: unset;
+                    color: initial;
+                    @include co(font-size, $loginc-actionstoolbar-secondary-actionremind-fontsize);
+                    border-color: unset;
+                    border: unset;
+                    line-height: initial;
+                    font-weight: initial !important;
+                    &:hover {
+                        font-size: $font-size-base;
+                        background-color: unset;
+                        padding: unset;
+                        color: lighten($body-color, 15%);
+                        border-color: unset;
+                    }
+                    @include co(text-decoration, $loginc-action-remind-textdecoration);
+
+                }
+            }
+
+        }
+        .fieldset.login {
+            @include co(overflow, $loginc-existing-overflow);
+        }
+    }
+
+    .block-new-customer {
+        @include co(width, $loginc-newaccount-width, $loginc-blocks-width);
+        order: $loginc-newaccount-order;
+        @include min-screen($desktop-medium-min) {
+            @include co(width, $loginc-newaccount-width-desktopmd, $loginc-newaccount-width);
+        }
+    }
+
+    .block {
+        width: $loginc-blocks-width;
+        padding: $loginc-blocks-padding;
+        @include min-screen($desktop-medium-min) {
+            width: $loginc-blocks-width-desktopmd;
+            padding: $loginc-blocks-padding-desktopmd;
+        }
+        &-new-customer {
+            .actions-toolbar {
+                margin-top: 25px;
+            }
+        }
+
+        .block-title {
+            font-size: $loginc-blocktitle-fontsize;
+            margin: $loginc-blocktitle-margin;
+            padding: $loginc-blocktitle-padding;
+
+            @if $loginc-blocktitle-border-on == 1 {
+                @include elevate-border($loginc-blocktitle-border-color, $loginc-blocktitle-border-thickness, $loginc-blocktitle-border-style, $loginc-blocktitle-border-position);
+
+            }
+        }
+    }
+
+    .fieldset {
+        @include lib-form-hasrequired(bottom);
+
+        &:after {
+            margin-top: 35px;
+            @include min-screen($desktop-min) {
+                @include abs-margin-for-forms-desktop();
+            }
+        }
+
+        > .field {
+            @include min-screen($desktop-min) {
+                display: flex;
+            }
+
+            > .label,
+            > .control {
+
+                @include min-screen($desktop-min) {
+                    flex: 0 1 auto;
+                    float: none;
+            }
+            }
+            > .control {
+                //width: 55%;
+                input {
+                    @include min-screen($desktop-min) {
+                        width: 81%;
+                    }
+                }
+            }
+        }
+    }
+
+    .form {
+        .legend {
+            padding: $loginforms-legend-padding;
+            @if $loginforms-legend-border-on == 1 {
+                @include elevate-border($loginforms-legend-border-color, $loginforms-legend-border-thickness, $loginforms-legend-border-style, $loginforms-legend-border-position);
+
+            }
+        }
+
+    }
+}
+
+
+$cust-acc-pages-title-wrapper-margin-top-mobile: 1rem !default;
+$cust-acc-pages-title-wrapper-margin-bottom-mobile: 1rem !default;
+$cust-acc-pages-title-wrapper-text-align-mobile: center !default;
+
+
+$customer-form-centered-on: 1 !default;
+$customer-form-centered-margin: 0 auto !default;
+$customer-form-centered-width: 100% !default;
+$customer-form-centered-width-desktop: 50% !default;
+$customer-form-centered-width-desktopmd: 50% !default;
+$customer-form-centered-margin-left: auto !default;
+$customer-form-centered-margin-right: auto !default;
+
+$customer-form-forgotpassword-pagetitlewrapper-margin: 1rem auto 2rem auto !default;
+
+
+.customer-account-login,
+.customer-account-create,
+.customer-account-forgotpassword {
+    .page-title-wrapper {
+        @if $customer-form-centered-on == 1 {
+            width: $customer-form-centered-width;
+            margin-left: $customer-form-centered-margin-left;
+            margin-right: $customer-form-centered-margin-right;
+            text-align: center;
+            @include min-screen($desktop-min) {
+                @include co(width, $customer-form-centered-width-desktop, $customer-form-centered-width);
+            }
+            @include min-screen($desktop-min) {
+                @include co(width, $customer-form-centered-width-desktop, $customer-form-centered-width);
+            }
+        }
+    }
+}
+
+.customer-account-forgotpassword {
+    .page-title-wrapper {
+        text-align: center;
+        margin: $customer-form-forgotpassword-pagetitlewrapper-margin;
+    }
+
+    @include min-screen($desktop-min) {
+        .fieldset > .field:not(.choice) > .label {
+            margin-left: 0;
+            width: auto;
+        }
+        .fieldset > .field:not(.choice) > .control {
+            width: 100%;
+        }
+        .fieldset > .field:last-child,
+        .fieldset > .fields > .field:last-child {
+            display: flex;
+        }
+    }
+
+
+    .column:not(.sidebar-main) form .actions-toolbar {
+        @include min-screen($desktop-min) {
+            margin-left: 0;
+        }
+    }
+}
+
+
+.sales-order-history,
+.customer-account-index,
+.customer-account-login,
+.customer-account-create,
+.customer-account-forgotpassword {
+    .page-title-wrapper {
+        @include max-screen($screen-sm-max) {
+            margin-bottom: $cust-acc-pages-title-wrapper-margin-bottom-mobile;
+        }
+    }
+}
+
+.sales-order-history,
+.customer-account-index,
+{
+    .page-title-wrapper {
+        @include max-screen($screen-sm-max) {
+            margin-top: $cust-acc-pages-title-wrapper-margin-bottom-mobile;
+        }
+
+    }
+}
+
+.actions-toolbar {
+
+
+    .primary,
+    .secondary {
+        .action {
+            padding: $actions-padding;
+            font-size: $actions-font-size;
+            font-weight: $actions-font-weight;
+            @if $actions-border-radius-on == 1 {
+                border-radius: $actions-border-radius;
+            }
+            @if $actions-text-transform-on == 1 {
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    .action {
+
+    }
+}
+
+
+.customer-account-index {
+    #page-main-outer {
+        @include max-screen($collapsible-nav-maxscreen) {
+            margin: 0;
+        }
+
+    }
+
+}
+
+
+.customer-account-create {
+
+}
+
+.form.password.reset,
+.form.send.confirmation,
+.form.password.forget,
+.form.create.account {
+    @if $customer-form-centered-on == 1 {
+        @include co(width, $customer-form-centered-width);
+        @include co(margin, $customer-form-centered-margin);
+        @include min-screen($desktop-min) {
+            @include co(width, $customer-form-centered-width-desktop, $customer-form-centered-width);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(width, $customer-form-centered-width-desktopmd,$customer-form-centered-width-desktop, $customer-form-centered-width);
+        }
+    }
+}

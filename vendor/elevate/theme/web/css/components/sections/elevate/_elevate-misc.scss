@@ -1,0 +1,24 @@
+.page.messages {
+    //margin-bottom: $indent__base;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.lowercase {
+  text-transform: none;
+}
+
+.hide-on-mobile {
+  @include max-screen($screen-xs-max) {
+    display: none;
+  }
+}
+
+.hide-on-desktop {
+  @include min-screen($desktop-min) {
+    display: none;
+  }
+}
+

@@ -1,0 +1,77 @@
+<?php
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Elevate\BundleAdvanced\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox */
+?>
+<style>
+
+</style>
+<?php $option = $block->getOption() ?>
+<?php $selections = $option->getSelections() ?>
+
+<?php //checked="checked" needs adding in for the simple ones ?>
+<div class="field option">
+    <label class="label">
+        <span><?= $block->escapeHtml($option->getTitle()) ?></span>
+    </label>
+    <div class="control">
+        <div class="nested options-list">
+            <?php foreach ($selections as $selection): ?>
+                <?php if ($selection->isSaleable()): ?>
+
+
+                    <div class="field choice">
+                        <label class="label" for="bundle-option-<?= /* @noEscape */ $option->getId() ?>-<?= /* @noEscape */ $selection->getSelectionId() ?>">
+                            <span class="bo-checkbox">
+                               <input class="bundle-option-<?= /* @noEscape */ $option->getId() ?> checkbox product bundle option change-container-classname"
+                                      id="bundle-option-<?= /* @noEscape */ $option->getId() ?>-<?= /* @noEscape */ $selection->getSelectionId() ?>"
+                                      type="checkbox"
+                                      name="bundle_option[<?= /* @noEscape */ $option->getId() ?>][<?= /* @noEscape */ $selection->getId() ?>]"
+                                      data-selector="bundle_option[<?= /* @noEscape */ $option->getId() ?>][<?= /* @noEscape */ $selection->getId() ?>]"
+
+                                      value="<?= /* @noEscape */ $selection->getSelectionId() ?>"/>
+                            </span>
+
+
+                            <?php $this->setFormatProduct($selection); ?>
+
+                            <span class="bo-label-content">
+                                 <?php if ($selection->isVisibleInSiteVisibility()): ?>
+                                     <?php $selection->setDoNotUseCategoryId(true) ?>
+                                     <a class="product-item-link"
+                                        href="<?= /* @noEscape */ $selection->getProductUrl() ?>"> <?= /* @noEscape */ $selection->getSelectionQty() * 1 ?> x <?= /* @noEscape */ $block->escapeHtml($selection->getName()) ?>
+                                </a>
+                                 <?php else: ?>
+                                     <span class="product-name"> <?= /* @noEscape */ $selection->getSelectionQty() * 1 ?> x <?= $block->escapeHtml($selection->getName()) ?></span>
+                                 <?php endif; ?>
+                            <span class="price-notice">+ <?= /* @noEscape */ $block->renderPriceString($selection)?></span><span class="selection-sku">(SKU: <?php echo $selection->getSku(); ?>)</span>
+                            </span>
+                        </label>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <div id="bundle-option-<?= /* @noEscape */ $option->getId() ?>-container"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    jQuery( document ).ready(function() {
+        jQuery('#bundle-option-<?= /* @noEscape */ $option->getId() ?>-<?= /* @noEscape */ $selection->getSelectionId() ?>').click(function() {
+            if (jQuery(this).is(":checked")) {
+                console.log('true');
+                jQuery(this).parent().parent().addClass('checkbox-selected');
+            } else {
+                console.log('false');
+                jQuery(this).parent().parent().removeClass('checkbox-selected');
+
+            }
+
+        });
+
+    });
+</script>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="catalog.topnav" remove="true" />
+    <head>
+        <!--<link src="Elevate_Megamenu::styles.css"/>-->
+        <!--and for JS-->
+        <!--<link src="Elevate_Megamenu::js/megamenu.js"/>-->
+    </head>
+        <body>
+            <referenceContainer name="header.container">
+                <container after="-" name="ev_megamenu" label="Elevate Megamenu" as="ev-megamenu" htmlTag="div" htmlClass="ev_megamenu">
+                    <block name="mymegamenu" class="Elevate\Megamenu\Block\Frontend\Megamenu" template="Elevate_Megamenu::megamenu.phtml" before="-"/>
+                </container>
+            </referenceContainer>
+        </body> 
+</page>
+

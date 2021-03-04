@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_add_product_complete">
+        <observer name="ElevateCheckoutCartAddProductComplete" instance="Elevate\CartAssignments\Observer\ElevateCheckoutCartAddProductComplete" />
+    </event>
+    <event name="sales_quote_remove_item">
+        <observer name="ElevateSalesQuoteRemoveItem" instance="Elevate\CartAssignments\Observer\ElevateSalesQuoteRemoveItem" />
+    </event>
+    <!--
+    <event name="checkout_cart_update_item_complete">
+        <observer name="CloudwaysProductData" instance="Elevate\CartAssignments\Observer\Cart" />
+    </event>
+    <event name="checkout_cart_product_add_after">
+        <observer name="CloudwaysProductData" instance="Elevate\CartAssignments\Observer\Cart" />
+    </event>
+    <event name="checkout_cart_update_items_before">
+        <observer name="CloudwaysProductData" instance="Elevate\CartAssignments\Observer\Cart" />
+    </event>
+    <event name="checkout_cart_update_items_after">
+        <observer name="CloudwaysProductData" instance="Elevate\CartAssignments\Observer\Cart" />
+    </event>
+    <event name="checkout_cart_save_before">
+        <observer name="CloudwaysProductData" instance="Elevate\CartAssignments\Observer\Cart" />
+    </event>
+    <event name="checkout_cart_save_after">
+        <observer name="CloudwaysProductData" instance="Elevate\CartAssignments\Observer\Cart" />
+    </event>
+    <event name="checkout_cart_product_update_after">
+        <observer name="CloudwaysProductData" instance="Elevate\CartAssignments\Observer\Cart" />
+    </event>
+    -->
+</config>

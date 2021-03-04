@@ -1,0 +1,24 @@
+{
+    "name": "elevate/module-delivery",
+    "description": "Delivery Module",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "elevate/module-theme-options": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Elevate\\Delivery\\": ""
+        }
+    }
+}

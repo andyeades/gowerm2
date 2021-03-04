@@ -1,0 +1,65 @@
+@if $sitename == posturite {
+    $prod-social-links-margin: 0 !default;
+    $prod-social-links-margin-desktop: 2rem 0 0 0 !default;
+    $prod-soc-links-action-padding: 0.75rem 1rem !default;
+
+    $prod-soc-links-action-fontsize: 0.8375rem !default;
+    $prod-soc-links-action-fontsize-desktop: 1rem !default;
+    $prod-soc-links-action-fontweight: 400 !default;
+    $prod-soc-links-action-bgcolor: #f4f6f8 !default;
+    $prod-soc-links-action-bordercolor: #F0F0F0 !default;
+    $prod-soc-links-action-item-lastoftype-margin: 0 !default;
+    $prod-soc-links-action-item-lastoftype-margin-desktop: 0 !default;
+    $prod-soc-links-action-icon-margin: 0 1rem 0 0 !default;
+    $prod-soc-links-action-icon-margin-desktop: 0 1rem 0 0 !default;
+    .product-social-links {
+        @include co(margin, $prod-social-links-margin);
+        display: flex;
+        flex-wrap: wrap;
+        @include min-screen($desktop-min) {
+            @include co(margin, $prod-social-links-margin-desktop, $prod-social-links-margin);
+        }
+
+        .action {
+            flex: 0 1 auto;
+            @include button-variant($prod-soc-links-action-bgcolor, $prod-soc-links-action-bordercolor);
+            display: flex;
+            align-items: center;
+            font-size: $prod-soc-links-action-fontsize;
+            padding: $prod-soc-links-action-padding;
+            font-weight: $prod-soc-links-action-fontweight;
+            margin: $prod-soc-links-action-icon-margin;
+
+            &:last-of-type {
+                margin: $prod-soc-links-action-item-lastoftype-margin;
+            }
+
+            @include min-screen($desktop-min) {
+                @include co(font-size, $prod-soc-links-action-fontsize-desktop, $prod-soc-links-action-fontsize);
+                @include co(margin, $prod-soc-links-action-icon-margin-desktop, $prod-soc-links-action-icon-margin);
+                &:last-of-type {
+                    @include co(margin, $prod-soc-links-action-item-lastoftype-margin-desktop, $prod-soc-links-action-item-lastoftype-margin);
+                }
+            }
+
+            > i, span {
+                flex: 0 1 auto;
+            }
+
+            > i {
+                margin: $prod-soc-links-action-icon-margin;
+            }
+
+            > span {
+
+            }
+
+
+        }
+    }
+
+    .action {
+
+    }
+}
+

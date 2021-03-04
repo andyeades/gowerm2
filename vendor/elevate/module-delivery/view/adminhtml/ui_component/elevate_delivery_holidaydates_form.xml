@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">elevate_delivery_holidaydates_form.holidaydates_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button class="Elevate\Delivery\Block\Adminhtml\Holidaydates\Edit\BackButton" name="back"/>
+			<button class="Elevate\Delivery\Block\Adminhtml\Holidaydates\Edit\DeleteButton" name="delete"/>
+			<button class="Elevate\Delivery\Block\Adminhtml\Holidaydates\Edit\SaveButton" name="save"/>
+			<button class="Elevate\Delivery\Block\Adminhtml\Holidaydates\Edit\SaveAndContinueButton" name="save_and_continue"/>
+		</buttons>
+		<namespace>elevate_delivery_holidaydates_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>elevate_delivery_holidaydates_form.holidaydates_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="holidaydates_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider class="Elevate\Delivery\Model\Holidaydates\DataProvider" name="holidaydates_form_data_source">
+			<settings>
+				<requestFieldName>deliveryholidaydates_id</requestFieldName>
+				<primaryFieldName>deliveryholidaydates_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label/>
+		</settings>
+		<field formElement="input" name="deliveryholidaydates_id" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">general</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">deliveryholidaydates_id</label>
+				<dataScope>deliveryholidaydates_id</dataScope>
+                <visible>false</visible>
+			</settings>
+
+		</field>
+        <field name="start_date" formElement="date" sortOrder="146">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>Text</dataType>
+                <label translate="true">Start Date</label>
+                <dataScope>start_date</dataScope>
+                <additionalClasses>
+                    <class name="admin__field-dateandtime">true</class>
+                </additionalClasses>
+            </settings>
+            <formElements>
+                <date>
+                    <settings>
+                        <options>
+                            <option name="dateFormat" xsi:type="string">y-MM-dd</option>
+                            <option name="timeFormat" xsi:type="string">HH:mm:ss</option>
+                            <option name="inputDateFormat" xsi:type="string">y-MM-dd</option>
+                            <option name="outputDateFormat" xsi:type="string">y-MM-dd</option>
+                            <option name="pickerDateTimeFormat" xsi:type="string">YYYY-MM-dd HH:mm:ss</option>
+                        </options>
+                    </settings>
+                </date>
+            </formElements>
+    </field>
+    <field name="end_date" formElement="date" sortOrder="147">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="source" xsi:type="string">general</item>
+            </item>
+        </argument>
+        <settings>
+            <validation>
+                <rule name="required-entry" xsi:type="boolean">true</rule>
+            </validation>
+            <dataType>Text</dataType>
+            <label translate="true">End Date</label>
+            <dataScope>end_date</dataScope>
+            <additionalClasses>
+                <class name="admin__field-dateandtime">true</class>
+            </additionalClasses>
+
+        </settings>
+        <formElements>
+            <date>
+                <settings>
+                    <options>
+                        <option name="dateFormat" xsi:type="string">y-MM-dd</option>
+                        <option name="timeFormat" xsi:type="string">HH:mm:ss</option>
+                        <option name="inputDateFormat" xsi:type="string">y-MM-dd</option>
+                        <option name="outputDateFormat" xsi:type="string">y-MM-dd</option>
+                        <option name="pickerDateTimeFormat" xsi:type="string">YYYY-MM-dd HH:mm:ss</option>
+                    </options>
+                </settings>
+            </date>
+        </formElements>
+    </field>
+
+        <field name="deliveryholidaytitle" sortOrder="150" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>deliveryholidaytitle</dataScope>
+                <label translate="false">Title/Note</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <additionalClasses>
+                    <class name="admin__field-shortinput">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+
+	</fieldset>
+</form>

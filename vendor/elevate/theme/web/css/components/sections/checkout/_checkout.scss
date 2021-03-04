@@ -1,0 +1,394 @@
+$co_payform_checkout_flex_display: flex !default;
+$co_payform_checkout_flex_direction: column !default;
+
+$co_payform_checkout_flex_children_flex: 0 1 auto !default;
+
+$chkout_badd_flex: 0 1 auto !default;
+$chkout_badd_order: 1 !default;
+
+$opc_pay_order: 2 !default;
+
+$opc_payadd_order: 3 !default;
+
+$opc-payadd-discount-code-display: false !default;
+
+$singlecheckout-giftmessages-width: false !default;
+$singlecheckout-giftmessages-margin: 0 0 2rem 0 !default;
+$singlecheckout-giftmessages-padding: 1rem !default;
+$singlecheckout-giftmessages-background: $theme-brand-color-2 !default;
+$singlecheckout-giftmessages-border: 1px solid $theme-brand-color-3 !default;
+$singlecheckout-giftmessages-border-radius: $border-radius !default;
+
+
+
+$singlecheckout-giftmessagesorder_field_margin: 0 auto !default;
+$singlecheckout-giftmessagesorder_field_width: false !default;
+
+$singlecheckout-giftmessagesorder_field_margin-desktop: 0 auto !default;
+$singlecheckout-giftmessagesorder_field_width-desktop: 100% !default;
+
+
+
+.checkout-index-index {
+    #add-gift-options {
+        .legend {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    }
+    .gift-message {
+        @include co(width, $singlecheckout-giftmessages-width);
+        @include co(margin, $singlecheckout-giftmessages-margin);
+        @include co(padding, $singlecheckout-giftmessages-padding);
+        @include co(background, $singlecheckout-giftmessages-background);
+        @include co(border, $singlecheckout-giftmessages-border);
+        @include co(border-radius, $singlecheckout-giftmessages-border-radius);
+
+    }
+    .gift-messages-order {
+        @include co(width, $singlecheckout-giftmessagesorder_field_width);
+        @include co(margin, $singlecheckout-giftmessagesorder_field_margin);
+
+        @include min-screen($desktop-min) {
+            @include co(width, $singlecheckout-giftmessagesorder_field_width-desktop, $singlecheckout-giftmessagesorder_field_width);
+            @include co(margin, $singlecheckout-giftmessagesorder_field_margin-desktop, $singlecheckout-giftmessagesorder_field_margin);
+        }
+    }
+}
+
+#co-payment-form .checkout-flex {
+    display: flex;
+    flex-direction: $co_payform_checkout_flex_direction;
+
+    > div {
+        flex: $co_payform_checkout_flex_children_flex;
+    }
+}
+
+.checkout-billing-address {
+    @include co(flex, $chkout_badd_flex, $co_payform_checkout_flex_children_flex);
+    order: $chkout_badd_order;
+}
+
+.opc-payment {
+
+    order: $opc_pay_order;
+}
+
+.opc-payment-additional {
+    @include co(order, $opc_payadd_order);
+    &.discount-code {
+        @include co(display, $opc-payadd-discount-code-display);
+    }
+}
+
+
+$chkout_findpostcode_btn_color: #FFFFFF !default;
+$chkout_findpostcode_btn_bg_color: #00acb6 !default;
+$chkout_findpostcode_btn_border_color: #00acb6 !default;
+$chkout_findpostcode_btn_border_radius_on: 1 !default;
+$chkout_findpostcode_btn_border_radius: 5px !default;
+
+$chkout_findpostcode_btn_font_size: 0.75rem !default;
+$chkout_findpostcode_btn_font_weight: 500 !default;
+$chkout_findpostcode_btn_text_transform_on: 0 !default;
+$chkout_findpostcode_btn_text_transform: uppercase !default;
+
+
+$chkout_search_con_margin: 1rem 0 0 !default;
+
+
+$chkout_btn_color: #FFFFFF !default;
+$chkout_btn_bg_color: #f0386c !default;
+$chkout_btn_border_color: #f0386c !default;
+$chkout_btn_border_radius_on: 1 !default;
+$chkout_btn_border_radius: 5px !default;
+
+$chkout_btn_alt_color: #FFFFFF !default;
+$chkout_btn_alt_bg_color: #00acb6 !default;
+$chkout_btn_alt_border_color: #00acb6 !default;
+$chkout_btn_border_radius_on: 1 !default;
+$chkout_btn_border_radius: 5px !default;
+
+$chkout_btn_font_weight: 500 !default;
+$chkout_btn_text_transform: false !default;
+
+$chkout_btn_secondary_margin_top_desktop: 0 !default;
+
+.action.multicheckout {
+
+}
+
+$chkout_action_checkout_fontsize: false !default;
+$chkout_action_checkout_font_weight: false !default;
+$chkout_action_checkout_border_radius: false !default;
+$chkout_action_checkout_text_transform: false !default;
+$chkout_action_checkout_padding: false !default;
+
+#checkout {
+    .action {
+        @include co(font-weight, $chkout_btn_font_weight);
+        @include co(border-radius, $chkout_btn_border_radius);
+        @include co(text-transform, $chkout_btn_text_transform);
+        &.checkout {
+            @include co(font-size, $chkout_action_checkout_fontsize);
+            @include co(font-weight, $chkout_action_checkout_font_weight);
+            @include co(border-radius, $chkout_action_checkout_border_radius);
+            @include co(text-transform, $chkout_action_checkout_text_transform);
+            @include co(padding, $chkout_action_checkout_padding);
+
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.9375rem 1.25rem;
+            font-size: 0.875rem;
+        }
+    }
+
+    .secondary {
+        a.action {
+            @include min-screen($desktop-min) {
+                margin-top: $chkout_btn_secondary_margin-top_desktop;
+            }
+        }
+    }
+}
+
+#co-shipping-form {
+    .search-container {
+
+        input {
+            border-radius: 4px;
+        }
+
+        .search-bar {
+            button {
+                font-size: $chkout_findpostcode_btn_font_size;
+                font-weight: $chkout_findpostcode_btn_font_weight;
+                @include button-variant($chkout_findpostcode_btn_bg_color, $chkout_findpostcode_btn_border_color);
+                @if $chkout_findpostcode_btn_border_radius_on == 1 {
+                    border-radius: $chkout_findpostcode_btn_border_radius;
+                }
+                @if $chkout_findpostcode_btn_text_transform_on == 1 {
+                    text-transform: $chkout_findpostcode_btn_text_transform;
+                }
+            }
+        }
+
+        .search-list {
+            margin: $chkout_search_con_margin;
+        }
+    }
+}
+
+
+$chkout_opc_continue_btn_color: #FFFFFF !default;
+$chkout_opc_continue_btn_bg_color: $action-primary-bg-color !default;
+$chkout_opc_continue_btn_border_color: $action-primary-border-color !default;
+$chkout_opc_continue_btn_border_radius_on: 1 !default;
+$chkout_opc_continue_btn_border_radius: 3px !default;
+
+$chkout_opc_continue_btn_font_weight: 600 !default;
+
+$chkout_opc_continue_btn_text_transform_on: 1 !default;
+$chkout_opc_continue_btn_text_transform: uppercase !default;
+
+$chkout_opc_continue_btn_font_size: 1rem !default;
+$chkout_opc_continue_btn_font_weight: 600 !default;
+$chkout_opc_continue_btn_padding: 0.9375rem 3.125rem !default;
+$chkout_opc_continue_btn_text-align: center !default;
+
+$shp_meth_btns_con_margin: 0 auto !default;
+$shp_meth_btns_con_textalign: center !default;
+
+$shp_meth_btns_con_pri_float: none !default;
+
+$chkout_fieldset_legend_span_margin: 0 0 1rem 0 !default;
+
+#shipping-method-buttons-container {
+    margin: $shp_meth_btns_con_margin;
+    text-align: $shp_meth_btns_con_textalign;
+
+    .primary {
+        float: $shp_meth_btns_con_pri_float;
+    }
+
+    .button.action.continue {
+
+        padding: $chkout_opc_continue_btn_padding;
+        font-size: $chkout_opc_continue_btn_font_size;
+        font-weight: $chkout_opc_continue_btn_font_weight;
+
+        @if $chkout_opc_continue_btn_bg_color != $action-primary-bg-color and $chkout_opc_continue_btn_border_color != $action-primary-border-color {
+            @include button-variant($chkout_opc_continue_btn_bg_color, $chkout_opc_continue_btn_border_color);
+        }
+
+
+        @if $chkout_opc_continue_btn_border_radius_on == 1 {
+            @if $btn_global_border_radius_on == 1 {
+                @include co(border-radius, $chkout_opc_continue_btn_border_radius, $btn_global_border_radius);
+            } @else {
+                border-radius: $chkout_opc_continue_btn_border_radius;
+            }
+        }
+
+        @if $chkout_opc_continue_btn_text_transform_on == 1 {
+            text-transform: $chkout_opc_continue_btn_text_transform;
+        }
+    }
+}
+
+.checkout-fieldset-legend {
+    span {
+        @include abs-checkout-title();
+        margin-bottom: $chkout_fieldset_legend_span_margin;
+        display: block;
+    }
+}
+
+.opc-payment,
+.checkout-billing-address {
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin-right: 5px;
+    }
+}
+
+$checkout-order-comments-order: 5 !default;
+$checkout-agreements-order: 10 !default;
+$checkout_order_comments_title_fontweight: 700 !default;
+$checkout_order_comments_title_fontsize: 0.9375rem !default;
+$checkout_order_comments_title_text_align: left !default;
+$checkout_order_comments_title_margin: 0 0 0.5rem 0 !default;
+
+$order_comments_sub_font_style: italic !default;
+$order_comments_sub_font_size: 0.75rem !default;
+$order_comments_sub_line_height: 0.9375rem !default;
+$order_comments_sub_text_align: left !default;
+$order_comments_sub_margin_bottom: 0.8125rem !default;
+
+$checkout_agreement_label_button_margin: 0 0 0 0.75rem !default;
+$checkout_agreement_label_after_top_pos: 0 !default;
+$checkout_agreement_label_after_left_pos: -8px !default;
+.checkout-agreements-block {
+    display: flex;
+    flex-wrap: wrap;
+
+    > div {
+        width: 100%;
+
+    }
+
+    .checkout-agreements-outer {
+        width: 100%;
+
+        order: $checkout-agreements-order;
+    }
+}
+
+$checkout_agreement_before_display: none !default;
+$checkout_agreement_before_padding: 0 !default;
+$checkout_agreement_before_width: 0 !default;
+$checkout_agreement_before_float: none !default;
+$checkout_agreement_before_height: auto !default;
+.checkout-agreement {
+    &:before {
+        @if $checkout_agreement_before_display != none {
+            padding: $checkout_agreement_before_padding !important;
+            width: $checkout_agreement_before_width !important;
+            float: $checkout_agreement_before_float !important;
+            height: $checkout_agreement_before_height !important;
+        }
+        display: $checkout_agreement_before_display !important;
+    }
+
+    input {
+
+    }
+
+    label {
+        position: relative;
+
+        &:after {
+            margin-left: 0 !important;
+            left: $checkout_agreement_label_after_left_pos !important;
+            top: $checkout_agreement_label_after_top_pos !important;
+        }
+
+        button {
+            margin: $checkout_agreement_label_button_margin;
+        }
+    }
+}
+
+
+.checkout-order-comments {
+    order: $checkout-order-comments-order;
+
+    .comment-code {
+        width: 100%;
+    }
+
+    .field label {
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+}
+
+
+.checkout-order-comments-title {
+    font-weight: $checkout_order_comments_title_fontweight;
+    font-size: $checkout_order_comments_title_fontsize;
+    text-align: $checkout_order_comments_title_text_align;
+    margin: $checkout_order_comments_title_margin;
+}
+
+
+.order-comments-sub {
+    font-style: $order_comments_sub_font_style;
+    font-size: $order_comments_sub_font_size;
+    line-height: $order_comments_sub_line_height;
+    text-align: $order_comments_sub_text_align;
+    margin-bottom: $order_comments_sub_margin_bottom;
+}
+
+
+#shopping-cart-items {
+    list-style-type: none;
+
+    li:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// Hides Pointless Label for the Street Address Line 1
+div[name="shippingAddress.street.0"] {
+    label {
+        display: none;
+    }
+}
+
+
+#checkout-payment-method-load {
+    #stripe-payments-card-number {
+        width: 220px;
+    }
+
+    .stripe-icon-container.right {
+        margin-left: 0.5rem;
+    }
+
+}
+
+
+
+

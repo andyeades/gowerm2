@@ -1,0 +1,87 @@
+<?php
+/** @var $block \MageSuite\ContentConstructorFrontend\Block\Component\HeroCarousel */
+$componentConfiguration = $block->getData();
+
+/** @var \MageSuite\ContentConstructorFrontend\Model\Component\HeroCarousel $viewModel */
+$viewModel = $block->getViewModel();
+$visibility = $block->getVisibilityClass();
+
+$componentClasses = '';
+if ($componentConfiguration['mobileDisplayVariant']['id'] == 'list') {
+    $componentClasses .= ' cs-image-teaser--as-list-mobile';
+}
+$componentClasses .= ' ' . $block->getVar('hero_carousel/additional_css_classes');
+
+// Map data from deprecated Image Teaser for backward compatibility
+if (!isset($componentConfiguration['scenario'])) {
+    foreach ($componentConfiguration['items'] as $key => $item) {
+        $originalItem = $componentConfiguration['items'][$key];
+        $mappedItem = array(
+            'image' => array(
+                'raw' => $originalItem['image'],
+                'decoded' => $originalItem['decodedImage'],
+                'aspect_ratio' => $originalItem['aspectRatio'],
+                'image' => $originalItem['image']
+            ),
+            'slogan' => $originalItem['headline'],
+            'description' => $originalItem['subheadline'] . $originalItem['paragraph'],
+            'cta' => array(
+                'label' => $originalItem['ctaLabel'],
+                'href' => $originalItem['href'],
+            ),
+            'content_align' => array(
+                'x' => 1,
+                'y' => 2
+            ),
+            'size' => array(
+                'x' => 2,
+                'y' => 1
+            ),
+            'row' => 1,
+            'position' => 'left',
+            'isAvailableForMobile' => 1,
+            'optimizers' => array(
+                'color_scheme' => $originalItem['colorScheme'],
+                'mirror_image' => null,
+                'scenarios' => array(
+                    'none' => array(
+                        'enabled' => 1
+                    )
+                )
+            ),
+            'teaserType' => 'full',
+            'componentVisibility' => array(
+                'mobile' => 1,
+                'desktop' => 1
+            )
+        );
+        $componentConfiguration['items'][$key] = $mappedItem;
+    }
+}
+
+// Provide fixed Image Teaser component configuration items
+$componentConfiguration['scenario'] = array(
+    'teaserWidth' => array (
+        'id' => $block->getVar('hero_carousel/teaser_width'),
+    ),
+    'contentPlacement' => array(
+        'id' => $block->getVar('hero_carousel/content_placement')
+    ),
+    'mobileLayout' => array(
+        'id' => $componentConfiguration['mobileDisplayVariant']['id'] === 'list' ? 'mobile-large' : 'mobile-slider'
+    ),
+    'desktopLayout' => array(
+        'id' => 1
+    )
+);
+$componentConfiguration['jsConfig'] = $block->getVar('hero_carousel/js_config');
+
+if (isset($componentConfiguration)) {
+    echo $this->getLayout()
+        ->createBlock(MageSuite\ContentConstructorFrontend\Block\Component\ImageTeaser::class)
+        ->setData($componentConfiguration)
+        ->setMix('cs-image-teaser--hero-teaser' . $componentClasses)
+        ->setContainerMix('cs-container--hero-teaser')
+        ->toHtml();
+}
+?>

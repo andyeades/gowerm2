@@ -1,0 +1,219 @@
+//
+//  Variables
+//  _____________________________________________
+
+$autocomplete__background-color  : $color-white !default;
+$autocomplete__border            : 1px solid $form-element-input__border-color !default;
+$autocomplete-item__border       : 1px solid $color-gray90 !default;
+$autocomplete-item__hover__color : $color-gray91 !default;
+$autocomplete-item-amount__color : $color-gray60 !default;
+
+.block-search {
+    margin-bottom: 0;
+
+    .block {
+        &-title {
+            display: none;
+        }
+    }
+
+    .block-content {
+        margin-bottom: 0;
+    }
+
+    .label {
+      @include min-screen($screen-sm-min) {
+          @extend .abs-visually-hidden-desktop;
+
+      }
+        @include lib-icon-font(
+            $_icon-font-content      : $icon-search,
+            $_icon-font-size         : 35px,
+            $_icon-font-line-height  : 33px,
+            $_icon-font-color        : $minicart-icons-color,
+            $_icon-font-color-hover  : $minicart-icons-color-hover,
+            $_icon-font-color-active : $minicart-icons-color-hover,
+            $_icon-font-text-hide    : true
+        );
+        display: inline-block;
+        float: right;
+
+        &.active {
+            + .control {
+                input {
+                    position: static;
+                }
+            }
+        }
+    }
+
+    .action.search {
+      display: inline-block;
+      @include lib-button-icon(
+        $_icon-font-content: $icon-search,
+        $_icon-font-text-hide: true,
+        $_icon-font-color: $header-icons-color
+      );
+      @include lib-button-reset();
+      padding: $indent__xs 0;
+      position: absolute;
+      right: 10px;
+      top: 0;
+      z-index: 1;
+
+      &:focus {
+        &:before {
+          @include lib-css(color, $color-gray20);
+        }
+      }
+      @include max-screen($screen-xs-max) {
+        display: none;
+      }
+    }
+
+    .control {
+      @include max-screen($screen-xs-max) {
+        border-top: 1px solid $border-color__base;
+        clear: both;
+        margin: 0 (-$layout__width-xs-indent) -1px;
+        padding: 0 $layout__width-xs-indent;
+      }
+      @include min-screen($screen-sm-min) {
+        border-top: 0;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    input {
+        left: -300%;
+        margin: 15px 0;
+        position: absolute;
+
+     @include min-screen($screen-sm-min) {
+        @include lib-input-placeholder($form-element-input-placeholder__color);
+        margin: 0;
+        padding-right: 35px;
+        position: static;
+      }
+    }
+
+    .nested {
+      display: none;
+      @include min-screen($screen-sm-min) {
+        display: block;
+        padding-top: 5px;
+        position: absolute;
+      }
+    }
+  .search-autocomplete {
+    @include min-screen($screen-sm-min) {
+      margin-top: 0;
+    }
+  }
+}
+
+.search-autocomplete {
+    @extend .abs-add-box-sizing;
+    display: none;
+    margin-top: -15px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 3;
+
+    ul {
+        @include lib-list-reset-styles();
+
+        li {
+            @include lib-css(border-top, $autocomplete-item__border);
+            cursor: pointer;
+            margin: 0;
+            padding: $indent__xs $indent__xl $indent__xs $indent__s;
+            position: relative;
+            text-align: left;
+            white-space: normal;
+
+            &:not(:empty) {
+                border-top: 0;
+                @include lib-css(border, $autocomplete__border);
+                @include lib-css(background, $autocomplete__background-color);
+            }
+
+            &:first-child {
+                border-top: none;
+            }
+
+            &:hover,
+            &.selected {
+                @include lib-css(background, $autocomplete-item__hover__color);
+            }
+
+            .amount {
+                @include lib-css(color, $autocomplete-item-amount__color);
+                position: absolute;
+                right: 7px;
+                top: $indent__xs;
+            }
+        }
+    }
+}
+
+.form.search.advanced {
+    .fields.range {
+        .field {
+            &:first-child {
+                position: relative;
+
+                .control {
+                    padding-right: 25px;
+
+                    &:after {
+                        content: ' \2013 ';
+                        display: inline-block;
+                        position: absolute;
+                        right: 0;
+                        text-align: center;
+                        top: 6px;
+                        width: 25px;
+                    }
+                }
+            }
+
+            &:last-child {
+                position: relative;
+
+                div.mage-error[generated] {
+                    left: 0;
+                    position: absolute;
+                    top: 32px;
+                }
+            }
+
+            &.with-addon {
+                .control {
+                    padding-right: 45px;
+                }
+            }
+        }
+    }
+
+    .group.price {
+        .addon {
+            .addafter {
+                background: none;
+                border: 0;
+                padding-top: 6px;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+.search.summary {
+    margin-bottom: $indent__s;
+}
+
+
+

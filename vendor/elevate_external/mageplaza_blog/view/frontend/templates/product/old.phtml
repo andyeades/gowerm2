@@ -1,0 +1,1268 @@
+<?php
+
+$type = $this->getType();
+
+if($type == "category"){
+    $attributes = Mage::getSingleton('catalog/config')->getProductAttributes();
+    $category_id = $this->getId();
+    $category = Mage::getModel('catalog/category')->load($category_id);
+    $productCollection = $category->getProductCollection();
+
+    $productCollection->addStoreFilter()->setVisibility(Mage::getSingleton('catalog/product_visibility')->getVisibleInCatalogIds());
+
+    $productCollection->addMinimalPrice()->addFinalPrice()->addTaxPercents()->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())->addUrlRewrite()->addAttributeToSelect($attributes);
+
+    $productCollection->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED));
+
+    $productCollection->setPageSize(4)->setCurPage(1);
+
+}
+
+?>
+
+
+<?php if ($productCollection) { ?>
+    <style>
+        /* Slider */
+        .slick-slider {
+            position:                    relative;
+            display:                     block;
+            box-sizing:                  border-box;
+
+            -webkit-user-select:         none;
+            -moz-user-select:            none;
+            -ms-user-select:             none;
+            user-select:                 none;
+
+            -webkit-touch-callout:       none;
+            -khtml-user-select:          none;
+            -ms-touch-action:            pan-y;
+            touch-action:                pan-y;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .slick-list {
+            position: relative;
+
+            display:  block;
+            overflow: hidden;
+
+            margin:   0;
+            padding:  0;
+        }
+
+        .slick-list:focus {
+            outline: none;
+        }
+
+        .slick-list.dragging {
+            cursor: pointer;
+            cursor: hand;
+        }
+
+        .slick-slider .slick-track,
+        .slick-slider .slick-list {
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform:    translate3d(0, 0, 0);
+            -ms-transform:     translate3d(0, 0, 0);
+            -o-transform:      translate3d(0, 0, 0);
+            transform:         translate3d(0, 0, 0);
+        }
+
+        .slick-track {
+            position:     relative;
+            top:          0;
+            left:         0;
+
+            display:      block;
+            margin-left:  auto;
+            margin-right: auto;
+        }
+
+        .slick-track:before,
+        .slick-track:after {
+            display: table;
+
+            content: '';
+        }
+
+        .slick-track:after {
+            clear: both;
+        }
+
+        .slick-loading .slick-track {
+            visibility: hidden;
+        }
+
+        .slick-slide {
+            display:    none;
+            float:      left;
+
+            height:     100%;
+            min-height: 1px;
+        }
+
+        [dir='rtl'] .slick-slide {
+            float: right;
+        }
+
+        .slick-slide img {
+            display: block;
+        }
+
+        .slick-slide.slick-loading img {
+            display: none;
+        }
+
+        .slick-slide.dragging img {
+            pointer-events: none;
+        }
+
+        .slick-initialized .slick-slide {
+            display: block;
+        }
+
+        .slick-loading .slick-slide {
+            visibility: hidden;
+        }
+
+        .slick-vertical .slick-slide {
+            display: block;
+
+            height:  auto;
+
+            border:  1px solid transparent;
+        }
+
+        .slick-arrow.slick-hidden {
+            display: none;
+        }
+
+        .swiper-outer-container {
+            width: 100%;
+        }
+
+        .swiper-more-collection-container {
+            width: 100%;
+        }
+
+        #more-col-swiper2 {
+            width: 100%;
+        }
+
+        .more-from-collection {
+            position: relative;
+            top:      50%;
+            height:   100%;
+        }
+
+        .more-from-collection .products-grid {
+        }
+
+        .more-from-collection-inner {
+            display:    block;
+        }
+
+        .more-from-collection .prod-item-inner {
+            height: 100%;
+            margin: 0 10px;
+            text-align: center;
+            margin-bottom: 17px;
+            border: 1px solid #e6eaf3;
+            background-color: #fcfcfc;
+        }
+
+        .more-from-collection .products-grid .product-image img{
+            margin-bottom: 0;
+        }
+
+        .more-from-collection .products-grid .prod-img {
+            overflow: initial;
+            position  initial;
+        }
+
+        .more-from-collection i {
+            color: white;
+        }
+
+        /* Example wrapper */
+        .wrap {
+            position: relative;
+            margin:   3em 0;
+        }
+
+        .more-from-collection .product-icons {
+            display: none;
+        }
+
+        .more-from-collection .swiper-slide {
+            border:     none;
+            background: none;
+        }
+
+        .more-from-collectiom .swiper-slide {
+            background: none;
+        }
+
+        .more-from-collection .products-grid .product-name {
+            min-height: 102px;
+        }
+
+        @media screen and (min-width: 768px) {
+            .more-from-collection .products-grid .price-box > div {
+                text-align: center;
+            }
+        }
+
+        /* Slick Slider Fix */
+        * {
+            min-height: 0;
+            min-width:  0;
+        }
+
+        .slick-prev, .slick-next {
+            z-index:           1;
+            border-radius:     3px;
+            position:          absolute;
+            top:               50%;
+            display:           block;
+            width:             30px;
+            height:            30px;
+            line-height:       32px;
+            padding:           0;
+            -webkit-transform: translate(0, -50%);
+            -ms-transform:     translate(0, -50%);
+            transform:         translate(0, -50%);
+            cursor:            pointer;
+            color:             white;
+            border:            none;
+            outline:           none;
+            background:        #f0386c;
+            text-align:        center;
+        }
+
+        .slick-prev:hover,
+        .slick-prev:focus,
+        .slick-next:hover,
+        .slick-next:focus {
+            background-color: #e4114d;
+        }
+
+        .slick-prev:hover:before,
+        .slick-prev:focus:before,
+        .slick-next:hover:before,
+        .slick-next:focus:before {
+            opacity: 1;
+        }
+
+        .slick-prev.slick-disabled:before,
+        .slick-next.slick-disabled:before {
+            opacity: .25;
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+        }
+
+        .slick-prev {
+            left: -35px;
+        }
+
+        .slick-next {
+            right: -35px;
+        }
+
+        @media (max-width: 1500px) and (min-width: 1450px) {
+
+            .slick-prev, .slick-next {
+                width: 15px;
+            }
+
+            .slick-prev {
+                left: -10px;
+            }
+
+            .slick-next {
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 1449.98px) and (min-width: 1170px) {
+            .slick-prev, .slick-next {
+                width: 15px;
+            }
+
+            .slick-prev {
+                left: -12px;
+            }
+
+            .slick-next {
+                right: -15px;
+            }
+        }
+
+        @media (max-width: 1169.98px) and (min-width: 992px) {
+            .slick-prev, .slick-next {
+                width: 15px;
+            }
+
+            .slick-prev {
+                left: -10px;
+            }
+
+            .slick-next {
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .slick-prev, .slick-next {
+                width: 15px;
+            }
+
+            .slick-prev {
+                left: -10px;
+            }
+
+            .slick-next {
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .slick-prev, .slick-next {
+                width:   12px;
+                z-index: 1;
+            }
+
+            .slick-prev {
+                left: -5px;
+            }
+
+            .slick-next {
+                right: -5px;
+            }
+        }
+
+    </style>
+
+    <div class="block block-blog block-blog-categories">
+        <div class="block-title">
+            <strong><span>Recommended Products</span></strong>
+        </div>
+
+        <?php $moreOutput = '<div class="more-from-collection show_ev_furniture_block">
+    <div class="more-from-collection-inner">
+      <div class="container2">
+        <div class="flex-fix">
+        <div class="products-grid">
+
+        <div class="swiper-outer-container">
+
+        <div class="swiper-more-collection-container">
+          <div class="section-title"></div>
+          <div id="more-col-swiper2" class="slider-box">';
+
+        $displayMoreCollection = false;
+        foreach ($productCollection as $_productLoop) {
+
+            $img_tag = '';
+            $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($_productLoop->getId());
+
+            $displayMoreCollection = true;
+
+            $ev_general_helper = Mage::helper('elevate_general');
+
+            $percent = 0;
+            $percent2 = 0;
+            $attributeSetId = $_productLoop->getAttributeSetId();
+            $product_price = '0.00';
+            $product_special_price = '0.00';
+            $product_price = number_format($_productLoop->getPrice(), '2', '.', '');
+            //get $_product special price
+            $product_special_price = number_format($_productLoop->getSpecialPrice(), '2', '.', '');
+            $difference = ($product_price - $product_special_price);
+            if ($product_price > 0) {
+                $percent = $difference / $product_price;
+            } else {
+                $percent = 0;
+            }
+            $percent_friendly = round(number_format($percent * 100, 0), 2) . '%';
+
+            if ($_productLoop->getMsrp() > 0) {
+                $orignumber = number_format($_productLoop->getMsrp(), '2', '.', '');
+                $difference = ($orignumber - $product_special_price);
+                if ($difference != 0) {
+                    $percent = $difference / $orignumber;
+                } else {
+                    $percent = 0;
+                }
+                $orignumber2 = $product_price;
+                $difference2 = ($product_price - $product_special_price);
+                if ($difference2 != 0) {
+                    $percent2 = $difference2 / $product_price;
+                } else {
+                    $percent2 = 0;
+                }
+
+            } else {
+
+                $difference = ($product_price - $product_special_price);
+                if ($difference != 0) {
+                    $percent = $difference / $product_price;
+                } else {
+                    $percent2 = 0;
+                }
+            }
+
+            $percent_friendly = number_format($percent * 100, 0) . '%';
+            $percent_friendly2 = number_format($percent2 * 100, 0) . '%';
+            $isSpecial = 'N';
+
+            if (($now >= $specialpriceFrom && $now <= $specialpriceTo)) {
+                $isSpecial = 'Y';
+            } else if (($now >= $specialpriceFrom) && ($specialpriceTo == '')) {
+                $isSpecial = 'Y';
+            }
+            //
+
+
+            ?>
+
+            <?php if ($_productLoop->getId() >= '1291586' && $_productLoop->getId() <= '1291599'){
+
+
+                $colour_lookup_array['black-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '0'
+                );
+                $colour_lookup_array['charcoal-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '1'
+                );
+                $colour_lookup_array['chocolate-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '2'
+                );
+                $colour_lookup_array['cream-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '3'
+                );
+                $colour_lookup_array['duck-egg-blue-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '4'
+                );
+                $colour_lookup_array['gold-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '5'
+                );
+                $colour_lookup_array['lime-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '6'
+                );
+                $colour_lookup_array['midnight-blue-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '7'
+                );
+                $colour_lookup_array['orchid-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '8'
+                );
+                $colour_lookup_array['plum-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '9'
+                );
+                $colour_lookup_array['purple-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '10'
+                );
+                $colour_lookup_array['red-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '11'
+                );
+                $colour_lookup_array['teal-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '12'
+                );
+                $colour_lookup_array['slate-grey-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '13'
+                );
+                $colour_lookup_array['white-cotton'] = array(
+                    'colour' => 'linoso',
+                    'number' => '14'
+                );
+                $colour_lookup_array['black-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '13'
+                );
+                $colour_lookup_array['charcoal-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '12'
+                );
+                $colour_lookup_array['cappuccino-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '7'
+                );
+                $colour_lookup_array['aubergine-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '10'
+                );
+                $colour_lookup_array['mid-blue-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '11'
+                );
+                $colour_lookup_array['red-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '9'
+                );
+                $colour_lookup_array['olive-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '8'
+                );
+                $colour_lookup_array['sand-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '3'
+                );
+                $colour_lookup_array['natural-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '2'
+                );
+                $colour_lookup_array['white-suede'] = array(
+                    'colour' => 'suede',
+                    'number' => '1'
+                );
+
+                $current_colour = $colour_lookup_array[$_GET['headboard_colour']];
+                $single_option = true;
+
+                if (strpos($_GET['headboard_colour'], ',') !== false) {
+                    $single_option = false;
+                }
+
+                $end_string = str_replace(' ', '-', strtolower($_productLoop->getResource()->getAttribute('default_hb_style')->getFrontend()->getValue($_productLoop)));
+                $head_type = strtolower($_productLoop->getResource()->getAttribute('configurator_headboard')->getFrontend()->getValue($_productLoop)) . "_" . $end_string;
+                $head_type_exp = explode(' ', $_productLoop->getName());
+                $head_type = strtolower($head_type_exp[0]) . '_' . $end_string;
+                if ($_GET['headboard_colour'] && $single_option) {
+                    $image_source = '/media/new_configurator/headboard-swatch/' . $current_colour['colour'] . '/' . $head_type . '_4ft6_' . $current_colour['number'] . '.jpg';
+                } else {
+                    $image_source = $this->helper('catalog/image')->init($_productLoop, 'small_image')->resize(320);
+                }
+
+                $img_tag .= '<img class="lazyload 1" src="/media/loader.jpg" data-src="'.$image_source.'" alt="'.$this->stripTags($_productLoop->getName(), NULL, true).'"/></a>';
+            } else {
+
+                if ($attributeSetId == '9' && $_productLoop->getSku() != 'BESPOKE_SWATCH') { ?>
+
+                    <?php if ($styles_output != 1) { ?>
+
+
+                        <style>
+                            #main-header {
+                                z-index: 999;
+                            }
+
+                            #dynamic_product_images {
+                                background-color: #f0f0f0;
+                                position:         relative;
+                                float:            left;
+                                width:            100%;
+                                display:          block;
+                            }
+
+                            .products-grid .product-name {
+                                margin-bottom: 0;
+                                padding:       0;
+                                min-height:    68px;
+                                margin-top:    12px;
+                            }
+
+                            .products-grid .prod-item-bottom {
+                                padding:          0 0 5px;
+                                background-color: #fcfcfc;
+                            }
+
+                            .dynamic_image_items {
+                                position:  absolute;
+                                max-width: 100%;
+                                left:      0;
+                                top:       0;
+                            }
+
+                            #cd-primary-nav2, #bodyweight_filter {
+
+                                z-index: 99999;
+                            }
+
+                            @media screen and (max-width: 767.98px) {
+                                .products-grid .prod-img .product-image img {
+                                    width:      100%;
+                                    text-align: center;
+                                }
+
+                                .products-grid .item {
+                                    width: 100%;
+                                }
+                            }
+
+                            @media screen and (min-width: 992px) {
+
+                                .category-divan-beds .products-grid .item {
+                                    width: 33.33333%;
+                                }
+                            }
+
+                            .products-grid .prod-img .product-image img {
+
+                                margin-bottom: 0px;
+                            }
+
+                            #header-nav-container {
+                                z-index: 999999999;
+                            }
+
+                            .list_dpi {
+                                right:            0;
+                                padding:          20px;
+                                background-color: #00acb6;
+                                color:            white;
+                                text-transform:   uppercase;
+                                width:            100%;
+                                font-size:        13px;
+                                text-align:       right;
+                                border-bottom:    3px solid #f0f0f0;
+                                font-weight:      bold;
+
+                            }
+
+                            @media screen and (max-width: 767.98px) {
+                                .list_dpi {
+                                    padding:   22px 10px 18px 20px !important;
+                                    font-size: 11px !important;
+                                }
+
+                                .sort-by select.input-md {
+                                    width: 100%;
+                                }
+                            }
+
+                        </style>
+                        <?php $styles_output = 1; ?>
+
+                    <?php }
+
+                    $random_type = array(
+                        "Memory Foam",
+                        "Orthopaedic",
+                        "Pocket Sprung",
+                        "Open Coil"
+                    );
+                    $random_one = $random_type[array_rand($random_type, 1)];
+
+                    $random_col_arr['Memory Foam'] = '00acb6';
+                    $random_col_arr['Orthopaedic'] = '00acb6'; //f0386c
+                    $random_col_arr['Pocket Sprung'] = '00acb6'; //38f063
+                    $random_col_arr['Open Coil'] = '00acb6'; //f03845
+
+
+                    $img_tag .= '<div id="dynamic_product_images">
+                    <div class="list_dpi"></div>';
+
+
+                    $div_sku = $_productLoop->getData('divan_mattress');
+
+                    if ($div_sku) {
+                        $product_div = Mage::getModel('catalog/product')->loadByAttribute('sku', $div_sku);
+
+                        $model = Mage::getResourceModel('catalog/product');
+                        $img = $model->getAttributeRawValue($product_div->getId(), 'image', 1);
+                    }
+                    ?>
+
+                    <?php $img_tag .= '<img width="320" class="lazyload 2 matt_image_rz" src="/media/loader.jpg" data-src="/media/catalog/product/'. $img.'" style="    position: absolute;
+    border-radius: 107px;
+    border-bottom-left-radius: 0px;
+    width: 206px;
+    margin-top: -96px;
+    margin-left: -60px;
+    border: 3px solid #efeff1;
+    border-top-right-radius: 107px;
+    z-index: 99;">'; ?>
+                    <?php
+
+                    $colour_lookup_array['Black Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '0'
+                    );
+                    $colour_lookup_array['Charcoal Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '1'
+                    );
+                    $colour_lookup_array['Chocolate Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '2'
+                    );
+                    $colour_lookup_array['Cream Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '3'
+                    );
+                    $colour_lookup_array['Duck Egg Blue Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '4'
+                    );
+                    $colour_lookup_array['Gold Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '5'
+                    );
+                    $colour_lookup_array['Lime Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '6'
+                    );
+                    $colour_lookup_array['Midnight Blue Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '7'
+                    );
+                    $colour_lookup_array['Orchid Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '8'
+                    );
+                    $colour_lookup_array['Plum Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '9'
+                    );
+                    $colour_lookup_array['Purple Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '10'
+                    );
+                    $colour_lookup_array['Red Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '11'
+                    );
+                    $colour_lookup_array['Teal Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '12'
+                    );
+                    $colour_lookup_array['Slate Grey Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '13'
+                    );
+                    $colour_lookup_array['White Cotton'] = array(
+                        'colour' => 'linoso',
+                        'number' => '14'
+                    );
+                    $colour_lookup_array['Black Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '13'
+                    );
+                    $colour_lookup_array['Charcoal Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '12'
+                    );
+                    $colour_lookup_array['Cappuccino Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '7'
+                    );
+                    $colour_lookup_array['Aubergine Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '10'
+                    );
+                    $colour_lookup_array['Mid Blue Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '11'
+                    );
+                    $colour_lookup_array['Red Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '9'
+                    );
+                    $colour_lookup_array['Olive Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '8'
+                    );
+                    $colour_lookup_array['Sand Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '3'
+                    );
+                    $colour_lookup_array['Natural Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '2'
+                    );
+                    $colour_lookup_array['White Suede'] = array(
+                        'colour' => 'suede',
+                        'number' => '1'
+                    );
+
+                    /*
+                    double-4ft-6
+                    king-size-5ft
+                    single-3ft
+                    small-double-4ft
+                    small-single-2ft-6
+                    super-kingsize-6ft
+                    */
+                    $sizeloup['small-single-2ft-6'] = '3ft';
+                    $sizeloup['single-3ft'] = '3ft';
+                    $sizeloup['small-double-4ft'] = '4ft6';
+                    $sizeloup['double-4ft-6'] = '4ft6';
+                    $sizeloup['king-size-5ft'] = '5ft';
+                    $sizeloup['super-kingsize-6ft'] = '5ft';
+
+                    $keys = parse_url(trim($_SERVER["REQUEST_URI"], "/")); // parse the url
+                    $path = explode("/", $keys['path']); // splitting the path
+                    $last = end($path); // get the value of the last element
+
+                    $divan_colour = $colour_lookup_array[$_productLoop->getAttributeText('configurator_colour')]['number'];
+
+                    $divan_type = $colour_lookup_array[$_productLoop->getAttributeText('configurator_colour')]['colour'];
+                    $divan_hb = str_replace('-', '_', $_productLoop->getAttributeText('configurator_hb'));
+                    if ($divan_hb == 'swanhill_lined') {
+
+                        $divan_hb = str_replace('lined', 'line', $divan_hb);
+                    }
+
+                    $divan_size = $sizeloup[$_productLoop->getAttributeText('configurator_size')];
+
+                    if (empty($divan_size)) {
+                        $divan_size = '4ft6';
+                    }
+                    $dont_storage = false;
+                    if ($last == 'single-3ft') {
+                        $divan_size = '3ft';
+                        $dont_storage = true;
+                        $divan_url_params = '?size=single-3ft&storage=no-drawers';
+                    } else if ($last == 'small-single-2ft-6') {
+                        $divan_size = '3ft';
+                        $dont_storage = true;
+                        $divan_url_params = '?size=small-single-2ft-6&storage=no-drawers';
+                    } else if ($last == 'small-double-4ft') {
+                        $divan_size = '4ft6';
+                        $dont_storage = true;
+                        $divan_url_params = '?size=small-double-4ft&storage=no-drawers';
+                    } else if ($last == 'double-4ft-6') {
+                        $divan_size = '4ft6';
+                        $dont_storage = true;
+                        $divan_url_params = '?size=double-4ft-6&storage=no-drawers';
+                    } else if ($last == 'king-size-5ft') {
+                        $divan_size = '5ft';
+                        $dont_storage = true;
+                        $divan_url_params = '?size=king-size-5ft&storage=no-drawers';
+                    } else if ($last == 'super-kingsize-6ft') {
+                        $divan_size = '6ft';
+                        $dont_storage = true;
+                        $divan_url_params = '?size=super-kingsize-6ft&storage=no-drawers';
+                    }
+                    $divan_storage = $_productLoop->getAttributeText('configurator_storage');
+
+                    $base = "$divan_type/bedbase_" . $divan_size . "_14i_" . $divan_colour . ".png";
+                    $legs = "bedding_legs_$divan_size.png";
+                    $shadow = "shadow_wrk_$divan_size.jpg";
+                    $headboard = "headboards_$divan_type/" . $divan_hb . "_" . $divan_size . "_14i$divan_colour.png";
+
+                    $storage3 = '';
+                    $storageback = '';
+                    $isStorage1 = false;
+                    $isStorage2 = false;
+                    if ($divan_storage == '2-drawers-with-end-drawer' && !$dont_storage) {
+                        $storage1 = ' /drawers_' . $divan_type . '/reference_drawer_jumbo_190_drawer_jumbo_front_14i' . $divan_colour . '.png';
+                        $storage2 = '/media/new_configurator/drawers_' . $divan_type . '/reference_drawer_normal_back_190_' . $divan_size . '_drawer_normal_front_14i' . $divan_colour . '.png';
+                        $isStorage1 = true;
+                        $isStorage2 = true;
+                    }
+                    //echo $divan_storage;
+                    if (($divan_storage == '2-drawers-same-side' || $divan_storage == '4-drawers') && !$dont_storage) {
+
+                        $storage2 = '/media/new_configurator/drawers_' . $divan_type . '/reference_drawer_normal_front_190_' . $divan_size . '_drawer_normal_front_14i' . $divan_colour . '.png';
+                        $storage1 = '/media/new_configurator/drawers_' . $divan_type . '/reference_drawer_normal_back_190_' . $divan_size . '_drawer_normal_front_14i' . $divan_colour . '.png';
+                        $isStorage1 = true;
+                        $isStorage2 = true;
+
+                    }
+                    if ($divan_storage == 'end-drawer' && !$dont_storage) {
+
+
+                        $storage1 = '/media/new_configurator/drawers_' . $divan_type . '/reference_drawer_jumbo_200_drawer_jumbo_front_14i' . $divan_colour . '.png';
+                        $isStorage1 = true;
+
+                    }
+
+                    if ($divan_storage == 'end-drawer-with-2-mini-drawers' && !$dont_storage) {
+
+                        $storage2 = '/media/new_configurator/drawers_' . $divan_type . '/reference_drawer_mini_190_' . $divan_size . '_drawer_mini_front_14i' . $divan_colour . '.png';
+                        $storage1 = '/media/new_configurator/drawers_' . $divan_type . '/reference_drawer_jumbo_200_drawer_jumbo_front_14i' . $divan_colour . '.png';
+
+                        $isStorage1 = true;
+                        $isStorage2 = true;
+
+                    }
+
+                    if ($divan_storage == '2-drawers-with-2-mini-drawers' && !$dont_storage) {
+
+                        $storage1 = '/media/new_configurator/drawers_' . $divan_type . '/reference_drawer_mini_200_' . $divan_size . '_drawer_mini_front_14i' . $divan_colour . '.png';
+                        $storage2 = '/media/new_configurator/drawers_' . $divan_type . '/reference_drawer_normal_front_200_' . $divan_size . '_drawer_normal_front_14i' . $divan_colour . '.png';
+                        $isStorage1 = true;
+                        $isStorage2 = true;
+
+                    }
+                    if ($divan_storage == '2-drawers' && !$dont_storage) {
+
+
+                        $storage1 = '/media/new_configurator/drawers_' . $divan_type . '/reference_drawer_normal_front_200_' . $divan_size . '_drawer_normal_front_14i' . $divan_colour . '.png';
+
+                        $isStorage1 = true;
+
+                    }
+
+                    if ($divan_storage == 'ottoman' && !$dont_storage) {
+                        $base = '' . $divan_type . '/tome_' . $divan_size . '_14i_' . $divan_colour . '.png';
+
+                    }
+
+                    if (empty($divan_size)) {
+
+                    }
+
+                    $built_image = $base . $legs . $headboard . $shadow . $storage1 . $storage2 . $storage3 . $storageback;
+
+                    $built_image = md5($built_image) . ".jpg";
+                    $filcheck = Mage::getBaseDir('base') . '/media/bespoke/' . $built_image;
+
+                    $built_image2 = $base . $legs . $headboard . $shadow . $storage1 . $storage2 . $storage3 . $storageback . "2";
+                    $built_image2 = md5($built_image2) . ".jpg";
+                    $filcheck2 = Mage::getBaseDir('base') . '/media/bespoke/' . $built_image2;
+                    if (!file_exists($filcheck)) {
+                        $built_image = str_replace('/', '-', $built_image);
+
+                        $base = '/media/new_configurator/bases/' . $base;
+                        $legs = '/media/new_configurator/legs/' . $legs;
+                        $shadow = '/media/new_configurator/new_shadow/' . $shadow;
+                        $headboard = '/media/new_configurator/' . $headboard;
+                        ///microcloud/domains/hapsta/domains//http
+
+                        ///microcloud/domains/hapsta/domains//http
+
+                        $bgFile = Mage::getBaseDir('base') . "" . $headboard; // 93 x 93
+                        $imageFile = Mage::getBaseDir('base') . "" . $legs; // 76 x 76
+                        $watermarkFile = Mage::getBaseDir('base') . "" . $base; // 133 x 133
+                        $shadowFile = Mage::getBaseDir('base') . "" . $shadow; // 133 x 133
+                        if ($isStorage1) {
+                            $storage1File = Mage::getBaseDir('base') . "" . $storage1;
+                        } // 133 x 133
+                        if ($isStorage2) {
+                            $storage2File = Mage::getBaseDir('base') . "" . $storage2;
+                        }// 133 x 133
+                        if ($isStorage3) {
+                            $storage3File = Mage::getBaseDir('base') . "" . $storage3;
+                        } // 133 x 133
+                        if ($isStorageBack) {
+                            $storagebackFile = Mage::getBaseDir('base') . "" . $storageback;
+                        }// 133 x 133
+                        $width = 696;
+                        $height = 452;
+
+                        $layers = array();
+                        $layers[] = imagecreatefromjpeg($shadowFile);
+                        $layers[] = imagecreatefrompng($imageFile);
+                        $layers[] = imagecreatefrompng($bgFile);
+                        $layers[] = imagecreatefrompng($watermarkFile);
+                        if ($isStorage1) {
+                            $layers[] = imagecreatefrompng($storage1File);
+                        } // 133 x 133
+                        if ($isStorage2) {
+                            $layers[] = imagecreatefrompng($storage2File);
+                        }// 133 x 133
+                        if ($isStorage3) {
+                            $layers[] = imagecreatefrompng($storage3File);
+                        } // 133 x 133
+                        if ($isStorageBack) {
+                            $layers[] = imagecreatefrompng($storagebackFile);
+                        }// 133 x 133
+
+                        $image = imagecreatetruecolor($width, $height);
+
+                        // to make background transparent
+                        imagealphablending($image, false);
+                        $transparency = imagecolorallocatealpha($image, 0, 0, 0, 127);
+                        imagefill($image, 0, 0, $transparency);
+                        imagesavealpha($image, true);
+
+                        /* if you want to set background color
+                        $white = imagecolorallocate($image, 255, 255, 255);
+                        imagefill($image, 0, 0, $white);
+                        */
+
+                        imagealphablending($image, true);
+                        for ($i = 0; $i < count($layers); $i++) {
+                            $orig_width = imagesx($layers[$i]);
+                            $orig_height = imagesy($layers[$i]);
+                            imagecopyresized($image, $layers[$i], 0, 0, 0, 0, $width, $height, $orig_width, $orig_height);
+                        }
+                        imagealphablending($image, false);
+                        imagesavealpha($image, true);
+
+                        imagepng($image, Mage::getBaseDir('base') . '/media/bespoke/' . $built_image);
+                    }
+
+                    if (!file_exists($filcheck2)) {
+                        $built_image2 = str_replace('/', '-', $built_image2);
+
+                        $base = '/media/new_configurator/bases/' . $base;
+                        $legs = '/media/new_configurator/legs/' . $legs;
+
+                        $headboard = '/media/new_configurator/' . $headboard;
+                        ///microcloud/domains/hapsta/domains//http
+
+                        ///microcloud/domains/hapsta/domains//http
+
+                        $bgFile = Mage::getBaseDir('base') . "" . $headboard; // 93 x 93
+                        $imageFile = Mage::getBaseDir('base') . "" . $legs; // 76 x 76
+                        $watermarkFile = Mage::getBaseDir('base') . "" . $base; // 133 x 133
+
+                        if ($isStorage1) {
+                            $storage1File = Mage::getBaseDir('base') . "" . $storage1;
+                        } // 133 x 133
+                        if ($isStorage2) {
+                            $storage2File = Mage::getBaseDir('base') . "" . $storage2;
+                        }// 133 x 133
+                        if ($isStorage3) {
+                            $storage3File = Mage::getBaseDir('base') . "" . $storage3;
+                        } // 133 x 133
+                        if ($isStorageBack) {
+                            $storagebackFile = Mage::getBaseDir('base') . "" . $storageback;
+                        }// 133 x 133
+                        $width = 696;
+                        $height = 452;
+
+                        $layers = array();
+
+                        $layers[] = imagecreatefrompng($imageFile);
+                        $layers[] = imagecreatefrompng($bgFile);
+                        $layers[] = imagecreatefrompng($watermarkFile);
+                        if ($isStorage1) {
+                            $layers[] = imagecreatefrompng($storage1File);
+                        } // 133 x 133
+                        if ($isStorage2) {
+                            $layers[] = imagecreatefrompng($storage2File);
+                        }// 133 x 133
+                        if ($isStorage3) {
+                            $layers[] = imagecreatefrompng($storage3File);
+                        } // 133 x 133
+                        if ($isStorageBack) {
+                            $layers[] = imagecreatefrompng($storagebackFile);
+                        }// 133 x 133
+
+                        $image = imagecreatetruecolor($width, $height);
+
+                        // to make background transparent
+                        imagealphablending($image, false);
+                        $transparency = imagecolorallocatealpha($image, 0, 0, 0, 127);
+                        imagefill($image, 0, 0, $transparency);
+                        imagesavealpha($image, true);
+
+                        /* if you want to set background color
+                        $white = imagecolorallocate($image, 255, 255, 255);
+                        imagefill($image, 0, 0, $white);
+                        */
+
+                        imagealphablending($image, true);
+                        for ($i = 0; $i < count($layers); $i++) {
+                            $orig_width = imagesx($layers[$i]);
+                            $orig_height = imagesy($layers[$i]);
+                            imagecopyresized($image, $layers[$i], 0, 0, 0, 0, $width, $height, $orig_width, $orig_height);
+                        }
+                        imagealphablending($image, false);
+                        imagesavealpha($image, true);
+
+                        imagepng($image, Mage::getBaseDir('base') . '/media/bespoke/' . $built_image2);
+                    }
+
+                    //$response['image'] = 'image_3.png?t='.rand(0,99999999999999);
+                    //Z$built_image = Mage::getBaseDir('base').'/bespokemerge/image_3.png'
+
+                    $bespoke_image2 = '/media/bespoke/' . $built_image2 . "?t=" . rand(0, 999999999999990);
+
+                    $bespoke_image = '/media/bespoke/' . $built_image . "?t=" . rand(0, 999999999999990);
+                    ?>
+                    <?php $img_tag .= '<img class="dynamic_image_items dinim1" style="position: relative;
+    background-color: white;" id="dynamic_legs" src="'.$bespoke_image.'">';?>
+
+                    <?php $img_tag .= '<img class="dynamic_image_items dinim2" style="position: relative;
+    background-color: white;display:none;" id="dynamic_legs" src="'.$bespoke_image2.'"> </div>'; ?>
+
+                <?php } else { ?>
+
+                    <?php
+
+                    $p_image_class = "";
+                    if (!$_productLoop->isSaleable()) {
+                        $p_image_class = "hb-prod-img-soldout";
+                    }
+                    ?>
+                    <?php $img_tag .= '<img class="'.$p_image_class.' lazyload 3" src="/media/loader.jpg" data-src="'. $this->helper('catalog/image')->init($_productLoop, 'small_image')->resize(320).'" alt="'.$this->stripTags($_productLoop->getName(), NULL, true).'"/>';?>
+                    <?php if (!$_productLoop->isSaleable()) { ?>
+                    <?php } ?>
+                <?php }
+            } ?>
+
+
+            <?php
+
+
+
+
+
+
+
+
+
+            $moreOutput .= '<div class="slick-slide">
+                    <div class="prod-item-inner">
+                        <a href="' . $_productLoop->getProductUrl() . '" class="product-image">
+                          <div class="p-img-icon save-icon">' . $percent_friendly . ' OFF</div>
+
+                          '.$img_tag.'
+                        </a>
+
+                          <a class="product-name" href="' . $_productLoop->getProductUrl() . '" title="' . $_productLoop->getName() . '">' . $_productLoop->getName() . '</a>';
+
+            $productBlock = $this->getLayout()->createBlock('catalog/product_price')
+                                 ->setTemplate('catalog/product/price.phtml')
+                                 ->setProduct($_productLoop)
+                                 ->setData('product_icons','')
+                                 ->setDisplayMinimalPrice(true)
+                                 ->toHtml();
+
+            $moreOutput .= $productBlock;
+
+            $moreOutput .= '
+                    </div>
+                    </div>';  //end slick-slide
+
+        }
+
+        $moreOutput .= '</div>
+        </div>
+      </div>
+
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>';
+        if ($displayMoreCollection) {
+        ?>
+
+
+        <?
+        echo $moreOutput;
+
+        ?>
+
+    </div>
+
+    <script>
+        var MqL = 768;
+
+        function slickSlider(){
+            jQuery('#more-col-swiper2').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                prevArrow: '<div class="slick-prev"><i class="fa fa-chevron-left"></i></div>',
+                nextArrow: '<div class="slick-next"><i class="fa fa-chevron-right"></i></div>',
+                responsive: [
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToScroll: 1,
+                            slidesToShow: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToScroll: 1,
+                            slidesToShow: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToScroll: 1,
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+
+        }
+
+
+
+
+
+
+
+        function ev_checkWindowWidth() {
+            //check window width (scrollbar included)
+            var e = window,
+                a = 'inner';
+            if (!('innerWidth' in window )) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+
+            var width =  e[ a+'Width' ];
+
+            if ( width >= MqL ) {
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+        function ev_moveNavigation() {
+            var desktop = ev_checkWindowWidth();
+
+            console.log(desktop);
+
+            if (desktop === true) {
+                slickSlider();
+
+                jQuery("#more-col-swiper2").slick("unslick");
+
+
+                console.log("desktop");
+            }
+
+            if (desktop === false) {
+                console.log("JG Mobile");
+                slickSlider();
+
+
+
+
+            }
+
+        }
+
+
+        jQuery(document).ready(function () {
+
+            ev_moveNavigation();
+
+
+        });
+
+        jQuery(window).on('resize', function(){
+            console.log("resizing");
+            ev_moveNavigation();
+
+        });
+
+
+
+    </script>
+
+    <?php
+
+}
+    ?><?php } ?>

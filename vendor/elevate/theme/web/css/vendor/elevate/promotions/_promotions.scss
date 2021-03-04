@@ -1,0 +1,580 @@
+$ev-promo-subheadingbar-background: #f6f8fb !default;
+$ev-promo-subheadingbar-padding: 10px 7px !default;
+$ev-promo-subheadingbar-fontfamily: false !default;
+
+#subheading-bar {
+    @include co(background, $ev-promo-subheadingbar-background);
+    @include co(padding, $ev-promo-subheadingbar-padding);
+    @include co(font-family, $ev-promo-subheadingbar-fontfamily);
+
+
+
+
+
+
+}
+
+
+// Sub heading Inner
+$ev-promo-subheading-inner-margin: 0 auto !default;
+$ev-promo-subheading-inner-display: flex !default;
+$ev-promo-subheading-inner-alignitems: center !default;
+$ev-promo-subheading-inner-justifycontent: center !default;
+
+
+
+
+$ev-promo-subheading-inner-a-textdecoration: none !default;
+
+
+
+
+// Usp Text Bar
+$ev-promo-usptextbar-a-textdecoration: none !default;
+
+#subheading-inner {
+    @include co(display, $ev-promo-subheading-inner-display);
+    @include co(align-items, $ev-promo-subheading-inner-alignitems);
+    @include co(justify-content, $ev-promo-subheading-inner-justifycontent);
+    @include co(margin, $ev-promo-subheading-inner-margin);
+
+    a {
+        @include co(text-decoration, $ev-promo-subheading-inner-a-textdecoration);
+    }
+}
+
+#usp_text_bar {
+    a {
+        @include co(text-decoration, $ev-promo-usptextbar-a-textdecoration);
+    }
+}
+
+
+$ev-promo-subhdritem-background: false !default;
+
+$ev-promo-subhdritem-display: false !default;
+$ev-promo-subhdritem-width: false !default;
+$ev-promo-subhdritem-flex: 1 1 auto !default;
+$ev-promo-subhdritem-order: false !default;
+$ev-promo-subhdritem-border-radius: false !default;
+$ev-promo-subhdritem-box-shadow: false !default;
+
+$ev-promo-subhdritem-border: false !default;
+$ev-promo-subhdritem-minheight: false !default;
+$ev-promo-subhdritem-height: auto !default;
+$ev-promo-subhdritem-margin: false !default;
+$ev-promo-subhdritem-padding: 0 0 0 5px !default;
+
+$ev-promo-subhdritem-font-size: false !default;
+
+$ev-promo-subhdritem-padding-desktopsm-max: false !default;
+$ev-promo-subhdritem-flex-desktopsm-max: false !default;
+$ev-promo-subhdritem-display-desktopsm-max: false !default;
+$ev-promo-subhdritem-width-desktopsm-max: 50% !default;
+
+$ev-promo-subhdritem-padding-desktopmd: false !default;
+$ev-promo-subhdritem-flex-desktopmd: false !default;
+$ev-promo-subhdritem-display-desktopmd: false !default;
+$ev-promo-subhdritem-width-desktopmd: false !default;
+
+$ev-promo-subhdritem-width-desktopxl: false !default;
+
+$ev-promo-subhdritem-padding-desktopxl: 0 !default;
+
+
+// sub hdr item a
+
+$ev-promo-subhdritem-a-display: block !default;
+$ev-promo-subhdritem-a-height: 100% !default;
+
+
+// sub-hdr-item .sh-inner
+
+$ev-promo-shinner-display: flex !default;
+$ev-promo-shinner-alignitems: center !default;
+$ev-promo-shinner-justifycontent: center !default;
+
+.sub-hdr-item {
+    @include co(display, $ev-promo-subhdritem-display);
+    @include co(flex, $ev-promo-subhdritem-flex);
+    @include co(order, $ev-promo-subhdritem-order);
+    @include co(width, $ev-promo-subhdritem-width);
+    @include co(border-radius, $ev-promo-subhdritem-border-radius);
+    @include co(box-shadow, $ev-promo-subhdritem-box-shadow);
+    @include co(background, $ev-promo-subhdritem-background);
+    @include co(border, $ev-promo-subhdritem-border);
+    @include co(padding, $ev-promo-subhdritem-padding);
+    @include co(margin, $ev-promo-subhdritem-margin);
+    @include co(min-height, $ev-promo-subhdritem-minheight);
+    @include co(height, $ev-promo-subhdritem-height);
+    @include co(font-size, $ev-promo-subhdritem-margin);
+
+    @include max-screen($desktop-sm-max) {
+        @include co(display, $ev-promo-subhdritem-display-desktopsm-max, $ev-promo-subhdritem-display);
+        @include co(flex, $ev-promo-subhdritem-flex-desktopsm-max, $ev-promo-subhdritem-flex);
+        @include co(padding, $ev-promo-subhdritem-padding-desktopsm-max, $ev-promo-subhdritem-padding);
+        @include co(width, $ev-promo-subhdritem-width-desktopsm-max, $ev-promo-subhdritem-width);
+    }
+    @include min-screen($desktop-md-min) {
+        @include co(display, $ev-promo-subhdritem-display-desktopmd, $ev-promo-subhdritem-display);
+        @include co(flex, $ev-promo-subhdritem-flex-desktopmd, $ev-promo-subhdritem-flex);
+        @include co(padding, $ev-promo-subhdritem-padding-desktopmd, $ev-promo-subhdritem-padding);
+        @include co(width, $ev-promo-subhdritem-width-desktopmd, $ev-promo-subhdritem-width);
+    }
+    @include min-screen($desktop-xl-min) {
+        @include co(padding, $ev-promo-subhdritem-padding-desktopxl, $ev-promo-subhdritem-padding-desktopmd, $ev-promo-subhdritem-padding);
+        @include co(width, $ev-promo-subhdritem-width-desktopxl, $ev-promo-subhdritem-width-desktopmd, $ev-promo-subhdritem-width);
+    }
+    > a {
+        @include co(display, $ev-promo-subhdritem-a-display);
+        @include co(height, $ev-promo-subhdritem-a-height);
+    }
+    .sh-inner {
+        @include co(display, $ev-promo-shinner-display);
+        @include co(align-items, $ev-promo-shinner-alignitems);
+        @include co(justify-content, $ev-promo-shinner-justifycontent);
+    }
+}
+
+
+// Block One
+
+
+
+$ev-promo-shiblock1-background: false !default;
+
+$ev-promo-shiblock1-display: false !default;
+$ev-promo-shiblock1-width: false !default;
+$ev-promo-shiblock1-flex: false !default;
+$ev-promo-shiblock1-order: false !default;
+$ev-promo-shiblock1-border-radius: false !default;
+$ev-promo-shiblock1-box-shadow: false !default;
+
+$ev-promo-shiblock1-border: false !default;
+$ev-promo-shiblock1-minheight: false !default;
+$ev-promo-shiblock1-margin: false !default;
+$ev-promo-shiblock1-padding: false !default;
+
+$ev-promo-shiblock1-font-size: false !default;
+
+$ev-promo-shiblock1-display-mobile-max: false !default;
+$ev-promo-shiblock1-display-mobiletablet-max: false !default;
+$ev-promo-shiblock1-display-desktopsm-max: false !default;
+
+$ev-promo-shiblock1-display-mobiletablet: false !default;
+$ev-promo-shiblock1-display-desktopmin: false !default;
+$ev-promo-shiblock1-display-desktopmd: false !default;
+$ev-promo-shiblock1-display-desktoplg: false !default;
+$ev-promo-shiblock1-display-desktopxl: false !default;
+
+#sh-i-block1 {
+    @include co(display, $ev-promo-shiblock1-display);
+    @include co(flex, $ev-promo-shiblock1-flex);
+    @include co(order, $ev-promo-shiblock1-order);
+    @include co(width, $ev-promo-shiblock1-width);
+    @include co(border-radius, $ev-promo-shiblock1-border-radius);
+    @include co(box-shadow, $ev-promo-shiblock1-box-shadow);
+    @include co(background, $ev-promo-shiblock1-background);
+    @include co(border, $ev-promo-shiblock1-border);
+    @include co(padding, $ev-promo-shiblock1-padding);
+    @include co(margin, $ev-promo-shiblock1-margin);
+    @include co(min-height, $ev-promo-shiblock1-minheight);
+    @include co(font-size, $ev-promo-shiblock1-margin);
+
+
+    @include min-screen($mobiletablet-min) {
+        @include co(display, $ev-promo-shiblock1-display-mobiletablet, $ev-promo-shiblock1-display);
+    }
+    @include min-screen($desktop-min) {
+        @include co(display, $ev-promo-shiblock1-display-desktopmin, $ev-promo-shiblock1-display);
+    }
+
+
+    @include min-screen($desktop-md-min) {
+        @include co(display, $ev-promo-shiblock1-display-desktopmd, $ev-promo-shiblock1-display-desktopmin, $ev-promo-shiblock1-display);
+    }
+    @include min-screen($desktop-lg-min) {
+        @include co(display, $ev-promo-shiblock1-display-desktoplg, $ev-promo-shiblock1-display-desktopmd, $ev-promo-shiblock1-display);
+    }
+    @include min-screen($desktop-xl-min) {
+        @include co(display, $ev-promo-shiblock1-display-desktopxl, $ev-promo-shiblock1-display-desktoplg, $ev-promo-shiblock1-display-desktopmd, $ev-promo-shiblock1-display);
+    }
+    @include max-screen($mobile-max) {
+        @include co(display, $ev-promo-shiblock1-display-mobile-max, $ev-promo-shiblock1-display);
+    }
+    @include max-screen($mobiletablet-max) {
+        @include co(display, $ev-promo-shiblock1-display-mobiletablet-max, $ev-promo-shiblock1-display);
+    }
+    @include max-screen($desktop-sm-max) {
+        @include co(display, $ev-promo-shiblock1-display-desktopsm-max, $ev-promo-shiblock1-display);
+    }
+}
+
+// Block Two
+
+
+
+$ev-promo-shiblock2-background: false !default;
+
+$ev-promo-shiblock2-display: false !default;
+$ev-promo-shiblock2-width: false !default;
+$ev-promo-shiblock2-flex: false !default;
+$ev-promo-shiblock2-order: false !default;
+$ev-promo-shiblock2-border-radius: false !default;
+$ev-promo-shiblock2-box-shadow: false !default;
+
+$ev-promo-shiblock2-border: false !default;
+$ev-promo-shiblock2-minheight: false !default;
+$ev-promo-shiblock2-margin: false !default;
+$ev-promo-shiblock2-padding: false !default;
+
+$ev-promo-shiblock2-font-size: false !default;
+
+$ev-promo-shiblock2-display-mobile-max: false !default;
+$ev-promo-shiblock2-display-mobiletablet-max: false !default;
+$ev-promo-shiblock2-display-desktopsm-max: none !default;
+
+$ev-promo-shiblock2-display-mobiletablet: false !default;
+$ev-promo-shiblock2-display-desktopmin: false !default;
+$ev-promo-shiblock2-display-desktopmd: false !default;
+$ev-promo-shiblock2-display-desktoplg: false !default;
+$ev-promo-shiblock2-display-desktopxl: false !default;
+
+#sh-i-block2 {
+    @include co(display, $ev-promo-shiblock2-display);
+    @include co(flex, $ev-promo-shiblock2-flex);
+    @include co(order, $ev-promo-shiblock2-order);
+    @include co(width, $ev-promo-shiblock2-width);
+    @include co(border-radius, $ev-promo-shiblock2-border-radius);
+    @include co(box-shadow, $ev-promo-shiblock2-box-shadow);
+    @include co(background, $ev-promo-shiblock2-background);
+    @include co(border, $ev-promo-shiblock2-border);
+    @include co(padding, $ev-promo-shiblock2-padding);
+    @include co(margin, $ev-promo-shiblock2-margin);
+    @include co(min-height, $ev-promo-shiblock2-minheight);
+    @include co(font-size, $ev-promo-shiblock2-margin);
+
+
+    @include min-screen($mobiletablet-min) {
+        @include co(display, $ev-promo-shiblock2-display-mobiletablet, $ev-promo-shiblock2-display);
+    }
+    @include min-screen($desktop-min) {
+        @include co(display, $ev-promo-shiblock2-display-desktopmin, $ev-promo-shiblock2-display);
+    }
+
+
+    @include min-screen($desktop-md-min) {
+        @include co(display, $ev-promo-shiblock2-display-desktopmd, $ev-promo-shiblock2-display-desktopmin, $ev-promo-shiblock2-display);
+    }
+    @include min-screen($desktop-lg-min) {
+        @include co(display, $ev-promo-shiblock2-display-desktoplg, $ev-promo-shiblock2-display-desktopmd, $ev-promo-shiblock2-display);
+    }
+    @include min-screen($desktop-xl-min) {
+        @include co(display, $ev-promo-shiblock2-display-desktopxl, $ev-promo-shiblock2-display-desktoplg, $ev-promo-shiblock2-display-desktopmd, $ev-promo-shiblock2-display);
+    }
+    @include max-screen($mobile-max) {
+        @include co(display, $ev-promo-shiblock2-display-mobile-max, $ev-promo-shiblock2-display);
+    }
+    @include max-screen($mobiletablet-max) {
+        @include co(display, $ev-promo-shiblock2-display-mobiletablet-max, $ev-promo-shiblock2-display);
+    }
+    @include max-screen($desktop-sm-max) {
+        @include co(display, $ev-promo-shiblock2-display-desktopsm-max, $ev-promo-shiblock2-display);
+    }
+}
+
+// Block Three
+
+
+
+$ev-promo-shiblock3-background: false !default;
+
+$ev-promo-shiblock3-display: false !default;
+$ev-promo-shiblock3-width: false !default;
+$ev-promo-shiblock3-flex: false !default;
+$ev-promo-shiblock3-order: false !default;
+$ev-promo-shiblock3-border-radius: false !default;
+$ev-promo-shiblock3-box-shadow: false !default;
+
+$ev-promo-shiblock3-border: false !default;
+$ev-promo-shiblock3-minheight: false !default;
+$ev-promo-shiblock3-margin: false !default;
+$ev-promo-shiblock3-padding: false !default;
+
+$ev-promo-shiblock3-font-size: false !default;
+
+$ev-promo-shiblock3-display-mobile-max: false !default;
+$ev-promo-shiblock3-display-mobiletablet-max: false !default;
+$ev-promo-shiblock3-display-desktopsm-max: none !default;
+
+$ev-promo-shiblock3-display-mobiletablet: false !default;
+$ev-promo-shiblock3-display-desktopmin: false !default;
+$ev-promo-shiblock3-display-desktopmd: false !default;
+$ev-promo-shiblock3-display-desktoplg: false !default;
+$ev-promo-shiblock3-display-desktopxl: false !default;
+
+#sh-i-block3 {
+    @include co(display, $ev-promo-shiblock3-display);
+    @include co(flex, $ev-promo-shiblock3-flex);
+    @include co(order, $ev-promo-shiblock3-order);
+    @include co(width, $ev-promo-shiblock3-width);
+    @include co(border-radius, $ev-promo-shiblock3-border-radius);
+    @include co(box-shadow, $ev-promo-shiblock3-box-shadow);
+    @include co(background, $ev-promo-shiblock3-background);
+    @include co(border, $ev-promo-shiblock3-border);
+    @include co(padding, $ev-promo-shiblock3-padding);
+    @include co(margin, $ev-promo-shiblock3-margin);
+    @include co(min-height, $ev-promo-shiblock3-minheight);
+    @include co(font-size, $ev-promo-shiblock3-margin);
+
+
+    @include min-screen($mobiletablet-min) {
+        @include co(display, $ev-promo-shiblock3-display-mobiletablet, $ev-promo-shiblock3-display);
+    }
+    @include min-screen($desktop-min) {
+        @include co(display, $ev-promo-shiblock3-display-desktopmin, $ev-promo-shiblock3-display);
+    }
+
+
+    @include min-screen($desktop-md-min) {
+        @include co(display, $ev-promo-shiblock3-display-desktopmd, $ev-promo-shiblock3-display-desktopmin, $ev-promo-shiblock3-display);
+    }
+    @include min-screen($desktop-lg-min) {
+        @include co(display, $ev-promo-shiblock3-display-desktoplg, $ev-promo-shiblock3-display-desktopmd, $ev-promo-shiblock3-display);
+    }
+    @include min-screen($desktop-xl-min) {
+        @include co(display, $ev-promo-shiblock3-display-desktopxl, $ev-promo-shiblock3-display-desktoplg, $ev-promo-shiblock3-display-desktopmd, $ev-promo-shiblock3-display);
+    }
+    @include max-screen($mobile-max) {
+        @include co(display, $ev-promo-shiblock3-display-mobile-max, $ev-promo-shiblock3-display);
+    }
+    @include max-screen($mobiletablet-max) {
+        @include co(display, $ev-promo-shiblock3-display-mobiletablet-max, $ev-promo-shiblock3-display);
+    }
+    @include max-screen($desktop-sm-max) {
+        @include co(display, $ev-promo-shiblock3-display-desktopsm-max, $ev-promo-shiblock3-display);
+    }
+}
+
+
+// Block Four
+
+
+
+$ev-promo-shiblock4-background: false !default;
+
+$ev-promo-shiblock4-display: false !default;
+$ev-promo-shiblock4-width: false !default;
+$ev-promo-shiblock4-flex: false !default;
+$ev-promo-shiblock4-order: false !default;
+$ev-promo-shiblock4-border-radius: false !default;
+$ev-promo-shiblock4-box-shadow: false !default;
+
+$ev-promo-shiblock4-border: false !default;
+$ev-promo-shiblock4-minheight: false !default;
+$ev-promo-shiblock4-margin: false !default;
+$ev-promo-shiblock4-padding: false !default;
+
+$ev-promo-shiblock4-font-size: false !default;
+
+$ev-promo-shiblock4-display-mobile-max: false !default;
+$ev-promo-shiblock4-display-mobiletablet-max: false !default;
+$ev-promo-shiblock4-display-desktopsm-max: none !default;
+
+$ev-promo-shiblock4-display-mobiletablet: false !default;
+$ev-promo-shiblock4-display-desktopmin: false !default;
+$ev-promo-shiblock4-display-desktopmd: false !default;
+$ev-promo-shiblock4-display-desktoplg: false !default;
+$ev-promo-shiblock4-display-desktopxl: false !default;
+
+#sh-i-block4 {
+    @include co(display, $ev-promo-shiblock4-display);
+    @include co(flex, $ev-promo-shiblock4-flex);
+    @include co(order, $ev-promo-shiblock4-order);
+    @include co(width, $ev-promo-shiblock4-width);
+    @include co(border-radius, $ev-promo-shiblock4-border-radius);
+    @include co(box-shadow, $ev-promo-shiblock4-box-shadow);
+    @include co(background, $ev-promo-shiblock4-background);
+    @include co(border, $ev-promo-shiblock4-border);
+    @include co(padding, $ev-promo-shiblock4-padding);
+    @include co(margin, $ev-promo-shiblock4-margin);
+    @include co(min-height, $ev-promo-shiblock4-minheight);
+    @include co(font-size, $ev-promo-shiblock4-margin);
+
+
+    @include min-screen($mobiletablet-min) {
+        @include co(display, $ev-promo-shiblock4-display-mobiletablet, $ev-promo-shiblock4-display);
+    }
+    @include min-screen($desktop-min) {
+        @include co(display, $ev-promo-shiblock4-display-desktopmin, $ev-promo-shiblock4-display);
+    }
+
+
+    @include min-screen($desktop-md-min) {
+        @include co(display, $ev-promo-shiblock4-display-desktopmd, $ev-promo-shiblock4-display-desktopmin, $ev-promo-shiblock4-display);
+    }
+    @include min-screen($desktop-lg-min) {
+        @include co(display, $ev-promo-shiblock4-display-desktoplg, $ev-promo-shiblock4-display-desktopmd, $ev-promo-shiblock4-display);
+    }
+    @include min-screen($desktop-xl-min) {
+        @include co(display, $ev-promo-shiblock4-display-desktopxl, $ev-promo-shiblock4-display-desktoplg, $ev-promo-shiblock4-display-desktopmd, $ev-promo-shiblock4-display);
+    }
+    @include max-screen($mobile-max) {
+        @include co(display, $ev-promo-shiblock4-display-mobile-max, $ev-promo-shiblock4-display);
+    }
+    @include max-screen($mobiletablet-max) {
+        @include co(display, $ev-promo-shiblock4-display-mobiletablet-max, $ev-promo-shiblock4-display);
+    }
+    @include max-screen($desktop-sm-max) {
+        @include co(display, $ev-promo-shiblock4-display-desktopsm-max, $ev-promo-shiblock4-display);
+    }
+}
+
+
+// Block Sitewide
+
+
+
+$ev-promo-shiblocksitewide-background: false !default;
+
+$ev-promo-shiblocksitewide-display: false !default;
+$ev-promo-shiblocksitewide-width: false !default;
+$ev-promo-shiblocksitewide-flex: false !default;
+$ev-promo-shiblocksitewide-order: false !default;
+$ev-promo-shiblocksitewide-border-radius: false !default;
+$ev-promo-shiblocksitewide-box-shadow: false !default;
+
+$ev-promo-shiblocksitewide-border: false !default;
+$ev-promo-shiblocksitewide-minheight: false !default;
+$ev-promo-shiblocksitewide-margin: false !default;
+$ev-promo-shiblocksitewide-padding: false !default;
+
+$ev-promo-shiblocksitewide-font-size: false !default;
+
+$ev-promo-shiblocksitewide-display-mobile-max: false !default;
+$ev-promo-shiblocksitewide-display-mobiletablet-max: false !default;
+$ev-promo-shiblocksitewide-display-desktopsm-max: false !default;
+
+$ev-promo-shiblocksitewide-display-mobiletablet: false !default;
+$ev-promo-shiblocksitewide-display-desktopmin: false !default;
+$ev-promo-shiblocksitewide-display-desktopmd: false !default;
+$ev-promo-shiblocksitewide-display-desktoplg: false !default;
+$ev-promo-shiblocksitewide-display-desktopxl: false !default;
+
+#sh-i-block-sitewide {
+    @include co(display, $ev-promo-shiblocksitewide-display);
+    @include co(flex, $ev-promo-shiblocksitewide-flex);
+    @include co(order, $ev-promo-shiblocksitewide-order);
+    @include co(width, $ev-promo-shiblocksitewide-width);
+    @include co(border-radius, $ev-promo-shiblocksitewide-border-radius);
+    @include co(box-shadow, $ev-promo-shiblocksitewide-box-shadow);
+    @include co(background, $ev-promo-shiblocksitewide-background);
+    @include co(border, $ev-promo-shiblocksitewide-border);
+    @include co(padding, $ev-promo-shiblocksitewide-padding);
+    @include co(margin, $ev-promo-shiblocksitewide-margin);
+    @include co(min-height, $ev-promo-shiblocksitewide-minheight);
+    @include co(font-size, $ev-promo-shiblocksitewide-margin);
+
+
+    @include min-screen($mobiletablet-min) {
+        @include co(display, $ev-promo-shiblocksitewide-display-mobiletablet, $ev-promo-shiblocksitewide-display);
+    }
+    @include min-screen($desktop-min) {
+        @include co(display, $ev-promo-shiblocksitewide-display-desktopmin, $ev-promo-shiblocksitewide-display);
+    }
+
+
+    @include min-screen($desktop-md-min) {
+        @include co(display, $ev-promo-shiblocksitewide-display-desktopmd, $ev-promo-shiblocksitewide-display-desktopmin, $ev-promo-shiblocksitewide-display);
+    }
+    @include min-screen($desktop-lg-min) {
+        @include co(display, $ev-promo-shiblocksitewide-display-desktoplg, $ev-promo-shiblocksitewide-display-desktopmd, $ev-promo-shiblocksitewide-display);
+    }
+    @include min-screen($desktop-xl-min) {
+        @include co(display, $ev-promo-shiblocksitewide-display-desktopxl, $ev-promo-shiblocksitewide-display-desktoplg, $ev-promo-shiblocksitewide-display-desktopmd, $ev-promo-shiblocksitewide-display);
+    }
+    @include max-screen($mobile-max) {
+        @include co(display, $ev-promo-shiblocksitewide-display-mobile-max, $ev-promo-shiblocksitewide-display);
+    }
+    @include max-screen($mobiletablet-max) {
+        @include co(display, $ev-promo-shiblocksitewide-display-mobiletablet-max, $ev-promo-shiblocksitewide-display);
+    }
+    @include max-screen($desktop-sm-max) {
+        @include co(display, $ev-promo-shiblocksitewide-display-desktopsm-max, $ev-promo-shiblocksitewide-display);
+    }
+}
+
+
+// Sub Header Icon
+
+$ev-promo-subhdrctaico-display: flex !default;
+$ev-promo-subhdrctaico-alignitems: center !default;
+$ev-promo-subhdrctaico-justifycontent: center !default;
+$ev-promo-subhdrctaico-width: center !default;
+$ev-promo-subhdrctaico-margin: 0 4px !default;
+$ev-promo-subhdrctaico-margin-desktopxl: 0 10px !default;
+
+
+// CTA Icon I
+
+
+$ev-promo-subhdrctaico-i-backgroundsize: contain !default;
+$ev-promo-subhdrctaico-i-backgroundrepeat: no-repeat !default;
+$ev-promo-subhdrctaico-i-height: 33px !default;
+$ev-promo-subhdrctaico-i-width: 30px !default;
+
+.sub-hdr-cta-ico {
+    @include co(display, $ev-promo-subhdrctaico-display);
+    @include co(align-items, $ev-promo-subhdrctaico-alignitems);
+    @include co(justify-content, $ev-promo-subhdrctaico-justifycontent);
+    @include co(width, $ev-promo-subhdrctaico-width);
+    @include co(margin, $ev-promo-subhdrctaico-margin);
+    @include min-screen($desktop-xl-min) {
+        @include co(margin, $ev-promo-subhdrctaico-margin-desktopxl, $ev-promo-subhdrctaico-margin);
+    }
+    i {
+        @include co(background-size, $ev-promo-subhdrctaico-i-backgroundsize);
+        @include co(background-repeat, $ev-promo-subhdrctaico-i-backgroundrepeat);
+        @include co(height, $ev-promo-subhdrctaico-i-height);
+        @include co(width, $ev-promo-subhdrctaico-i-width);
+    }
+}
+
+
+$ev-promo-subhdrtext-lineheight: false !default;
+$ev-promo-subhdrtext-fontsize: false !default;
+$ev-promo-subhdrtext-texttransform: false !default;
+$ev-promo-subhdrtext-fontweight: false !default;
+
+$ev-promo-subhdrtext-fontsize-max: false !default;
+
+
+.sub-hdr-hdr-text {
+    @include co(line-height, $ev-promo-subhdrtext-lineheight);
+    @include co(font-size, $ev-promo-subhdrtext-fontsize);
+
+    @include co(text-transform, $ev-promo-subhdrtext-texttransform);
+    @include co(font-weight, $ev-promo-subhdrtext-fontweight);
+    @include max-screen($mobile-max) {
+        @include co(font-size, $ev-promo-subhdrtext-fontsize-max);
+    }
+}
+
+
+$ev-promo-subhdrhdrtext-lineheight: 1.6 !default;
+$ev-promo-subhdrhdrtext-fontsize: 14px !default;
+$ev-promo-subhdrhdrtext-texttransform: uppercase !default;
+$ev-promo-subhdrhdrtext-fontweight: 400 !default;
+
+$ev-promo-subhdrhdrtext-fontsize-max: 0.65rem !default;
+
+
+.sub-hdr-hdr-text {
+    @include co(line-height, $ev-promo-subhdrhdrtext-lineheight);
+    @include co(font-size, $ev-promo-subhdrhdrtext-fontsize);
+    @include co(text-transform, $ev-promo-subhdrhdrtext-texttransform);
+    @include co(font-weight, $ev-promo-subhdrhdrtext-fontweight);
+    @include max-screen($mobile-max) {
+        @include co(font-size, $ev-promo-subhdrhdrtext-fontsize-max);
+    }
+}

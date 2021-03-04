@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Elevate_General::parent" title="Elevate" module="Elevate_PrintLabels" sortOrder="100" resource="Elevate_General::parent"/>
+        <add id="Elevate_PrintLabels::index" title="Print Labels" module="Elevate_PrintLabels" sortOrder="10" action="printlabels/index" resource="Elevate_PrintLabels::index" parent="Elevate_General::parent" />
+    </menu>
+</config>

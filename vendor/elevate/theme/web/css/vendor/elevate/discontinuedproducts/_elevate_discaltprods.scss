@@ -1,0 +1,61 @@
+
+$ev_discprod_alternatives_bg_color: #08152F !default;
+$ev_discprod_alternatives_border_on: 1 !default;
+$ev_discprod_alternatives_border_color: #08152F !default;
+$ev_discprod_alternatives_border_thickness: 1px !default;
+$ev_discprod_alternatives_border_style: solid !default;
+$ev_discprod_alternatives_border_radius_on: 1 !default;
+
+$ev_discprod_alternatives_border_radius: 10px !default;
+$ev_discprod_alternatives_padding: 0.75rem !default;
+$ev_discprod_alternatives_margin: 0 0 0.75rem !default;
+
+$ev_discprod_alternatives_section_title_color: #FFF !default;
+$ev_discprod_alternatives_section_title_fontweight: $heading__font-weight__base !default;
+$ev_discprod_alternatives_section_title_fontsize: 1rem !default;
+$ev_discprod_alternatives_section_title_padding: 0 !default;
+$ev_discprod_alternatives_section_title_margin: 0 0 0.75rem !default;
+
+
+$ev_discprods_pview_number_of_items_per_row_desktop: 3 !default;
+$ev_discprods_pview_number_of_items_per_row_mobile: 1 !default;
+
+$ev_discprods_alert_border_radius: 10px !default;
+
+#ev-da-outer {
+    .alert {
+        border-radius: $ev_discprods_alert_border_radius;
+    }
+}
+
+.ev-discprod-alternatives {
+    background: $ev_discprod_alternatives_bg_color;
+    @if $ev_discprod_alternatives_border_on == 1 {
+        @include elevate-border($ev_discprod_alternatives_border_color, $ev_discprod_alternatives_border_thickness, $ev_discprod_alternatives_border_style)
+    }
+    @if $ev_discprod_alternatives_border_radius_on == 1 {
+        border-radius: $ev_discprod_alternatives_border_radius;
+    }
+    @include padding($ev_discprod_alternatives_padding);
+    @include margin($ev_discprod_alternatives_margin);
+    .section-title {
+        @include font-size($ev_discprod_alternatives_section_title_fontsize);
+        color: $ev_discprod_alternatives_section_title_color;
+        font-weight: $ev_discprod_alternatives_section_title_fontweight;
+        @include padding($ev_discprod_alternatives_section_title_padding);
+        @include margin($ev_discprod_alternatives_section_title_margin);
+    }
+}
+
+.catalog-product-view {
+    .ev-discprod-alternatives {
+        .product-items {
+            .item {
+                width: (100% / $ev_discprods_pview_number_of_items_per_row_mobile);
+                @include min-screen($desktop-min) {
+                    width: (100% / $ev_discprods_pview_number_of_items_per_row_desktop);
+                }
+            }
+        }
+    }
+}

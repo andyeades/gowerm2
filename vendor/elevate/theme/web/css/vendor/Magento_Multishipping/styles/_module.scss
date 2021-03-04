@@ -1,0 +1,162 @@
+.multicheckout {
+    .title {
+        margin-bottom: $indent__l;
+
+        strong {
+            font-weight: $font-weight__regular;
+        }
+    }
+
+    .table-wrapper {
+
+
+        .action.delete {
+            display: inline-block;
+        }
+
+        .col {
+            .qty {
+                display: inline-block;
+
+                .input-text {
+                    @include abs-input-qty();
+                }
+            }
+
+            .label {
+                @include abs-visually-hidden();
+            }
+
+            &.item {
+                .action.edit {
+                    font-weight: $font-weight__regular;
+                    margin-left: $indent__s;
+                }
+            }
+        }
+    }
+
+    &:not(.address) {
+        .table-wrapper {
+            .product-item-name {
+                margin: 0;
+            }
+        }
+    }
+
+    > .actions-toolbar {
+        margin-top: $indent__xl;
+    }
+
+
+    .item-options {
+        @include abs-product-options-list();
+        @include abs-add-clearfix();
+        margin: $indent__s 0 0;
+    }
+
+    @include abs-account-blocks();
+
+    .block {
+
+        .methods-shipping {
+            .item-content {
+                .fieldset {
+                    > .legend {
+                        @include abs-visually-hidden();
+                    }
+
+                    > .legend + br {
+                        @include abs-no-display();
+                    }
+
+                    > .field {
+                        &:before {
+                            display: none;
+                        }
+
+                        .control {
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .block-title,
+    .block-content .title {
+        border-bottom: $border-width__base solid $border-color__base;
+        padding-bottom: $indent__s;
+
+        strong {
+            font-weight: $font-weight__regular;
+
+            span {
+                @include lib-css(color, $primary__color__light);
+            }
+        }
+    }
+
+    .block-content {
+        .title {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    }
+
+
+
+    .box-title {
+        span {
+            margin-right: $indent__s;
+        }
+    }
+
+    .box-shipping-method {
+        .price {
+            font-weight: $font-weight__bold;
+        }
+    }
+
+    .box-billing-method {
+        .fieldset {
+            margin: 0;
+
+            .legend.box-title {
+                margin: 0 0 $indent__xs;
+            }
+        }
+    }
+
+    .hidden {
+        @include abs-no-display();
+    }
+
+    .checkout-review .grand.totals {
+        @include lib-font-size($font-size__xl);
+        margin-bottom: $indent__xl;
+
+        .mark {
+            font-weight: $font-weight__regular;
+        }
+    }
+}
+
+[class^='multishipping-'] {
+    .nav-sections,
+    .nav-toggle {
+        @include abs-no-display();
+    }
+
+    .logo {
+        margin-left: 0;
+    }
+}
+
+.multishipping-checkout-success {
+    .nav-sections {
+        display: block;
+    }
+}
+

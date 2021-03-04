@@ -1,0 +1,60 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_megamenu_listing_data_source" xsi:type="string">Elevate\Megamenu\Model\ResourceModel\Megamenu\Grid\Collection</item>
+                <item name="elevate_megamenu_form_data_source" xsi:type="string">Elevate\Megamenu\Model\ResourceModel\Megamenu\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\AbstractBlock">
+        <plugin name="remove_block" type="Elevate\Megamenu\Plugin\RemoveBlock" />
+    </type>
+    <type name="Elevate\Megamenu\Ui\DataProvider\Megamenu\Form\MegamenuDataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_megamenu_form_data_source" xsi:type="string">Elevate\Megamenu\Model\ResourceModel\Megamenu\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Elevate\Megamenu\Model\ResourceModel\Megamenu\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_megamenu</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Megamenu\Model\ResourceModel\Megamenu</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="megamenuMetadata" type="Elevate\Megamenu\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Elevate\Megamenu\Model\ResourceModel\Megamenu</argument>
+            <argument name="modelClassName" xsi:type="string">Elevate\Megamenu\Model\Megamenu</argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\Megamenu\Model\MegamenuRepository">
+        <arguments>
+            <argument name="megamenuMetadata" xsi:type="object">megamenuMetadata</argument>
+        </arguments>
+    </type>
+    <virtualType name="Elevate\Megamenu\Ui\DataProvider\Megamenu\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool"></virtualType>
+
+
+    <preference for="Elevate\Megamenu\Api\MegamenuRepositoryInterface" type="Elevate\Megamenu\Model\MegamenuRepository"/>
+    <preference for="Elevate\Megamenu\Api\Data\MegamenuInterface" type="Elevate\Megamenu\Model\Megamenu"/>
+    <preference for="Elevate\Megamenu\Api\Data\MegamenuSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <type name="Magento\Config\Model\Config\Backend\Image">
+        <arguments>
+            <argument name="extensions" xsi:type="array">
+                <item name="allowed" xsi:type="array">
+                    <item name="svg" xsi:type="number">1</item>
+                </item>
+                <item name="image_allowed" xsi:type="array">
+                    <item name="svg" xsi:type="number">1</item>
+                </item>
+                <item name="media_allowed" xsi:type="array">
+                    <item name="svg" xsi:type="number">1</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

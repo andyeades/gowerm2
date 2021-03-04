@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<page layout="full_width_nomargintop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="css/styles-product-shared.css"/>
+        <link src="css/styles-product-view.css"/>
+    </head>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Text" name="fixminicarterror">
+                <arguments>
+                    <argument name="text" xsi:type="string"><![CDATA[<script>window.checkout = {};</script>]]></argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="content">
+            <referenceContainer name="product.info.main">
+                <container name="ev.prod.info.shortdesscription" htmlTag="div" htmlId="ev-prod-short-desc" after="page.main.title">
+
+                </container>
+                <referenceContainer name="product.info.price" htmlId="product-info-price-main" />
+            </referenceContainer>
+
+            <container name="ev.product.info.bottom.outer" htmlTag="div" htmlId="pinfo-btm-o" after="product.info.media">
+                <container name="ev.product.info.bottom.main" htmlTag="div" htmlId="pinfo-btm-m">
+                    <container name="ev.product.info.desc.outer" htmlTag="div" htmlClass="pview-description-outer">
+                        <container name="ev.product.info.desc.inner.container" htmlTag="div" htmlClass="container">
+                            <container name="ev.product.info.desc.inner" htmlTag="div" htmlClass="pview-description-inner">
+                                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.desc" template="Magento_Catalog::product/view/description/desc.phtml">
+                                </block>
+                            </container>
+                        </container>
+                    </container>
+                    <container name="ev.product.keyfacts.icontitledesc.outer" htmlTag="div" htmlClass="pview-keyfacts-icontitledesc-outer">
+                        <container name="ev.product.keyfacts.icontitledesc.container" htmlTag="div" htmlClass="container">
+                            <block class="Magento\Catalog\Block\Product\View" name="ev.whatmakesthemsoyummy" template="Magento_Catalog::product/view/client-specific/gowercottage/whatmakesthemsoyummy.phtml"/>
+                            <block class="Elevate\ProductIcons\Block\Frontend\Producticons" name="ev.prod.icon.block.gower.inner" template="Elevate_ProductIcons::icon-withtitlesubtext.phtml">
+                            </block>
+                        </container>
+                    </container>
+                    <container name="ev.product.deepercontent.outer" htmlTag="div" htmlClass="pview-desc-deepercontent-outer">
+                        <container name="ev.product.deepercontent.container" htmlTag="div" htmlClass="container">
+                        <block class="Elevate\Productdeepercontent\Block\Output" name="product.info.desc.deepercontent" template="Elevate_Productdeepercontent::output.phtml">
+                        </block>
+                    </container>
+                </container>
+                    <container name="ev.product.info.bottom.bottom" htmlTag="div" htmlClass="pview-info-btm-btm">
+                        <container name="ev.product.info.bottom.bottom.inner" htmlTag="div" htmlClass="container">
+
+                        </container>
+                    </container>
+            </container>
+            </container>
+
+        </referenceBlock>
+        <referenceBlock name="product.info.details" template="Magento_Catalog::product/view/client-specific/gowercottage/details-gowercottage.phtml">
+            <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.ingredients" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Ingredients</argument>
+                    <argument name="at_call" xsi:type="string">getIngredients</argument>
+                    <argument name="at_code" xsi:type="string">ingredients</argument>
+                    <argument name="css_class" xsi:type="string">ingredients</argument>
+                    <argument name="at_label" translate="true" xsi:type="string">none</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="ingredients"</argument>
+                    <argument name="sort_order" xsi:type="string">10</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.nutritionalinfo" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="product.ingredients">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Nutritional Information</argument>
+                    <argument name="at_call" xsi:type="string">getNutritionalInformation</argument>
+                    <argument name="at_code" xsi:type="string">nutritional_information</argument>
+                    <argument name="css_class" xsi:type="string">nutritionalinfo</argument>
+                    <argument name="at_label" translate="true" xsi:type="string">none</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="nutritionalinfo"</argument>
+                    <argument name="sort_order" xsi:type="string">20</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
+        <referenceContainer name="skip_gallery_after.wrapper" remove="true"/>
+        <referenceBlock name="skip_gallery_after.target" remove="true" />
+        <referenceBlock name="skip_gallery_before.target" remove="true" />
+        <referenceBlock name="product.info.media.image" remove="true" />
+
+
+        <referenceContainer name="product.info.media">
+            <block class="Magento\Catalog\Block\Product\View\Gallery" name="product.info.media.image.elevate" template="Magento_Catalog::product/view/ev-gallery-alt.phtml">
+                <arguments>
+                    <argument name="gallery_options" xsi:type="object">Magento\Catalog\Block\Product\View\GalleryOptions</argument>
+                    <argument name="imageHelper" xsi:type="object">Magento\Catalog\Helper\Image</argument>
+                </arguments>
+                <container name="ev.fullwidth.prodimage.overlay.container" htmlTag="div" htmlClass="ev-fullwidth-background-overlay">
+                    <container name="ev.fullwidth.prodimage.inner.container" htmlTag="div" htmlClass="container">
+                        <block class="Magento\Catalog\Block\Product\View\Gallery" name="product.info.media.image.thumbs.elevate" template="Magento_Catalog::product/view/ev-thumbnails.phtml">
+                            <arguments>
+                                <argument name="gallery_options" xsi:type="object">Magento\Catalog\Block\Product\View\GalleryOptions</argument>
+                                <argument name="imageHelper" xsi:type="object">Magento\Catalog\Helper\Image</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                </container>
+
+            </block>
+        </referenceContainer>
+
+
+
+        <move element="catalog.product.related" destination="ev.product.info.bottom.bottom.inner" after="-" />
+        <move element="product.info.overview" before="product.info.price" destination="ev.prod.info.shortdesscription" />
+        <move element="product.info.main" destination="ev.fullwidth.prodimage.inner.container" />
+        <move element="product.info.media" destination="content" before="-"/>
+        <move element="product.info.details" destination="ev.product.info.bottom.main" after="ev.product.keyfacts.icontitledesc.outer"/>
+        <referenceContainer name="product.info.leadtime" remove="true"/>
+        <referenceContainer name="product.info.bottlesize" remove="true"/>
+        <referenceContainer name="productalert.stock" remove="true"/>
+        <referenceContainer name="product.info.addto" remove="true"/>
+        <referenceContainer name="product.info.social" remove="true"/>
+        <referenceBlock name="ev.product.icons.pp.block1" remove="true"/>
+        <referenceBlock name="product-info-instructions" remove="true" />
+        <referenceBlock name="product-info-reviews" remove="true" />
+        <referenceBlock name="product-info-dimensions" remove="true" />
+        <referenceBlock name="pattachments.tab" remove="true"/>
+        <referenceBlock name="aw_pq_ajax_container" remove="true"/>
+        <referenceBlock name="product.info.description" remove="true" />
+        <referenceBlock name="product.info.leadtime" remove="true"/>
+        <referenceBlock name="breadcrumbs" remove="true"/>
+        <referenceBlock name="product.attributes" remove="true"/>
+        <referenceBlock name="product.info.stock.sku" remove="true"/>
+        <referenceBlock name="reviews.tab" remove="true"/>
+    </body>
+</page>

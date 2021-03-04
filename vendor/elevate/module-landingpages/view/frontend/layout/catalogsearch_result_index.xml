@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="page-with-filter"/>
+        <referenceBlock name="catalogsearch.leftnav">
+            <action method="setTemplate" >
+                <argument name="template" xsi:type="string">Elevate_LandingPages::layer/view.phtml</argument>
+            </action>
+            <container name="layer.additional.info" as="layer_additional_info"/>
+            <container name="layer.content.before" as="layer_content_before"/>
+        </referenceBlock>
+        <referenceBlock name="catalogsearch.navigation.renderer">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Elevate_LandingPages::layer/filter.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="catalogsearch.description">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Elevate_LandingPages::category/description.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="catalogsearch.cms">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Elevate_LandingPages::category/cms.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

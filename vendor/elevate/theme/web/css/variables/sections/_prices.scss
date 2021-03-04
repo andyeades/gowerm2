@@ -1,0 +1,156 @@
+// Price Wrapper Price (Defaults)
+
+$price_font_family: false !global;
+$price_font_weight: 400 !default;
+$price_font_size: 0.9375rem !default;
+$price_color: $body-color !default;
+
+// Price Labels (Defaults)
+
+$price_label_font_weight: 400 !default;
+$price_label_font_size: 0.9375rem !default;
+$price_label_color: $body-color !default;
+
+$pwrap_price_after_label_color: $body-color !default;
+$pwrap_price_after_label_font_weight: 600 !default;
+$pwrap_price_after_label_font_size: 0.875rem !default;
+
+// Old Price
+
+$old_price_color: $body-color !default;
+
+$old_price_label_texttransform: uppercase !default;
+$old_price_label_color: $body-color !default;
+$old_price_label_font_weight: 600 !default;
+
+$old_price_font_weight: 600 !default;
+$old_price_font_size: 0.9375rem !default;
+$old_price_text_decoration: none !default;
+$old_price_text_decoration_labelprice: price !default;
+$old_price_order: 1 !default;
+
+$old_price_after_color: $theme-brand-color-1 !default;
+$old_price_after_font_weight: 600 !default;
+$old_price_after_label_font_weight: 600 !default;
+$old_price_after_label_color: $body-color !default;
+$old_price_after_label_font_size: 0.875rem !default;
+
+// Minimal Price
+
+$minimal_price_order: 1 !default;
+$minimal_price_color: $body-color !default;
+
+$minimal_price_label_texttransform: uppercase !default;
+$minimal_price_label_color: $body-color !default;
+$minimal_price_label_font_weight: 600 !default;
+
+$minimal_price_font_weight: 600 !default;
+$minimal_price_font_size: 0.9375rem !default;
+$minimal_price_text_decoration: none !default;
+$minimal_price_text_decoration_labelprice: none !default;
+
+
+$minimal_price_after_color: $theme-brand-color-1 !default;
+$minimal_price_after_font_weight: 600 !default;
+$minimal_price_after_label_font_weight: 600 !default;
+$minimal_price_after_label_color: $body-color !default;
+$minimal_price_after_label_font_size: 0.875rem !default;
+
+// Was Price
+
+$was_price_font_weight: 600 !default;
+$was_price_label_font_weight: 600 !default;
+$was_price_label_capitalisation: uppercase !default;
+$was_price_color: #6b6b6b !default;
+$was_price_font_size: $font_size__s !default;
+$was_price_order: 2 !default;
+$was_price_text_decoration_labelprice: both !default;
+$was_price_text_decoration: line-through !default;
+$was_price_after_label_color: #6b6b6b !default;
+$was_price_after_label_font_weight: 600 !default;
+$was_price_after_label_capitalisation: uppercase !default;
+
+
+$final_price_label_font_weight: 600 !default;
+$final_price_label_color: $body-color !default;
+$final_price_label_font_size: 0.875rem !default;
+$final_price_font_weight: 600 !default;
+$final_price_font_size: 1.75rem !default;
+
+$final_price_color: $theme-brand-color-2 !default;
+$final_price_after_label_font_weight: 600 !default;
+$final_price_after_label_color: $body-color !default;
+$final_price_after_label_font_size: 0.875rem !default;
+
+
+//pitems
+
+$pitems_pricebox_prices_margin: 0 0 0.5rem 0 !default;
+$pitems_pricebox_prices_margin_last_of_type: 0 !default;
+$pitems_prices_letter_spacing: 0 !default;
+
+$pitems_shared_prices_font_size: 0.9375rem !default;
+$pitems_shared_prices_font_size_desktop: 0.9375rem !default;
+
+
+$pitems_minimal_price_order: 1 !default;
+
+$special-price-font-weight: 600 !default;
+$special_price_label_font_weight: 600 !default;
+$special_price_label_capitalisation: uppercase !default;
+$special-price-color: $theme-brand-color-2 !default;
+$special-price-font-size: $font-size__s !default;
+$special_price_order: 3 !default;
+
+$special_price_after_label_font_weight: 600 !default;
+$special_price_after_label_capitalisation: uppercase !default;
+$special_price_after_label_color: $theme-brand-color-2 !default;
+
+
+
+$normal-price-font-weight: 600 !default;
+$normal_price_label_font_weight: 600 !default;
+$normal_price_color: $theme-brand-color-2 !default;
+$normal_price_font_size: $font-size__s !default;
+$normal_price_label_capitalisation: uppercase !default;
+$normal_price_order: 3 !default;
+
+$normal_price_after_label_capitalisation: uppercase !default;
+$normal_price_after_label_font_weight: 600 !default;
+$normal_price_after_label_color: $theme-brand-color-2 !default;
+
+
+
+
+$product-old-price-color: $body-color !default;
+$product-old-price-font-weight: 600 !default;
+
+
+$pitems-special-price-color: $special-price-color !default;
+$pitems-special-price-font-weight: $special-price-font-weight !default;
+$pitems-special-price-font-size: 0.9375rem !default;
+$pitems_special_price_order: 1 !default;
+
+$pitems-normal_price_color: $normal_price_color !default;
+$pitems-normal-price-font-weight: $normal-price-font-weight !default;
+$pitems-normal-price-font-size: 0.9375rem !default;
+$pitems_normal_price_order: 1 !default;
+
+
+$pitems-old-price-color: $old-price-color !default;
+$pitems-old-price-font-weight: $old-price-font-weight !default;
+$pitems-old-price-font-size: 0.9375rem !default;
+$pitems_old_price_order: 1 !default;
+$pitems_old_price_opacity: false !default;
+
+
+
+
+// Redund
+
+$pitems_final_price_price_excluding_tax_font_weight: 400 !default;
+$pitems_final_price_price_excluding_tax_font_size: 1.5rem !default;
+
+
+$pitems_final_price_price_including_tax_font_weight: 400 !default;
+$pitems_final_price_price_including_tax_font_size: 1.5rem !default;

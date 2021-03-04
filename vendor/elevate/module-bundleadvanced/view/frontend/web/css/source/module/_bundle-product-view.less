@@ -1,0 +1,41 @@
+//
+//  Bundle product view
+//  _____________________________________________
+
+.aw-sbp__bundle-options-container {
+    .fieldset-bundle-options {
+        margin: 0 0 10px;
+
+        .legend {
+            display: none;
+
+            + br {
+                display: none;
+            }
+        }
+    }
+
+    .bundle-options-container {
+        .bundle-options-wrapper,
+        .product-options-wrapper {
+            float: none;
+            width: auto;
+        }
+
+        .product-options-wrapper {
+            .fieldset-bundle-options {
+                .field {
+                    &.choice {
+                        .label {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.aw-sbp__hidden-container {
+    display: none;
+}

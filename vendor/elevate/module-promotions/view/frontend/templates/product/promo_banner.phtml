@@ -1,0 +1,192 @@
+<style>
+        
+</style>
+<?php 
+
+
+
+$helper = $this->helper('Elevate\Promotions\Helper\Data');
+$_product = $block->getProduct();
+
+ $global_promotion_countdown_time = $helper->getConfig('elevate_promotions/countdown/countdown_time');
+
+$global_promotion_countdown_pp_enable = $helper->getConfig('elevate_promotions/countdown/countdown_pp_enable'); 
+$global_promotion_enabled = $helper->getConfig('elevate_promotions/general/is_enabled');
+$sitewide_enable = $helper->getConfig('elevate_promotions/sitewide/enable');
+$global_promotion_countdown_pp_background_colour = $helper->getConfig('elevate_promotions/countdown/countdown_pp_background_colour');
+$enable_pp_promo = $helper->getConfig('elevate_promotions/productpage/enable_pp_promo');
+$sitewide_bkg_image = $helper->getConfig('elevate_promotions/sitewideheader/sitewide_bkg_image');
+$sitewide_custom_block = $helper->getConfig('elevate_promotions/sitewideheader/sitewide_custom_block_pp');
+$enable_pp_promo_static = $helper->getConfig('elevate_promotions/productpage/enable_pp_promo_static');
+
+$global_promotion_countdown_banner_image = $helper->getConfig('elevate_general/countdown/countdown_banner_image');
+
+$global_blacklist = explode(',', $helper->getConfig('elevate_promotions/general/product_blacklist'));
+$global_blacklist = array_flip($global_blacklist);
+
+    $main_text = $helper->getConfig('elevate_promotions/productpage/promo_text');
+    $pill_text = $helper->getConfig('elevate_promotions/productpage/promo_subtext');
+          
+    $font_colour = $helper->getConfig('elevate_promotions/productpage/font_colour');
+    $promo_text = $helper->getConfig('elevate_promotions/productpage/promo_text');
+    $background_colour = $helper->getConfig('elevate_promotions/productpage/background_colour');
+    $promo_subtext_colour = $helper->getConfig('elevate_promotions/productpage/promo_subtext_colour');
+    $promo_subtext = $helper->getConfig('elevate_promotions/productpage/promo_subtext');
+
+$_gpsku = $helper->getConfig('elevate_promotions/general/product_skus');
+     $pill_bkg_colour = $helper->getConfig('elevate_promotions/sitewide/promo_pill_colour_bkg');  
+    $pill_text_colour = $helper->getConfig('elevate_promotions/sitewide/promo_pill_colour_font');     
+    
+      
+$global_promotion = false;
+ $global_promotion_skus = [];
+if ($_gpsku == '') {
+
+    $global_promotion = true;
+
+} else {
+    $global_promotion_skus = explode(',', $_gpsku);
+    $global_promotion_skus = array_flip($global_promotion_skus);
+}
+
+
+
+?>
+  
+     <?php
+          $global_promo_this_product = true;
+          if ($global_promotion_enabled) {
+              ?>
+              
+            
+              <?
+
+             
+              if ($enable_pp_promo) {
+                              ?>
+                               
+                              <?
+
+               
+                  if ((array_key_exists($_product->getSku(), $global_promotion_skus) || $global_promotion) && !array_key_exists($_product->getSku(), $global_blacklist)) {
+                  
+                  
+             
+                      if (!empty($sitewide_bkg_image)) {
+                          $background_style = 'style="margin-bottom:10px;background:url(\'/media/banners/' . $sitewide_bkg_image . '\');"';
+                      }
+
+
+                      if($enable_pp_promo_static){
+
+                      }
+                      if (!empty($sitewide_custom_block) && $enable_pp_promo_static) {
+                    
+                          // if(Mage::helper('cms/block')->isActive('identifier',$sitewide_custom_block)){
+                          //do that
+                          ?>
+                        <div id="ppslidewrap">
+                          <div class="slider-wrap" <?php echo $background_style; ?>>
+                            <div class="elements">
+                              <div class="inner-elements">
+                                  <?php
+                                  echo $this->getLayout()->createBlock('cms/block')->setBlockId($sitewide_custom_block)->toHtml();
+                                  ?>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                          <?php
+
+                          //  }
+
+                      } else if ($global_promotion_countdown_pp_enable) {
+                      
+                   
+                          $global_promo_this_product = 1;
+                          ?>
+                        <div id="ppslidewrap">
+                          <div class="slider-wrap" style="margin-bottom:10px;">
+                            <div class="elements">
+                              <div class="inner-elements" style="padding: 5px 0px;">
+                              
+                              <!--
+                                <div class="the-sale-text-icon">
+                                  <img style="max-width:100%" src="/media/banners/<?php echo $global_promotion_countdown_banner_image; ?>"/>
+                                </div>
+                                
+                                -->                                                                                                                                                                                                                                                                                                                                                                                
+          
+                                                        <div class="the-sale-text-icon" style="color: white;width: auto !important;"><div style="font-size: 23px;text-transform: uppercase;font-weight: normal;padding: 0;line-height: 100%;font-weight: bold;"><?php echo $main_text; ?></div><div class="new-hdr-icon hide_mobile_promo" style="background-color:<?php echo $pill_bkg_colour; ?>; color:<?php echo $pill_text_colour; ?>;display: inline-block;width: auto !important;display: block !important;border-radius: 5px;text-align: center;text-transform: uppercase;margin-top: 2px;"><?php echo $pill_text; ?></div></div>
+                                <div class="countdown-timer-outer" style="order:2;">
+                                  <ul id="countdown_timer">
+                                    <li><span class="days"></span>
+                                      <p>Days</p></li>
+                                    <li><span class="hours"></span>
+                                      <p>Hours</p></li>
+                                    <li><span class="minutes"></span>
+                                      <p>Minutes</p></li>
+                                    <li><span class="seconds"></span>
+                                      <p>Seconds</p></li>
+                                  </ul>
+                                  
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+        
+
+
+                          <?php
+                      }
+                  }
+
+              }
+          }
+          ?>
+          
+          
+                   <style>
+                           .freedelwrap ul#countdown_timer li {
+    color: #fff !important;
+    border-color: #fff !important;
+}
+                   </style>                                       
+          
+           <div id="ppslidewrap" class="freedelwrap" style="display:none;">
+                          <div class="slider-wrap" style="    margin-bottom: 10px;
+    background: url(/media/winter-free.jpg);
+    background-position-x: 00px;
+    background-position-y: 181px;" >
+                            <div class="elements">
+                              <div class="inner-elements" style="padding: 5px 0px;">
+                              
+                                                                                                                                                                                                                                                                                                                                                                                                
+          
+                               <div class="the-sale-text-icon" style="color: white;width: auto !important;">
+                               <div style="font-size: 23px;text-transform: uppercase;font-weight: normal;padding: 0;line-height: 100%;font-weight: bold;">
+                               FREE NEXT DAY DELIVERY</div>
+                               <div class="new-hdr-icon hide_mobile_promo" 
+                               style="background-color:<?php echo $pill_bkg_colour; ?>; 
+                               color:<?php echo $pill_text_colour; ?>;display: inline-block;width: auto !important;display: block !important;border-radius: 5px;text-align: center;text-transform: uppercase;margin-top: 2px;">
+                              Order before 11am</div><div style="text-align:center;font-size: 11px;">*UK mainland only, terms apply.</div></div>
+                                <div id="countdown_timer_free" class="countdown-timer-outer" style="order:2;">
+                                  <ul id="countdown_timer">
+                                    <li><span class="days"></span>
+                                      <p>Days</p></li>
+                                    <li><span class="hours"></span>
+                                      <p>Hours</p></li>
+                                    <li><span class="minutes"></span>
+                                      <p>Minutes</p></li>
+                                    <li><span class="seconds"></span>
+                                      <p>Seconds</p></li>
+                                  </ul>
+                                     
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>

@@ -1,0 +1,409 @@
+$temp_coloro: #000;
+$temp_coloro-a: #000;
+$temp_coloro-b: #000;
+$happybeds-2-rgba:     rgba(0, 107, 127, 0.5);
+$happybeds-2-rgba-b:     rgba(0, 107, 127, 0.7);
+
+
+$kb_category_inner_border_color: #e6eaf3;
+$kb_category_view_inner_border_color: #000;
+
+$kb_landing_page_title_h2_font_size: 1.188rem;
+$kb_landing_page_title_h2_font_weight: 600;
+
+// Generate the small columns
+@mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
+    position:      relative;
+    min-height:    1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-sm-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+// Generate the extra small columns
+@mixin make-xs-column($columns, $gutter: $grid-gutter-width) {
+    position:      relative;
+    float:         left;
+    width:         percentage(($columns / $grid-columns));
+    min-height:    1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+}
+// Generate the medium columns
+@mixin make-md-column($columns, $gutter: $grid-gutter-width) {
+    position:      relative;
+    min-height:    1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-md-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+// Generate the large columns
+@mixin make-lg-column($columns, $gutter: $grid-gutter-width) {
+    position:      relative;
+    min-height:    1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-lg-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+// Generate the xlarge columns
+@mixin make-xlg-column($columns, $gutter: $grid-gutter-width) {
+    position:      relative;
+    min-height:    1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-xlg-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+
+
+.kb-tag-cloud {
+    display: none;
+}
+
+.kb-category-view {
+  .kb-category-view-subcategory {
+
+    @include make-sm-column(3);
+    text-align: center;
+    .category-name {
+      text-transform: uppercase;
+      font-weight:    600;
+    }
+    .kb-category-view-inner {
+      border: 1px solid $kb_category_view_inner_border_color;
+    }
+
+  }
+  .kb-category-row {
+    margin: 0 -15px;
+  }
+  .kb-articles-link {
+    font-size: 0.8em;
+  }
+
+
+    .kb-category-img {
+        img {
+            @include max-screen($screen-sm-max) {
+                width: 100%;
+            }
+        }
+    }
+
+}
+
+.kbase {
+    .articles {
+        flex-wrap:   wrap;
+        display:     flex;
+        align-items: stretch;
+        margin-left: -15px;
+        margin-right: -15px;
+        >.article {
+            flex: 0 1 auto;
+
+        }
+        .article {
+            height:        initial !important;
+            flex:          0 1 auto;
+            display:       flex;
+            align-items:   stretch;
+            margin-bottom: 10px;
+            .overtext {
+                span {
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    display: block;
+                }
+            }
+            .overa {
+                border:  1px solid #ccc;
+                padding: 10px;
+                height:  initial !important;
+                flex:    0 1 auto;
+                width:   100%;
+                &:hover {
+                    background-color: #f7f5f5;
+                    text-decoration: none;
+                    color: $link-color;
+                }
+            }
+        }
+    }
+}
+
+.overtext {
+    margin-top: 10px;
+}
+
+
+.kb-category-block {
+  @include make-sm-column(3);
+}
+
+
+.kb-category-inner {
+  text-align: center;
+  border:     1px solid $kb_category_inner_border_color;
+  min-height: 414px;
+  @include max-screen($screen-xs-max) {
+    min-height:    314px;
+    margin-bottom: 20px;
+  }
+
+  @include screen($screen-sm-min, $screen-sm-max) {
+    min-height: 340px;
+
+  }
+  .see-all-link {
+    display:        block;
+    margin-bottom:  15px;
+    color:          $temp_coloro-a;
+    font-weight:    600;
+    text-transform: uppercase;
+    i {
+      font-size: 0.8em;
+    }
+  }
+
+}
+
+.kb-got-question-header {
+  height:          360px;
+  background:      $temp_coloro-b;
+  text-align:      center;
+  background:      linear-gradient($happybeds-2-rgba-b, $happybeds-2-rgba-b), url("../images/modules/elevate/kb/faq-knowledgebase.jpg") no-repeat center;
+  background-size: cover;
+  @include rj-clearfix();
+    h1 {
+        text-transform: uppercase;
+        color: white;
+        font-size: 39px;
+        font-weight: 600;
+    }
+    .white-text {
+        color: white;
+    }
+  h2 {
+    color:          white;
+    font-size:      52px;
+    text-transform: uppercase;
+    margin-top:     70px;
+    margin-bottom:  55px;
+    @include max-screen($screen-xs-max) {
+      font-size:     34px;
+      margin-bottom: 25px;
+      margin-top:    48px;
+    }
+    @include screen($screen-sm-min, $screen-sm-max) {
+      font-size: 37px;
+    }
+  }
+  .kb-got-question-header-search-row {
+    width:  80%;
+    margin: 0 auto;
+    input {
+      width:   60%;
+      display: inline-block;
+      height:  50px;
+      @include max-screen($screen-xs-max) {
+        height:        40px;
+        width:         90%;
+        margin-bottom: 20px;
+      }
+    }
+    .btn-hbred {
+      margin-left:    25px;
+      width:          200px;
+      text-transform: uppercase;
+      padding:        10px 20px;
+      font-size:      20px;
+      font-weight:    600;
+      @include max-screen($screen-xs-max) {
+        font-size:     16px;
+        height:        40px;
+        padding:       10px;
+        margin-left:   0;
+        margin-bottom: 15px;
+        width:         70%;
+      }
+    }
+  }
+
+}
+
+.kb-landing-page-title {
+  h2 {
+
+     @include font-size($kb_landing_page_title_h2_font_size);
+      font-weight: $kb_landing_page_title_h2_font_weight;
+        margin: 10px 10px 10px 0;
+
+  }
+  .line-seperator-l {
+    bottom: -2px;
+      position: absolute;
+      align-self: flex-end;
+  }
+    .line-seperator-m {
+        display: flex;
+        align-items: center;
+    }
+}
+.browseall {
+
+    font-size:     16px;
+
+    padding-top:   9px;
+    color:         #f0386c;
+
+}
+
+.line-seperator-l,
+.line-seperator-m {
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.line-seperator-m {
+    width: 100%;
+    border-bottom: 2px solid #ddd;
+}
+
+.line-seperator-l {
+    width: 72px;
+    border-bottom: 2px solid #0e1936;
+}
+
+.kb-sub-item-outer {
+    width: 100%;
+
+
+  @include make-md-column(4);
+  @include max-screen($screen-xs-max) {
+    margin-bottom: 20px;
+  }
+  @include screen($screen-sm-min, $screen-sm-max) {
+    margin-bottom: 20px;
+    min-height:    140px;
+  }
+  @include screen($screen-md-min, $screen-md-max) {
+    min-height: 120px;
+  }
+}
+
+.kb-sub-item-inner {
+  border: 1px solid $temp_coloro;
+  @include rj-clearfix();
+  @include screen($screen-sm-min, $screen-sm-max) {
+    min-height: 140px;
+  }
+  @include screen($screen-md-min, $screen-md-max) {
+    min-height: 120px;
+  }
+}
+
+.kb-sub-item-img {
+  float: left;
+  width: 30%;
+  img {
+    @include img-responsive();
+  }
+}
+
+.kb-sub-item-right {
+  padding: 10px 20px;
+  width:   70%;
+  float:   right;
+  @include max-screen($screen-xs-max) {
+    padding: 8px;
+  }
+  a {
+    display:        block;
+    font-weight:    600;
+    margin-bottom:  13px;
+    color:          $temp_coloro-a;
+    text-transform: uppercase;
+    font-size:      11px;
+    @include max-screen($screen-xs-max) {
+      margin-bottom: 5px;
+      font-size:     10px;
+    }
+    @include screen($screen-sm-min, $screen-sm-max) {
+      font-size:     14px;
+      margin-bottom: 16px;
+    }
+
+    i {
+      font-size: 0.7em;
+    }
+  }
+}
+
+.kb-sub-item-text {
+  font-size: 10px;
+  @include screen($screen-sm-min, $screen-sm-max) {
+    font-size: 12px;
+  }
+
+}
+
+.kb-category-img {
+  img {
+    @include img-responsive();
+
+  }
+}
+
+.kb-landing-page-title {
+  h2 {
+    text-transform: uppercase;
+    position:       relative;
+    bottom:         -5px;
+
+  }
+}
+
+.kb-category-name {
+  text-transform: uppercase;
+  font-weight:    600;
+  margin-top:     10px;
+}
+
+.kb-category-items {
+  li {
+    margin:  10px 0;
+    padding: 0 5px;
+  }
+}
+
+.kb-landingpage-row {
+  @include make-row();
+  margin-top: 30px;
+}
+
+.kb-landingpage-row-2 {
+  @include make-row();
+  margin-top:    30px;
+  margin-bottom: 30px;
+}
+
+.sidebar-addthis {
+    clear: both;
+    position: absolute;
+    top: initial;
+}

@@ -1,0 +1,8 @@
+.copyright {
+  @include lib-css(background-color, $copyright__background-color);
+  @include lib-css(color, $color-white);
+  box-sizing: border-box;
+  display: block;
+  padding: $indent__s;
+  text-align: center;
+}

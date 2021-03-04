@@ -1,0 +1,14 @@
+  
+{
+  "name": "elevate/elevate-csp",
+  "description": "Elevate Cart Assignments",
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Elevate\\Csp\\": ""
+    }
+  }
+}

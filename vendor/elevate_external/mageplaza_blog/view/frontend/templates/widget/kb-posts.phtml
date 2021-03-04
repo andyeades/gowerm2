@@ -1,0 +1,77 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+function getPreviewText($article) {
+
+        $text = $article->getPostContent();
+        $length = 160;
+        if (strlen($article->getMetaDescription()) > 10) {
+            $text = $article->getMetaDescription();
+
+            $string = (strlen($text) > $length) ? substr($text,0,$length).'...' : $text;
+
+
+            return $string;
+        }
+
+        $text = strip_tags($text);
+
+        return $string = (strlen($text) > $length) ? substr($text,0,$length).'...' : $text;
+    }
+
+
+/** @var \Mageplaza\Blog\Block\Widget\Posts $block */
+
+$posts = $block->getCollection();
+
+
+?>
+
+        <?php foreach ($posts as $post)  { ?>
+        <?php
+        $preview_text = getPreviewText($post);
+        ?>
+            <div class="article col-xs-6 col-sm-6 col-md-3">
+                <a href="<?= $post->getUrl() ?>" class="overa">
+                    <div class="overwrap">
+                        <div class="overimage" style="background-image: url('<?= $block->resizeImage($post->getImage(), '400x'); ?>');height: 175px;background-size: cover;">
+
+                        </div>
+                        <div class="overtext">
+         <span style="    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}"><?= $post->getName(); ?></span>
+                            <div>
+                                <?= $preview_text; ?>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+
+                </div>
+
+
+<?php } ?>

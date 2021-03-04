@@ -1,0 +1,41 @@
+$ev-prod-icon-block-pp-border-on: 1;
+$ev-prod-icon-block-pp-border-color: #CCCCCC;
+$ev-prod-icon-block-pp-border: 1px solid $ev-prod-icon-block-pp-border-color;
+$ev-prod-icon-block-pp-border-top: 1px solid $ev-prod-icon-block-pp-border-color;
+$ev-prod-icon-block-pp-border-bottom: 1px solid $ev-prod-icon-block-pp-border-color;
+
+$pp-1-prod-icon-outer-width: 17.5%;
+$pp-1-prod-icon-margin: 20px 0 20px 0;
+
+.ev-prod-icon-block {
+
+}
+
+// Ev Prod Icon Block 1 - Standard Position - Product Page below price
+
+
+
+.ev-prod-icon-block-pp-1 {
+
+  @if ($ev-prod-icon-block-pp-border-on == 1) {
+    border-top: $ev-prod-icon-block-pp-border;
+    border-bottom: $ev-prod-icon-block-pp-border;
+  }
+
+  .ev-product-icons {
+    display: flex;
+    margin: $pp-1-prod-icon-margin;
+  }
+  .ev-product-icon-outer {
+    flex: 0 1 auto;
+    width: $pp-1-prod-icon-outer-width;
+
+  }
+  .ev-product-icon-outer-custom-right {
+    flex: 0 1 auto;
+    width: 30%;
+  }
+  .ev-product-icon-inner {
+
+  }
+}

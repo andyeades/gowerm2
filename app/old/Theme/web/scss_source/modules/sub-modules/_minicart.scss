@@ -1,0 +1,34 @@
+.theme-pearl {
+  .header .quickcart-wrapper .block-quickcart .block-content-quickcart .quickcart-items-wrapper .quickcart-items .quickcart-product-item .cart-item-qty {
+    line-height: initial;
+  }
+  .page-wrapper {
+    .page-header {
+      .minicart-wrapper {
+        .paypal.checkout.after.paypal-logo {
+          text-align: center;
+        }
+        .product-item-name {
+          a {
+            &:link,
+            &:visited {
+              color: $text__color;
+            }
+            &:hover {
+              color: darken($text__color, 15%);
+            }
+          }
+        }
+        .action.viewcart {
+          &:link,
+          &:visited {
+            color: $color-pas-orange;
+          }
+          &:hover {
+            color: darken($color-pas-orange, 15%);
+          }
+        }
+      }
+    }
+  }
+}

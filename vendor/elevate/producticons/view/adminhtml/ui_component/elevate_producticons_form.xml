@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">elevate_producticons_form.elevate_producticons_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevate_producticons_form</item>
+            <item name="deps" xsi:type="string">elevate_producticons_form.elevate_producticons_form_data_source</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="provider" xsi:type="string">elevate_producticons_form.elevate_producticons_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevate_producticons_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Elevate\ProductIcons\Block\Adminhtml\Producticons\Edit\Button\Save"/>
+            <button name="delete" class="Elevate\ProductIcons\Block\Adminhtml\Producticons\Edit\Button\Delete"/>
+            <button name="back" class="Elevate\ProductIcons\Block\Adminhtml\Producticons\Edit\Button\Back"/>
+        </buttons>
+        <deps>
+            <dep>elevate_producticons_form.elevate_producticons_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="elevate_producticons_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Elevate\ProductIcons\Ui\DataProvider\Producticons\Form\ProducticonsDataProvider</argument>
+            <argument name="name" xsi:type="string">elevate_producticons_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">icon_id</argument>
+            <argument name="requestFieldName" xsi:type="string">icon_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="producticons/index/save"/>
+        </settings>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">ProductIcons Item Information</label>
+        </settings>
+        <field name="icon_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>icon_id</dataScope>
+                <label translate="false">Icon ID</label>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="icon_url">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">icon_url</item>
+                    <item name="label" xsi:type="string" translate="true">Icon Image</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Elevate_ProductIcons/image-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="notice" xsi:type="string" translate="true">Don't upload big sized icon image.</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="producticons/index/saveimage"/>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="icon_title" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>icon_title</dataScope>
+                <label translate="false">Icon Title</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="icon_blk_position" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>icon_blk_position</dataScope>
+                <label translate="true">Icon Block Position</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <tooltip>
+                    <description translate="true">Enter a numeric value upto 4 digits in length.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="icon_blk_short_desc_enabled" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>icon_blk_short_desc_enabled</dataScope>
+                <label translate="true">Icon Block Short Desc Enabled</label>
+                <dataType>boolean</dataType>
+                <visible>true</visible>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>checkbox</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="icon_blk_description_enabled" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>icon_blk_description_enabled</dataScope>
+                <label translate="true">Icon Block Description Enabled</label>
+                <dataType>boolean</dataType>
+                <visible>true</visible>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>checkbox</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="icon_start_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">YYYY-MM-dd hh:mm:ss</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="pickerDateTimeFormat" xsi:type="string">YYYY-MM-dd hh:mm:ss</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Start Date</label>
+                <visible>true</visible>
+                <dataScope>icon_start_date</dataScope>
+                <tooltip>
+                    <description translate="true">If required set a date to start displaying this item.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="icon_end_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">YYYY-MM-dd hh:mm:ss</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="pickerDateTimeFormat" xsi:type="string">YYYY-MM-dd hh:mm:ss</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">End Date</label>
+                <visible>true</visible>
+                <dataScope>icon_end_date</dataScope>
+                <tooltip>
+                    <description translate="true">If required set a date to stop displaying this item</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="icon_blk_short_description" sortOrder="50" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Icon Block Short Description</label>
+                <dataScope>icon_blk_short_description</dataScope>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                        <rows>8</rows>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+        <field name="icon_blk_description" sortOrder="50" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Icon Block Description</label>
+                <dataScope>icon_blk_description</dataScope>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                        <rows>8</rows>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+        <field name="icon_blk_style" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>icon_blk_style</dataScope>
+                <label translate="true">Icon Block CSS Style</label>
+                <required>false</required>
+                <visible>true</visible>
+            </settings>
+        </field>
+    </fieldset>
+</form>

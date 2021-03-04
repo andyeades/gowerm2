@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--
+    <preference for="Magento\Sales\Block\Adminhtml\Order\View\Tab\Info"
+                type="Punchout2go\Purchaseorder\Block\Adminhtml\Sales\Order\View\Tab\Info" />
+    -->
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="purchaseorder_to_order_item" type="Punchout2go\Purchaseorder\Model\Plugin\Quote\ToOrderItem"/>
+    </type>
+</config>

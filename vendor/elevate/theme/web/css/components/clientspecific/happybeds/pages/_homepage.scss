@@ -1,0 +1,382 @@
+@if $sitename == happybeds {
+
+    #homepage-aboutus {
+        display: flex;
+        height: auto;
+        align-items: stretch;
+        background-color:    #006b7f;
+        color:          #e6eaf3;
+        @include max-screen($screen-xs-max) {
+            flex-wrap: wrap;
+        }
+        > div {
+            flex: 0 1 auto;
+            display: block;
+            @include max-screen($screen-xs-max) {
+                text-align: center;
+            }
+        }
+        a {
+            color: #00acb6;
+        }
+        #homepage-leftaboutus {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:               50%;
+            background-repeat:   no-repeat;
+            background-size:     contain;
+            background-image:    url(../../images/goodnight.jpg);
+            background-position: center;
+            @include max-screen($screen-xs-max) {
+                width:  100%;
+            }
+            @include min-screen($screen-sm-min) {
+                height: 420px;
+            }
+        }
+        #homepage-rightaboutus {
+            background-color: #0e1936;
+            padding: 20px 20px 30px 35px;
+            width:            100%;
+            @include max-screen($screen-xs-max) {
+                padding:    15px;
+            }
+            @include min-screen($screen-sm-min) {
+                width:  50%;
+            }
+            .homepage-right-inner {
+                @include min-screen($screen-xlg-min) {
+                    width: 720px;
+                }
+            }
+
+        }
+        #homepage-welcometitle {
+            font-size:      18px;
+            margin-top:     0;
+            margin-bottom:  10px;
+            font-weight:    700;
+            letter-spacing: 1px;
+            @include screen($screen-sm-min, $screen-sm-max) {
+                font-size: 22px;
+            }
+            @include screen($screen-md-min, $screen-md-max) {
+                font-size: 28px;
+            }
+            @include min-screen($screen-lg-min) {
+                font-size: 33px;
+            }
+        }
+        #homepage-subtitle {
+            font-size:      16px;
+            margin-top:     20px;
+            margin-bottom:  10px;
+            font-weight:    700;
+            @include min-screen($screen-lg-min) {
+                font-size:      21px;
+                margin-top:     30px;
+            }
+        }
+        p {
+            font-size:      12px;
+            letter-spacing: 1px;
+            font-weight:    300;
+            line-height:    17px;
+        }
+    }
+
+    #hwcs {
+        background: #efefef;
+        @include min-screen($screen-sm-min) {
+            padding-bottom: 40px;
+        }
+        .section-title-outer {
+            @include media-breakpoint-up(xs) {
+                @include make-col(12);
+            }
+            @include max-screen($mobilemax) {
+                text-align:    center;
+                margin-top:    30px;
+                margin-bottom: 0;
+                border-bottom: none;
+            }
+            @include max-screen($screen-xs-max) {
+                padding:       0;
+                border-bottom: none;
+            }
+            @include min-screen($screen-sm-min) {
+                padding-left:  0;
+                padding-right: 0;
+                margin-bottom: 35px;
+                border-bottom: 2px solid #e6eaf3;
+            }
+        }
+        .section-title {
+            color:          #0e1936;
+            font-size:      26px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight:    700;
+            margin-top:     20px;
+            margin-bottom:  0;
+            display:        inline-block;
+            @include max-screen($screen-xs-max) {
+                width:         100%;
+                text-align:    center;
+                font-size:     18px;
+                margin-bottom: 0;
+                float:         none;
+            }
+            @include min-screen($screen-lg-min) {
+                margin-top: 30px;
+            }
+        }
+        .feefo-logo {
+            display:       inline-block;
+            width:         20%;
+            // Temp
+            float:         right;
+            margin-top:    20px;
+            //margin-bottom:      20px;
+            text-align:    right;
+            cursor:        pointer;
+            margin-bottom: 10px;
+            @include max-screen($screen-xs-max) {
+                width:         100%;
+                text-align:    center;
+                float:         none;
+                margin-bottom: 12px;
+            }
+            @include min-screen($screen-lg-min) {
+                margin-top: 30px;
+            }
+            img {
+                @include img-responsive();
+                margin: 0 auto;
+
+            }
+        }
+        .customer-feedback-section {
+            clear: both;
+        }
+        .customer-feedback {
+            height:        auto;
+            margin:        0 auto;
+            margin-bottom: 24px;
+            background:    white;
+            padding:       15px;
+            @include screen($screen-md-min, $screen-md-max) {
+                width: 90%;
+            }
+            @include min-screen($screen-lg-min) {
+                width: 80%;
+            }
+            &:last-child {
+                @include max-screen($screen-xs-max) {
+                    margin-bottom: 24px;
+                }
+                margin-bottom: 0;
+
+            }
+        }
+
+        .cs-feed-main {
+            display:       inline-block;
+            width:         67%;
+            padding-left:  20px;
+            padding-right: 20px;
+
+            @include max-screen($screen-xs-max) {
+                width:        100%;
+                padding-left: 0;
+                text-align:   center;
+                margin:       0 auto;
+                border-left:  none;
+                border-right: none;
+            }
+            @include screen($screen-sm-min, $screen-md-max) {
+                padding-left: 10px;
+            }
+        }
+        .cs-feed-time {
+            color:          #8b8f9a;
+            display:        inline-block;
+            height:         65px;
+            text-align:     center;
+            vertical-align: top;
+            padding-top:    25px;
+
+            @include max-screen($screen-xs-max) {
+                width:       100%;
+                padding-top: 0;
+                height:      auto;
+                margin:      10px 0;
+            }
+            @include min-screen($screen-sm-min) {
+                width:        15%;
+                border-right: 1px solid #8b8f9a;
+            }
+        }
+        .cs-feed-title {
+
+            color:         #0e1936;
+            font-weight:   700;
+            font-size:     16px;
+            margin-bottom: 5px;
+            @include max-screen($screen-xs-max) {
+                width:      100%;
+                text-align: center;
+                margin:     10px 0;
+            }
+        }
+        .cs-feed-item-title {
+            margin-bottom: 10px;
+            color:         #0e1936;
+            font-weight:   600;
+        }
+        .cs-feed-item-comments {
+            color: #8b8f9a;
+        }
+        .cs-feed-ratings-outer {
+            display:        inline-block;
+            text-align:     center;
+            vertical-align: top;
+            height:         65px;
+            padding-top:    15px;
+            width:          100%;
+            @include min-screen($screen-sm-min) {
+                border-left: 1px solid #8b8f9a;
+                width:       16.5%;
+            }
+        }
+        .cs-feed-rating-service, .cs-feed-rating-product {
+            font-weight:  700;
+            margin-right: 5px;
+
+            @include screen($screen-sm-min, $screen-md-max) {
+                margin-right: 0;
+            }
+        }
+
+    }
+
+
+    #homepage-blog {
+        background: white;
+        .section-title-outer {
+            width:         100%;
+            border-bottom: 2px solid #e6eaf3;
+            margin-bottom: 40px;
+            margin-top:    50px;
+            @include screen($screen-sm-min, $screen-sm-max) {
+                margin-top: 30px;
+            }
+        }
+        .section-title {
+            color:           #0e1936;
+            border-bottom:  3px solid  #0e1936;
+            display:        inline-block;
+            padding-bottom: 10px;
+            position:       relative;
+            top:            3px;
+            font-size:      18px;
+            font-weight:    700;
+            text-transform: uppercase;
+        }
+        .read-all-link {
+            font-size:   13px;
+            display:     inline-block;
+            float:       right;
+            padding-top: 10px;
+
+        }
+        .articles-row {
+            margin: 0 -15px;
+            .article {
+                @include media-breakpoint-up(sm) {
+                    @include make-col(4);
+                }
+                @include max-screen($screen-xs-max) {
+                    margin-bottom: 15px;
+                }
+                .article-img-outer {
+                    position: relative;
+                    width:    100%;
+                    &:after {
+                        width:          100%;
+                        height:         100%;
+                        content:        "";
+                        position:       absolute;
+                        left:           0;
+                        top:            0;
+                        pointer-events: none;
+                        background:     rgba(0, 0, 0, 0.4);
+                    }
+                }
+                .article-img {
+                    position:  relative;
+                    @include img-responsive();
+                    max-width: 100%;
+                    @include max-screen($screen-lg-max) {
+                        width: 100%;
+                    }
+                    @include screen($screen-sm-min, $screen-sm-max) {
+                        height: 205px;
+                    }
+                    @include screen($screen-md-min, $screen-md-max) {
+                        height: 260px;
+                    }
+                    @include min-screen($screen-lg-min) {
+                        height: 333px;
+                    }
+                    @include min-screen($screen-xlg-min) {
+                        height: 375px;
+                    }
+                }
+                .post-image {
+                    display:  block;
+                    position: relative;
+                }
+                .articles-row {
+                    @include make-row();
+                }
+                .article-title {
+                    font-weight: 300;
+                    color:       white;
+                    font-size:   20px;
+                    text-align:  left;
+                    position:    absolute;
+                    top:         0;
+                    padding:     15px;
+                    @include max-screen($screen-xs-max) {
+                        font-size: 16px;
+                    }
+                    @include screen($screen-sm-min, $screen-sm-max) {
+                        font-size: 12px;
+                    }
+                }
+                .article-button {
+                    position:       absolute;
+                    text-transform: uppercase;
+                    font-weight:    700;
+                    left:           15px;
+                    bottom:         15px;
+                    font-size:      11px;
+                    padding:        10px;
+                    @include button-variant(white, #00acb6, #00acb6);
+                    @include min-screen($screen-md-min) {
+                        left:      15px;
+                        bottom:    15px;
+                        font-size: 18px;
+                        padding:   15px 30px;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+}
+

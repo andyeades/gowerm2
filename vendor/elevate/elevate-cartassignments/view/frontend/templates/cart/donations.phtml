@@ -1,0 +1,117 @@
+<style>
+    #donation_inject {
+        order:         5;
+        width:         30%;
+
+        margin-left:   7%;
+        background:    #f5f5f5;
+        padding:       30px 29px 10px 29px;
+        margin-bottom: 20px;
+    }
+
+    #donation_wrapper {
+        border-radius: 5px;
+        background:    #f5f5f5;
+        padding:       30px 29px 10px 29px;
+    }
+
+    @media only screen and (min-width: 992px) {
+        .checkout-cart-index .cart-summary {
+            order:  6;
+            width:  23%;
+            margin: 0 0 1.375rem auto;
+        }
+
+        .checkout-cart-index .cart-discount {
+            width: 33%;
+            order: 3;
+        }
+
+
+    }
+
+    @media only screen and (max-width: 991.98px) {
+        #donation_inject {
+            order: 3;
+        }
+
+        #donate-wording {
+            margin-top: 20px;
+        }
+
+        button#donation_button {
+            margin-bottom: 20px !important;
+        }
+
+        #donation_inject {
+            order:       5;
+            width:       100%;
+            margin-left: 0;
+        }
+    }
+
+    .cart-summary {
+        padding-top: 15px !important;
+    }
+
+</style>
+<div id="donation_inject"></div>
+
+
+<script type="text/javascript">
+
+
+    var ELEVATE = ELEVATE || {};
+
+
+    (function ($, window) {
+
+        ELEVATE.Donation = (function (options) {
+
+            var self = this;
+            //TODO: Get this from admin?
+            var currency_symbol = "�"; // Get From admin?
+            var url = '/ev_cartassignments/addon/getdonation';
+
+            // url = url.replace("https://","http://"); // New Code
+            var data = '';
+
+
+            function getDonation() {
+
+
+                // jQuery('#ajax_loader').show();
+
+                jQuery.ajax({
+                    url: url,
+                    dataType: 'json',
+                    type: 'post',
+                    data: data,
+                    success: function (data) {
+
+
+                        jQuery('#donation_inject').html(data.html);
+
+
+                    }
+                });
+            }
+
+            function attachEvents() {
+            }
+
+
+            return {
+                getDonation: function () {
+                    getDonation();
+                }
+            };
+
+        }());
+
+    }(jQuery.noConflict(), window));
+
+
+    ELEVATE.Donation.getDonation();
+
+</script>

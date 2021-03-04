@@ -1,0 +1,216 @@
+// Elevate variables
+
+// These are where we override any of the default values for this specific theme.
+
+// Reduces CSS by not outputing color where the color is the body text (requires parent elements not to have overwritten color!)
+$ev-reduce-coloroverides: 1 !default;
+
+
+$ev-include-magicszoom-scss: 1 !default;
+$ev-include-magicscroll-scss: 1 !default;
+
+
+// Include Our Admin Set Variables Here - Ensures any that are part of calculations for Other Variables use these, not the defaults;
+
+// Ok Can't do that yet - need to add new field in admin
+
+// Import Other Set in Theme Files
+@import "elevate_variables_before";
+
+// Layout & Grid
+
+$grid-breakpoints: (
+    xxs: 0,
+    xs-mid: 377px,
+    xs: 480px,
+    sm: 768px,
+    md: 992px,
+    lg: 1170px,
+    xlg: 1470px
+);
+
+$grid-gutter-width: 30px !default;
+$grid-gutter-width-mobile: $grid-gutter-width / 3 !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+    md: 962px,
+    lg: 1140px,
+    xl: 1440px
+);
+
+$container-xxs: 100%;
+$container-xs-mid: 300px + $grid-gutter-width;
+$container-xs: 420px + $grid-gutter-width;
+$container-sm: 720px + $grid-gutter-width;
+$container-md: 940px + $grid-gutter-width;
+$container-lg: 1140px + $grid-gutter-width;
+$container-xlg: 1410px + $grid-gutter-width;
+
+
+$screen-lowerthan-iphone6: 376px;
+
+$screen-xs-mid-min: 377px;
+$screen-xs-mid-max: 479.98px;
+
+$screen-xs-min: 480px;
+$screen-xs-max: 767.98px;
+
+
+$screen-sm-min: 768px;
+$screen-sm-max: 991.98px;
+
+$screen-md-min: 992px;
+$screen-md-max: 1169.98px;
+
+$screen-lg-min: 1170px;
+$screen-lg-max: 1469.98px;
+
+$screen-xlg-min: 1470px;
+
+$mobile-menu-notvisible: $screen-md-min;
+$mobile-menu-visible-max: $screen-sm-max;
+
+
+$mobilemax: $screen-xs-mid-max !default;
+$mobile-max: $screen-xs-mid-max !default;
+$mobiletablet-min: $screen-xs-min !default;
+$mobiletablet-max: $screen-xs-max !default;
+$desktop-min: $screen-sm-min !default;
+
+$desktop-sm-min: $desktop-min !default;
+$desktop-sm-max: $screen-sm-max !default;
+
+
+$desktop-medium-min: $screen-md-min !default;
+$desktop-medium-max: $screen-md-max !default;
+$desktop-md-min: $desktop-medium-min !default;
+$desktop-md-max: $desktop-medium-max !default;
+
+$desktop-large-min: $screen-lg-min !default;
+$desktop-large-max: $screen-lg-max !default;
+
+$desktop-xl-min: $screen-xlg-min !default;
+
+
+$desktop-md-min: $desktop-medium-min;
+$desktop-md-max: $desktop-medium-max;
+$desktop-lg-min: $desktop-large-min;
+$desktop-lg-max: $desktop-large-max;
+
+
+
+// Key Magento UI Libs with vars used in other areas below
+@import "../vendor/magento-ui/variables/colors";
+@import "../vendor/magento-ui/variables/typography";
+@import "../vendor/magento-ui/variables/icons";
+@import "../vendor/magento-ui/variables/layout";
+
+@import "vendor/default_bootstrap_4_vars";
+
+// Include Admin Vars
+
+@import "colors/elevate-core-colors";
+@import "colors/elevate-theme-colors";
+@import "colors/elevate-colors";
+
+@import "sections/layout";
+@import "sections/typography";
+
+@import "sections/sidebar";
+@import "sections/customer";
+
+@import "sections/sections";
+@import "sections/blocks";
+@import "sections/breadcrumbs";
+@import "sections/borders";
+@import "sections/buttons";
+@import "sections/checkout";
+
+@import "sections/icons";
+@import "sections/footer";
+@import "sections/forms";
+@import "sections/header";
+
+@import "sections/navigation";
+@import "sections/prices";
+@import "sections/modals";
+@import "sections/labels";
+@import "sections/pagination";
+@import "sections/tables";
+@import "sections/product";
+@import "sections/layered-nav";
+
+@import "sections/collapsible_navigation";
+
+
+@import "sections/mini-cart";
+
+@import "sections/toolbar-pager";
+
+@import "vendor/our_bootstrap_4_vars";
+
+
+// Pages
+
+$page-main-outer-margin: 15px 0 0 0;
+$page-main-outer-margin-homepage: 0;
+
+
+// Modalsdes
+$modal-title-color: white;
+$close-font-size: 1.5rem;
+$close-color: white;
+$close-text-shadow: none;
+$close-font-weight: 300;
+$close-opacity: 1;
+$close-opacity-hover: 1;
+$close-color-hover: darken($close-color, 15%);
+
+// Padding
+
+$standard-padding: 15px;
+$standard-padding-combined: 0 15px;
+
+$account-sidebar-text: #323232;
+
+// Transitions
+
+$standard-transition: all 500ms ease-in;
+$alternate-transition: all 500ms ease-in-out;
+
+
+// Site Wide Declarations
+
+
+// All Lists = List Style Type = none by default
+$sitewide-list-style-type: none;
+$rounded-buttons: false;
+$link__visited__color: false;
+$link__active__color: false;
+$btn-active-box-shadow: none;
+$btn-focus-box-shadow: none;
+
+
+$form-element-input__font-size: 0.75rem !default;
+
+
+// Landing Pages
+
+$ev-landingpages-color-0: #fff !default;
+$ev-landingpages-color-1: rgba(0, 0, 0, .6) !default;
+$ev-landingpages-color-2: rgba(0, 0, 0, .5) !default;
+$ev-landingpages-color-3: #333 !default;
+$ev-landingpages-color-4: #ccc !default;
+$ev-landingpages-color-5: #0c509f !default;
+$ev-landingpages-color-6: #f0f0f0 !default;
+$ev-landingpages-color-7: #e4e4e4 !default;
+$ev-landingpages-color-8: #db2727 !default;
+$ev-landingpages-color-9: #cdcdcd !default;
+$ev-landingpages-color-10: white !default;
+
+$ev-landingpages-filter-visible-until: $screen-sm-max !default;
+$ev-landingpages-filter-notvisible: $screen-md-min !default;

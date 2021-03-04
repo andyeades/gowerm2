@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Elevate\LandingPages\Api\LandingPageRepositoryInterface" type="Elevate\LandingPages\Model\LandingPageRepository"/>
+    <preference for="Elevate\LandingPages\Api\Data\LandingPageInterface" type="Elevate\LandingPages\Model\Data\LandingPage"/>
+    <preference for="Magento\Catalog\Model\ResourceModel\Category\Flat" type="Elevate\LandingPages\Model\ResourceModel\Category\Flat"/>
+
+
+
+    <!-- this preference gets rid of the correlation issue caused from the plugin catalog view.php -->
+    <preference for="Magento\Catalog\Model\ResourceModel\Layer\Filter\Attribute"
+                type="Elevate\LandingPages\Model\ResourceModel\Layer\Filter\Attribute"/>
+
+
+    <preference for="Magento\Catalog\Model\Layer\Filter\Item" type="Elevate\LandingPages\Model\Rewrite\Layer\Filter\Item" />
+
+
+    <type name="Magento\Catalog\Controller\Category\View">
+        <plugin name="Elevate_LandingPages_Ajax_Category_View"
+                type="Elevate\LandingPages\Plugin\Category\View"></plugin>
+    </type>
+
+    <type name="Magento\CatalogSearch\Controller\Result\Index">
+        <plugin name="Elevate_LandingPages_Ajax_CatalogSearch_Result_Index"
+                type="Elevate\LandingPages\Plugin\CatalogSearch\Result"></plugin>
+    </type>
+ 
+
+	<preference for="Magento\Catalog\Helper\Data" type="Elevate\LandingPages\Model\Rewrite\Catalog\Data"/>
+
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="elevate_landingpages" xsi:type="object">Elevate\LandingPages\Console\Command\GenerateRewrites</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="categoryFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+        <arguments>
+            <argument name="filters" xsi:type="array">
+                <item name="attribute" xsi:type="string">Elevate\LandingPages\Model\Rewrite\Layer\Filter\Attribute</item>
+                <item name="category" xsi:type="string">Elevate\LandingPages\Model\Rewrite\Layer\Filter\Category</item>
+
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="searchFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+        <arguments>
+            <argument name="filters" xsi:type="array">
+                <item name="attribute" xsi:type="string">Elevate\LandingPages\Model\Rewrite\Layer\Filter\Attribute</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+    <virtualType name="LandingPagesGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Elevate\LandingPages\Model\ResourceModel\LandingPage\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_landingpages</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\LandingPages\Model\ResourceModel\LandingPage</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_landingpages_listing_data_source" xsi:type="string">Elevate\LandingPages\Model\ResourceModel\LandingPage\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

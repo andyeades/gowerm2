@@ -1,0 +1,603 @@
+<?php
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Magento2.Files.LineLength.MaxExceeded
+
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
+?>
+<style>
+    .bs-modal {
+        overflow-y: auto;
+    }
+
+    .price-including-tax:after {
+
+        margin-left: 5px;
+    }
+
+    .price-excluding-tax:after {
+
+        margin-left: 5px;
+    }
+</style>
+<?
+
+$_item = $block->getItem();
+$_product = $_item->getProduct();
+
+$isVisibleProduct = $_product->isVisibleInSiteVisibility();
+/** @var \Magento\Msrp\Helper\Data $helper */
+$helper = $this->helper(Magento\Msrp\Helper\Data::class);
+$canApplyMsrp = $helper->isShowBeforeOrderConfirm($_product) && $helper->isMinimalPriceLessMsrp($_product);
+
+$pricingHelper = $this->helper(Magento\Framework\Pricing\Helper\Data::class);
+$debug = true;
+if (isset($_GET['debug'])) {
+    $debug = true;
+}
+
+$dontShow = false;
+
+//original cart row qty
+$original_item_qty = $block->getQty();
+
+//current qty = original - any assignments
+$current_item_qty = $original_item_qty;
+//echo "start qty for ".$_item->getName()." = $current_item_qty <br>";
+$current_quote_item_id = $_item->getId();
+
+//each of the allocated - lets count
+
+//do we have to add anything?
+
+//
+
+//get all assigned items collection
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+//Load product by product id
+$_cartAssignments = $objectManager->create('Elevate\CartAssignments\Model\QuoteItemAssignmentsFactory');
+
+$_cartAssignmentsModal = $objectManager->create('Elevate\CartAssignments\Model\QuoteItemAssignments');
+$_pricingHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
+
+$collection = $_cartAssignments->create()->getCollection()->addFieldToFilter('linked_quote_item_id', $current_quote_item_id);
+// ->addAttributeToFilter('addon_id', $addon_id);
+$_cartAddons = $objectManager->create('Elevate\CartAssignments\Model\CartAssignments');
+//we need to join in the addon table to see if these assignments are still valid
+$cart = $objectManager->get('\Magento\Checkout\Model\Cart');
+
+$total_addon_qty = 0;
+foreach ($collection as $data) {
+
+    //echo "<pre>";
+    //   print_r($data->getData());
+    //   echo "</pre>";
+    $addon = $_cartAddons->load($data['addon_id']);
+
+    if (!$addon) {
+        //   echo "NO ADDON";
+        continue;
+    }
+
+    $item_lookup = $cart->getQuote()->getItemById($data['parent_quote_item_id']);
+    if (!$item_lookup && $data['parent_quote_item_id'] != $current_quote_item_id || $data['parent_quote_item_id'] == $data['linked_quote_item_id']) {
+        //   echo "NO ITEM";
+        continue;
+    }
+    // if ($data['enable_addon'] == 1) {
+    //    echo "ENABLED";
+    //  $assignment = $_cartAssignmentsModal->loadAssigned($data['parent_quote_item_id']);
+    //print_r($assignment->getData());
+    if (is_numeric($data['qty'])) {
+
+        $current_item_qty = $current_item_qty - $data['qty'];
+
+        // echo "NEW CIQ = $current_item_qty <br>";
+    } else {
+        //  echo "NO NO";
+    }
+
+    $total_addon_qty = $total_addon_qty + $data['qty'];
+    $discount_rule_id = $addon->getData('discount_rule_id');
+    $discount_percentage = $addon->getData('discount_percentage');
+    // }
+
+}
+
+//if for some reason - there are more addons - lets add the quantities back to the cart
+if ($total_addon_qty > $original_item_qty) {
+    //echo "<br>---------<br>";
+    //echo "Name:".$_item->getName()."<br>";
+    //echo "ADDON:".$total_addon_qty."<br>";
+    //echo "item Qty:$original_item_qty<br>";
+    //echo "<br>---------<br>";
+    $_item->setQty($total_addon_qty);
+    $_item->save();
+
+}
+//echo "CIQ:".$current_item_qty;
+
+if ($current_item_qty > 0) {
+    $override_qty = true;
+} else {
+    //echo "DONT SHOW";
+    //we maybe need to show if there is stock that isnt associated with the amount
+    $dontShow = true;
+}
+
+// if the qty of the product is not all assigned - then we can continue generating the row - otherwise we dont need to show it
+if (!$dontShow) {
+
+    $product_url = $this->hasProductUrl();
+
+    /* call right image for the cart - needs moving to a helper */
+
+    $image_url = $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml();
+
+    $bespoke_image = $_item->getBespokeImage();
+    if (!empty($bespoke_image)) {
+
+        $image_url = '<img class="product-image-photo ls-is-cached lazyloaded" src="' . $bespoke_image . '" />';
+
+    }
+    $type_id = $_item->getProduct()->getTypeId();
+    if ($type_id == 'simple') {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $product = $objectManager->create('Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable')->getParentIdsByChild($_item->getProduct()->getId());
+
+        if (isset($product[0])) {
+            //this is parent product id..
+            $product_conf = $objectManager->create('Magento\Catalog\Model\Product')->load($product[0]);
+            // $image_url = $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml();
+
+            $image_url = '<img class="product-image-photo ls-is-cached lazyloaded" src="/media/catalog/product' . $product_conf->getData('thumbnail') . '" />';
+
+        }
+
+    }
+    /* end the image caller */
+
+    ?>
+    <div class="lineItemContainer">
+        <div class="lineItemContainerOuter">
+            <?php // Adding Container Here = why? it causes issues at certain breakpoints ?>
+            <div class="lineItemContainerInner">
+                <div class="arro row" style="display:flex; align-items:stretch;">
+                    <!-- image -->
+                    <div class="col-xs-12 col-md-4 itemrowproductcol">
+
+                        <!-- Start Qty-->
+                        <div class="row qtyincrow">
+                            <div class="qty-boxes-item">
+                                <?php
+
+                                $qty = $block->getQty();
+                                if ($override_qty) {
+
+                                    $qty = $current_item_qty;
+                                }
+                                ?>
+
+                                <?php
+                                $col_hid = '';
+                                if ($qty < 2) {
+                                    $col_hid = 'style="color:#fff !important;"';
+                                } ?>
+                                <span class="decrement_qty" <?php echo $col_hid; ?> data-itemid="<?php echo $_item->getId(); ?>" data-prodid="<?php echo $_item->getProduct()->getId(); ?>"><i class="fa fa-minus" style="vertical-align: middle;"></i></span>
+
+                                <input type="text" pattern="\d*" name="cart[<?php echo $_item->getId() ?>][qty]" value="<?php echo $qty ?>" size="4" data-cart-item-id="<?php echo($_item->getSku()) ?>" title="<?php (__('Qty')) ?>" class="input-text qty" maxlength="12"/>
+
+                                <span></span>
+                                <span class="increment_qty" data-itemid="<?php echo $_item->getId(); ?>" data-prodid="<?php echo $_item->getProduct()->getId(); ?>"><i class="fa fa-plus" style="vertical-align: middle;"></i></span>
+
+
+                                <div style="clear:both;"></div>
+                            </div>
+                            <div class="cart-p-remove">
+
+                                <?php
+
+                                $html = '<div
+                       class="cart-remove-text"
+  onclick="removeProduct(\'' . $_item->getId() . '\', \'' . $qty . '\', false)">
+
+<span>Remove Item</span> <i class="fa fa-times"></i></div>';
+
+                                echo $html;
+
+                                ?>
+
+                            </div>
+
+                            <!-- End Qty -->
+                        </div>
+
+                        <?php
+
+                        /**
+                        * @var $cartItemsHelper Elevate\CartAssignments\Helper\Items
+                        */
+                        $cartItemsHelper = $this->helper('Elevate\CartAssignments\Helper\Items');
+
+                        $productNamePosition = $cartItemsHelper->getProductNamePosition();
+
+                        $output = $cartItemsHelper->getCartRow($_product, $_item, $original_item_qty, $qty);
+                        $product_name_wrap_output = $output['product_name_output'];
+
+
+                        $reduct = $output['reduct'];
+
+                        if (strcmp($productNamePosition, 'above') == 0) { ?>
+                        <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <?= $product_name_wrap_output ?>
+                            </div>
+                        </div>
+                        </div>
+                        <?php }
+
+                        ?>
+                        <div class="evca-cartdesc row">
+
+
+
+
+                            <div class="col-5  imgrowcol">
+
+                                <?php echo $image_url; ?>
+                            </div>
+
+                            <div id="leftside_<?php echo $_item->getId(); ?>" class="leftsidecol col-7">
+                               <?php echo $output['output']; ?>
+                            </div>
+                        </div>
+                        <?php if (strcmp($productNamePosition, 'below') == 0) { ?>
+                        <div class="row">
+                            <div class="col-12">
+                                <?= $product_name_wrap_output ?>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <div class="col-12 optmob">
+
+
+                            <?php //echo $_item->getEvCartassignmentsData(); ?>
+
+
+
+
+                            <?php
+
+                            $is_backorder = false;
+                            if ($_options = $block->getOptionList()) : ?>
+                                <h3 class="bc_title">Configuration</h3>
+                                <dl class="item-options">
+                                    <?php foreach ($_options as $_option) : ?><?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                                        <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+                                        <dd>
+                                            <?php if (isset($_formatedOptionValue['full_view'])) : ?>
+                                                <?= $block->escapeHtml($_formatedOptionValue['full_view']) ?><?php else : ?>
+                                                <?= $block->escapeHtml(
+                                                    $_formatedOptionValue['value'], [
+                                                                                      'span',
+                                                                                      'a'
+                                                                                  ]
+                                                ) ?><?php
+
+                                                if (strpos($_formatedOptionValue['value'], 'OUT OF STOCK') !== false) {
+                                                    $is_backorder = true;
+                                                }
+
+                                            endif; ?>
+                                        </dd>
+                                    <?php endforeach; ?>
+                                </dl>
+
+
+                                <?php
+
+                                if (!$_item->getProduct()->isSaleable()) {
+                                    echo '<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;display: flex;align-items: center;padding: 0;"> <i class="fa fa-exclamation-circle" style="font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock</div></div></div>';
+                                } else if ($is_backorder) {
+                                    echo '<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;display: flex;align-items: center;padding: 0;"> <i class="fa fa-exclamation-circle" style="font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock, but available on backorder</div></div></div>';
+                                }
+
+                                ?>
+
+
+                            <?php endif; ?>
+                            <?php
+
+                            if ($_item->getProduct()->getTypeId() == 'simple') {
+
+                                //this is parent product id..
+                                $product_conf = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProduct()->getId());
+                                $leadtime = $product_conf->getLeadTime();
+
+                                $leadtimefloor = floor($leadtime % 5);
+                                $maxValueInDaysValue = '';
+                                if ($leadtimefloor == 0) {
+                                    if ($leadtime == 5) {
+                                        $maxValueInDaysValue = floor($leadtime / 5) . ' Week';
+                                    } else {
+                                        $maxValueInDaysValue = floor($leadtime / 5) . ' Weeks';
+                                    }
+                                } else {
+                                    if (floor($leadtime / 5) == 0) {
+                                        $maxValueInDaysValue = floor($leadtime % 5) . ' Working Days';
+                                    } else {
+                                        $maxValueInDaysValue = (floor($leadtime / 5) + 1) . ' Weeks ';
+                                    }
+                                }
+                                $back_order_message = '';
+
+                                $is_backorder = false;
+                                $obj = \Magento\Framework\App\ObjectManager::getInstance();
+                                $stockRegistry = $obj->get('Magento\CatalogInventory\Api\StockRegistryInterface');
+                                $stockitem = $stockRegistry->getStockItem($_item->getProduct()->getId(), $_item->getProduct()->getStore()->getWebsiteId());
+
+                                $backorder_status = $stockitem->getBackorders();
+                                $in_stock_status = $stockitem->getIsInStock();
+                                $qty_in_stock = $stockitem->getQty();
+
+                                if ($backorder_status == 2 && $qty_in_stock < 1) {
+
+                                    $is_backorder = true;
+                                    $maxValueInDaysValue = 'Available on request';
+                                }
+
+                                if ($leadtime > 0) {
+                                    ?>
+                                    <dl class="item-options">
+                                        <dt>Lead Time</dt>
+                                        <dd><?php echo $maxValueInDaysValue; ?></dd>
+                                    </dl>
+
+                                    <?php
+                                }
+
+                                $back_order_message = '';
+
+                                if ($leadtime > 0 && 1 == 2) {
+
+                                    echo '
+            <style>
+                         .pp-icon.pp-icon-clock>svg {
+    fill: #333;
+}
+.pp-icon>svg {
+    height: 22px;
+    width: 22px;
+}
+.pp-icon.pp-icon-clock>svg>* {
+    fill: #333;
+}
+.pp-order-info-outer>i, .pp-order-info-outer>div {
+    flex: 0 1 auto;
+}
+                 </style>
+
+
+<div class="pp-order-info-outer ">
+    <i class="pp-icon pp-icon-clock"><svg viewBox="0 0 36 36" version="1.1" fill="#434343" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+            <title>Group</title>
+            <desc>Created with Sketch.</desc>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Group" >
+                    <path d="M18,36 C8.059,36 0,27.94 0,17.999 C0,8.059 8.059,0 18,0 C27.941,0 36,8.059 36,17.999 C36,27.94 27.941,36 18,36 Z M25.235,22.62 L19.565,16.951 L19.565,10.956 C19.565,9.659 18.514,8.609 17.217,8.609 C15.921,8.609 14.87,9.659 14.87,10.956 L14.87,17.999 C14.87,18.825 15.296,19.392 15.939,19.965 L21.914,25.941 C22.831,26.858 24.318,26.858 25.235,25.941 C26.151,25.024 26.151,23.537 25.235,22.62 Z" id="Shape"></path>
+                </g>item product
+            </g>
+        </svg></i>
+    <div class="pp-order-info">
+        <div  class="leadtimeReplace line">Lead Time: Available on request</div>
+
+    </div>
+</div>
+
+';
+
+                                }
+                                if (!$_item->getProduct()->isSaleable()) {
+                                    echo '<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;display: flex;align-items: center;padding: 0;"> <i class="fa fa-exclamation-circle" style="font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock</div></div></div>';
+                                } else if ($is_backorder) {
+
+
+                                    echo '<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;display: flex;align-items: center;padding: 0;"> <i class="fa fa-exclamation-circle" style="font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock, but available on backorder</div></div></div>';
+                                }
+
+                            }
+
+                            if ($is_backorder || !$_product->isSaleable()) {
+                                $maxValueInDaysValue = 'Available on request';
+                            }
+
+                            ?>
+
+
+                        </div>
+                        <div style="display:none;">
+                            <div style="
+    color: #6b6b6b;
+    font-size: 12px;
+    text-decoration: line-through;
+">Was:&pound;<?php echo round($_item->getProduct()->getPrice(), 2); ?></div>
+                            <div style="
+    color: #cb2727;
+    font-weight: bold;
+"><span>Now</span><span> <?php echo '&pound;' . round($_item->getData('price_incl_tax'), 2); ?></span></div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-md-5 itemrowoptionscol">
+                        <div style="clear:both;"></div>
+                        <div style="display:none;" class="d-md-none mobileoptionsheader">Options</div>
+
+                        <?php /* Start the output for the cart assignment items here*/ ?>
+                        <div>
+
+
+                            <div>
+
+
+                                <!-- here -->
+                                <div class="has_mat_wrap">
+
+
+                                    <div id="mattcontainer_<?= $_item->getId() ?>"></div>
+
+
+                                </div>
+
+                                <!-- end here -->
+
+
+                                <?php // echo $_item->getId();
+
+                                $result = $_item->getId();
+                                $type_id = $_item->getProduct()->getTypeId();
+                                if ($type_id == 'configurable') {
+
+
+                                    $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+                                    $connection = $resource->getConnection();
+                                    $tableName = $resource->getTableName('quote_item');
+                                    $attribute_information = "Select item_id FROM " . $tableName . " where parent_item_id = '" . $_item->getId() . "'"; //check for the  custom attribute condition". WHERE id = " . $manufacture . ";";
+                                    // fetchOne it return the one value
+                                    $result = $connection->fetchOne($attribute_information);
+                                }
+
+                                $productId = $_product->getId();
+
+                                if ($option = $_item->getOptionByCode('simple_product')) {
+
+
+                                    $productId = $option->getProduct()->getId();
+
+                                }
+
+                                ?>
+                                <div style="display:none;" id="bitem_<?php echo $_item->getId(); ?>" data-prodid="<?php echo $productId; ?>"></div>
+                                <script type="text/javascript">
+
+                                    getAddons('<?php echo $_item->getId(); ?>', '<?php echo $productId; ?>', 'top');
+                                </script>
+
+                            </div>
+                        </div>
+
+
+                        <div style="clear:both;"></div>
+                    </div>
+
+
+                    <?php
+                    //$addon_id = $add_product->getId();
+
+                    ?>
+                    <div class="col-md-3"
+                    ">
+
+
+                    <div class="andy2" id="rowprice_<?php echo $_item->getId(); ?>">
+                        <div class="cart-price">
+                                <span class="evca_cart_price_mobile" style="
+
+">Subtotal:</span> <span class="price origprice" data-orig-price="266.6000">
+
+                            <?php
+                            $settingsHelper = $objectManager->get('Elevate\CartAssignments\Helper\Settings');
+                            $price_type = $settingsHelper->getPriceType();
+
+                            $output_price = '';
+
+                            $output_price .= '<div class="price-excluding-tax">' . $_pricingHelper->currency($_item->getRowTotal(), true, false) . '</div>';
+                            $output_price .= '<div class="price-including-tax">' . $_pricingHelper->currency($_item->getRowTotalInclTax(), true, false) . '</div>';
+                            echo $output_price;
+
+                            ?>
+                          </span>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <hr style="
+    border: none;
+    height: 2px;
+    color: #bebebe;
+    background-color: #050505;
+    margin-top: 40px;
+    margin-bottom: 40px;
+">
+
+<?php } else {
+
+    if ($_item->getDiscountAmount() > 0) {
+        /*
+        ?>
+
+        <?
+        $appliedRuleIds = explode(',', $_item->getAppliedRuleIds());
+        $discountBreakdown = $_item->getDiscountBreakdown();
+        $rules = Mage::getModel('salesrule/rule')->getCollection()->addFieldToFilter('rule_id', array('in' => $appliedRuleIds));
+        $discount_count = 0;
+        $offer = '';
+        foreach ($rules as $rule) {
+            $rule_name = $rule->getData('name');
+            $rule_id = $rule->getData('rule_id');
+            if ($discount_rule_id != $rule_id) {
+                //  continue;
+
+            }
+            $rule_description = $rule->getData('description');
+            $rule_simple_action = $rule->getData('simple_action'); //by_percent
+            if ($rule_simple_action != 'by_percent') {
+                continue;
+
+            }
+
+            $rule_discount_amount = $rule->getData('discount_amount'); //10.0000
+            //do something with $rule
+            $discount_count++;
+
+            $rule_price = $discountBreakdown[$rule_id];
+            $current_basket_amount = Mage::getSingleton('core/session')->getCABasketAmount();
+
+            $current_basket_rule_ids = Mage::getSingleton('core/session')->getCABasketRuleIds();
+
+            if (is_numeric($rule_id) && $discount_rule_id == $rule_id) {
+                //  echo $original_item_qty;
+                $current_basket_rule_ids[$rule_id] = $current_basket_rule_ids[$rule_id] + ($rule_price);
+            }
+
+            // $reduct = $rule_price;
+            $reduct = ($rule_price / $original_item_qty) * $qty;
+
+            //  echo "CURRENT:".$current_basket_amount."<br>";
+            //  echo "NEW:".$current_basket_amount+$reduct."<br>";
+            Mage::getSingleton('core/session')->setCABasketRuleIds($current_basket_rule_ids);
+            Mage::getSingleton('core/session')->setCABasketAmount($current_basket_amount + $reduct);
+
+        }
+*/
+        //echo "<pre>";
+        //echo $_item->getName();
+        //print_r($_item->getParentPurchase());
+        //echo "</pre>";
+    }
+    //dont show the addon this way - skip
+}
+?>

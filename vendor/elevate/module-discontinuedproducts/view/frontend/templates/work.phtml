@@ -1,0 +1,30 @@
+<?php
+$registry = $this->_helperFactory->get('Magento\Framework\Registry'); ?>
+<?php $_productId = $registry->registry('product')->getId() ?>
+<?php $helper = $this->helper('Elevate\Discontinuedproducts\Helper\Data'); ?>
+<?php $childProductsA = $helper->getChildProducts($_productId);
+
+
+
+if ( !empty($childProductsA) ) {?>
+
+    <div class="out-of-stock-child-products">
+        <div class="col-sm-12">
+            <div class="col-sm-12">
+                <label class="label" for="product_id" style="font-weight: bold"><span><?php echo __('Choose Size') ?></span></label>
+                <div class="control">
+                    <select name="product_id" id="product_id" title="<?php echo __('Choose Size') ?>"
+                            class="input-text">
+                        <option value=""><?php echo __('Choose an Option...') ?></option>
+                        <?php foreach ($childProductsA as $key => $value): ?>
+
+
+                            <option value="<?php echo $key ?>"><?php echo $value ?> - Out of Stock</option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php } ?>

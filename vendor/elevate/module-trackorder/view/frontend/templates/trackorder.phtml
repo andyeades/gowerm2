@@ -1,0 +1,225 @@
+<style>
+    .img-responsive{display:block;max-width:100%;height:auto} .form-list{padding:20px;margin-bottom:20px;background-color:#f6f8fb} .form-list .form-list{padding:0} #track{margin-left:0;color:#fff;background-color:#f0386c;border-color:#f0386c}.open  #track.dropdown-toggle, #track.active, #track:active, #track:focus, #track:hover{color:#fff;background-color:#ed1250;border-color:#da104a}.open  #track.dropdown-toggle, #track.active, #track:active{background-image:none} #track.disabled, #track.disabled.active, #track.disabled:active, #track.disabled:focus, #track.disabled:hover, #track[disabled], #track[disabled].active, #track[disabled]:active, #track[disabled]:focus, #track[disabled]:hover,fieldset[disabled]  #track,fieldset[disabled]  #track.active,fieldset[disabled]  #track:active,fieldset[disabled]  #track:focus,fieldset[disabled]  #track:hover{background-color:#f0386c;border-color:#f0386c} #track .badge{color:#f0386c;background-color:#fff}.track-order-left{position:relative;min-height:1px;padding-left:15px;padding-right:15px}.track-order-left .page-title h1{font-size:21px;margin-bottom:20px}.track-order-left div.form-list .buttons-set button{float:none;width:100%;text-transform:uppercase;font-weight:700;margin-left:0}.track-order-left ul.form-list li label{color:#999;font-weight:300}.track-order-left ul.form-list li input,.track-order-left ul.form-list li select,.track-order-left ul.form-list li textarea{background:#f5f5f5;border-color:#e2e2e2}.track-order-right{position:relative;min-height:1px;padding-left:15px;padding-right:15px}#oderinfo h1{margin-top:0;margin-bottom:30px}#oderinfo .tracking-details-outer{margin-top:30px;border:1px solid #e2e2e2;padding:15px 25px}#oderinfo .tracking-details{width:255px;clear:both;margin:15px auto 5px;height:30px}#oderinfo .tracking-text{text-align:center}#oderinfo .tracking-order-date{white-space:nowrap}#oderinfo .tracking-delivered,#oderinfo .tracking-processed,#oderinfo .tracking-recieved,#oderinfo .tracking-shipped{float:left;width:30px}#oderinfo .tracking-grey-line,#oderinfo .tracking-red-line{float:left;position:relative;top:15px}#oderinfo .tracking-recieved-circle{background-color:#0e1936;height:30px;width:30px;line-height:30px;vertical-align:middle;text-align:center;border-radius:30px}#oderinfo .tracking-recieved-circle i{color:#fff;line-height:30px;vertical-align:middle}#oderinfo .tracking-grey-circle{background-color:#e2e2e2;height:30px;width:30px;line-height:30px;vertical-align:middle;text-align:center;border-radius:30px}#oderinfo .tracking-grey-circle i{color:#fff;line-height:30px;vertical-align:middle}#oderinfo .tracking-grey-line{background-color:#e2e2e2;height:3px}#oderinfo .tracking-red-line{background-color:#0e1936;height:3px}.order-detail-text-line{width:100%;margin:15px 0;clear:both}.order-detail-text-line:after,.order-detail-text-line:before{content:" ";display:table}.order-detail-text-line:after{clear:both}.tracking-text-details{width:330px;margin:0 auto;height:40px}.tracking-text-proc,.tracking-text-rec,.tracking-text-ship{width:33.3333%;float:left}.tracking-text-proc,.tracking-text-rec,.tracking-text-ship{width:33.3333%}.loading-details{background:url(../images/main-bg.png) repeat scroll 0 0 transparent;height:100%;left:0;position:fixed;top:0;width:100%;z-index:99}#loading-details .update-popup{position:fixed;top:45%;left:45%;width:300px;margin-left:-105px;padding:15px 30px;background:#fff;color:#d85909;font-weight:700;text-align:center;z-index:400;webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}#loading-mask{background:none repeat scroll 0 0 #f5f5f5;border:1px solid #f18200;margin:20% auto;padding:15px;text-align:center;width:200px}#loading-mask p{margin-bottom:0}.track-data-table{margin-bottom:20px}.order-info-message{padding-top:15px}.block-trackorder .block-content{padding:5px 10px}.block-trackorder .block-title strong{background-image:url(../images/i-trackorder.png);background-position:0 0;background-repeat:no-repeat;padding-left:21px}@media screen and (min-width:768px){ .col-inner{width:75%;margin-left:auto;margin-right:auto}}@media(min-width:768px){.track-order-left{float:left;width:41.66667%}.track-order-right{float:left;width:58.33333%}}@media screen and (max-width:767.98px){#oderinfo .tracking-grey-line,#oderinfo .tracking-red-line{width:20px}}@media screen and (min-width:768px) and (max-width:991.98px){#oderinfo .tracking-grey-line,#oderinfo .tracking-red-line{width:40px}}@media screen and (min-width:992px) and (max-width:1169.98px){#oderinfo .tracking-grey-line,#oderinfo .tracking-red-line{width:80px}}@media screen and (min-width:1170px){#oderinfo .tracking-grey-line,#oderinfo .tracking-red-line{width:80px}}
+.loading-details {
+  background: url("../images/main-bg.png") repeat scroll 0 0 transparent;
+  height:     100%;
+  left:       0;
+  position:   fixed;
+  top:        0;
+  width:      100%;
+  z-index:    99;
+}
+
+#loading-details .update-popup {
+  position:             fixed;
+  top:                  45%;
+  left:                 45%;
+  width:                300px;
+  margin-left:          -105px;
+  padding:              15px 30px;
+  background:           #ffffff;
+  color:                #d85909;
+  font-weight:          bold;
+  text-align:           center;
+  z-index:              400;
+  webkit-border-radius: 6px;
+  -moz-border-radius:   6px;
+  border-radius:        6px;
+}
+
+#loading-mask {
+  background: none repeat scroll 0 0 #f5f5f5;
+  border:     1px solid #f18200;
+  margin:     20% auto;
+  padding:    15px;
+  text-align: center;
+  width:      200px;
+}
+
+#loading-mask p {
+  margin-bottom: 0;
+}
+
+.track-data-table {
+  margin-bottom: 20px;
+}
+
+.order-info-message {
+  padding-top: 15px;
+}
+
+.block-trackorder .block-content {
+  padding: 5px 10px;
+}
+
+.block-trackorder .block-title strong {
+  background-image:    url("../images/i-trackorder.png");
+  background-position: 0 0;
+  background-repeat:   no-repeat;
+  padding-left:        21px;
+}
+
+
+.wrapper {
+
+}
+.StepProgress {
+    position: relative;
+    padding-left: 45px;
+    list-style: none;
+}
+.StepProgress::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 10px;
+    height: 100%;
+    border-left: 2px solid #CCC;
+}
+.StepProgress-item {
+    position: relative;
+    counter-increment: list;
+    min-height: 70px;
+}
+.StepProgress-item:not(:last-child) {
+    padding-bottom: 20px;
+}
+.StepProgress-item::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    left: -30px;
+    height: 100%;
+    width: 10px;
+}
+.StepProgress-item::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: -44px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #CCC;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+}
+.StepProgress-item.is-done::before {
+    border-left: 2px solid green;
+}
+.StepProgress-item.is-done::after {
+    content: "\f00c";
+    font-family: FontAwesome;
+    font-size: 13px;
+    color: #FFF;
+    padding-top: 4px;
+    text-align: center;
+    border: 2px solid #4d9c2e;
+    background-color: #4d9c2e;
+}
+.StepProgress-item.current::before {
+    border-left: 2px solid #4d9c2e;
+}
+.StepProgress-item.current::after {
+    content: counter(list);
+    font-size: 14px;
+    text-align: center;
+    color: green;
+    border: 2px solid green;
+    padding-top: 3px;
+    background-color: white;
+}
+.StepProgress strong {
+    display: block;
+}
+
+</style>
+    <div class="page-title"><h1><?php echo __('Track Your Order ') ?></h1></div>
+    <div class="form-list">
+
+
+            <ul class="form-list">
+                <li>
+                    <label for="trackorder_increment_id" class="required"><em>*</em><?php echo __('Order Number') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="trackorder_increment_id" id="trackorder_increment_id" value="" title="" class="input-text required-entry" />
+                    </div>
+                </li>
+                <li>
+                    <label for="trackorder_email_address" class="required"><em>*</em><?php echo __('Email Address') ?></label>
+                    <div class="input-box" >
+                        <input type="text" name="trackorder_email_address" id="trackorder_email_address" value="" title="<?php echo __('Email Address') ?>" class="input-text validate-email required-entry" />
+                    </div>
+                </li>
+            </ul>
+            <div class="buttons-set">
+                <button type="submit" id="trackordersubmit" class="btn action primary" title="<?php echo __('Track Order') ?>" name="track" id="track">
+                    <span><span><?php echo __('Track Order') ?></span></span>
+                </button>
+            </div>
+
+
+        <div id="loading-details" class="loading-details" style="display:none">
+            <div id="loading-mask" >
+                <p class="loader" id="loading_mask_loader"><img src="#" alt=""/><br/><?php echo __('Please wait...') ?></p>
+            </div>
+        </div>
+    </div>
+
+
+<div id="order_data"></div>
+    <div id="oderinfo" class="order-info-message"></div>
+
+
+<script type="text/javascript">
+
+    jQuery('#trackordersubmit').on('click', function(){
+
+        var increment_id = jQuery('#trackorder_increment_id').val();
+        var email_address = jQuery('#trackorder_email_address').val();
+
+        var url = '/trackorder/index/getorder';
+
+        // url = url.replace("https://","http://"); // New Code
+
+       var data = {
+            'increment_id': increment_id,
+                'email_address': email_address // <-- the $ sign in the parameter name seems unusual, I would avoid it
+        };
+        // jQuery('#ajax_loader').show();
+
+        jQuery.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'post',
+            data: data,
+            success: function (data) {
+
+
+                // jQuery('#inject_me').html(data);
+
+
+
+                if(data.html){
+
+                    jQuery('#order_data').html(data.html);
+
+
+                }
+                else{
+
+                    alert("Order not found");
+                }
+
+            }
+        });
+
+    });
+
+
+
+
+</script>

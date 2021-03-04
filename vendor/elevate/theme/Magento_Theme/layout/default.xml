@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="css/styles-s.css"/>
+        <link src="Elevate_Framework::js/elevate.resizer.js" />
+    </head>
+    <body>
+        <attribute name="class" value="theme-elevate"/>
+        <referenceBlock name="header.top.links">
+            <block class="Magento\Framework\View\Element\Html\Link" name="toplink.home">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Home</argument>
+                    <argument name="path" xsi:type="string">/</argument>
+                    <argument name="sortOrder" xsi:type="number">1</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="toplink.aboutus">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">About Us</argument>
+                    <argument name="path" xsi:type="string">about-us</argument>
+                    <argument name="sortOrder" xsi:type="number">120</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="toplink.blog">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Blog</argument>
+                    <argument name="path" xsi:type="string">blog</argument>
+                    <argument name="sortOrder" xsi:type="number">150</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="toplink.contactus">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Contact Us</argument>
+                    <argument name="path" xsi:type="string">contacts</argument>
+                    <argument name="sortOrder" xsi:type="number">170</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="store.settings">
+            <block class="Magento\Store\Block\Switcher" name="store.settings.storeswitcher" template="switch/stores.phtml">
+                <arguments>
+                    <argument name="id_modifier" xsi:type="string">nav</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+
+        <referenceContainer name="page.top">
+            <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav" template="html/topmenu.phtml" ttl="3600" before="-"/>
+
+            <container name="top.container" as="topContainer" label="After Page Header Top" htmlTag="div" htmlClass="top-container"/>
+        </referenceContainer>
+        <referenceContainer name="columns.top">
+            <block class="Magento\Theme\Block\Html\Title" name="page.main.title" template="html/title.phtml"/>
+            <container name="page.messages" htmlTag="div" htmlClass="page messages">
+                <block class="Magento\Framework\View\Element\Template" name="ajax.message.placeholder" template="Magento_Theme::html/messages.phtml"/>
+                <block class="Magento\Framework\View\Element\Messages" name="messages" as="messages" template="Magento_Theme::messages.phtml"/>
+            </container>
+        </referenceContainer>
+        <move element="store_switcher" destination="header.panel" after="store_language"/>
+        <move element="my-account-link" destination="header.top.links.left" as="my-account-link" after="toplink.contactus"/>
+        <move element="catalog.compare.link" destination="header.top.links.left" as="catalog.compare.link" after="my-account-link"/>
+        <move element="multiple-wish-list-link" destination="header.top.links.left" after="my-account-link"/>
+        <move element="top-customer-account-orders-link" destination="header.top.links.left" after="multiple-wish-list-link"/>
+
+
+        <move element="authorization-link" destination="header.top.links.right" as="authorization-link" before="register-link"/>
+        <move element="register-link" destination="header.top.links.right" as="register-link" after="authorization-link"/>
+        <move element="top.links" destination="header.top.links.right" as="top.links"/>
+
+
+        <!-- This is the "Default WELCOME MESSAGE" - not the actual header - stupid magento naming -->
+        <referenceBlock name="header" remove="true"/>
+
+        <referenceContainer name="header.top.links" remove="true" />
+
+        <!-- Remove USP -->
+        <referenceContainer name="usp-bar-outer" remove="true"/>
+        <referenceContainer name="catalog.compare.link" remove="true"/>
+        <referenceContainer name="advanced-search-link" remove="true"/>
+
+        <referenceBlock name="wish-list-link" remove="true"/>
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="navigation.sections" remove="true"/>
+        <referenceBlock name="authorization-link-login" remove="true"/>
+        <referenceBlock name="copyright" remove="true"/>
+
+    </body>
+</page>
+

@@ -1,0 +1,196 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php
+/** @var $block \Magento\Checkout\Block\Cart */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+/* @var $settingsHelper = \Elevate\Themeoptions\Helper\Settings */
+$settingsHelper = $objectManager->get('Elevate\Themeoptions\Helper\Settings');
+
+$single_proceedtocheckout_button = $settingsHelper->getSetting('theme_options/cart/single_proceedtocheckout_button');
+
+
+?>
+<?php if (!$block->hasError()) :?>
+    <?php $methods = $block->getMethods('methods') ?: $block->getMethods('top_methods') ?>
+
+
+
+
+    <ul class="checkout methods items checkout-methods-items">
+        <?php
+        if ($single_proceedtocheckout_button == 1) { ?>
+            <li class="single-proceedtocheckout-button"><button type="button" data-role="proceed-to-checkout" title="Proceed to Checkout" id="single-checkout-main" class="action primary btn checkout single-checkout">
+                    <span>Proceed to Checkout</span>
+                </button></li>
+
+        <?php } else { ?>
+                  <?php foreach ($methods as $method) :?>
+            <?php $methodHtml = $block->getMethodHtml($method); ?>
+            <?php if (trim($methodHtml) !== '') :?>
+                <li class="item"><?= /* @noEscape */ $methodHtml ?></li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+       <?php  }?>
+
+    </ul>
+<?php endif; ?>
+
+<?php if ($single_proceedtocheckout_button == 1) { ?>
+
+<script type="text/javascript">
+
+    jQuery('#single-checkout-main').click(function() {
+        ELEVATE.Lightbox.openLightbox("inline",
+            '<div class="checkout-selector-outer-wrapper">' +
+            '<a id="normal-checkout-outer" class="checkout-selector-wrapper">' +
+            '<p>I want to:</p>' +
+
+            '<p>Send all items on this order to a single address</p>' +
+            '<div class="checkout-selection-outer">' +
+            '<div class="checkbox-container">' +
+            '<div class="abc-checkbox abc-checkbox-primary">' +
+            '<input id="normal-checkout" class="styled" type="checkbox"><label for="normal-checkout"></label>' +
+            '</div>' +
+            '</div>' +
+            '<div class="parcel-address-icon-outer-outer">'+
+            '<div class="parcel-address-icon-outer">' +
+            '<div class="parcel-icons">' +
+            '<div class="parcel-icon">' +
+            '<img class="parcel-icon-img" src="/pub/media/theme_assets/icons/parcel-icon.svg">' +
+            '</div>' +
+            '</div>' +
+            '<div class="address-icons">' +
+            '<div class="address-icon">' +
+            '<i class="fa fa-2x fa-long-arrow-right"></i>' +
+            '<i class="fa fa-3x fa-home"></i>' +
+            '<div class="address-to">To: Me!</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' + //parcel-address-icon-outer
+            '</div>' +
+            '</div>' +
+            '<a href="/checkout" id="single-address" class="action btn proceedtocheckout checkout-hidden checkout-disabled">Proceed to Single Address Checkout</a>' +
+            '<div class="checkout-select-breaker"></div>' +
+            '<a id="multi-checkout-outer" class="checkout-selector-wrapper">' +
+            '<p>Send items on this order to different addresses</p>' +
+            '<div class="checkout-selection-outer">' +
+            '<div class="checkbox-container">' +
+            '<div class="abc-checkbox abc-checkbox-primary">' +
+            '<input id="multi-checkout" class="styled" type="checkbox"><label for="multi-checkout"></label>' +
+            '</div>' +
+            '</div>' +
+            '<div class="parcel-address-icon-outer-outer">'+
+            '<div class="parcel-address-icon-outer">' +
+            '<div class="parcel-icons">' +
+            '<div class="parcel-icon">' +
+            '<img class="parcel-icon-img" src="/pub/media/theme_assets/icons/parcel-icon.svg">' +
+            '</div>' +
+            '</div>' +
+            '<div class="address-icons">' +
+            '<div class="address-icon">' +
+            '<i class="fa fa-2x fa-long-arrow-right"></i>' +
+            '<i class="fa fa-3x fa-home"></i>' +
+            '<div class="address-to">To: Mum & Dad</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' + //parcel-address-icon-outer
+            '<div class="parcel-address-icon-outer">' +
+            '' +
+            '<div class="parcel-icons">' +
+            '<div class="parcel-icon">' +
+            '<img class="parcel-icon-img" src="/pub/media/theme_assets/icons/parcel-icon.svg">' +
+            '</div>' +
+            '</div>' +
+            '<div class="address-icons">' +
+            '<div class="address-icon">' +
+            '<i class="fa fa-2x fa-long-arrow-right"></i>' +
+            '<i class="fa fa-3x fa-home"></i>' +
+            '<div class="address-to">To: Cousin Frank</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' + //parcel-address-icon-outer
+            '<div class="parcel-address-icon-outer">' +
+            '' +
+            '<div class="parcel-icons">' +
+            '<div class="parcel-icon">' +
+            '<img class="parcel-icon-img" src="/pub/media/theme_assets/icons/parcel-icon.svg">' +
+            '</div>' +
+            '</div>' +
+            '<div class="address-icons">' +
+            '<div class="address-icon">' +
+            '<i class="fa fa-2x fa-long-arrow-right"></i>' +
+            '<i class="fa fa-3x fa-home"></i>' +
+            '<div class="address-to">To: Uncle Bill</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' + //parcel-address-icon-outer
+            '</div>' +
+            '</div>' +
+            '</a>' +
+            '<a href="/multishipping/checkout/" id="multi-address" class="action btn proceedtocheckout checkout-hidden checkout-disabled">Proceed to Multi-Address Checkout</a>' +
+            '</div>' +
+            '</div>' +
+            '<script>' +
+            ' jQuery("#normal-checkout-outer").click(function() {\n' +
+            ' jQuery("#normal-checkout").prop("checked",true);\n' +
+            'jQuery("#multi-checkout").prop("checked",false);\n' +
+            'jQuery("#multi-address").addClass("checkout-disabled").addClass("checkout-hidden");' +
+            'jQuery("#single-address").addClass("checkout-enabled").removeClass("checkout-hidden");' +
+            '        });\n' +
+            '\n' +
+            ' jQuery("#multi-checkout-outer").click(function() {\n' +
+            ' jQuery("#normal-checkout").prop("checked",false);\n' +
+            'jQuery("#multi-checkout").prop("checked",true);\n' +
+            'jQuery("#multi-address").removeClass("checkout-disabled").removeClass("checkout-hidden");' +
+            'jQuery("#single-address").removeClass("checkout-enabled").addClass("checkout-hidden");' +
+            '        });\n' +
+            ' jQuery("#normal-checkout").change(function() {\n' +
+            '            if (jQuery("#multi-checkout").is(":checked")) {\n' +
+            '                jQuery("#multi-checkout").prop("checked",false);\n' +
+            '                jQuery("#normal-checkout").prop("checked",true);\n' +
+            '                jQuery("#multi-address").addClass("checkout-disabled").addClass("checkout-hidden");\n' +
+            '            }'+
+            'if (jQuery("#normal-checkout").is(":checked")) {\n' +
+            'jQuery("#single-address").addClass("checkout-enabled").removeClass("checkout-hidden"); \n' +
+            '            }else { \n' +
+            'jQuery("#single-address").addClass("checkout-disabled").addClass("checkout-hidden");\n' +
+            ' }'+
+            '                '+
+            '        });\n' +
+            '\n' +
+            '        jQuery("#multi-checkout").change(function() {\n' +
+            '            if (jQuery("#normal-checkout").is(":checked")) {\n' +
+            '                jQuery("#normal-checkout").prop("checked",false);\n' +
+            '                jQuery("#multi-checkout").prop("checked",true);\n' +
+            '                 jQuery("#single-address").addClass("checkout-disabled").addClass("checkout-hidden");\n' +
+            '                '+
+            '            } '+
+            'if (jQuery("#multi-checkout").is(":checked")) {\n' +
+            'jQuery("#multi-address").addClass("checkout-enabled").removeClass("checkout-hidden");\n' +
+            '            }else { \n' +
+            'jQuery("#multi-address").addClass("checkout-disabled").addClass("checkout-hidden");\n' +
+            ' }'+
+            '        });' +
+            '<\/script>',
+            "",
+            "Which checkout do you need?",
+            "",
+            "",
+            "modal-lg");
+    });
+
+
+
+
+</script>
+    <?php
+}
+
+?>

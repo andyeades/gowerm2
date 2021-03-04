@@ -1,0 +1,48 @@
+@import '../_mixins.scss';
+@import '../_vars.scss';
+
+@mixin visible-transform($tippyjs-placement) {
+  @if ($tippyjs-placement == 'top') {
+    transform: perspective(700px);
+  } @else if ($tippyjs-placement == 'bottom') {
+    transform: perspective(700px);
+  } @else if ($tippyjs-placement == 'left') {
+    transform: perspective(700px);
+  } @else if ($tippyjs-placement == 'right') {
+    transform: perspective(700px);
+  }
+}
+
+@mixin hidden-transform($tippyjs-placement) {
+  @if ($tippyjs-placement == 'top') {
+    transform: perspective(700px) translateY(5px) rotateX(30deg);
+  } @else if ($tippyjs-placement == 'bottom') {
+    transform: perspective(700px) translateY(-5px) rotateX(-30deg);
+  } @else if ($tippyjs-placement == 'left') {
+    transform: perspective(700px) translateX(5px) rotateY(-30deg);
+  } @else if ($tippyjs-placement == 'right') {
+    transform: perspective(700px) translateX(-5px) rotateY(30deg);
+  }
+}
+
+.#{$tippyjs-namespace-prefix}-box {
+  &[data-animation='perspective-subtle'] {
+    @each $tippyjs-placement in $tippyjs-placements {
+      &[data-placement^='#{$tippyjs-placement}'] {
+        transform-origin: nth($tippyjs-origins, index($tippyjs-placements, $tippyjs-placement));
+
+        &[data-state='visible'] {
+          @include visible-transform($tippyjs-placement);
+        }
+
+        &[data-state='hidden'] {
+          @include hidden-transform($tippyjs-placement);
+        }
+      }
+    }
+
+    &[data-state='hidden'] {
+      opacity: 0;
+    }
+  }
+}

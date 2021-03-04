@@ -1,0 +1,16 @@
+{
+    "name": "elevate_client/aitoc-options-management",
+    "description": "Product Options Management",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Aitoc\\OptionsManagement\\": ""
+        }
+    }
+}

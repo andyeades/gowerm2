@@ -1,0 +1,1288 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">elevatethemeoptions_options_form.elevatethemeoptions_options_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevatethemeoptions_options_form</item>
+            <item name="deps" xsi:type="string">elevatethemeoptions_options_form.elevatethemeoptions_options_form_data_source</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="provider" xsi:type="string">elevatethemeoptions_options_form.elevatethemeoptions_options_form_data_source</item>
+            <item name="namespace" xsi:type="string">elevatethemeoptions_options_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="label" xsi:type="string" translate="true">Header Changes</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Options\Edit\BackButton" name="back"/>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Options\Edit\DeleteButton" name="delete"/>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Options\Edit\SaveButton" name="save"/>
+            <button class="Elevate\Themeoptions\Block\Adminhtml\Options\Edit\SaveAndContinueButton" name="save_and_continue"/>
+        </buttons>
+        <deps>
+            <dep>elevatethemeoptions_options_form.elevatethemeoptions_options_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="elevatethemeoptions_options_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Elevate\Themeoptions\Model\Options\DataProvider</argument>
+            <argument name="name" xsi:type="string">elevatethemeoptions_options_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Elevate\Themeoptions\Model\Options\DataProvider" name="elevatethemeoptions_options_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">General</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">header</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="theme_options_name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>theme_options_name</dataScope>
+                <label translate="false">Theme Options Name</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="headermain">
+        <settings>
+            <label translate="true">Header - Main</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+
+        <field name="hdr_desktop_height" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headermain</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">px</description>
+                </tooltip>
+                <dataScope>hdr_desktop_height</dataScope>
+                <label translate="false">Header Desktop Height</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="hdr_mobile_height" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headermain</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">px</description>
+                </tooltip>
+                <dataScope>hdr_mobile_height</dataScope>
+                <label translate="false">Header Mobile Height</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="hdr_general_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headermain</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Header General Color</label>
+                <tooltip>
+                    <description translate="true">This color is the primary colour used for text, links, and icons. It is a fallback colour, in case other colours are not set.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_general_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_link_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headermain</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <label translate="true">Header Link Color</label>
+                <tooltip>
+                    <description translate="true">Main link colour for header items.</description>
+                </tooltip>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_link_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_link_hover_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headermain</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <label translate="true">Header Link Hover Color</label>
+                <tooltip>
+                    <description translate="true">This color is the primary colour used for text, links, and icons. It is a fallback colour, in case other colours are not set.</description>
+                </tooltip>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_link_hover_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+
+        <field name="hdr_main_outer_background_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headermain</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <label translate="true">Header Main Background Color</label>
+                <tooltip>
+                    <description translate="true">Background color, set to blank for no background color.</description>
+                </tooltip>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_main_outer_background_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+
+
+    </fieldset>
+    <fieldset name="headertypography">
+        <settings>
+            <label translate="true">Header - Typography</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="hdr_general_font_size" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headertypography</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">px</description>
+                </tooltip>
+                <dataScope>hdr_general_font_size</dataScope>
+                <label translate="false">Header General Font Size</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="hdr_font_size" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headermain</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">px</description>
+                </tooltip>
+                <dataScope>hdr_font_size</dataScope>
+                <label translate="false">Header Font Size</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="hdr_text_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headertypography</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Header Text Color</label>
+                <tooltip>
+                    <description translate="true">This is main color used for text - except for links. If Not set it will use the Header General Color</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_text_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+
+    </fieldset>
+
+    <fieldset name="headersearch">
+        <settings>
+            <label translate="true">Header - Search</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="hdr_search_style" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">normal</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Search Style</label>
+                <dataScope>hdr_search_style</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\SearchStyle"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+
+
+        <field name="hdr_search_input_font_size" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headersearch</item>
+                    <item name="default" xsi:type="string">14px</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">px - Font Size of Search Element</description>
+                </tooltip>
+                <dataScope>hdr_search_input_font_size</dataScope>
+                <label translate="false">Font Size</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="hdr_search_input_font_size" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headersearch</item>
+                    <item name="default" xsi:type="string">14px</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">px - Font Size of Search Element</description>
+                </tooltip>
+                <dataScope>hdr_search_input_font_size</dataScope>
+                <label translate="false">Font Size</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="hdr_search_input_bg_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headersearch</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Input Background Color</label>
+                <tooltip>
+                    <description translate="true">Background color for the search input box - if required.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_search_input_bg_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+
+        <field name="hdr_search_text_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headersearch</item>
+                    <item name="default" xsi:type="string">#000000</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Text Color</label>
+                <tooltip>
+                    <description translate="true">Specific Search Text Color - Will use Header General Color if not set.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_search_text_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_search_icon_position" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">left</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Search Icon Position</label>
+                <dataScope>hdr_search_icon_position</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\LeftRight"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="hdr_search_icon_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headersearch</item>
+                    <item name="default" xsi:type="string">#000000</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Icon Color</label>
+                <tooltip>
+                    <description translate="true">Specific Search Icon Color.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_search_icon_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_search_placeholder_text_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headersearch</item>
+                    <item name="default" xsi:type="string">#000000</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Placeholder Text Color</label>
+                <tooltip>
+                    <description translate="true">Specific Placeholder Text.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_search_placeholder_text_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_search_input_text_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headersearch</item>
+                    <item name="default" xsi:type="string">#000000</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Input Text Color</label>
+                <tooltip>
+                    <description translate="true">Specific Input Text.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_search_input_text_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_search_border_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headersearch</item>
+                    <item name="default" xsi:type="string">#000000</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Border Color</label>
+                <tooltip>
+                    <description translate="true">Search border color. Set to blank for no border.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_search_border_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_search_border_position" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">all</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Border Position</label>
+                <dataScope>hdr_search_border_position</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\BorderPosition"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="hdr_search_border_style" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">solid</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Border Style</label>
+                <dataScope>hdr_search_border_style</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\BorderStyle"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="hdr_search_border_thickness" formElement="select">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="default" xsi:type="string">1px</item>
+            </item>
+        </argument>
+        <settings>
+            <dataType>text</dataType>
+            <label translate="true">Border Thickness</label>
+            <dataScope>hdr_search_border_thickness</dataScope>
+        </settings>
+        <formElements>
+            <select>
+                <settings>
+                    <options class="Elevate\Themeoptions\Model\Config\Source\BorderThickness"/>
+                </settings>
+            </select>
+        </formElements>
+    </field>
+        <field name="hdr_search_border_style" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">solid</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Border Style</label>
+                <dataScope>hdr_search_border_style</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\BorderStyle"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+
+    <fieldset name="headerright">
+        <settings>
+            <label translate="true">Header - Right</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="hdr_r_trowbrow_sidebyside" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Display Rows Side By Side </label>
+                <dataScope>hdr_r_trowbrow_sidebyside</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="hdr_right_link_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Link Color</label>
+                <tooltip>
+                    <description translate="true">Link Color for Header Right Elements - if Different from Standard Link Color.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_right_link_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_text_align" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">TopRow Text Align</label>
+                <dataScope>hdr_r_trow_text_align</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\Textalign"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_height" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">px</description>
+                </tooltip>
+                <dataScope>hdr_r_trow_height</dataScope>
+                <label translate="false">Header Right Top Row Height</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="hdr_r_trow_padding" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">px</description>
+                </tooltip>
+                <dataScope>hdr_r_trow_padding</dataScope>
+                <label translate="false">Header Right Top Row Padding</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="hdr_r_trow_ul_li_fontweight" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Top Row Font Weight</label>
+                <dataScope>hdr_r_trow_ul_li_fontweight</dataScope>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">If the weight isn't included with the font being used it may not look different to the nearest option (i.e. if 600 is selected but only 400 and 700 are included it will use 700 in the browser).</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\Fontweight"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_ul_li_a_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Top Row List Item Link Color</label>
+                <tooltip>
+                    <description translate="true">Will only affect links in the list, not just text without link if used.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_r_trow_ul_li_a_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_ul_li_a_hover_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Top Row List Item Link Hover Color</label>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_r_trow_ul_li_a_hover_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_link_color_alt1" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Top Row Link Color Alt 1</label>
+                <tooltip>
+                    <description translate="true">Will only affect links in the list, not just text without link if used.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_r_trow_link_color_alt1</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_link_hover_color_alt1" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Top Row Link Hover Color Alt 1</label>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_r_trow_link_hover_color_alt1</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_link_color_alt2" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Top Row List Item Link Color</label>
+                <tooltip>
+                    <description translate="true">Will only affect links in the list, not just text without link if used.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_r_trow_link_color_alt2</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_link_hover_color_alt2" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Top Row Link Hover Color 2</label>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_r_trow_link_hover_color_alt2</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_top_list_li_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Top List Li Color</label>
+                <tooltip>
+                    <description translate="true">Will only affect non links.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_top_list_li_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_ul_li_first_seperator" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Include a border seperator after first list item?</label>
+                <dataScope>hdr_r_trow_ul_li_first_seperator</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>0</value>
+                            <actions>
+                                <action name="0">
+                                    <target>elevatethemeoptions_options_form.elevatethemeoptions_options_form.headerright.hdr_r_trow_ul_li_first_seperator_border_color</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>elevatethemeoptions_options_form.elevatethemeoptions_options_form.headerright.hdr_r_trow_ul_li_first_seperator_border_style</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>1</value>
+                            <actions>
+                                <action name="0">
+                                    <target>elevatethemeoptions_options_form.elevatethemeoptions_options_form.headerright.hdr_r_trow_ul_li_first_seperator_border_color</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>elevatethemeoptions_options_form.elevatethemeoptions_options_form.headerright.hdr_r_trow_ul_li_first_seperator_border_style</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_ul_li_first_seperator_border_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Top Row First List Item Seperator Border Color</label>
+                <tooltip>
+                    <description translate="true">Color of Border Seperator</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_r_trow_ul_li_first_seperator_border_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_ul_li_first_seperator_border_thickness" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Seperator Thickness</label>
+                <dataScope>hdr_r_trow_ul_li_first_seperator_border_thickness</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\BorderThickness"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="hdr_r_trow_ul_li_first_seperator_border_style" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Seperator Style</label>
+                <dataScope>hdr_r_trow_ul_li_first_seperator_border_style</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\BorderStyle"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="hdr_top_list_font_size" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Top List Li Color</label>
+                <tooltip>
+                    <description translate="true">Will only affect non links.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_top_list_li_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_top_list_font_size" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">headerright</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-narrow-text">true</class>
+                </additionalClasses>
+                <tooltip>
+                    <!--<link>whatisthis</link>-->
+                    <description translate="true">px</description>
+                </tooltip>
+                <dataScope>hdr_top_list_font_size</dataScope>
+                <label translate="false">Top List Font Size </label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <required>false</required>
+                <validation>
+                    <rule name="validate-not-negative-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="minicart">
+        <settings>
+            <label translate="true">Minicart</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+
+
+        <field name="hdr_minicart_counter_position" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">right-centre-offset</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Counter Border Position</label>
+                <dataScope>hdr_minicart_counter_position</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Elevate\Themeoptions\Model\Config\Source\CounterPosition"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="hdr_minicart_counter_border_enabled" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Counter Border Enabled</label>
+                <dataScope>hdr_minicart_counter_border_enabled</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="hdr_minicart_counter_border_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">minicart</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Minicart Border Color</label>
+                <tooltip>
+                    <description translate="true">Minicart Border Color.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_minicart_counter_border_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_minicart_counter_background_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">minicart</item>
+                </item>
+            </argument>
+
+            <settings>
+                <label translate="true">Minicart Background Color</label>
+                <tooltip>
+                    <description translate="true">Minicart Background Color.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_minicart_counter_background_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_minicart_counter_text_color" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">minicart</item>
+                </item>
+            </argument>
+
+            <settings>
+                <label translate="true">Minicart Text Color</label>
+                <tooltip>
+                    <description translate="true">Minicart Text Color.</description>
+                </tooltip>
+                <additionalClasses>
+                    <class name="admin__field-colorppickerfix">true</class>
+                </additionalClasses>
+                <elementTmpl>Elevate_Themeoptions/form/element/color-picker</elementTmpl>
+                <dataScope>hdr_minicart_counter_text_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorFormat>HEX</colorFormat>
+                        <colorPickerMode>full</colorPickerMode>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="hdr_minicart_counter_border_thickness" formElement="select">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="default" xsi:type="string">1px</item>
+            </item>
+        </argument>
+        <settings>
+            <dataType>text</dataType>
+            <label translate="true">Counter Border Thickness</label>
+            <dataScope>hdr_minicart_counter_border_thickness</dataScope>
+        </settings>
+        <formElements>
+            <select>
+                <settings>
+                    <options class="Elevate\Themeoptions\Model\Config\Source\BorderThickness"/>
+                </settings>
+            </select>
+        </formElements>
+    </field>
+        <field name="hdr_minicart_counter_border_style" formElement="select">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="default" xsi:type="string">solid</item>
+            </item>
+        </argument>
+        <settings>
+            <dataType>text</dataType>
+            <label translate="true">Counter Border Style</label>
+            <dataScope>hdr_minicart_counter_border_style</dataScope>
+        </settings>
+        <formElements>
+            <select>
+                <settings>
+                    <options class="Elevate\Themeoptions\Model\Config\Source\BorderStyle"/>
+                </settings>
+            </select>
+        </formElements>
+    </field>
+    </fieldset>
+
+</form>

@@ -1,0 +1,23 @@
+{
+    "name": "elevate_external/mageside-customshippingprice",
+    "authors": [
+        {
+            "name": "Mageside",
+            "email": "extensions@mageside.com",
+            "homepage": "https://mageside.com/"
+        }
+    ],
+    "description": "",
+    "type": "magento2-module",
+    "license": [
+        "MS-LICENSE.txt"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Mageside\\CustomShippingPrice\\": ""
+        }
+    }
+}

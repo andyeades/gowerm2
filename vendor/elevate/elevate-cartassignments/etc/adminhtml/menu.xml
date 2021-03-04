@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add action="elevate_cartassignments/cartassignments/index" id="Elevate_CartAssignments::elevate_cartassignments_cartassignments" module="Elevate_CartAssignments" parent="Elevate_Core::menu" resource="Magento_Backend::content" sortOrder="9999" title="CartAssignments"/>
+	</menu>
+</config>

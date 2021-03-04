@@ -1,0 +1,66 @@
+<?php /* @var $block \Elevate\Themeoptions\Block\System\Config\Buildscss */ ?>
+
+<script>
+    require([
+        'jquery'
+    ], function(jQuery){
+
+
+        jQuery('#generatescss_button').click(function () {
+
+
+            var ajaxRequest;
+            ajaxRequest = jQuery.ajax({
+                url: "<?php echo $this->getUrl('elevatethemeoptions/system_config/outputscss'); ?>?isAjax=true",
+                type: 'POST',
+                data: {
+                    form_key: window.FORM_KEY
+                },
+                dataType: 'json',
+                beforeSend: function () {
+                    jQuery('#loading-overlay').show();
+                },
+                success: function(response) {
+
+
+
+                    console.log(response);
+                    var output = '';
+                    if (response.success === 'true') {
+                        console.log('success!');
+                        output += '<div class="message message-success">Successfully built Scss/Css files</div>'
+
+                    } else {
+                        console.log('failure!');
+                        output += '<div class="message message-error">Something went wrong, check log files/generated scss/css files</div>';
+                    }
+                    jQuery("#ajaxResponse").html(output);
+                    jQuery('#loading-overlay').hide();
+                },
+                error: function (xhr, status, errorThrown) {
+                    console.log(status);
+                    console.log(xhr);
+                    console.log(errorThrown);
+                }
+            });
+
+
+            console.log('clicked it for sure');
+        });
+
+    });
+</script>
+
+<?php echo $block->getButtonHtml() ?>
+<span class="generatescss-indicator" id="generatescss_span">
+    <img class="processing" hidden="hidden" alt="Generating Scss Files" style="margin:0 5px" src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+    <img class="generated" hidden="hidden" alt="Generated" style="margin:-3px 5px" src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+    <span id="generated_message_span"></span>
+</span>
+
+<div id="ajaxResponse"></div>
+
+<div id="loading-overlay" class="loading">
+  <div class="loader"></div>
+  <div class="loader-message">Building Scss/Css files for theme...</div>
+</div>

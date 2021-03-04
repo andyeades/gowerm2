@@ -1,0 +1,65 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/** @var \Elevate\Themeoptions\Block\Html\Breadcrumbs $block */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$catalogData = $objectManager->create('Magento\Catalog\Helper\Data');
+$crumbs = false;
+
+$block->addCrumb(
+    'home',
+    [
+        'label' => __('Home'),
+        'title' => __('Go to Home Page'),
+        'link' => $block->getBaseUrl()
+    ]
+);
+$path = $catalogData->getBreadcrumbPath();
+foreach ((array)$path as $name => $breadcrumb) {
+    $block->addCrumb($name, $breadcrumb);
+}
+$crumbs = $block->getCrumbs();
+
+?>
+
+<?php if ($crumbs && is_array($crumbs)) { ?>
+    <div class="breadcrumbs">
+        <ul class="items"><?php foreach ($crumbs as $crumbName => $crumbInfo) {
+                if (strcmp($crumbName, 'home') == 0) {
+                    if ($block->getIsHomeBreadcrumbIconOn() == true) { ?>
+                    <li class="item <?= $block->escapeHtmlAttr($crumbName) ?>">
+                        <?php if ($crumbInfo['link']) { ?>
+                            <a href="<?= $block->escapeUrl($crumbInfo['link']) ?>" title="<?= $block->escapeHtmlAttr($crumbInfo['title']) ?>">
+                                <?= $block->getHomeIconSvg() ?></a>
+                        <?php } elseif ($crumbInfo['last']) { ?>
+                            <strong><?= $block->escapeHtml($crumbInfo['label']) ?></strong>
+                        <?php } else { ?>
+                            <?= $block->escapeHtml($crumbInfo['label']) ?><?php } ?>
+                        </li><?php } else { ?>
+                        <li class="item <?= $block->escapeHtmlAttr($crumbName) ?>">
+                        <?php if ($crumbInfo['link']) { ?>
+                            <a href="<?= $block->escapeUrl($crumbInfo['link']) ?>" title="<?= $block->escapeHtmlAttr($crumbInfo['title']) ?>">
+                                <?= $block->escapeHtml($crumbInfo['label']) ?>
+                            </a>
+                        <?php } elseif ($crumbInfo['last']) { ?>
+                            <strong><?= $block->escapeHtml($crumbInfo['label']) ?></strong>
+                        <?php } else { ?>
+                            <?= $block->escapeHtml($crumbInfo['label']) ?><?php } ?><?php } ?>
+                    </li><?php } else { ?>
+                <li class="item <?= $block->escapeHtmlAttr($crumbName) ?>">
+                    <?php if ($crumbInfo['link']) { ?>
+                        <a href="<?= $block->escapeUrl($crumbInfo['link']) ?>" title="<?= $block->escapeHtmlAttr($crumbInfo['title']) ?>">
+                            <?= $block->escapeHtml($crumbInfo['label']) ?>
+                        </a>
+                    <?php } elseif ($crumbInfo['last']) { ?>
+                        <strong><?= $block->escapeHtml($crumbInfo['label']) ?></strong>
+                    <?php } else { ?>
+                        <?= $block->escapeHtml($crumbInfo['label']) ?><?php } ?></li><?php } ?>
+
+
+
+            <?php } ?></ul>
+    </div>
+<?php } ?>

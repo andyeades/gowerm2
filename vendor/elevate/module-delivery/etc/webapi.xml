@@ -1,0 +1,126 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/elevate-delivery/deliverymethod">
+        <service class="Elevate\Delivery\Api\DeliveryMethodRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryMethod_save"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/elevate-delivery/deliverymethod/search">
+        <service class="Elevate\Delivery\Api\DeliveryMethodRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryMethod_view"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/elevate-delivery/deliverymethod/:deliverymethodId">
+        <service class="Elevate\Delivery\Api\DeliveryMethodRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryMethod_view"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/elevate-delivery/deliverymethod/:deliverymethodId">
+        <service class="Elevate\Delivery\Api\DeliveryMethodRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryMethod_update"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/elevate-delivery/deliverymethod/:deliverymethodId">
+        <service class="Elevate\Delivery\Api\DeliveryMethodRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryMethod_delete"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/elevate-delivery/deliveryarea">
+        <service class="Elevate\Delivery\Api\DeliveryAreaRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryArea_save"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/elevate-delivery/deliveryarea/search">
+        <service class="Elevate\Delivery\Api\DeliveryAreaRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryArea_view"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/elevate-delivery/deliveryarea/:deliveryareaId">
+        <service class="Elevate\Delivery\Api\DeliveryAreaRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryArea_view"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/elevate-delivery/deliveryarea/:deliveryareaId">
+        <service class="Elevate\Delivery\Api\DeliveryAreaRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryArea_update"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/elevate-delivery/deliveryarea/:deliveryareaId">
+        <service class="Elevate\Delivery\Api\DeliveryAreaRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryArea_delete"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/elevate-delivery/deliveryfee">
+        <service class="Elevate\Delivery\Api\DeliveryFeeRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryFee_save"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/elevate-delivery/deliveryfee/search">
+        <service class="Elevate\Delivery\Api\DeliveryFeeRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryFee_view"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/elevate-delivery/deliveryfee/:deliveryfeeId">
+        <service class="Elevate\Delivery\Api\DeliveryFeeRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryFee_view"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/elevate-delivery/deliveryfee/:deliveryfeeId">
+        <service class="Elevate\Delivery\Api\DeliveryFeeRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryFee_update"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/elevate-delivery/deliveryfee/:deliveryfeeId">
+        <service class="Elevate\Delivery\Api\DeliveryFeeRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryFee_delete"/>
+        </resources>
+    </route>
+
+    <route method="POST" url="/V1/elevate-delivery/deliveryproducts">
+        <service class="Elevate\Delivery\Api\DeliveryProductsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryProducts_save"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/elevate-delivery/deliveryproducts/search">
+        <service class="Elevate\Delivery\Api\DeliveryProductsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryProducts_view"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/elevate-delivery/deliveryproducts/:deliveryproductsId">
+        <service class="Elevate\Delivery\Api\DeliveryProductsRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryProducts_view"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/elevate-delivery/deliveryproducts/:deliveryproductsId">
+        <service class="Elevate\Delivery\Api\DeliveryProductsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryProducts_update"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/elevate-delivery/deliveryproducts/:deliveryproductsId">
+        <service class="Elevate\Delivery\Api\DeliveryProductsRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Elevate_Delivery::DeliveryProducts_delete"/>
+        </resources>
+    </route>
+
+
+</routes>

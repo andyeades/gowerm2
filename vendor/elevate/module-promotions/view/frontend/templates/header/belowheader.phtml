@@ -1,0 +1,1154 @@
+<style>
+
+  .save-icon.save-icon2, .p-img-icon.save-icon.save-icon2.ts1 {
+    font-weight: bold;
+  }
+
+  .belvg-navigation ul, .belvg-navigation ul > li {
+
+    flex: 1 1 auto;
+  }
+
+  ul#ui-id-1 {
+    display: flex;
+  }
+
+  .more-from-collection2.show_ev_furniture_block {
+    margin:        0 auto;
+    margin-bottom: 20px;
+  }
+
+  ul#countdown_timer li {
+    color:        #000 !important;
+    border-color: #000 !important;
+  }
+
+  #sub_bar_promo_main_text {
+    font-size:      23px;
+    text-transform: uppercase;
+    font-weight:    normal;
+    padding:        0;
+    line-height:    100%;
+    font-weight:    bold;
+  }
+
+
+
+  .category-clearance .firmness-rating-outer {
+    display: none;
+  }
+
+  .category-clearance .product-icons {
+    display: none !important;
+  }
+
+  .category-clearance .price-box.price-final_price {
+    width: 100% !important;
+  }
+
+  @media only screen and (max-width: 991.98px) {
+
+    #sub_bar_promo_main_text {
+      font-size: 17px;
+
+    }
+
+
+
+    .slider-wrap {
+      margin-bottom: 0px !important;
+    }
+
+
+
+    .hide_mobile_promo {
+      display: none !important;
+    }
+
+    .slider-wrap {
+      border-radius: 0 !important;
+    }
+  }
+
+
+  @media screen and (min-width: 1470px) {
+
+    .sub-hdr-hdr-feefo {
+      margin-bottom: 8px;
+    }
+  }
+
+
+
+</style>
+
+
+<?php //countdown bars
+
+$helper = $this->helper('Elevate\Promotions\Helper\Data');
+$sitewide_enable = $helper->getConfig('elevate_promotions/sitewide/enable');
+
+if ($sitewide_enable == 1) {
+
+
+    $sitewide_type = $helper->getConfig('elevate_promotions/sitewide/type');
+    $countdown_time = str_replace(' ', 'T', $helper->getConfig('elevate_promotions/sitewide/countdown_time'));
+    $promotion_link = $helper->getConfig('elevate_promotions/sitewide/promotion_link');
+
+    $global_promotion_listing_text = 'text';
+
+    $global_promotion_background_colour = $helper->getConfig('elevate_promotions/sitewide/background_colour');
+
+    $global_promotion_font_colour = '#fff';
+    $global_blacklist = explode(',', '');
+    $global_blacklist = array_flip($global_blacklist);
+    $global_promotion_countdown_pp_enable = true;
+
+    $global_promotion_countdown_list_background_colour = $helper->getConfig('elevate_promotions/countdown/countdown_list_background_colour');
+    $global_promotion_countdown_list_font_colour = $helper->getConfig('elevate_promotions/countdown/countdown_list_font_colour');
+    // $global_promotion_background_colour = $helper->getConfig('elevate_promotions/countdown/countdown_list_font_colour_over');
+    $global_promotion_countdown_pp_background_colour = $helper->getConfig('elevate_promotions/countdown/countdown_pp_background_colour');
+
+    $global_promotion_countdown_banner_image = '';
+    $global_promotion_countdown_banner_image_bkg = '#fff';
+
+    $sitewide_background_colour = $helper->getConfig('elevate_promotions/sitewide/background_colour');
+
+    $sitewide_image = '';
+    $main_text = $helper->getConfig('elevate_promotions/sitewide/promo_text');
+
+    $pill_bkg_colour = $helper->getConfig('elevate_promotions/sitewide/promo_pill_colour_bkg');
+    $pill_text_colour = $helper->getConfig('elevate_promotions/sitewide/promo_pill_colour_font');
+
+    $pill_text = $helper->getConfig('elevate_promotions/sitewide/promo_subtext');
+    $pill_text = $helper->getConfig('elevate_promotions/sitewide/promo_subtext');
+
+    $pill_text = $helper->getConfig('elevate_promotions/sitewide/promo_subtext');
+
+    $sub_header_main_colour = $helper->getConfig('elevate_promotions/sitewide/font_colour');
+    $sub_header_subtext_colour = $helper->getConfig('elevate_promotions/sitewide/promo_subtext_colour');
+    $sub_header_invert = $helper->getConfig('elevate_promotions/sitewide/invert_colours');
+
+    if ($sub_header_invert) {
+
+
+    }
+    $sitewide_bkg_image = '';
+    $sitewide_custom_block = '';
+
+    $_gpsku = '';
+
+    $global_promotion = false;
+
+    if ($_gpsku == '') {
+
+        $global_promotion = true;
+
+    } else {
+        $global_promotion_skus = explode(',', $_gpsku);
+        $global_promotion_skus = array_flip($global_promotion_skus);
+    }
+
+    $global_promo_this_product = true;
+
+    ?>
+  <style>
+
+    .slider-wrap {
+      position:        relative;
+      height:          57px;
+
+      background-size: cover;
+      display:         flex;
+      align-items:     center;
+      justify-content: flex-end;
+    }
+
+    #countdown_timer {
+      height:          100%;
+      display:         flex;
+      align-items:     center;
+      justify-content: flex-end;
+      margin:          0px;
+      padding:         0px;
+      margin-left:     0;
+      margin-right:    5px;
+    }
+
+
+    ul#countdown_timer li:first-child {
+      margin-left: 0px;
+    }
+
+    ul#countdown_timer li span {
+      font-size:   19px;
+      padding-top: 0;
+      margin-top:  0;
+    }
+
+    ul#countdown_timer li p {
+      margin:         0;
+      font-size:      10px;
+      padding:        0;
+      text-transform: uppercase;
+    }
+
+    .count-dwn-btn {
+      background:     yellow;
+      display:        block;
+      width:          100%;
+      text-align:     center;
+      text-transform: uppercase;
+      color:          #000000;
+      font-size:      25px;
+      margin:         5px 0 5px 0;
+      margin-top:     12px;
+      padding:        10px;
+    }
+
+    .elements {
+      width: 100%;
+    }
+
+    .inner-elements {
+      width:      100%;
+      flex:       0;
+      display:    flex;
+      width:      100%;
+      text-align: right;
+      padding:    0px 0px 0px 0px;
+    }
+
+
+    .the-sale-text-icon img {
+      height: 45px;
+      width:  100%;
+    }
+
+
+    .elements {
+      width: 100%;
+    }
+
+
+    .the-sale-text-icon {
+      flex:          0 1 auto;
+      order:         0;
+      margin-right:  0;
+      margin-left:   auto;
+      align-self:    center;
+      width:         100%;
+      padding-right: 10px;
+    }
+
+    #countdown_timer {
+      height:          100%;
+      display:         flex;
+      align-items:     center;
+      justify-content: flex-end;
+      margin:          0px;
+      padding:         0px;
+      margin-left:     0;
+      margin-right:    auto;
+    }
+
+    .countdown-timer-outer {
+      margin-right: auto;
+    }
+
+    @media screen and (max-width: 480px) {
+
+      .inner-elements {
+        display:    flex;
+        width:      100%;
+        text-align: right;
+        margin:     0;
+        padding:    0;
+      }
+
+      #ppslidewrap .inner-elements {
+        padding:    5px 5px !important;
+        text-align: left;
+      }
+
+      #countdown_timer {
+        padding-right: 5px;
+      }
+
+      .the-sale-text-icon {
+
+        margin-right: 7px;
+        margin-left:  auto;
+
+      }
+    }
+
+    @media screen and (min-width: 1470px) {
+      #ppslidewrap .the-sale-text-icon {
+        margin-left: 10px;
+      }
+
+      div#stock_message {
+        margin-bottom: 10px;
+      }
+
+      .countdown-timer-outer {
+        margin-right: 10px;
+        margin-left:  auto;
+      }
+
+
+    }
+
+    .the-sale-text-icon img {
+      height:       45px;
+      width:        100%;
+      padding-left: 15px;
+    }
+
+
+
+
+
+
+
+      ul#countdown_timer li {
+        font-size: 12px;
+      }
+
+
+      ul#countdown_timer li p {
+        font-size: 12px;
+      }
+
+      ul#countdown_timer li {
+        width: 57px !important;
+      }
+    }
+
+    @media (max-width: 991.98px) and (min-width: 768px) {
+
+      ul#countdown_timer li {
+        font-size: 12px;
+      }
+
+
+      ul#countdown_timer li p {
+        font-size: 10px;
+      }
+
+      ul#countdown_timer li {
+        width: 57px !important;
+      }
+
+    }
+
+    div#ev_promo_pp_main_text {
+      color: #000;
+    }
+
+    ul#countdown_timer li {
+      text-align:       center;
+      font-size:        32px;
+      flex:             0 1 auto;
+      display:          inline-block;
+      align-items:      stretch;
+      width:            66px;
+      height:           auto;
+      line-height:      30px;
+      vertical-align:   top;
+      color:            black;
+      border-radius:    -15px;
+      padding:          0;
+      background-color: transparent;
+      margin:           0 2px;
+
+      color:            white;
+      border:           2px solid #ffffff52;
+      border-radius:    10px !important;
+    }
+
+    ul#countdown_timer li {
+
+      opacity: 1 !important;
+    }
+
+    .slider-wrap {
+      border-radius: 10px;
+      height:        57px;
+      background-color: <?php echo $sitewide_background_colour; ?> !important;
+      height:        auto;
+    }
+
+
+    #headwrap .slider-wrap {
+
+      border-radius: 0px;
+    }
+
+    .the-sale-text-icon img {
+
+      float: left;
+    }
+
+    .the-sale-text-icon img {
+      height:       45px;
+      width:        auto !important;
+      padding-left: 15px;
+    }
+
+    div#subheading-bar .slider-wrap {
+      display: block !important;
+
+    }
+
+    div#subheading-bar {
+      background-color: <?php echo $sitewide_background_colour; ?> !important;
+    }
+
+    .sub-hdr-hdr-text {
+      color: <?php echo $sub_header_subtext_colour; ?>;
+    }
+
+    .sub-hdr-text {
+      color: <?php echo $sub_header_main_colour; ?>;
+    }
+
+
+    <?php if($sub_header_invert){ ?>
+    .sub-hdr-hdr-feefo, .sub-hdr-rosette-ico, .sub-hdr-award-ico, .sub-hdr-delivery-ico {
+      filter: brightness(0) invert(1);
+    }
+
+    <?php } ?>
+
+
+    #subheading-bar #countdown_timer li span {
+      line-height: 20px !important;
+    }
+
+    @media screen and (max-width: 991.98px) {
+      div#subheading-bar .slider-wrap {
+        margin-bottom: 0 !important;
+      }
+
+
+
+      #subheading-bar .the-sale-text-icon {
+        text-align: left;
+      }
+
+      #subheading-bar .the-sale-text-icon {
+        width: 34% !important;
+      }
+
+
+    }
+
+
+    #subheading-bar .new-hdr-icon {
+      background-color: <?php echo $pill_bkg_colour; ?> !important;
+      color: <?php echo $pill_text_colour; ?> !important;
+    }
+
+
+    @media screen and (max-width: 480px) {
+      ul#countdown_timer li {
+        text-align:       center;
+        font-size:        32px;
+        flex:             0 1 auto;
+        display:          inline-block;
+        align-items:      stretch;
+        width:            60px;
+        height:           auto;
+        line-height:      30px;
+        vertical-align:   top;
+        color:            black;
+        padding:          0;
+        background-color: transparent;
+        margin:           0 1px;
+        color:            white;
+        border:           2px solid #ffffff52;
+        border-radius:    10px !important;
+      }
+    }
+  </style>
+
+    <?php
+
+    $global_promotion_override_usp = true; //sitewide_enable
+
+    $usp_promo_text_class = '';
+    $sitewide_text_type = '3d_text_1';
+
+    $base_colour = $helper->getConfig('elevate_promotions/sitewide/background_colour');
+    $gradient_colour = $base_colour;
+    $usp_promo_text = 'SALE';
+    $usp_promo_subtext = 'UP TO 75% OFF! SAVE BIG ON TIES, BOW TIES, POCKET SQUARES AND MORE!';
+    $promo_button_text = 'SHOP NOW';
+
+    $center_text_colour = '#fff';
+
+    $background_image = '';
+
+    $usp_promo_text = $helper->getConfig('elevate_promotions/sitewide/text_bar_name');
+
+    //   $usp_promo_text = 'SALE';
+    $usp_promo_subtext = $helper->getConfig('elevate_promotions/sitewide/text_bar_text');
+
+    $promo_button_text = $helper->getConfig('elevate_promotions/sitewide/text_bar_btn_text'); //text_bar_btn_text
+
+    $right_strapline = $helper->getConfig('elevate_promotions/sitewide/right_strapline'); //text_bar_btn_text
+
+    // $promo_button_link = $array[$storeID]['btn_link'];
+    $countdown_text_hours = $helper->getConfig('elevate_promotions/sitewide/hours_text');
+    $countdown_text_days = $helper->getConfig('elevate_promotions/sitewide/days_text');
+    $countdown_text_minutes = $helper->getConfig('elevate_promotions/sitewide/minutes_text');
+    $countdown_text_seconds = $helper->getConfig('elevate_promotions/sitewide/seconds_text');
+
+    if ($countdown_text_hours == '') {
+        $countdown_text_hours = 'Hours';
+    }
+    if ($countdown_text_days == '') {
+        $countdown_text_days = 'Days';
+    }
+    if ($countdown_text_minutes == '') {
+        $countdown_text_minutes = 'Minutes';
+    }
+    if ($countdown_text_seconds == '') {
+        $countdown_text_seconds = 'Seconds';
+    }
+
+    //Get Object Manager Instance
+    //$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+    //Load product by product id
+    //$promotion = $objectManager->create('Elevate\Promotions\Model\Promotions')->load(1);
+
+    //echo "<pre>";
+    //print_r($promotion->getData());
+    //echo "</pre>";
+    //$testing = '123';
+
+    // include($block->getTemplateFile('Elevate_Promotions::belowheader/3d_text_1.phtml'));
+    if ($sitewide_text_type == '3d_text_1') {
+
+        $usp_promo_text_class = '
+margin: 0;
+flex: 0 1 auto;
+padding: 0;
+margin-left: 0px;
+color: #fff;
+text-align: left;
+font-size: 39px;
+font-weight: normal;
+padding: 6px 10px 10px 20px;
+line-height: 100%;
+text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15);
+-webkit-transition: .2s all linear;';
+
+    }
+
+    ?>
+
+
+  <style>
+    @media (max-width: 767.98px) {
+      #promo_center_text {
+        display: none;
+      }
+
+      .promo_link {
+        padding-right: 15px !important;
+      }
+
+      .promo_brand {
+        padding-left: 15px !important;
+      }
+    }
+
+    .nav-sections {
+      margin-bottom: 0px;
+    }
+
+    /*USP BAR*/
+
+
+
+    <?php $colour_override = true;
+
+     if($colour_override){
+
+    ?>
+
+    .sub-hdr-hdr-text {
+      color:       #000 !important;
+      font-weight: bold !important;
+    }
+
+    #sh-i-block3 .sub-hdr-right .sub-hdr-hdr-feefo {
+      filter: initial;
+      /*  filter: brightness(0%);    */
+    }
+
+    div#sub_bar_promo_main_text {
+      color: black !important;
+    }
+
+    .sub-hdr-hdr-feefo, .sub-hdr-rosette-ico, .sub-hdr-award-ico, .sub-hdr-delivery-ico {
+      filter: brightness(0%);
+    }
+
+    <?php } ?>
+  </style>
+
+
+    <?php
+
+    $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+
+    if ($sitewide_type == 'text_bar') {
+        ?>
+      <div id="usp_text_bar" class="test1" style="margin-bottom:25px;background-color: <?php echo $base_colour; ?>;background-image: -webkit-gradient(linear, 0 0, 0 100%, from(<?php echo $base_colour; ?>), to(<?php echo $gradient_colour; ?>));width: 100%;">
+
+        <div style="margin-left: auto;margin-right: auto; display: flex;align-items: center;justify-content: center;max-width: 1280px;">
+
+
+          <div class="promo_brand" style="<?php echo $usp_promo_text_class; ?>"><?php echo $usp_promo_text; ?></div>
+
+          <p style="margin: 0;padding: 0;font-weight: normal;text-transform: uppercase;text-align: left;letter-spacing: 0.2px;flex: 1 1 auto;color: <?php echo $center_text_colour; ?>;padding: 0 30px;text-align: center;" id="promo_center_text">
+              <?php echo $usp_promo_subtext; ?>
+          </p>
+            <?php if (!empty($right_strapline)) { ?>
+
+              <span style="font-weight:500;padding:10px;width: auto;color:#fff;display: inline-block;margin: 15px 0px;min-width: 100px;text-align: center;"><?php echo $right_strapline; ?></span>
+            <?php } else {
+
+                ?>
+              <a class="promo_link" href="<?php echo $promotion_link; ?>" style="cursor:pointer;padding-right:20px; color: <?php echo $center_text_colour; ?>;">
+                <span style="font-weight:500;border: 1px solid #f7f7f7;border-radius:3px;padding:10px;width: auto;display: inline-block;margin: 15px 0px;min-width: 100px;text-align: center;"><?php echo $promo_button_text; ?></span></a>
+                <?php
+            }
+            ?>
+        </div>
+      </div>
+
+        <?php
+
+    } else if ($sitewide_type == 'text_bar_countdown') {
+        ?>
+      <div id="usp_text_bar" class="test1" style="margin-bottom:25px;background-color: <?php echo $base_colour; ?>;background-image: -webkit-gradient(linear, 0 0, 0 100%, from(<?php echo $base_colour; ?>), to(<?php echo $gradient_colour; ?>));width: 100%;">
+        <a href="<?php echo $promotion_link; ?>" style="
+width: 100%;flex:0;
+">
+          <div style="margin-left: auto;margin-right: auto; display: flex;align-items: center;justify-content: center;max-width: 1280px;">
+
+
+            <div class="promo_brand" style="<?php echo $usp_promo_text_class; ?>"><?php echo $usp_promo_text; ?></div>
+
+            <p style="margin: 0;padding: 0;font-weight: normal;text-transform: uppercase;text-align: left;letter-spacing: 0.2px;flex: 1 1 auto;color: <?php echo $center_text_colour; ?>;padding: 0 30px;text-align: center;" id="promo_center_text">
+                <?php echo $usp_promo_subtext; ?>
+            </p>
+
+
+            <div class="inner-elements">
+
+
+              <ul id="countdown_timer">
+                <li><span class="days">&nbsp;</span>
+                  <p><?= $countdown_text_days ?></p></li>
+                <li><span class="hours">&nbsp;</span>
+                  <p><?= $countdown_text_hours ?></p></li>
+                <li><span class="minutes">&nbsp;</span>
+                  <p><?= $countdown_text_minutes ?></p></li>
+                <li><span class="seconds">&nbsp;</span>
+                  <p><?= $countdown_text_seconds ?></p></li>
+              </ul>
+            </div>
+
+
+          </div>
+        </a>
+      </div>
+
+        <?php
+
+    } else if ($sitewide_type == 'usp_bar') {
+
+
+
+        ?>
+      <style>
+
+
+
+      </style>
+
+
+        <?php
+        if (strpos($url, 'posturite') !== false) {
+
+
+            ?>
+          <style>
+            .sub-hdr-hdr-feefo {
+              /* background: url(
+            <?php echo $block->getViewFileUrl('Elevate_Promotions::images/demo.jpg'); ?> );*/
+            }
+
+            .sub-hdr-delivery-ico {
+              background: url(<?php echo $block->getViewFileUrl('Elevate_Promotions::images/posturite/usp-leaders.svg'); ?>);
+            }
+
+            .sub-hdr-uk-ico {
+              background: url(<?php echo $block->getViewFileUrl('Elevate_Promotions::images/posturite/usp-chair.svg'); ?>);
+            }
+
+            .sub-hdr-rosette-ico {
+              background: url(<?php echo $block->getViewFileUrl('Elevate_Promotions::images/posturite/usp-experts.svg'); ?>);
+            }
+          </style>
+          <div id="subheading-bar">
+            <div id="subheading-inner" class="container">
+              <div id="sh-i-block1" class="sub-hdr-item">
+                    <a aria-label="Company Information" href="/company-information/about-posturite">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-del-ico"><i class="sub-hdr-delivery-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Market Leaders</div>
+                      <div class="sub-hdr-text">In ergonomics, health & wellbeing</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block2" class="sub-hdr-item hidden-xs">
+                <a aria-label="Customer Reviews" href="/manufacturers-guarantee">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-manu-ico"><i class="sub-hdr-rosette-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Your Local Experts</div>
+                      <div class="sub-hdr-text">Online an face-to-face expertise</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block3" class="sub-hdr-item hidden-xs">
+
+                    <a aria-label="About Us" href="/help-advice/help-with-my-order/posturite-delivery/delivery-installation-and-setup">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-flag-ico"><i class="sub-hdr-uk-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Expert Set Up</div>
+                      <div class="sub-hdr-text">Available on chairs and desks</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block4" class="sub-hdr-item hidden-xs hidden-sm">
+                      <a aria-label="Customer Reviews" href="/company-information/feefo-service-reviews">
+                  <div class="sh-inner">
+                        <div class="sub-hdr-cta-ico sub-hdr-trophy-ico"><i class="sub-hdr-award-ico"></i></div>
+                    <div class="sub-hdr-right">
+                          <div class="sub-hdr-hdr-feefo"></div>
+                          <div class="sub-hdr-text">Rated excellent by you</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <?php
+            //end posturite
+          } elseif (strpos($url, 'gowercottage') !== false) { ?>
+          <style>
+
+          </style>
+          <div id="subheading-bar">
+            <div id="subheading-inner" class="container">
+              <div id="sh-i-block1" class="sub-hdr-item">
+                <a aria-label="Delivery" href="/faqs">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-del-ico"><i class="sub-hdr-delivery-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Free Shipping</div>
+                      <div class="sub-hdr-text">Available to UK Mainland*</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block2" class="sub-hdr-item hidden-xs">
+                <a aria-label="Gift Messaging" href="/faqs">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-manu-ico">
+                      <i class="sub-hdr-giftmessage-ico"></i>
+                    </div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Gift Messaging</div>
+                      <div class="sub-hdr-text">Add your own gift message</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block3" class="sub-hdr-item hidden-xs">
+                <a aria-label="Select Delivery Date" href="/faqs">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-trophy-ico">
+                      <i class="sub-hdr-calendar-ico"></i>
+                    </div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Select Delivery Date</div>
+                      <div class="sub-hdr-text">Pick your own delivery date</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block4" class="sub-hdr-item hidden-xs hidden-sm">
+                <a aria-label="About Us" href="/faqs">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-flag-ico">
+                      <i class="sub-hdr-freezing-ico"></i>
+                    </div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Freezable</div>
+                      <div class="sub-hdr-text">Suitable for Home Freezing</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        <?php } elseif  (strpos($url, 'happybeds') !== false) { ?>
+          <style>
+            .sub-hdr-award-ico {
+              background: url(/skin/frontend/happybeds/default/images/newhdr/feefo-icon.png);
+            }
+            .sub-hdr-hdr-feefo {
+              background:        url(https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/feefo-promo.svg);
+              background-size:   contain;
+              background-repeat: no-repeat;
+              height:            14px;
+              width:             150px;
+              margin-bottom:     6px;
+            }
+
+            .sub-hdr-delivery-ico {
+              background: url(https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/newhdr/freeshipping.png);
+            }
+
+            .sub-hdr-uk-ico {
+              background: url(https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/newhdr/ukmade.png);
+            }
+
+            .sub-hdr-rosette-ico {
+              background: url(https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/newhdr/5yearicon.png);
+            }
+          </style>
+
+        <?php } else { ?><?php // Happybeds ?>
+
+          <div id="subheading-bar">
+            <div id="subheading-inner" class="container">
+              <div id="sh-i-block1" class="sub-hdr-item">
+                <a aria-label="Delivery" href="/help-and-advice/delivery-information">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-del-ico"><i class="sub-hdr-delivery-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Free Shipping</div>
+                      <div class="sub-hdr-text">Available to UK Mainland*</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block2" class="sub-hdr-item hidden-xs">
+                <a aria-label="Manufacturers Guarantee" href="/manufacturers-guarantee">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-manu-ico"><i class="sub-hdr-rosette-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Manufacturer's Guarantee</div>
+                      <div class="sub-hdr-text">5 Years for Total Peace of Mind</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block3" class="sub-hdr-item hidden-xs">
+                <a aria-label="Customer Reviews" href="/customer-reviews">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-trophy-ico"><i class="sub-hdr-award-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-feefo"></div>
+                      <div class="sub-hdr-text">Rated Excellent - <strong>7000+</strong> <span class="hidden-md"> Customer </span>Reviews
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block4" class="sub-hdr-item hidden-xs hidden-sm">
+                <a aria-label="About Us" href="/who-we-are">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-flag-ico"><i class="sub-hdr-uk-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Made in Britain</div>
+                      <div class="sub-hdr-text">Mattresses &amp; Divans Made in the UK</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+            <?php
+        }
+
+    } else if ($sitewide_type == 'countdown_bar' || $sitewide_type == 'usp_promo_bar') {
+
+
+        ?>
+      <style>
+
+
+        <?php if( $sitewide_type == 'countdown_bar') { ?>
+        @media only screen and (max-width: 991.98px) {
+          .subfirst {
+            display: none !important;
+          }
+
+          #subheading-bar div#sh-i-block1 {
+            display: block;
+            width:   100% !important;
+          }
+        }
+
+        <?php }    ?>
+
+
+        <?php if( $sitewide_type == 'usp_promo_bar'){ ?>
+        .the-sale-text-icon {
+
+          margin: 0 auto;
+        }
+
+        @media screen and (min-width: 1470px) {
+
+          .the-sale-text-icon {
+            width: 100%;
+          }
+        }
+
+        <?php }
+
+         ?>
+
+      </style>
+        <?php
+
+        $font_type = 'bold';
+
+        $background_style = '';
+        if (!empty($sitewide_bkg_image)) {
+            $background_style = 'style="background:url(\'/media/banners/' . $sitewide_bkg_image . '\');background-repeat: no-repeat;
+background-size: cover;"';
+        }
+        ?>
+  
+   
+          <style>
+                  .sub-hdr-text {
+    color: ;
+    font-size: 13px;
+}
+#sub_bar_promo_main_text {
+    font-size: 20px;
+    }
+    ul#countdown_timer li p {
+    font-size: 9px;
+    color: black;
+}
+@media only screen and (max-width: 991.98px){
+#subheading-bar div#sh-i-block1 {
+ display:none !important;
+}
+}
+ul#countdown_timer li {
+    text-align: center;
+    background-color: #e7e9d5 !important;
+    color: black !important;
+    font-size: 32px;
+    flex: 0 1 auto;
+    display: inline-block;
+    align-items: stretch;
+    width: 66px;
+    height: auto;
+    line-height: 30px;
+    vertical-align: top;
+    color: black;
+    border-radius: -15px;
+    padding: 0;
+    background-color: transparent;
+    margin: 0 2px;
+    color: white;
+    border: 1px solid #e7e9d5 !important;
+    border-radius: 0px !important;
+}
+          </style>
+      <div id="subheading-bar" <?php echo $background_style; ?>>
+        <div id="subheading-inner" class="container">
+         
+     <div id="sh-i-block1" class="sub-hdr-item hidden-xs">
+                <a aria-label="Delivery" href="/faqs">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-del-ico"><i class="sub-hdr-delivery-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Free Shipping</div>
+                      <div class="sub-hdr-text">Available to UK Mainland*</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block2" class="sub-hdr-item hidden-xs">
+                <a aria-label="Gift Messaging" href="/faqs">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-manu-ico">
+                      <i class="sub-hdr-giftmessage-ico"></i>
+                    </div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Gift Messaging</div>
+                      <div class="sub-hdr-text">Add your own gift message</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="sh-i-block3" class="sub-hdr-item hidden-xs">
+                <a aria-label="Select Delivery Date" href="/faqs">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-trophy-ico">
+                      <i class="sub-hdr-calendar-ico"></i>
+                    </div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Select Delivery Date</div>
+                      <div class="sub-hdr-text">Pick your own delivery date</div>
+                    </div>
+                  </div>
+                </a>
+              </div>    
+         
+            <?php if ($sitewide_type == 'usp_promo_bar') { ?>
+
+              <div id="sh-i-block4" class="sub-hdr-item hidden-xs hidden-sm">
+                <a aria-label="About Us" href="/who-we-are">
+                  <div class="sh-inner">
+                    <div class="sub-hdr-cta-ico sub-hdr-flag-ico"><i class="sub-hdr-uk-ico"></i></div>
+                    <div class="sub-hdr-right">
+                      <div class="sub-hdr-hdr-text">Made in Britain</div>
+                      <div class="sub-hdr-text">Mattresses &amp; Divans Made in the UK</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            <?php } ?>
+
+          <div id="sh-i-block-sitewide" class="sub-hdr-item " style="">
+
+              <?php
+
+              $sitewide_custom_block2 = '
+<div style="
+display: flex;
+height: 100%;
+padding: 0;
+margin: 0;
+display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+align-items: center;
+justify-content: center;
+">
+<div style="height: 100%;width: 50%;display: block;">
+<img id="promo_img" src="/media/wysiwyg/jansale2_v2.png" alt="">
+</div><div style="    display: block;
+width: 40%;
+margin-left: 5%;">
+<div id="promo_no"><strong>NOW ON</strong></div>
+<div id="promo_wsl">Whilst Stocks Last!</div>
+</div>
+</div>
+
+
+            ';
+
+              if (!empty($sitewide_custom_block)) {
+                  // if(Mage::helper('cms/block')->isActive('identifier',$sitewide_custom_block)){
+                  //do that
+
+                  //  echo $this->getLayout()->createBlock('cms/block')->setBlockId($sitewide_custom_block)->toHtml();
+
+                  //  }
+                  echo $sitewide_custom_block;
+              } else {
+
+                  $promotion_link = '/clearance';
+                  ?>
+
+
+                <a aria-label="" href="<?php echo $promotion_link; ?>">
+
+
+                  <div class="inner-elements">
+
+                      <?php if ($font_type == 'bold') { ?>
+
+
+                        <div class="the-sale-text-icon" style="color: white;width: auto !important;">
+                          <div id="sub_bar_promo_main_text"><?php echo $main_text; ?></div>
+                          <div class="new-hdr-icon hide_mobile_promo" style="display: inline-block;width: auto !important;display: block !important; border-radius: 5px;text-align: center;text-transform: uppercase;margin-top: 2px;"><?php echo $pill_text; ?></div>
+                        </div>
+                      <?php } else {
+                          ?>
+
+                        <div class="the-sale-text-icon" style="color: white;">
+                          <div style="font-size: 30px;text-transform: uppercase;font-weight: normal;padding: 0;line-height: 100%;text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15);-webkit-transition: .2s all linear;"><?php echo $main_text; ?></div>
+                          <div class="new-hdr-icon hide_mobile_promo" style="display: inline-block;width: auto !important;"><?php echo $pill_text; ?></div>
+                        </div>
+
+                          <?php
+
+                      }
+
+                      ?>
+
+                      <?php if ($sitewide_type == 'countdown_bar') { ?>
+                        <ul id="countdown_timer">
+                          <li><span class="days">&nbsp;</span>
+                            <p><?= $countdown_text_days ?></p></li>
+                          <li><span class="hours">&nbsp;</span>
+                            <p><?= $countdown_text_hours ?></p></li>
+                          <li><span class="minutes">&nbsp;</span>
+                            <p><?= $countdown_text_minutes ?></p></li>
+                          <li><span class="seconds">&nbsp;</span>
+                            <p><?= $countdown_text_seconds ?></p></li>
+                        </ul>
+                      <?php } ?>
+                  </div>
+
+
+                </a>
+                  <?php
+              }
+              ?>
+
+          </div>
+        </div>
+      </div>
+
+        <?
+
+    }
+
+    //need to move this to the end
+
+    ?>
+
+
+    <?php
+}
+?>

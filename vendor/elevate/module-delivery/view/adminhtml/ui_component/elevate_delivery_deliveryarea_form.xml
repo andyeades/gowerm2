@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">elevate_delivery_deliveryarea_form.deliveryarea_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button class="Elevate\Delivery\Block\Adminhtml\DeliveryArea\Edit\BackButton" name="back"/>
+			<button class="Elevate\Delivery\Block\Adminhtml\DeliveryArea\Edit\DeleteButton" name="delete"/>
+			<button class="Elevate\Delivery\Block\Adminhtml\DeliveryArea\Edit\SaveButton" name="save"/>
+			<button class="Elevate\Delivery\Block\Adminhtml\DeliveryArea\Edit\SaveAndContinueButton" name="save_and_continue"/>
+		</buttons>
+		<namespace>elevate_delivery_deliveryarea_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>elevate_delivery_deliveryarea_form.deliveryarea_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="deliveryarea_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider class="Elevate\Delivery\Model\DeliveryArea\DataProvider" name="deliveryarea_form_data_source">
+			<settings>
+				<requestFieldName>deliveryarea_id</requestFieldName>
+				<primaryFieldName>deliveryarea_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label/>
+		</settings>
+		<field formElement="input" name="deliveryarea_id" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">general</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">deliveryarea_id</label>
+				<dataScope>deliveryarea_id</dataScope>
+                <visible>false</visible>
+			</settings>
+
+		</field>
+
+        <field name="store_id" sortOrder="22" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>store_id</dataScope>
+                <label translate="false">Store ID</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <additionalClasses>
+                    <class name="admin__field-shortinput">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="name" sortOrder="25" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>name</dataScope>
+                <label translate="false">Name</label>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <additionalClasses>
+                    <class name="admin__field-shortinput">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="enabled" sortOrder="30" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enabled</label>
+                <dataScope>enabled</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <textarea name="postcodes" sortOrder="60">
+            <settings>
+                <dataScope>postcodes</dataScope>
+                <label translate="true">Postcodes</label>
+                <rows>8</rows>
+                <tooltip>
+                    <description translate="true">Postcodes applicable to this method.</description>
+                </tooltip>
+            </settings>
+        </textarea>
+	</fieldset>
+</form>

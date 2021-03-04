@@ -1,0 +1,788 @@
+//colors
+$ev_landingpages_color_0: #fff !default;
+$ev_landingpages_color_1: rgba(0, 0, 0, .6) !default;
+$ev_landingpages_color_2: rgba(0, 0, 0, .5) !default;
+$ev_landingpages_color_3: #333 !default;
+$ev_landingpages_color_4: #ccc !default;
+$ev_landingpages_color_5: #0c509f !default;
+$ev_landingpages_color_6: #f0f0f0 !default;
+$ev_landingpages_color_7: #e4e4e4 !default;
+$ev_landingpages_color_8: #db2727 !default;
+$ev_landingpages_color_9: #cdcdcd !default;
+$ev_landingpages_color_10: white !default;
+
+$ev_landingpages_filter_visible_until: $screen-sm-max !default;
+$ev_landingpages_filter_notvisible: $screen-md-min !default;
+
+$ev-ln-item-font-family: false !default;
+
+$ev-ln-filter-actions-fontfamily: false !default;
+$ev-ln-filter-actions-background: #f0f0f0 !default;
+
+$ev-ln-filter-current-subtitle-fontfamily: false !default;
+
+$ev_landingpages_filter_title_fontsize: 17px !default;
+$ev_landingpages_filter_title_fontfamily: false !default;
+
+
+$ev-ln-filter-expand-fontfamily: false !default;
+//data-uris
+
+
+.spinner-fading-circle {
+    margin: 100px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+    .spinner-circle {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        &:before {
+            content: '';
+            display: block;
+            margin: 0 auto;
+            width: 15%;
+            height: 15%;
+            background-color: $ev_landingpages_color_3;
+            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+            border-radius: 100%;
+            animation: spinner-circleFadeDelay 1.2s infinite ease-in-out both;
+        }
+    }
+
+    .spinner-circle2 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(30deg);
+
+        &:before {
+            animation-delay: -1.1s;
+        }
+    }
+
+    .spinner-circle3 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(60deg);
+
+        &:before {
+            animation-delay: -1s;
+        }
+    }
+
+    .spinner-circle4 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(90deg);
+
+        &:before {
+            animation-delay: -0.9s;
+        }
+    }
+
+    .spinner-circle5 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(120deg);
+
+        &:before {
+            animation-delay: -0.8s;
+        }
+    }
+
+    .spinner-circle6 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(150deg);
+
+        &:before {
+            animation-delay: -0.7s;
+        }
+    }
+
+    .spinner-circle7 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(180deg);
+
+        &:before {
+            animation-delay: -0.6s;
+        }
+    }
+
+    .spinner-circle8 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(210deg);
+
+        &:before {
+            animation-delay: -0.5s;
+        }
+    }
+
+    .spinner-circle9 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(240deg);
+
+        &:before {
+            animation-delay: -0.4s;
+        }
+    }
+
+    .spinner-circle10 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(270deg);
+
+        &:before {
+            animation-delay: -0.3s;
+        }
+    }
+
+    .spinner-circle11 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(300deg);
+
+        &:before {
+            animation-delay: -0.2s;
+        }
+    }
+
+    .spinner-circle12 {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(330deg);
+
+        &:before {
+            animation-delay: -0.1s;
+        }
+    }
+}
+
+@-webkit-keyframes spinner-circleFadeDelay {
+    0% {
+        opacity: 0;
+    }
+    39% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
+
+@keyframes spinner-circleFadeDelay {
+    0% {
+        opacity: 0;
+    }
+    39% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
+
+$ev_ln_filter_price_fontsize: 0.75rem !default;
+
+$ev_ln_filter_price_fontfamily: false !default;
+
+
+
+$ev_ln_filter_background: $ev_landingpages_color_0 !default;
+$ev_ln_filter_background_desktop_on: 0 !default;
+$ev_ln_filter_background_desktop: #F4F6F8 !default;
+
+$ev_ln_filter_padding: 1.25rem !default;
+$ev_ln_filter_padding_desktop: 0 !default;
+$ev_landingpages_filter_left: -600px !default;
+
+
+// Button
+
+$ev_ln_filter_btn_fontsize: 1rem !default;
+$ev_ln_filter_btn_fontweight: 600 !default;
+$ev_ln_filter_btn_margin: 0 0 0 0 !default;
+$ev_ln_filter_btn_textalign: center !default;
+
+$ev_ln_filter_btn_background_color: #084 !default;
+$ev_ln_filter_btn_color: #FFFFFF !default;
+$ev_ln_filter_btn_padding: 6px 40px !default;
+
+$ev_ln_filter_btn_border_thickness: 2px !default;
+$ev_ln_filter_btn_border_type: solid !default;
+$ev_ln_filter_btn_border_color: #084 !default;
+$ev_ln_filter_btn_border_style: solid !default;
+$ev_ln_filter_btn_border_thickness: 2px !default;
+$ev_ln_filter_btn_border_position: all !default;
+$ev_ln_filter_btn_border_radius_on: 1 !default;
+$ev_ln_filter_btn_border_radius: 5px !default;
+$ev_ln_filter_btn_background_color: #084 !default;
+
+$ev_ln_filter_btn_height: 44px !default;
+$ev_ln_filter_btn_letter_spacing: 0 !default;
+
+$ev_ln_filter_btn_text_transform_on: 1 !default;
+$ev_ln_filter_btn_text_transform: uppercase !default;
+$ev_ln_filter_btn_transition: background-color .35s ease, color .35s ease, border-color .35s ease !default;
+
+
+// checkbox label
+
+$ev_ln_filter_checkbox_label_background_on: 0 !default;
+$ev_ln_filter_checkbox_label_background: #FFF !default;
+
+
+$ev_ln_filter_checkbox_label_padding: 3px 0 !default;
+$ev_ln_filter_checkbox_label_width: 100% !default;
+$ev_ln_filter_checkbox_label_border_radius_on: 0 !default;
+$ev_ln_filter_checkbox_label_border_radius: $border-radius !default;
+
+// Checkbox Label Before (How the Tick box is styled)
+
+$ev_ln_filter_checkbox_label_before_border_radius: $border-radius !default;
+$ev_ln_filter_checkbox_label_before_fontsize: 0.6875rem !default;
+$ev_ln_filter_checkbox_label_before_padding: 0.375rem 0 0 0 !default;
+$ev_ln_filter_checkbox_label_before_width: 20px !default;
+$ev_ln_filter_checkbox_label_before_height: 20px !default;
+$ev_ln_filter_checkbox_label_before_max-width: 20px !default;
+$ev_ln_filter_checkbox_label_before_flex: 0 0 20px !default;
+$ev_ln_filter_checkbox_label_before_margin: 0 0.625rem 0 0 !default;
+
+$ev_ln_filter_checkbox_label_before_color: #FFFFFF !default;
+$ev_ln_filter_checkbox_label_before_bgcolor: #FFFFFF !default;
+$ev_ln_filter_checkbox_label_before_border_color: #CCC !default; //ccc
+$ev_ln_filter_checkbox_label_before_border_thickness: 1px !default;
+$ev_ln_filter_checkbox_label_before_border_style: solid !default;
+
+// Checkbox Label After (the Check/Tick)
+
+$ev_ln_filter_checkbox_label_after_left: 3px !default;
+$ev_ln_filter_checkbox_label_after_width: 13px !default;
+$ev_ln_filter_checkbox_label_after_height: 13px !default;
+$ev_ln_filter_checkbox_label_after_margin: -5.5px 0 0 0 !default;
+$ev_ln_filter_checkbox_label_after_top: 50% !default;
+$ev_ln_filter_checkbox_label_after_bg_image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 64 512 512' width='150' height='150' class='icon icon--tick' fill='%23fff'%3E%3Cpath d='M170 427q-8 0-14-5L8 297q-7-5-8-14.5t5-16 15-7.5 16 5l132 112L475 70q6-6 15-6t15.5 6.5T512 86t-6 15L185 421q-6 6-15 6z'/%3E%3C/svg%3E") !default;
+
+// Checked
+
+$ev_ln_filter_checked_border_color: #0c509f !default;
+$ev_ln_filter_checked_bgcolor: #0c509f !default;
+
+// Checked Link Tag inside
+
+$ev_ln_filter_checked_a_color: $link-color !default;
+$ev_ln_filter_checked_a_hover_color: $link-hover-color !default;
+
+.ev_ln_filter {
+    padding: $ev_ln_filter_padding;
+    @if $ev_ln_filter_background_desktop_on == 1 {
+        background: $ev_ln_filter_background_desktop;
+    }
+
+    @include min-screen($desktop_min) {
+        @include co(padding, $ev_ln_filter_padding_desktop, $ev_ln_filter_padding)
+    }
+    @include max-screen($ev_landingpages_filter_visible_until) {
+        background-color: $ev_ln_filter_background;
+
+
+        z-index: 90;
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        min-width: 280px;
+        max-width: 500px;
+        max-height: 100%;
+        top: 0;
+
+        align-content: stretch;
+        transition: all 0.5s;
+        box-shadow: 0 0 10px $ev_landingpages_color_1;
+        right: auto;
+        left: $ev_landingpages_filter_left;
+        will-change: left;
+        pointer-events: auto;
+        width: 272px;
+        overflow-y: auto;
+        height: calc(100vh - 72px);
+        overflow: auto;
+    }
+
+    .filter-panel__apply {
+        z-index: 4;
+        padding: 14px 15px;
+        bottom: 0;
+        background-color: #fff;
+        max-width: 280px;
+
+        display: block;
+        position: sticky;
+        @include min-screen($ev_landingpages_filter_notvisible) {
+            display: none;
+        }
+
+
+        .button {
+            font-size: $ev_ln_filter_btn_fontsize;
+            font-weight: $ev_ln_filter_btn_fontweight;
+            margin: $ev_ln_filter_btn_margin;
+            @include elevate-border($ev_ln_filter_btn_border_color, $ev_ln_filter_btn_border_thickness, $ev_ln_filter_btn_border_style, $ev_ln_filter_btn_border_position);
+            background-color: $ev_ln_filter_btn_background_color;
+            color: $ev_ln_filter_btn_color;
+            box-shadow: initial;
+            vertical-align: middle;
+            touch-action: manipulation;
+            cursor: pointer;
+            background-image: none;
+            white-space: nowrap;
+            @if $ev_ln_filter_btn_letter_spacing > 0 {
+                letter-spacing: $ev_ln_filter_btn_letter_spacing;
+            }
+
+            outline: unset;
+            height: $ev_ln_filter_btn_height;
+
+            padding: $ev_ln_filter_btn_padding;
+            transition: $ev_ln_filter_btn_transition;
+
+            @if $ev_ln_filter_btn_text_transform_on == 1 {
+                text-transform: $ev_ln_filter_btn_text_transform;
+            }
+
+            @if $ev_ln_filter_btn_border_radius_on == 1 {
+                border-radius: $ev_ln_filter_btn_border_radius;
+            }
+
+
+        }
+
+        .button--full {
+            width: 100%;
+            padding: 6px 0;
+        }
+    }
+
+    &.ev_ln_filteropen {
+        @include max-screen($ev_landingpages_filter_visible_until) {
+            position: fixed;
+            left: 0 !important;
+            padding: 0;
+            height: 100vh;
+        }
+
+    }
+
+
+    input[type="checkbox"] {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+    }
+
+    .checkbox__input {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+
+        &:checked + .checkbox__label {
+            &:before {
+                border-color: $ev_ln_filter_checked_border_color;
+                background-color: $ev_ln_filter_checked_bgcolor;
+            }
+
+            a {
+                @include co(color, $ev_ln_filter_checked_a_color, $link-color);
+
+                &:hover {
+                    @include co(color, $ev_ln_filter_checked_a_hover_color, $link-hover-color);
+                }
+            }
+
+            &:after {
+                position: absolute;
+                content: "";
+                left: $ev_ln_filter_checkbox_label_after_left;
+                width: $ev_ln_filter_checkbox_label_after_width;
+                height: $ev_ln_filter_checkbox_label_after_height;
+                top: $ev_ln_filter_checkbox_label_after_top;
+                margin: $ev_ln_filter_checkbox_label_after_margin;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-image: $ev_ln_filter_checkbox_label_after_bg_image;
+            }
+        }
+    }
+
+    .radio__input {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+    }
+
+    .ev_accordian_closed {
+        display: none;
+    }
+
+    .ev_accordian_open {
+        display: block;
+    }
+
+    .checkbox__label {
+        width: $ev_ln_filter_checkbox_label_width;
+        padding: $ev_ln_filter_checkbox_label_padding;
+        @if $ev_ln_filter_checkbox_label_border_radius_on == 1 {
+            border-radius: $ev_ln_filter_checkbox_label_border_radius;
+        }
+        @if $ev_ln_filter_checkbox_label_background_on == 1 {
+            background: $ev_ln_filter_checkbox_label_background;
+
+        }
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin-right: 4px;
+        flex: 1 1 0;
+        line-height: 1.2em;
+
+        position: relative;
+        font-weight: initial;
+
+        &:before {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            content: "";
+
+
+            border-radius: $ev_ln_filter_checkbox_label_before_border_radius;
+            margin: $ev_ln_filter_checkbox_label_before_margin;
+            font-size: $ev_ln_filter_checkbox_label_before_fontsize;
+            padding: $ev_ln_filter_checkbox_label_before_padding;
+            width: $ev_ln_filter_checkbox_label_before_width;
+            height: $ev_ln_filter_checkbox_label_before_height;
+            max-width: $ev_ln_filter_checkbox_label_before_max-width;
+            flex: $ev_ln_filter_checkbox_label_before_flex;
+            color: $ev_ln_filter_checkbox_label_before_bgcolor;
+            background-color: $ev_ln_filter_checkbox_label_before_bgcolor;
+            border: $ev_ln_filter_checkbox_label_before_border_thickness $ev_ln_filter_checkbox_label_before_border_style $ev_ln_filter_checkbox_label_before_border_color;
+
+        }
+    }
+
+    .radio__label {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin-right: 4px;
+        flex: 1 1 0;
+        line-height: 1.2em;
+        padding: 3px 0;
+        position: relative;
+        font-weight: initial;
+
+        &:before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            max-width: 20px;
+            flex: 0 0 20px;
+            margin-right: 10px;
+            //Instead of the line below you could use @include box-sizing($bs)
+            box-sizing: border-box;
+            background-color: $ev_landingpages_color_0;
+            border: 1px solid $ev_landingpages_color_4;
+            cursor: pointer;
+        }
+    }
+
+    .ev_ln_item {
+        position: relative;
+        @include co(font-family, $ev-ln-item-font-family);
+    }
+
+
+
+    .ev_ln_filter_actions {
+        @include co(font-family, $ev-ln-filter-actions-fontfamily);
+        @include co(background, $ev-ln-filter-actions-background);
+
+        float: right;
+        display: inline-block;
+        padding: 8px;
+        margin-left: auto;
+    }
+
+
+
+    .ev_ln_filter_title {
+
+        display: flex;
+        align-items: center;
+        padding-bottom: 15px;
+        @include co(font-family, $ev_landingpages_filter_title_fontfamily);
+        @include max-screen($ev_landingpages_filter_visible_until) {
+            padding-top: 15px;
+        }
+
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        strong {
+            @include co(font-size, $ev_landingpages_filter_title_fontsize);
+        }
+    }
+
+    $ev_ln_filter_state_ev_ln_items_border_color: #0c509f !default;
+    $ev_ln_filter_state_ev_ln_items_border_thickness: 1px !default;
+    $ev_ln_filter_state_ev_ln_items_border_type: solid !default;
+    $ev_ln_filter_state_ev_ln_items_border: $ev_ln_filter_state_ev_ln_items_border_thickness $ev_ln_filter_state_ev_ln_items_border_type $ev_ln_filter_state_ev_ln_items_border_color !default;
+    $ev_ln_filter_state_ev_ln_items_border_radius: 3px !default;
+
+    $ev-ln-filter-state-border-bottom: 1px solid #e4e4e4 !default;
+
+    .ev_ln_filter_state {
+        @include co(border-bottom, $ev-ln-filter-state-border-bottom);
+        padding-bottom: 15px;
+
+        ol.ev_ln_items {
+            @include co(border, $ev_ln_filter_state_ev_ln_items_border);
+            @include co(border-radius, $ev_ln_filter_state_ev_ln_items_border_radius);
+        }
+    }
+
+    .ev_ln_filter-current-subtitle {
+        @include co(font-family, $ev-ln-filter-current-subtitle-fontfamily);
+        padding-bottom: 15px;
+        display: block;
+    }
+
+    a {
+
+        &.ev_ln_action.remove {
+            order: 1;
+            font-size: 26px;
+            padding: 0 10px 0 5px;
+        }
+    }
+
+    span {
+        &.ev_ln_filter-label {
+            order: 2;
+        }
+
+        &.ev_ln_filter-value {
+            order: 3;
+        }
+
+        &.ev_ln_count {
+            letter-spacing: 0.5px;
+            margin-left: auto;
+        }
+    }
+
+    .ev_ln_filter-subtitle {
+        display: none;
+    }
+
+    .ev_ln_filter_chevron {
+        margin-left: auto;
+        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        transition: transform 0.2s;
+        //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
+        transform-origin: center;
+    }
+
+    .ev_ln_filter_close {
+        display: none;
+        background-color: $ev_landingpages_color_6;
+        padding: 16px;
+        margin-left: auto;
+    }
+
+    .ev_ln_toolbar_btn {
+        background-image: none;
+        background: $ev_landingpages_color_8;
+        border: 1px solid $ev_landingpages_color_9;
+        color: $ev_landingpages_color_10;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 700;
+        margin: 0;
+        padding: 12px 15px;
+        font-size: 21px;
+        line-height: 1.4rem;
+        width: 100%;
+        vertical-align: middle;
+        border-radius: 7px;
+
+
+    }
+
+    .ac-accordion__expand-chevron {
+
+        transform: rotate(180deg);
+
+        transition: transform 0.2s;
+    }
+
+    label:before {
+        border-radius: 3px;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 6px;
+        color: $ev_landingpages_color_0;
+    }
+
+    ol.ev_ln_items {
+        list-style: none;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .ev_ln_items li.item {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px dashed $ev_landingpages_color_5;
+        margin-bottom: 0;
+        margin: 0 10px;
+        padding: 10px 0;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    .expand {
+        @include co(font-family, $ev-ln-filter-expand-fontfamily);
+    }
+
+
+    $ev_ln_filter_options_title_border_on: 1 !default;
+    $ev_ln_filter_options_title_border_color: #e4e4e4 !default;
+    $ev_ln_filter_options_title_border_type: solid !default;
+    $ev_ln_filter_options_title_border_thickness: 1px !default;
+    $ev_ln_filter_options_title_border_position: top !default;
+
+    $ev_ln_filter_options_title_font-family: false !default;
+    $ev_ln_filter_options_title_font-size: false !default;
+    $ev_ln_filter_options_title-font-weight: false !default;
+    dt.ev_ln_filter_options_title {
+        @if $ev_ln_filter_options_title_border_on == 1 {
+            @include elevate-border($ev_ln_filter_options_title_border_color, $ev_ln_filter_options_title_border_thickness, $ev_ln_filter_options_title_border_type, $ev_ln_filter_options_title_border_position);
+        }
+        @include co(font-family, $ev_ln_filter_options_title_font-family);
+        @include co(font-size, $ev_ln_filter_options_title_font-size);
+        @include co(font-weight, $ev_ln_filter_options_title_font-weight);
+        padding-top: 15px;
+        padding-bottom: 15px;
+        letter-spacing: 0.5px;
+        display: flex;
+        margin: 0;
+        cursor: pointer;
+        align-items: center;
+    }
+
+    li.ev_ln_item:last-child {
+        margin-bottom: 0;
+    }
+
+    dd.ev_ln_filter-options-content {
+        margin: 0;
+        padding-bottom: 15px;
+    }
+
+    .ev_ln_filter_chevron_closed .ac-accordion__expand-chevron {
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: initial;
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(0deg) !important;
+    }
+
+    .ac-accordion__expand-chevronbutton.ev_ln_filter_close {
+        margin-left: auto;
+    }
+
+    .price {
+        @include co(font-size, $ev_ln_filter_price_fontsize);
+        @include co(font-family, $ev_ln_filter_price_fontfamily);
+    }
+}
+
+.ev_ln_items {
+    .layerclick {
+        cursor: pointer;
+    }
+}
+
+.hide_filter {
+    display: none;
+}
+
+.toolbar {
+    .ev_ln_filter_click {
+        @include min-screen($screen-md-min) {
+            display: none;
+        }
+    }
+}
+
+@media(max-width: 991px) {
+    .ev_ln_filter {
+
+
+        .ev_ln_filter_state {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        button.ev_ln_filter_close {
+            display: block !important;
+        }
+
+        dd.ev_ln_filter-options-content {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        dt.ev_ln_filter_options_title {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .ev_ln_filter_title strong {
+            padding-left: 15px;
+        }
+    }
+
+    .ev_ln_overlay {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 80;
+        position: fixed;
+        background-color: $ev_landingpages_color_2;
+        opacity: 0;
+        visibility: hidden;
+        will-change: opacity;
+
+        transition: all 0.25s;
+    }
+    .ev_ln_overlay_open {
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+    }
+
+}
+

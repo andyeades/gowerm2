@@ -1,0 +1,25 @@
+{
+    "name": "elevate/module-landingpages",
+    "description": "Magento 2 Landing Pages",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Elevate Web",
+            "email": "info@elevateweb.co.uk",
+            "homepage": "https://www.elevateweb.co.uk",
+            "role": "Owner"
+         }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Elevate\\LandingPages\\": ""
+        }
+    }
+}

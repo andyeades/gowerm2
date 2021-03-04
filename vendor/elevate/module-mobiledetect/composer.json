@@ -1,0 +1,13 @@
+{
+    "name": "elevate/module-mobiledetect",
+    "description": "Wrapper for PHP Mobile Detect",
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Elevate\\MobileDetect\\": ""
+        }
+    }
+}

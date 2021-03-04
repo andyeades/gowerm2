@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2019 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_OptionsManagement
+ */
+-->
+<!--
+/**
+ * Copyright © 2018 Aitoc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Aitoc\OptionsManagement\Api\Data\TemplateInterface" type="Aitoc\OptionsManagement\Model\Template" />
+    <preference for="Aitoc\OptionsManagement\Api\Data\TemplateSearchResultInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aitoc\OptionsManagement\Api\TemplateRepositoryInterface" type="Aitoc\OptionsManagement\Model\TemplateRepository" />
+    <preference for="Aitoc\OptionsManagement\Api\Data\TemplateOptionInterface" type="Aitoc\OptionsManagement\Model\Template\Option" />
+    <preference for="Aitoc\OptionsManagement\Api\Data\TemplateOptionValueInterface" type="Aitoc\OptionsManagement\Model\Template\Option\Value" />
+    <preference for="Aitoc\OptionsManagement\Api\Data\TemplateSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aitoc\OptionsManagement\Api\Data\TemplateOptionSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <preference for="Magento\Catalog\Block\Product\View\Options\Type\Select" type="Aitoc\OptionsManagement\Block\Product\View\Options\Type\Select"/>
+    <preference for="Magento\Catalog\Block\Product\View\Options\Type\Text" type="Aitoc\OptionsManagement\Block\Product\View\Options\Type\Text"/>
+
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Option\Collection">
+        <plugin name="load_option_collection_with_template_info" type="Aitoc\OptionsManagement\Plugin\Catalog\Model\ResourceModel\Product\Option\Collection"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product\Type\Simple">
+        <plugin name="get_option_sku" type="Aitoc\OptionsManagement\Plugin\Catalog\Model\Product\Type\DefaultType"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Type\Virtual">
+        <plugin name="get_option_sku" type="Aitoc\OptionsManagement\Plugin\Catalog\Model\Product\Type\DefaultType"/>
+    </type>
+    <type name="Magento\Downloadable\Model\Product\Type">
+        <plugin name="get_option_sku" type="Aitoc\OptionsManagement\Plugin\Catalog\Model\Product\Type\DefaultType"/>
+    </type>
+    <type name="Magento\ConfigurableProduct\Model\Product\Type\Configurable">
+        <plugin name="get_option_sku" type="Aitoc\OptionsManagement\Plugin\Catalog\Model\Product\Type\DefaultType"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Type\Simple\Interceptor">
+        <plugin name="get_option_sku" type="Aitoc\OptionsManagement\Plugin\Catalog\Model\Product\Type\DefaultType"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product\Option">
+        <plugin name="save_template_option_id_after_save_option" type="Aitoc\OptionsManagement\Plugin\Catalog\Model\Product\Option"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product\Option\Repository">
+        <plugin name="get_product_options" type="Aitoc\OptionsManagement\Plugin\Catalog\Model\Product\Option\Repository" />
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="optionsmanagement_template_grid_data_source" xsi:type="string">Aitoc\OptionsManagement\Model\ResourceModel\Template\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Aitoc\OptionsManagement\Model\ResourceModel\Template\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aitoc_optionsmanagement_template</argument>
+            <argument name="resourceModel" xsi:type="string">Aitoc\OptionsManagement\Model\ResourceModel\Template</argument>
+        </arguments>
+    </type>
+
+    <type name="Aitoc\OptionsManagement\Model\Template\Option\Validator\Pool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="default" xsi:type="object">Aitoc\OptionsManagement\Model\Template\Option\Validator\DefaultValidator</item>
+                <item name="drop_down" xsi:type="object">Aitoc\OptionsManagement\Model\Template\Option\Validator\Select</item>
+                <item name="radio" xsi:type="object">Aitoc\OptionsManagement\Model\Template\Option\Validator\Select</item>
+                <item name="checkbox" xsi:type="object">Aitoc\OptionsManagement\Model\Template\Option\Validator\Select</item>
+                <item name="multiple" xsi:type="object">Aitoc\OptionsManagement\Model\Template\Option\Validator\Select</item>
+                <item name="text" xsi:type="object">Aitoc\OptionsManagement\Model\Template\Option\Validator\Text</item>
+                <item name="area" xsi:type="object">Aitoc\OptionsManagement\Model\Template\Option\Validator\Text</item>
+                <item name="file" xsi:type="object">Aitoc\OptionsManagement\Model\Template\Option\Validator\File</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

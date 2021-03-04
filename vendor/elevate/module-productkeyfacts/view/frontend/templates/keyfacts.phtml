@@ -1,0 +1,205 @@
+<?php
+/**
+ * @var $block \Elevate\ProductKeyFacts\Block\Keyfacts
+ */
+
+$product = $block->getCurrentProduct();
+
+$evkeyfacts = array();
+$evkeyfacts_1 = $product->getEvKeyfacts1();
+$evkeyfacts_2 = $product->getEvKeyfacts2();
+$evkeyfacts_3 = $product->getEvKeyfacts3();
+$evkeyfacts_4 = $product->getEvKeyfacts4();
+$evkeyfacts_5 = $product->getEvKeyfacts5();
+$evkeyfacts_6 = $product->getEvKeyfacts6();
+
+if (!empty($evkeyfacts_1)) {
+  $evkeyfacts_1_type = $product->getEvKeyfacts1Type();
+  $evkeyfacts[$evkeyfacts_1_type][] = $evkeyfacts_1;
+}
+if (!empty($evkeyfacts_2)) {
+  $evkeyfacts_2_type = $product->getEvKeyfacts2Type();
+  $evkeyfacts[$evkeyfacts_2_type][] = $evkeyfacts_2;
+}
+if (!empty($evkeyfacts_3)) {
+  $evkeyfacts_3_type = $product->getEvKeyfacts3Type();
+  $evkeyfacts[$evkeyfacts_3_type][] = $evkeyfacts_3;
+}
+if (!empty($evkeyfacts_4)) {
+  $evkeyfacts_4_type = $product->getEvKeyfacts4Type();
+  $evkeyfacts[$evkeyfacts_4_type][] = $evkeyfacts_4;
+}
+if (!empty($evkeyfacts_5)) {
+  $evkeyfacts_5_type = $product->getEvKeyfacts5Type();
+  $evkeyfacts[$evkeyfacts_5_type][] = $evkeyfacts_5;
+}
+if (!empty($evkeyfacts_6)) {
+  $evkeyfacts_6_type = $product->getEvKeyfacts6Type();
+  $evkeyfacts[$evkeyfacts_6_type][] = $evkeyfacts_6;
+}
+
+// Are any Key Facts Set?
+
+$array_count = 0;
+$short_count = 0;
+$long_count = 0;
+
+foreach ($evkeyfacts as $key => $value) {
+  $array_count += count($value);
+
+  if (strcmp($key, "Short") === 0) {
+    $short_count += count($value);
+  }
+
+  if (strcmp($key, "Long") === 0) {
+    $long_count += count($value);
+  }
+}
+
+$key_facts_short_items = 0;
+
+if (!empty($short_count)) {
+  $key_facts_short_items = $short_count;
+}
+
+?>
+
+<div id="ev-keyfacts">
+  <div class="ev-keyfacts-outer">
+    <div class="ev-keyfacts-inner">
+      <div class="ev-keyfacts-header">
+        <div class="ev-keyfacts-header-inner">
+          <div class="ev-keyfacts-header-left ev-kf-h-l-items-<?= $key_facts_short_items; ?>">
+            <div class="ev-keyfacts-header-left-inner-outer">
+
+
+              <div class="ev-keyfacts-header-left-inner">
+                <div class="ev-keyfacts-header-left-icon"></div>
+                <div class="ev-keyfacts-header-left-text">Key Facts</div>
+              </div>
+            </div>
+          </div>
+          <div class="ev-keyfacts-header-right ev-kf-h-r-items-<?= $key_facts_short_items; ?>">
+
+
+            <div class="ev-keyfacts-header-right-inner">
+
+              <?php
+              $wrapper_class = "ev-keyfacts-header-right-item";
+              if (!empty($short_count)) {
+                $ev_helper = $this->helper('Elevate\ProductKeyFacts\Helper\Data');
+                echo $ev_helper->getItemOutput($evkeyfacts["Short"], "Short", $product, $wrapper_class);
+
+                if (!empty($product->getEvKeyfactsShowMessage())) { ?>
+                  <div class="<?= $wrapper_class ?> <?=$wrapper_class ?>-short <?= $wrapper_class ?>-message">
+                    <?= $product->getEvKeyfactsShowMessage1(); ?>
+                  </div>
+                <?php } ?>
+
+              <?php } ?>
+            </div>
+          </div>
+        </div>
+        <?
+
+        if (!empty($long_count)) { ?>
+          <div class="ev-keyfacts-long-mobile">
+            <div class="ev-kf-block-outer">
+              <div class="ev-kf-block-inner">
+                <?php
+                $ev_helper = $this->helper('Elevate\ProductKeyFacts\Helper\Data');
+
+                echo $ev_helper->getItemOutput($evkeyfacts["Long"], "Long", $product, 'ev-kf');
+                ?>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="ev-keyfacts-btm">
+    <div class="ev-keyfacts-btm-left">
+      <?= $product->getDescription(); ?>
+    </div>
+    <div class="ev-keyfacts-btm-right">
+      <?php
+      $informed_sport = $product->getInformedSport();
+      $batch_tested = $product->getBatchTested();
+      $product_sku = $product->getSku();
+
+      $ingredients = $product->getIngredients();
+      $directions = $product->getDirections();
+      $storage_conditions = $product->getStorageConditions();
+      //$bestbefore_batchno = $product->getBestbeforeBatchno();
+      $nutritional_values = $product->getNutritionalValues();
+
+      // Display Message Vars (Messages Stored in Custom Variables)
+
+      $show_allergen_traces_message = $product->getAllergenTracesMessage();
+      $show_ingredients_allergens_message = $product->getIngredientsAllergensMessage();
+
+      if (!empty($show_allergen_traces_message)) {
+        $allergen_traces_message = $block->getVariableValue('manufactured_in_allergen_facility');
+      }
+
+      if (!empty($show_ingredients_allergens_message)) {
+        $ingredients_allergens_message = $block->getVariableValue('allergens_in_bold');
+      } ?>
+
+
+      <?php if (!empty($batch_tested)) { ?>
+        <h3 class="ev-keyfacts-sidetitle ev-batch-certificates">Batch Certificates</h3>
+        <p>Click <a href="<?= $this->getBaseUrl(); ?>batch-certificates?sku=<?=$product_sku;?>">here</a> to view batch certificates.</p>
+
+      <?php } ?>
+
+      <?php if (!empty($nutritional_values)) { ?>
+        <h3 class="ev-keyfacts-sidetitle ev-nutritional-values">Nutritional Values</h3>
+        <div class="table-responsive">
+          <?php
+
+          echo $nutritional_values; ?>
+        </div>
+
+      <?php }
+
+      if (!empty($ingredients)) { ?>
+        <h3 class="ev-keyfacts-sidetitle ev-ingredients">Ingredients</h3>
+        <?php
+        echo '<p>' . $ingredients . '</p>';
+
+        // Toggle Switch on Product - Messages Stored in Custom Variables in Admin
+        if (!empty($show_ingredients_allergens_message)) {
+          echo '<p>' . $ingredients_allergens_message . '</p>';
+        }
+        if (!empty($show_allergen_traces_message)) {
+          echo '<p>' . $allergen_traces_message . '</p>';
+        }
+      }
+
+      if (!empty($directions)) { ?>
+        <h3 class="ev-keyfacts-sidetitle ev-directions">Directions</h3>
+        <?php
+        echo $directions;
+      }
+
+      if (!empty($storage_conditions)) { ?>
+        <h3 class="ev-keyfacts-sidetitle ev-storage-conditions">Storage Conditions</h3>
+        <?php
+        echo $storage_conditions;
+      }
+
+      if (!empty($bestbefore_batchno)) { ?>
+        <h3 class="ev-keyfacts-sidetitle ev-bestbefore-batchno">Best Before / Batch No</h3>
+        <?php
+        echo $bestbefore_batchno;
+      }
+      ?>
+
+    </div>
+  </div>
+</div>
+

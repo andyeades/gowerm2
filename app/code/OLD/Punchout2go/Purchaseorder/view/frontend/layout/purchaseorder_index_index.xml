@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+this was taken from checkout cart...
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="head" remove="true"/>
+    <referenceContainer name="header" remove="true"/>
+    <referenceContainer name="menu" remove="true"/>
+    <referenceContainer name="notifications" remove="true"/>
+    <referenceContainer name="footer" remove="true"/>
+    <referenceContainer name="body" remove="true"/>
+    <referenceContainer name="content">
+        <block class="Punchout2go\Purchaseorder\Block\Purchaseorder" name="purchaseorder" template="purchaseorder.phtml" cacheable="false" />
+    </referenceContainer>
+</layout>

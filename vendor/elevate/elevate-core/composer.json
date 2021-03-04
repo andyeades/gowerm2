@@ -1,0 +1,13 @@
+{
+  "name": "elevate/elevate-core",
+  "description": "Elevate Core",
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Elevate\\Framework\\": ""
+    }
+  }
+}

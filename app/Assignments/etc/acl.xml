@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Elevate_Assignments::Items" sortOrder="10" title="Items">
+					<resource id="Elevate_Assignments::Items_save" sortOrder="10" title="Save Items"/>
+					<resource id="Elevate_Assignments::Items_delete" sortOrder="20" title="Delete Items"/>
+					<resource id="Elevate_Assignments::Items_update" sortOrder="30" title="Update Items"/>
+					<resource id="Elevate_Assignments::Items_view" sortOrder="40" title="View Items"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

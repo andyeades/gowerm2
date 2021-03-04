@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="core_register_urlrewrite">
+        <observer name="kbase" instance="\Mirasvit\Kb\Observer\RegisterUrlRewriteObserver"/>
+    </event>
+    <event name="controller_action_predispatch_kbase_comment_save">
+        <observer name="msp_captcha" instance="Mirasvit\Kb\Observer\Frontend\CommentSaveObserver" />
+    </event>
+</config>

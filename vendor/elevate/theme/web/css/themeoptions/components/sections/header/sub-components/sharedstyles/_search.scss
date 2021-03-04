@@ -1,0 +1,241 @@
+// Search
+
+
+// normal/expands/expandsfromjusticon
+$hdr_search_style: normal !default;
+
+// False when "normal"
+$hdr_search_wrap_padding_desktop: false !default;
+
+$hdr_search_max_width: 350px !default;
+$hdr_search_max_width_mobilemax: none !default;
+
+$hdr_search_border_on: false !default;
+$hdr_search_border_radius: false !default;
+
+$hdr_search_border_position: 'all' !default;
+$hdr_search_border_color: #000 !default;
+$hdr_search_border_style: solid !default;
+$hdr_search_border_thickness: 1px !default;
+
+
+$hdr_search_inputgroup_flexalignitems: false !default;
+$hdr_search_inputgroup_bg_color: false !default;
+$hdr_search_inputgroup_borderradius: $hdr_search_border_radius !default;
+
+
+$hdr_search_button_width: 100% !default;
+$hdr_search_button_height: 100% !default;
+$hdr_search_button_bg: transparent !default;
+$hdr_search_button_padding: 2px 5px !default;
+$hdr_search_button_margin: 0 !default;
+$hdr_search_button_border_radius: false !default;
+$hdr_search_button_position: relative !default;
+$hdr_search_button_border: unset !default;
+
+$hdr_search_button_focus_zindex: 1 !default;
+
+
+$hdr_search_inputgroup_btn_padding: 0 !default;
+$hdr_search_inputgroup_btn_background: false !default;
+$hdr_search_inputgroup_btn_borderradius: false !default;
+$hdr_search_inputgroup_btn_height: auto !default;
+$hdr_search_inputgroup_btn_width: $hdr-search-icon-width * 2 !default;
+$hdr_search_inputgroup_btn_zindex: false !default;
+$hdr_search_inputgroup_btn_margin: false !default;
+$hdr_search_inputgroup_btn_flex: 0 1 auto !default;
+
+
+$hdr_search_input_borderradius_on: false !default;
+$hdr_search_input_borderradius_position: 'left only' !default;
+$hdr_search_input_borderradius: $border-radius !default;
+
+$hdr_search_input_font_weight: 400 !default;
+$hdr_search_input_height: 44px !default;
+
+$hdr_search_border: none !default;
+$hdr_search_box_shadow: none !default;
+
+
+//hdr_search_button_color:   $hdr-search-text_color;
+
+$hdr_search_margin: 0 auto !default;
+$hdr_search_padding: 0 !default;
+$hdr_search_width: 100% !default;
+
+
+$hdr_search_alignitems: false !default;
+
+$hdr_search_transition: 0.5s width ease-in-out !default;
+
+.hdr-search-wrap, .e-pn {
+    .field.search {
+        @include co(margin, $hdr_search_margin);
+        @include co(padding, $hdr_search_padding);
+        @include co(max-width, $hdr_search_max_width);
+        @include co(border-radius, $hdr_search_border_radius);
+
+        @include co(align-items, $hdr_search_alignitems);
+        @include co(transition, $hdr_search_transition);
+
+
+        @if $hdr_search_border_on == 1 {
+            @include elevate-border($hdr_search_border_color, $hdr_search_border_thickness, $hdr_search_border_style, $hdr_search_border_position);
+        }
+
+        @include max-screen($mobile-menu-visible-max) {
+            @include co(max-width, $hdr_search_max_width_mobilemax);
+        }
+        @if $hdr_search_style == "expands" {
+            @include min-screen($screen-md-min) {
+                margin-left: 25px;
+                margin-right: auto;
+                width: 240px;
+            }
+            @include min-screen($screen-lg-min) {
+                margin-left: 25px;
+                width: 300px;
+            }
+            @include min-screen($screen-xlg-min) {
+                width: 325px;
+            }
+            &:focus-within {
+                @include co(transition, $hdr_search_transition);
+                width: 100%;
+            }
+        }
+
+        @if $hdr_search_style == "normal" {
+            @include co(width, $hdr_search_width);
+        }
+
+
+        button {
+
+            @include co(height, $hdr_search_button_height);
+            @include co(background, $hdr_search_button_bg);
+            @include co(position, $hdr_search_button_position);
+            @include co(border-radius, $hdr_search_button_border_radius);
+            @include co(border, $hdr_search_button_border);
+            @include co(margin, $hdr_search_button_margin);
+            @include co(padding, $hdr_search_button_padding);
+            @include co(width, $hdr_search_button_width);
+
+            &:focus {
+                @include co(z-index, $hdr_search_button_focus_zindex);
+            }
+        }
+
+        .label {
+            display: none;
+        }
+
+        svg {
+            fill: $hdr_search_icon_color;
+            width: $hdr-search-icon-width;
+            height: $hdr-search-icon-height;
+        }
+
+        .ev-input-group {
+            display: flex;
+            @include co(align-items, $hdr_search_inputgroup_flexalignitems);
+            @include co(background, $hdr_search_inputgroup_bg_color);
+            @include co(border-radius, $hdr_search_inputgroup_borderradius);
+
+        }
+
+        .ev-input-group-btn {
+            @include co(height, $hdr_search_inputgroup_btn_height);
+            @include co(width, $hdr_search_inputgroup_btn_width);
+            @include co(border-radius, $hdr_search_inputgroup_btn_borderradius);
+            @include co(padding, $hdr_search_inputgroup_btn_padding);
+            @include co(background, $hdr_search_inputgroup_btn_background);
+            @include co(z-index, $hdr_search_inputgroup_btn_zindex);
+            @include co(margin, $hdr_search_inputgroup_btn_margin);
+            @include co(flex, $hdr_search_inputgroup_btn_flex);
+
+            @if $hdr_search_icon_position == "left" {
+                order: 1;
+            }
+            @if $hdr_search_icon_position == "right" {
+                order: 2;
+            }
+        }
+
+        input {
+            &.show-search {
+                @include co(padding, $hdr_search_input_show_search_padding);
+                @include co(width, $hdr_search_input_show_search_width);
+                @include min-screen($mobile-menu-notvisible) {
+                    @include co(padding, $hdr_search_input_show_search_padding_desktop, $hdr_search_input_show_search_padding);
+                    @include co(width, $hdr_search_input_show_search_width_desktop,  $hdr_search_input_show_search_width);
+                }
+            }
+            @include co(transition, $hdr_search_input_transition);
+            @include co(width, $hdr_search_input_width);
+
+            @include co(padding, $hdr_search_input_padding);
+            @include co(order, $hdr_search_input_order);
+
+            background: $hdr_search_input_bg_color;
+            color: $hdr_search_text_color;
+            height: $hdr_search_input_height;
+            border: $hdr_search_border;
+            box-shadow: $hdr_search_box_shadow;
+            font-size: $hdr_search_input_font_size;
+            font-weight: $hdr_search_input_font_weight;
+            @include max-screen($mobile-menu-visible-max) {
+                @include co(padding, $hdr_search_input_padding_mobilemax);
+            }
+            @if $hdr_search_input_borderradius_on == 1 {
+                @include ev-border-radius($hdr_search_input_borderradius_position, $hdr_search_input_borderradius);
+            }
+
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus {
+                border: none;
+                -webkit-text-fill-color: unset;
+                transition: background-color 5000s ease-in-out 0s;
+            }
+
+            @include min-screen($mobile-menu-notvisible) {
+                @include co(padding, $hdr_search_input_padding_desktop, $hdr_search_input_padding);
+                @include co(order, $hdr_search_input_order_desktop, $hdr_search_input_order);
+                @include co(transition, $hdr_search_input_transition_desktop, $hdr_search_input_transition);
+                @include co(width, $hdr_search_input_width_desktop, $hdr_search_input_width);
+            }
+
+            @include min-screen($desktop_min) {
+                @include co(display, $hdr_search_input_display_desktop);
+            }
+
+            @include min-screen($desktop_md_min) {
+                @include co(z-index, $hdr_search_input_zindex_desktop);
+                @include co(display, $hdr_search_input_display_desktopmd, $hdr_search_input_display_desktop);
+            }
+
+            @include rj-placeholder($hdr-search-placeholder-text-color);
+
+            &:focus {
+                @include co(filter, $hdr_search_input_focus_filter);
+                box-shadow: none;
+                outline: 0;
+                border: unset;
+                @include min-screen($mobile-menu-notvisible) {
+                    @include co(filter, $hdr_search_input_focus_filter_desktop, $hdr_search_input_focus_filter);
+                }
+            }
+        }
+    }
+}
+
+.hdr-search-wrap {
+    @include min-screen($mobile-menu-notvisible) {
+        @include co(padding, $hdr_search_wrap_padding_desktop);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

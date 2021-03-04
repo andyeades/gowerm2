@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Title
+ */
+
+$titleIdOutput = str_replace(' ', '-', strtolower($block->escapeHtml($block->getPageHeading())));
+$titleOutput = $block->getPageHeading();
+
+?>
+
+<div id="<?= $titleIdOutput; ?>-slider">
+    <h1 class="homepage-title guides">
+        <?= $titleOutput; ?>
+    </h1>
+</div>

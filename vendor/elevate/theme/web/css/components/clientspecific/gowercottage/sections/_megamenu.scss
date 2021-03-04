@@ -1,0 +1,26 @@
+
+@if $sitename == gowercottage {
+    .breaker-menu {
+
+
+        @include min-screen($mobile-menu-notvisible) {
+            border-left: 1px solid #918882;
+            width: 1px;
+            height: 24px;
+        }
+    }
+    .nav-4 {
+        margin: 0 0 0 auto;
+    }
+    .nav-7 {
+        @include min-screen($mobile-menu-notvisible) {
+            display: flex !important;
+            align-items: center !important;
+            > a > i {
+                padding-right: 10px;
+            }
+        }
+
+
+    }
+}

@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">elevate_customergallery_items_form.items_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button class="Elevate\CustomerGallery\Block\Adminhtml\Items\Edit\BackButton" name="back"/>
+			<button class="Elevate\CustomerGallery\Block\Adminhtml\Items\Edit\DeleteButton" name="delete"/>
+			<button class="Elevate\CustomerGallery\Block\Adminhtml\Items\Edit\SaveButton" name="save"/>
+			<button class="Elevate\CustomerGallery\Block\Adminhtml\Items\Edit\SaveAndContinueButton" name="save_and_continue"/>
+		</buttons>
+		<namespace>elevate_customergallery_items_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>elevate_customergallery_items_form.items_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="items_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="name" xsi:type="string">elevate_customergallery_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">items_id</argument>
+            <argument name="requestFieldName" xsi:type="string">items_id</argument>
+        </argument>
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider class="Elevate\CustomerGallery\Model\Items\DataProvider" name="items_form_data_source">
+			<settings>
+				<requestFieldName>items_id</requestFieldName>
+				<primaryFieldName>items_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label/>
+		</settings>
+		<field formElement="input" name="name" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Items</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">name</label>
+				<dataScope>name</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+        <field name="status">
+        <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">Elevate\CustomerGallery\Model\Config\Source\Options</item>
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="label" xsi:type="string" translate="true">status</item>
+                <item name="formElement" xsi:type="string">select</item>
+                <item name="source" xsi:type="string">modulename</item>
+                <item name="dataScope" xsi:type="string">status</item>
+                <item name="default" xsi:type="string">0</item>
+                <item name="validation" xsi:type="array">
+                    <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </item>
+        </argument>
+     </field>
+<!--
+           <field name="image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">image</item>
+                    <item name="label" xsi:type="string" translate="true">image</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Elevate_CustomerGallery/image-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="notice" xsi:type="string" translate="true">Don't upload big sized icon image.</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="elevate_customergallery/items/saveimage"/>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+-->
+	</fieldset>
+</form>
+
+

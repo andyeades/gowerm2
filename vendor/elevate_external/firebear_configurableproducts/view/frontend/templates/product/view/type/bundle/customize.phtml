@@ -1,0 +1,20 @@
+<?php $_product = $block->getProduct() ?>
+<?php if ($_product->isSaleable() && $block->hasOptions()):?>
+    <div class="bundle-actions">
+        <button id="bundle-slide"
+                class="action primary customize"
+                type="button">
+            <span><?= /* @escapeNotVerified */ __('Customize and Add to Cart') ?></span>
+        </button>
+    </div>
+<?php endif;?>
+<?php if ($_product->isSaleable() && $block->hasOptions()):?>
+    <div class="bundle-actions">
+        <a href="customer/account/login/" id="bundle-slide"
+           class="action primary customize"
+           type="button">
+            <span><?= /* @escapeNotVerified */ __('Text From Config') ?></span>
+        </a>
+    </div>
+<?php endif;?>
+
