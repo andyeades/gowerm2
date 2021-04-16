@@ -23,7 +23,7 @@ class Single extends \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Opti
     private $firebearHelper;
     protected $quoteItemOption;
     protected $serializer;
-
+   protected $productModel; 
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Framework\Json\EncoderInterface         $jsonEncoder
@@ -61,6 +61,7 @@ class Single extends \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Opti
         \Magento\Quote\Model\Quote\Item\OptionFactory $quoteItemOption,
         \Firebear\ConfigurableProducts\Helper\Data $firebearHelper,
         \Magento\Framework\Serialize\SerializerInterface $serializer,
+        \Magento\Catalog\Model\Product $productModel,                                    
         array $data = []
     ) {
         $this->pricingHelper  = $pricingHelper;
@@ -75,6 +76,7 @@ class Single extends \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Opti
         $this->quoteItemOption         = $quoteItemOption;
         $this->imageFactory            = $imageFactory;
         $this->firebearHelper          = $firebearHelper;
+        $this->productModel = $productModel;
         $this->serializer = $serializer;
         if ($this->firebearHelper->getGeneralConfig('bundle_options/enable')) {
             if ($this->firebearHelper->getGeneralConfig('bundle_options/enable_swatch')) {
@@ -167,9 +169,8 @@ class Single extends \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Opti
     {
         $configurableOptionsBlock = $this->getOptionsBlock($selection);
 
-
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $productModel  = $objectManager->get('\Magento\Catalog\Model\Product')->load($selection->getProductId());
+                                     
+        $productModel  = $this->productModel->load($selection->getProductId());
 
         $configurableOptionsBlock->setProduct($productModel);
 

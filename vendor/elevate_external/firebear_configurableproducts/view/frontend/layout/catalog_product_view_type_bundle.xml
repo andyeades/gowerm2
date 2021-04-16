@@ -5,8 +5,7 @@
  * See COPYING.txt for license details.
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <css src="Firebear_ConfigurableProducts::css/swatches.css"/>
     </head>
@@ -14,61 +13,41 @@
     <body>
         <referenceBlock name="bundle.summary" template="Firebear_ConfigurableProducts::product/view/summary.phtml">
             <arguments>
-                <argument name="firebear_catalog_product_view" xsi:type="object">
-                    Firebear\ConfigurableProducts\Block\Product\View
-                </argument>
-                <argument name="bundle_view_model" xsi:type="object">Firebear\ConfigurableProducts\ViewModel\Product\Renderer\Bundle</argument>
+                <argument name="firebear_catalog_product_view"  xsi:type="object">Firebear\ConfigurableProducts\Block\Product\View</argument>
+                <argument name="icpHelper" xsi:type="object">Firebear\ConfigurableProducts\Helper\Data </argument>
             </arguments>
         </referenceBlock>
         <referenceContainer name="product.info.main">
             <referenceBlock name="product.info.bundle.options">
                 <action method="setTemplate" ifconfig="firebear_configurableproducts/bundle_options/enable">
-                    <argument name="template" xsi:type="string">
-                        Firebear_ConfigurableProducts::product/view/type/bundle/options.phtml
-                    </argument>
+                    <argument name="template" xsi:type="string">Firebear_ConfigurableProducts::product/view/type/bundle/options.phtml</argument>
                 </action>
             </referenceBlock>
         </referenceContainer>
         <referenceBlock name="product.info.options.wrapper">
-            <block class="Magento\Catalog\Block\Product\View" name="bundle.product.view.options.notice"
-                   template="Magento_Bundle::catalog/product/view/options/notice.phtml"/>
-            <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle" name="product.info.bundle.options"
-                   as="type_bundle_options" template="Magento_Bundle::catalog/product/view/type/bundle/options.phtml"
-                   before="-">
+            <block class="Magento\Catalog\Block\Product\View" name="bundle.product.view.options.notice" template="Magento_Bundle::catalog/product/view/options/notice.phtml"/>
+            <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle" name="product.info.bundle.options" as="type_bundle_options" template="Magento_Bundle::catalog/product/view/type/bundle/options.phtml" before="-">
                 <container name="product.info.bundle.options.top" as="product_info_bundle_options_top">
-                    <block class="Magento\Catalog\Block\Product\View" name="bundle.back.button" as="backButton"
-                           before="-" template="Magento_Bundle::catalog/product/view/backbutton.phtml"/>
+                    <block class="Magento\Catalog\Block\Product\View" name="bundle.back.button" as="backButton" before="-" template="Magento_Bundle::catalog/product/view/backbutton.phtml"/>
                 </container>
-                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Select"
-                       name="product.info.bundle.options.select" as="select">
+                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Select" name="product.info.bundle.options.select" as="select">
                     <arguments>
-                        <argument name="tier_price_renderer" xsi:type="object">
-                            Firebear\ConfigurableProducts\ViewModel\Product\Renderer\Bundle\ProductOptionPriceRender
-                        </argument>
+                        <argument name="tier_price_renderer" xsi:type="object">\Firebear\ConfigurableProducts\Block\DataProviders\ProductOptionPriceRender</argument>
                     </arguments>
                 </block>
-                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Multi"
-                       name="product.info.bundle.options.multi" as="multi">
+                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Multi" name="product.info.bundle.options.multi" as="multi">
                     <arguments>
-                        <argument name="tier_price_renderer" xsi:type="object">
-                            Firebear\ConfigurableProducts\ViewModel\Product\Renderer\Bundle\ProductOptionPriceRender
-                        </argument>
+                        <argument name="tier_price_renderer" xsi:type="object">\Firebear\ConfigurableProducts\Block\DataProviders\ProductOptionPriceRender</argument>
                     </arguments>
                 </block>
-                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio"
-                       name="product.info.bundle.options.radio" as="radio">
+                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio" name="product.info.bundle.options.radio" as="radio">
                     <arguments>
-                        <argument name="tier_price_renderer" xsi:type="object">
-                            Firebear\ConfigurableProducts\ViewModel\Product\Renderer\Bundle\ProductOptionPriceRender
-                        </argument>
+                        <argument name="tier_price_renderer" xsi:type="object">\Firebear\ConfigurableProducts\Block\DataProviders\ProductOptionPriceRender</argument>
                     </arguments>
                 </block>
-                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox"
-                       name="product.info.bundle.options.checkbox" as="checkbox">
+                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox" name="product.info.bundle.options.checkbox" as="checkbox">
                     <arguments>
-                        <argument name="tier_price_renderer" xsi:type="object">
-                            Firebear\ConfigurableProducts\ViewModel\Product\Renderer\Bundle\ProductOptionPriceRender
-                        </argument>
+                        <argument name="tier_price_renderer" xsi:type="object">\Firebear\ConfigurableProducts\Block\DataProviders\ProductOptionPriceRender</argument>
                     </arguments>
                 </block>
             </block>

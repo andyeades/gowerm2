@@ -1,425 +1,947 @@
+<link rel="stylesheet" type="text/css" href="/skin/frontend/base/default/css/magiczoomplus/magiczoomplus.css" media="all">
+<script type="text/javascript" src="/skin/frontend/happybeds/default/js/magiczoomplus.js"></script>
 <style>
-    *, :after, :before {
-    -webkit-box-sizing: border-box;
+    #matzoomgalwrap {
+    margin-top: 5px;
+}
+
+    a[data-zoom-id] img, .mz-thumb img {
+    border: 0;
+    box-shadow: 0 0 1px 0px rgba(0,0,0,0.3);
     box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 }
-    
-  .test img {
-    width: 100%;
-	  height: auto;
-  }
-	
-.container.test {
-    margin-bottom: 30px;
-}
-	
-	/* delte above */
 
-  .image-outer {
-    position: relative;
-  }
 
-  .image-outer .fa-plus-circle {
-    font-size: 25px;
-    color: #f0386c;
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-  }
-    
-    
-    .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    -webkit-transition: .5s ease;
-    transition: .5s ease;
-}
-    
-    
- .user-handle-hidden {
-    display: block;
-    min-width: 150px;
-    text-align: center;
-    float: left;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    text-align: center;
-     color: #ffffff;
-}
-    
-
-	
-	.image-outer:hover {
-		cursor: pointer;
-/*		opacity: 0.5;*/
+	.popup-left-content img{
+		width: 100%;
+		height: auto;
 	}
-    
-        .image-outer:hover .overlay {
-    opacity: 1;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-	
-	
 
-	
-	.popup-title {
-    margin-top: 10px;
-    margin-bottom: 2px;
-    font-size: 12px;
-    font-weight: 600;
-}
-	
-	
-a#btn-cart-view {
-    width: 90%;
-    padding: 5px;
-    margin-top: 10px;
-}
-	
-	
+	.popup-right-content{
+		text-align: center;
+	}
 
-    
-.top-intro {
+    	.username_handle{
+		margin-top:30px;
+        text-align: center;
+	}
+
+    	.popup-right-content .price-box>div {
     text-align: center;
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
-    margin-bottom: 15px;
 }
-    
-  
-    @media screen and (max-width: 991.98px){
-        
-        .customergallery-index-index .container.test {
-    padding: 0;
-}
-    .image-outer {
-        padding: 15px   
-    }
-    
-    .row {
-    padding-bottom: 0!important;
-    padding-top: 0!important;
-}
-        
-        .popup-left-content{
-            display: none;
-        }
-        
-        #colour_filter, #room_filter {
-    width: auto !important;
-    }
-    }
-    
-    
-#colour_filter, #room_filter {
-    display: inline;
-    width: auto;
-    width: 250px;
-    background: #ececec;
-    color: #000;
-    border: none;
-    text-transform: uppercase;
-    font-weight: 400;
-    border-radius: 0!important;
-    -webkit-appearance: none;
-    margin-left: 20px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    padding: 12px 20px;
-    font-size: 14px;
-    font-weight: 600;
-}
-    
-    .filters {
-    text-align: center;
-    padding: 20px;
-}
-    
+
 
 
 
-    .ajax {
-    position: relative;
-}
-    
-    .top-intro h1 {
-    font-size: 28px;
-    margin-bottom: 30px;
-}
-    
-    .top-intro p {
-    font-size: 17px;
-    margin-top: 15px;
-}
-    
-    .image-outer {
-    padding-left: 7px;
-    padding-right: 7px;
-}
 
-.popup-right-content #ev_price, .popup-right-content #ev_msrp{
-    text-decoration: line-through;
-}
-    
-.popup-right-content #ev-special-wrap {
-    color: #cb2727;
-}
-    
-    .review-date {
-    margin-top: 15px;
-}
 
-    #ev-msrp-wrap, #ev-price-wrap {
-    color: #6b6b6b;
-}
-    
-#loadmore {
+
+.popup-right-content .price-box {
+    width: 60%;
     margin: 0 auto;
-    margin-top:15px;
-    /* width: 600px; */
-    text-align: center;
-    cursor: pointer;
-    padding: 0 15px 0 15px;
+	display: flex;
+    padding-bottom: 20px;
 }
 
-#loadmore span {
-    background-color: #f0f0f0;
-    padding: 12px;
-    width: 100%;
-    display: block;
-    text-align: center;
-    border: 1px solid #ccc;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 20px;
-}
-#loadmore span:hover {
-  opcity:0.8;
+	.add-this-sharing{
+		margin-top: 10px;
+	}
 
+    .popup-right-content .product-img-box img {
+    max-width: 180px !important;
 }
+
+    .view-more {
+    margin-top: 5px;
+}
+
+.popup-left-content {
+    text-align: center;
+}
+
+.product-img-box img.mymatim2 {
+/*    max-width: 100% !important;*/
+}
+
+    #matmain2 img {
+/*    max-width: 100% !important;*/
+    height: 430px;
+    object-fit: contain;
+}
+
+    .popup-left-content a[data-zoom-id] img, .mz-thumb img {
+    width: 50px;
+    height: 50px;
+}
+
+
 </style>
 
-<script src="/media/elevate.lightbox.js"></script>
-<div class="container">
-    <div class="row">
 
 
-      <div class="col-md-12">
-<div class="top-intro">
-<h1>Our Products, Your Home</h1>
-<h2>Styled, snapped, shared and shoppable!</h2>
-
-<p>Need inspiration? See and shop our favourite customer images from our feed. Or share your interior style by tagging @HappyBeds in your Happy Beds furniture images for a chance to feature in our feed.
-</p>
-</div>
-        </div>
-        </div>
-    
-</div>
+<?php
 
 
-            
-<div class="container test">
-  <div class="col-md-12">
-    
-   <div id="full_swap">
-    <div id="insert_anchor"></div>
-</div>	
-</div> 
-</div>	 
+$productData = $block->getData();
+$productId = $productData['data']['currentproductid'];
+$_product = $block->getProducts($productId);
+
+$itemID = 328;
 
 
-<!-- Load More Button -->
-<div id="loadmore">
-    <span>Load More</span>
-</div>
-<input type="hidden" id="socialpagenumber" value="1">
-<!-- End Load More Button -->
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$socialpost = $objectManager->create('Elevate\CustomerGallery\Model\Items')->load($itemID);
 
-<div style="clear:both;"></div>
+$social_gallery_images = [];
 
 
+
+array_push($social_gallery_images, $socialpost->getData("additional_image_2"), $socialpost->getData("additional_image_3"), $socialpost->getData("additional_image_4"), $socialpost->getData("additional_image_5"));
+
+
+?>
+
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+<script type="text/javascript" src="/js/varien/product.js"></script>
+<script type="text/javascript" src="/js/varien/product_options.js"></script>
+ <script src="<?php echo Mage::getBaseUrl('js') ?>varien/customgalleryconfig.js" type="text/javascript"></script>
 <script type="text/javascript">
+    <?php  if($_product->getTypeId() == 'configurable'){ ?>
+  var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 
-var ELEVATE = ELEVATE || {};
-
-// wrap code in a closure to allow use of $
-(function ($) {
-
-    ELEVATE.CustomerGallery = (function () {
-
-        var clickTimeout;
-
-        var init = function()
-        {
-        attachEventHandlers();
-        },
-        attachEventHandlersLoad = function(){
-       clearTimeout(clickTimeout);
-       
-
-        var page = 1;
-     
-         jQuery('#socialpagenumber').val(2);
-                    
-               clickTimeout = setTimeout(function(){
-              
-              
-              var colour_val = jQuery('#colour_filter').val();
-              var room_val = jQuery('#room_filter').val();
-   
-               //prevent ajax caching 
-               var tS=new Date().getTime();
-               var url = '/customer-gallery/index/posts' + '?ts=' + tS + '&p='+ page + '&colour_filter='+ colour_val + '&room_filter='+ room_val;
-               var data = '';
-                         
-              try {
-            var searchbuttonwidth = jQuery('#loadmore').outerWidth();
-            jQuery('#loadmore').html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>').css({"min-width": searchbuttonwidth});
-                       
-                    
-            
-                              jQuery.ajax({
-                                url: url,
-                                dataType: 'json',
-                                type: 'get',
-                                success: function (data) {
-                                   
-                         
-                       jQuery('#full_swap').html(data.html+'<div id="insert_anchor"></div>');      
-                       jQuery('#loadmore').html('<span>Load More</span>');
-                       
-                                 if(data.more == 0){
-                            jQuery('#loadmore').hide();
-                           }
-                           else{
-                             jQuery('#loadmore').show();
-                           }
-                                }
-                              });
-                            } catch (e) {
-                            }    
-    
-    
-              }, 500);    
-                
-                  
-        
-        }
-        attachEventHandlers = function(){
-   
-   
-
-
-        clearTimeout(clickTimeout);
-       
-
-        var page = parseFloat(jQuery('#socialpagenumber').val());
-     
-               clickTimeout = setTimeout(function(){
-          jQuery('#socialpagenumber').val(page+1);               
-              var colour_val = jQuery('#colour_filter').val();
-              var room_val = jQuery('#room_filter').val();
-   
-               //prevent ajax caching 
-               var tS=new Date().getTime();
-               var url = '/customer-gallery/index/posts' + '?ts=' + tS + '&p='+ page + '&colour_filter='+ colour_val + '&room_filter='+ room_val;
-               var data = '';
-                         
-              try {
-            var searchbuttonwidth = jQuery('#loadmore').outerWidth();
-            jQuery('#loadmore').html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>').css({"max-width": "600px"});
-        
-               
-            
-                              jQuery.ajax({
-                                url: url,
-                                dataType: 'json',
-                                type: 'get',
-                                success: function (data) {
-                                   
-                         
-                       jQuery('#insert_anchor').append(data.html);      
-                       jQuery('#loadmore').html('<span>Load More</span>');
-                                 if(data.more == 0){
-                            jQuery('#loadmore').hide();
-                           }
-                           else{
-                             jQuery('#loadmore').show();
-                           }
-                       
-                                }
-                              });
-                            } catch (e) {
-                            }    
-    
-    
-              }, 500);    
-                
-          
-        
-        }
-
-        return {
-            init: function () {
-                init();
-            },
-            attachEventHandlers: function () {
-                attachEventHandlers();
-            },
-            attachEventHandlersLoad: function () {
-                attachEventHandlersLoad();
-            }
-        };
-    }());
-
-}(jQuery.noConflict()));
-
-ELEVATE.CustomerGallery.init();
-   
-        jQuery('#loadmore').click(function() {
-ELEVATE.CustomerGallery.attachEventHandlers();      
-        });
-        
+    <?php  } ?>
 </script>
 
 
-        <style>
-        .hide_me{
-        display:none !important;
-        }
-        </style>
-<!-- Modal -->
-<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="addtocartModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-body">
-		
-		</div>
-        <div class="modal-footer hide_me" >
-        
-        </div>
+
+
+
+
+
+
+
+<div class="row">
+     <div class="col-md-6 col-xs-6 popup-left-content">
+
+             <div class="product-img-box">
+
+
+              <div class="includes-matt">
+
+
+        <div style="clear:both;">&nbsp;</div>
+
+        <div id="mobmatwrap" class="mobmatwraphideme">
+          <div class="mobmat-wrap-one zoommasmall">
+
+            <div id="matzoomwrap">
+              <div id="mainim" style="position: relative;">
+<!--
+               <div class="btn" onclick="MagicZoom.prev('matmain2');" style="
+  position: absolute;
+  top: 50%;
+  z-index: 999;
+
+">
+                  <i class="fa fa-chevron-left"></i></div>
+-->
+                <a id="matmain2" data-options="zoomWidth:400px; zoomHeight:400px; hint: always; textHoverZoomHint:Hover to zoom; textClickZoomHint: Click for more images" href="/media/<?php echo $socialpost->getImage(); ?>" class="MagicZoom"><img id="mymatim" class="mymatim2" src="/media/<?php echo $socialpost->getImage(); ?>"></a>
+<!--
+                <div class="btn" onclick="MagicZoom.next('matmain2');" style="
+  position: absolute;
+  top: 50%;
+  z-index: 999;
+
+  right: 0;
+">
+                  <i class="fa fa-chevron-right"></i></div>
+-->
+              </div>
+
+
+              <div id="matzoomgalwrap">
+                <a class="matzoomgal" data-zoom-id="matmain2" href="/media/<?php echo $socialpost->getImage(); ?>" data-image="/media/<?php echo $socialpost->getImage(); ?>"><img src="/media/<?php echo $socialpost->getImage(); ?>"></a>
+                  <?php foreach ($social_gallery_images as $key => $val) { ?>
+                      <?php  if($val){ ?>
+                          <a class="matzoomgal" data-zoom-id="matmain2" href="/media/<?php echo $val; ?>" data-image="/media/<?php echo $val; ?>"><img src="/media/<?php echo $val; ?>"></a>
+                      <?php  } ?>
+                    <?php } ?>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            </div>
+
+
+
+          </div> <!-- End Hide me mobile wrap-->
     </div>
 
-  </div>
+
+           	<div class="username_handle">
+		<a href="<?php echo $socialpost->getPostLink() ?>" target="_blank">
+		<?php
+        if($socialpost->getPostType() == 1){
+            $thumbImage = 'https://www.instagram.com/static/images/ico/favicon-192.png/68d99ba29cc8.png';
+            $uNameSymbol = '@';
+        }
+       if($socialpost->getPostType() == 2){
+            $thumbImage = '/skin/frontend/base/default/images/elevate/customergallery/icons/twitter.png';
+            $uNameSymbol = '@';
+        }
+       if($socialpost->getPostType() == 3){
+            $thumbImage = '/skin/frontend/base/default/images/elevate/customergallery/icons/facebook.png';
+        }
+       if($socialpost->getPostType() == 4){
+            $thumbImage = '/skin/frontend/base/default/images/elevate/customergallery/icons/email.png';
+        }
+       if($socialpost->getPostType() == 5){
+            $thumbImage = '/skin/frontend/base/default/images/elevate/customergallery/icons/feefo.png';
+        }
+        ?>
+            <?php if($thumbImage){ ?>
+                <img src="<?php echo $thumbImage; ?>" width="15px" style="margin-right: 10px; width: 15px;">
+            <?php } ?>
+            <?php if($thumbImage){ ?>
+			<?php echo $uNameSymbol; ?>
+            <?php } ?>
+            <?php echo $socialpost->getName(); ?>
+		</a>
+	</div>
+
+		 </div>
+		 <div class="col-md-6 col-xs-12 popup-right-content">
+<!--
+		 <img src="https://via.placeholder.com/150">
+
+		<div class="popup-title">Maimo White Wooden Ottoman Bed</div>
+		<div class="popup-price">
+		<span>WAS FROM £579.99</span>
+		<span>NOW £319.99</span>
+<a id="btn-cart-view" class="btn-cart-view button btn-cart"><span><span> Add to Basket</span></span></a>
+		</div>
+-->
+
+
+          <?php
+
+
+          if ($_product) {
+              $matt_name = $_product->getName();
+              $matt_image = Mage::helper('catalog/image')->init($_product, 'small_image')->resize(400, 400);
+              $matt_short = $_product->getData('features');
+
+          }
+
+          if (is_object($_product)) {
+
+              $main_image = Mage::getModel('catalog/product_media_config')->getMediaUrl($_product->getData('image'));
+
+              $attributes = $_product->getTypeInstance(true)->getSetAttributes($_product);
+              $media_gallery = $attributes['media_gallery'];
+              $backend = $media_gallery->getBackend();
+              $backend->afterLoad($_product); // this loads the media gallery to the product object
+              $count = 0;
+              $lowest_position = false;
+              $image_default = false;
+              $image_lowest = false;
+              $image_first = false;
+
+          }
+          if (is_object($_product)) {
+              foreach ($_product->getMediaGalleryImages() as $image) {
+
+
+                  $count++;
+                  if ($count == 9) {
+                      break;
+                  } //dont send too many images - in fact we cant break
+
+                  //select first image
+                  if ($count == 1) {
+                      $image_first = $image->getUrl();
+                  }
+                  //set lowerst position
+                  $current_position = $image->getPositionDefault();
+
+                  if (!$lowest_position || $current_position < $lowest_position) {
+                      $image_lowest = $image->getUrl();
+                      $lowest_position = $current_position;
+                  }
+
+                  //set default image - which is the google feed or default image
+                  if ($main_image == $image->getUrl()) {
+                      $image_default = $image->getUrl();
+                  }
+
+                  $current_position = $image->getPositionDefault();
+
+                  $all_images[] = $image->getUrl();
+
+              }
+          }
+
+          if ($image_default) {
+
+              $image_final = $image_default;
+
+          } else if ($image_lowest) {
+
+              $image_final = $image_lowest;
+
+          } else {
+              $image_final = $image_first;
+
+          }
+
+          $main_image = $image_final;
+
+          $all_images = array_flip($all_images);
+          unset($all_images[$image_final]);
+          $all_images = array_flip($all_images);
+
+          $gallery_images = array_slice($all_images, 0, 4);
+
+          $gallery_images
+          // $media_gallery_images['additional'] = implode(",", $only_nine_images_allowed);
+
+          ?>
+
+
+			 <div class="product-essential">
+    <div class="product-img-box">
+<!--
+        <a href="<?php echo $_product->getProductUrl(); ?>" target="_blank">
+            <img src="<?php echo Mage::helper('catalog/image')->init($_product, 'image')->resize(230, 230); ?>"/>
+        </a>
+-->
+
+                <div class="includes-matt">
+
+
+          <div style="clear:both;">&nbsp;</div>
+
+          <div id="mobmatwrap" class="mobmatwraphideme">
+            <div class="mobmat-wrap-one zoommasmall">
+
+              <div id="matzoomwrap">
+                <div id="mainim">
+                  <div class="btn" onclick="MagicZoom.prev('matmain');">
+                    <i class="fa fa-chevron-left"></i></div>
+                  <a id="matmain" data-options="zoomWidth:400px; zoomHeight:400px; hint: always; textHoverZoomHint:Hover to zoom; textClickZoomHint: Click for more images" href="<?php echo $main_image; ?>" class="MagicZoom"><img id="mymatim" src="<?php echo $main_image; ?>"></a>
+                  <div class="btn" onclick="MagicZoom.next('matmain');">
+                    <i class="fa fa-chevron-right"></i></div>
+                </div>
+
+
+                <div id="matzoomgalwrap">
+                  <a class="matzoomgal" data-zoom-id="matmain" href="<?php echo $main_image; ?>" data-image="<?php echo $main_image; ?>"><img src="<?php echo $main_image; ?>"></a>
+                    <?php foreach ($gallery_images as $key => $val) { ?>
+                      <a class="matzoomgal" data-zoom-id="matmain" href="<?php echo $val; ?>" data-image="<?php echo $val; ?>"><img src="<?php echo $val; ?>"></a>
+                    <?php } ?>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            </div>
+
+
+
+          </div> <!-- End Hide me mobile wrap-->
+    </div>
+
+    <div class="product-shop">
+        <h3 class="product-name"><?php echo $_product->getName(); ?></h3>
+
+        <?php
+
+              $prod_sku = $_product->getSku();
+              $feefo_sku = $_product->getData('feefo_sku');
+
+
+              if (!empty($feefo_sku)) {
+                $feefo_image = $feefo_sku;
+              } else {
+                $feefo_image = $prod_sku;
+              }
+
+              $rating_label_number = $_product->getData('product_rating') . "<br />";
+              $rating_label_class = '';
+
+              switch($rating_label_number) {
+                case 5:
+                  $rating_label_style = '100%;';
+                  $rating_style = '109px';
+                  break;
+                case 4.9:
+                  $rating_label_style = '98%;';
+                  $rating_style = '106.82px';
+                  break;
+                case 4.8:
+                  $rating_label_style = '96%;';
+                  $rating_style = '104.64px';
+                  break;
+                case 4.7:
+                  $rating_label_style = '94%;';
+                  $rating_style = '102.46px';
+                  break;
+                case 4.6:
+                  $rating_label_style = '92%;';
+                  $rating_style = '100.28px';
+                  break;
+                case 4.5:
+                  $rating_label_style = '90%;';
+                  $rating_style = '98.1px';
+                  break;
+                case 4.4:
+                  $rating_label_style = '88%;';
+                  $rating_style = '95.92px';
+                  break;
+                case 4.3:
+                  $rating_label_style = '86%;';
+                  $rating_style = '93.74px';
+                  break;
+                case 4.2:
+                  $rating_label_style = '84%;';
+                  $rating_style = '91.56px';
+                  break;
+                case 4.1:
+                  $rating_label_style = '82%;';
+                  $rating_style = '89.38px';
+                  break;
+                case 4:
+                  $rating_label_style = '80%;';
+                  $rating_style = '87.2px';
+                  break;
+                case 3.9:
+                  $rating_label_style = '78%;';
+                  $rating_style = '85.02px';
+                  break;
+                case 3.8:
+                  $rating_label_style = '76%;';
+                  $rating_style = '82.84px';
+                  break;
+                case 3.7:
+                  $rating_label_style = '74%;';
+                  $rating_style = '80.66px';
+                  break;
+                case 3.6:
+                  $rating_label_style = '72%;';
+                  $rating_style = '78.48px';
+                  break;
+                case 3.5:
+                  $rating_label_style = '70%;';
+                  $rating_style = '76.3px';
+                  break;
+                case 3.4:
+                  $rating_label_style = '68%;';
+                  $rating_style = '74.12px';
+                  break;
+                case 3.3:
+                  $rating_label_style = '66%;';
+                  $rating_style = '71.94px';
+                  break;
+                case 3.2:
+                  $rating_label_style = '64%;';
+                  $rating_style = '69.76px';
+                  break;
+                case 3.1:
+                  $rating_label_style = '62%;';
+                  $rating_style = '67.58px';
+                  break;
+                case 3:
+                  $rating_label_style = '60%;';
+                  $rating_style = '65.4px';
+                  break;
+                case 2.9:
+                  $rating_label_style = '58%;';
+                  $rating_style = '63.22px';
+                  break;
+                case 2.8:
+                  $rating_label_style = '56%;';
+                  $rating_style = '61.04px';
+                  break;
+                case 2.7:
+                  $rating_label_style = '54%;';
+                  $rating_style = '58.86px';
+                  break;
+                case 2.6:
+                  $rating_label_style = '52%;';
+                  $rating_style = '56.68px';
+                  break;
+                case 2.5:
+                  $rating_label_style = '50%;';
+                  $rating_style = '54.5px';
+                  break;
+                case 2.4:
+                  $rating_label_style = '48%;';
+                  $rating_style = '52.32px';
+                  break;
+                case 2.3:
+                  $rating_label_style = '46%;';
+                  $rating_style = '50.14px';
+                  break;
+                case 2.2:
+                  $rating_label_style = '44%;';
+                  $rating_style = '47.96px';
+                  break;
+                case 2.1:
+                  $rating_label_style = '42%;';
+                  $rating_style = '45.78px';
+                  break;
+                case 2:
+                  $rating_label_style = '40%;';
+                  $rating_style = '43.6px';
+                  break;
+                case 1.9:
+                  $rating_label_style = '38%;';
+                  $rating_style = '41.42px';
+                  break;
+                case 1.8:
+                  $rating_label_style = '36%;';
+                  $rating_style = '39.24px';
+                  break;
+                case 1.7:
+                  $rating_label_style = '34%;';
+                  $rating_style = '37.06px';
+                  break;
+                case 1.6:
+                  $rating_label_style = '32%;';
+                  $rating_style = '34.88px';
+                  break;
+                case 1.5:
+                  $rating_label_style = '30%;';
+                  $rating_style = '32.77px';
+                  break;
+                case 1.4:
+                  $rating_label_style = '28%;';
+                  $rating_style = '30.52px';
+                  break;
+                case 1.3:
+                  $rating_label_style = '26%;';
+                  $rating_style = '28.34px';
+                  break;
+                case 1.2:
+                  $rating_label_style = '24%;';
+                  $rating_style = '26.16px';
+                  break;
+                case 1.1:
+                  $rating_label_style = '22%;';
+                  $rating_style = '23.98px';
+                  break;
+                case 1:
+                  $rating_label_style = '20%;';
+                  $rating_style = '21.8px';
+                  break;
+                case 0.9:
+                  $rating_label_style = '18%;';
+                  $rating_style = '19.62px';
+                  break;
+                case 0.8:
+                  $rating_label_style = '16%;';
+                  $rating_style = '17.44px';
+                  break;
+                case 0.7:
+                  $rating_label_style = '14%;';
+                  $rating_style = '15.26px';
+                  break;
+                case 0.6:
+                  $rating_label_style = '12%;';
+                  $rating_style = '13.08px';
+                  break;
+                case 0.5:
+                  $rating_label_style = '10%;';
+                  $rating_style = '10.9px';
+                  break;
+                case 0.4:
+                  $rating_label_style = '8%;';
+                  $rating_style = '8.72px';
+                  break;
+                case 0.3:
+                  $rating_label_style = '6%;';
+                  $rating_style = '6.54px';
+                  break;
+                case 0.2:
+                  $rating_label_style = '4%;';
+                  $rating_style = '4.36px';
+                  break;
+                case 0.1:
+                  $rating_label_style = '2%;';
+                  $rating_style = '2.18px';
+                  break;
+                case 0:
+                  $rating_label_style = '0%;';
+                  $rating_style = '0';
+                  break;
+                default:
+                  $rating_label_style = '0%;';
+                  $rating_style = '0';
+              }
+
+              if ($rating_label_number >= 4.7) {
+                $rating_label_class = "prod-rating-5";
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+              } else if ($rating_label_number >= 4.4) {
+                $rating_label_class = "prod-rating-4-4";
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star-half "></div>';
+              } else if ($rating_label_number >= 4) {
+                $rating_label_class = "prod-rating-4";
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+
+              } else if ($rating_label_number >= 3) {
+                $rating_label_class = "prod-rating-3";
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+                //  echo '<div class="fa fa-star starchecked"></div>';
+
+              } else if ($rating_label_number >= 2) {
+                $rating_label_class = "prod-rating-2";
+                //echo '<div class="fa fa-star starchecked"></div>';
+                //echo '<div class="fa fa-star starchecked"></div>';
+
+              } else if ($rating_label_number >= 1) {
+                $rating_label_class = "prod-rating-1";
+                //echo '<div class="fa fa-star starchecked"></div>';
+
+              } ?>
+              <div class="sr-clear">
+<?php
+              if (!empty($rating_label_class)) { ?>
+                <?php if ($rating_label_number <= 3.3) { ?>
+
+                <?php } ?>
+
+                <div class="star-rating" style="width: <?php echo $rating_style; ?>"><span style="width: 100%;"></span></div>
+
+                 <?php if ($rating_label_number <= 3.3) { ?>
+
+                 <?php } ?>
+              <?php } ?>
+ </div>
+
+        <div class='short-description'><?php echo $_product->getShortDescription(); ?></div>
+
+        <div class='divider'></div>
+
+        <div class="col2-set">
+            <div class="col-12">
+
+
+                <div class="price-box no-prod-icons">
+
+<?php
+$p_msrp = $_product->getMsrp();
+$p_price = $_product->getPrice();
+$p_special = $_product->getSpecialPrice();
+
+if($p_msrp){
+    $p_msrp_price = "&pound;".number_format((float)$p_msrp, 2, '.', '');
+    $p_msrp_label = "RRP From";
+}
+if($p_price){
+    $p_price_price = "&pound;".number_format((float)$p_price, 2, '.', '');
+    $p_price_label = "Was From";
+}
+if($p_special){
+    $p_special_price = "&pound;". number_format((float)$p_special, 2, '.', '');
+    $p_special_label = "Now From";
+}
+?>
+
+
+                  <div id="ev-msrp-wrap">
+                    <label class="ev_label" id="msrp_label"><? echo $p_msrp_label; ?></label>
+                    <div id="ev_msrp" class="ev_one ev_price "><? echo $p_msrp_price; ?></div>
+                  </div>
+
+                  <div id="ev-price-wrap">
+                    <label class="ev_label" id="price_label"><? echo $p_price_label; ?></label>
+                    <div id="ev_price" class="ev_two ev_price "><? echo $p_price_price; ?></div>
+                  </div>
+                  <div id="ev-special-wrap">
+                    <label class="ev_label" id="special_label"><? echo $p_special_label; ?></label>
+                    <div id="ev_special" class="ev_three ev_price "><? echo $p_special_price; ?></div>
+                  </div>
+
+
+                </div>
+
+            </div>
+            <div class="col-12">
+                <?php if ($_product->isSaleable()): ?>
+                 <?php echo $this->getConfigurableHtml($_product) ?>
+
+
+
+                    <button id="btn-cart-view" data-id="<?php echo $dataid; ?>" class="btn-cart-view button btn-cart" style="padding:5px; width:50%; margin-top:15px"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                <?php endif; ?>
+                <div class="view-more"><a href="<?php echo $_product->getProductUrl(); ?>" target="_blank">View More Details</a></div>
+            </div>
+        </div>
+    </div>
+           <?php
+             if ($_product->isConfigurable()) {
+           $childProducts = Mage::getModel('catalog/product_type_configurable')->getUsedProducts(NULL, $_product);
+           foreach ($childProducts as $child) {
+               $mattress_size_data[$child->getChooseSize()]['id'] = $child->getId();  // You can use any of the magic get functions on this object to get the value
+               $mattress_size_data[$child->getChooseSize()]['parent'] = $product_id;  // You can use any of the magic get functions on this object to get the value
+               $mattress_size_data[$child->getChooseSize()]['sku'] = $child->getSku();
+               $mattress_size_data[$child->getChooseSize()]['msrp'] = $child->getMsrp();
+               $mattress_size_data[$child->getChooseSize()]['price'] = $child->getPrice();
+               // Why is this being X'ed by 0.9??
+               // Is this supposed to be the discounted Price being charged for a buy together??
+               $mattress_size_data[$child->getChooseSize()]['special_price'] = round($child->getFinalPrice(), 2);
+               $mattress_size_data[$child->getChooseSize()]['link'] = $child->getUrlPath();
+           }
+           //$bob = $mattresss_size_data;
+           //$data = $mattress_size_data[$product_id]
+
+
+         $encode_mattress_size = json_encode($mattress_size_data);
+             }
+         ?>
+
+<script type="text/javascript">
+
+    var json_matt = '<?php echo $encode_mattress_size; ?>';
+    <?php  if($_product->getTypeId() == 'configurable'){ ?>
+    var json_parse = jQuery.parseJSON(json_matt);
+<?php } ?>
+
+    function getSimpleProductId() {
+          var productCandidates = [];
+          jQuery.each(spConfig_<?php echo $_product->getId(); ?>.settings, function (selectIndex, select) {
+              var attributeId = select.id.replace('attribute', '');
+              var selectedValue = select.options[select.selectedIndex].value;
+              //   console.log(spConfig.config.attributes[attributeId].options);
+              jQuery.each(spConfig_<?php echo $_product->getId(); ?>.config.attributes[attributeId].options, function (optionIndex, option) {
+                  if (option.id == selectedValue) {
+                      var optionProducts = option.products;
+                      if (productCandidates.length == 0) {
+                          productCandidates = optionProducts;
+                      } else {
+                          var productIntersection = [];
+                          jQuery.each(optionProducts, function (productIndex, productId) {
+                              if (productCandidates.indexOf(productId) > -1) {
+                                  productIntersection.push(productId);
+                              }
+                          });
+                          productCandidates = productIntersection;
+                      }
+                  }
+              });
+          });
+          return (productCandidates.length == 1) ? productCandidates[0] : null;
+      }
+      function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+    jQuery('.modulename-super-attribute-select').on('change', function() {
+
+
+
+        <?php  if($_product->getTypeId() == 'simple'){
+        $dataid = $_product->getId();
+        echo "var prod_id = '$dataid';" ;
+    }
+    else{
+
+        echo 'var prod_id = getSimpleProductId();' ;
+
+    } ?>
+
+        var simple_price = spConfig_<?php echo $_product->getId(); ?>.config.basePrice;
+        var size_id = jQuery('#attribute136').find(':selected').val();
+
+
+
+        var msrp = parseFloat(json_parse[size_id]["msrp"]).toFixed(2);
+        var price = parseFloat(json_parse[size_id]["price"]).toFixed(2);
+        var special = parseFloat(json_parse[size_id]["special_price"]).toFixed(2);
+
+
+        jQuery('.ev_price').html('');
+        jQuery('.ev_label').html('');
+
+        if(isNumeric(msrp)){
+        if (msrp.length > 0) {
+         jQuery('.ev_one').html("&pound;"+msrp);
+            jQuery('#msrp_label').html("RRP");
+
+        }
+        }
+
+
+        if(price){
+        if (price.length > 0) {
+            jQuery('.ev_two').html("&pound;"+price);
+            jQuery('#price_label').html("Was");
+        }
+        }
+
+
+            jQuery('.ev_three').html("&pound;"+special);
+
+         //   alert(json_parse[size_id]["special_price"]);
+        jQuery('#special_label').html("Now");
+
+
+        console.log(json_parse[size_id]);
+
+
+    });
+
+    jQuery('.btn-cart-view').on('click', function () {
+              //  var prod_id = jQuery(this).attr('data-prodid');
+              //  var mattress_id = jQuery(this).attr('data-mattid');
+
+   console.log("OC");
+
+        <?php  if($_product->getTypeId() == 'simple'){
+          $dataid = $_product->getId();
+                echo "var prod_id = '$dataid';" ;
+               }
+               else{
+
+               echo 'var prod_id = getSimpleProductId();' ;
+
+               } ?>
+
+
+
+
+
+      if(isNumeric(prod_id)){
+          console.log("OC2");
+
+          var tS = new Date().getTime();
+
+      var url = '/evaddtocart/index/addmulti?prodid='+prod_id+'&ts='+tS+'&mattid=&qty=1&mattid2=&qty2=1&mattid3=&qty3=1';
+
+
+
+        var data = '';
+      var searchbuttonwidth = jQuery(".product-options-bottom .btn-cart").outerWidth();
+      //console.log(searchbuttonwidth);
+      jQuery(".product-options-bottom .btn-cart").css({"min-width": searchbuttonwidth});
+      jQuery(".product-options-bottom .btn-cart").html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>').css({"min-width": searchbuttonwidth});
+      jQuery.ajax({
+        url: url,
+        dataType: 'json',
+        type: 'post',
+        data: data,
+        success: function (data) {
+
+          if (data.status == "SUCCESS") {
+            jQuery('.error-message').hide();
+            jQuery(".product-options-bottom .btn-cart").html('Add to Basket');
+            var prodimg = jQuery(".product-img-box img").attr('src');
+
+            var continueShopping = '';
+            var buttons = '<button type="button" title="Continue Shopping" onclick="setLocation(\'' + continueShopping + '\')" class="btn btn-continue-shop btn-inline" style="margin-right: 40px;"><span><span>Continue Shopping</span></span></button><button type="button" onclick="setLocation(\'/checkout/cart/\')" class="btn btn-checkout btn-inline " ><span><span>View Cart</span></span></button>';
+            var message = '<div class="buyTogetherModalProd"><span class="product-image" style="float:left;"><img src="' + prodimg + '" width="85" height="85"></span><div class="product-content" style="\n' +
+                '    float: left;' +
+                '    margin-left: 20px;' +
+                '    margin-top: 34px;"><i class="fa fa-check" aria-hidden="true" style=""></i> Your item was added to the basket </div><div style="clear:both;"></div></div>';
+
+            jQuery('.hdr-mybasket').html(data.sidebar);
+            //new minicart - make active
+            //  jQuery('.hdr-mybasket-outer').html(data.sidebar);
+
+
+            jQuery("#infoModal .modal-body").html(message);
+            jQuery("#infoModal .modal-footer").removeClass('hide_me').html('<div class="add-to-cart"><div class="button btn-continueshop" style="    padding: 15px;" data-dismiss="modal">Continue Shopping</div><a href="/checkout/cart" type="button" title="Go to checkout" class="button btn-cart" style="    padding: 15px;"><span><span> Go to Checkout</span></span></a></div>');
+         //   jQuery("#infoModal").modal('show');
+
+
+            if (jQuery('.header .links')) {
+              jQuery('.header .links').replaceWith(data.toplink);
+            }
+
+            // Enable 2 col layout to show checkout
+
+            // jQuery('.ev-minicart-menu').slideToggle().delay(3000).slideToggle();
+
+            jQuery('.add-to-cart-checkout').show();
+            jQuery('.add-to-cart-inner').hide();
+
+
+            jQuery('.add-to-cart-message').html('<strong>âœ“ Item added</strong>').show();
+
+
+            // After 3 seconds, swap the "Add" button back into view
+            jQuery(".ev-minicart-menu").addClass('show-ev-mini2');
+
+            setTimeout(function () {
+              jQuery('.add-to-cart-inner').show();
+              jQuery('.add-to-cart-message').hide();
+            }, 3000);
+
+          }//end success
+          if (data.status == "ERROR") {
+
+            if (jQuery(".error-message").length) {
+              jQuery(".add-to-box").html(message);
+            } else {
+              message = '<div class="error-message" style="color:red;">' + data.message + '<br/></div>';
+              jQuery(message).insertBefore(".add-to-box");
+            }
+
+
+          }
+        },
+        error: function (data) {
+          console.log(data);
+        }
+      });
+
+           }
+           else{
+         alert("Please select a size.");
+           }
+              //  var prod_id = jQuery('#selected_product_id').val();
+              //lets recaulculate the simple ID for pre selected options!
+
+      });
+</script>
+
+
+
+				 <div class="add-this-sharing">
+				 <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				 <div class="addthis_inline_share_toolbox_g09t_3hhw_9s1w"></div>
+				 </div>
+    <div class="clear"></div>
 </div>
+			 <div class="gallery-popup-content">
+
+			 </div>
+		 </div>
+      </div>
+
+
 

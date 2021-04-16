@@ -628,6 +628,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             'productattachments_id',
             'title',
             'filename',
+              'short_name',
             // 'file_icon',
             //'file_type',
             //'file_size',

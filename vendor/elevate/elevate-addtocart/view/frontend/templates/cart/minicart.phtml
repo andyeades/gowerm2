@@ -33,27 +33,12 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
      
  if($price_type == 'inc_vat'){
  ?>
-      <style>
-        #hdr-minicart-total .price-excluding-tax{
-                      display:none;
-        } 
-         #shopping-cart-inner .price-excluding-tax{
-                      display:none;
-        } 
-        
-      </style>
+     
  <?php
  
  }else if($price_type == 'ex_vat'){
     ?>
-      <style>
-        #hdr-minicart-total .price-including-tax{
-                     display:none;
-        }        
-         #shopping-cart-inner .price-including-tax{
-                      display:none;
-        }         
-      </style>
+     
  <?php
  }   
  ?>
@@ -109,17 +94,29 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
 
   <div id="shopping-cart-inner" style="position:absolute;display:none;right:0px;">
     <div class="shopping-cart arrow_box" >
-      <div class="shopping-cart-header" style="display:none;">
-        <div class="shopping-cart-total" >
+      <div class="shopping-cart-header" style="
+    display: flex;
+">
+        <div style="
+    font-weight: bold;
+        color: #000;
+">My Basket</div>
+<div class="shopping-cart-total" style="display:none;
+    margin-left: auto;
+">
           <span class="lighter-text">Total:</span>
           <span id="grand_total" class="main-color-text"></span>
         </div>
-      </div> <!--end shopping-cart-header -->
+      </div>
       <div id="shopping-cart-items" style="display:none;"></div>
       <div id="minicart_no_prods" style="display:none;"><? echo __($minicart_no_items_text); ?></div>
       <div id="minicart_payment_options" style="display:none;">
-       <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action secondary" style="width:49%;">View Basket</a>
-          <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action primary" style="width:50%;">Checkout</a>
+      
+   
+
+
+       <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action secondary" style="width:48.5%;">View Basket</a>
+          <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action primary" style="width:48.5%;float: right;">Checkout</a>
       </div>
     </div> <!--end shopping-cart -->
   </div>
@@ -170,14 +167,15 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
                         // TODO: Store check? Currency? etc? - or is this done in controller based on current store?
                         var grand_total = parseFloat(data.grand_total).toFixed(2);
                         var sub_total = parseFloat(data.sub_total).toFixed(2);
-                        jQuery('#hdr-minicart-total').html(currency_symbol + grand_total);
+                        jQuery('.hdr-minicart-total').html(currency_symbol + grand_total); 
+                      //  console.log('#hdr-minicart-total'+(currency_symbol + grand_total))                        
 
                         if(data.total_items > 0){
                             jQuery('#minicart_payment_options').show();
                             jQuery('#minicart_no_prods').hide();
                             jQuery('#shopping-cart-items').show();
-
-
+                            jQuery('.shopping-cart-total').show();
+                            
 
                         }
                         else{
@@ -194,7 +192,7 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
                             cart_items += '<ul id="shopping-cart-items" class="shopping-cart-items">';
 
                             jQuery.each( data.item_data, function( key, value ) {
-
+                            
 
                                 var prod_id = value.id;
                                 var image = value.image;
@@ -202,7 +200,7 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
                                 var prod_sku = value.sku;
                                 var prod_qty = value.qty;
                               //  var prod_price = parseFloat(value.price_inc_vat).toFixed(2);
-                                var prod_price_div = '<span class="price-excluding-tax">'+currency_symbol + parseFloat(value.price_ex_vat).toFixed(2)+'</span><span class="price-including-tax">'+currency_symbol + parseFloat(value.price_inc_vat).toFixed(2)+'</span>';
+                                var prod_price_div = '<span class="price-excluding-tax"><span style="margin-right: 5px;">'+currency_symbol + parseFloat(value.price_ex_vat).toFixed(2)+'</span></span><span class="price-including-tax"><span style="margin-right: 5px;">'+currency_symbol + parseFloat(value.price_inc_vat).toFixed(2)+'</span></span>';
 
                                 cart_items += '<li>';
                                 cart_items += '<img src="'+image+'" alt="item1" />';
@@ -216,10 +214,14 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
                             });
                             cart_items += '</ul>';
                             jQuery('.shopping-cart-header').show();
-                            var price_div = '<span class="price-excluding-tax">'+currency_symbol + sub_total+'</span><span class="price-including-tax">'+currency_symbol + grand_total+'</span>';
+                            var price_div = '<span class="price-excluding-tax"><span style="margin-right: 5px;">'+currency_symbol + sub_total+'</span></span><span class="price-including-tax"><span style="margin-right: 5px;">'+currency_symbol + grand_total+'</span></span>';
                             jQuery('.hdr-minicart-total').html(price_div);
-                            jQuery('#grand_total').html(currency_symbol + grand_total);
+                            jQuery('#grand_total').html(price_div);
                             jQuery('#shopping-cart-items').html(cart_items);
+                            
+                            //update   stickybar
+                              jQuery('#tritemtotal').html(price_div);
+                              jQuery('#tritemquantity').html(items_number);
                         }
 
 

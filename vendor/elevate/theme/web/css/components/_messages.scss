@@ -1,8 +1,8 @@
-$elevate-message-info-color: $text__color !default;
+$elevate-message-info-color: $text-color !default;
 $elevate-message-info-bg-color: #d9edf7 !default;
-$elevate-message-info-link-color: $elevate_message_info-color !default;
-$elevate-message-info-link-color-hover : $elevate_message_info-color !default;
-$elevate-message-info-link-color-active: $elevate_message_info-color !default;
+$elevate-message-info-link-color: $elevate-message-info-color !default;
+$elevate-message-info-link-color-hover : $elevate-message-info-color !default;
+$elevate-message-info-link-color-active: $elevate-message-info-color !default;
 $elevate-message-info-border-color: darken(adjust-hue($elevate-message-info-color, -10), 7%) !default;
 
 .message {
@@ -34,11 +34,11 @@ $elevate-message-info-border-color: darken(adjust-hue($elevate-message-info-colo
 .message.elevate-info {
     @include _elevate-lib-message();
     @include _lib-message-style(
-        $_message-color            : $elevate_message_info-color,
-        $_message-background       : $elevate-message-info-bg-color,
-        $_message-link-color       : $elevate-message-info-link-color,
-        $_message-link-color-hover : $elevate-message-info-link-color-hover,
-        $_message-link-color-active: $elevate-message-info-link-color-active,
-        $_message-border-color     : $elevate-message-info-border-color
+        $-message-color            : $elevate-message-info-color,
+        $-message-background       : $elevate-message-info-bg-color,
+        $-message-link-color       : $elevate-message-info-link-color,
+        $-message-link-color-hover : $elevate-message-info-link-color-hover,
+        $-message-link-color-active: $elevate-message-info-link-color-active,
+        $-message-border-color     : $elevate-message-info-border-color
     );
 }

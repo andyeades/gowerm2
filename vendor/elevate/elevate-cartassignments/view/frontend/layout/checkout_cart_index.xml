@@ -1,25 +1,17 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance dc" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="checkout.cart">
+        <action method="setTemplate">
+            <argument name="template" xsi:type="string">Elevate_CartAssignments::cart.phtml</argument>
+        </action>
+    </referenceBlock>
 
-        <referenceContainer name="checkout.cart.widget">
-            <block class="Magento\Framework\View\Element\Template" name="elevate_cartassignments_donations" before="cart.discount" template="Elevate_CartAssignments::cart/donations.phtml" ifconfig="elevate_cartassignments/general/donations_enable" />
-        </referenceContainer>
+    <referenceBlock name="checkout.cart.form">
+        <action method="setTemplate">
+            <argument name="template" xsi:type="string">Elevate_CartAssignments::cart/form.phtml</argument>
+        </action>
+    </referenceBlock>
+    <move element="cart.discount" destination="checkout.cart.widget" after="-"/>
 
-        <referenceBlock name="checkout.cart">
-            <action method="setTemplate">
-                <argument name="template" xsi:type="string">Elevate_CartAssignments::cart.phtml</argument>
-            </action>
-        </referenceBlock>
-
-        <referenceBlock name="checkout.cart.form">
-            <action method="setTemplate">
-                <argument name="template" xsi:type="string">Elevate_CartAssignments::cart/form.phtml</argument>
-            </action>
-        </referenceBlock>
-        <move element="cart.discount" destination="checkout.cart.widget" after="-"/>
-
-        <move element="checkout.cart.coupon" destination="checkout.cart.container" after="checkout.cart.form"/>
-    </body>
-
+    <move element="checkout.cart.coupon" destination="checkout.cart.container" after="checkout.cart.form"/>
 </page>

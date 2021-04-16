@@ -3,4 +3,9 @@
     <referenceContainer name="content">
         <block class="Elevate\TrackOrder\Block\Index" name="elevate_trackorder_index_index" template="Elevate_TrackOrder::trackorder.phtml" />
     </referenceContainer>
+    <referenceBlock name="page.main.title">
+    <action method="setPageTitle">
+        <argument translate="true" name="title" xsi:type="string">Track Your Order</argument>
+    </action>
+</referenceBlock>
 </page>

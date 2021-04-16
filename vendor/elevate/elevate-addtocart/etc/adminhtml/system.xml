@@ -65,6 +65,37 @@
                     <label>Quantity Display Type</label>
                     <source_model>Elevate\AddToCart\Model\Config\Source\QtyDisplayType</source_model>
                 </field>
+
+                <field id="qty_incrementer_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantity Incrementer Type</label>
+                    <source_model>Elevate\AddToCart\Model\Config\Source\QtyIncrementerType</source_model>
+                    <depends>
+                        <field id="qty_display_type">inputincrementer</field>
+                    </depends>
+                </field>
+
+                <field id="qty_incrementer_position" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantity Incrementer Position</label>
+                    <source_model>Elevate\AddToCart\Model\Config\Source\QtyIncrementerPosition</source_model>
+                    <depends>
+                        <field id="qty_display_type">inputincrementer</field>
+                    </depends>
+                </field>
+
+                <field id="qty_incrementer_increaseicon" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantity Incrementer Increase Icon</label>
+                    <depends>
+                        <field id="qty_display_type">inputincrementer</field>
+                    </depends>
+                </field>
+                <field id="qty_incrementer_decreaseicon" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantity Incrementer Decrease Icon</label>
+                    <depends>
+                        <field id="qty_display_type">inputincrementer</field>
+                    </depends>
+                </field>
+
+
                 <field id="qty_select_max" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quantity Select Max Value</label>
                     <validate>validate-zero-or-greater validate-digits</validate>

@@ -11,11 +11,6 @@
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
 
-                <field id="donations_enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable Donations Block on Cart</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-
                 <field id="price_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Price Type</label>
                     <source_model>Elevate\AddToCart\Model\Config\Source\PriceType</source_model>
@@ -23,14 +18,7 @@
 
 
             </group>
-            <group id="layout" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Layout</label>
 
-                <field id="productname_position" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Product Name Position</label>
-                    <source_model>Elevate\CartAssignments\Model\Config\Source\ProductNamePosition</source_model>
-                </field>
-            </group>
         </section>
     </system>
 </config>

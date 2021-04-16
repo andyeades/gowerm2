@@ -20,6 +20,12 @@ $qty_label_text = $scopeConfig->getValue('elevate_addtocart/productview/qty_labe
 
 $qty_display_type = $scopeConfig->getValue('elevate_addtocart/productview/qty_display_type', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
+
+$qty_incrementer_type = $scopeConfig->getValue('elevate_addtocart/productview/qty_incrementer_type', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$qty_incrementer_position = $scopeConfig->getValue('elevate_addtocart/productview/qty_incrementer_position', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$qty_incrementer_increaseicon = $scopeConfig->getValue('elevate_addtocart/productview/qty_incrementer_increaseicon', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$qty_incrementer_decreaseicon = $scopeConfig->getValue('elevate_addtocart/productview/qty_incrementer_decreaseicon', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
 $qty_select_max = $scopeConfig->getValue('elevate_addtocart/productview/qty_select_max', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
 $actions_position = $scopeConfig->getValue('elevate_addtocart/productview/actions_position', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
@@ -68,7 +74,58 @@ $qty_values = '';
 
                           $qty_values .= '</select>';
                           echo $qty_values;
-                      } else { ?>
+                      } else if (strcmp($qty_display_type, 'inputincrementer') == 0) { ?>
+                        // input incrementer
+
+                       <?php if (strcmp($qty_incrementer_position, 'leftofqtyinput') == 0){ ?>
+                          <button type="button" class="qty-minus"><i class="<?= $qty_incrementer_decreaseicon ?>"></i></button>
+                          <button type="button" class="qty-plus"><i class="<?= $qty_incrementer_increaseicon ?>"></i></button>
+
+                       <?php } else if (strcmp($qty_incrementer_position, 'minusleftplusright') == 0) { ?>
+                          <button type="button" class="qty-minus"><i class="<?= $qty_incrementer_decreaseicon ?>"></i></button>
+
+
+                       <?php } else if (strcmp($qty_incrementer_position, 'minusrightplusleft') == 0) { ?>
+                          <button type="button" class="qty-plus"><i class="<?= $qty_incrementer_increaseicon ?>"></i></button>
+
+                       <?php } ?>
+
+                          <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */
+                          echo $default_qty * 1 ?>" title="<?php /* @escapeNotVerified */
+                          echo __('Qty') ?>" class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
+
+                          <?php if (strcmp($qty_incrementer_position, 'rightofqtyinput') == 0){ ?>
+                          <button type="button" class="qty-minus"><i class="<?= $qty_incrementer_decreaseicon ?>"></i></button>
+                          <button type="button" class="qty-plus"><i class="<?= $qty_incrementer_increaseicon ?>"></i></button>
+
+                          <?php } else if (strcmp($qty_incrementer_position, 'minusleftplusright') == 0) { ?>
+                          <button type="button" class="qty-plus"><i class="<?= $qty_incrementer_increaseicon ?>"></i></button>
+                          <?php } else if (strcmp($qty_incrementer_position, 'minusrightplusleft') == 0) { ?>
+                          <button type="button" class="qty-minus"><i class="<?= $qty_incrementer_decreaseicon ?>"></i></button>
+                          <?php } ?>
+                          <script type="text/javascript">
+                              jQuery(document).ready(function(){
+
+                                  var quantity = 0;
+                                  jQuery('.qty-plus').click(function(e){
+                                      e.preventDefault();
+                                      var quantity = parseInt(jQuery('#qty').val());
+                                      jQuery('#qty').val(quantity + 1);
+                                  });
+
+                                  jQuery('.qty-minus').click(function(e){
+                                      e.preventDefault();
+                                      var quantity = parseInt(jQuery('#qty').val());
+                                      if (quantity > 0) {
+                                          jQuery('#qty').val(quantity - 1);
+                                      }
+                                  });
+
+                              });
+                          </script>
+
+<?php                      } else { //STD INPUT ?>
+
                           <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */
                           echo $default_qty * 1 ?>" title="<?php /* @escapeNotVerified */
                           echo __('Qty') ?>" class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
@@ -83,7 +140,7 @@ $qty_values = '';
                                   id="product-addtocart-button">
                               <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span><i class="ion ion-bag"></i>
                           </button>
-                      
+
                           <a href="<?php echo $block->getUrl('checkout/cart', ['_secure' => true]);?>" class="action primary ev_hideme" id="ev_checkoutnow">
                               <span><?php /* @escapeNotVerified */ echo __('Checkout Now') ?></span>
                           </a>
@@ -116,7 +173,74 @@ $qty_values = '';
 
                           $qty_values .= '</select>';
                           echo $qty_values;
-                      } else { ?>
+                      } else if (strcmp($qty_display_type, 'inputincrementer') == 0) { ?>
+
+
+                      <?php if (strcmp($qty_incrementer_position, 'leftofqtyinput') == 0){ ?>
+                            <?php if (strcmp($qty_incrementer_type, 'stacked') == 0) { ?>
+                                <div class="qty-incrementer-container">
+                                    <?php } ?>
+                          <button type="button" class="qty-plus"><i class="<?= $qty_incrementer_increaseicon ?>"></i></button>
+                      <button type="button" class="qty-minus"><i class="<?= $qty_incrementer_decreaseicon ?>"></i></button>
+
+
+                                    <?php if (strcmp($qty_incrementer_type, 'stacked') == 0) { ?>
+                          </div>
+                                        <?php } ?>
+
+                      <?php } else if (strcmp($qty_incrementer_position, 'minusleftplusright') == 0) { ?>
+                      <button type="button" class="qty-minus"><i class="<?= $qty_incrementer_decreaseicon ?>"></i></button>
+
+
+                      <?php } else if (strcmp($qty_incrementer_position, 'minusrightplusleft') == 0) { ?>
+                      <button type="button" class="qty-plus"><i class="<?= $qty_incrementer_increaseicon ?>"></i></button>
+
+                      <?php } ?>
+
+                      <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */
+                      echo $default_qty * 1 ?>" title="<?php /* @escapeNotVerified */
+                      echo __('Qty') ?>" class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
+
+                      <?php if (strcmp($qty_incrementer_position, 'rightofqtyinput') == 0){ ?>
+                      <?php if (strcmp($qty_incrementer_type, 'stacked') == 0) { ?>
+                          <div class="qty-incrementer-container stacked">
+                      <?php } ?>
+
+                      <button type="button" class="qty-plus"><i class="<?= $qty_incrementer_increaseicon ?>"></i></button>
+                          <button type="button" class="qty-minus"><i class="<?= $qty_incrementer_decreaseicon ?>"></i></button>
+                      <?php if (strcmp($qty_incrementer_type, 'stacked') == 0) { ?>
+                  </div>
+                  <?php } ?>
+
+
+
+                      <?php } else if (strcmp($qty_incrementer_position, 'minusleftplusright') == 0) { ?>
+                      <button type="button" class="qty-plus"><i class="<?= $qty_incrementer_increaseicon ?>"></i></button>
+                      <?php } else if (strcmp($qty_incrementer_position, 'minusrightplusleft') == 0) { ?>
+                      <button type="button" class="qty-minus"><i class="<?= $qty_incrementer_decreaseicon ?>"></i></button>
+                      <?php } ?>
+                      <script type="text/javascript">
+                          jQuery(document).ready(function(){
+
+                              var quantity = 0;
+                              jQuery('.qty-plus').click(function(e){
+                                  e.preventDefault();
+                                  var quantity = parseInt(jQuery('#qty').val());
+                                  jQuery('#qty').val(quantity + 1);
+                              });
+
+                              jQuery('.qty-minus').click(function(e){
+                                  e.preventDefault();
+                                  var quantity = parseInt(jQuery('#qty').val());
+                                  if (quantity > 0) {
+                                      jQuery('#qty').val(quantity - 1);
+                                  }
+                              });
+
+                          });
+                      </script>
+
+                      <?php                      } else { //STD INPUT ?>
                           <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */
                           echo $default_qty * 1 ?>" title="<?php /* @escapeNotVerified */
                           echo __('Qty') ?>" class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
@@ -134,7 +258,7 @@ $qty_values = '';
                           id="product-addtocart-button">
                       <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span><i class="ion ion-bag"></i>
                   </button>
-               
+
                   <a href="<?php echo $block->getUrl('checkout/cart', ['_secure' => true]);?>" class="action primary ev_hideme" id="ev_checkoutnow">
                       <span><?php /* @escapeNotVerified */ echo __('Checkout Now') ?></span>
                   </a>
@@ -152,8 +276,8 @@ $qty_values = '';
                       class="action primary ev_tocart2"
                       id="product-addtocart-button">
                   <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span><i class="ion ion-bag"></i>
-              </button>  
-                            
+              </button>
+
               <a href="<?php echo $block->getUrl('checkout/cart', ['_secure' => true]);?>" class="action primary ev_hideme" id="ev_checkoutnow">
                   <span><?php /* @escapeNotVerified */ echo __('Checkout Now') ?></span>
               </a>
@@ -274,7 +398,7 @@ $qty_values = '';
                                 $size = '';
                                 ?>
                                 ELEVATE.Lightbox.openLightbox('<?= $body_type ?>',
-                                    res.message,
+                                    ""+res.message+"",
                                     '<?= $title_type ?>',
                                     '<?= $title ?>',
                                     '<?= $footer_type ?>',
@@ -303,7 +427,7 @@ $qty_values = '';
                                 $size = '';
                                 ?>
                                 ELEVATE.Lightbox.openLightbox('<?= $body_type ?>',
-                                    "'"+res.message+"'",
+                                    ""+res.message+"",
                                     '<?= $title_type ?>',
                                     '<?= $title ?>',
                                     '<?= $footer_type ?>',
@@ -362,6 +486,9 @@ $qty_values = '';
                     var addToCartButtonTextWhileAdding = addToCartButtonTextWhileAdding || ('Adding...');
                     var addToCartButton = $(form).find(addToCartButtonSelector);
                     ELEVATE.Spinner.getSpinner(addToCartButton);
+
+                        ELEVATE.Spinner.getSpinner('.ev_tocartSticky');
+
                     //    addToCartButton.addClass(addToCartButtonDisabledClass);
                     //  addToCartButton.find('span').text(addToCartButtonTextWhileAdding);
                     //addToCartButton.attr('title', addToCartButtonTextWhileAdding);
@@ -372,7 +499,9 @@ $qty_values = '';
                         addToCartButton = $(form).find(addToCartButtonSelector);
                     //var addToCartButtonTextDefault = addToCartButtonTextDefault || ('Add to Basket');
 
-                    jQuery(addToCartButton).html("Add to Basket");
+
+                     jQuery('.ev_tocartSticky').html('<span>Add to Basket</span><i class="ion ion-bag"></i>');
+                    jQuery(addToCartButton).html('<span>Add to Basket</span><i class="ion ion-bag"></i>');
 
 
                     // addToCartButton.removeClass(addToCartButtonDisabledClass);
@@ -384,7 +513,8 @@ $qty_values = '';
                     var addToCartButtonTextAdded = addToCartButtonTextAdded || ('Added');
                     var self = this,
                         addToCartButton = $(form).find(addToCartButtonSelector);
-                    jQuery(addToCartButton).html("Add to Basket");
+                        jQuery('.ev_tocartSticky').html('<span>Add to Basket</span><i class="ion ion-bag"></i>');
+                    jQuery(addToCartButton).html('<span>Add to Basket</span><i class="ion ion-bag"></i>');
 
                 }
             function init()

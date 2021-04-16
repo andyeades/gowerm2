@@ -109,17 +109,18 @@ class FacebookFeed extends Command
 
   
     echo '   <a href="/facebook_feed.txt" download="/facebook_feed.txt">Download Latest Feed</a><br>';
-    exit;
+ 
     
     
     
     
     
-    
-    
-    
+              $message = '';
 
         $this->sendEmail($message);
+           exit;
+    
+    
     }
 
         
@@ -1331,8 +1332,8 @@ $total_days =   $days + $handling_time;
     }
   }
     private function sendEmail($message){
-   //     mail("andy.eades@elevateweb.co.uk","Products With Price of Zero", $message);
-   //     mail("andy.eades@elevateweb.co.uk","Products With Price of Zero", $message);
+     mail("james@happybeds.co.uk","Facebook feed complete", $message);
+     mail("andy.eades@elevateweb.co.uk","Facebook feed complete", $message);
    //     mail("andy.eades@elevateweb.co.uk","Products With Price of Zero", $message);
     }
 }

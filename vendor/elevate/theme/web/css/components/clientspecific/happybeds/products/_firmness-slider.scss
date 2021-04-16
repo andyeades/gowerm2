@@ -163,10 +163,10 @@
 
         &.slider-vertical {
             height: $slider-vertical-height;
-            width: $slider-line-height;
+            @include co(width, $slider-line-height);
 
             .slider-track {
-                width: $slider-line-height / 2;
+                @include co(width, $slider-line-height / 2);
                 height: 100%;
                 left: 25%;
                 top: 0;
@@ -299,7 +299,7 @@
     .slider-handle {
         position: absolute;
         top: 0;
-        width: $slider-line-height;
+        @include co(width, $slider-line-height);
         height: $slider-line-height;
         //background-color: #337AB7;
 
@@ -666,7 +666,7 @@
 
     .firmness-rating-title-narrow {
         width: 25%;
-        color: $happybeds-1;
+        @include co(color, $happybeds-1);
 
         #product-page-midpage-block & {
             width: 12.5%;
@@ -679,7 +679,7 @@
     }
 
     .firmness-rating-title {
-        color: $happybeds-1;
+        @include co(color, $happybeds-1);
         text-align: center;
         text-transform: uppercase;
 
@@ -854,7 +854,7 @@
 
     .firmness_not_suited {
         position: absolute;
-        color: $happybeds-9;
+        @include co(color, $happybeds-9);
         width: 100%;
         top: 35%;
         font-size: 12px;

@@ -124,7 +124,7 @@ public function getAllData() {
     }
 
     public function getExtensionAttributes() {
-        return $this->_getDataData(self::EXTENSION_ATTRIBUTES_KEY);
+        return $this->_getData(self::EXTENSION_ATTRIBUTES_KEY);
     }
 
     public function setExtensionAttributes(

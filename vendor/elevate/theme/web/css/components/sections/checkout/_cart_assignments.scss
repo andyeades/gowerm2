@@ -1,50 +1,50 @@
 //colors
-$stickybar_bg_color: #ffffff !default;
-$stickybar_border_color: #cccccc !default;
-$stickybar_boxshadow_color: #999999;
+$stickybar-bg-color: #ffffff !default;
+$stickybar-border-color: #cccccc !default;
+$stickybar-boxshadow-color: #999999;
 
-$stickybar_logo_height: 41px !default;
-$stickybar_logo_margin: 0 1.25rem 0 0 !default;
+$stickybar-logo-height: 41px !default;
+$stickybar-logo-margin: 0 1.25rem 0 0 !default;
 
-$stickybar_logodetails_alignitems: false !default;
-$stickybar_logodetails_width: 33.33333% !default;
-$stickybar_logodetails_order: 1 !default;
-$stickybar_logodetails_flex: false !default;
-$stickybar_logodetails_maxwidth: false !default;
-$stickybar_checkout_width: 66.66667% !default;
-$stickybar_checkout_order: 2 !default;
-$stickybar_checkout_maxwidth: false !default;
-$stickybar_checkout_flex: false !default;
+$stickybar-logodetails-alignitems: false !default;
+$stickybar-logodetails-width: 33.33333% !default;
+$stickybar-logodetails-order: 1 !default;
+$stickybar-logodetails-flex: false !default;
+$stickybar-logodetails-maxwidth: false !default;
+$stickybar-checkout-width: 66.66667% !default;
+$stickybar-checkout-order: 2 !default;
+$stickybar-checkout-maxwidth: false !default;
+$stickybar-checkout-flex: false !default;
 
-$stickybar_row_align_items: center !default;
+$stickybar-row-align-items: center !default;
 
-$stickybar_checkout_justifycontent: flex-end !default;
-$stickybar_checkout_alignitems: center !default;
-$stickybar_payment_icons_margin: 0 !default;
-$stickybar_payment_icons_align_items: center !default;
+$stickybar-checkout-justifycontent: flex-end !default;
+$stickybar-checkout-alignitems: center !default;
+$stickybar-payment-icons-margin: 0 !default;
+$stickybar-payment-icons-align-items: center !default;
 
-$stickybar_payment_icons_order: 1 !default;
-$stickybar_checkout_types_order: 2 !default;
+$stickybar-payment-icons-order: 1 !default;
+$stickybar-checkout-types-order: 2 !default;
 
 $stickybar-checkout-display: false !default;
-$stickybar_height: false !default;
+$stickybar-height: false !default;
 
 #stickyBar {
     position: fixed;
     top: 0;
-    background: $stickybar_bg_color;
-    border-bottom: 2px solid $stickybar_border_color;
+    background: $stickybar-bg-color;
+    border-bottom: 2px solid $stickybar-border-color;
     display: block;
     width: 100%;
 
     left: 0;
     z-index: 99;
     transform: translateY(-110%);
-    box-shadow: 0 2px 20px 0 $stickybar_boxshadow_color;
+    box-shadow: 0 2px 20px 0 $stickybar-boxshadow-color;
     transition: transform 0.5s;
     overflow: hidden;
 
-    @include min-screen($desktop_medium_min) {
+    @include min-screen($desktop-medium-min) {
         display: none;
     }
 
@@ -60,41 +60,41 @@ $stickybar_height: false !default;
 
 
 .stickybar-logo {
-    height: $stickybar_logo_height;
-    margin: $stickybar_logo_margin;
+    height: $stickybar-logo-height;
+    @include co(margin, $stickybar-logo-margin);
 }
 
 #stickybar-row {
     display: flex;
-    align-items: $stickybar_row_align_items;
+    @include co(align-items, $stickybar-row-align-items);
 }
 
 #stickybar-logodetails {
     display: flex;
-    @include co(width, $stickybar_logodetails_width);
-    @include co(flex, $stickybar_logodetails_flex);
-    @include co(max-width, $stickybar_logodetails_maxwidth);
-    @include co(order, $stickybar_logodetails_order);
-    @include co(align-items, $stickybar_logodetails_alignitems);
+    @include co(width, $stickybar-logodetails-width);
+    @include co(flex, $stickybar-logodetails-flex);
+    @include co(max-width, $stickybar-logodetails-maxwidth);
+    @include co(order, $stickybar-logodetails-order);
+    @include co(align-items, $stickybar-logodetails-alignitems);
 }
 
 #stickybar-checkout {
     display: flex;
-    align-items: $stickybar_checkout_alignitems;
-    justify-content: $stickybar_checkout_justifycontent;
-    @include co(order, $stickybar_checkout_order);
-    @include co(width, $stickybar_checkout_width);
-    @include co(flex, $stickybar_checkout_flex);
-    @include co(max-width, $stickybar_checkout_maxwidth);
-    @include co(height, $stickybar_height);
+    @include co(align-items, $stickybar-checkout-alignitems);
+    @include co(justify-content, $stickybar-checkout-justifycontent);
+    @include co(order, $stickybar-checkout-order);
+    @include co(width, $stickybar-checkout-width);
+    @include co(flex, $stickybar-checkout-flex);
+    @include co(max-width, $stickybar-checkout-maxwidth);
+    @include co(height, $stickybar-height);
     .payment-icons {
-        margin: $stickybar_payment_icons_margin;
-        order: $stickybar_payment_icons_order;
+        @include co(margin, $stickybar-payment-icons-margin);
+        @include co(order, $stickybar-payment-icons-order);
         display: flex;
-        align-items: $stickybar_payment_icons_align_items;
+        @include co(align-items, $stickybar-payment-icons-align-items);
     }
     .checkout-types {
-        order: $stickybar_checkout_types_order;
+        @include co(order, $stickybar-checkout-types-order);
     }
     #btn-checkout {
         @include co(display, $stickybar-checkout-display);

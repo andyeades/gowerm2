@@ -3,21 +3,21 @@
     .reward-limit,
     .reward-expiring {
         &:not(:last-child) {
-            margin-bottom: $indent__m;
+            margin-bottom: $indent-m;
         }
 
         .title {
             display: inline-block;
-            margin-bottom: $indent__s;
+            margin-bottom: $indent-s;
         }
     }
 }
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__m) {
+@include max-screen($screen-m) {
     .reward-settings {
         + .actions-toolbar {
             margin-top: 10px;
@@ -27,9 +27,9 @@
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .reward-settings {
         + .actions-toolbar {
             margin-top: -32px;

@@ -11,13 +11,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="customer_account_navigation">
-            <block class="Amasty\Xnotif\Block\Html\Link\Current"
-                   name="customer-account-navigation-price-subscriptions-link">
-                <arguments>
-                    <argument name="path" xsi:type="string">xnotif/price/index</argument>
-                    <argument name="label" xsi:type="string" translate="true">Price Subscriptions</argument>
-                </arguments>
-            </block>
+ 
             <block class="Magento\Framework\View\Element\Html\Link\Current"
                    name="customer-account-navigation-stock-subscriptions-link">
                 <arguments>

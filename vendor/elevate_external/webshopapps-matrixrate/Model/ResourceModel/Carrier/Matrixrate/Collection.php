@@ -91,7 +91,10 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         $this->addOrder('dest_country', self::SORT_ORDER_ASC);
         $this->addOrder('dest_region', self::SORT_ORDER_ASC);
         $this->addOrder('dest_zip', self::SORT_ORDER_ASC);
-        $this->addOrder('condition_name', self::SORT_ORDER_ASC);
+       
+       
+       
+       // $this->addOrder('condition_name', self::SORT_ORDER_ASC);
     }
 
     /**
@@ -113,7 +116,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      */
     public function setConditionFilter($conditionName)
     {
-        return $this->addFieldToFilter('condition_name', $conditionName);
+        //return $this->addFieldToFilter('condition_name', $conditionName);
     }
 
     /**

@@ -51,6 +51,8 @@ class QuoteToOrder
 
         $detailedDeliveryinfoDates = $orderAddress->getDetailedDeliveryInfoDates();
         $detailedDeliveryTeamnumber = $orderAddress->getDetailedDeliveryTeamnumber();
+
+        /*
         $ev_giftmessagemessage = $orderAddress->getEvGiftmessagemessage();
 
         if ($ev_giftmessagemessage) {
@@ -64,12 +66,13 @@ class QuoteToOrder
             $gift_message_id = $gift_message_obj->getId();
             $order->setGiftMessageId($gift_message_id);
         }
+        */
 
         $order->setDeliverySelectedSummarytext($quote->getDeliverySelectedSummarytext());
         $order->setDetailedDeliveryInfo($detailedDeliveryinfoDates);
         $order->setDetailedDeliveryInfoDates($detailedDeliveryinfoDates);
         $order->setDetailedDeliveryTeamnumber($detailedDeliveryTeamnumber);
-        $order->setEvGiftMessagemessage($ev_giftmessagemessage);
+       //$order->setEvGiftmessagemessage($ev_giftmessagemessage);
 
         $billingAddress = $order->getBillingAddress();
 

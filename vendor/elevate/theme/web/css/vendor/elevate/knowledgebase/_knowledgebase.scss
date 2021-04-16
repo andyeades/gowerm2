@@ -1,15 +1,15 @@
-$temp_coloro: #000;
-$temp_coloro-a: #000;
-$temp_coloro-b: #000;
+$temp-coloro: #000;
+$temp-coloro-a: #000;
+$temp-coloro-b: #000;
 $happybeds-2-rgba:     rgba(0, 107, 127, 0.5);
 $happybeds-2-rgba-b:     rgba(0, 107, 127, 0.7);
 
 
-$kb_category_inner_border_color: #e6eaf3;
-$kb_category_view_inner_border_color: #000;
+$kb-category-inner-border-color: #e6eaf3;
+$kb-category-view-inner-border-color: #000;
 
-$kb_landing_page_title_h2_font_size: 1.188rem;
-$kb_landing_page_title_h2_font_weight: 600;
+$kb-landing-page-title-h2-font-size: 1.188rem;
+$kb-landing-page-title-h2-font-weight: 600;
 
 // Generate the small columns
 @mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
@@ -84,7 +84,7 @@ $kb_landing_page_title_h2_font_weight: 600;
       font-weight:    600;
     }
     .kb-category-view-inner {
-      border: 1px solid $kb_category_view_inner_border_color;
+      border: 1px solid $kb-category-view-inner-border-color;
     }
 
   }
@@ -158,7 +158,7 @@ $kb_landing_page_title_h2_font_weight: 600;
 
 .kb-category-inner {
   text-align: center;
-  border:     1px solid $kb_category_inner_border_color;
+  border:     1px solid $kb-category-inner-border-color;
   min-height: 414px;
   @include max-screen($screen-xs-max) {
     min-height:    314px;
@@ -172,7 +172,7 @@ $kb_landing_page_title_h2_font_weight: 600;
   .see-all-link {
     display:        block;
     margin-bottom:  15px;
-    color:          $temp_coloro-a;
+    color:          $temp-coloro-a;
     font-weight:    600;
     text-transform: uppercase;
     i {
@@ -184,7 +184,7 @@ $kb_landing_page_title_h2_font_weight: 600;
 
 .kb-got-question-header {
   height:          360px;
-  background:      $temp_coloro-b;
+  background:      $temp-coloro-b;
   text-align:      center;
   background:      linear-gradient($happybeds-2-rgba-b, $happybeds-2-rgba-b), url("../images/modules/elevate/kb/faq-knowledgebase.jpg") no-repeat center;
   background-size: cover;
@@ -249,8 +249,8 @@ $kb_landing_page_title_h2_font_weight: 600;
 .kb-landing-page-title {
   h2 {
 
-     @include font-size($kb_landing_page_title_h2_font_size);
-      font-weight: $kb_landing_page_title_h2_font_weight;
+     @include font-size($kb-landing-page-title-h2-font-size);
+      @include co(font-weight, $kb-landing-page-title-h2-font-weight);
         margin: 10px 10px 10px 0;
 
   }
@@ -307,7 +307,7 @@ $kb_landing_page_title_h2_font_weight: 600;
 }
 
 .kb-sub-item-inner {
-  border: 1px solid $temp_coloro;
+  border: 1px solid $temp-coloro;
   @include rj-clearfix();
   @include screen($screen-sm-min, $screen-sm-max) {
     min-height: 140px;
@@ -336,7 +336,7 @@ $kb_landing_page_title_h2_font_weight: 600;
     display:        block;
     font-weight:    600;
     margin-bottom:  13px;
-    color:          $temp_coloro-a;
+    color:          $temp-coloro-a;
     text-transform: uppercase;
     font-size:      11px;
     @include max-screen($screen-xs-max) {

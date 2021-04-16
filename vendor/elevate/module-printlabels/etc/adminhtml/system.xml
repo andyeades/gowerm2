@@ -41,6 +41,25 @@
                     <comment>API Account Number</comment>
                 </field>
             </group>
+            <group id="printoptions" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <label>Print Options</label>
+                <field id="print_giftmessage" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Gift Message</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Toggles Printing Gift Message On/Off</comment>
+                </field>
+                <field id="print_packinglist" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Packing List</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Toggles Printing Packing List On/Off</comment>
+                </field>
+                <field id="print_invoice" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Invoice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Toggles Printing Invoice On/Off</comment>
+                </field>
+            </group>
+
             <group id="printnodedetails" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
                 <attribute type="expanded">1</attribute>
                 <label>Print Node Api Details</label>
@@ -55,6 +74,14 @@
                 <field id="printnodeinvoiceprinterid" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Print Node Invoice Printer ID</label>
                     <comment>Invoice Printer ID</comment>
+                </field>
+                <field id="printnodepackinglistprinterid" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Node Packing List Printer ID</label>
+                    <comment>Packing List Printer ID</comment>
+                </field>
+                <field id="printnodegiftmessageprinterid" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Gift Message Printer ID</label>
+                    <comment>Gift Message Printer ID</comment>
                 </field>
             </group>
             <group id="contactdetails" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
@@ -150,6 +177,19 @@
                     <comment>Trim Telephone to Carrier Maximum</comment>
                 </field>
             </group>
+            <group id="giftmessage" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">0</attribute>
+                <label>Gift Message</label>
+                <field id="giftmessagepdfcssstyles" translate="label" type="textarea" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Gift Label PDF Printout CSS Styles</label>
+                    <comment></comment>
+                </field>
+                <field id="printgiftmessagelabelperitem" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Gift Message Label Per Item</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Prints a gift messsage label for each ITEM on the order.</comment>
+                </field>
+            </group>
             <group id="collection" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
                 <attribute type="expanded">1</attribute>
                 <label>Collection Info</label>
@@ -159,7 +199,7 @@
                 </field>
                 <field id="collection_cutofftime" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Cut Off Time For Same Day Collection</label>
-                    <comment>Cut Off Time For Same Day Collection</comment>
+                    <comment>Any orders printed after this time will be printed with labels showing the collection date as the next working day. Allowing you to continue to print labels ready for the next day.</comment>
                 </field>
 
                 <field id="collection_days" translate="label" type="multiselect" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
@@ -167,6 +207,28 @@
                     <source_model>Elevate\PrintLabels\Model\Config\Source\DaysOfWeek</source_model>
                     <comment>Select Days of Week Collections Occur On</comment>
                 </field>
+            </group>
+            <group id="packagedetails" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Package Details</label>
+                <field id="packageweightlimit" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Package Weight Limit (kg)</label>
+                    <comment>Weight Value only (do not include kg/etc)</comment>
+                </field>
+            </group>
+            <group id="postcodes" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Postcodes</label>
+                <field id="standardukpostcodes" translate="label" type="textarea" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Standard Postcodes</label>
+                    <comment>Postcode ranges which are not delivered by the main delivery method, and are delivered via Royal Mail (or similar) - Format: AB31-38; AB41-56; FK17-21; G83; GY9; HS1-9; IM1-99; IV1-IV99; KA27-28; KW0-17; PA20-78; PH15-99; ZE1-3;</comment>
+                </field>
+                <field id="alternativedeloption_postcodes" translate="label" type="textarea" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Alternative Delivery Option Postcodes</label>
+                    <comment>Postcode ranges which are not delivered by the main delivery method, and are delivered via Royal Mail (or similar) - Format: AB31-38; AB41-56; FK17-21; G83; GY9; HS1-9; IM1-99; IV1-IV99; KA27-28; KW0-17; PA20-78; PH15-99; ZE1-3;</comment>
+                </field>
+
+
             </group>
         </section>
     </system>

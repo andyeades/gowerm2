@@ -87,7 +87,19 @@ class Sitemap extends Template
      * @var PageCollection
      */
     protected $pageCollection;
-
+    /**
+     * @var LandingPageFactory
+     */
+    protected $_landingPageFactory;
+        /**
+     * @var \Mirasvit\Kb\Model\ResourceModel\Article\CollectionFactory
+     */
+    private $articleCollectionFactory;
+    /**
+     * @var \Magento\Framework\UrlInterface
+     */  
+    private $urlBuilder;   
+    
     /**
      * Sitemap constructor.
      *
@@ -100,7 +112,8 @@ class Sitemap extends Template
      * @param Stock $stockFilter
      * @param ProductVisibility $productVisibility
      * @param ProductCollection $productCollection
-     * @param PageCollection $pageCollection
+     * @param PageCollection $pageCollection   
+     * @param \Elevate\LandingPages\Model\LandingPageFactory $landingPageFactory
      */
     public function __construct(
         Context $context,
@@ -112,7 +125,11 @@ class Sitemap extends Template
         Stock $stockFilter,
         ProductVisibility $productVisibility,
         ProductCollection $productCollection,
-        PageCollection $pageCollection
+        PageCollection $pageCollection,
+        \Elevate\LandingPages\Model\LandingPageFactory $landingPageFactory,
+        \Mirasvit\Kb\Model\ResourceModel\Article\CollectionFactory $articleCollectionFactory,
+        \Magento\Framework\UrlInterface $urlBuilder
+                        
     ) {
         $this->collection = $collection;
         $this->_categoryHelper = $categoryHelper;
@@ -122,9 +139,12 @@ class Sitemap extends Template
         $this->_stockFilter = $stockFilter;
         $this->productVisibility = $productVisibility;
         $this->productCollection = $productCollection;
-        $this->pageCollection = $pageCollection;
-
-        parent::__construct($context);
+        $this->pageCollection = $pageCollection;   
+        $this->_landingPageFactory = $landingPageFactory;
+        $this->articleCollectionFactory = $articleCollectionFactory;
+        $this->urlBuilder = $urlBuilder;
+        
+        parent::__construct($context); 
     }
 
     /**
@@ -176,6 +196,22 @@ class Sitemap extends Template
             ->addFieldToFilter('identifier', [
                 'nin' => $this->getExcludedPages()
             ]);
+    }
+
+   /**
+     * @param int $storeId
+     * @return \Magento\Framework\DataObject|bool
+     */
+    public function _getKnowledgebaseCollection()
+    {
+ 
+        $postCollectionFactory = $this->articleCollectionFactory->create()
+            ->addVisibilityFilter();
+
+     
+        
+
+        return $postCollectionFactory;
     }
 
     /**
@@ -236,15 +272,18 @@ class Sitemap extends Template
     {
         $html = '';
         if ($config) {
-            $html .= '<div class="row">';
-            $html .= '<h2>' . $title . '</h2>';
+           
+       
             if ($collection) {
-                $html .= '<ul class="mp-sitemap-listing">';
-                foreach ($collection as $key => $item) {
+                $html .= '<div class="col-md-4"><h2>' . $title . '</h2><ul class="mp-sitemap-listing">';
+                foreach ($collection as $item) {
                     switch ($section) {
                         case 'category':
                             $html .= $this->renderLinkElement($this->getCategoryUrl($item->getId()), $item->getName());
                             break;
+                           case 'landingpage':
+                            $html .= $this->renderLinkElement($item->getUrlKey(), $item->getPageTitle());
+                            break;    
                         case 'page':
                             if (in_array($item->getIdentifier(), $this->getExcludedPages())) {
                                 continue 2;
@@ -254,19 +293,28 @@ class Sitemap extends Template
                         case 'product':
                             $html .= $this->renderLinkElement($this->getUrl($item->getProductUrl()), $item->getName());
                             break;
+                         case 'knowledgebase':
+                            $html .= $this->renderLinkElement($item->getUrl(), $item->getName());
+                            break;    
+                            
                         case 'link':
                             $html .= $this->renderLinkElement($key, $item);
                             break;
                     }
                 }
-                $html .= '</ul>';
+                $html .= '</ul></div>';
             }
-            $html .= '</div>';
+        
         }
 
         return $html;
     }
-
+    public function getLandingPagesCollection()
+    {
+    
+         return $this->_landingPageFactory->create()->getCollection();
+       // return $this->_categoryHelper->getStoreCategories(false, true);
+    }
     /**
      * @return string
      * @throws NoSuchEntityException
@@ -274,18 +322,34 @@ class Sitemap extends Template
     public function renderHtmlSitemap()
     {
         $htmlSitemap = '';
+        $htmlSitemap .= '<div class="row">';
         $htmlSitemap .= $this->renderSection(
             'category',
             $this->_helper->isEnableCategorySitemap(),
             'Categories',
             $this->getCategoryCollection()
         );
+       
+ 
         $htmlSitemap .= $this->renderSection(
             'page',
             $this->_helper->isEnablePageSitemap(),
             'Pages',
             $this->getPageCollection()
         );
+        $htmlSitemap .= $this->renderSection(
+            'knowledgebase',
+            $this->_helper->isEnablePageSitemap(),
+            'Guides',
+            $this->_getKnowledgebaseCollection()
+        );  
+        $htmlSitemap .= $this->renderSection(
+            'landingpage',
+            $this->_helper->isEnableCategorySitemap(),
+            'Categories',
+            $this->getLandingPagesCollection()
+        );
+              
         $htmlSitemap .= $this->renderSection(
             'product',
             $this->_helper->isEnableProductSitemap(),
@@ -298,7 +362,7 @@ class Sitemap extends Template
             'Additional links',
             $this->getAdditionLinksCollection()
         );
-
+         $htmlSitemap .= '</div>';
         return $htmlSitemap;
     }
 

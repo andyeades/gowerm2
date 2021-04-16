@@ -1,15 +1,15 @@
 <?php
+
 namespace Elevate\LandingPages\Controller\Index;
 
-
-use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Model\Layer\Resolver;
 use Magento\Catalog\Model\Product\ProductList\ToolbarMemorizer;
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Framework\App\Action\Action;
 
 class Index extends Action implements HttpGetActionInterface, HttpPostActionInterface
 {
@@ -74,17 +74,17 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
     /**
      * Constructor
      *
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Catalog\Model\Design $catalogDesign
-     * @param \Magento\Catalog\Model\Session $catalogSession
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Magento\Framework\App\Action\Context                     $context
+     * @param \Magento\Catalog\Model\Design                             $catalogDesign
+     * @param \Magento\Catalog\Model\Session                            $catalogSession
+     * @param \Magento\Framework\Registry                               $coreRegistry
+     * @param \Magento\Store\Model\StoreManagerInterface                $storeManager
      * @param \Magento\CatalogUrlRewrite\Model\CategoryUrlPathGenerator $categoryUrlPathGenerator
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Magento\Framework\Controller\Result\ForwardFactory $resultForwardFactory
-     * @param Resolver $layerResolver
-     * @param CategoryRepositoryInterface $categoryRepository
-     * @param ToolbarMemorizer|null $toolbarMemorizer
+     * @param \Magento\Framework\View\Result\PageFactory                $resultPageFactory
+     * @param \Magento\Framework\Controller\Result\ForwardFactory       $resultForwardFactory
+     * @param Resolver                                                  $layerResolver
+     * @param CategoryRepositoryInterface                               $categoryRepository
+     * @param ToolbarMemorizer|null                                     $toolbarMemorizer
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -113,7 +113,6 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
         $this->toolbarMemorizer = $toolbarMemorizer ?: $context->getObjectManager()->get(ToolbarMemorizer::class);
     }
 
-   
     /**
      * Initialize requested category object
      *
@@ -122,10 +121,6 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
     protected function _initCategory($categoryId)
     {
         $categoryId = (int)$categoryId;
-
-
-
-
 
         if (!$categoryId) {
             return false;
@@ -139,21 +134,21 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
         if (!$this->_objectManager->get(\Magento\Catalog\Helper\Category::class)->canShow($category)) {
             return false;
         }
-        
+
         $this->_catalogSession->setLastVisitedCategoryId($category->getId());
-
-
-
 
         $this->_coreRegistry->register('current_category', $category);
         $this->toolbarMemorizer->memorizeParams();
         try {
             $this->_eventManager->dispatch(
                 'catalog_controller_category_init_after',
-                ['category' => $category, 'controller_action' => $this]
+                ['category'          => $category,
+                                                           'controller_action' => $this
+                                                        ]
             );
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->_objectManager->get(\Psr\Log\LoggerInterface::class)->critical($e);
+
             return false;
         }
 
@@ -166,8 +161,6 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
         //this function runs for a landing page for example
         //https://m2.happybeds.co.uk/beds/theme-beds
 
-
-
         $identifier = $this->_request->getPathInfo();
         $url = ltrim($identifier, '/');
 
@@ -175,34 +168,27 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $contactModel = $objectManager->create('Elevate\LandingPages\Model\LandingPage');
 
-
         $params = $this->_request->getParams();
 
-     //   print_r($params);
-        if(isset($params['landingpage_id'])){
-                $landingpage_id = $params['landingpage_id'];
-        }
-        else{
+        //   print_r($params);
+        if (isset($params['landingpage_id'])) {
+            $landingpage_id = $params['landingpage_id'];
+        } else {
             return false;
-
         }
-        if(!is_numeric($landingpage_id)){
+        if (!is_numeric($landingpage_id)) {
             return false;
-
         }
-
-
 
         //we could reduce the overhead of this also by storing values in the actual rewrite table
         //TODO - Improvement
         $landingPageModel = $contactModel->load($landingpage_id);
 
-        if($landingPageModel){
+        if ($landingPageModel) {
 
-
-         //   echo "<pre>";
-          //  print_r($landingPageModel->getData());
-//echo "</pre>";
+            //   echo "<pre>";
+            //  print_r($landingPageModel->getData());
+            //echo "</pre>";
 
             $landingPage = $landingPageModel->getData();
             $this->_coreRegistry->register('elevate_landingpage', true);
@@ -215,22 +201,13 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
             $meta_keywords = $landingPageModel->getData('meta_keywords');
             $canonical_url = $landingPageModel->getData('canonical_url');
             $page_top_description = $landingPageModel->getData('page_top_description');
-            $page_bottom_description =     $landingPageModel->getData('page_bottom_description');
-
-
-        }
-        else{
+            $page_bottom_description = $landingPageModel->getData('page_bottom_description');
+        } else {
             return false;
         }
 
-
-
-
-
-
-
         //we must have a category id to match on, so we can use the category controllers
-        if(isset($landingPage['category_ids'])){
+        if (isset($landingPage['category_ids'])) {
             $categoryIdsValue = $landingPage['category_ids'];
             $categoryIds = explode(',', $categoryIdsValue);
             $firstCategoryId = $categoryIds[0];
@@ -242,135 +219,101 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
         }
 
         //behave like category - shows
-        if(isset($landingPage['behave_like_category'])){
+        if (isset($landingPage['behave_like_category'])) {
             $behave_like_category_id = $landingPage['behave_like_category'];
-            if(is_numeric($behave_like_category_id) && $behave_like_category_id > 0){
-
-                $firstCategoryId =  $behave_like_category_id;
+            if (is_numeric($behave_like_category_id) && $behave_like_category_id > 0) {
+                $firstCategoryId = $behave_like_category_id;
             }
-
         }
 
         $category = $this->_initCategory($firstCategoryId);
-       // $this->_initParams();
+        // $this->_initParams();
 
+        /* mapping for custom filters*/
 
- /* mapping for custom filters*/
-
-
-
-
-
- /**/
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /**/
 
         if ($category) {
 
-
-
-                // set the params
-                $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
-                $connection = $resource->getConnection();
+            // set the params
+            $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+            $connection = $resource->getConnection();
             $current_params = [];
-                $attributes = $connection->fetchPairs("SELECT attribute_id,option_id FROM elevate_landingpages_attributes WHERE landingpage_landingpage_id = ?", array($landingPage['landingpage_id']));
-                foreach ($attributes AS $attribute_id => $option_id) {
-                    $eavModel = $objectManager->create('Magento\Catalog\Model\ResourceModel\Eav\Attribute');
-                    $attr = $eavModel->load($attribute_id);
-                    $attributeCode = $eavModel->getAttributeCode();//Get attribute code from its id
+            $attributes = $connection->fetchPairs("SELECT attribute_id,option_id FROM elevate_landingpages_attributes WHERE landingpage_landingpage_id = ?", [$landingPage['landingpage_id']]);
+            foreach ($attributes as $attribute_id => $option_id) {
+                $eavModel = $objectManager->create('Magento\Catalog\Model\ResourceModel\Eav\Attribute');
+                $attr = $eavModel->load($attribute_id);
+                $attributeCode = $eavModel->getAttributeCode();//Get attribute code from its id
 
-                    $this->_request->setParam($attributeCode, $option_id);
-                    $current_params[$attributeCode] = $option_id;
-                }
+                $this->_request->setParam($attributeCode, $option_id);
+                $current_params[$attributeCode] = $option_id;
+            }
 
             //$this->_coreRegistry->register('elevate_landingpage_data', $landingPage);
             $this->_coreRegistry->register('elevate_landingpage_attributes', $current_params);
 
-                $this->layerResolver->create(Resolver::CATALOG_LAYER_CATEGORY);
+            $this->layerResolver->create(Resolver::CATALOG_LAYER_CATEGORY);
             $settings = $this->_catalogDesign->getDesignSettings($category);
 
             // apply custom design
             if ($settings->getCustomDesign()) {
-            //    $this->_catalogDesign->applyCustomDesign($settings->getCustomDesign());
+                //    $this->_catalogDesign->applyCustomDesign($settings->getCustomDesign());
             }
 
             //$this->_catalogSession->setLastViewedCategoryId($category->getId());
 
             $page = $this->resultPageFactory->create();
 
-           // $page->getLayout()->getBlock('page.main.title')->setPageTitle(__('Shop All Products'));
-
+            // $page->getLayout()->getBlock('page.main.title')->setPageTitle(__('Shop All Products'));
 
             //override breadcrumb route manually
 
             $page->getLayout()->getBlock('breadcrumbs')->addCrumb(
                 'home',
                 [
-                    'label' => __('Home'),
-                    'title' => __('Go to Home Page'),
-                    'link' => ''
-                ]
+                          'label' => __('Home'),
+                          'title' => __('Go to Home Page'),
+                          'link'  => ''
+                      ]
             )->addCrumb(
                 'product-tag',
                 [
-                    'label' => __('Shop All Products'),
-                    'title' => __('Shop All Products')
-                ]
+                                 'label' => __('Shop All Products'),
+                                 'title' => __('Shop All Products')
+                             ]
             );
-
-
-
 
             //here we set the custom configuration for the landingpages
             $page->getLayout()->getBlock('breadcrumbs')->addCrumb(
                 'product-tag',
                 [
-                    'label' => __($page_title),
-                    'title' => __($page_title),
-                    'link' => '/'.$url_key
+                                 'label' => __($page_title),
+                                 'title' => __($page_title),
+                                 'link'  => '/' . $url_key
 
-
-                ]
+                             ]
             );
-
-
-
 
             $pageMainTitle = $page->getLayout()->getBlock('page.main.title');
             if ($pageMainTitle) {
                 $pageMainTitle->setPageTitle($page_title);
             }
 
-
             $category->setDescription($page_top_description);
 
-
-
-            if(!empty($page_title)){
+            if (!empty($page_title)) {
                 $page->getConfig()->getTitle()->set(__($meta_title));
             }
-            if(!empty($meta_keywords)){
+            if (!empty($meta_keywords)) {
                 $page->getConfig()->setKeywords(__($meta_keywords));
             }
-            if(!empty($page_top_description)){
+            if (!empty($page_top_description)) {
                 $page->getConfig()->setDescription(__($meta_description));
             }
 
-          //  $page->getConfig()->addBodyClass('page-products');
+            //  $page->getConfig()->addBodyClass('page-products');
 
-
-        //    $page->getConfig()->addRemotePageAsset($this->_url->getUrl('shop-all/index/index'), 'canonical', ['attributes' => ['rel' => 'canonical']]);
+            //    $page->getConfig()->addRemotePageAsset($this->_url->getUrl('shop-all/index/index'), 'canonical', ['attributes' => ['rel' => 'canonical']]);
 
             /*
             // apply custom layout (page) template once the blocks are generated
@@ -405,12 +348,14 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
             $page->getConfig()->addBodyClass('page-products')
                 ->addBodyClass('categorypath-' . $this->categoryUrlPathGenerator->getUrlPath($category))
                 ->addBodyClass('category-' . $category->getUrlKey());
-               */  
+               */
+
             return $page;
         } elseif (!$this->getResponse()->isRedirect()) {
             return $this->resultForwardFactory->create()->forward('noroute');
         }
-    }        
+    }
+
     public function execute2()
     {
         $store = $this->_storeManager->getStore();
@@ -426,28 +371,26 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
         $page->getLayout()->getBlock('breadcrumbs')->addCrumb(
             'home',
             [
-                'label' => __('Home'),
-                'title' => __('Go to Home Page'),
-                'link' => $store->getBaseUrl()
-            ]
+                      'label' => __('Home'),
+                      'title' => __('Go to Home Page'),
+                      'link'  => $store->getBaseUrl()
+                  ]
         )->addCrumb(
             'product-tag',
             [
-                'label' => __('Shop All Products'),
-                'title' => __('Shop All Products'),
-            ]
+                             'label' => __('Shop All Products'),
+                             'title' => __('Shop All Products'),
+                         ]
         );
         $page->getConfig()->addBodyClass('page-products');
 
-
-
-        if(!empty($page_title)){
+        if (!empty($page_title)) {
             $page->getConfig()->getTitle()->set(__($page_title));
         }
-        if(!empty($meta_keywords)){
+        if (!empty($meta_keywords)) {
             $page->getConfig()->setKeywords(__($meta_keywords));
         }
-        if(!empty($page_top_description)){
+        if (!empty($page_top_description)) {
             $page->getConfig()->setDescription(__($page_top_description));
         }
 
@@ -464,7 +407,7 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
         */
 
         $page->getConfig()->addRemotePageAsset($this->_url->getUrl('shop-all/index/index'), 'canonical', ['attributes' => ['rel' => 'canonical']]);
-                 
+
         return $page;
     }
 }

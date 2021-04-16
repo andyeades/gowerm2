@@ -37,8 +37,8 @@ $morecollection-width: 100% !default;
 $morecollection-order: 5 !default;
 
 .more-from-collection {
-    width: $morecollection-width;
-    order: $morecollection-order;
+    @include co(width, $morecollection-width);
+    @include co(order, $morecollection-order);
     .section-title {
         margin-bottom: 20px;
         padding-bottom: 5px;
@@ -105,14 +105,14 @@ $morecollection-order: 5 !default;
 #morecollection-nav {
     width: 100%;
     position: absolute;
-    margin: $morecollection-nav-container-margin;
+    @include co(margin, $morecollection-nav-container-margin);
     top: $morecollection-nav-container-position-top;
     transform: translate(0, -$morecollection-nav-container-position-top);
     @include min-screen($mobiletablet-min) {
-        margin: $morecollection-nav-container-margin-mobile-tablet;
+        @include co(margin, $morecollection-nav-container-margin-mobile-tablet);
     }
     @include min-screen($desktop-min) {
-        margin: $morecollection-nav-container-margin-desktop;
+        @include co(margin, $morecollection-nav-container-margin-desktop);
     }
     i {
         @include ev-color-output($morecollection-nav-icon-color);

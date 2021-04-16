@@ -3,18 +3,18 @@ $abs-discount-block-icon-font-size: 0.75rem !default;
 
 .discount-block {
     > .title {
-        border-top: $border-width__base solid $border-color__base;
+        border-top: $border-width-base solid $border-color-base;
         cursor: pointer;
-        font-weight: $font-weight__semibold;
+        @include co(font-weight, $font-weight-semibold);
         @include lib-icon-font(
-            $_icon-font-content  : $icon-down,
-            $_icon-font-size     : $abs-discount-block-icon-font-size,
-            $_icon-font-position : after,
-            $_icon-font-display  : block
+            $-icon-font-content  : $icon-down,
+            $-icon-font-size     : $abs-discount-block-icon-font-size,
+            $-icon-font-position : after,
+            $-icon-font-display  : block
         );
         margin-bottom: 0;
         overflow: hidden;
-        padding: 7px $indent__l 7px $indent__xs;
+        padding: 7px $indent-l 7px $indent-xs;
         position: relative;
         &:after {
             position: absolute;
@@ -26,7 +26,7 @@ $abs-discount-block-icon-font-size: 0.75rem !default;
                 @include font-size($abs-discount-block-font-size);
 
 
-                font-weight: $font-weight__regular;
+                @include co(font-weight, $font-weight-regular);
             }
         }
     }
@@ -38,8 +38,8 @@ $abs-discount-block-icon-font-size: 0.75rem !default;
     &.active {
         > .title {
             @include lib-icon-font-symbol(
-                $_icon-font-content  : $icon-up,
-                $_icon-font-position : after
+                $-icon-font-content  : $icon-up,
+                $-icon-font-position : after
             );
         }
 

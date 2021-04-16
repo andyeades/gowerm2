@@ -1,6 +1,3 @@
-
-
-
 var ELEVATE = ELEVATE || {};
 
 
@@ -12,13 +9,13 @@ var ELEVATE = ELEVATE || {};
         var disable_click_flag = false;
         var dragging = false;
         var default_options = {
-            enableHistory           : true,
-            enableHistory           : 768
+            enableHistory: true,
+            enableHistory: 768
         };
 //call like (self.options.enableHistory
         this.options = $.extend(true, {}, default_options, typeof options === 'object' && options);
 
-        function saveState (url, title, html) {
+        function saveState(url, title, html) {
 
             if (this.options.enableHistory) {
 
@@ -27,33 +24,29 @@ var ELEVATE = ELEVATE || {};
                     left_nav: html.left_nav,
                     top_description: html.top_description,
                     bottom_description: html.bottom_description,
-                    breadcrumbs: html.breadcrumbs,   
-                     total_column: html.total_column
+                    breadcrumbs: html.breadcrumbs,
+                    total_column: html.total_column
                 };
                 //   console.log(state);
                 history.pushState(state, title, url);
             }
         }
-           function updateContent2 (html) {
+
+        function updateContent2(html) {
 
 
             if (html.total_column) {
 
-             
 
-                 jQuery('.column.main').html(html.total_column).promise().done(function(){
-                   
+                jQuery('.column.main').html(html.total_column).promise().done(function () {
+
                 });
             }
-                    
-             
-                 
-            
-            
+
 
             if (html.left_nav) {
 
-                jQuery('.sidebar-main').html(html.left_nav).promise().done(function(){
+                jQuery('.sidebar-main').html(html.left_nav).promise().done(function () {
                     attachEvents();
                 });
 
@@ -61,51 +54,51 @@ var ELEVATE = ELEVATE || {};
             }
 
         }
-        function updateContent (html) {
+
+        function updateContent(html) {
 
 
             if (html.products_list) {
 
-                jQuery('.products-grid').replaceWith(html.products_list).promise().done(function(){
+                jQuery('.products-grid').replaceWith(html.products_list).promise().done(function () {
 
                 });
 
 
             }
-           // if (html.title) {
+            // if (html.title) {
 
-                jQuery('.page-title span').html(html.title).promise().done(function () {
+            jQuery('.page-title span').html(html.title).promise().done(function () {
+
+            });
+
+            //  }
+            if (html.breadcrumbs) {
+
+                jQuery('.breadcrumbs').html(html.breadcrumbs).promise().done(function () {
 
                 });
 
-          //  }
-                if (html.breadcrumbs) {
+            }
+            // if (html.top_description) {
 
-                    jQuery('.breadcrumbs').html(html.breadcrumbs).promise().done(function(){
+            jQuery('.category-view').html(html.top_description).promise().done(function () {
 
-                    });
+            });
 
-            }              
-                // if (html.top_description) {
+            // }
+            // if (html.bottom_description) {
 
-                    jQuery('.category-view').html(html.top_description).promise().done(function(){
+            jQuery('#ev_ln_btm_description_wrapper').html(html.bottom_description).promise().done(function () {
 
-                    });
+            });
 
-           // }
-                // if (html.bottom_description) {
+            // }
 
-                    jQuery('#ev_ln_btm_description_wrapper').html(html.bottom_description).promise().done(function(){
-
-              });
-
-           // }           
-            
-            
 
             if (html.left_nav) {
 
-                jQuery('.sidebar-main').html(html.left_nav).promise().done(function(){
+                jQuery('.sidebar-main').html(html.left_nav).promise().done(function () {
                     attachEvents();
                 });
 
@@ -114,8 +107,7 @@ var ELEVATE = ELEVATE || {};
 
         }
 
-        function init()
-        {
+        function init() {
             //       console.log("INIT4");
 
 
@@ -129,7 +121,7 @@ var ELEVATE = ELEVATE || {};
             });
 
             //disable url history if not available in browser
-            if (typeof(history) === 'undefined') {
+            if (typeof (history) === 'undefined') {
                 // console.log("SET TO FALSE");
                 self.options.enableHistory = false;
             }
@@ -138,7 +130,7 @@ var ELEVATE = ELEVATE || {};
 
                 //console.log("HISTORY ENABLED");
 
-                var currentUrl      = window.location.href;
+                var currentUrl = window.location.href;
                 var url = new URL(currentUrl);
 
                 var html_data = {
@@ -148,10 +140,10 @@ var ELEVATE = ELEVATE || {};
                     top_description: jQuery('.category-view').html(),
                     bottom_description: jQuery('#ev_ln_btm_description_wrapper').html(),
                     breadcrumbs: jQuery('.breadcrumbs').html(),
-                    total_column: jQuery('.column.main').html(), 
+                    total_column: jQuery('.column.main').html(),
 
                 };
-                var data = { html: html_data };
+                var data = {html: html_data};
 
 
                 var newUrl = url.href;
@@ -160,29 +152,26 @@ var ELEVATE = ELEVATE || {};
 
 
                 // history.pushState({}, '');
-                window.addEventListener('popstate', function(event) {
+                window.addEventListener('popstate', function (event) {
 
 
-                    try{
+                    try {
 
                         var state = window.history.state;
 
                         //  var data = state;
                         if (state !== null) {
-                                   /* jQuery('.toolbar-products').remove(); */
+                            /* jQuery('.toolbar-products').remove(); */
                             updateContent2(state);
-
 
 
                             //   this.handlePriceSliders();
 
-                        }
-                        else{
+                        } else {
 
                         }
-                    }
-                    catch(e){
-                        if( e.code === 22 ){
+                    } catch (e) {
+                        if (e.code === 22) {
                             // we've hit our local storage limit! lets remove 1/3rd of the entries (hopefully chronologically)
                             // and try again... If we fail to remove entries, lets silently give up
                             console.log('Local storage capacity reached.')
@@ -190,20 +179,19 @@ var ELEVATE = ELEVATE || {};
                             var maxLength = localStorage.length
                                 , reduceBy = ~~(maxLength / 3);
 
-                            for( var i = 0; i < reduceBy; i++ ){
-                                if( localStorage.key(0) ){
-                                    localStorage.removeItem( localStorage.key(0) );
-                                }
-                                else break;
+                            for (var i = 0; i < reduceBy; i++) {
+                                if (localStorage.key(0)) {
+                                    localStorage.removeItem(localStorage.key(0));
+                                } else break;
                             }
 
-                            if( localStorage.length < maxLength ){
+                            if (localStorage.length < maxLength) {
                                 console.log('Cache data reduced to fit new entries. (' + maxLength + ' => ' + localStorage.length + ')');
-                                public.set( param, value );
-                            }
-                            else {
+                                public.set(param, value);
+                            } else {
                                 console.log('Could not reduce cache size. Removing session cache setting from this instance.');
-                                public.set = function(){}
+                                public.set = function () {
+                                }
                             }
                         }
                     }
@@ -213,17 +201,17 @@ var ELEVATE = ELEVATE || {};
             attachEvents();
         }
 
-        function attachEvents(){
+        function attachEvents() {
 
 
-            jQuery('.ev_ln_filter_click').on('click touchend', function(e) {
+            jQuery('.ev_ln_filter_click').on('click touchend', function (e) {
 
-                if (dragging){
+                if (dragging) {
                     return;
                 }
                 e.preventDefault();
 
-                jQuery('body').css('overflow','hidden');
+                jQuery('body').css('overflow', 'hidden');
                 jQuery('html, body').animate({scrollTop: '0px'}, 300);
                 jQuery('.ev_ln_filter').addClass('ev_ln_filteropen');
                 jQuery('.ev_ln_overlay').addClass('ev_ln_overlay_open');
@@ -232,19 +220,19 @@ var ELEVATE = ELEVATE || {};
             });
 
 //ev_ln_filter_close - close x button (currently conflicting with clear all
-            jQuery('.ev_ln_filter_close, .ev_ln_overlay, .ev_ln_filter .filter-panel__apply .button--full').on('click touchend', function(e) {
-                jQuery('body').css('overflow','auto');
+            jQuery('.ev_ln_filter_close, .ev_ln_overlay, .ev_ln_filter .filter-panel__apply .button--full').on('click touchend', function (e) {
+                jQuery('body').css('overflow', 'auto');
                 //eades
                 jQuery('.ev_ln_filter').removeClass('ev_ln_filteropen');
                 jQuery('.ev_ln_overlay').removeClass('ev_ln_overlay_open');
             });
 
-            jQuery('.ev_ln_item label, .layerclick, .pages-items .item').on('click touchend', function(e) {
-                if (dragging){
+            jQuery('.ev_ln_item label, .layerclick, .pages-items .item').on('click touchend', function (e) {
+                if (dragging) {
                     return;
                 }
-                jQuery('body').css('overflow','auto');
-                console.log("check2");
+                jQuery('body').css('overflow', 'auto');
+                //console.log("check2");
                 e.stopPropagation();
                 e.preventDefault();
                 var el = $(this).find('a');
@@ -257,11 +245,11 @@ var ELEVATE = ELEVATE || {};
             });
 
 
-            jQuery('#sorter').on('change', function() {
-                jQuery('body').css('overflow','auto');
+            jQuery('#sorter').on('change', function () {
+                jQuery('body').css('overflow', 'auto');
                 var sortOrder = this.value;
 
-                var currentUrl      = window.location.href;
+                var currentUrl = window.location.href;
                 var url = new URL(currentUrl);
                 //handle the sort by options
                 url.searchParams.set("product_list_order", sortOrder); // setting your param
@@ -276,22 +264,20 @@ var ELEVATE = ELEVATE || {};
 
         }
 
-        function handleLayer(url){
-
-
+        function handleLayer(url) {
 
 
             //remove the overlaye
             var multi_filter = false;
-            if(multi_filter){
-            
+            if (multi_filter) {
+
             }
 
-              jQuery('.ev_ln_overlay').removeClass('ev_ln_overlay_open');
-             jQuery('body').css('overflow','auto'); //allow body scroll
-            window.scrollTo(0,0);
+            jQuery('.ev_ln_overlay').removeClass('ev_ln_overlay_open');
+            jQuery('body').css('overflow', 'auto'); //allow body scroll
+            window.scrollTo(0, 0);
 
-            var data='';
+            var data = '';
             data += '&isAjax=1'; //tell plugin isajax to respond back category in js
 
             var tS = new Date().getTime();
@@ -299,7 +285,7 @@ var ELEVATE = ELEVATE || {};
 
             ELEVATE.Spinner.getSpinner('.products-grid');
             ELEVATE.Spinner.getSpinner('.sidebar-main');
-            
+
             jQuery('.toolbar-products').remove();
 
             jQuery.ajax({
@@ -313,7 +299,7 @@ var ELEVATE = ELEVATE || {};
                     //  jQuery('.toolbar-products').remove();
 
                     updateContent(data.html);
-                       data.html.total_column = data.html.products_list;
+                    data.html.total_column = data.html.products_list;
                     //save this state into the history
                     if (self.options.enableHistory) {
                         saveState(url, 'title', data.html);
@@ -326,7 +312,6 @@ var ELEVATE = ELEVATE || {};
                     //    }
 
 
-
                 },
                 error: function (data) {
                     console.log(data);
@@ -336,10 +321,10 @@ var ELEVATE = ELEVATE || {};
         }
 
         return {
-            init : function() {
+            init: function () {
                 init();
             },
-            handlelayer : function(url) {
+            handlelayer: function (url) {
                 handleLayer(url);
             }
         };

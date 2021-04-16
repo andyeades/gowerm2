@@ -157,7 +157,7 @@
 
         @include min-screen($mobile-menu-notvisible) {
             @include co(flex-wrap, $e-ftr-pn-flex-wrap-mobilemenu-notvisible);
-            align-items: $e-ftr-pn-align-items-desktop;
+            @include co(align-items, $e-ftr-pn-align-items-desktop);
             flex-direction: row;
             display: flex;
             @if $flex-box-center-menu == 1 {
@@ -207,16 +207,16 @@
                     letter-spacing: $e-ftr-pn-a-desktop-letter-spacing;
                 }
                 @if $e-ftr-pn-li-a-desktop-text-transform-on == 1 {
-                    text-transform: $e-ftr-pn-li-a-desktop-text-transform;
+                    @include co(text-transform, $e-ftr-pn-li-a-desktop-text-transform);
                 }
-                font-weight: $e-ftr-pn-li-a-fontweight-desktop;
-                font-size: $e-ftr-pn-li-a-fontsize-desktop;
-                color: $e-ftr-pn-li-a-desktop-color;
+                @include co(font-weight, $e-ftr-pn-li-a-fontweight-desktop);
+                @include co(font-size, $e-ftr-pn-li-a-fontsize-desktop);
+                @include co(color, $e-ftr-pn-li-a-desktop-color);
                 display: $e-ftr-pn-li-a-displaytype;
                 height: $e-ftr-pn-a-height-desktop;
                 @if $e-ftr-pn-li-a-displaytype == flex {
-                    align-items: $e-ftr-pn-li-a-align-items-desktop;
-                    justify-content: $e-ftr-pn-li-a-justify-content-desktop;
+                    @include co(align-items, $e-ftr-pn-li-a-align-items-desktop);
+                    @include co(justify-content, $e-ftr-pn-li-a-justify-content-desktop);
                 }
                 @if $e-ftr-pn-a-lineheight-desktop != 0 {
                     line-height: $e-ftr-pn-a-height-desktop;
@@ -227,7 +227,7 @@
                 //border-bottom: none;
                 @include rj-transition(color .3s, box-shadow .3s);
                 &:hover {
-                    color: $e-ftr-pn-li-a-desktop-hover-color;
+                    @include co(color, $e-ftr-pn-li-a-desktop-hover-color);
                 }
 
 
@@ -237,17 +237,17 @@
                         letter-spacing: $e-ftr-pn-a-desktop-letter-spacing;
                     }
                     @if $e-ftr-pn-li-a-desktop-text-transform-on == 1 {
-                        text-transform: $e-ftr-pn-li-a-desktop-text-transform;
+                        @include co(text-transform, $e-ftr-pn-li-a-desktop-text-transform);
                     }
-                    font-weight: $e-ftr-pn-li-a-fontweight-desktop;
-                    font-size: $e-ftr-pn-li-a-fontsize-desktop;
-                    color: $e-ftr-pn-li-a-desktop-color;
+                    @include co(font-weight, $e-ftr-pn-li-a-fontweight-desktop);
+                    @include co(font-size, $e-ftr-pn-li-a-fontsize-desktop);
+                    @include co(color, $e-ftr-pn-li-a-desktop-color);
                     display: $e-ftr-pn-li-a-displaytype;
                     height: $e-ftr-pn-a-height-desktop;
 
                     @if $e-ftr-pn-li-a-displaytype == flex {
-                        align-items: $e-ftr-pn-li-a-align-items-desktop;
-                        justify-content: $e-ftr-pn-li-a-justify-content-desktop;
+                        @include co(align-items, $e-ftr-pn-li-a-align-items-desktop);
+                        @include co(justify-content, $e-ftr-pn-li-a-justify-content-desktop);
                     }
                     @if $e-ftr-pn-a-lineheight-desktop != 0 {
                         line-height: $e-ftr-pn-a-height-desktop;
@@ -257,17 +257,17 @@
                     @if $e-ftr-pn-a-desktop-border-right-on == 1 {
                         border-right: $e-ftr-pn-a-desktop-border-right;
                     }
-                    padding: $e-ftr-pn-li-a-desktop-padding;
+                    @include co(padding, $e-ftr-pn-li-a-desktop-padding);
                     overflow: visible;
                     //border-bottom: none;
                     @include rj-transition(color .3s, box-shadow .3s);
                     &:hover {
-                        color: $e-ftr-pn-li-a-desktop-hover-color;
+                        @include co(color, $e-ftr-pn-li-a-desktop-hover-color);
                     }
 
                 }
                 @include min-screen($screen-lg-min) {
-                    padding: $e-ftr-pn-li-a-desktop-large-padding;
+                    @include co(padding, $e-ftr-pn-li-a-desktop-large-padding);
                 }
             }
 

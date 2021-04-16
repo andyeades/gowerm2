@@ -15,7 +15,7 @@
 
 
 
-namespace Mirasvit\Kb\Model\ResourceModel\ArticleSubsections;
+namespace Mirasvit\Kb\Model\ResourceModel\Articlesubsections;
 
 use Mirasvit\Kb\Model\Articlesubsections;
 

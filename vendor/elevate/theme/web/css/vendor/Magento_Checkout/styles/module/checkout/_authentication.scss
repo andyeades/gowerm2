@@ -1,58 +1,58 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
-$block-auth__dropdown__padding          : $indent__m !default;
-$block-auth__dropdown__background-color : $color-white !default;
-$block-auth__or-label__size             : 36px !default;
-$block-auth__width                      : 0 !default;
-$block-auth__border                     : 1px solid $color-gray-light3 !default;
-$block_auth_actions_secondary_a_text_decoration: underline !default;
-$block_auth_actions_primary_button_width: 150px !default;
-$block_auth_actions_primary_margin: 0 0 0 auto !default;
-$block_auth_actions_primary_order: 2 !default;
-$block_auth_actions_secondary_order: 1 !default;
+$block-auth-dropdown-padding          : $indent-m !default;
+$block-auth-dropdown-background-color : $color-white !default;
+$block-auth-or-label-size             : 36px !default;
+$block-auth-width                      : 0 !default;
+$block-auth-border                     : 1px solid $color-gray-light3 !default;
+$block-auth-actions-secondary-a-text-decoration: underline !default;
+$block-auth-actions-primary-button-width: 150px !default;
+$block-auth-actions-primary-margin: 0 0 0 auto !default;
+$block-auth-actions-primary-order: 2 !default;
+$block-auth-actions-secondary-order: 1 !default;
 
-$auth_wrapper_position          : absolute !default;
-$auth_wrapper_width             : 50% !default;
-$auth_wrapper_order             : 2 !default;
-$auth_wrapper_margin            : 0 !default;
-$auth_wrapper_top               : 15px !default;
-$auth_wrapper_left              : 15px !default;
-$auth_wrapper_right             : auto !default;
-$auth_wrapper_align             : left !default;
+$auth-wrapper-position          : absolute !default;
+$auth-wrapper-width             : 50% !default;
+$auth-wrapper-order             : 2 !default;
+$auth-wrapper-margin            : 0 !default;
+$auth-wrapper-top               : 15px !default;
+$auth-wrapper-left              : 15px !default;
+$auth-wrapper-right             : auto !default;
+$auth-wrapper-align             : left !default;
 
-$auth_wrapper_width_desktop             : 50% !default;
-$auth_wrapper_order_desktop             : 2 !default;
-$auth_wrapper_margin_desktop            : 0 !default;
-$auth_wrapper_top_desktop              : -83px !default;
-$auth_wrapper_top_desktop_large              : -115px !default;
-$auth_wrapper_left_desktop              : 15px !default;
-$auth_wrapper_right_desktop             : auto !default;
-$auth_wrapper_align_desktop             : left !default;
+$auth-wrapper-width-desktop             : 50% !default;
+$auth-wrapper-order-desktop             : 2 !default;
+$auth-wrapper-margin-desktop            : 0 !default;
+$auth-wrapper-top-desktop              : -83px !default;
+$auth-wrapper-top-desktop-large              : -115px !default;
+$auth-wrapper-left-desktop              : 15px !default;
+$auth-wrapper-right-desktop             : auto !default;
+$auth-wrapper-align-desktop             : left !default;
 
-$chkout_blk_auth_close_icon_font_size: 1.25rem !default;
-$chkout_blk_auth_close_icon_font_weight: 700 !default;
+$chkout-blk-auth-close-icon-font-size: 1.25rem !default;
+$chkout-blk-auth-close-icon-font-weight: 700 !default;
 
-$chkout_blk_auth_blk_title_font_size: 1.625rem !default;
-$chkout_blk_auth_blk_title_font_weight: 700 !default;
-$chkout_blk_auth_close_icon_font_size: 1.25rem !default;
-$chkout_blk_auth_close_icon_font_weight: 700 !default;
+$chkout-blk-auth-blk-title-font-size: 1.625rem !default;
+$chkout-blk-auth-blk-title-font-weight: 700 !default;
+$chkout-blk-auth-close-icon-font-size: 1.25rem !default;
+$chkout-blk-auth-close-icon-font-weight: 700 !default;
 
 
 
 .authentication-dropdown {
     .modal-inner-wrap {
-        padding: $block-auth__dropdown__padding;
+        @include co(padding, $block-auth-dropdown-padding);
     }
     .action-close {
         &:focus {
             outline: none;
         }
         &:before {
-            font-size: $chkout_blk_auth_close_icon_font_size;
-            line-height: $chkout_blk_auth_close_icon_font_size;
-            font-weight: $chkout_blk_auth_close_icon_font_weight;
+          @include co(font-size, $chkout-blk-auth-close-icon-font-size);
+            line-height: $chkout-blk-auth-close-icon-font-size;
+            @include co(font-weight, $chkout-blk-auth-close-icon-font-weight);
         }
     }
 }
@@ -61,28 +61,28 @@ $chkout_blk_auth_close_icon_font_weight: 700 !default;
 
 
 .authentication-wrapper {
-    @include co(position, $auth_wrapper_position);
-    @include co(top, $auth_wrapper_top);
-    @include co(right, $auth_wrapper_right);
-    @include co(left, $auth_wrapper_left);
+    @include co(position, $auth-wrapper-position);
+    @include co(top, $auth-wrapper-top);
+    @include co(right, $auth-wrapper-right);
+    @include co(left, $auth-wrapper-left);
 
   @include min-screen($desktop-min) {
     position: absolute;
-    width: $auth_wrapper_width_desktop;
-    order: $auth_wrapper_order_desktop;
-    margin: $auth_wrapper_margin_desktop;
-      @include co(top, $auth_wrapper_top_desktop, $auth_wrapper_top);
-      @include co(right, $auth_wrapper_right_desktop, $auth_wrapper_right);
-      @include co(left, $auth_wrapper_left_desktop, $auth_wrapper_left);
-    text-align: $auth_wrapper_align_desktop;
+    @include co(width, $auth-wrapper-width-desktop);
+    @include co(order, $auth-wrapper-order-desktop);
+    @include co(margin, $auth-wrapper-margin-desktop);
+      @include co(top, $auth-wrapper-top-desktop, $auth-wrapper-top);
+      @include co(right, $auth-wrapper-right-desktop, $auth-wrapper-right);
+      @include co(left, $auth-wrapper-left-desktop, $auth-wrapper-left);
+    text-align: $auth-wrapper-align-desktop;
   }
-    @include min-screen($desktop_medium_min) {
-        @include co(top, $auth_wrapper_top_desktop_large, $auth_wrapper_top_desktop, $auth_wrapper_top);
+    @include min-screen($desktop-medium-min) {
+        @include co(top, $auth-wrapper-top-desktop-large, $auth-wrapper-top-desktop, $auth-wrapper-top);
     }
 
 
     ._has-auth-shown & {
-        z-index: $modal__z-index;
+        z-index: $modal-z-index;
     }
 }
 
@@ -91,8 +91,8 @@ $chkout_blk_auth_close_icon_font_weight: 700 !default;
 }
 
 
-$checkout_email_fieldset_remind_textdecoration: underline !default;
-$checkout_email_fieldset_login_btn_width: 150px !default;
+$checkout-email-fieldset-remind-textdecoration: underline !default;
+$checkout-email-fieldset-login-btn-width: 150px !default;
 
 .block-customer-login-heading {
     .actions-toolbar {
@@ -110,10 +110,10 @@ $checkout_email_fieldset_login_btn_width: 150px !default;
     }
 }
 
-$checkout_email_fieldset_primary_order: 2 !default;
-$checkout_email_fieldset_secondary_order: 1 !default;
+$checkout-email-fieldset-primary-order: 2 !default;
+$checkout-email-fieldset-secondary-order: 1 !default;
 
-$checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
+$checkout-email-fieldset-primary-margin: 0 0 0 auto !default;
 
 #customer-email-fieldset {
     .actions-toolbar {
@@ -121,15 +121,15 @@ $checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
         align-items: center;
 
         > .primary {
-          order: $checkout_email_fieldset_primary_order;
-            @include co(margin, $checkout_email_fieldset_primary_margin);
+          @include co(order, $checkout-email-fieldset-primary-order);
+            @include co(margin, $checkout-email-fieldset-primary-margin);
             .primary {
-                @include co(width, $checkout_email_fieldset_login_btn_width);
+                @include co(width, $checkout-email-fieldset-login-btn-width);
             }
 
         }
         > .secondary {
-            order: $checkout_email_fieldset_secondary_order;
+            @include co(order, $checkout-email-fieldset-secondary-order);
         }
     }
     .remind {
@@ -148,7 +148,7 @@ $checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
             color: lighten(#333, 15%);
             border-color: unset;
         }
-        @include co(text-decoration, $checkout_email_fieldset_remind_textdecoration);
+        @include co(text-decoration, $checkout-email-fieldset-remind-textdecoration);
     }
 }
 
@@ -157,42 +157,42 @@ $checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
 
 
     .block-title {
-        @include ev-fontsize-output($chkout_blk_auth_blk_title_font_size, 0, 1);
+        @include ev-fontsize-output($chkout-blk-auth-blk-title-font-size, 0, 1);
 
         border-bottom: 0;
-        margin-bottom: $indent__m;
+        margin-bottom: $indent-m;
 
         strong {
-            font-weight: $chkout_blk_auth_blk_title_font_weight;
+            @include co(font-weight, $chkout-blk-auth-blk-title-font-weight);
         }
     }
 
     .field {
         .label {
-            font-weight: $font-weight__regular;
+            @include co(font-weight, $font-weight-regular);
         }
     }
 
     .actions-toolbar {
         margin-left: 0 !important;
-        margin-bottom: $indent__xs;
+        margin-bottom: $indent-xs;
         display: flex;
         align-items: center;
         > .primary {
             float: none;
-            @include co(margin, $block_auth_actions_primary_margin);
-            @include co(order, $block_auth_actions_primary_order);
+            @include co(margin, $block-auth-actions-primary-margin);
+            @include co(order, $block-auth-actions-primary-order);
             .action {
-                @include co(width, $block_auth_actions_primary_button_width);
+                @include co(width, $block-auth-actions-primary-button-width);
             }
 
         }
 
         > .secondary {
             float: none;
-            @include co(order, $block_auth_actions_secondary_order);
+            @include co(order, $block-auth-actions-secondary-order);
             a {
-                @include co(text-decoration, $block_auth_actions_secondary_a_text_decoration);
+                @include co(text-decoration, $block-auth-actions-secondary-a-text-decoration);
             }
         }
     }
@@ -203,7 +203,7 @@ $checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
 
         ul {
             list-style: none;
-            padding-left: $indent__s;
+            padding-left: $indent-s;
         }
 
         .field {
@@ -216,15 +216,15 @@ $checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
 
         & + .block {
             border-top: 1px solid $color-gray-light5;
-            margin-top: $indent__xl;
-            padding-top: $indent__xl;
+            margin-top: $indent-xl;
+            padding-top: $indent-xl;
             position: relative;
 
             &::before {
-                @include lib-css(height, $block-auth__or-label__size);
-                @include lib-css(line-height, $block-auth__or-label__size - 2px);
-                @include lib-css(margin, -($block-auth__or-label__size/2 + 1px) 0 0 -($block-auth__or-label__size / 2));
-                @include lib-css(min-width, $block-auth__or-label__size);
+                @include lib-css(height, $block-auth-or-label-size);
+                @include lib-css(line-height, $block-auth-or-label-size - 2px);
+                @include lib-css(margin, -($block-auth-or-label-size/2 + 1px) 0 0 -($block-auth-or-label-size / 2));
+                @include lib-css(min-width, $block-auth-or-label-size);
                 background: $color-white;
                 border: 1px solid $color-gray-light5;
                 border-radius: 50%;
@@ -246,12 +246,12 @@ $checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .authentication-dropdown {
-        @include lib-css(background-color, $block-auth__dropdown__background-color);
-        @include lib-css(border, $block-auth__border);
+        @include lib-css(background-color, $block-auth-dropdown-background-color);
+        @include lib-css(border, $block-auth-border);
         position: absolute;
         text-align: left;
         top: 100%;
@@ -262,7 +262,7 @@ $checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
         width: 100%;
 
         &._show {
-            @include lib-css(z-index, $dropdown-list__z-index);
+            @include lib-css(z-index, $dropdown-list-z-index);
             transform: scale(1, 1);
             transition: transform linear 0.1s, visibility 0s linear 0s;
             visibility: visible;
@@ -272,7 +272,7 @@ $checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
 
     .popup-authentication {
         .modal-inner-wrap {
-            min-width: $screen__m;
+            min-width: $screen-m;
             width: 60%;
         }
 
@@ -294,14 +294,14 @@ $checkout_email_fieldset_primary_margin: 0 0 0 auto !default;
         .block[class] {
             box-sizing: border-box;
             float: left;
-            padding: $indent__s $indent__l 0 0;
+            @include co(padding, $indent-s $indent-l 0 0);
             width: 50%;
 
             & + .block {
                 border-left: 1px solid $color-gray-light5;
                 border-top: 0;
                 margin: 0;
-                padding: $indent__s 0 0 $indent__xl;
+                @include co(padding, $indent-s 0 0 $indent-xl);
 
                 &::before {
                     left: 0;

@@ -3,8 +3,8 @@
 // .modal-dialog    - positioning shell for the actual modal
 // .modal-content   - actual modal w/ bg and corners and stuff
 
-$modal_header_bg_color_on: 1 !default;
-$modal_header_bg_color: $theme-brand-color-3 !default;
+$modal-header-bg-color-on: 1 !default;
+$modal-header-bg-color: $theme-brand-color-3 !default;
 $modal-title-color: $body-color !default;
 .bs-modal-open {
     // Kill the scroll on the body
@@ -38,7 +38,7 @@ $modal-title-color: $body-color !default;
 .bs-modal-dialog {
     position: relative;
     width: auto;
-    margin: $modal-dialog-margin;
+    @include co(margin, $modal-dialog-margin);
     // allow clicks to pass through for custom click handling to close modal
     pointer-events: none;
 
@@ -149,18 +149,18 @@ $modal-title-color: $body-color !default;
     display: flex;
     align-items: flex-start; // so the close btn always stays on the upper right corner
     justify-content: space-between; // Put modal header elements (title and dismiss) on opposite ends
-    padding: $modal-header-padding;
+    @include co(padding, $modal-header-padding);
     border-bottom: $modal-header-border-width solid $modal-header-border-color;
 
     @include border-top-radius($modal-content-inner-border-radius, true);
 
-    @if $modal_header_bg_color_on == 1 {
-        background: $modal_header_bg_color;
+    @if $modal-header-bg-color-on == 1 {
+        background: $modal-header-bg-color;
     }
 
     .close {
         order: 2;
-        padding: $modal-header-padding;
+        @include co(padding, $modal-header-padding);
         // auto on the left force icon to the right even when there is no .modal-title
         margin: (-$modal-header-padding-y) (-$modal-header-padding-x) (-$modal-header-padding-y) auto;
     }
@@ -181,7 +181,10 @@ $modal-title-color: $body-color !default;
     // Enable `flex-grow: 1` so that the body take up as much space as possible
     // when there should be a fixed height on `.modal-dialog`.
     flex: 1 1 auto;
-    padding: $modal-inner-padding;
+    @include co(padding, $modal-inner-padding);
+    &.ie11 {
+        flex: 0 0 auto;
+    }
 }
 
 // Footer (for actions)
@@ -190,7 +193,7 @@ $modal-title-color: $body-color !default;
     flex-wrap: wrap;
     align-items: center; // vertically center
     justify-content: flex-end; // Right align buttons with flex property because text-align doesn't work on flex items
-    padding: $modal-inner-padding - $modal-footer-margin-between / 2;
+    @include co(padding, $modal-inner-padding - $modal-footer-margin-between / 2);
     border-top: $modal-footer-border-width solid $modal-footer-border-color;
     @include border-bottom-radius($modal-content-inner-border-radius);
 
@@ -199,7 +202,7 @@ $modal-title-color: $body-color !default;
     // but is needed to fix https://github.com/twbs/bootstrap/issues/24800
     // stylelint-disable-next-line selector-max-universal
     > * {
-        margin: $modal-footer-margin-between / 2;
+        @include co(margin, $modal-footer-margin-between / 2);
     }
 }
 
@@ -217,7 +220,7 @@ $modal-title-color: $body-color !default;
     // Automatically set modal's width for larger viewports
     .bs-modal-dialog {
         max-width: $modal-md;
-        margin: $modal-dialog-margin-y-sm-up auto;
+        @include co(margin, $modal-dialog-margin-y-sm-up auto);
     }
 
     .bs-modal-dialog-scrollable {

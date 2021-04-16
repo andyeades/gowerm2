@@ -6,7 +6,7 @@
                 position: relative;
                 .field {
                     display: inline-block;
-                    margin-bottom: $indent__s;
+                    margin-bottom: $indent-s;
                     vertical-align: top;
                     &.sku {
 
@@ -32,7 +32,7 @@
         }
         .form-addbysku {
             .actions-toolbar {
-                margin-bottom: $indent__base;
+                margin-bottom: $indent-base;
                 .primary {
                     text-align: left;
                     .action {
@@ -48,9 +48,9 @@
         .action {
             &.add {
                 @include lib-button-icon(
-                    $_icon-font-content  : $icon-expand,
-                    $_icon-font-text-hide: true,
-                    $_icon-font-size     : 31px
+                    $-icon-font-content  : $icon-expand,
+                    $-icon-font-text-hide: true,
+                    $-icon-font-size     : 31px
                 );
                 line-height: normal;
                 padding: 2px 0;
@@ -58,17 +58,17 @@
             }
             &.links {
                 display: inline-block;
-                margin: $indent__base 0 0;
+                @include co(margin, $indent-base 0 0);
             }
             &.reset {
                 display: block;
-                margin: $indent__s 0;
+                @include co(margin, $indent-s 0);
             }
             &.remove {
                 @include lib-button-icon(
-                    $_icon-font-content  : $icon-remove,
-                    $_icon-font-text-hide: true,
-                    $_icon-font-size     : 28px
+                    $-icon-font-content  : $icon-remove,
+                    $-icon-font-text-hide: true,
+                    $-icon-font-size     : 28px
                 );
                 @include lib-button-reset();
             }

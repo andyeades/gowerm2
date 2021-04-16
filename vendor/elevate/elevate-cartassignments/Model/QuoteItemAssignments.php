@@ -69,10 +69,10 @@ protected $_cartAssignmentsFactory;
     {
         return $this->loadByAttribute('linked_quote_item_id', $quoteItemId);
     }
-
+                            
     public function loadAssignedChildren($quoteItemId)
     {
-        echo "QUOTE_ITEM::".$quoteItemId;
+       
         $collection = $this->_cartAssignmentsFactory->create()->getCollection()
                                                     ->addFieldToFilter('parent_quote_item_id', $quoteItemId);
 

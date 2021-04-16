@@ -1,10 +1,10 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
-$opc_wrapper_field_label_fontweight: 700 !default;
+$opc-wrapper-field-label-fontweight: 700 !default;
 
-$checkout-field-validation__border-color: $form-element-validation__border-error !default;
+$checkout-field-validation-border-color: $form-element-validation-border-error !default;
 
 .field {
     &._error {
@@ -12,7 +12,7 @@ $checkout-field-validation__border-color: $form-element-validation__border-error
             input,
             select,
             textarea {
-                @include lib-css(border-color, $checkout-field-validation__border-color);
+                @include lib-css(border-color, $checkout-field-validation-border-color);
             }
         }
     }
@@ -22,7 +22,7 @@ $checkout-field-validation__border-color: $form-element-validation__border-error
     .fieldset {
         > .field {
             > .label {
-                font-weight: $opc_wrapper_field_label_fontweight;
+                @include co(font-weight, $opc-wrapper-field-label-fontweight);
             }
         }
     }
@@ -30,9 +30,9 @@ $checkout-field-validation__border-color: $form-element-validation__border-error
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     //  ToDo UI: remove with global blank theme .field.required update
     .opc-wrapper {
         .fieldset {
@@ -46,7 +46,7 @@ $checkout-field-validation__border-color: $form-element-validation__border-error
 
                         &:after {
                             display: inline-block;
-                           // margin-left: $indent__s;
+                           // margin-left: $indent-s;
                            // position: absolute;
                            // top: 9px;
                         }

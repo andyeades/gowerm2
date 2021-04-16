@@ -4,7 +4,7 @@
 
 .alert {
   position: relative;
-  padding: $alert-padding-y $alert-padding-x;
+  @include co(padding, $alert-padding-y $alert-padding-x);
   margin-bottom: $alert-margin-bottom;
   border: $alert-border-width solid transparent;
   @include border-radius($alert-border-radius);
@@ -18,7 +18,7 @@
 
 // Provide class for links that match alerts
 .alert-link {
-  font-weight: $alert-link-font-weight;
+  @include co(font-weight, $alert-link-font-weight);
 }
 
 
@@ -34,7 +34,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    padding: $alert-padding-y $alert-padding-x;
+    @include co(padding, $alert-padding-y $alert-padding-x);
     color: inherit;
   }
 }

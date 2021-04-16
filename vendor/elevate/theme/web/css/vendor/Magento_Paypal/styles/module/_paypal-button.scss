@@ -4,7 +4,7 @@
         &:before {
             content: '- ' attr(data-label) ' -';
             display: block;
-            margin: $indent__xs $indent__xs $indent__s;
+            @include co(margin, $indent-xs $indent-xs $indent-s);
             text-transform: uppercase;
         }
     }
@@ -13,7 +13,7 @@
         &:before {
             content: '- ' attr(data-label) ' -';
             display: block;
-            margin: $indent__s $indent__xs;
+            @include co(margin, $indent-s $indent-xs);
             text-align: center;
             text-transform: uppercase;
         }
@@ -21,7 +21,7 @@
 
     &.acceptance {
         display: block;
-        margin: 0 0 $indent__base;
+        margin: 0 0 $indent-base;
 
         img {
             max-width: 100%;

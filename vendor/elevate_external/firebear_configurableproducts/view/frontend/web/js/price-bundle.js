@@ -105,7 +105,98 @@ define([
                 $('[data-role="bundle-option-description-' + optionId + '"]').empty();
                 $('[data-role="bundle-option-description-' + optionId + '"]').html(currentSelection.description);
             }
+           
+          //  var leadTime = currentSelection.leadTime;
 
+            var leadTimeOutput = '';
+            var maxValueInDaysValue;
+            var config = this.options.optionConfig;
+            var maxLeadTime = 0;
+            var backorder = false;
+            var is_in_stock = false;
+            _.each(config.selected, function (key, val) {
+
+               // console.log("KEY="+key+"|VAL="+val);
+                  
+                if(key > 0){
+
+
+                    var ltOptionConfig = config.options[val];
+
+                    var ltCurrentSelection = ltOptionConfig.selections[key];
+
+                    var leadTime = ltCurrentSelection.leadTime;
+                     var backorder_status = ltCurrentSelection.backorder_status;
+                     var is_in_stock_status = ltCurrentSelection.is_in_stock; 
+                      var qty_in_stock = ltCurrentSelection.qty_in_stock; 
+                      if(is_in_stock_status){
+                        is_in_stock = true;
+                     }
+                     
+                     if(backorder_status == 2 && qty_in_stock < 1){
+                   
+                        backorder = true;
+                     }
+                    if(parseFloat(leadTime) > parseFloat(maxLeadTime)){
+                        maxLeadTime = leadTime;
+
+                    }
+
+                }
+            });
+
+            if(maxLeadTime > 0){
+
+                var weeksanddays = Math.floor(maxLeadTime % 5) ;
+
+                if(weeksanddays == 0){
+                    if(maxLeadTime == 5){
+                        maxValueInDaysValue = Math.floor(maxLeadTime / 5) + ' Week';
+                        leadTimeOutput = 'Lead Time: ' + maxValueInDaysValue + '';
+                    }else{
+                        maxValueInDaysValue = Math.floor(maxLeadTime / 5) + ' Weeks';
+                        leadTimeOutput = 'Lead Time: ' + maxValueInDaysValue + '';
+                    }
+                }else{
+                    if(Math.floor(leadTime / 5) == 0){
+                        maxValueInDaysValue = Math.floor(maxLeadTime % 5) + ' Working Days';
+                        leadTimeOutput = 'Lead Time: ' + maxValueInDaysValue +  '';
+                    }else{
+                        maxValueInDaysValue = (Math.floor(maxLeadTime / 5)+1) + ' Weeks ';
+                        leadTimeOutput = 'Lead Time: ' + maxValueInDaysValue +  '';
+                    }
+                }
+            }else{
+
+                leadTimeOutput = "";
+            }
+            if(backorder){
+               leadTimeOutput = 'Lead Time: Available on request';
+            }
+            $('.leadtimeReplace').html(leadTimeOutput);
+                                
+                      if(is_in_stock){
+                        jQuery('.amxnotif-block').hide();
+                     }
+                     else{
+                       jQuery('.amxnotif-block').show();
+                     }
+if(backorder){
+
+if(is_in_stock){
+    $('.pp_backorder_message').html('<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;"> <i class="fa fa-exclamation-circle" style="height: 22px;width: 22px;font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock, but available on backorder</div></div></div>');
+    $('.product-options-bottom').removeClass('ev_cart_disable');
+  }
+  else{
+    $('.pp_backorder_message').html('<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;"> <i class="fa fa-exclamation-circle" style="height: 22px;width: 22px;font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock</div></div></div>');  
+  $('.product-options-bottom').addClass('ev_cart_disable');
+  }
+
+}
+else{
+            $('.product-options-bottom').removeClass('ev_cart_disable');
+      $('.pp_backorder_message').html("");
+}
             if (changes) {
 
                // var optionId = utils.findOptionId(bundleOption);
@@ -121,6 +212,11 @@ define([
         //    console.log(changes["bundle-option-bundle_option["+optionId+"]"]);
 
                 //window.eades["bundle-option-bundle_option[20]"].oldPrice.amount;
+                
+                console.log("PRICE TEST");
+                console.log(changes);
+                
+                
                 priceBox.trigger('updatePrice', changes);
             }
             this.updateProductSummary();

@@ -1,24 +1,30 @@
 <?php
 
-
 namespace Elevate\Delivery\Model;
 
-use Elevate\Delivery\Api\HolidaydatesRepositoryInterface;
-use Elevate\Delivery\Api\Data\HolidaydatesSearchResultsInterfaceFactory;
 use Elevate\Delivery\Api\Data\HolidaydatesInterfaceFactory;
-use Magento\Framework\Api\DataObjectHelper;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Reflection\DataObjectProcessor;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Elevate\Delivery\Api\Data\HolidaydatesSearchResultsInterfaceFactory;
+use Elevate\Delivery\Api\HolidaydatesRepositoryInterface;
 use Elevate\Delivery\Model\ResourceModel\Holidaydates as ResourceHolidaydates;
 use Elevate\Delivery\Model\ResourceModel\Holidaydates\CollectionFactory as HolidaydatesCollectionFactory;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
-use Magento\Framework\Api\ExtensibleDataObjectConverter;
 use Elevate\Delivery\Model\ResourceModel\Metadata;
+use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Api\ExtensibleDataObjectConverter;
+use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Reflection\DataObjectProcessor;
+use Magento\Store\Model\StoreManagerInterface;
 
+/**
+ * Class HolidaydatesRepository
+ *
+ * @category Elevate
+ * @package  Elevate\Delivery\Model
+ * @author   Richard Jones <richard.jones@elevateweb.co.uk>
+ */
 class HolidaydatesRepository implements HolidaydatesRepositoryInterface
 {
 
@@ -27,41 +33,74 @@ class HolidaydatesRepository implements HolidaydatesRepositoryInterface
      */
     private $metadata;
 
+    /**
+     * @var \Elevate\Delivery\Model\ResourceModel\Holidaydates
+     */
     protected $resource;
 
+    /**
+     * @var \Elevate\Delivery\Model\HolidaydatesFactory
+     */
     protected $holidaydatesFactory;
 
+    /**
+     * @var \Elevate\Delivery\Model\ResourceModel\Holidaydates\CollectionFactory
+     */
     protected $holidaydatesCollectionFactory;
 
+    /**
+     * @var \Elevate\Delivery\Api\Data\HolidaydatesSearchResultsInterfaceFactory
+     */
     protected $searchResultsFactory;
 
+    /**
+     * @var \Magento\Framework\Api\DataObjectHelper
+     */
     protected $dataObjectHelper;
 
+    /**
+     * @var \Magento\Framework\Reflection\DataObjectProcessor
+     */
     protected $dataObjectProcessor;
 
+    /**
+     * @var \Elevate\Delivery\Api\Data\HolidaydatesInterfaceFactory
+     */
     protected $dataHolidaydatesFactory;
 
+    /**
+     * @var \Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface
+     */
     protected $extensionAttributesJoinProcessor;
 
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
     private $storeManager;
 
+    /**
+     * @var \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface
+     */
     private $collectionProcessor;
 
+    /**
+     * @var \Magento\Framework\Api\ExtensibleDataObjectConverter
+     */
     protected $extensibleDataObjectConverter;
 
     /**
-     * @param Metadata $evholidaydatesMetadata
-     * @param ResourceHolidaydates $resource
-     * @param HolidaydatesFactory $holidaydatesFactory
-     * @param HolidaydatesInterfaceFactory $dataHolidaydatesFactory
-     * @param HolidaydatesCollectionFactory $holidaydatesCollectionFactory
+     * @param Metadata                                  $evholidaydatesMetadata
+     * @param ResourceHolidaydates                      $resource
+     * @param HolidaydatesFactory                       $holidaydatesFactory
+     * @param HolidaydatesInterfaceFactory              $dataHolidaydatesFactory
+     * @param HolidaydatesCollectionFactory             $holidaydatesCollectionFactory
      * @param HolidaydatesSearchResultsInterfaceFactory $searchResultsFactory
-     * @param DataObjectHelper $dataObjectHelper
-     * @param DataObjectProcessor $dataObjectProcessor
-     * @param StoreManagerInterface $storeManager
-     * @param CollectionProcessorInterface $collectionProcessor
-     * @param JoinProcessorInterface $extensionAttributesJoinProcessor
-     * @param ExtensibleDataObjectConverter $extensibleDataObjectConverter
+     * @param DataObjectHelper                          $dataObjectHelper
+     * @param DataObjectProcessor                       $dataObjectProcessor
+     * @param StoreManagerInterface                     $storeManager
+     * @param CollectionProcessorInterface              $collectionProcessor
+     * @param JoinProcessorInterface                    $extensionAttributesJoinProcessor
+     * @param ExtensibleDataObjectConverter             $extensibleDataObjectConverter
      */
     public function __construct(
         Metadata $evholidaydatesMetadata,
@@ -94,10 +133,11 @@ class HolidaydatesRepository implements HolidaydatesRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function create() {
+    public function create()
+    {
         return $this->metadata->getNewInstance();
-
     }
+
     /**
      * {@inheritdoc}
      */
@@ -120,11 +160,14 @@ class HolidaydatesRepository implements HolidaydatesRepositoryInterface
         try {
             $this->resource->save($holidaydatesModel);
         } catch (\Exception $exception) {
-            throw new CouldNotSaveException(__(
-                'Could not save the Holiday Date: %1',
-                $exception->getMessage()
-            ));
+            throw new CouldNotSaveException(
+                __(
+                    'Could not save the Holiday Date: %1',
+                    $exception->getMessage()
+                )
+            );
         }
+
         return $holidaydatesModel->getDataModel();
     }
 
@@ -138,6 +181,7 @@ class HolidaydatesRepository implements HolidaydatesRepositoryInterface
         if (!$holidaydates->getId()) {
             throw new NoSuchEntityException(__('Holiday Date with id "%1" does not exist.', $holidaydatesId));
         }
+
         return $holidaydates->getDataModel();
     }
 
@@ -166,6 +210,7 @@ class HolidaydatesRepository implements HolidaydatesRepositoryInterface
 
         $searchResults->setItems($items);
         $searchResults->setTotalCount($collection->getSize());
+
         return $searchResults;
     }
 
@@ -180,11 +225,14 @@ class HolidaydatesRepository implements HolidaydatesRepositoryInterface
             $this->resource->load($holidaydatesModel, $holidaydates->getDeliveryholidaydatesId());
             $this->resource->delete($holidaydatesModel);
         } catch (\Exception $exception) {
-            throw new CouldNotDeleteException(__(
-                'Could not delete the Holiday Dates: %1',
-                $exception->getMessage()
-            ));
+            throw new CouldNotDeleteException(
+                __(
+                    'Could not delete the Holiday Dates: %1',
+                    $exception->getMessage()
+                )
+            );
         }
+
         return true;
     }
 
@@ -195,5 +243,4 @@ class HolidaydatesRepository implements HolidaydatesRepositoryInterface
     {
         return $this->delete($this->getById($holidaydatesId));
     }
-
 }

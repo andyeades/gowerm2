@@ -9,7 +9,9 @@
 /**  @var $block \Magento\Checkout\Block\Cart\Grid */
 ?>
 <style>
-
+.addon-change-qty-outer {
+justify-content: left !important;
+}
 </style>
 <?php $mergedCells = ($this->helper(Magento\Tax\Helper\Data::class)->displayCartBothPrices() ? 2: 1); ?>
 <?= $block->getChildHtml('form_before') ?>

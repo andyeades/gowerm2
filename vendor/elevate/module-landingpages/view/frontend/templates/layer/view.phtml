@@ -1,719 +1,595 @@
+<style>
+.ev_ln_item .filter_rating {
+
+    display: flex;
+    align-items: center;
+}
+</style>
 <?php
 
-
-
-
 $custom_page_title = false;
-
 $enable_full_product_range = false;
-$helper = $this->helper('Elevate\Promotions\Helper\Data');
 
-$show_more_number = $helper->getConfig('elevate_landingpages/categories/show_more_number');
-if(!is_numeric($show_more_number)){
+$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
+/** @var \Elevate\LandingPages\Helper\Data $landingpages_helper */
+$landingpages_helper = $this->helper('Elevate\LandingPages\Helper\Data');
+
+/** @var \Elevate\Promotions\Helper\Data $promotions_helper */
+$promotions_helper = $this->helper('Elevate\Promotions\Helper\Data');
+
+$show_more_number = $landingpages_helper->getShowMoreNumber();
+
+if (!is_numeric($show_more_number)) {
     $show_more_number = 6;
-}
-else{
+} else {
     $show_more_number = $show_more_number - 1;
 }
 
+// Filter Open/Close
+
+// chevrons-updown
+// plusminus
+
+$filter_openclose = $landingpages_helper->getFilterOpenCloseIconType();
+
+if (strcmp($filter_openclose, 'plusminus') == 0) {
+    $filter_openclose_close = '<span class="evlp-filter-openclose"><i class="fa fa-minus"></i></span>';
+} else {
+    // Chevrons-updown default
+    $filter_openclose_close = '<span class="evlp-filter-openclose"><i class="evlp-filter-chevron-down"></i></span>';
+}
 
 
+if (strpos($url, 'posturite') !== false) {
+    ///posturite
 
-$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-  if (strpos($url,'posturite') !== false)
-  {
-///posturite
+    //system->configuration->general->design - check here for the logos
 
-//system->configuration->general->design - check here for the logos
-  $microsite_logo = $helper->getConfig('elevate_microsites/general/microsite_logo');
-  $enable_full_product_range = $helper->getConfig('elevate_microsites/general/full_product_range');
+    $microsite_logo = $promotions_helper->getConfig('elevate_microsites/general/microsite_logo');
+    $enable_full_product_range = $promotions_helper->getConfig('elevate_microsites/general/full_product_range');
 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $remove_category_full_product_range = false; //some number for exclusions somewhere in admin
 
-?>
+    $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
 
-<?php
+    //$store_name = $storeManager->getStore()->getName();
+    $store_id = $storeManager->getStore()->getId();
 
-
-
-
- $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$remove_category_full_product_range = false; //some number for exclusions somewhere in admin
-
-
-$storeManager  = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
-
-
-//$store_name = $storeManager->getStore()->getName();
-$store_id = $storeManager->getStore()->getId();
-    
-if($microsite_logo != '' && $store_id != 4){
-
-$custom_page_title = "Your catalogue";
-  echo '<img style="
+    if ($microsite_logo != '' && $store_id != 4) {
+        $custom_page_title = "Your catalogue";
+        echo '<img style="
     max-height: 80px;
     margin: 0 auto;
     display: block;
     margin-bottom: 20px;
-" src="/media/microsite_logo/'.$microsite_logo.'" />';
-
+" src="/media/microsite_logo/' . $microsite_logo . '" />';
+    }
 }
+/** @var $block \Magento\LayeredNavigation\Block\Navigation */
 
-  }
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php /** * Category layered navigation * * @var $block \Magento\LayeredNavigation\Block\Navigation */
 $menuDirection = 'vertical';
-
-
 
 ?>
 <style>
-   .ev_ln_filter {
-    margin-bottom: 20px;
-}
-   .expand span, .expand {
-    text-align: right;
-    display: block;
-    text-decoration: underline;
-    cursor:pointer;
-}
-.ev_ln_item .price {
-    font-weight: initial;
-}
- .hide_moby.adbcat2 {
-    font-size:      18px;
-    padding-bottom: 10px;
-    font-weight:    600;
-  }
 
-  @media only screen and (max-width: 991.98px) {
-    .hide_moby {
-      display: none;
-    }
-
-    .page-products .columns {
-      position: initial;
+    .expand span, .expand {
+        text-align:      right;
+        display:         block;
+        text-decoration: underline;
+        cursor:          pointer;
     }
 
 
-    .catalog-category-view .page-title {
 
-      text-align: center;
+    @media only screen and (max-width: 991.98px) {
+
+
+        .page-products .columns {
+            position: initial;
+        }
+
+
+        .catalog-category-view .page-title {
+
+            text-align: center;
+        }
+
     }
-    .rmclink {
 
-      text-align: center;
+    #firmness_rating_bottom a {
+        color: white !important;
+    }
 
+    #firmness_rating_bottom .ev_ln_items {
+        margin-top: 13px;
+    }
+
+    #bwhowmany label.btn.btn-continue {
+        text-align: center;
+        display:    block;
+    }
+
+    .show-weight-in {
+        text-align: center;
     }
 
 
-  }
+    .ev_ln_items i.fa.fa-chevron-right {
+        margin-right: 10px;
+    }
 
-  #firmness_rating_bottom a {
-    color: white !important;
-  }
+    .fa-star:before {
+        text-shadow: 0 0 1px #000;
+        color:       #fff;
+        font-size:   20px;
+    }
 
-  #firmness_rating_bottom .ev_ln_items {
-    margin-top: 13px;
-  }
+    .fa-star.starchecked:before {
+        color: #ffc200 !important;
+    }
 
-  #bwhowmany label.btn.btn-continue {
-    text-align: center;
-    display:    block;
-  }
+    .colfilterimage {
+        border: 2px solid #ccc;
+    }
 
-  .show-weight-in {
-    text-align: center;
-  }
+    .pinkborder {
+        border: 2px solid #f0386c !important;
+    }
 
-  label.ac-facet__label {
-    width:        100%;
-    cursor:       pointer;
-    display:      flex;
-    align-items:  center;
-    margin-right: 4px;
-    flex:         1 1 0;
-    line-height:  1.2em;
-    padding:      3px 0;
-    position:     relative;
-    font-weight:  initial;
-  }
-
-  .ev_ln_items i.fa.fa-chevron-right {
-    margin-right: 10px;
-  }
-
-  .fa-star:before {
-    text-shadow: 0 0 1px #000;
-    color:       #fff;
-    font-size:   20px;
-  }
-
-  .fa-star.starchecked:before {
-    color: #ffc200 !important;
-  }
-
-  .colfilterimage {
-    border: 2px solid #ccc;
-  }
- a#ev_ln_filter_rating {
-    display: flex;
-    align-items: center;
-}
-  .pinkborder {
-    border: 2px solid #f0386c !important;
-  }</style>
 <?php if ($menuDirection == 'horizontal') { ?>
-  <style>
-    .sidebar.sidebar-main {
-      width: 100%;
-    }
-    @media only screen and (min-width: 992px){
-      .page-layout-2columns-left.page-with-filter .columns .single-sidebar {
-        width: 100%;
-      }
 
-    .page-layout-2columns-left.page-with-filter .columns .column.main {
-      width: 100%;
-      padding: 0 0 0 15px;
-    }
-    }
-    .ev_ln_filter {
-      margin-bottom: 20px;
-      display: flex;
-    }
-/*Hide Refine By Text */
-    .hide_moby.adbcat2 {
-      display: none;
-    }
-    .ev_ln_filter_title {
-      display: none !important;
-    }
-    /*Make chevron smaller*/
-    .ev_ln_filter .ac-accordion__expand-chevron {
+        .sidebar.sidebar-main {
+            width: 100%;
+        }
 
-      width: 10px;
-    }
-    dd.ev_ln_filter-options-content {
+        @media only screen and (min-width: 992px) {
+            .page-layout-2columns-left.page-with-filter .columns .single-sidebar {
+                width: 100%;
+            }
 
-      width:            auto;
-    }
-    dd.ev_ln_filter-options-content{
+            .page-layout-2columns-left.page-with-filter .columns .column.main {
+                width:   100%;
+                padding: 0 0 0 15px;
+            }
+        }
 
-      padding:0px;
-    }
-    dl#narrow-by-list {
-      display:         flex;
-      align-items:     center;
-      position:        relative;
-      justify-content: center;
-    }
+        .ev_ln_filter {
+            margin-bottom: 20px;
+            display:       flex;
+        }
 
-    dd.ev_ln_filter-options-content {
-      margin-bottom:    0px;
-      padding-bottom:   15px;
-      position:         absolute;
-      background-color: #f0f0f0;
-      width:            96%;
-      left:             0;
-      top:              42px;
-      padding:          2%;
-    }
 
-    dt.ev_ln_filter_options_title {
-      border-top:     1px solid #e4e4e4;
-      padding-top:    15px;
-      padding-bottom: 15px;
-      letter-spacing: .5px;
-      display:        flex;
-      margin-bottom:  0px;
-      margin:         0px;
-      cursor:         pointer;
-      align-items:    center;
-      flex:           1 1 auto;
-      padding:        10px 10px;
-    }
+        .ev_ln_filter_title {
+            display: none !important;
+        }
 
-    ol.ev_ln_items {
-      list-style:     none;
-      padding:        0;
-      margin-top:     0px;
-      margin-bottom:  0px;
-      width:          700px;
-      margin:         0 auto;
-      display:        flex;
-      flex-direction: row;
-      flex-wrap:      wrap;
-    }
+        /*Make chevron smaller*/
+        .ev_ln_filter .ac-accordion__expand-chevron {
+            width: 10px;
+        }
 
-    li.ev_ln_item {
-      position:      relative;
-      flex:          0 1 auto;
-      width:         calc(50% - 15px);
-      border:        2px solid #ccc;
-      box-sizing:    border-box;
-      padding:       14px;
-      margin:        7.5px 7.5px;
-      border-radius: 6px;
-    }</style><?php }
+        .ev_ln_filter-options-content {
+            width: auto;
+            padding: 0;
+        }
+
+        dl#narrow-by-list {
+            display:         flex;
+            align-items:     center;
+            position:        relative;
+            justify-content: center;
+        }
+
+        dd.ev_ln_filter-options-content {
+            margin-bottom:    0px;
+            padding-bottom:   15px;
+            position:         absolute;
+            background-color: #f0f0f0;
+            width:            96%;
+            left:             0;
+            top:              42px;
+            padding:          2%;
+        }
+
+        dt.ev_ln_filter_options_title {
+            border-top:     1px solid #e4e4e4;
+            padding-top:    15px;
+            padding-bottom: 15px;
+            letter-spacing: .5px;
+            display:        flex;
+            margin-bottom:  0px;
+            margin:         0px;
+            cursor:         pointer;
+            align-items:    center;
+            flex:           1 1 auto;
+            padding:        10px 10px;
+        }
+
+        ol.ev_ln_items {
+            list-style:     none;
+            padding:        0;
+            margin-top:     0px;
+            margin-bottom:  0px;
+            width:          700px;
+            margin:         0 auto;
+            display:        flex;
+            flex-direction: row;
+            flex-wrap:      wrap;
+        }
+
+        li.ev_ln_item {
+            position:      relative;
+            flex:          0 1 auto;
+            width:         calc(50% - 15px);
+            border:        2px solid #ccc;
+            box-sizing:    border-box;
+            padding:       14px;
+            margin:        7.5px 7.5px;
+            border-radius: 6px;
+        }
+<?php }
+
 $subtitle = 'Shopping Options'; ?>
-<style> .ev_ln_items .layerclick {
-    cursor: pointer;
-  }
 
-  @media only screen and (max-width: 767.98px){
-     .toolbar-products .toolbar-amount {
-      display: block;
-    }
-    .toolbar-products .toolbar-amount {
-      display: block;
-      width: 100%;
-      order: 6;
-      margin-top: 17px;
-      margin-bottom: 0px;
-      margin-left: 0;
-      height: 23px;
-    }
-  }
-  .rmclink {
-    margin-bottom: 15px;
-    text-decoration: underline;
-    font-weight: bold;
-  }
-  .firmness-rating-outer {
 
-    position: relative;
-  }
-  .firmness_not_suited {
-    position: absolute;
-    background-color: #ffffffd6;
-    color: #000000;
-    width: 100%;
-    top: 0;
-    font-size: 13px;
-    text-align: center;
-    margin: 0 0 0 -15px;
-    height: 100%;
-    font-weight: 700;
-    padding: 0 5px;
-    z-index: 99;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-  }
-  .firm_hidden {
-    display: none;
-  }
-  .bwselwrap2.hide_filter {
-    display: none;
-  }
-  .bwselwrap2.hide_filter.flex {
-    display: flex !important;
-  }
-  #bwhowmany label.btn.btn-continue {
-    background-color: #0e1936;
-    border-color: #091022;
-    width: 100% !important;
-  }
+    @media only screen and (max-width: 767.98px) {
+        .toolbar-products .toolbar-amount {
+            display: block;
+        }
+
+        .toolbar-products .toolbar-amount {
+            display:       block;
+            width:         100%;
+            order:         6;
+            margin-top:    17px;
+            margin-bottom: 0px;
+            margin-left:   0;
+            height:        23px;
+        }
+    }
+
+
+    .firmness-rating-outer {
+        position: relative;
+    }
+
+    .firmness_not_suited {
+        position:         absolute;
+        background-color: #ffffffd6;
+        color:            #000000;
+        width:            100%;
+        top:              0;
+        font-size:        13px;
+        text-align:       center;
+        margin:           0 0 0 -15px;
+        height:           100%;
+        font-weight:      700;
+        padding:          0 5px;
+        z-index:          99;
+        align-items:      center;
+        display:          flex;
+        justify-content:  center;
+    }
+
+    .firm_hidden {
+        display: none;
+    }
+
+    .bwselwrap2.hide_filter {
+        display: none;
+    }
+
+    .bwselwrap2.hide_filter.flex {
+        display: flex !important;
+    }
+
+    #bwhowmany label.btn.btn-continue {
+        background-color: #0e1936;
+        border-color:     #091022;
+        width:            100% !important;
+    }
 
     .ev_ln_filter .filter-panel__apply {
-      z-index: 4;
-      padding: 14px 15px;
-      bottom: 0;
-      background-color: #fff;
-      max-width: 280px;
-      display: block;
-      position: sticky;
+        z-index:          4;
+        padding:          14px 15px;
+        bottom:           0;
+        background-color: #fff;
+        max-width:        280px;
+        display:          block;
+        position:         sticky;
     }
-  .ev_ln_filter span.ev_ln_filter-label {
 
-    text-align: left !important;
-  }
-
-  @media only screen and (min-width: 992px){
-    .ev_ln_filter .filter-panel__apply {
-      display: none !important;
+    .ev_ln_filter span.ev_ln_filter-label {
+        text-align: left !important;
     }
-  }
-  
-  
-  <?php
-  $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-  if (strpos($url,'posturite') !== false)
-  {
-?>
-.block-content .ev_ln_filter_options_title {
-    margin-top: 20px !important;
-}
-   .ev_ln_filter .ev_ln_filter_title {
-   
-    padding-bottom: 0;
-}
-dl#narrow-by-list {
-  
-    margin-bottom: 0px;
-}
-          .hide_moby.adbcat2 {
-    font-size: 13px;
-    padding-bottom: 10px;
-    font-weight: 600;
-    margin-top: 26px;
-    display: none;
-}
-.ev_ln_filter_options_title {
-    margin-top: 20px !important;
-}
-.ev_ln_filter dt.ev_ln_filter_options_title {
- 
-   
-}
-.ev_ln_filter dd.ev_ln_filter-options-content {
-    margin: 0;
-    padding-bottom: 0;
-}
-               h1#page-title-heading {
-    text-align: center;
-}
-.minimal-price .price {
- 
-    font-size: 1rem;
-}
-  .ev_ln_filter span.ev_ln_count {
-   letter-spacing: 0.5px;
-   margin-left: auto;
-   color: #a7a8aa;
-   font-weight: 300;
-   padding-left: 5px;
-   padding-right: 5px;
-}
 
-
-label.ac-facet__label.ac-facet__label--default.checkbox__label a {
-   color: black;
-}
-dl#narrow-by-list {
-   margin-top: 14px;
-}
-
-.ev_ln_filter .ev_ln_filter_state ol.ev_ln_items {
-    border: 1px solid #235E4B;
-}
-.ev_ln_filter a.ev_ln_action.remove {
-
-    color: #235E4B;
+    @media only screen and (min-width: 992px) {
+        .ev_ln_filter .filter-panel__apply {
+            display: none !important;
+        }
     }
-    li.ev_ln_item a {
-    color: #000;
-}
-a.ev_ln_filter_actions span {
-    color: #000;
-}
-<?php } ?>
+
+
+    <?php
+    $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+    // Moved to Theme
+    if (strpos($url, 'posturite') !== false) {
+        ?>
+
+    <?php } ?>
 </style>
 <?php
 
-if(!$custom_page_title){
-  $custom_page_title = __('Filter By');
+if (!$custom_page_title) {
+    $custom_page_title = __('Filter By');
 }
 
 if ($block->canShowBlock()): ?>
-  <div class="ev_ln_filter">
-    <div class="ev_ln_filter_title"><strong>
-    
-    
-    <?= /* @escapeNotVerified */
-            $custom_page_title ?></strong> <?php if ($block->getLayer()->getState()->getFilters()): ?>
+    <div class="ev_ln_filter">
+        <div class="ev_ln_filter_title">
+            <strong><?= /* @escapeNotVerified */$custom_page_title ?></strong>
+            <?php if ($block->getLayer()->getState()->getFilters()) { ?>
+                <a href="<?= /* @escapeNotVerified */$block->getClearUrl() ?>" class="ev_ln_filter_actions">
+                    <span><?= /* @escapeNotVerified */__('Clear All') ?></span>
+                </a>
+            <?php } ?>
+            <div type="button" class="ev_ln_filter_close" data-el="filter-panel-close">
+                <span class="sr-only">close filter</span><span style="fill: currentcolor;"><svg width="1em" height="1em" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 64 512 512" class="icon"><path transform="scale(1, -1) translate(0, -512)" glyph-name="uniF1ED" unicode="" d="M285 192l222 225q6 6 5 13.5t-8 13t-16.5 4.5t-15.5 -7l-216 -219l-216 219q-6 6 -15.5 7t-16.5 -4.5t-8 -13t5 -13.5l222 -225l-222 -225q-6 -6 -5 -13.5t8 -13.5q6 -4 14 -4q11 0 18 7l216 219l216 -219q7 -7 18 -7q8 0 14 4q7 6 8 13.5t-5 13.5l-222 225v0z"></path></svg></span>
+            </div>
+        </div>
+        <div class="ev_ln_filter-content">
+
+            <?= $block->getChildHtml('state') ?>
 
 
-        <a href="<?= /* @escapeNotVerified */
-        $block->getClearUrl() ?>" class="ev_ln_filter_actions"><span><?= /* @escapeNotVerified */
-                __('Clear All') ?></span></a> <?php endif; ?>
-      <div type="button" class="ev_ln_filter_close" data-el="filter-panel-close">
-        <span class="sr-only">close filter</span><span style="fill: currentcolor;"><svg width="1em" height="1em" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 64 512 512" class="icon"><path transform="scale(1, -1) translate(0, -512)" glyph-name="uniF1ED" unicode="" d="M285 192l222 225q6 6 5 13.5t-8 13t-16.5 4.5t-15.5 -7l-216 -219l-216 219q-6 6 -15.5 7t-16.5 -4.5t-8 -13t5 -13.5l222 -225l-222 -225q-6 -6 -5 -13.5t8 -13.5q6 -4 14 -4q11 0 18 7l216 219l216 -219q7 -7 18 -7q8 0 14 4q7 6 8 13.5t-5 13.5l-222 225v0z"></path></svg></span>
-      </div>
-    </div>
-    <div class="ev_ln_filter-content">
+            <?php $wrapOptions = false;
+            $filt_in = '';
+            $filt_ex = '';
+            $category = $block->getCurrentCategory();
+            if ($category) {
+                $filt_in = $category->getData('ev_landingpages_include_filters');
+                $filt_ex = $category->getData('ev_landingpages_exclude_filters');
+                if ($category->getId() == '33') {
+                    $filt_in = 'filter_rating,bunk_bed_type,bed_material_2,storage_bed_type,choose_size,colour_filter,base_type,ladder_position,splits_into_two,matching_furniture';
+                }
+                if ($category->getId() == '66') {
+                    $filt_in = 'choose_size,bed_material_2,kids_bed_type,bunk_bed_type,storage_bed_type,colour_filter,base_type,ladder_position,desk_position,play_tent,splits_into_two,matching_furniture,filter_rating';
+                }
+                if ($category->getId() == '47') {
+                    $filt_in = 'choose_size,bed_material_2,kids_bed_type,storage_bed_type,intergrated_tech,colour_filter,base_type,desk_position,ottoman_entry,filter_rating,bed_shape';
+                }
+                if ($category->getId() == '34') {
+                    $filt_in = 'choose_size,bed_material_2,storage_bed_type,bed_shape,colour_filter,base_type,splits_into_two,matching_furniture,filter_rating';
+                }
+                if ($category->getId() == '36') {
+                    $filt_in = 'choose_size,bed_material_2,storage_bed_type,bed_shape,colour_filter,base_type,splits_into_two,matching_furniture,filter_rating';
+                }
+                if ($category->getId() == '83') {
+                    $filt_in = 'choose_size,bed_material_2,storage_bed_type,bed_shape,intergrated_tech,colour_filter,base_type,ottoman_entry,filter_rating';
+                }
+                if ($category->getId() == '28') {
+                    $filt_in = 'choose_size,bed_material_2,storage_bed_type,bed_shape,intergrated_tech,colour_filter,base_type,splits_into_two,ottoman_entry,filter_rating';
+                }
+                if ($category->getId() == '81') {
+                    $filt_in = 'choose_size,bed_material_2,colour_filter,base_type,,filter_rating,matching_furniture,storage_bed_type';
+                }
+                if ($category->getId() == '89') {
+                    $filt_in = 'choose_size,bed_material_2,kids_bed_type,colour_filter,base_type,filter_rating';
+                }
+                if ($category->getId() == '154') {
+                    $filt_in = 'choose_size,bed_material_2,kids_bed_type,colour_filter,base_type,filter_rating';
+                }
+                if ($category->getId() == '8') {
+                    $filt_in = 'wardrobe_type,chest_of_drawers_type,number_of_drawers,number_of_doors,bed_material_2,colour_filter,filter_rating';
+                }
+                if ($category->getId() == '43') {
+                    $filt_in = 'bed_material_2,colour_filter';
+                }
+                if ($category->getId() == '35') {
+                    $filt_in = 'bed_material_2,colour_filter,filter_rating,sofa_size,seat_number,sofa_mechanism,storage_bed_type';
+                }
+                if ($category->getId() == '39') {
+                    $filt_in = 'colour_filter,filter_rating';
+                }
+                if ($category->getId() == '101') {
+                    $filt_in = 'choose_size,colour_filter,filter_rating';
+                }
+                if ($category->getId() == '22') {
+                    $filt_in = 'filter_rating,choose_size';
+                }
+                if ($category->getId() == '180') {
+                    $filt_in = 'choose_size,colour_filter,filter_rating';
+                }
+                if ($category->getId() == '191') {
+                    $filt_in = 'choose_size,filter_rating,price';
+                }
+                if ($category->getId() == '195') {
+                    $filt_in = 'choose_size,filter_rating,price';
+                }
+                if ($category->getId() == '5') {
+                    $filt_ex = 'bed_type_hmc,colour_filter,color';
+                }
+                if ($category->getId() == '41') {
+                    $filt_ex = 'structure';
+                }
+                if ($category->getId() == '49') {
+                    $filt_ex = 'structure';
+                }
+                if ($category->getId() == '11') {
+                    $filt_ex = 'primary_filling_2,additional_filling_2';
+                }
+                if ($category->getId() == '58') {
+                    $filt_ex = 'primary_filling_2';
+                }
+                if ($category->getId() == '63') {
+                    $filt_ex = 'additional_filling_2';
+                }
+                if ($category->getId() == '7') {
+                    $filt_ex = 'choose_mattress_filter,number_of_seats,sofa_size,sofa_mechanism';
+                }
+                if ($category->getId() == '36') {
+                    $filt_ex = 'choose_mattress_filter';
+                }
+                if ($category->getId() == '8') {
+                    $filt_ex = 'Kids_Beds_Type,Bunk_Bed_type,Choose_Size,Bed_Shape,Storage_Bed_type,ottoman_entry,Ladder_Position,Desk_position,Splits_Into_two';
+                }
 
-        <?= $block->getChildHtml('state') ?>
-
-
-        <?php $wrapOptions = false;
-        $filt_in = '';
-        $filt_ex = '';
-        $category = $block->getCurrentCategory();
-        if ($category) {
-            $filt_in = $category->getData('ev_landingpages_include_filters');
-            $filt_ex = $category->getData('ev_landingpages_exclude_filters');
-            if ($category->getId() == '33') {
-                $filt_in = 'filter_rating,bunk_bed_type,bed_material_2,storage_bed_type,choose_size,colour_filter,base_type,ladder_position,splits_into_two,matching_furniture';
-            }
-            if ($category->getId() == '66') {
-                $filt_in = 'choose_size,bed_material_2,kids_bed_type,bunk_bed_type,storage_bed_type,colour_filter,base_type,ladder_position,desk_position,play_tent,splits_into_two,matching_furniture,filter_rating';
-            }
-            if ($category->getId() == '47') {
-                $filt_in = 'choose_size,bed_material_2,kids_bed_type,storage_bed_type,intergrated_tech,colour_filter,base_type,desk_position,ottoman_entry,filter_rating,bed_shape';
-            }
-            if ($category->getId() == '34') {
-                $filt_in = 'choose_size,bed_material_2,storage_bed_type,bed_shape,colour_filter,base_type,splits_into_two,matching_furniture,filter_rating';
-            }
-            if ($category->getId() == '36') {
-                $filt_in = 'choose_size,bed_material_2,storage_bed_type,bed_shape,colour_filter,base_type,splits_into_two,matching_furniture,filter_rating';
-            }
-            if ($category->getId() == '83') {
-                $filt_in = 'choose_size,bed_material_2,storage_bed_type,bed_shape,intergrated_tech,colour_filter,base_type,ottoman_entry,filter_rating';
-            }
-            if ($category->getId() == '28') {
-                $filt_in = 'choose_size,bed_material_2,storage_bed_type,bed_shape,intergrated_tech,colour_filter,base_type,splits_into_two,ottoman_entry,filter_rating';
-            }
-            if ($category->getId() == '81') {
-                $filt_in = 'choose_size,bed_material_2,colour_filter,base_type,,filter_rating,matching_furniture,storage_bed_type';
-            }
-            if ($category->getId() == '89') {
-                $filt_in = 'choose_size,bed_material_2,kids_bed_type,colour_filter,base_type,filter_rating';
-            }
-            if ($category->getId() == '154') {
-                $filt_in = 'choose_size,bed_material_2,kids_bed_type,colour_filter,base_type,filter_rating';
-            }
-            if ($category->getId() == '8') {
-                $filt_in = 'wardrobe_type,chest_of_drawers_type,number_of_drawers,number_of_doors,bed_material_2,colour_filter,filter_rating';
-            }
-            if ($category->getId() == '43') {
-                $filt_in = 'bed_material_2,colour_filter';
-            }
-            if ($category->getId() == '35') {
-                $filt_in = 'bed_material_2,colour_filter,filter_rating,sofa_size,seat_number,sofa_mechanism,storage_bed_type';
-            }
-            if ($category->getId() == '39') {
-                $filt_in = 'colour_filter,filter_rating';
-            }
-            if ($category->getId() == '101') {
-                $filt_in = 'choose_size,colour_filter,filter_rating';
-            }
-            if ($category->getId() == '22') {
-                $filt_in = 'filter_rating,choose_size';
-            }
-            if ($category->getId() == '180') {
-                $filt_in = 'choose_size,colour_filter,filter_rating';
-            }
-            if ($category->getId() == '191') {
-                $filt_in = 'choose_size,filter_rating,price';
-            }
-            if ($category->getId() == '195') {
-                $filt_in = 'choose_size,filter_rating,price';
-            }
-            if ($category->getId() == '5') {
-                $filt_ex = 'bed_type_hmc,colour_filter,color';
-            }
-            if ($category->getId() == '41') {
-                $filt_ex = 'structure';
-            }
-            if ($category->getId() == '49') {
-                $filt_ex = 'structure';
-            }
-            if ($category->getId() == '11') {
-                $filt_ex = 'primary_filling_2,additional_filling_2';
-            }
-            if ($category->getId() == '58') {
-                $filt_ex = 'primary_filling_2';
-            }
-            if ($category->getId() == '63') {
-                $filt_ex = 'additional_filling_2';
-            }
-            if ($category->getId() == '7') {
-                $filt_ex = 'choose_mattress_filter,number_of_seats,sofa_size,sofa_mechanism';
-            }
-            if ($category->getId() == '36') {
-                $filt_ex = 'choose_mattress_filter';
-            }
-            if ($category->getId() == '8') {
-                $filt_ex = 'Kids_Beds_Type,Bunk_Bed_type,Choose_Size,Bed_Shape,Storage_Bed_type,ottoman_entry,Ladder_Position,Desk_position,Splits_Into_two';
-            }
-
-            /// landing page check -
-            ///
-            ///
-            ///
-            ///
-            $is_landing_page = $block->isLandingPage(); /*edit*/
-            if ($is_landing_page) {
-                $landingPage = $block->getLandingPageData();
-                $filt_in = $landingPage['include_filters'];
-                $filt_ex = $landingPage['exclude_filters'];
-
-            }
-
-
-
-        }
-        $accordian_count = 0;
-        $title_show_once_data = '';
-        $title_show_once = true;
-        $show_filter = true; ?> <?php foreach ($block->getFilters() as $filter): ?> <?php if (strtolower(__($filter->getName())) != 'category') {
-        $insert_category = trim(ucwords($filter->getLayer()->getCurrentCategory()->getName()));
-        if ($insert_category == 'The Best Beds') {
-            $insert_category = 'Beds';
-        }
-        $first_class = '';
-        if ($show_filter) {
-            $is_landing_page = $block->isLandingPage(); /*edit*/
-            if ($is_landing_page) {
-                $landingPage = $block->getLandingPageData();
-                if (isset($landingPage['page_title'])) {
-                    $insert_category = $landingPage['page_title'];
+                $is_landing_page = $block->isLandingPage(); /*edit*/
+                if ($is_landing_page) {
+                    $landingPage = $block->getLandingPageData();
+                    $filt_in = $landingPage['include_filters'];
+                    $filt_ex = $landingPage['exclude_filters'];
                 }
             }
-            if (strtolower($insert_category) == 'default category') {
-                $insert_category = '';
+            $accordian_count = 0;
+            $title_show_once_data = '';
+            $title_show_once = true;
+            $show_filter = true; ?>
+            <?php foreach ($block->getFilters() as $filter): ?>
+            <?php if (strtolower(__($filter->getName())) != 'category') {
+                $insert_category = trim(ucwords($filter->getLayer()->getCurrentCategory()->getName()));
+                if ($insert_category == 'The Best Beds') {
+                    $insert_category = 'Beds';
+                }
+                $first_class = '';
+                if ($show_filter) {
+                    $is_landing_page = $block->isLandingPage(); /*edit*/
+                    if ($is_landing_page) {
+                        $landingPage = $block->getLandingPageData();
+                        if (isset($landingPage['page_title'])) {
+                            $insert_category = $landingPage['page_title'];
+                        }
+                    }
+                    if (strtolower($insert_category) == 'default category') {
+                        $insert_category = '';
+                    }
+                    $first_class = 'first_refine';
+                    $title_show_once_data = '<div class="evlp-r-ct">Refine ' . $insert_category . ' By</div> ';
+                    $show_filter = false;
+                }
             }
-            $first_class = 'first_refine';
-            $title_show_once_data = ' <div style="clear:both;"></div><div class=" hide_moby adbcat2">Refine ' . $insert_category . ' By</div> ';
-            $show_filter = false;
-        }
-    }
-    if (!$wrapOptions): ?> <strong role="heading" aria-level="2" class="ev_ln_filter-subtitle"><?= /* @escapeNotVerified */
-        __($subtitle) ?></strong>
-      <dl class="ev_ln_filter_options" id="narrow-by-list">
+        if (!$wrapOptions): ?>
+            <strong role="heading" aria-level="2" class="ev_ln_filter-subtitle"><?= /* @escapeNotVerified */__($subtitle) ?></strong>
+
+            <dl class="ev_ln_filter_options" id="narrow-by-list">
+                <?php
+                $wrapOptions = true;
+                endif; ?>
+
+                <?php if ($filter->getItemsCount()) {
+                    if (strtolower(__($filter->getName())) == 'price') {
+                        continue;
+                    }
+
+                    if (strtolower(__($filter->getName())) == 'category') {
+                        $bob = $filter->getChildrenCount();
+                        $category_check = $filter->getLayer()->getCurrentCategory()->getId();
+                        if ($category_check == 6) {
+                            continue;
+                        }
+                    }
+                    $filt_att_code = ($filter->getRequestVar() != 'cat') ? $filter->getAttributeModel()->getAttributeCode() : $filter->getRequestVar();
+
+                    if ($filt_att_code) {
+                        if (!empty($filt_in)) {
+                            $filt_in_exp = explode(',', $filt_in);
+                            $filt_in_exp = array_flip($filt_in_exp);
+                            $break_out = false;
+                            if (!array_key_exists($filt_att_code, $filt_in_exp)) {
+                                if ($filter->getRequestVar() != 'cat') {
+                                    continue;
+                                }
+                            }
+                        }
+                        $filt_ex_exp = '';
+                        $filt_ex_exp = explode(',', $filt_ex);
+                        $break_out = false;
+                        foreach ($filt_ex_exp as $key => $val) {
+                            if (trim($val) == $filt_att_code) {
+                                $break_out = true;
+
+                                continue;
+                            }
+                        }
+                        if ($break_out) {
+                            continue;
+                        }
+                    }
+
+                    if ($title_show_once) {
+                        if (strtolower(__($filter->getName())) != 'category') {
+                            echo $title_show_once_data;
+                            $title_show_once = false;
+                        }
+                    }
+
+                    $filter_name_lower = strtolower($filter->getName());
+                    if ($filter_name_lower == 'firmness value') {
+                        $filterOutputFirm = '<dt role="heading" aria-level="3" class="ev_ln_filter_options_title">Mattress Firmness '.$filter_openclose_close.'</dt>';
+                        $filterOutputFirm .= '<dd class="firmness_wrap ev_ln_filter-options-content ev_accordian_open">';
+                        $filterOutputFirm .= '<div id="bodyweight_filter">';
+                        $filterOutputFirm .= '<div id="inject_firmness"></div>';
+                        $filterOutputFirm .= '<div id="firmness_rating_bottom">' . $block->getChildBlock('renderer')->render($filter) . '</div></div></dd>';
+
+                        $filterOutputFirm .= '</dd></div>';
+                        echo $filterOutputFirm; ?>
+
+                        <script type="text/javascript" data-po-cmp-ignore>
 
 
-          <?php $wrapOptions = true;
-          endif; ?> <?php if ($filter->getItemsCount()) {
-                            
-                       if (strtolower(__($filter->getName())) == 'price') {     
-                                          continue;
-                       }
-          
-              if (strtolower(__($filter->getName())) == 'category') {
-                  $bob = $filter->getChildrenCount();
-                  $category_check = $filter->getLayer()->getCurrentCategory()->getId();
-                  if ($category_check == 6) {
-                      continue;
-                  }
-              }
-              $filt_att_code = ($filter->getRequestVar() != 'cat') ? $filter->getAttributeModel()->getAttributeCode(): $filter->getRequestVar();
-              
-               
-              if ($filt_att_code) {
-                   
-
-                  if (!empty($filt_in)) {
-                      $filt_in_exp = explode(',', $filt_in);
-                      $filt_in_exp = array_flip($filt_in_exp);
-                      $break_out = false;
-                      if (!array_key_exists($filt_att_code, $filt_in_exp)) {
-                         if($filter->getRequestVar() != 'cat'){
-                          continue;
-                         }
-                      }
-                  }
-                  $filt_ex_exp = '';
-                  $filt_ex_exp = explode(',', $filt_ex);
-                  $break_out = false;
-                  foreach ($filt_ex_exp as $key => $val) {
-                      if (trim($val) == $filt_att_code) {
-                          $break_out = true;
-
-                          continue;
-                      }
-                  }
-                  if ($break_out) {
-                      continue;
-                  }
-              }
-              
-               if($title_show_once){ 
-           if (strtolower(__($filter->getName())) != 'category') {     
-          echo $title_show_once_data;
-          $title_show_once = false;
-          }
-          }
-          
-              $filter_name_lower = strtolower($filter->getName());
-               if ($filter_name_lower == 'firmness value') {
+                            var tS = new Date().getTime();
+                            var has_run = false;
+                            jQuery.ajax({
+                                url: '/ev_firmness/index/getbodyweightselects?t=' + tS,
+                                dataType: 'json',
+                                type: 'get',
+                                cache: 'false',
+                                success: function (data) {
+                                    jQuery('#inject_firmness').html(data.html);
+                                    var checkContents = setInterval(function () {
+                                        if (jQuery("#inject_firmness").length > 0 && !has_run) { // Check if element has been found
+                                            // There is a <p> element in here!!
+                                            //jQuery('#inject_firmness').html(data.html);
+                                            has_run = true;
+                                        }
+                                    }, 1000);
 
 
-                   $filterOutputFirm = '<dt role="heading" aria-level="3" class="ev_ln_filter_options_title">Mattress Firmness <span class="ev_ln_filter_chevron"><svg class="ac-icon ac-icon__arrow ac-icon__arrow--up ac-accordion__expand-chevron" width="20" height="18" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M23.23 6.173l.646.746a.5.5 0 0 1-.045.7l-11.5 10.254a.5.5 0 0 1-.665 0L.166 7.62a.5.5 0 0 1-.044-.701l.644-.743a.5.5 0 0 1 .71-.045l10.19 9.09a.5.5 0 0 0 .665 0L22.52 6.126a.5.5 0 0 1 .71.046z"></path></svg></span></dt>';
-                   $filterOutputFirm .= '<dd class="firmness_wrap ev_ln_filter-options-content ev_accordian_open">';
-                   $filterOutputFirm .= '<div id="bodyweight_filter">';
-                   $filterOutputFirm .= '<div id="inject_firmness"></div>';
-                $filterOutputFirm .= '<div id="firmness_rating_bottom">' . $block->getChildBlock('renderer')->render($filter) . '</div></div></dd>';
+                                }
+                            });
+                        </script><?php
+                    } else {
+                        $is_category = false;
+                        if ($filter_name_lower == 'category') {
+                            $is_category = true;
+                        }
+                        $accordian_count++;
+                        $default_accordian_state = 'ev_accordian_open';
+                        if ($menuDirection == 'horizontal' || $accordian_count > 9) {
+                            $default_accordian_state = 'ev_accordian_closed';
+                        }
 
-                   $filterOutputFirm .= '</dd></div>';
-                echo $filterOutputFirm;
-
-?>
-
-                 <script type="text/javascript" data-po-cmp-ignore>
-
-
-                     var tS=new Date().getTime();
-                     var has_run = false;
-                     jQuery.ajax({
-                         url: '/ev_firmness/index/getbodyweightselects?t='+tS,
-                         dataType: 'json',
-                         type: 'get',
-                         cache: 'false',
-                         success: function (data) {
-                             jQuery('#inject_firmness').html(data.html);
-                             var checkContents = setInterval(function(){
-                                 if (jQuery ("#inject_firmness").length > 0 && !has_run){ // Check if element has been found
-                                     // There is a <p> element in here!!
-                                     //jQuery('#inject_firmness').html(data.html);
-                                     has_run = true;
-                                 }
-                             },1000);
-
-
-
-
-                         }
-                     });
-                 </script>
-                   <?php
-               }
-
-
-              else {
-                  $is_category = false;
-                  if ($filter_name_lower == 'category') {
-                      $is_category = true;
-                  }
-                  $accordian_count++;
-                  $default_accordian_state = 'ev_accordian_open';
-                  if ($menuDirection == 'horizontal' || $accordian_count > 9) {
-                      $default_accordian_state = 'ev_accordian_closed';
-                  }
-
-                  $filter_name = $block->escapeHtml(__($filter->getName()));
-                  if($filter_name == 'filter_rating'){
-                  $filter_name = 'Customer Rating';
-                  }
-                  ?>
-                <dt role="heading" aria-level="3" class="ev_ln_filter_options_title"><?= $filter_name; ?>
-                  <span class="ev_ln_filter_chevron "><svg class="ac-icon ac-icon__arrow ac-icon__arrow--up ac-accordion__expand-chevron" width="20" height="18" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M23.23 6.173l.646.746a.5.5 0 0 1-.045.7l-11.5 10.254a.5.5 0 0 1-.665 0L.166 7.62a.5.5 0 0 1-.044-.701l.644-.743a.5.5 0 0 1 .71-.045l10.19 9.09a.5.5 0 0 0 .665 0L22.52 6.126a.5.5 0 0 1 .71.046z"></path></svg></span>
-                </dt>
-                <dd class="ev_ln_filter-options-content <?= $default_accordian_state; ?>"><?= /* @escapeNotVerified */
-              $block->getChildBlock('renderer')->render($filter) ?></dd><?php } ?><?php } ?> <?php endforeach; ?> <?php if ($wrapOptions): ?>
-      </dl><?php endif; ?>
-    <div class="filter-panel__apply">
-      <button class="button button--full" data-el="filter-panel__apply">View products</button>
+                        $filter_name = $block->escapeHtml(__($filter->getName()));
+                        if ($filter_name == 'filter_rating') {
+                            $filter_name = 'Customer Rating';
+                        } ?>
+                        <dt role="heading" aria-level="3" class="ev_ln_filter_options_title"><?= $filter_name; ?>
+                            <?= $filter_openclose_close; ?>
+                        </dt>
+                        <dd class="ev_ln_filter-options-content <?= $default_accordian_state; ?>"><?= /* @escapeNotVerified */
+                    $block->getChildBlock('renderer')->render($filter) ?></dd><?php
+                    } ?><?php
+                } ?> <?php endforeach; ?> <?php if ($wrapOptions): ?>
+            </dl><?php endif; ?>
+            <div class="filter-panel__apply">
+                <button class="button button--full" data-el="filter-panel__apply">View products</button>
+            </div>
+        </div>
     </div>
-    </div>
-  </div>
-  <div class="ev_ln_overlay"></div><?php endif; ?>
+    <div class="ev_ln_overlay"></div><?php endif; ?>
 
 
 
@@ -722,654 +598,487 @@ if ($block->canShowBlock()): ?>
 
 
 
-
-
-<?php 
-  if (strpos($url,'posturite') !== false)
-  {
-///posturite
-
-?>
-<div class="container">
-    <div class="row">
-  
 
 
 <?php
-$image_array[23]= 'https://www.posturite.co.uk/media/microsite_logo/websites/23/ACE.jpg';
-$image_array[26]= 'https://www.posturite.co.uk/media/microsite_logo/websites/26/AIG.jpg';
-$image_array[7]= 'https://www.posturite.co.uk/media/microsite_logo/websites/7/Arup.jpg';
-$image_array[29]= 'https://www.posturite.co.uk/media/microsite_logo/websites/29/Barclays.jpg';
-$image_array[32]= 'https://www.posturite.co.uk/media/microsite_logo/websites/32/Blank_Look.jpg';
-$image_array[8]= 'https://www.posturite.co.uk/media/microsite_logo/websites/8/Bloomberg.jpg';
-$image_array[11]= 'https://www.posturite.co.uk/media/microsite_logo/websites/11/Bupa.jpg';
-$image_array[34]= 'https://www.posturite.co.uk/media/microsite_logo/websites/34/DAC_Beachcroft.jpg';
-$image_array[41]= 'https://www.posturite.co.uk/media/microsite_logo/websites/41/Fidelity_1.jpg';
-$image_array[39]= 'https://www.posturite.co.uk/media/microsite_logo/websites/39/Financial_Ombudsman_Service.jpg';
-$image_array[22]= 'https://www.posturite.co.uk/media/microsite_logo/websites/22/Grant_Thornton.jpg';
-$image_array[27]= 'https://www.posturite.co.uk/media/microsite_logo/websites/27/Herbert_Smith_Freehills.jpg';
-$image_array[36]= 'https://www.posturite.co.uk/media/microsite_logo/websites/36/Latham_Watkins.jpg';
-$image_array[19]= 'https://www.posturite.co.uk/media/microsite_logo/websites/19/Marks_and_Spencer.jpg';
-//$image_array[4]= 'https://www.posturite.co.uk/media/microsite_logo/websites/4/Oracle.jpg';
-$image_array[21]= 'https://www.posturite.co.uk/media/microsite_logo/websites/21/Pinsent_Masons.jpg';
-$image_array[33]= 'https://www.posturite.co.uk/media/microsite_logo/websites/33/Roche_1.jpg';
-$image_array[15]= 'https://www.posturite.co.uk/media/microsite_logo/websites/15/Rolls-Royce.jpg';
-$image_array[28]= 'https://www.posturite.co.uk/media/microsite_logo/websites/28/Virgin_Media.jpg';
-$image_array[43]= 'https://www.posturite.co.uk/media/microsite_logo/websites/43/dla-piper-web-logo.jpg';
-$image_array[44]= 'https://www.posturite.co.uk/media/microsite_logo/websites/44/University_of_Exeter.jpg';
-$image_array[46]= 'https://www.posturite.co.uk/media/microsite_logo/websites/46/Bank-of-England.jpg';
-$image_array[47]= 'https://www.posturite.co.uk/media/microsite_logo/websites/47/Atos.jpg';
-$image_array[50]= 'https://www.posturite.co.uk/media/microsite_logo/websites/50/Capita.jpg';
-$image_array[53]= 'https://www.posturite.co.uk/media/microsite_logo/websites/53/simmons-logo_w-230px.jpg';
-$image_array[54]= 'https://www.posturite.co.uk/media/microsite_logo/websites/54/ashurst_logo_fuscia.jpg';
-$image_array[55]= 'https://www.posturite.co.uk/media/microsite_logo/websites/55/P-Tag2_Logo-230_2.gif';
-$image_array[56]= 'https://www.posturite.co.uk/media/microsite_logo/websites/56/Hastings-Direct.jpg';
-$image_array[57]= 'https://www.posturite.co.uk/media/microsite_logo/websites/57/chda-logo-230px.jpg';
-$image_array[59]= 'https://www.posturite.co.uk/media/microsite_logo/websites/59/td_logo_230px.jpg';
-$image_array[61]= 'https://www.posturite.co.uk/media/microsite_logo/websites/61/plymouth-university-logo-230px.jpg';
-$image_array[62]= 'https://www.posturite.co.uk/media/microsite_logo/websites/62/UAL-London-230px.gif';
-$image_array[63]= 'https://www.posturite.co.uk/media/microsite_logo/websites/63/Munich_Re-logo-230.gif';
-$image_array[65]= 'https://www.posturite.co.uk/media/microsite_logo/websites/65/bangor-university-230px.jpg';
-$image_array[67]= 'https://www.posturite.co.uk/media/microsite_logo/websites/67/new-logo-reach.png';
-$image_array[68]= 'https://www.posturite.co.uk/media/microsite_logo/websites/68/southern-water-logo-230.gif';
-$image_array[69]= 'https://www.posturite.co.uk/media/microsite_logo/websites/69/anglian-water-logo-230.gif';
-$image_array[70]= 'https://www.posturite.co.uk/media/microsite_logo/websites/70/glos-logo-230.gif';
-$image_array[71]= 'https://www.posturite.co.uk/media/microsite_logo/websites/71/nottingham-cc-web-logo.jpg';
-$image_array[72]= 'https://www.posturite.co.uk/media/microsite_logo/websites/72/wholesale-logo.jpg';
-$image_array[74]= 'https://www.posturite.co.uk/media/microsite_logo/websites/74/nu-newcastle_web-logo.jpg';
-$image_array[75]= 'https://www.posturite.co.uk/media/microsite_logo/websites/75/iansyst-logo-v2-230px.gif';
-$image_array[76]= 'https://www.posturite.co.uk/media/microsite_logo/websites/76/skanska-logo-230px.png';
-$image_array[77]= 'https://www.posturite.co.uk/media/microsite_logo/websites/77/deloitte-logo-230px.jpg';
-$image_array[78]= 'https://www.posturite.co.uk/media/microsite_logo/websites/78/integral-logo-230px.jpg';
-$image_array[79]= 'https://www.posturite.co.uk/media/microsite_logo/websites/79/directline-logo-230px.jpg';
-$image_array[80]= 'https://www.posturite.co.uk/media/microsite_logo/websites/80/Atos.jpg';
-$image_array[83]= 'https://www.posturite.co.uk/media/microsite_logo/websites/83/hs2-logo-230px.jpg';
-$image_array[84]= 'https://www.posturite.co.uk/media/microsite_logo/websites/84/ynap-logo-230px.gif';
-$image_array[85]= 'https://www.posturite.co.uk/media/microsite_logo/websites/85/innogy-logo-230px-v4.gif';
-$image_array[87]= 'https://www.posturite.co.uk/media/microsite_logo/websites/87/northants-pnn-logo-230px.jpg';
-$image_array[88]= 'https://www.posturite.co.uk/media/microsite_logo/websites/88/qbe-logo-230px.gif';
-$image_array[89]= 'https://www.posturite.co.uk/media/microsite_logo/websites/89/uk-power-networks-web-logo.jpg';
-$image_array[90]= 'https://www.posturite.co.uk/media/microsite_logo/websites/90/close-brothers-logo-230px.gif';
-$image_array[91]= 'https://www.posturite.co.uk/media/microsite_logo/websites/91/hsb-web-logo.jpg';
-$image_array[92]= 'https://www.posturite.co.uk/media/microsite_logo/websites/92/zurich-logo-230px.jpg';
-$image_array[93]= 'https://www.posturite.co.uk/media/microsite_logo/websites/93/amazon-logo-230px_1.jpg';
-$image_array[95]= 'https://www.posturite.co.uk/media/microsite_logo/websites/95/kent-county-council-230px.jpg';
-$image_array[96]= 'https://www.posturite.co.uk/media/microsite_logo/websites/96/BBanner-uai-258x121_1.png';
-$image_array[3]= 'https://www.posturite.co.uk/media/microsite_logo/websites/3/web-Posturite-Logo.png';
-$image_array[97]= 'https://www.posturite.co.uk/media/microsite_logo/websites/97/web-legal-aid-agency.jpg';
-$image_array[99]= 'https://www.posturite.co.uk/media/microsite_logo/websites/99/web_Arcadis_Logo.jpg';
-$image_array[100]= 'https://www.posturite.co.uk/media/microsite_logo/websites/100/web-BNP-Paribas_Logo.jpg';
-$image_array[102]= 'https://www.posturite.co.uk/media/microsite_logo/websites/102/web-maitland_logo.jpg';
-$image_array[103]= 'https://www.posturite.co.uk/media/microsite_logo/stores/103/connells-group-web-logo.jpg';
-$image_array[104]= 'https://www.posturite.co.uk/media/microsite_logo/websites/104/saga_logo.jpg';
-$image_array[106]= 'https://www.posturite.co.uk/media/microsite_logo/websites/106/cbam-logo.gif';
-$image_array[105]= 'https://www.posturite.co.uk/media/microsite_logo/websites/105/unilever.jpg';
-$image_array[107]= 'https://www.posturite.co.uk/media/microsite_logo/websites/107/asos.png';
-$image_array[108]= 'https://www.posturite.co.uk/media/microsite_logo/websites/108/water-plus-web-logo.jpg';
-$image_array[109]= 'https://www.posturite.co.uk/media/microsite_logo/websites/109/bnp-paribas-web-logo.jpg';
-$image_array[110]= 'https://www.posturite.co.uk/media/microsite_logo/websites/110/specsavers-web-logo.jpg';
-$image_array[111]= 'https://www.posturite.co.uk/media/microsite_logo/stores/111/police-crime-commisioner-west-mercia-web-logo.jpg';
-$image_array[112]= 'https://www.posturite.co.uk/media/microsite_logo/websites/112/asm-web-logo.jpg';
-$image_array[113]= 'https://www.posturite.co.uk/media/microsite_logo/websites/113/logo.png';
-$image_array[114]= 'https://www.posturite.co.uk/media/microsite_logo/websites/114/rbg_logo.jpg';
-$image_array[116]= 'https://www.posturite.co.uk/media/microsite_logo/websites/116/Mott-MacDonald-logo.png';
-$image_array[117]= 'https://www.posturite.co.uk/media/microsite_logo/websites/117/web-vow-logo.jpg';
-$image_array[115]= 'https://www.posturite.co.uk/media/microsite_logo/websites/115/wagstaff-logo.jpg';
-$image_array[120]= 'https://www.posturite.co.uk/media/microsite_logo/websites/120/LegalAndGeneral_Logo.png';
-$image_array[122]= 'https://www.posturite.co.uk/media/microsite_logo/websites/122/micro-focus-logo.jpg';
-$image_array[123]= 'https://www.posturite.co.uk/media/microsite_logo/websites/123/LOR-logo.jpg';
-$image_array[121]= 'https://www.posturite.co.uk/media/microsite_logo/websites/121/m-and-g-web-logo.png';
-$image_array[124]= 'https://www.posturite.co.uk/media/microsite_logo/websites/124/Logo.png';
-$image_array[129]= 'https://www.posturite.co.uk/media/microsite_logo/websites/129/mitsubishi-electric_web-logo.jpg';
-$image_array[130]= 'https://www.posturite.co.uk/media/microsite_logo/websites/130/balfour-beatty-logo_230px.jpg';
-$image_array[131]= 'https://www.posturite.co.uk/media/microsite_logo/websites/131/Roche_1.jpg';
-$image_array[132]= 'https://www.posturite.co.uk/media/microsite_logo/websites/132/hexcel_web-logo.jpg';
-$image_array[133]= 'https://www.posturite.co.uk/media/microsite_logo/websites/133/vaultex_web-logo.jpg';
-$image_array[134]= 'https://www.posturite.co.uk/media/microsite_logo/websites/134/agilisys_web-logo.jpg';
-$image_array[135]= 'https://www.posturite.co.uk/media/microsite_logo/websites/135/elevate_web-logo.jpg';
-$image_array[136]= 'https://www.posturite.co.uk/media/microsite_logo/websites/136/bae-systems_web-logo.jpg';
-$image_array[137]= 'https://www.posturite.co.uk/media/microsite_logo/websites/137/cms_web-logo.jpg';
-$image_array[138]= 'https://www.posturite.co.uk/media/microsite_logo/websites/138/willis-towers-web-logo.jpg';
-$image_array[139]= 'https://www.posturite.co.uk/media/microsite_logo/websites/139/iprs-health-web-logo.jpg';
-$image_array[140]= 'https://www.posturite.co.uk/media/microsite_logo/websites/140/aa-web-logo.jpg';
-$image_array[101]= 'https://www.posturite.co.uk/media/microsite_logo/websites/101/public-health-web-logo_1.jpg';
-$image_array[141]= 'https://www.posturite.co.uk/media/microsite_logo/websites/141/AXA.png';
-$image_array[142]= 'https://www.posturite.co.uk/media/microsite_logo/websites/142/novartis-web-logo.jpg';
-$image_array[144]= 'https://www.posturite.co.uk/media/microsite_logo/websites/144/Capita.jpg';
-$image_array[145]= 'https://www.posturite.co.uk/media/microsite_logo/websites/145/historic-england_web-logo.jpg';
-$image_array[146]= 'https://www.posturite.co.uk/media/microsite_logo/websites/146/leonardo_web-logo.jpg';
-$image_array[147]= 'https://www.posturite.co.uk/media/microsite_logo/websites/147/vodaphone-web-logo.jpg';
-$image_array[148]= 'https://www.posturite.co.uk/media/microsite_logo/websites/148/crown-office-web-logo.jpg';
-$image_array[149]= 'https://www.posturite.co.uk/media/microsite_logo/websites/149/vertex_web-logo.jpg';
-$image_array[150]= 'https://www.posturite.co.uk/media/microsite_logo/websites/150/biogen-web-logo.png';
-$image_array[151]= 'https://www.posturite.co.uk/media/microsite_logo/websites/151/chubb_web-logo.jpg';
-$image_array[152]= 'https://www.posturite.co.uk/media/microsite_logo/websites/152/web-legal-aid-agency.jpg';
-$image_array[154]= 'https://www.posturite.co.uk/media/microsite_logo/websites/154/ukri-logo_230px.jpg';
-$image_array[152]= 'https://www.posturite.co.uk/media/microsite_logo/stores/152/bcg-web-logo.jpg';
-$image_array[155]= 'https://www.posturite.co.uk/media/microsite_logo/websites/155/lbg-logo_230px.jpg';
-$image_array[16]= 'https://rollsroyce.posturite.co.uk/media/microsite_logo/websites/15/Rolls-Royce.jpg';
+if (strpos($url, 'posturite') !== false) {?>
+    <div class="container">
+        <div class="row">
 
-
-
-?>
-
-<?php
-$store_name = 'Barclays';
-$main_category_id = '350';//this is the category for barclays
-
-
-
-$store_name = 'Rolls Royce';
-$main_category_id = '273';//this is the category for barclays
-
-
-
-
- $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$remove_category_full_product_range = false; //some number for exclusions somewhere in admin
-
-
-            $storeManager  = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
-
-
-$store_name = $storeManager->getStore()->getName();
-$store_id = $storeManager->getStore()->getId();
-      //echo "STORE=$store_id";
-if(array_key_exists($store_id, $image_array)){
- //echo '<img src="'.$image_array[$store_id].'" />"';
-
-}
-
-
-
-
-
-echo $this->getLayout()
-          ->createBlock('Magento\Cms\Block\Block')
-          ->setBlockId('cms_block')
-          ->toHtml();
-?>
-
-<style>
-
-    .block-account ul li.current a {
-        clear: both;
-        width: 100%;
-        display: block;
-        cursor: pointer;
-        padding: 0;
-        margin-top: 0;
-        border-bottom: none;
-        color: white;
-        background: #666666;
-        color: #ffffff;
-    }
-</style>
-
-<div class="block block-account" style="display:none;">
-    <div class="block-title">
-        <strong><span><?php echo $store_name." Products";  ?></span></strong>
-    </div>
-    <div class="block-content">
-        <?php //echo $this->getStateHtml() ?>
-
-
-        <ul>
-            <?php $_index = 1; ?>
 
             <?php
+            $image_array[23] = 'https://www.posturite.co.uk/media/microsite_logo/websites/23/ACE.jpg';
+                    $image_array[26] = 'https://www.posturite.co.uk/media/microsite_logo/websites/26/AIG.jpg';
+                    $image_array[7] = 'https://www.posturite.co.uk/media/microsite_logo/websites/7/Arup.jpg';
+                    $image_array[29] = 'https://www.posturite.co.uk/media/microsite_logo/websites/29/Barclays.jpg';
+                    $image_array[32] = 'https://www.posturite.co.uk/media/microsite_logo/websites/32/Blank_Look.jpg';
+                    $image_array[8] = 'https://www.posturite.co.uk/media/microsite_logo/websites/8/Bloomberg.jpg';
+                    $image_array[11] = 'https://www.posturite.co.uk/media/microsite_logo/websites/11/Bupa.jpg';
+                    $image_array[34] = 'https://www.posturite.co.uk/media/microsite_logo/websites/34/DAC_Beachcroft.jpg';
+                    $image_array[41] = 'https://www.posturite.co.uk/media/microsite_logo/websites/41/Fidelity_1.jpg';
+                    $image_array[39] = 'https://www.posturite.co.uk/media/microsite_logo/websites/39/Financial_Ombudsman_Service.jpg';
+                    $image_array[22] = 'https://www.posturite.co.uk/media/microsite_logo/websites/22/Grant_Thornton.jpg';
+                    $image_array[27] = 'https://www.posturite.co.uk/media/microsite_logo/websites/27/Herbert_Smith_Freehills.jpg';
+                    $image_array[36] = 'https://www.posturite.co.uk/media/microsite_logo/websites/36/Latham_Watkins.jpg';
+                    $image_array[19] = 'https://www.posturite.co.uk/media/microsite_logo/websites/19/Marks_and_Spencer.jpg';
+                    //$image_array[4]= 'https://www.posturite.co.uk/media/microsite_logo/websites/4/Oracle.jpg';
+                    $image_array[21] = 'https://www.posturite.co.uk/media/microsite_logo/websites/21/Pinsent_Masons.jpg';
+                    $image_array[33] = 'https://www.posturite.co.uk/media/microsite_logo/websites/33/Roche_1.jpg';
+                    $image_array[15] = 'https://www.posturite.co.uk/media/microsite_logo/websites/15/Rolls-Royce.jpg';
+                    $image_array[28] = 'https://www.posturite.co.uk/media/microsite_logo/websites/28/Virgin_Media.jpg';
+                    $image_array[43] = 'https://www.posturite.co.uk/media/microsite_logo/websites/43/dla-piper-web-logo.jpg';
+                    $image_array[44] = 'https://www.posturite.co.uk/media/microsite_logo/websites/44/University_of_Exeter.jpg';
+                    $image_array[46] = 'https://www.posturite.co.uk/media/microsite_logo/websites/46/Bank-of-England.jpg';
+                    $image_array[47] = 'https://www.posturite.co.uk/media/microsite_logo/websites/47/Atos.jpg';
+                    $image_array[50] = 'https://www.posturite.co.uk/media/microsite_logo/websites/50/Capita.jpg';
+                    $image_array[53] = 'https://www.posturite.co.uk/media/microsite_logo/websites/53/simmons-logo_w-230px.jpg';
+                    $image_array[54] = 'https://www.posturite.co.uk/media/microsite_logo/websites/54/ashurst_logo_fuscia.jpg';
+                    $image_array[55] = 'https://www.posturite.co.uk/media/microsite_logo/websites/55/P-Tag2_Logo-230_2.gif';
+                    $image_array[56] = 'https://www.posturite.co.uk/media/microsite_logo/websites/56/Hastings-Direct.jpg';
+                    $image_array[57] = 'https://www.posturite.co.uk/media/microsite_logo/websites/57/chda-logo-230px.jpg';
+                    $image_array[59] = 'https://www.posturite.co.uk/media/microsite_logo/websites/59/td_logo_230px.jpg';
+                    $image_array[61] = 'https://www.posturite.co.uk/media/microsite_logo/websites/61/plymouth-university-logo-230px.jpg';
+                    $image_array[62] = 'https://www.posturite.co.uk/media/microsite_logo/websites/62/UAL-London-230px.gif';
+                    $image_array[63] = 'https://www.posturite.co.uk/media/microsite_logo/websites/63/Munich_Re-logo-230.gif';
+                    $image_array[65] = 'https://www.posturite.co.uk/media/microsite_logo/websites/65/bangor-university-230px.jpg';
+                    $image_array[67] = 'https://www.posturite.co.uk/media/microsite_logo/websites/67/new-logo-reach.png';
+                    $image_array[68] = 'https://www.posturite.co.uk/media/microsite_logo/websites/68/southern-water-logo-230.gif';
+                    $image_array[69] = 'https://www.posturite.co.uk/media/microsite_logo/websites/69/anglian-water-logo-230.gif';
+                    $image_array[70] = 'https://www.posturite.co.uk/media/microsite_logo/websites/70/glos-logo-230.gif';
+                    $image_array[71] = 'https://www.posturite.co.uk/media/microsite_logo/websites/71/nottingham-cc-web-logo.jpg';
+                    $image_array[72] = 'https://www.posturite.co.uk/media/microsite_logo/websites/72/wholesale-logo.jpg';
+                    $image_array[74] = 'https://www.posturite.co.uk/media/microsite_logo/websites/74/nu-newcastle_web-logo.jpg';
+                    $image_array[75] = 'https://www.posturite.co.uk/media/microsite_logo/websites/75/iansyst-logo-v2-230px.gif';
+                    $image_array[76] = 'https://www.posturite.co.uk/media/microsite_logo/websites/76/skanska-logo-230px.png';
+                    $image_array[77] = 'https://www.posturite.co.uk/media/microsite_logo/websites/77/deloitte-logo-230px.jpg';
+                    $image_array[78] = 'https://www.posturite.co.uk/media/microsite_logo/websites/78/integral-logo-230px.jpg';
+                    $image_array[79] = 'https://www.posturite.co.uk/media/microsite_logo/websites/79/directline-logo-230px.jpg';
+                    $image_array[80] = 'https://www.posturite.co.uk/media/microsite_logo/websites/80/Atos.jpg';
+                    $image_array[83] = 'https://www.posturite.co.uk/media/microsite_logo/websites/83/hs2-logo-230px.jpg';
+                    $image_array[84] = 'https://www.posturite.co.uk/media/microsite_logo/websites/84/ynap-logo-230px.gif';
+                    $image_array[85] = 'https://www.posturite.co.uk/media/microsite_logo/websites/85/innogy-logo-230px-v4.gif';
+                    $image_array[87] = 'https://www.posturite.co.uk/media/microsite_logo/websites/87/northants-pnn-logo-230px.jpg';
+                    $image_array[88] = 'https://www.posturite.co.uk/media/microsite_logo/websites/88/qbe-logo-230px.gif';
+                    $image_array[89] = 'https://www.posturite.co.uk/media/microsite_logo/websites/89/uk-power-networks-web-logo.jpg';
+                    $image_array[90] = 'https://www.posturite.co.uk/media/microsite_logo/websites/90/close-brothers-logo-230px.gif';
+                    $image_array[91] = 'https://www.posturite.co.uk/media/microsite_logo/websites/91/hsb-web-logo.jpg';
+                    $image_array[92] = 'https://www.posturite.co.uk/media/microsite_logo/websites/92/zurich-logo-230px.jpg';
+                    $image_array[93] = 'https://www.posturite.co.uk/media/microsite_logo/websites/93/amazon-logo-230px_1.jpg';
+                    $image_array[95] = 'https://www.posturite.co.uk/media/microsite_logo/websites/95/kent-county-council-230px.jpg';
+                    $image_array[96] = 'https://www.posturite.co.uk/media/microsite_logo/websites/96/BBanner-uai-258x121_1.png';
+                    $image_array[3] = 'https://www.posturite.co.uk/media/microsite_logo/websites/3/web-Posturite-Logo.png';
+                    $image_array[97] = 'https://www.posturite.co.uk/media/microsite_logo/websites/97/web-legal-aid-agency.jpg';
+                    $image_array[99] = 'https://www.posturite.co.uk/media/microsite_logo/websites/99/web_Arcadis_Logo.jpg';
+                    $image_array[100] = 'https://www.posturite.co.uk/media/microsite_logo/websites/100/web-BNP-Paribas_Logo.jpg';
+                    $image_array[102] = 'https://www.posturite.co.uk/media/microsite_logo/websites/102/web-maitland_logo.jpg';
+                    $image_array[103] = 'https://www.posturite.co.uk/media/microsite_logo/stores/103/connells-group-web-logo.jpg';
+                    $image_array[104] = 'https://www.posturite.co.uk/media/microsite_logo/websites/104/saga_logo.jpg';
+                    $image_array[106] = 'https://www.posturite.co.uk/media/microsite_logo/websites/106/cbam-logo.gif';
+                    $image_array[105] = 'https://www.posturite.co.uk/media/microsite_logo/websites/105/unilever.jpg';
+                    $image_array[107] = 'https://www.posturite.co.uk/media/microsite_logo/websites/107/asos.png';
+                    $image_array[108] = 'https://www.posturite.co.uk/media/microsite_logo/websites/108/water-plus-web-logo.jpg';
+                    $image_array[109] = 'https://www.posturite.co.uk/media/microsite_logo/websites/109/bnp-paribas-web-logo.jpg';
+                    $image_array[110] = 'https://www.posturite.co.uk/media/microsite_logo/websites/110/specsavers-web-logo.jpg';
+                    $image_array[111] = 'https://www.posturite.co.uk/media/microsite_logo/stores/111/police-crime-commisioner-west-mercia-web-logo.jpg';
+                    $image_array[112] = 'https://www.posturite.co.uk/media/microsite_logo/websites/112/asm-web-logo.jpg';
+                    $image_array[113] = 'https://www.posturite.co.uk/media/microsite_logo/websites/113/logo.png';
+                    $image_array[114] = 'https://www.posturite.co.uk/media/microsite_logo/websites/114/rbg_logo.jpg';
+                    $image_array[116] = 'https://www.posturite.co.uk/media/microsite_logo/websites/116/Mott-MacDonald-logo.png';
+                    $image_array[117] = 'https://www.posturite.co.uk/media/microsite_logo/websites/117/web-vow-logo.jpg';
+                    $image_array[115] = 'https://www.posturite.co.uk/media/microsite_logo/websites/115/wagstaff-logo.jpg';
+                    $image_array[120] = 'https://www.posturite.co.uk/media/microsite_logo/websites/120/LegalAndGeneral_Logo.png';
+                    $image_array[122] = 'https://www.posturite.co.uk/media/microsite_logo/websites/122/micro-focus-logo.jpg';
+                    $image_array[123] = 'https://www.posturite.co.uk/media/microsite_logo/websites/123/LOR-logo.jpg';
+                    $image_array[121] = 'https://www.posturite.co.uk/media/microsite_logo/websites/121/m-and-g-web-logo.png';
+                    $image_array[124] = 'https://www.posturite.co.uk/media/microsite_logo/websites/124/Logo.png';
+                    $image_array[129] = 'https://www.posturite.co.uk/media/microsite_logo/websites/129/mitsubishi-electric_web-logo.jpg';
+                    $image_array[130] = 'https://www.posturite.co.uk/media/microsite_logo/websites/130/balfour-beatty-logo_230px.jpg';
+                    $image_array[131] = 'https://www.posturite.co.uk/media/microsite_logo/websites/131/Roche_1.jpg';
+                    $image_array[132] = 'https://www.posturite.co.uk/media/microsite_logo/websites/132/hexcel_web-logo.jpg';
+                    $image_array[133] = 'https://www.posturite.co.uk/media/microsite_logo/websites/133/vaultex_web-logo.jpg';
+                    $image_array[134] = 'https://www.posturite.co.uk/media/microsite_logo/websites/134/agilisys_web-logo.jpg';
+                    $image_array[135] = 'https://www.posturite.co.uk/media/microsite_logo/websites/135/elevate_web-logo.jpg';
+                    $image_array[136] = 'https://www.posturite.co.uk/media/microsite_logo/websites/136/bae-systems_web-logo.jpg';
+                    $image_array[137] = 'https://www.posturite.co.uk/media/microsite_logo/websites/137/cms_web-logo.jpg';
+                    $image_array[138] = 'https://www.posturite.co.uk/media/microsite_logo/websites/138/willis-towers-web-logo.jpg';
+                    $image_array[139] = 'https://www.posturite.co.uk/media/microsite_logo/websites/139/iprs-health-web-logo.jpg';
+                    $image_array[140] = 'https://www.posturite.co.uk/media/microsite_logo/websites/140/aa-web-logo.jpg';
+                    $image_array[101] = 'https://www.posturite.co.uk/media/microsite_logo/websites/101/public-health-web-logo_1.jpg';
+                    $image_array[141] = 'https://www.posturite.co.uk/media/microsite_logo/websites/141/AXA.png';
+                    $image_array[142] = 'https://www.posturite.co.uk/media/microsite_logo/websites/142/novartis-web-logo.jpg';
+                    $image_array[144] = 'https://www.posturite.co.uk/media/microsite_logo/websites/144/Capita.jpg';
+                    $image_array[145] = 'https://www.posturite.co.uk/media/microsite_logo/websites/145/historic-england_web-logo.jpg';
+                    $image_array[146] = 'https://www.posturite.co.uk/media/microsite_logo/websites/146/leonardo_web-logo.jpg';
+                    $image_array[147] = 'https://www.posturite.co.uk/media/microsite_logo/websites/147/vodaphone-web-logo.jpg';
+                    $image_array[148] = 'https://www.posturite.co.uk/media/microsite_logo/websites/148/crown-office-web-logo.jpg';
+                    $image_array[149] = 'https://www.posturite.co.uk/media/microsite_logo/websites/149/vertex_web-logo.jpg';
+                    $image_array[150] = 'https://www.posturite.co.uk/media/microsite_logo/websites/150/biogen-web-logo.png';
+                    $image_array[151] = 'https://www.posturite.co.uk/media/microsite_logo/websites/151/chubb_web-logo.jpg';
+                    $image_array[152] = 'https://www.posturite.co.uk/media/microsite_logo/websites/152/web-legal-aid-agency.jpg';
+                    $image_array[154] = 'https://www.posturite.co.uk/media/microsite_logo/websites/154/ukri-logo_230px.jpg';
+                    $image_array[152] = 'https://www.posturite.co.uk/media/microsite_logo/stores/152/bcg-web-logo.jpg';
+                    $image_array[155] = 'https://www.posturite.co.uk/media/microsite_logo/websites/155/lbg-logo_230px.jpg';
+                    $image_array[16] = 'https://rollsroyce.posturite.co.uk/media/microsite_logo/websites/15/Rolls-Royce.jpg';
 
+                    $store_name = 'Barclays';
+                    $main_category_id = '350';//this is the category for barclays
 
-            $current_cat_id = false;
-          //  $cat_id  = $this->getData("category_id");
-            $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
-if($category){
-            $current_id = $category->getId();
-          //  if(isset($cat_id)){
-          //      $current_cat_id = $cat_id;
-          //  }else{
-                $current_cat_id = $current_id;
-}
-          //  }
+                    $store_name = 'Rolls Royce';
+                    $main_category_id = '273';//this is the category for barclays
 
+                    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                    $remove_category_full_product_range = false; //some number for exclusions somewhere in admin
 
-            $category_id = $main_category_id;
-            $i = 0 ;
+                    $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
 
+                    $store_name = $storeManager->getStore()->getName();
+                    $store_id = $storeManager->getStore()->getId();
 
+                    echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('cms_block')->toHtml();
+                    ?>
 
+            <style>
 
+                .block-account ul li.current a {
+                    clear:         both;
+                    width:         100%;
+                    display:       block;
+                    cursor:        pointer;
+                    padding:       0;
+                    margin-top:    0;
+                    border-bottom: none;
+                    background:    #666666;
+                    color:         #ffffff;
+                }
+            </style>
 
-$category = $objectManager->create('Magento\Catalog\Model\Category')->load($category_id);
-
-
-$subcategories = $category->getChildrenCategories();
-$cat_array = [];
-            $show_cat = '';
-$has_set = false;
-            $category_ids= [];
-if (count($subcategories) > 0){
-
-    foreach($subcategories as $subcategory){
-if(!$has_set){
-
-  $show_cat = $subcategory->getId();
-    $has_set = true;
-}
-
-
-$category_ids[] = $subcategory->getId();
-       if($subcategory->getIsActive() == 1){
-       $cat_array[$subcategory->getId()] = $subcategory->getRequestPath();
-       }
-
-    }
-}
-
-
-
-            foreach($cat_array AS $name => $link){
-
-
-
-
-
-$Category_detail = $objectManager->create('Magento\Catalog\Model\Category')->load($name);
-
-
-              //  $Category_detail=Mage::getModel('catalog/category')->load($name);
-                //
-                //                                echo "<pre>";
-                //                                $Category_detail->g;
-                //                                print_r($Category_detail);
-                //                                die;
-
-
-
-
-                $categoryFactory = $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
-                $children = $categoryFactory->create()
-                                              ->addAttributeToSelect('*')
-                                              ->setStore($storeManager->getStore())
-                    ->addAttributeToFilter('parent_id', $Category_detail->getId())
-                    ->addAttributeToFilter('is_active', 1)//get only active categories if you want
-                    ->addAttributeToSort('position');//sort by position
-                //categories from current store will be fetched
-
-                ?>
-
-
-                <?php if(isset($current_cat_id) && $name == $current_cat_id){?>
-                    <li class="current">
-                        <strong><?php echo $Category_detail->getName();?></strong>
-                    </li>
+            <div class="block block-account" style="display:none;">
+                <div class="block-title">
+                    <strong><span><?php echo $store_name . " Products"; ?></span></strong>
+                </div>
+                <div class="block-content">
                     <ul>
+                        <?php $_index = 1; ?>
+
                         <?php
 
-                        foreach ($children as $_category){
-                            if($_category->getIsActive())
-
-                                $catId = $_category->getId();
-                            $caturl     = $_category->getURL();
-                            $catname     = $_category->getName();
-                            $catcont = $_category->getProductCount();
-                            if($_category->getImageUrl())
-                            {
-                                $catimg     = $_category->getImageUrl();
-                            }
-
-                            if($current_cat_id == $catId){
-                                $showClass = 'current';
-                            }
-                            echo '<li class="'.$showClass.'"><a style="padding-left:30px;" href="'.$caturl.'" title="View the products for this category"><img src="'.$catimg.'" alt="" />'.$catname.' </a></li>';
-
+                        $current_cat_id = false;
+                    //  $cat_id  = $this->getData("category_id");
+                        $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+                        if ($category) {
+                            $current_id = $category->getId();
+                            //  if(isset($cat_id)){
+                            //      $current_cat_id = $cat_id;
+                            //  }else{
+                            $current_cat_id = $current_id;
                         }
+                    //  }
 
-                        ?>
-                    </ul>
-                <?php }elseif(($current_cat_id == '71' && $i==0) || ($current_cat_id == $category_id && $i==0) ){ ?>
-                    <li class="current 2">
-                        <strong><?php echo $Category_detail->getName();?></strong>
-                    </li>
-                    <ul>
-                        <?php
+                    $category_id = $main_category_id;
+                    $i = 0;
 
-                        foreach ($children as $_category){
-                            if($_category->getIsActive())
-                                $catId = $_category->getId();
+                    $category = $objectManager->create('Magento\Catalog\Model\Category')->load($category_id);
 
-                            $caturl     = $_category->getURL();
-                            $catname     = $_category->getName();
-                            $catcont = $_category->getProductCount();
-                            if($_category->getImageUrl())
-                            {
-                                $catimg     = $_category->getImageUrl();
+                    $subcategories = $category->getChildrenCategories();
+                    $cat_array = [];
+                    $show_cat = '';
+                    $has_set = false;
+                    $category_ids = [];
+                    if (count($subcategories) > 0) {
+                        foreach ($subcategories as $subcategory) {
+                            if (!$has_set) {
+                                $show_cat = $subcategory->getId();
+                                $has_set = true;
                             }
-                            if($current_cat_id == $catId){
-                                $showClass = 'current';
-                            }
-                            echo '<li class="'.$showClass.'"><a style="padding-left:30px;" href="'.$caturl.'" title="View the products for this category"><img src="'.$catimg.'" alt="" />'.$catname.' </a></li>';
 
+                            $category_ids[] = $subcategory->getId();
+                            if ($subcategory->getIsActive() == 1) {
+                                $cat_array[$subcategory->getId()] = $subcategory->getRequestPath();
+                            }
                         }
+                    }
 
-                        ?>
-                    </ul>
-                <?php } else{?>
-                    <li>
-                        <a href="<?php echo "/".$link?>"><?php echo $Category_detail->getName();?></a>
-                    </li>
-                    <ul>
-                        <?php
-                         $showClass = '';
-                         $caturl = '';
-                         $catimg = '';
-                         $catname = '';
-                        foreach ($children as $_category){
-                            if($_category->getIsActive())
-                                $catId = $_category->getId();
+                    foreach ($cat_array as $name => $link) {
+                        $Category_detail = $objectManager->create('Magento\Catalog\Model\Category')->load($name);
 
-                            $caturl     = $_category->getURL();
-                            $catname     = $_category->getName();
-                            $catcont = $_category->getProductCount();
-                            if($_category->getImageUrl())
-                            {
-                                $catimg     = $_category->getImageUrl();
-                            }
-                            if($current_cat_id == $catId){
-                                $showClass = 'current';
-                            }
-                            echo '<li class="'.$showClass.'"><a style="padding-left:30px;" href="'.$caturl.'" title="View the products for this category"><img src="'.$catimg.'" alt="" />'.$catname.' </a></li>';
+                        //  $Category_detail=Mage::getModel('catalog/category')->load($name);
+                        //
+                        //                                echo "<pre>";
+                        //                                $Category_detail->g;
+                        //                                print_r($Category_detail);
+                        //                                die;
 
-                        }
+                        $categoryFactory = $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+                        $children = $categoryFactory->create()->addAttributeToSelect('*')->setStore($storeManager->getStore())->addAttributeToFilter('parent_id', $Category_detail->getId())->addAttributeToFilter('is_active', 1)//get only active categories if you want
+                                                        ->addAttributeToSort('position');//sort by position
+                            //categories from current store will be fetched
 
-                        ?>
-                    </ul>
-                <?php } ?>
-                <?php
-                $i++;
-            }
-            ?>
-        </ul>
+                            ?>
 
 
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
-
-
-if($enable_full_product_range == 1 ){
-
-    ?>
-
-
-    <?php
- //   $categor=$this->getCurrentCategory()->getId();
-
-
-    $categor_cur = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
-
-   if($categor_cur){
-       $categor = $categor_cur->getId();
-   }
-
-
-    $_currentTitle = $category->getName(); ?>
-    <?php
-  //  if //(strlen($this->getLayout()->createBlock('cms/block')->setBlockId('CATLeft_'.$categor)->toHtml()) > 1): ?>
-  <!--  <div class="category-left-information block">
-        <div class="block-title"><strong><?php //echo $_currentTitle ?></strong></div>
-        <div class="block-content">
-            <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('CATLeft_'.$categor)->toHtml() ?>
-        </div>
-    </div>-->
-
-
- <?php 
-
-
-
-?>
-    <!-- List all categories and their second level subcategories -->
-<div class="full_product_range_filter ev_ln_filter"> 
-    <div class="ev_ln_filter_title"><strong>Full Product Range </strong></div>
-      <dl class="ev_ln_filter_options" id="narrow-by-list">
-      <div style="clear:both;"></div>
-
-        <div class=" hide_moby adbcat2">Refine Fully Upholstered Chairs By</div>
-
-        <div class="block-content">
-            <?php //$helper = $this->helper('catalog/category');
-            $helper = $objectManager->get('\Magento\Catalog\Helper\Category');
-            ?>
-            <?php //$categories = $this->getStoreCategories('id', true, false);
-            $storeId = 4;
-
-            if($storeManager->getStore()->getName() == "Airbus"){
-                $rootCategoryId = $storeManager->getStore($storeId)->getRootCategoryId();
-
-
-                 $categoryFactory = $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
-                $categories = $categoryFactory->create()
-                                              ->addAttributeToSelect('*')
-                                              ->setStore($storeManager->getStore())
-                                              ->addAttributeToFilter('path', array('like' => "1/{$rootCategoryId}/%"))
-                                              ->addAttributeToFilter('level', 2)
-                                              ->addAttributeToFilter('entity_id',array('nin' => array(156,165)))
-                                              ->addAttributeToSort('position');//sort by position
-
-            } else{
-                $rootCategoryId = $storeManager->getStore($storeId)->getRootCategoryId();
-
-             $categoryFactory = $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
-                $categories = $categoryFactory->create()
-                                              ->addAttributeToSelect('*')
-                                              ->setStore($storeManager->getStore())
-                                              ->addAttributeToFilter('path', array('like' => "1/{$rootCategoryId}/%"))
-                                              ->addAttributeToFilter('level', 2)
-
-                                              ->addAttributeToSort('position');//sort by position
-
-            }
-
-            ?>
-            <?php if (count($categories) > 0): ?>
-
-
-              
-                    <?php foreach($categories as $category): ?>
-                        <!---for hiding some category-->
-
-
-                        <?php $multiIds = strpos($remove_category_full_product_range,',');?> <!--if multiple category ids pass then make array-->
-                        <?php
-                        if($multiIds >= 0){
-                            $catIds =  explode(',', $remove_category_full_product_range);
-                            $checkIds = in_array($category->getId(),$catIds);
-                            if($checkIds == 1){
-                                $catHideId = "True" ;
-                            }else{
-                                $catHideId = "False";
-                            }
-                        }else{ //check if single category id has passed for hide
-                            if($category->getId() == $remove_category_full_product_range){
-                                $catHideId = "True" ;
-                            }else{
-                                $catHideId = "False";
-                            }
-                            $catIds =  $remove_category_full_product_range;
-                        }
-                        ?>
-
-                        <?php if($category->getIncludeInMenu() && $catHideId == "False"):?> <!---add condition for ignoring some category on page --->
-                           
-                            <?php if(count($category->getChildrenCategories()) == 0){ ?>
-                         
-                         
-                         <dt role="heading" aria-level="3" class="ev_ln_filter_options_title"><?php echo $this->escapeHtml($category->getName()) ?>
-    <span class="ev_ln_filter_chevron "><svg class="ac-icon ac-icon__arrow ac-icon__arrow--up ac-accordion__expand-chevron" width="20" height="18" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M23.23 6.173l.646.746a.5.5 0 0 1-.045.7l-11.5 10.254a.5.5 0 0 1-.665 0L.166 7.62a.5.5 0 0 1-.044-.701l.644-.743a.5.5 0 0 1 .71-.045l10.19 9.09a.5.5 0 0 0 .665 0L22.52 6.126a.5.5 0 0 1 .71.046z"></path></svg></span>
-    </dt>
-                              <!--  <a href="<?php echo "".$category->getUrl() ?>"><span class="category-nav-title"></span></a>
-                              -->
-                            <?php } else { ?>
-                              
-                                                <dt role="heading" aria-level="3" class="ev_ln_filter_options_title"><?php echo $this->escapeHtml($category->getName()) ?>
-    <span class="ev_ln_filter_chevron "><svg class="ac-icon ac-icon__arrow ac-icon__arrow--up ac-accordion__expand-chevron" width="20" height="18" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M23.23 6.173l.646.746a.5.5 0 0 1-.045.7l-11.5 10.254a.5.5 0 0 1-.665 0L.166 7.62a.5.5 0 0 1-.044-.701l.644-.743a.5.5 0 0 1 .71-.045l10.19 9.09a.5.5 0 0 0 .665 0L22.52 6.126a.5.5 0 0 1 .71.046z"></path></svg></span>
-    </dt>
-                            <?php } ?>
-
-                            <?php //if ($this->isCategoryActive($category)): ?>
-                            <?php $subcategories = $category->getChildrenCategories(); ?>
-
-                            <?php //echo $subcategories->getIncludeInMenu().'1' ;?>
-
-                            <?php if ((count($subcategories) > 0)): ?>
-                             
-                                         <dd class="ev_ln_filter-options-content ev_accordian_open">
-    
-
-                              <ol class="ev_ln_items posturite">
-                                    <?php foreach($subcategories as $subcategory): ?>
-                                    <?php if(!in_array($subcategory->getId(),$catIds)){?>
+                            <?php if (isset($current_cat_id) && $name == $current_cat_id) { ?>
+                                <li class="current">
+                                    <strong><?php echo $Category_detail->getName(); ?></strong>
+                                </li>
+                                <ul>
                                     <?php
 
+                                    foreach ($children as $_category) {
+                                        if ($_category->getIsActive()) {
+                                            $catId = $_category->getId();
+                                        }
+                                        $caturl = $_category->getURL();
+                                        $catname = $_category->getName();
+                                        $catcont = $_category->getProductCount();
+                                        if ($_category->getImageUrl()) {
+                                            $catimg = $_category->getImageUrl();
+                                        }
+
+                                        if ($current_cat_id == $catId) {
+                                            $showClass = 'current';
+                                        }
+                                        echo '<li class="' . $showClass . '"><a style="padding-left:30px;" href="' . $caturl . '" title="View the products for this category"><img src="' . $catimg . '" alt="" />' . $catname . ' </a></li>';
+                                    }
+
+                                    ?>
+                                </ul>
+                            <?php } elseif (($current_cat_id == '71' && $i == 0) || ($current_cat_id == $category_id && $i == 0)) { ?>
+                                <li class="current 2">
+                                    <strong><?php echo $Category_detail->getName(); ?></strong>
+                                </li>
+                                <ul>
+                                    <?php
+
+                                    foreach ($children as $_category) {
+                                        if ($_category->getIsActive()) {
+                                            $catId = $_category->getId();
+                                        }
+
+                                        $caturl = $_category->getURL();
+                                        $catname = $_category->getName();
+                                        $catcont = $_category->getProductCount();
+                                        if ($_category->getImageUrl()) {
+                                            $catimg = $_category->getImageUrl();
+                                        }
+                                        if ($current_cat_id == $catId) {
+                                            $showClass = 'current';
+                                        }
+                                        echo '<li class="' . $showClass . '"><a style="padding-left:30px;" href="' . $caturl . '" title="View the products for this category"><img src="' . $catimg . '" alt="" />' . $catname . ' </a></li>';
+                                    }
+
+                                    ?>
+                                </ul>
+                            <?php } else { ?>
+                                <li>
+                                    <a href="<?php echo "/" . $link ?>"><?php echo $Category_detail->getName(); ?></a>
+                                </li>
+                                <ul>
+                                    <?php
+                                    $showClass = '';
+                                    $caturl = '';
+                                    $catimg = '';
+                                    $catname = '';
+                                    foreach ($children as $_category) {
+                                        if ($_category->getIsActive()) {
+                                            $catId = $_category->getId();
+                                        }
+
+                                        $caturl = $_category->getURL();
+                                        $catname = $_category->getName();
+                                        $catcont = $_category->getProductCount();
+                                        if ($_category->getImageUrl()) {
+                                            $catimg = $_category->getImageUrl();
+                                        }
+                                        if ($current_cat_id == $catId) {
+                                            $showClass = 'current';
+                                        }
+                                        echo '<li class="' . $showClass . '"><a style="padding-left:30px;" href="' . $caturl . '" title="View the products for this category"><img src="' . $catimg . '" alt="" />' . $catname . ' </a></li>';
+                                    }
+
+                                    ?>
+                                </ul>
+                            <?php } ?><?php
+                            $i++;
+                    } ?>
+                    </ul>
 
 
-
-$subcat = $objectManager->create('Magento\Catalog\Model\Category')->load($subcategory->getId());
-                                    //$subcat = Mage::getModel('catalog/category')->load($subcategory->getId()); ?>
-                                    <?php if($subcat->getIncludeInMenu()): ?>
-                                    <?php $current_cat_id =  $objectManager->get('Magento\Framework\Registry')->registry('current_category'); ?>
-                                    <?php //if($subcategory->getIncludeInMenu()): ?>
-                                    <?php if($current_cat_id == $subcategory->getId()){?>
-                                    
-                                    
-  
-      
-                                   
-                                              <li class="ev_ln_item posturite">
-          <label for="ev_ln_filter_" class="ac-facet__label ac-facet__label--default ">
-              <i class="fa fa-chevron-right"></i>
-<?php echo $this->escapeHtml(trim($subcategory->getName(), '- ')) ?>
-                
-               </label>
-                        </li>             
+                </div>
+            </div>
 
 
-                                      
-                                        <?php //endif; ?>
-                                        <?php }else{?>
-             
-    
-                  
-                                              <li class="ev_ln_item posturite">
-          <label for="ev_ln_filter_" class="ac-facet__label ac-facet__label--default ">
-              <i class="fa fa-chevron-right"></i>
-<a href="<?php echo "".$subcategory->getUrl() ?>"><?php echo $this->escapeHtml(trim($subcategory->getName(), '- ')) ?> </a>
-                
-               </label>
-                        </li>
-                                       <!-- <a href="<?php echo "".$subcategory->getUrl() ?>"><?php echo $this->escapeHtml(trim($subcategory->getName(), '- ')) ?> </a>-->
-                                        <?php }?>
-                                        <?php $secondLevelSubcategories = $subcategory->getChildren() ?>
-                                        <?php if ($secondLevelSubcategories): ?>
-                                             
-      
-                
-                                        
-               
-                                                <?php
-                                                
-                                                if(is_object($secondLevelSubcategories)){
-                                                 foreach($secondLevelSubcategories as $secondLevelSubcategory ): ?>
-                                             
-                                             
-                                              <li class="ev_ln_item posturite">
-          <label for="ev_ln_filter_" class="ac-facet__label ac-facet__label--default ">
-              <i class="fa fa-chevron-right"></i>
-                                                                       <a href="<?php echo $helper->getCategoryUrl($secondLevelSubcategory ) ?>"><?php echo $this->escapeHtml(trim($secondLevelSubcategory ->getName(), '- ')) ?></a>
-                
-               </label>
-                        </li>
-                          
+            <?php if ($enable_full_product_range == 1) {
+            $categor_cur = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+                if ($categor_cur) { $categor = $categor_cur->getId();}
+                $_currentTitle = $category->getName(); ?>
+
+            <!-- List all categories and their second level subcategories -->
+            <div class="full_product_range_filter ev_ln_filter">
+                <div class="ev_ln_filter_title"><strong>Full Product Range </strong></div>
+                <dl class="ev_ln_filter_options" id="narrow-by-list">
+                    <div class="evlp-r-ct">Refine Fully Upholstered Chairs By</div>
+
+                    <div class="block-content">
+                        <?php
+                        $helper = $objectManager->get('\Magento\Catalog\Helper\Category');
+                        //$categories = $this->getStoreCategories('id', true, false);
+                        $storeId = 4;
+
+                if ($storeManager->getStore()->getName() == "Airbus") {
+                    $rootCategoryId = $storeManager->getStore($storeId)->getRootCategoryId();
+                    $categoryFactory = $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+                    $categories = $categoryFactory->create()->addAttributeToSelect('*')->setStore($storeManager->getStore())->addAttributeToFilter('path', ['like' => "1/{$rootCategoryId}/%"])->addAttributeToFilter('level', 2)->addAttributeToFilter(
+                        'entity_id',
+                        ['nin' => [156,165]]
+                    )->addAttributeToSort('position');//sort by position
+                } else {
+                    $rootCategoryId = $storeManager->getStore($storeId)->getRootCategoryId();
+
+                    $categoryFactory = $objectManager->create('Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+                    $categories = $categoryFactory->create()->addAttributeToSelect('*')->setStore($storeManager->getStore())->addAttributeToFilter('path', ['like' => "1/{$rootCategoryId}/%"])->addAttributeToFilter('level', 2)->addAttributeToSort('position');//sort by position
+                } ?>
+                        <?php if (count($categories) > 0):
+                            foreach ($categories as $category):
+                               //for hiding some category
+
+ $multiIds = strpos($remove_category_full_product_range, ',');
+                            //if multiple category ids pass then make array-->
+
+                                if ($multiIds >= 0) {
+                                    $catIds = explode(',', $remove_category_full_product_range);
+                                    $checkIds = in_array($category->getId(), $catIds);
+                                    if ($checkIds == 1) {
+                                        $catHideId = "True";
+                                    } else {
+                                        $catHideId = "False";
+                                    }
+                                } else { //check if single category id has passed for hide
+                                    if ($category->getId() == $remove_category_full_product_range) {
+                                        $catHideId = "True";
+                                    } else {
+                                        $catHideId = "False";
+                                    }
+                                    $catIds = $remove_category_full_product_range;
+                                } ?>
+
+                                <?php if ($category->getIncludeInMenu() && $catHideId == "False"): ?> <!---add condition for ignoring some category on page --->
+
+                                    <?php if (count($category->getChildrenCategories()) == 0) { ?>
 
 
-                                                  
-                                                <?php  endforeach; }?>
-                  
-                                        <?php endif; ?>
-                                        <?php endif; ?>
-                                        <?php } ?>
-                                        <?php endforeach; ?> <!--end of subcat -->
-                                                   </ol>
-                                          
-    </dd>     
+                                        <dt role="heading" aria-level="3" class="ev_ln_filter_options_title"><?php echo $this->escapeHtml($category->getName()) ?>
+                                            <?= $filter_openclose_close; ?>
+                                        </dt><!--  <a href="<?php echo "" . $category->getUrl() ?>"><span class="category-nav-title"></span></a>
+                              -->
+                                    <?php } else { ?>
 
-                            <?php endif; ?>
+                                        <dt role="heading" aria-level="3" class="ev_ln_filter_options_title"><?php echo $this->escapeHtml($category->getName()) ?>
+                                            <?= $filter_openclose_close; ?>
+                                        </dt>
+                                    <?php } ?>
+
+                                    <?php //if ($this->isCategoryActive($category)):?><?php $subcategories = $category->getChildrenCategories(); ?>
+
+                                    <?php //echo $subcategories->getIncludeInMenu().'1' ;?>
+
+                                    <?php if ((count($subcategories) > 0)): ?>
+
+                                        <dd class="ev_ln_filter-options-content ev_accordian_open">
+
+
+                                            <ol class="ev_ln_items posturite">
+                                                <?php foreach ($subcategories as $subcategory): ?><?php if (!in_array($subcategory->getId(), $catIds)) { ?><?php
+
+                                                    $subcat = $objectManager->create('Magento\Catalog\Model\Category')->load($subcategory->getId());
+                                                    //$subcat = Mage::getModel('catalog/category')->load($subcategory->getId());?><?php if ($subcat->getIncludeInMenu()): ?><?php $current_cat_id = $objectManager->get('Magento\Framework\Registry')->registry('current_category'); ?><?php //if($subcategory->getIncludeInMenu()):?><?php if ($current_cat_id == $subcategory->getId()) { ?>
+
+
+                                                        <li class="ev_ln_item posturite">
+                                                            <label for="ev_ln_filter_" class="ac-facet__label ac-facet__label--default ">
+                                                                <i class="fa fa-chevron-right"></i>
+                                                                <?php echo $this->escapeHtml(trim($subcategory->getName(), '- ')) ?>
+
+                                                            </label>
+                                                        </li>
+
+
+                                                        <?php //endif;?><?php } else { ?>
+
+
+                                                        <li class="ev_ln_item posturite">
+                                                            <label for="ev_ln_filter_" class="ac-facet__label ac-facet__label--default ">
+                                                                <i class="fa fa-chevron-right"></i>
+                                                                <a href="<?php echo "" . $subcategory->getUrl() ?>"><?php echo $this->escapeHtml(trim($subcategory->getName(), '- ')) ?> </a>
+
+                                                            </label>
+                                                        </li><!-- <a href="<?php echo "" . $subcategory->getUrl() ?>"><?php echo $this->escapeHtml(trim($subcategory->getName(), '- ')) ?> </a>-->
+                                                    <?php } ?><?php $secondLevelSubcategories = $subcategory->getChildren() ?><?php if ($secondLevelSubcategories): ?>
+
+
+                                                        <?php
+
+                                                        if (is_object($secondLevelSubcategories)) {
+                                                            foreach ($secondLevelSubcategories as $secondLevelSubcategory): ?>
+
+
+                                                                <li class="ev_ln_item posturite">
+                                                                    <label for="ev_ln_filter_" class="ac-facet__label ac-facet__label--default ">
+                                                                        <i class="fa fa-chevron-right"></i>
+                                                                        <a href="<?php echo $promotions_helper->getCategoryUrl($secondLevelSubcategory) ?>"><?php echo $this->escapeHtml(trim($secondLevelSubcategory->getName(), '- ')) ?></a>
+
+                                                                    </label>
+                                                                </li>
+
+
+                                                            <?php endforeach;
+                                                        } ?>
+
+                                                    <?php endif; ?><?php endif; ?><?php } ?><?php endforeach; ?> <!--end of subcat -->
+                                            </ol>
+
+                                        </dd>
+
+                                    <?php endif; ?><?php endif; ?>
+
+                            <?php endforeach; ?>
+
+
                         <?php endif; ?>
-                       
-                    <?php endforeach; ?>
-              
 
-            <?php endif; ?>
+                </dl>
 
-      </dl>
+            </div>
 
+
+        </div>
+        <?php
+            } ?>
     </div>
 
-
-
-
-   
-
-    </div>
-    <?php } ?>
-</div>
-
-<?php } ?>
-
-
-
-
-
-
-
-
-
+<?php
+                } ?>
 
 
 <script>
-       
- jQuery('ol.make_showmore').each(function(){
-    var ul = jQuery(this),
-        lis = ul.find('li:gt(<?= $show_more_number; ?>)'),
-        isExpanded = ul.hasClass('expanded');
-    lis[isExpanded ? 'show' : 'hide']();
-    
-    if(lis.length > 0){
-        ul
-            .append(jQuery('<li class="expand" style="text-align:right:text-decoration:underline;"><span>' + (isExpanded ? 'Show less' : 'Show more') + '</span></li>')
-            .click(function(event){
-                var isExpanded = ul.hasClass('expanded');
-                event.preventDefault();
-                jQuery(this).text(isExpanded ? 'Show more' : 'Show less');
-                ul.toggleClass('expanded');
-                lis.toggle();
-            }));
-    }
-});
+
+    jQuery('ol.make_showmore').each(function () {
+        var ul = jQuery(this),
+            lis = ul.find('li:gt(<?= $show_more_number; ?>)'),
+            isExpanded = ul.hasClass('expanded');
+        lis[isExpanded ? 'show' : 'hide']();
+
+        if (lis.length > 0) {
+            ul
+                .append(jQuery('<li class="expand" style="text-align:right:text-decoration:underline;"><span>' + (isExpanded ? 'Show less' : 'Show more') + '</span></li>')
+                    .click(function (event) {
+                        var isExpanded = ul.hasClass('expanded');
+                        event.preventDefault();
+                        jQuery(this).text(isExpanded ? 'Show more' : 'Show less');
+                        ul.toggleClass('expanded');
+                        lis.toggle();
+                    }));
+        }
+    });
     (function ($) {
 
         var MqL = 768;
@@ -1420,7 +1129,6 @@ $subcat = $objectManager->create('Magento\Catalog\Model\Category')->load($subcat
         });
 
 
-
         $('.ev_ln_filter_options_title').on('click', function (e) {
 
             var panelToggle = $(this).next('.ev_ln_filter-options-content');
@@ -1428,7 +1136,7 @@ $subcat = $objectManager->create('Magento\Catalog\Model\Category')->load($subcat
 
             var horizontal = false;
             e.preventDefault();
-            <?php if($menuDirection == 'horizontal'){ ?>
+            <?php if ($menuDirection == 'horizontal') { ?>
 
             horizontal = true;
             allPanels.hide();
@@ -1444,18 +1152,25 @@ $subcat = $objectManager->create('Magento\Catalog\Model\Category')->load($subcat
 
                 panelToggle.removeClass('ev_accordian_open');
                 panelToggle.addClass('ev_accordian_closed');
-                $(this).find('.ev_ln_filter_chevron').addClass('ev_ln_filter_chevron_closed');
+                $(this).find('.evlp-filter-openclose').addClass('evlp-filter-openclose-closed');
+
+                if ( $(this).find('.evlp-filter-openclose i').hasClass('fa-minus')) {
+                    $(this).find('.evlp-filter-openclose i').addClass('fa-plus').removeClass('fa-minus');
+                }
+
             } else {
                 if (horizontal) {
                     panelToggle.show();
                 } else {
                     panelToggle.slideDown();
                 }
-
+                if ( $(this).find('.evlp-filter-openclose i').hasClass('fa-plus')) {
+                    $(this).find('.evlp-filter-openclose i').addClass('fa-minus').removeClass('fa-plus');
+                }
 
                 panelToggle.removeClass('ev_accordian_closed');
                 panelToggle.addClass('ev_accordian_open');
-                $(this).find('.ev_ln_filter_chevron').removeClass('ev_ln_filter_chevron_closed');
+                $(this).find('.evlp-filter-openclose').removeClass('evlp-filter-openclose-closed');
             }
 
 
@@ -1469,7 +1184,7 @@ $subcat = $objectManager->create('Magento\Catalog\Model\Category')->load($subcat
             window.location.reload()
         }
     });
-    <?Php  ?>
+    <?php  ?>
 
 
     function ep_createCookie(name, value, days) {

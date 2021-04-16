@@ -72,5 +72,51 @@ if (strpos($url,'happybeds') !== false) {
         <li><a href="/blog/category/sleep-science/"><img class="cat-icon" src="https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/blog-icons/sleep-science-dark.svg" data-pagespeed-url-hash="2361792635" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"><br>Sleep Science</a></li>
     </ul>
 </div>
-<?php } ?>
+<?php }
+
+
+  
+if (strpos($url,'posturite') !== false) {
+?>
+<style>
+
+
+  #homepage-slider {
+    height:          auto;
+    background:      none;
+    background-size: cover;
+
+    margin:          0 auto;
+  }
+
+  .hide_mobile {
+    display: none
+  }
+
+  .hide_desktop {
+    display: block;
+  }
+
+  @media only screen and (max-width: 992px) {
+    .hide_mobile {
+      display: block !important;
+    }
+
+    .hide_desktop {
+      display: none !important;
+    }
+  }
+</style>
+<div id="homepage-slider">
+  <div class="homepage-shopnow-button" style="display:block; height:100%;">
+    <img alt="Explore our ergonomic home office gift guide" class="hide_desktop" src="/media/mageplaza/blog/posturite-blog-header-image-option-2-desktop.jpg" style="width: 100%;">
+    <img alt="Shop Now" class="hide_mobile" src="media/mageplaza/blog/blog-header-option-2-Mobile_2020.jpg" style="width: 100%;">
+  </a>
+</div>
+
+ <?php
+ 
+ }
+
+ ?>
 

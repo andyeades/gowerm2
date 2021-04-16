@@ -102,7 +102,7 @@ class Result extends \Magento\Framework\App\Action\Action
 
             if ($this->getRequest()->isAjax()) {
                 $navigation = $this->_view->getLayout()->getBlock('catalogsearch.leftnav');
-                $products   = $this->_view->getLayout()->getBlock('searchindex.result');
+                $products   = $this->_view->getLayout()->getBlock('search.result');
                 $result     = [
                   //  'products'   => $products->toHtml(),
                   //  'navigation' => $navigation->toHtml()

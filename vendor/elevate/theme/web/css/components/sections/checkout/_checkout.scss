@@ -1,14 +1,14 @@
-$co_payform_checkout_flex_display: flex !default;
-$co_payform_checkout_flex_direction: column !default;
+$co-payform-checkout-flex-display: flex !default;
+$co-payform-checkout-flex-direction: column !default;
 
-$co_payform_checkout_flex_children_flex: 0 1 auto !default;
+$co-payform-checkout-flex-children-flex: 0 1 auto !default;
 
-$chkout_badd_flex: 0 1 auto !default;
-$chkout_badd_order: 1 !default;
+$chkout-badd-flex: 0 1 auto !default;
+$chkout-badd-order: 1 !default;
 
-$opc_pay_order: 2 !default;
+$opc-pay-order: 2 !default;
 
-$opc_payadd_order: 3 !default;
+$opc-payadd-order: 3 !default;
 
 $opc-payadd-discount-code-display: false !default;
 
@@ -21,11 +21,11 @@ $singlecheckout-giftmessages-border-radius: $border-radius !default;
 
 
 
-$singlecheckout-giftmessagesorder_field_margin: 0 auto !default;
-$singlecheckout-giftmessagesorder_field_width: false !default;
+$singlecheckout-giftmessagesorder-field-margin: 0 auto !default;
+$singlecheckout-giftmessagesorder-field-width: false !default;
 
-$singlecheckout-giftmessagesorder_field_margin-desktop: 0 auto !default;
-$singlecheckout-giftmessagesorder_field_width-desktop: 100% !default;
+$singlecheckout-giftmessagesorder-field-margin-desktop: 0 auto !default;
+$singlecheckout-giftmessagesorder-field-width-desktop: 100% !default;
 
 
 
@@ -47,96 +47,100 @@ $singlecheckout-giftmessagesorder_field_width-desktop: 100% !default;
 
     }
     .gift-messages-order {
-        @include co(width, $singlecheckout-giftmessagesorder_field_width);
-        @include co(margin, $singlecheckout-giftmessagesorder_field_margin);
+        @include co(width, $singlecheckout-giftmessagesorder-field-width);
+        @include co(margin, $singlecheckout-giftmessagesorder-field-margin);
 
         @include min-screen($desktop-min) {
-            @include co(width, $singlecheckout-giftmessagesorder_field_width-desktop, $singlecheckout-giftmessagesorder_field_width);
-            @include co(margin, $singlecheckout-giftmessagesorder_field_margin-desktop, $singlecheckout-giftmessagesorder_field_margin);
+            @include co(width, $singlecheckout-giftmessagesorder-field-width-desktop, $singlecheckout-giftmessagesorder-field-width);
+            @include co(margin, $singlecheckout-giftmessagesorder-field-margin-desktop, $singlecheckout-giftmessagesorder-field-margin);
         }
     }
 }
 
 #co-payment-form .checkout-flex {
     display: flex;
-    flex-direction: $co_payform_checkout_flex_direction;
+    flex-direction: $co-payform-checkout-flex-direction;
 
     > div {
-        flex: $co_payform_checkout_flex_children_flex;
+        flex: $co-payform-checkout-flex-children-flex;
     }
 }
 
 .checkout-billing-address {
-    @include co(flex, $chkout_badd_flex, $co_payform_checkout_flex_children_flex);
-    order: $chkout_badd_order;
+    @include co(flex, $chkout-badd-flex, $co-payform-checkout-flex-children-flex);
+    @include co(order, $chkout-badd-order);
 }
 
 .opc-payment {
 
-    order: $opc_pay_order;
+    @include co(order, $opc-pay-order);
 }
 
 .opc-payment-additional {
-    @include co(order, $opc_payadd_order);
+    @include co(order, $opc-payadd-order);
     &.discount-code {
         @include co(display, $opc-payadd-discount-code-display);
     }
 }
 
 
-$chkout_findpostcode_btn_color: #FFFFFF !default;
-$chkout_findpostcode_btn_bg_color: #00acb6 !default;
-$chkout_findpostcode_btn_border_color: #00acb6 !default;
-$chkout_findpostcode_btn_border_radius_on: 1 !default;
-$chkout_findpostcode_btn_border_radius: 5px !default;
+$chkout-findpostcode-btn-color: #FFFFFF !default;
+$chkout-findpostcode-btn-bg-color: #00acb6 !default;
+$chkout-findpostcode-btn-border-color: #00acb6 !default;
+$chkout-findpostcode-btn-border-radius-on: 1 !default;
+$chkout-findpostcode-btn-border-radius: 5px !default;
 
-$chkout_findpostcode_btn_font_size: 0.75rem !default;
-$chkout_findpostcode_btn_font_weight: 500 !default;
-$chkout_findpostcode_btn_text_transform_on: 0 !default;
-$chkout_findpostcode_btn_text_transform: uppercase !default;
-
-
-$chkout_search_con_margin: 1rem 0 0 !default;
+$chkout-findpostcode-btn-font-size: 0.75rem !default;
+$chkout-findpostcode-btn-font-weight: 500 !default;
+$chkout-findpostcode-btn-text-transform-on: 0 !default;
+$chkout-findpostcode-btn-text-transform: uppercase !default;
 
 
-$chkout_btn_color: #FFFFFF !default;
-$chkout_btn_bg_color: #f0386c !default;
-$chkout_btn_border_color: #f0386c !default;
-$chkout_btn_border_radius_on: 1 !default;
-$chkout_btn_border_radius: 5px !default;
+$chkout-search-con-margin: 1rem 0 0 !default;
 
-$chkout_btn_alt_color: #FFFFFF !default;
-$chkout_btn_alt_bg_color: #00acb6 !default;
-$chkout_btn_alt_border_color: #00acb6 !default;
-$chkout_btn_border_radius_on: 1 !default;
-$chkout_btn_border_radius: 5px !default;
 
-$chkout_btn_font_weight: 500 !default;
-$chkout_btn_text_transform: false !default;
+$chkout-btn-color: #FFFFFF !default;
+$chkout-btn-bg-color: #f0386c !default;
+$chkout-btn-border-color: #f0386c !default;
+$chkout-btn-border-radius-on: 1 !default;
+$chkout-btn-border-radius: 5px !default;
 
-$chkout_btn_secondary_margin_top_desktop: 0 !default;
+$chkout-btn-alt-color: #FFFFFF !default;
+$chkout-btn-alt-bg-color: #00acb6 !default;
+$chkout-btn-alt-border-color: #00acb6 !default;
+$chkout-btn-border-radius-on: 1 !default;
+$chkout-btn-border-radius: 5px !default;
+
+$chkout-btn-font-weight: 500 !default;
+$chkout-btn-text-transform: false !default;
+
+$chkout-btn-secondary-margin-top-desktop: 0 !default;
 
 .action.multicheckout {
 
 }
 
-$chkout_action_checkout_fontsize: false !default;
-$chkout_action_checkout_font_weight: false !default;
-$chkout_action_checkout_border_radius: false !default;
-$chkout_action_checkout_text_transform: false !default;
-$chkout_action_checkout_padding: false !default;
+$checkout-checkout-agreement-label-margin: 0 !default;
+
+$chkout-action-checkout-fontsize: false !default;
+$chkout-action-checkout-font-weight: false !default;
+$chkout-action-checkout-border-radius: false !default;
+$chkout-action-checkout-text-transform: false !default;
+$chkout-action-checkout-padding: false !default;
+
+
 
 #checkout {
     .action {
-        @include co(font-weight, $chkout_btn_font_weight);
-        @include co(border-radius, $chkout_btn_border_radius);
-        @include co(text-transform, $chkout_btn_text_transform);
+        @include co(font-weight, $chkout-btn-font-weight);
+        @include co(border-radius, $chkout-btn-border-radius);
+        @include co(text-transform, $chkout-btn-text-transform);
         &.checkout {
-            @include co(font-size, $chkout_action_checkout_fontsize);
-            @include co(font-weight, $chkout_action_checkout_font_weight);
-            @include co(border-radius, $chkout_action_checkout_border_radius);
-            @include co(text-transform, $chkout_action_checkout_text_transform);
-            @include co(padding, $chkout_action_checkout_padding);
+            @include co(font-size, $chkout-action-checkout-fontsize);
+            @include co(font-weight, $chkout-action-checkout-font-weight);
+            @include co(border-radius, $chkout-action-checkout-border-radius);
+            @include co(text-transform, $chkout-action-checkout-text-transform);
+            @include co(padding, $chkout-action-checkout-padding);
 
             font-weight: 700;
             text-transform: uppercase;
@@ -148,8 +152,13 @@ $chkout_action_checkout_padding: false !default;
     .secondary {
         a.action {
             @include min-screen($desktop-min) {
-                margin-top: $chkout_btn_secondary_margin-top_desktop;
+                margin-top: $chkout-btn-secondary-margin-top-desktop;
             }
+        }
+    }
+    .checkout-agreement {
+        label {
+            @include co(margin, $checkout-checkout-agreement-label-margin);
         }
     }
 }
@@ -163,77 +172,77 @@ $chkout_action_checkout_padding: false !default;
 
         .search-bar {
             button {
-                font-size: $chkout_findpostcode_btn_font_size;
-                font-weight: $chkout_findpostcode_btn_font_weight;
-                @include button-variant($chkout_findpostcode_btn_bg_color, $chkout_findpostcode_btn_border_color);
-                @if $chkout_findpostcode_btn_border_radius_on == 1 {
-                    border-radius: $chkout_findpostcode_btn_border_radius;
+              @include co(font-size, $chkout-findpostcode-btn-font-size);
+                @include co(font-weight, $chkout-findpostcode-btn-font-weight);
+                @include button-variant($chkout-findpostcode-btn-bg-color, $chkout-findpostcode-btn-border-color);
+                @if $chkout-findpostcode-btn-border-radius-on == 1 {
+                    border-radius: $chkout-findpostcode-btn-border-radius;
                 }
-                @if $chkout_findpostcode_btn_text_transform_on == 1 {
-                    text-transform: $chkout_findpostcode_btn_text_transform;
+                @if $chkout-findpostcode-btn-text-transform-on == 1 {
+                    @include co(text-transform, $chkout-findpostcode-btn-text-transform);
                 }
             }
         }
 
         .search-list {
-            margin: $chkout_search_con_margin;
+            @include co(margin, $chkout-search-con-margin);
         }
     }
 }
 
 
-$chkout_opc_continue_btn_color: #FFFFFF !default;
-$chkout_opc_continue_btn_bg_color: $action-primary-bg-color !default;
-$chkout_opc_continue_btn_border_color: $action-primary-border-color !default;
-$chkout_opc_continue_btn_border_radius_on: 1 !default;
-$chkout_opc_continue_btn_border_radius: 3px !default;
+$chkout-opc-continue-btn-color: #FFFFFF !default;
+$chkout-opc-continue-btn-bg-color: $action-primary-bg-color !default;
+$chkout-opc-continue-btn-border-color: $action-primary-border-color !default;
+$chkout-opc-continue-btn-border-radius-on: 1 !default;
+$chkout-opc-continue-btn-border-radius: 3px !default;
 
-$chkout_opc_continue_btn_font_weight: 600 !default;
+$chkout-opc-continue-btn-font-weight: 600 !default;
 
-$chkout_opc_continue_btn_text_transform_on: 1 !default;
-$chkout_opc_continue_btn_text_transform: uppercase !default;
+$chkout-opc-continue-btn-text-transform-on: 1 !default;
+$chkout-opc-continue-btn-text-transform: uppercase !default;
 
-$chkout_opc_continue_btn_font_size: 1rem !default;
-$chkout_opc_continue_btn_font_weight: 600 !default;
-$chkout_opc_continue_btn_padding: 0.9375rem 3.125rem !default;
-$chkout_opc_continue_btn_text-align: center !default;
+$chkout-opc-continue-btn-font-size: 1rem !default;
+$chkout-opc-continue-btn-font-weight: 600 !default;
+$chkout-opc-continue-btn-padding: 0.9375rem 3.125rem !default;
+$chkout-opc-continue-btn-text-align: center !default;
 
-$shp_meth_btns_con_margin: 0 auto !default;
-$shp_meth_btns_con_textalign: center !default;
+$shp-meth-btns-con-margin: 0 auto !default;
+$shp-meth-btns-con-textalign: center !default;
 
-$shp_meth_btns_con_pri_float: none !default;
+$shp-meth-btns-con-pri-float: none !default;
 
-$chkout_fieldset_legend_span_margin: 0 0 1rem 0 !default;
+$chkout-fieldset-legend-span-margin: 0 0 1rem 0 !default;
 
 #shipping-method-buttons-container {
-    margin: $shp_meth_btns_con_margin;
-    text-align: $shp_meth_btns_con_textalign;
+    @include co(margin, $shp-meth-btns-con-margin);
+    text-align: $shp-meth-btns-con-textalign;
 
     .primary {
-        float: $shp_meth_btns_con_pri_float;
+        float: $shp-meth-btns-con-pri-float;
     }
 
     .button.action.continue {
 
-        padding: $chkout_opc_continue_btn_padding;
-        font-size: $chkout_opc_continue_btn_font_size;
-        font-weight: $chkout_opc_continue_btn_font_weight;
+        @include co(padding, $chkout-opc-continue-btn-padding);
+      @include co(font-size, $chkout-opc-continue-btn-font-size);
+        @include co(font-weight, $chkout-opc-continue-btn-font-weight);
 
-        @if $chkout_opc_continue_btn_bg_color != $action-primary-bg-color and $chkout_opc_continue_btn_border_color != $action-primary-border-color {
-            @include button-variant($chkout_opc_continue_btn_bg_color, $chkout_opc_continue_btn_border_color);
+        @if $chkout-opc-continue-btn-bg-color != $action-primary-bg-color and $chkout-opc-continue-btn-border-color != $action-primary-border-color {
+            @include button-variant($chkout-opc-continue-btn-bg-color, $chkout-opc-continue-btn-border-color);
         }
 
 
-        @if $chkout_opc_continue_btn_border_radius_on == 1 {
-            @if $btn_global_border_radius_on == 1 {
-                @include co(border-radius, $chkout_opc_continue_btn_border_radius, $btn_global_border_radius);
+        @if $chkout-opc-continue-btn-border-radius-on == 1 {
+            @if $btn-global-border-radius-on == 1 {
+                @include co(border-radius, $chkout-opc-continue-btn-border-radius, $btn-global-border-radius);
             } @else {
-                border-radius: $chkout_opc_continue_btn_border_radius;
+                border-radius: $chkout-opc-continue-btn-border-radius;
             }
         }
 
-        @if $chkout_opc_continue_btn_text_transform_on == 1 {
-            text-transform: $chkout_opc_continue_btn_text_transform;
+        @if $chkout-opc-continue-btn-text-transform-on == 1 {
+            @include co(text-transform, $chkout-opc-continue-btn-text-transform);
         }
     }
 }
@@ -241,7 +250,7 @@ $chkout_fieldset_legend_span_margin: 0 0 1rem 0 !default;
 .checkout-fieldset-legend {
     span {
         @include abs-checkout-title();
-        margin-bottom: $chkout_fieldset_legend_span_margin;
+        margin-bottom: $chkout-fieldset-legend-span-margin;
         display: block;
     }
 }
@@ -256,20 +265,21 @@ $chkout_fieldset_legend_span_margin: 0 0 1rem 0 !default;
 
 $checkout-order-comments-order: 5 !default;
 $checkout-agreements-order: 10 !default;
-$checkout_order_comments_title_fontweight: 700 !default;
-$checkout_order_comments_title_fontsize: 0.9375rem !default;
-$checkout_order_comments_title_text_align: left !default;
-$checkout_order_comments_title_margin: 0 0 0.5rem 0 !default;
+$checkout-order-comments-title-fontweight: 700 !default;
+$checkout-order-comments-title-fontsize: 0.9375rem !default;
+$checkout-order-comments-title-text-align: left !default;
+$checkout-order-comments-title-margin: 0 0 0.5rem 0 !default;
 
-$order_comments_sub_font_style: italic !default;
-$order_comments_sub_font_size: 0.75rem !default;
-$order_comments_sub_line_height: 0.9375rem !default;
-$order_comments_sub_text_align: left !default;
-$order_comments_sub_margin_bottom: 0.8125rem !default;
+$order-comments-sub-font-style: italic !default;
+$order-comments-sub-font-size: 0.75rem !default;
+$order-comments-sub-line-height: 0.9375rem !default;
+$order-comments-sub-text-align: left !default;
+$order-comments-sub-margin-bottom: 0.8125rem !default;
 
-$checkout_agreement_label_button_margin: 0 0 0 0.75rem !default;
-$checkout_agreement_label_after_top_pos: 0 !default;
-$checkout_agreement_label_after_left_pos: -8px !default;
+$checkout-agreement-label-button-margin: false !default;
+$checkout-agreement-label-after-top-pos: 0 !default;
+$checkout-agreement-label-after-left-pos: -8px !default;
+
 .checkout-agreements-block {
     display: flex;
     flex-wrap: wrap;
@@ -282,24 +292,24 @@ $checkout_agreement_label_after_left_pos: -8px !default;
     .checkout-agreements-outer {
         width: 100%;
 
-        order: $checkout-agreements-order;
+        @include co(order, $checkout-agreements-order);
     }
 }
 
-$checkout_agreement_before_display: none !default;
-$checkout_agreement_before_padding: 0 !default;
-$checkout_agreement_before_width: 0 !default;
-$checkout_agreement_before_float: none !default;
-$checkout_agreement_before_height: auto !default;
+$checkout-agreement-before-display: none !default;
+$checkout-agreement-before-padding: 0 !default;
+$checkout-agreement-before-width: 0 !default;
+$checkout-agreement-before-float: none !default;
+$checkout-agreement-before-height: auto !default;
 .checkout-agreement {
     &:before {
-        @if $checkout_agreement_before_display != none {
-            padding: $checkout_agreement_before_padding !important;
-            width: $checkout_agreement_before_width !important;
-            float: $checkout_agreement_before_float !important;
-            height: $checkout_agreement_before_height !important;
+        @if $checkout-agreement-before-display != none {
+            @include co(padding, $checkout-agreement-before-padding !important);
+            @include co(width, $checkout-agreement-before-width !important);
+            float: $checkout-agreement-before-float !important;
+            height: $checkout-agreement-before-height !important;
         }
-        display: $checkout_agreement_before_display !important;
+        display: $checkout-agreement-before-display !important;
     }
 
     input {
@@ -311,19 +321,20 @@ $checkout_agreement_before_height: auto !default;
 
         &:after {
             margin-left: 0 !important;
-            left: $checkout_agreement_label_after_left_pos !important;
-            top: $checkout_agreement_label_after_top_pos !important;
+            left: $checkout-agreement-label-after-left-pos !important;
+            top: $checkout-agreement-label-after-top-pos !important;
         }
 
         button {
-            margin: $checkout_agreement_label_button_margin;
+            @include co(margin, $checkout-agreement-label-button-margin);
+
         }
     }
 }
 
 
 .checkout-order-comments {
-    order: $checkout-order-comments-order;
+    @include co(order, $checkout-order-comments-order);
 
     .comment-code {
         width: 100%;
@@ -344,19 +355,19 @@ $checkout_agreement_before_height: auto !default;
 
 
 .checkout-order-comments-title {
-    font-weight: $checkout_order_comments_title_fontweight;
-    font-size: $checkout_order_comments_title_fontsize;
-    text-align: $checkout_order_comments_title_text_align;
-    margin: $checkout_order_comments_title_margin;
+    @include co(font-weight, $checkout-order-comments-title-fontweight);
+  @include co(font-size, $checkout-order-comments-title-fontsize);
+    text-align: $checkout-order-comments-title-text-align;
+    @include co(margin, $checkout-order-comments-title-margin);
 }
 
 
 .order-comments-sub {
-    font-style: $order_comments_sub_font_style;
-    font-size: $order_comments_sub_font_size;
-    line-height: $order_comments_sub_line_height;
-    text-align: $order_comments_sub_text_align;
-    margin-bottom: $order_comments_sub_margin_bottom;
+    font-style: $order-comments-sub-font-style;
+  @include co(font-size, $order-comments-sub-font-size);
+    line-height: $order-comments-sub-line-height;
+    text-align: $order-comments-sub-text-align;
+    margin-bottom: $order-comments-sub-margin-bottom;
 }
 
 

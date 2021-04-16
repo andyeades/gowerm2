@@ -1,29 +1,30 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+
     <extension_attributes for="Magento\Quote\Api\Data\AddressInterface">
         <attribute code="delivery_date_selected" type="string"/>
         <attribute code="delivery_option_selected" type="string"/>
         <attribute code="delivery_area_selected" type="string"/>
-        <attribute code="delivery_selected_summarytext" type="string"/>
         <attribute code="detailed_delivery_info" type="string"/>
         <attribute code="detailed_delivery_info_dates" type="string"/>
         <attribute code="detailed_delivery_teamnumber" type="int"/>
         <attribute code="detailed_delivery_start_time" type="string"/>
         <attribute code="detailed_delivery_end_time" type="string"/>
         <attribute code="detailed_delivery_before_time" type="string"/>
+        <attribute code="delivery_selected_summarytext" type="string"/>
         <attribute code="ev_giftmessagemessage" type="string"/>
     </extension_attributes>
 
     <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
+        <attribute code="delivery_date_selected" type="string"/>
+        <attribute code="delivery_option_selected" type="string"/>
+        <attribute code="delivery_area_selected" type="string"/>
         <attribute code="detailed_delivery_info" type="string"/>
         <attribute code="detailed_delivery_info_dates" type="string"/>
         <attribute code="detailed_delivery_teamnumber" type="int"/>
         <attribute code="detailed_delivery_start_time" type="string"/>
         <attribute code="detailed_delivery_end_time" type="string"/>
         <attribute code="detailed_delivery_before_time" type="string"/>
-        <attribute code="delivery_date_selected" type="string"/>
-        <attribute code="delivery_option_selected" type="string"/>
-        <attribute code="delivery_area_selected" type="string"/>
         <attribute code="delivery_selected_summarytext" type="string"/>
         <attribute code="ev_giftmessagemessage" type="string"/>
     </extension_attributes>
@@ -41,13 +42,16 @@
         <attribute code="delivery_selected_summarytext" type="string"/>
         <attribute code="ev_giftmessagemessage" type="string"/>
     </extension_attributes>
+
     <extension_attributes for="Magento\Quote\Api\Data\CartInterface">
         <attribute code="detailed_delivery_info" type="string"/>
         <attribute code="detailed_delivery_info_dates" type="string"/>
         <attribute code="detailed_delivery_teamnumber" type="int"/>
         <attribute code="delivery_selected_summarytext" type="string"/>
+        <attribute code="delivery_date_selected" type="string"/>
         <attribute code="ev_giftmessagemessage" type="string"/>
     </extension_attributes>
+
     <extension_attributes for="Magento\Quote\Api\Data\CartItemInterface">
         <attribute code="handling_time" type="string"/>
         <attribute code="date_next_available" type="string"/>

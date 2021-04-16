@@ -1,13 +1,13 @@
 
 
 
-$include-checkout-selector_css: false !default;
+$include-checkout-selector-css: false !default;
 
-$checkout_btn_both_fontweight: 700 !default;
-$checkout_btn_both_textransform_on: 1 !default;
-$checkout_btn_both_textransform: uppercase !default;
-$checkout_btn_both_padding: 0.9375rem 1.25rem !default;
-$checkout_btn_both_fontsize: 0.875rem !default;
+$checkout-btn-both-fontweight: 700 !default;
+$checkout-btn-both-textransform-on: 1 !default;
+$checkout-btn-both-textransform: uppercase !default;
+$checkout-btn-both-padding: 0.9375rem 1.25rem !default;
+$checkout-btn-both-fontsize: 0.875rem !default;
 
 
 // Elevate Checkout Selector
@@ -83,7 +83,7 @@ $ev-checkoutselector-address-button-fontsize: false !default;
             padding: 1rem;
             border: 2px solid $theme-brand-color-1;
             border-radius: 10px;
-            color: $theme-brand-color-1;
+            @include co(color, $theme-brand-color-1);
             @include min-screen($desktop-min) {
                 @include co(width, $ev-checkoutselector-parceladdressiconouterouter-width-desktopmin, $ev-checkoutselector-parceladdressiconouterouter-width);
             }
@@ -224,12 +224,12 @@ $ev-checkoutselector-address-button-fontsize: false !default;
 
 .checkout-cart-index {
     .action.primary.checkout {
-        font-weight: $checkout_btn_both_fontweight;
-        @if $checkout_btn_both_textransform_on == 1 {
-            text-transform: $checkout_btn_both_textransform;
+        @include co(font-weight, $checkout-btn-both-fontweight);
+        @if $checkout-btn-both-textransform-on == 1 {
+            @include co(text-transform, $checkout-btn-both-textransform);
         }
-        padding: $checkout_btn_both_padding;
-        @include co(font-size, $checkout_btn_both_fontsize);
+        @include co(padding, $checkout-btn-both-padding);
+        @include co(font-size, $checkout-btn-both-fontsize);
 
     }
     .checkout-methods-items {

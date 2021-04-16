@@ -5,13 +5,13 @@
 
 //
 //  Variables
-//  _____________________________________________
+//
 
 $font-size-unit-convert: false; // Prevents font-related measurements from being converted to the incompatible rem unit
 
 //
 //  Resets
-//  ---------------------------------------------
+//
 
 //  Client-specific resets (from the Salted email template: https://github.com/rodriguezcommaj/salted)
 
@@ -41,39 +41,39 @@ td {
 
 //
 //  Typography
-//  ---------------------------------------------
+//
 
 a:visited {
-    color: $link__visited__color !important; // sass-lint:disable-line no-important
-    text-decoration: $link__visited__text-decoration !important; // sass-lint:disable-line no-important
+    @include co(color, $link-visited-color !important); // sass-lint:disable-line no-important
+    text-decoration: $link-visited-text-decoration !important; // sass-lint:disable-line no-important
 }
 
 a:hover {
-    color: $link__hover__color !important; // sass-lint:disable-line no-important
+    @include co(color, $link-hover-color !important); // sass-lint:disable-line no-important
 }
 
 a:active {
-    color: $link__active__color !important; // sass-lint:disable-line no-important
-    text-decoration: $link__active__text-decoration !important; // sass-lint:disable-line no-important
+    @include co(color, $link-active-color !important); // sass-lint:disable-line no-important
+    text-decoration: $link-active-text-decoration !important; // sass-lint:disable-line no-important
 }
 
 //  Remove link color on iOS
 .no-link a,
 .no-link-a {
-    color: $text__color !important; // sass-lint:disable-line no-important
+    @include co(color, $text-color !important); // sass-lint:disable-line no-important
     cursor: default !important; // sass-lint:disable-line no-important
     text-decoration: none !important; // sass-lint:disable-line no-important
 }
 
 //
 //  Layout
-//  ---------------------------------------------
+//
 //  Layout (Mobile)
-@include max-screen($screen__s) {
+@include max-screen($screen-s) {
     html,
     body {
         // Change background/foreground to same color
-        background-color: $email-content__background-color;
+        background-color: $email-content-background-color;
         width: 100% !important; // sass-lint:disable-line no-important
     }
 
@@ -86,18 +86,18 @@ a:active {
 
 //
 //  Buttons
-//  ---------------------------------------------
+//
 
 
 .button {
     .inner-wrapper {
         td:hover {
-            background-color: $button-primary__hover__background !important; // sass-lint:disable-line no-important
+            background-color: $button-primary-hover-background !important; // sass-lint:disable-line no-important
         }
 
         a:active,
         td:active {
-            background-color: $button-primary__active__background !important; // sass-lint:disable-line no-important
+            background-color: $button-primary-active-background !important; // sass-lint:disable-line no-important
         }
     }
 
@@ -105,20 +105,20 @@ a:active {
     a:hover,
     a:visited {
         //  Undo general link hover state
-        border: 1px solid $button-primary__hover__background;
-        color: $button-primary__color !important; // sass-lint:disable-line no-important
+        border: 1px solid $button-primary-hover-background;
+        @include co(color, $button-primary-color !important); // sass-lint:disable-line no-important
         text-decoration: none !important; // sass-lint:disable-line no-important
     }
 }
 
-@include max-screen($screen__xs) {
+@include max-screen($screen-xs) {
     .button {
         .inner-wrapper {
             width: 100% !important; // sass-lint:disable-line no-important
 
             td {
                 a {
-                    font-size: $button__font-size + 2;
+                  @include co(font-size, $button-font-size + 2);
                 }
             }
         }

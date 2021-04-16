@@ -12,16 +12,16 @@
         z-index: 5;
     }
     .title {
-        color: $collapsible-nav-title-color;
-        padding: $collapsible-nav-title-padding;
+        @include co(color, $collapsible-nav-title-color);
+        @include co(padding, $collapsible-nav-title-padding);
         @include max-screen($collapsible-nav-maxscreen) {
             @if $collapsible-nav-title-background-on == 1 {
                 background: $collapsible-nav-title-background;
             }
             margin-bottom: 0;
             @if $collapsible-nav-title-border-on == 1 {
-                border-bottom: $border-width--base solid $border-color--base;
-                border-top: $border-width--base solid $border-color--base;
+                border-bottom: $border-width-base solid $border-color-base;
+                border-top: $border-width-base solid $border-color-base;
             }
 
             cursor: pointer;
@@ -30,7 +30,7 @@
 
             &:after {
                 position: absolute;
-                right: $indent--s;
+                right: $indent-s;
                 //top: 0;
             }
 
@@ -76,7 +76,7 @@
         @include lib-css(background, $collapsible-nav-background);
         padding: 15px 0;
         @include max-screen($collapsible-nav-maxscreen) {
-            border-bottom: $border-width--base solid $border-color--base;
+            border-bottom: $border-width-base solid $border-color-base;
             display: none;
 
             &.active {

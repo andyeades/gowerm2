@@ -3,11 +3,11 @@
 //
 // Base styles
 //
-
+.action,
 .btn {
   display: inline-block;
   font-family: $btn-font-family;
-  font-weight: $btn-font-weight;
+  @include co(font-weight, $btn-font-weight);
   color: $body-color;
   text-align: center;
   white-space: $btn-white-space;
@@ -85,7 +85,7 @@ fieldset:disabled a.btn {
 
 // Make a button look and behave like a link
 .btn-link {
-  font-weight: $font-weight-normal;
+  @include co(font-weight, $font-weight-normal);
   color: $link-color;
   text-decoration: $link-decoration;
 

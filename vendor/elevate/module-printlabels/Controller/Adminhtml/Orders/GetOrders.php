@@ -47,10 +47,7 @@ class GetOrders extends \Magento\Backend\App\Action {
      */
     protected $scopeConfig;
 
-    /**
-     * @var \PrintNode\Credentials
-     */
-    protected $printNodeCredentials;
+
 
     /**
      * @var \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation
@@ -80,7 +77,7 @@ class GetOrders extends \Magento\Backend\App\Action {
      * @param \Magento\Sales\Model\Order                                 $orderModel
      * @param \Magento\Framework\Encryption\EncryptorInterface    $encryptorInterface
      * @param \Magento\Framework\App\Config\ScopeConfigInterface  $scopeConfig
-     * @param \PrintNode\Credentials                              $printNodeCredentials
+
      * @param \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation
      * @param \Elevate\PrintLabels\Helper\OrderData $orderHelper
      */
@@ -93,7 +90,7 @@ class GetOrders extends \Magento\Backend\App\Action {
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Magento\Framework\Encryption\EncryptorInterface $encryptorInterface,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \PrintNode\Credentials $printNodeCredentials,
+
         \Magento\Customer\Api\AddressRepositoryInterface $addressRepository,
         \Magento\Sales\Model\Order\AddressRepository $orderAddressRepository,
         \Magento\Sales\Api\OrderAddressRepositoryInterface $orderAddressRepo,
@@ -110,7 +107,7 @@ class GetOrders extends \Magento\Backend\App\Action {
         $this->accountManagement = $accountManagement;
         $this->encryptorInterface = $encryptorInterface;
         $this->scopeConfig = $scopeConfig;
-        $this->printNodeCredentials = $printNodeCredentials;
+
         $this->dpdAuthorisation = $dpdAuthorisation;
         $this->addressRepository = $addressRepository;
         $this->orderAddressRepository = $orderAddressRepository;

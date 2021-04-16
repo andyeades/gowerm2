@@ -1,47 +1,47 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
-	<system>
-		<section id="carriers" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1000" translate="label">
-			<group id="deliveryoption" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
-				<label>DeliveryOption</label>
-				<field id="active" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
-					<label>Enabled</label>
-					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-				</field>
-				<field id="name" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
-					<label>Method Name</label>
-				</field>
-				<field id="price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
-					<label>Price</label>
-					<validate>validate-number validate-zero-or-greater</validate>
-				</field>
-				<field id="sort_order" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
-					<label>Sort Order</label>
-				</field>
-				<field id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
-					<label>Title</label>
-				</field>
-				<field id="sallowspecific" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="select">
-					<label>Ship to Applicable Countries</label>
-					<frontend_class>shipping-applicable-country</frontend_class>
-					<source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
-				</field>
-				<field id="specificcountry" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70" translate="label" type="multiselect">
-					<label>Ship to Specific Countries</label>
-					<can_be_empty>1</can_be_empty>
-					<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
-				</field>
-				<field id="specificerrmsg" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="textarea">
-					<label>Displayed Error Message</label>
-				</field>
-			</group>
-		</section>
-		<section id="delivery_options" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
-			<label>delivery_options</label>
-			<tab>elevate</tab>
-			<resource>Elevate_Delivery::config_elevate_delivery</resource>
-			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
-				<label>general</label>
+    <system>
+        <section id="carriers" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1000" translate="label">
+            <group id="deliveryoption" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>DeliveryOption</label>
+                <field id="active" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="name" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+                    <label>Method Name</label>
+                </field>
+                <field id="price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
+                    <label>Price</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="sort_order" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+                    <label>Sort Order</label>
+                </field>
+                <field id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>Title</label>
+                </field>
+                <field id="sallowspecific" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="select">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70" translate="label" type="multiselect">
+                    <label>Ship to Specific Countries</label>
+                    <can_be_empty>1</can_be_empty>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+                <field id="specificerrmsg" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="textarea">
+                    <label>Displayed Error Message</label>
+                </field>
+            </group>
+        </section>
+        <section id="delivery_options" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Delivery Options</label>
+            <tab>elevate</tab>
+            <resource>Elevate_Delivery::config_elevate_delivery</resource>
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General</label>
                 <field id="debugmode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
                     <label>Front End Debug Mode Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -50,7 +50,7 @@
                     <label>Enable Debug Logging</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-			</group>
+            </group>
             <group id="cart" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
                 <label>Cart Options</label>
                 <field id="showgiftmessagenotice" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
@@ -73,7 +73,17 @@
                     <label>Automatically Select first Option on first Date</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="showpostcodenotdeliveredtomessage" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+                    <label>Show Postcode Not Delivered To Message?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="postcodenotdeliveredtomessage" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="21" translate="label" type="textarea">
+                    <label>Postcode Not Delivered To Message</label>
+                    <comment><![CDATA[Message which will appear upon entry of a postcode that is not delivered to. Make sure any postcode in here is actually not in an Area Config!. Can be HTML.]]></comment>
+                    <attribute type="rows">500</attribute>
+                    <frontend_class>extra-tall-textarea</frontend_class>
+                </field>
             </group>
-		</section>
-	</system>
+        </section>
+    </system>
 </config>

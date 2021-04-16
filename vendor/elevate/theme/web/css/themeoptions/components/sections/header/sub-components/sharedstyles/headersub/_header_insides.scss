@@ -1,139 +1,139 @@
 .hdr-in-mobile-left {
-    @include co(justify-content, $hdr_in_mobile_left_justifycontent);
-    @include co(align-items, $hdr_in_mobile_left_alignitems);
-    @include co(display, $hdr_in_mobile_left_display);
-    @include co(order, $hdr_in_mobile_left_order);
-    @include co(width, $hdr_in_mobile_left_width);
-    @include co(height, $hdr_in_mobile_left_height);
+    @include co(justify-content, $hdr-in-mobile-left-justifycontent);
+    @include co(align-items, $hdr-in-mobile-left-alignitems);
+    @include co(display, $hdr-in-mobile-left-display);
+    @include co(order, $hdr-in-mobile-left-order);
+    @include co(width, $hdr-in-mobile-left-width);
+    @include co(height, $hdr-in-mobile-left-height);
 
     > div {
 
-        @include co(justify-content, $hdr_in_mobile_left_div_justifycontent);
-        @include co(align-items, $hdr_in_mobile_left_div_alignitems);
-        @include co(display, $hdr_in_mobile_left_div_display);
-        @include co(order, $hdr_in_mobile_left_div_order);
-        @include co(width, $hdr_in_mobile_left_div_width);
-        @include co(flex, $hdr_in_mobile_left_div_flex);
-        @include co(height, $hdr_in_mobile_left_div_height);
+        @include co(justify-content, $hdr-in-mobile-left-div-justifycontent);
+        @include co(align-items, $hdr-in-mobile-left-div-alignitems);
+        @include co(display, $hdr-in-mobile-left-div-display);
+        @include co(order, $hdr-in-mobile-left-div-order);
+        @include co(width, $hdr-in-mobile-left-div-width);
+        @include co(flex, $hdr-in-mobile-left-div-flex);
+        @include co(height, $hdr-in-mobile-left-div-height);
         &:first-of-type {
-            @include co(margin, $hdr_in_mobile_left_div_firstoftype_margin);
+            @include co(margin, $hdr-in-mobile-left-div-firstoftype-margin);
         }
     }
 
     svg {
-        @include co(fill, $hdr_in_mobile_left_svg_fill);
+        @include co(fill, $hdr-in-mobile-left-svg-fill);
     }
 
     .hdr-mobile-menu-icon {
-        @include co(height, $hdr_mobile_menu_icon_height);
+        @include co(height, $hdr-mobile-menu-icon-height);
     }
 
     .hdr-mobile-search-icon {
-        @include co(height, $hdr_mobile_search_icon_height);
+        @include co(height, $hdr-mobile-search-icon-height);
     }
 
     @include min-screen($mobile-menu-notvisible) {
-        @include co(display, $hdr_in_mobile_left_display_mobilemenunotvisible);
+        @include co(display, $hdr-in-mobile-left-display-mobilemenunotvisible);
     }
 }
 
 .hdr-in-left {
 
-    @include co(justify-content, $hdr_in_left_justifycontent);
-    @include co(align-items, $hdr_in_left_alignitems);
-    @include co(display, $hdr_in_left_display);
-    @include co(order, $hdr_in_left_order);
-    @include co(width, $hdr_in_left_width);
-    @include co(height, $hdr_in_left_height);
+    @include co(justify-content, $hdr-in-left-justifycontent);
+    @include co(align-items, $hdr-in-left-alignitems);
+    @include co(display, $hdr-in-left-display);
+    @include co(order, $hdr-in-left-order);
+    @include co(width, $hdr-in-left-width);
+    @include co(height, $hdr-in-left-height);
 
 
     @include max-screen($mobile-menu-visible-max) {
-        @include co(display, $hdr_in_left_display_mobilemax);
+        @include co(display, $hdr-in-left-display-mobilemax);
     }
 
     @include min-screen($mobile-menu-notvisible) {
 
-        @include co(order, $hdr_in_left_order_mobilemenunotvisible, $hdr_in_left_order);
-        @include co(width, $hdr_in_left_width_desktop, $hdr_in_left_width);
+        @include co(order, $hdr-in-left-order-mobilemenunotvisible, $hdr-in-left-order);
+        @include co(width, $hdr-in-left-width-desktop, $hdr-in-left-width);
     }
 
 
-    @include min-screen($desktop_large_min) {
-        @include co(width, $hdr_in_left_width_desktop_large, $hdr_in_left_width_desktop, $hdr_in_left_width);
+    @include min-screen($desktop-large-min) {
+        @include co(width, $hdr-in-left-width-desktop-large, $hdr-in-left-width-desktop, $hdr-in-left-width);
     }
 
     > div {
-        @include co(flex, $hdr_in_left_div_flex);
+        @include co(flex, $hdr-in-left-div-flex);
 
     }
 
     .hdr-search-wrap {
-        @include co(flex, $hdr_search_wrap_flex_desktop, $hdr_in_left_div_flex);
+        @include co(flex, $hdr-search-wrap-flex-desktop, $hdr-in-left-div-flex);
     }
 }
 
 
 .hdr-in-center {
-    @include co(width, $hdr_in_center_width);
-    @include co(order, $hdr_in_center_order);
+    @include co(width, $hdr-in-center-width);
+    @include co(order, $hdr-in-center-order);
 
     @include max-screen($mobile-menu-visible-max) {
-        @include co(display, $hdr_in_center_display_mobilemax);
+        @include co(display, $hdr-in-center-display-mobilemax);
     }
-    @include min-screen($desktop_min) {
-        @include co(width, $hdr_in_center_width_desktop, $hdr_in_center_width);
+    @include min-screen($desktop-min) {
+        @include co(width, $hdr-in-center-width-desktop, $hdr-in-center-width);
     }
-    @include min-screen($desktop_md_min) {
-        @include co(width, $hdr_in_center_width_desktopmd, $hdr_in_center_width_desktop, $hdr_in_center_width);
+    @include min-screen($desktop-md-min) {
+        @include co(width, $hdr-in-center-width-desktopmd, $hdr-in-center-width-desktop, $hdr-in-center-width);
     }
 }
 
 
 .hdr-in-right {
 
-    @include co(justify-content, $hdr_in_right_justifycontent);
-    @include co(align-items, $hdr_in_right_alignitems);
-    @include co(display, $hdr_in_right_display);
-    @include co(order, $hdr_in_right_order);
-    @include co(width, $hdr_in_right_width);
+    @include co(justify-content, $hdr-in-right-justifycontent);
+    @include co(align-items, $hdr-in-right-alignitems);
+    @include co(display, $hdr-in-right-display);
+    @include co(order, $hdr-in-right-order);
+    @include co(width, $hdr-in-right-width);
 
 
     > div {
         flex: 0 1 auto;
         @include max-screen($mobile-menu-visible-max) {
-            @include co(display, $hdr_in_right_display_mobilemenumax);
-            @include co(align-items, $hdr_in_right_alignitems_mobilemenumax);
-            @include co(justify-content, $hdr_in_right_justifycontent_mobilemenumax);
+            @include co(display, $hdr-in-right-display-mobilemenumax);
+            @include co(align-items, $hdr-in-right-alignitems-mobilemenumax);
+            @include co(justify-content, $hdr-in-right-justifycontent-mobilemenumax);
         }
     }
 
 
     @include min-screen($mobile-menu-notvisible) {
-        @include co(justify-content, $hdr_in_right_justifycontent_desktop, $hdr_in_right_justifycontent);
-        @include co(width, $hdr_in_right_width_desktop, $hdr_in_right_width);
+        @include co(justify-content, $hdr-in-right-justifycontent-desktop, $hdr-in-right-justifycontent);
+        @include co(width, $hdr-in-right-width-desktop, $hdr-in-right-width);
     }
 
-    @include min-screen($desktop_large_min) {
-        @include co(width, $hdr_in_right_width_desktop_large, $hdr_in_right_width_desktop, $hdr_in_left_width);
+    @include min-screen($desktop-large-min) {
+        @include co(width, $hdr-in-right-width-desktop-large, $hdr-in-right-width-desktop, $hdr-in-left-width);
     }
 
 
 }
 
 .hdr-in-right {
-    @include co(width, $hdr_in_right_width);
-    @include co(order, $hdr_in_right_order);
+    @include co(width, $hdr-in-right-width);
+    @include co(order, $hdr-in-right-order);
 
 
     @include min-screen($mobile-menu-notvisible) {
-        @include co(width, $hdr_in_right_width_desktop, $hdr_in_right_width);
+        @include co(width, $hdr-in-right-width-desktop, $hdr-in-right-width);
     }
     @include min-screen($desktop-large-min) {
-        @include co(width, $hdr_in_right_width_desktop_large, $hdr_in_right_width_desktop, $hdr_in_right_width);
+        @include co(width, $hdr-in-right-width-desktop-large, $hdr-in-right-width-desktop, $hdr-in-right-width);
     }
 
-    @include co(align-items, $hdr_in_right_alignitems);
-    @include co(flex, $hdr_in_right_flex);
+    @include co(align-items, $hdr-in-right-alignitems);
+    @include co(flex, $hdr-in-right-flex);
 
     > div {
         flex: 0 1 auto;
@@ -151,14 +151,14 @@
 // Logo
 
 .hdr-logo-wrap {
-    @include co(width, $hdr_logo_wrap_width);
-    @include co(order, $hdr_logo_wrap_order);
+    @include co(width, $hdr-logo-wrap-width);
+    @include co(order, $hdr-logo-wrap-order);
     @include max-screen($mobile-menu-visible-max) {
-        @include co(width, $hdr_logo_wrap_width_mobilemax);
-        @include co(align-items, $hdr_logo_wrap_alignitems_mobilemax);
-        @include co(display, $hdr_logo_wrap_display_mobilemax);
-        @include co(justify-content, $hdr_logo_wrap_justifycontent_mobilemax);
-        @include co(margin, $hdr_logo_wrap_margin_mobilemax);
+        @include co(width, $hdr-logo-wrap-width-mobilemax);
+        @include co(align-items, $hdr-logo-wrap-alignitems-mobilemax);
+        @include co(display, $hdr-logo-wrap-display-mobilemax);
+        @include co(justify-content, $hdr-logo-wrap-justifycontent-mobilemax);
+        @include co(margin, $hdr-logo-wrap-margin-mobilemax);
     }
 }
 
@@ -166,82 +166,82 @@
 
 
 .hdr-search-wrap {
-    @include co(width, $hdr_search_wrap_width);
-    @include co(order, $hdr_search_wrap_order);
-    @include co(margin, $hdr_search_wrap_margin);
+    @include co(width, $hdr-search-wrap-width);
+    @include co(order, $hdr-search-wrap-order);
+    @include co(margin, $hdr-search-wrap-margin);
     @include max-screen($mobile-menu-visible-max) {
 
 
-        @include co(display, $hdr_search_wrap_display_mobilemax);
-        @include co(position, $hdr_search_wrap_position_mobilemax);
-        @include co(opacity, $hdr_search_wrap_opacity_mobilemax);
-        @include co(visibility, $hdr_search_wrap_visibility_mobilemax);
-        @include co(transition, $hdr_search_wrap_transition_mobilemax);
+        @include co(display, $hdr-search-wrap-display-mobilemax);
+        @include co(position, $hdr-search-wrap-position-mobilemax);
+        @include co(opacity, $hdr-search-wrap-opacity-mobilemax);
+        @include co(visibility, $hdr-search-wrap-visibility-mobilemax);
+        @include co(transition, $hdr-search-wrap-transition-mobilemax);
 
-        @include co(height, $hdr_search_wrap_height_mobilemax);
-        @include co(width, $hdr_search_wrap_width_mobilemax);
-        @include co(left, $hdr_search_wrap_left_mobilemax);
-        @include co(right, $hdr_search_wrap_right_mobilemax);
-        @include co(top, $hdr_search_wrap_top_mobilemax);
-        @include co(background-color, $hdr_search_wrap_backgroundcolor_mobilemax);
-        @include co(padding, $hdr_search_wrap_padding_mobilemax);
+        @include co(height, $hdr-search-wrap-height-mobilemax);
+        @include co(width, $hdr-search-wrap-width-mobilemax);
+        @include co(left, $hdr-search-wrap-left-mobilemax);
+        @include co(right, $hdr-search-wrap-right-mobilemax);
+        @include co(top, $hdr-search-wrap-top-mobilemax);
+        @include co(background-color, $hdr-search-wrap-backgroundcolor-mobilemax);
+        @include co(padding, $hdr-search-wrap-padding-mobilemax);
 
-        @include co(z-index, $hdr_search_wrap_zindex_mobilemax);
-        @include co(margin, $hdr_search_wrap_margin_mobilemax);
+        @include co(z-index, $hdr-search-wrap-zindex-mobilemax);
+        @include co(margin, $hdr-search-wrap-margin-mobilemax);
 
         > form {
-            @include co(padding, $hdr_search_wrap_form_padding_mobilemax);
+            @include co(padding, $hdr-search-wrap-form-padding-mobilemax);
             padding: 0 15px;
         }
         &.is-visible {
-            @include co(opacity, $hdr_search_wrap_isvisible_opacity_mobilemax);
-            @include co(visibility, $hdr_search_wrap_isvisible_visibility_mobilemax);
-            @include co(transition, $hdr_search_wrap_isvisible_transition_mobilemax);
+            @include co(opacity, $hdr-search-wrap-isvisible-opacity-mobilemax);
+            @include co(visibility, $hdr-search-wrap-isvisible-visibility-mobilemax);
+            @include co(transition, $hdr-search-wrap-isvisible-transition-mobilemax);
 
 
         }
         @include min-screen($mobile-menu-notvisible) {
-            @include co(width, $hdr_search_wrap_width_desktop, $hdr_search_wrap_width);
+            @include co(width, $hdr-search-wrap-width-desktop, $hdr-search-wrap-width);
         }
     }
 }
 
 .hdr-r-trow {
-    @include co(width, $hdr_r_trow_width);
-    @include co(order, $hdr_r_trow_order);
-    @include co(display, $hdr_r_trow_display);
-    @include co(align-items, $hdr_r_trow_alignitems);
+    @include co(width, $hdr-r-trow-width);
+    @include co(order, $hdr-r-trow-order);
+    @include co(display, $hdr-r-trow-display);
+    @include co(align-items, $hdr-r-trow-alignitems);
 
     @include max-screen($mobile-menu-visible-max) {
-        @include co(justify-content, $hdr_r_trow_justifycontent_mobilemax);
+        @include co(justify-content, $hdr-r-trow-justifycontent-mobilemax);
     }
     @include min-screen($mobile-menu-notvisible) {
-        @include co(text-align, $hdr_r_trow_text_align_desktop);
-        @include co(height, $hdr_r_trow_height_desktop);
-        @include co(width, $hdr_r_trow_width_desktop, $hdr_r_trow_width);
-        @include co(margin, $hdr_r_trow_margin_desktop);
+        @include co(text-align, $hdr-r-trow-text-align-desktop);
+        @include co(height, $hdr-r-trow-height-desktop);
+        @include co(width, $hdr-r-trow-width-desktop, $hdr-r-trow-width);
+        @include co(margin, $hdr-r-trow-margin-desktop);
     }
 
     > ul {
 
         > li {
-            @include co(font-weight, $hdr_r_trow_ul_li_fontweight);
-            @include co(padding, $hdr_r_trow_ul_li_padding);
+            @include co(font-weight, $hdr-r-trow-ul-li-fontweight);
+            @include co(padding, $hdr-r-trow-ul-li-padding);
 
             @include min-screen($mobile-menu-notvisible) {
-                @include co(padding, $hdr_r_trow_ul_li_padding_desktop, $hdr_r_trow_ul_li_padding);
+                @include co(padding, $hdr-r-trow-ul-li-padding-desktop, $hdr-r-trow-ul-li-padding);
 
             }
 
 
             a {
-                @include co(color, $hdr_r_trow_ul_li_a_color);
-                @include co(transition, $hdr_r_trow_ul_li_a_transition);
-                @include co(align-items, $hdr_r_trow_ul_li_a_alignitems);
+                @include co(color, $hdr-r-trow-ul-li-a-color);
+                @include co(transition, $hdr-r-trow-ul-li-a-transition);
+                @include co(align-items, $hdr-r-trow-ul-li-a-alignitems);
 
                 &:hover {
-                    @include co(color, $hdr_r_trow_ul_li_a_hover_color);
-                    @include co(transition, $hdr_r_trow_ul_li_a_hover_transition);
+                    @include co(color, $hdr-r-trow-ul-li-a-hover-color);
+                    @include co(transition, $hdr-r-trow-ul-li-a-hover-transition);
 
                 }
 
@@ -250,17 +250,17 @@
 
 
             > a.hdr-myacc-link {
-                @include co(padding, $hdr_myacc_link_padding);
-                @include co(height, $hdr_myacc_link_height);
-                @include co(width, $hdr_myacc_link_width);
-                @include co(background-color, $hdr_myacc_link_backgroundcolor);
-                @include co(border-radius, $hdr_myacc_link_border_radius);
-                @include co(font-size, $hdr_myacc_link_font_size, $hdr_top_list_font_size);
-                @include co(display, $hdr_myacc_link_display);
-                @include co(align-items, $hdr_myacc_link_alignitems);
+                @include co(padding, $hdr-myacc-link-padding);
+                @include co(height, $hdr-myacc-link-height);
+                @include co(width, $hdr-myacc-link-width);
+                @include co(background-color, $hdr-myacc-link-backgroundcolor);
+                @include co(border-radius, $hdr-myacc-link-border-radius);
+                @include co(font-size, $hdr-myacc-link-font-size, $hdr-top-list-font-size);
+                @include co(display, $hdr-myacc-link-display);
+                @include co(align-items, $hdr-myacc-link-alignitems);
 
 
-                @if $hdr_myacc_link_span_hidetext == all {
+                @if $hdr-myacc-link-span-hidetext == all {
                     span {
                         position: absolute;
                         left: -10000px;
@@ -269,7 +269,7 @@
                         height: 1px;
                         overflow: hidden;
                     }
-                } @else if $hdr_myacc_link_span_hidetext == mobile {
+                } @else if $hdr-myacc-link-span-hidetext == mobile {
                     @include max-screen($mobile-menu-visible-max) {
 
                         span {
@@ -288,20 +288,20 @@
                     display: flex;
                 }
                 @include min-screen($mobile-menu-notvisible) {
-                    @include co(padding, $hdr_myacc_link_padding_desktop, $hdr_myacc_link_padding);
-                    @include co(background-color, $hdr_myacc_link_backgroundcolor_desktop, $hdr_myacc_link_backgroundcolor);
+                    @include co(padding, $hdr-myacc-link-padding-desktop, $hdr-myacc-link-padding);
+                    @include co(background-color, $hdr-myacc-link-backgroundcolor-desktop, $hdr-myacc-link-backgroundcolor);
 
-                    @include co(height, $hdr_myacc_link_height_desktop, $hdr_myacc_link_height);
-                    @include co(width, $hdr_myacc_link_width_desktop, $hdr_myacc_link_width);
-                    @include co(background-color, $hdr_myacc_link_backgroundcolor_desktop, $hdr_myacc_link_backgroundcolor);
-                    @include co(border-radius, $hdr_myacc_link_border_radius_desktop, $hdr_myacc_link_border_radius);
+                    @include co(height, $hdr-myacc-link-height-desktop, $hdr-myacc-link-height);
+                    @include co(width, $hdr-myacc-link-width-desktop, $hdr-myacc-link-width);
+                    @include co(background-color, $hdr-myacc-link-backgroundcolor-desktop, $hdr-myacc-link-backgroundcolor);
+                    @include co(border-radius, $hdr-myacc-link-border-radius-desktop, $hdr-myacc-link-border-radius);
 
                 }
 
-                @if $hdr_r_trow_link-color-alt1 != $hdr_r_trow_ul_li_a_color {
-                    color: $hdr_r_trow_link-color-alt1;
+                @if $hdr-r-trow-link-color-alt1 != $hdr-r-trow-ul-li-a-color {
+                    color: $hdr-r-trow-link-color-alt1;
                     &:hover {
-                        color: $hdr_r_trow_link-hover-color-alt1;
+                        color: $hdr-r-trow-link-hover-color-alt1;
                     }
                 }
 
@@ -312,10 +312,10 @@
                 @include max-screen($mobile-menu-visible-max) {
                     @include co(display, $hdr-r-trow-ul-li-a-signin-display-mobilemax);
                 }
-                @if $hdr_r_trow_link-color-alt2 != $hdr_r_trow_ul_li_a_color {
-                    color: $hdr_r_trow_link-color-alt2;
+                @if $hdr-r-trow-link-color-alt2 != $hdr-r-trow-ul-li-a-color {
+                    color: $hdr-r-trow-link-color-alt2;
                     &:hover {
-                        color: $hdr_r_trow_link-hover-color-alt2;
+                        color: $hdr-r-trow-link-hover-color-alt2;
                     }
                 }
             }
@@ -326,10 +326,10 @@
                     }
             }
             a.hdr-acc-link {
-                @if $hdr_r_trow_link-color-alt2 != $hdr_r_trow_ul_li_a_color {
-                    color: $hdr_r_trow_link-color-alt2;
+                @if $hdr-r-trow-link-color-alt2 != $hdr-r-trow-ul-li-a-color {
+                    color: $hdr-r-trow-link-color-alt2;
                     &:hover {
-                        color: $hdr_r_trow_link-hover-color-alt2;
+                        color: $hdr-r-trow-link-hover-color-alt2;
                     }
                 }
             }
@@ -337,18 +337,18 @@
             .hdr-signinreg-sep,
             a.sign-in,
             a.hdr-acc-link-n {
-                @if $hdr_top_list_bottom_row_styling == 1 {
-                    @include co(color, $hdr_top_list_bottom_row_color);
+                @if $hdr-top-list-bottom-row-styling == 1 {
+                    @include co(color, $hdr-top-list-bottom-row-color);
 
                 }
             }
 
-            @if $hdr_r_trow_ul_li_first_seperator == 1 {
+            @if $hdr-r-trow-ul-li-first-seperator == 1 {
 
                 &:first-of-type {
 
-                    @include co(border-right, $hdr_r_trow_ul_li_first_seperator_border);
-                    @include co(padding, $hdr_r_trow_ul_li_first_seperator_padding);
+                    @include co(border-right, $hdr-r-trow-ul-li-first-seperator-border);
+                    @include co(padding, $hdr-r-trow-ul-li-first-seperator-padding);
 
 
                     @include max-screen($mobile-menu-visible-max) {
@@ -357,28 +357,28 @@
 
 
                     > a {
-                        @include co(color, $hdr_r_trow_ul_li_a_color);
-                        @include co(font-weight, $hdr_r_trow_ul_li_a_fontweight);
-                        @include co(display, $hdr_r_trow_ul_li_a_display);
-                        @include co(align-items, $hdr_r_trow_ul_li_a_alignitems);
+                        @include co(color, $hdr-r-trow-ul-li-a-color);
+                        @include co(font-weight, $hdr-r-trow-ul-li-a-fontweight);
+                        @include co(display, $hdr-r-trow-ul-li-a-display);
+                        @include co(align-items, $hdr-r-trow-ul-li-a-alignitems);
 
                         &:hover {
-                            @include co(color, $hdr_r_trow_ul_li_a_hover_color);
+                            @include co(color, $hdr-r-trow-ul-li-a-hover-color);
                         }
 
 
                     }
                 }
                 &:nth-of-type(2) {
-                    @include co(padding, $hdr_r_trow_ul_li_first_seperator_next_padding);
+                    @include co(padding, $hdr-r-trow-ul-li-first-seperator-next-padding);
                 }
             }
 
-            @if $hdr_r_trow_ul_li_first_icon == 1 {
+            @if $hdr-r-trow-ul-li-first-icon == 1 {
                 &:first-of-type {
                     display: flex;
                     align-items: center;
-                    padding: $hdr_r_trow_ul_li_first_icon_padding;
+                    @include co(padding, $hdr-r-trow-ul-li-first-icon-padding);
                 }
             }
         }
@@ -387,8 +387,8 @@
             > a {
 
 
-                @include co(padding, $hdr_mobile_acc_li_mobile_padding);
-                @include co(font-size, $hdr_mobile_acc_link_fontsize, $hdr_top_list_font_size);
+                @include co(padding, $hdr-mobile-acc-li-mobile-padding);
+                @include co(font-size, $hdr-mobile-acc-link-fontsize, $hdr-top-list-font-size);
 
 
                 @include max-screen($mobile-menu-visible-max) {
@@ -403,29 +403,29 @@
                     }
                 }
                 @include min-screen($mobile-menu-notvisible) {
-                    @include co(padding, $hdr_mobile_acc_li_mobile_padding_desktop, $hdr_mobile_acc_li_mobile_padding);
+                    @include co(padding, $hdr-mobile-acc-li-mobile-padding-desktop, $hdr-mobile-acc-li-mobile-padding);
                 }
-                @if $hdr_r_trow_link-color-alt1 != $hdr_r_trow_ul_li_a_color {
-                    color: $hdr_r_trow_link-color-alt1;
+                @if $hdr-r-trow-link-color-alt1 != $hdr-r-trow-ul-li-a-color {
+                    color: $hdr-r-trow-link-color-alt1;
                     &:hover {
-                        color: $hdr_r_trow_link-hover-color-alt1;
+                        color: $hdr-r-trow-link-hover-color-alt1;
                     }
                 }
             }
         }
 
         > li.hdr-acc-li {
-            @if $hdr_acc_li_mobile_on != 1 {
+            @if $hdr-acc-li-mobile-on != 1 {
                 @include max-screen($mobile-menu-visible-max) {
                     display: none;
                 }
 
             }
-            @if $hdr_r_trowbrow_sidebyside == 1 {
+            @if $hdr-r-trowbrow-sidebyside == 1 {
                 display: flex;
 
                 justify-content: left;
-                @if $hdr_r_trowbrow_sidebyside_flex_direction == column {
+                @if $hdr-r-trowbrow-sidebyside-flex-direction == column {
                     flex-direction: column;
                     white-space: nowrap;
                 } @else {
@@ -435,20 +435,20 @@
 
             a.hdr-myacc-link {
 
-                @include co(width, $hdr_lihdraccli_myacc_link_width);
-                @include co(text-align, $hdr_lihdraccli_myacc_link_textalign);
+                @include co(width, $hdr-lihdraccli-myacc-link-width);
+                @include co(text-align, $hdr-lihdraccli-myacc-link-textalign);
                 @include max-screen($mobile-menu-visible-max) {
-                    @include co(height, $hdr_lihdraccli_myacc_link_height_mobiletabletmax);
+                    @include co(height, $hdr-lihdraccli-myacc-link-height-mobiletabletmax);
                 }
                 > svg {
                     @include max-screen($mobile-menu-visible-max) {
-                        @include co(height, $hdr_lihdraccli_myacc_link_svg_width_mobilemenumax);
+                        @include co(height, $hdr-lihdraccli-myacc-link-svg-width-mobilemenumax);
                     }
 
                 }
                 > span {
                     @include max-screen($mobile-menu-visible-max) {
-                         @if $hdr_lihdraccli_myacc_link_span_texthide_mobilemenumax == true {
+                         @if $hdr-lihdraccli-myacc-link-span-texthide-mobilemenumax == true {
                         @include sr-only();
                         @include sr-only-focusable();
                     }
@@ -461,34 +461,34 @@
             &:not(.hdr-acc-li-mobile) {
 
                 @include max-screen($mobile-menu-visible-max) {
-                    @include co(display, $hdr_acc_li_mobile_display_mobilemenumax);
+                    @include co(display, $hdr-acc-li-mobile-display-mobilemenumax);
                 }
 
             }
         }
 
         svg {
-            @if $hdr_acc_li_icon_enabled == 1 {
+            @if $hdr-acc-li-icon-enabled == 1 {
 
-                @include co(width, $hdr_myacc_link_svg_width);
-                @include co(fill, $hdr_myacc_link_svg_fill);
-                @include co(color, $hdr_myacc_link_svg_color);
-                @include co(margin, $hdr_myacc_link_svg_margin);
+                @include co(width, $hdr-myacc-link-svg-width);
+                @include co(fill, $hdr-myacc-link-svg-fill);
+                @include co(color, $hdr-myacc-link-svg-color);
+                @include co(margin, $hdr-myacc-link-svg-margin);
                 @include min-screen($mobile-menu-notvisible) {
 
-                    @include co(width, $hdr_myacc_link_svg_width_desktop, $hdr_myacc_link_svg_width);
-                    @include co(fill, $hdr_myacc_link_svg_fill_desktop, $hdr_myacc_link_svg_fill);
-                    @include co(color, $hdr_myacc_link_svg_color_desktop, $hdr_myacc_link_svg_color);
-                    @include co(margin, $hdr_myacc_link_svg_margin_desktop, $hdr_myacc_link_svg_margin);
+                    @include co(width, $hdr-myacc-link-svg-width-desktop, $hdr-myacc-link-svg-width);
+                    @include co(fill, $hdr-myacc-link-svg-fill-desktop, $hdr-myacc-link-svg-fill);
+                    @include co(color, $hdr-myacc-link-svg-color-desktop, $hdr-myacc-link-svg-color);
+                    @include co(margin, $hdr-myacc-link-svg-margin-desktop, $hdr-myacc-link-svg-margin);
                 }
 
 
-                @if $hdr_acc_li_icon_display_type == mobileonly {
+                @if $hdr-acc-li-icon-display-type == mobileonly {
                     @include min-screen($mobile-menu-notvisible) {
                         display: none;
                     }
                 }
-                @if $hdr_acc_li_icon_display_type == desktoponly {
+                @if $hdr-acc-li-icon-display-type == desktoponly {
                     @include max-screen($mobile-menu-visible-max) {
                         display: none;
                     }
@@ -510,27 +510,27 @@
 
 
 .hdr-r-brow {
-    @include co(order, $hdr_r_brow_order);
-    @include co(width, $hdr_r_brow_width);
+    @include co(order, $hdr-r-brow-order);
+    @include co(width, $hdr-r-brow-width);
 
 
     @include min-screen($mobile-menu-notvisible) {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        @include co(width, $hdr_r_brow_width_desktop, $hdr_r_brow_width);
+        @include co(width, $hdr-r-brow-width-desktop, $hdr-r-brow-width);
 
         @if $hdr-r-trowbrow-sidebyside != 1 {
             height: 75px;
         }
-        @include co(margin, $hdr_r_brow_margin_desktop);
+        @include co(margin, $hdr-r-brow-margin-desktop);
 
     }
-    @include min-screen($desktop_md_min) {
-        @include co(margin, $hdr_r_brow_margin_md_min, $hdr_r_brow_margin_desktop);
+    @include min-screen($desktop-md-min) {
+        @include co(margin, $hdr-r-brow-margin-md-min, $hdr-r-brow-margin-desktop);
     }
     @include min-screen($screen-xlg-min) {
-        @include co(margin, $hdr_r_brow_margin_xlg_min, $hdr_r_brow_margin_md_min, $hdr_r_brow_margin_desktop);
+        @include co(margin, $hdr-r-brow-margin-xlg-min, $hdr-r-brow-margin-md-min, $hdr-r-brow-margin-desktop);
     }
 
     > div {
@@ -553,17 +553,17 @@
 
 .hdr-top-list {
 
-    @include co(justify-content, $hdr_top_list_justifycontent);
-    @include co(align-items, $hdr_top_list_align_items);
-    @include co(display, $hdr_top_list_display);
-    @include co(text-align, $hdr_top_list_textalign);
-    @include co(width, $hdr_top_list_width);
-    @include co(height, $hdr_top_list_height);
-    @include co(flex, $hdr_top_list_flex);
-    @include co(line-height, $hdr_top_list_lineheight);
-    @include co(font-size, $hdr_top_list_fontsize);
-    @include co(background, $hdr_top_list_background_color);
-    @include co(padding, $hdr_top_list_padding);
+    @include co(justify-content, $hdr-top-list-justifycontent);
+    @include co(align-items, $hdr-top-list-align-items);
+    @include co(display, $hdr-top-list-display);
+    @include co(text-align, $hdr-top-list-textalign);
+    @include co(width, $hdr-top-list-width);
+    @include co(height, $hdr-top-list-height);
+    @include co(flex, $hdr-top-list-flex);
+    @include co(line-height, $hdr-top-list-lineheight);
+    @include co(font-size, $hdr-top-list-fontsize);
+    @include co(background, $hdr-top-list-background-color);
+    @include co(padding, $hdr-top-list-padding);
 
     @include max-screen($mobile-menu-visible-max) {
         width: 50%;
@@ -571,15 +571,15 @@
     }
     @include min-screen($mobile-menu-notvisible) {
         @include co(margin, $hdr-top-hdr-top-list-margin-mobilemenunotvisible);
-        @include co(width, $hdr-top-hdr-top-list-width-mobilemenunotvisible, $hdr_top_list_width);
+        @include co(width, $hdr-top-hdr-top-list-width-mobilemenunotvisible, $hdr-top-list-width);
 
 
-        @include co(background, $hdr_top_list_background_color_desktop, $hdr_top_list_background_color);
+        @include co(background, $hdr-top-list-background-color-desktop, $hdr-top-list-background-color);
 
         #hdr-mo & {
-            @include co(padding, $hdr_mo_top_list_padding_desktop, $hdr_top_list_padding);
-            @include co(border-radius, $hdr_mo_top_list_borderradius);
-            @include co(margin, $hdr_mo_top_list_margin);
+            @include co(padding, $hdr-mo-top-list-padding-desktop, $hdr-top-list-padding);
+            @include co(border-radius, $hdr-mo-top-list-borderradius);
+            @include co(margin, $hdr-mo-top-list-margin);
         }
     }
 

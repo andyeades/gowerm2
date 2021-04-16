@@ -1,5 +1,5 @@
 .order-links {
-    border-bottom: $border-width__base solid $border-color__base;
+    border-bottom: $border-width-base solid $border-color-base;
     margin-bottom: 10px;
 
     .item {
@@ -15,7 +15,7 @@
 }
 
 .order-details-items {
-    border-bottom: $border-width__base solid $border-color__base;
+    border-bottom: $border-width-base solid $border-color-base;
     margin-bottom: 20px;
     padding-bottom: 10px;
 
@@ -46,7 +46,7 @@
         }
 
         tbody + tbody {
-            border-top: $border-width__base solid $border-color__base;
+            border-top: $border-width-base solid $border-color-base;
         }
     }
 
@@ -104,12 +104,12 @@
 
 .order-status {
     display: inline-block;
-    margin-bottom: $indent__base;
+    margin-bottom: $indent-base;
 }
 
 .page-title-wrapper {
     .order-date {
-        margin: 0 0 $indent__base;
+        margin: 0 0 $indent-base;
     }
 }
 
@@ -173,7 +173,7 @@
         margin: 0 0 40px;
 
         .comment-date {
-            font-weight: $font-weight__semibold;
+            @include co(font-weight, $font-weight-semibold);
         }
 
         .comment-content {
@@ -186,14 +186,14 @@
         .box-content {
             .payment-method {
                 .title {
-                    font-weight: $font-weight__regular;
+                    @include co(font-weight, $font-weight-regular);
                 }
 
                 .content {
                     margin: 0;
 
                     > strong {
-                        font-weight: $font-weight__regular;
+                        @include co(font-weight, $font-weight-regular);
 
                         &:after {
                             content: ': ';
@@ -206,7 +206,7 @@
 }
 
 .order-tracking {
-    border-bottom: $border-width__base solid $border-color__base;
+    border-bottom: $border-width-base solid $border-color-base;
     margin: 0;
     padding: 20px 0;
 
@@ -222,7 +222,7 @@
 
 //
 //  Guest order view page
-//  ---------------------------------------------
+//
 
 [class^='sales-guest-'],
 .sales-guest-view {
@@ -235,9 +235,9 @@
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__s) {
+@include max-screen($screen-s) {
     .account {
         .order-details-items {
             .table-order-items {
@@ -286,7 +286,7 @@
     }
 }
 
-@include max-screen($screen__m) {
+@include max-screen($screen-m) {
     .order-pager-wrapper {
         .toolbar-amount {
             left: inherit;
@@ -308,9 +308,9 @@
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .table-order-items {
         .subtotal,
         .amount {
@@ -352,14 +352,14 @@
 
     .page-title-wrapper {
         .order-date {
-            $order-status-indent: ceil($h1__margin-bottom__desktop/2);
+            $order-status-indent: ceil($h1-margin-bottom-desktop/2);
             @include lib-css(margin-top, -$order-status-indent);
         }
     }
 
     //
     //  Guest order view page
-    //  ---------------------------------------------
+    //
 
     [class^='sales-guest-'],
     .sales-guest-view {
@@ -370,7 +370,7 @@
 
                     .box {
                         @include abs-blocks-2columns();
-                        margin-bottom: $indent__base;
+                        margin-bottom: $indent-base;
                     }
                 }
             }

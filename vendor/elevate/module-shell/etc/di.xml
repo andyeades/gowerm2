@@ -6,8 +6,11 @@
                 <item name="elevate_bsales" xsi:type="object">Elevate\Shell\Console\Command\BSales</item>
                 <item name="elevate_despatch_email" xsi:type="object">Elevate\Shell\Console\Command\SendDespatchEmails</item>
                  <item name="elevate_google_feed" xsi:type="object">Elevate\Shell\Console\Command\GoogleFeed</item>
-            <item name="elevate_awin_feed" xsi:type="object">Elevate\Shell\Console\Command\Awin</item>
+                   <item name="elevate_google_feed_posturite" xsi:type="object">Elevate\Shell\Console\Command\GoogleFeedPosturite</item>
+                 <item name="elevate_price_cache" xsi:type="object">Elevate\Shell\Console\Command\PriceCache</item> 
+                   <item name="elevate_awin_feed" xsi:type="object">Elevate\Shell\Console\Command\Awin</item>
              <item name="elevate_facebook_feed" xsi:type="object">Elevate\Shell\Console\Command\FacebookFeed</item>
+               <item name="elevate_facebook_feed_posturite" xsi:type="object">Elevate\Shell\Console\Command\FacebookFeedPosturite</item>
     </argument>
 
         </arguments>

@@ -151,7 +151,7 @@ $perpage: 3;
 .tns-t {
     &-subp2 {
         margin: 0 auto;
-        width: $width;
+        @include co(width, $width);
         position: relative;
         height: $height;
         overflow: hidden;

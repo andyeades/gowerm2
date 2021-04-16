@@ -1,6 +1,6 @@
 //  Newsletter subscription
 .block.newsletter {
-    margin-bottom: $indent__xl;
+    margin-bottom: $indent-xl;
 
     .form.subscribe {
         display: table;
@@ -20,9 +20,9 @@
         .control {
             @include lib-icon-font(
                 $icon-envelope,
-                $_icon-font-size        : 35px,
-                $_icon-font-line-height : 33px,
-                $_icon-font-color       : $form-element-input-placeholder__color
+                $-icon-font-size        : 35px,
+                $-icon-font-line-height : 33px,
+                $-icon-font-color       : $form-element-input-placeholder-color
             );
             display: block;
 
@@ -59,9 +59,9 @@
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .block.newsletter {
         width: 32%;
 

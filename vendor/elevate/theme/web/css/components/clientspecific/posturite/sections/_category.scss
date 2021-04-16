@@ -48,7 +48,7 @@
             filter: alpha(opacity=80);
             text-align: left;
             font-size: .9em;
-            color: $ps-color-convert-23;
+            @include co(color, $ps-color-convert-23);
             padding: 5px;
             background-color: $ps-color-convert-2;
             border-bottom: 1px solid $ps-color-convert-9;
@@ -129,25 +129,25 @@
     .category-landing-parent {
         text-align: center;
         text-transform: uppercase;
-        color: $ps-color-convert-88;
+        @include co(color, $ps-color-convert-88);
         font-size: 12px;
         margin-bottom: 4px;
     }
 
     .category-landing-title {
         text-align: center;
-        color: $ps-color-convert-21;
+        @include co(color, $ps-color-convert-21);
         font-size: 28px;
 
         span {
             font-size: 14px;
-            color: $ps-color-convert-38;
+            @include co(color, $ps-color-convert-38);
         }
     }
 
     .category-landing-intro {
         text-align: center;
-        color: $ps-color-convert-88;
+        @include co(color, $ps-color-convert-88);
         font-size: 14px;
         line-height: 20px;
         padding-top: 10px;

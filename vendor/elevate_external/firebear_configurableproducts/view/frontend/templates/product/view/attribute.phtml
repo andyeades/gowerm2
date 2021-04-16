@@ -1,64 +1,37 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
-// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
-use Magento\Catalog\Block\Product\View\Description;
-use Magento\Catalog\Model\Product;
-use Magento\Catalog\Model\ResourceModel\Eav\Attribute;
+// @codingStandardsIgnoreFile
 
 /**
  * Product view template
  *
- * @var $block Description
+ * @see \Magento\Catalog\Block\Product\View\Description
  */
 ?>
 <?php
-$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
 $_product = $block->getProduct();
-
-if (!$_product instanceof Product) {
-    return;
-}
-
 $_call = $block->getAtCall();
 $_code = $block->getAtCode();
 $_className = $block->getCssClass();
 $_attributeLabel = $block->getAtLabel();
 $_attributeType = $block->getAtType();
 $_attributeAddAttribute = $block->getAddAttribute();
-
-$renderLabel = true;
-// if defined as 'none' in layout, do not render
-if ($_attributeLabel == 'none') {
-    $renderLabel = false;
-}
-
 if ($_attributeLabel && $_attributeLabel == 'default') {
-    /** @var Attribute $attr */
-    $attr = $_product->getResource()->getAttribute($_code);
-    if (method_exists($attr, 'getStoreLabel')) {
-        $_attributeLabel = $attr->getStoreLabel();
-    } else {
-        $_attributeLabel = $attr->getFrontendLabel();
-    }
-
+    $_attributeLabel = $_product->getResource()->getAttribute($_code)->getFrontendLabel();
 }
 if ($_attributeType && $_attributeType == 'text') {
-    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code))
-        ? $_product->getAttributeText($_code)
-        : '';
+    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code)) ? $_product->getAttributeText($_code) : '';
 } else {
     $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
 }
 ?>
-<?php if ($_attributeValue) :?>
-    <div class="product attribute <?= $block->escapeHtmlAttr($_className) ?>">
-        <?php if ($renderLabel) :?>
-            <strong class="type"><?= $block->escapeHtml($_attributeLabel) ?></strong>
-        <?php endif; ?>
-        <div class="value" <?= /* @noEscape */ $_attributeAddAttribute ?>><?= /* @noEscape */ $_attributeValue ?></div>
-    </div>
-<?php endif; ?>
+
+<div class="product attribute <?php /* @escapeNotVerified */ echo $_className?>">
+    <?php if ($_attributeLabel != __('none')): ?><strong class="type"><?php /* @escapeNotVerified */ echo $_attributeLabel?></strong><?php endif; ?>
+    <div class="value" <?php /* @escapeNotVerified */ echo $_attributeAddAttribute;?>><?php /* @escapeNotVerified */ echo $_attributeValue; ?></div>
+</div>

@@ -1,8 +1,8 @@
 .downloadable.samples {
-    margin-bottom: $indent__base;
+    margin-bottom: $indent-base;
 
     dd {
-        margin: 0 0 $indent__s;
+        margin: 0 0 $indent-s;
     }
 }
 
@@ -38,7 +38,7 @@
     .price-including-tax {
         @include lib-font-size(14);
         display: inline;
-        font-weight: $font-weight__semibold;
+        @include co(font-weight, $font-weight-semibold);
     }
 
     .sample.link {
@@ -50,7 +50,7 @@
     .product-add-form {
         @include abs-add-clearfix();
         clear: both;
-        margin-bottom: $indent__m;
+        margin-bottom: $indent-m;
     }
 
     .product-options-bottom {
@@ -70,9 +70,9 @@
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .page-product-downloadable {
         .product-options-wrapper {
             float: left;

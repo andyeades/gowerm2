@@ -1,48 +1,48 @@
-$vatwrap_bg_color_on: 0 !default;
-$vatwrap_bg_color: none !default;
-$vatwrap_width: auto !default;
-$vatwrap_textalign_on: 0 !default;
-$vatwrap_textalign: center !default;
-$vatwrap_padding: 0.35rem 0.35rem 0.35rem 1rem !default;
-$vatwrap_fontsize: 0.75rem !default;
+$vatwrap-bg-color-on: 0 !default;
+$vatwrap-bg-color: none !default;
+$vatwrap-width: auto !default;
+$vatwrap-textalign-on: 0 !default;
+$vatwrap-textalign: center !default;
+$vatwrap-padding: 0.35rem 0.35rem 0.35rem 1rem !default;
+$vatwrap-fontsize: 0.75rem !default;
 
 
-$vatwrap_border_on: 0 !default;
-$vatwrap_border_color: #4B6F62 !default;
-$vatwrap_border_thickness: 1px !default;
-$vatwrap_border_style: solid !default;
-$vatwrap_border_position: left !default;
+$vatwrap-border-on: 0 !default;
+$vatwrap-border-color: #4B6F62 !default;
+$vatwrap-border-thickness: 1px !default;
+$vatwrap-border-style: solid !default;
+$vatwrap-border-position: left !default;
 
 
-$vatswitcher_fontweight: 700 !default;
-$vatswitcher_fontsize: 0.75rem !default;
-$vatswitcher_color: #FFF !default;
-$vatswitcher_padding: 0 0.75rem !default;
-$vatswitcher_transition: 'color 0.3s, box-shadow 0.3s' !default;
+$vatswitcher-fontweight: 700 !default;
+$vatswitcher-fontsize: 0.75rem !default;
+$vatswitcher-color: #FFF !default;
+$vatswitcher-padding: 0 0.75rem !default;
+$vatswitcher-transition: 'color 0.3s, box-shadow 0.3s' !default;
 
 
-$mm_ex_vat_padding: 0 0.5rem 0 0 !default;
-$mm_inc_vat_padding: 0 !default;
+$mm-ex-vat-padding: 0 0.5rem 0 0 !default;
+$mm-inc-vat-padding: 0 !default;
 
 
 
-$vatwrap_border_on: 1;
+$vatwrap-border-on: 1;
 
 
 #vatwrap {
-    @if $vatwrap_bg_color_on == 1 {
-        background-color: $vatwrap_bg_color;
+    @if $vatwrap-bg-color-on == 1 {
+        background-color: $vatwrap-bg-color;
     }
-    width: $vatwrap_width;
+    @include co(width, $vatwrap-width);
     display: flex;
-    @if $vatwrap_textalign_on == 1 {
-        text-align: $vatwrap_textalign;
+    @if $vatwrap-textalign-on == 1 {
+        text-align: $vatwrap-textalign;
     }
-    padding: $vatwrap_padding;
-    @if $vatwrap_border_on == 1 {
-        @include elevate-border($vatwrap_border_color, $vatwrap_border_thickness, $vatwrap_border_style, $vatwrap_border_position);
+    @include co(padding, $vatwrap-padding);
+    @if $vatwrap-border-on == 1 {
+        @include elevate-border($vatwrap-border-color, $vatwrap-border-thickness, $vatwrap-border-style, $vatwrap-border-position);
     }
-    font-size: $vatwrap_fontsize;
+  @include co(font-size, $vatwrap-fontsize);
 }
 
 
@@ -54,25 +54,25 @@ span.mm-vat {
 }
 
 .mm-ex-vat {
-    padding: $mm_ex_vat_padding;
+    @include co(padding, $mm-ex-vat-padding);
 }
 
 .mm-inc-vat {
-    padding: $mm_inc_vat_padding;
+    @include co(padding, $mm-inc-vat-padding);
 }
 
 #vatswitcher {
     cursor: pointer;
-    font-weight: $vatswitcher_fontweight;
-    font-size: $vatswitcher_fontsize;
-    color: $vatswitcher_color;
-    padding: $vatswitcher_padding;
+    @include co(font-weight, $vatswitcher-fontweight);
+  @include co(font-size, $vatswitcher-fontsize);
+    color: $vatswitcher-color;
+    @include co(padding, $vatswitcher-padding);
     display: inline-block;
     height: 44px;
     line-height: 44px;
     overflow: visible;
     border-bottom: none;
-    transition: $vatswitcher_transition;
+    transition: $vatswitcher-transition;
     &:focus {
         box-shadow: none;
     }

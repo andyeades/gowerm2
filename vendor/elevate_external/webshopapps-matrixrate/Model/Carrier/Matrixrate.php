@@ -73,6 +73,9 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
      * @var \WebShopApps\MatrixRate\Model\ResourceModel\Carrier\MatrixrateFactory
      */
     protected $matrixrateFactory;
+    
+    
+    protected $prod_addon_lookup;
 
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
@@ -142,11 +145,24 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $freeQty = 0;
         if ($request->getAllItems()) {
+        
+        
+        
+        
+        
             $freePackageValue = 0;
             foreach ($request->getAllItems() as $item) {
                 if ($item->getProduct()->isVirtual() || $item->getParentItem()) {
                     continue;
                 }
+
+
+            $this->prod_addon_lookup[$item->getProduct()->getId()][] = $item->getId();
+
+   
+
+
+
 
                 if ($item->getHasChildren() && $item->isShipSeparately()) {
                     foreach ($item->getChildren() as $child) {
@@ -181,7 +197,7 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
         $result = $this->rateResultFactory->create();
         $zipRange = $this->getConfigData('zip_range');
         $rateArray = $this->getRate($request, $zipRange);
-
+  
         $request->setPackageWeight($oldWeight);
         $request->setPackageQty($oldQty);
         $pk = '';
@@ -189,14 +205,15 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
         $price_array = [];
        // echo "<pre>";
 
-
+      $foundShippingRate = false;
         $price_array['each_price'] = 0;
         $price_array['all_price'] = [];
-
-
+                
+       $has_free_ship_item = false;
                 if ($request->getAllItems()) {
                     $freePackageValue = 0;
                     foreach ($request->getAllItems() as $item) {
+
 
                         if ($item->getParentItem()) {
                             continue;
@@ -206,8 +223,81 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
                         $pgg = strtolower($product->getProductGroupCode());
                        $item_price = $item->getPrice();
                         $item_qty = $item->getQty();
+                          
+                             
+              // check if an addon
+             
+                                  
+             $id_check = $item->getId();
+     /*   if ($product->getTypeId() == 'simple') {
+            // $parentIds = Mage::getModel('catalog/product_type_grouped')->getParentIdsByChild($_product->getId());
+
+            $product_check = $objectManager->create('Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable')->getParentIdsByChild($product->getId());
+            if (isset($product_check[0])) {
+                //this is parent product id..
+
+             
+               $id_check = $product[0]; 
+            
+
+        }
+        
+        }
+        
+                  */
+               
+
+             
+             
+             //end addon check                
+                             
+                $assignmentQuoteItemCollection = $objectManager->create('Elevate\CartAssignments\Model\QuoteItemAssignments')->loadAssignedChildren($id_check);
+          $force_free = false;
+if(count($assignmentQuoteItemCollection) > 0){
+  foreach($assignmentQuoteItemCollection AS $assignmentQuoteItem){
+      
+//exit;                          $assignmentQuoteItem 
+
+ 
+                         $addon_item =  $objectManager->create('Elevate\CartAssignments\Model\CartAssignmentsRepository')->get($assignmentQuoteItem->getData('addon_id'));
 
 
+//andy               $free_shipping_count 
+$free_shipping_count = 0;
+                   
+                    if($addon_item->getForceFreeShipping() == '1'){
+
+
+                       
+                   $force_free = true;
+              break;
+                      
+                         }
+         }            
+         
+        
+          }  
+          
+            if($item->getSku() == '999400'){
+                  $force_free = true;
+                 } 
+             if($item->getSku() == '999401'){
+                  $force_free = true;
+                 } 
+             if($item->getSku() == '999402'){
+                  $force_free = true;
+                 } 
+             if($item->getSku() == '999403'){
+                  $force_free = true;
+                 }             
+                  
+                      //get cart assignment and if free delivery option then skip
+          if($force_free){
+              $has_free_ship_item = true;
+          continue;
+          }
+             
+     
                         //if no group code and is a bundle product
                         //lets loop children and grab one - not ideal
 
@@ -220,7 +310,7 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
                                     $optionIds[] = $child->getProduct()->getId();
                                     $item_prod = $objectManager->create('Magento\Catalog\Model\Product')->load($child->getProduct()->getId());
 
-
+                                         
                                     $pgg = $item_prod->getProductGroupCode();
                                     if(!empty($pgg)){
                                         break;
@@ -231,7 +321,7 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
 
                         }
 
-
+                           
 
                             if($item_qty < 1){ $item_qty = 1;}
 
@@ -254,8 +344,7 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
                             foreach ($rateLoop as $rate) {
                                 if (!empty($rate)) {
 
-
-
+   
 
                                  if(strtolower($rate['product_shipping_group']) == strtolower($pgg)){
                                      $found_product_rate = true;
@@ -279,7 +368,7 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
                                  }
                                  else{
 
-
+                                     
                                      /*
                                 if($item_price > $rate['item_price_over'] && $item_price < $rate['item_price_under_and_equal']){
 
@@ -314,65 +403,93 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
                     } //end rate array loop
 
 
-
 /* ok - so we might not have found a product match - so we need to fall back the rate*/
 
                         if(!$found_product_rate){
-
-
+                                                   
                             foreach ($rateArray as $rateLoop) {
+                            
+                         
 $localFound = false;
                                 $local_each_price = 0;
                                 $local_all_price = 0;
+                        
+                        
+                        
+                        
+                        
+                        
+                               
                                 foreach ($rateLoop as $rate) {
                                     if (!empty($rate)) {
-
+                                               
 
                                         if (strtolower($rate['product_shipping_group']) == '*') {
+                                        
+                                   
                                            // $found_product_rate = true;
 $localFound = true;
-
+ $local_all_price_set = false;
 $attribute_match = array_flip(explode(',', $rate['attribute_match']));
 
-
+                   if(!empty($rate['attribute_match'])){
+                             
                   if(array_key_exists($product->getAttributeSetId(), $attribute_match)){
-
+                                
 
                       $local_pk = $rate['pk'];
                       $local_shipping_method = $rate['shipping_method'];
                       $local_cost = $rate['cost'];
-                      if($rate['price'] > 0){
+                      if($rate['price']){
                       if ($rate['rate_type'] == 'EACH') {
+                   
                           $local_each_price = $rate['price'] * $item_qty;
-                      } else {
-                          $local_all_price = $rate['price'];
+                      } else { 
+                        
+                          $local_all_price = $rate['price'];  
                       }
                       }
                       break;
                   }
+                                                                                                  
+                 }
+                 
+                 
+                       
                   else{
-
+                                    
                       $local_pk = $rate['pk'];
                       $local_shipping_method = $rate['shipping_method'];
                       $local_cost = $rate['cost'];
-                      if($rate['price'] > 0) {
+                      if($rate['price']) {
                           if ($rate['rate_type'] == 'EACH') {
+                       
                               $local_each_price = $rate['price'] * $item_qty;
                           } else {
+                         
                               $local_all_price = $rate['price'];
                           }
+                   
                       }
                   }
 
 
 
-
+                               
                                         }
+                                        
+                                        //else we need to apply the shipping group for things like "Download - so we need to check against the product"
+                                        else{
+                                        
+                                        
+                                        
+                                        }
+                                        
+                                        
+                                        
+                                        
                                     }
                                 }
-
-
-
 
 
 
@@ -382,10 +499,23 @@ $attribute_match = array_flip(explode(',', $rate['attribute_match']));
                          if($localFound){
 
 
-
                              $price_array['each_price'] += $local_each_price;
-
-                             $price_array['all_price']['*'] = $local_all_price;
+                             
+                             
+                                     if(!$local_all_price_set){             
+                         $price_array['all_price']['*'] = $local_all_price;
+                         $local_all_price_set = true; 
+                         
+                          }
+                          else{
+                   
+                          if($price_array['all_price']['*'] > $local_all_price){
+                         
+                              $price_array['all_price']['*'] = $local_all_price;
+                          
+                          }
+                           }               
+                             
 
                              $pk = $local_pk;
                              $shipping_method = $local_shipping_method;
@@ -413,7 +543,8 @@ $attribute_match = array_flip(explode(',', $rate['attribute_match']));
 
                 }
 
-
+                  
+                             
 
                     //total prices up
 
@@ -429,7 +560,9 @@ $price = array_sum($price_array['all_price']) + $price_array['each_price'];
                     $method = $this->resultMethodFactory->create();
 
                     $method->setCarrier('matrixrate');
-                    $method->setCarrierTitle('Shipping');
+                    
+                    //Backend Setting
+                    $method->setCarrierTitle('Courier');
 
                     $method->setMethod('matrixrate_' . $pk);
                     $method->setMethodTitle(__($shipping_method));
@@ -445,7 +578,31 @@ $price = array_sum($price_array['all_price']) + $price_array['each_price'];
 
                     $result->append($method);
                     $foundRates = true; // have found some valid rates
+                    }else if($has_free_ship_item){
+                                       //lets set the code in this part of the loop after we figure out the values in the above loop
+                    /** @var \Magento\Quote\Model\Quote\Address\RateResult\Method $method */
+                    $method = $this->resultMethodFactory->create();
+
+                    $method->setCarrier('matrixrate');
+                    
+                    //Backend Setting
+                    $method->setCarrierTitle('Courier');
+
+                    $method->setMethod('matrixrate_free');
+                    $method->setMethodTitle(__("Free Shipping"));
+
+             $shippingPrice = 0;
+                    $method->setPrice(0);
+                    $method->setCost();
+
+                    $result->append($method);
+                    $foundRates = true; // have found some valid rates 
+                    
                     }
+                    
+                    
+                    
+                    
             }
 
 

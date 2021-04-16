@@ -1,25 +1,22 @@
 <?php
-declare(strict_types=1);
 /**
  * Product initialzation helper
  *
  * Copyright © 2015 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 namespace Firebear\ConfigurableProducts\Plugin\Controller\Adminhtml\Product\Initialization\Helper\Plugin;
 
 use Firebear\ConfigurableProducts\Model\Product\Defaults;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Controller\Adminhtml\Product\Initialization\Helper;
-use Magento\Catalog\Model\Product;
 use Magento\ConfigurableProduct\Model\Product\VariationHandler;
 use Magento\Framework\App\RequestInterface;
 
 class UpdateDefault
 {
-    /** @var ProductRepositoryInterface */
+    /** @var ProductRepositoryInterface  */
     private $productRepository;
 
     /** @var RequestInterface */
@@ -29,15 +26,10 @@ class UpdateDefault
     private $variationHandler;
 
     /**
-     * @var Defaults
-     */
-    protected $productDefaults;
-
-    /**
-     * @param RequestInterface $request
+     * @param RequestInterface           $request
      * @param ProductRepositoryInterface $productRepository
-     * @param VariationHandler $variationHandler
-     * @param Defaults $productDefaults
+     * @param VariationHandler           $variationHandler
+     * @param Defaults                   $productDefaults
      */
     public function __construct(
         RequestInterface $request,
@@ -54,10 +46,10 @@ class UpdateDefault
     /**
      * Update data for configurable product configurations
      *
-     * @param Helper $subject
-     * @param ProductInterface|Product $configurableProduct
+     * @param Helper                                          $subject
+     * @param ProductInterface|\Magento\Catalog\Model\Product $configurableProduct
      *
-     * @return Product
+     * @return \Magento\Catalog\Model\Product
      * @SuppressWarnings(PMD.UnusedFormalParameter)
      */
     public function afterInitialize(

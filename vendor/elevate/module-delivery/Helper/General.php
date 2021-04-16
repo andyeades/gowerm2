@@ -2196,7 +2196,7 @@ class General extends AbstractHelper
 
                     $mobile_delivery_element = "<div class=\"delivery-radio-selector\">";
                     $mobile_delivery_element .= "<div class=\"radio\">";
-                    $mobile_delivery_element .= "<input name=\"mobile_delivery$elementid\"";
+                    $mobile_delivery_element .= "<input id=\"mobile_delivery$elementid\"";
                     $mobile_delivery_element .= " name=\"deliveryMobile\" method=\"$deliverymethod_id\" type=\"radio\" ";
 
                     $delivery_element = "methodstartdate=\"$deliverymethod_start_day\"";
@@ -2227,9 +2227,12 @@ class General extends AbstractHelper
 
                     $mobile_delivery_element .= " data-methodsummarytext=\"$summary_block_text\" ";
 
-                    if ($this->delivery_options_checkout_selectfirstdateoptionavailable) {
-                        $mobile_delivery_element .= "checked";
+                    if (strtotime($day) === $_deliverymethod_first_delivery_dates[0]) {
+                        if ($this->delivery_options_checkout_selectfirstdateoptionavailable) {
+                            $mobile_delivery_element .= "checked";
+                        }
                     }
+
 
                     $mobile_delivery_element .= "";
 

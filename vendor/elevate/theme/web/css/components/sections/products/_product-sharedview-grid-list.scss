@@ -1,12 +1,12 @@
 // Product Stars
 
 
-$star_rating_bg_width: 109px !default;
-$star_rating_bg_height: 20px !default;
+$star-rating-bg-width: 109px !default;
+$star-rating-bg-height: 20px !default;
 
 .sr-clear {
 
-    height: $star_rating_bg_height;
+    height: $star-rating-bg-height;
     width: 100%;
     margin-bottom: 10px;
 
@@ -28,23 +28,23 @@ $star_rating_bg_height: 20px !default;
         // inactive
         background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIGZpbGw9IiNGRkZGRkYiID4gICAgPHBhdGggZD0iTSAyNSAyLjI3MzQzNzUgTCAxOC42MDkzNzUgMTguNDgwNDY5IEwgMC44MTA1NDY4OCAxOS40MTc5NjkgTCAxNC42NDg0MzggMzAuNDEyMTA5IEwgMTAuMDcwMzEyIDQ3LjIyMjY1NiBMIDI1IDM3Ljc3MTQ4NCBMIDM5LjkyOTY4OCA0Ny4yMjI2NTYgTCAzNS4zNTE1NjIgMzAuNDEyMTA5IEwgNDkuMTg5NDUzIDE5LjQxNzk2OSBMIDMxLjM5MDYyNSAxOC40ODA0NjkgTCAyNSAyLjI3MzQzNzUgeiI+PC9wYXRoPjwvc3ZnPg==");
         background-repeat: repeat-x;
-        background-size: $star_rating_bg_width / 5;
+        background-size: $star-rating-bg-width / 5;
         bottom: 0;
         content: "";
         display: block;
-        height: $star_rating_bg_height;
+        height: $star-rating-bg-height;
         left: 0;
         position: absolute;
         right: 0;
         top: 0;
-        width: $star_rating_bg_width;
+        width: $star-rating-bg-width;
     }
 
     > span {
         display: block;
         text-indent: -10000px;
-        width: $star_rating_bg_width;
-        height: $star_rating_bg_height;
+        width: $star-rating-bg-width;
+        height: $star-rating-bg-height;
         position: absolute;
         overflow: hidden;
 
@@ -52,11 +52,11 @@ $star_rating_bg_height: 20px !default;
             // active
             background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIGZpbGw9IiNmMWM0MGYiID4gICAgPHBhdGggZD0iTSAyNSAyLjI3MzQzNzUgTCAxOC42MDkzNzUgMTguNDgwNDY5IEwgMC44MTA1NDY4OCAxOS40MTc5NjkgTCAxNC42NDg0MzggMzAuNDEyMTA5IEwgMTAuMDcwMzEyIDQ3LjIyMjY1NiBMIDI1IDM3Ljc3MTQ4NCBMIDM5LjkyOTY4OCA0Ny4yMjI2NTYgTCAzNS4zNTE1NjIgMzAuNDEyMTA5IEwgNDkuMTg5NDUzIDE5LjQxNzk2OSBMIDMxLjM5MDYyNSAxOC40ODA0NjkgTCAyNSAyLjI3MzQzNzUgeiI+PC9wYXRoPjwvc3ZnPg==");
             background-repeat: repeat-x;
-            background-size: $star_rating_bg_width / 5;
+            background-size: $star-rating-bg-width / 5;
             bottom: 0;
             content: "";
             display: block;
-            height: $star_rating_bg_height;
+            height: $star-rating-bg-height;
             left: 0;
             position: absolute;
             right: 0;

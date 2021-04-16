@@ -54,7 +54,7 @@ class CanUseCanonicalTagForCategories
     public function afterCanUseCanonicalTag(Category $category, $result)
     {
         if ($this->_helper->isEnabled()) {
-          //  return $this->_helper->getDuplicateConfig('category_canonical_tag');
+            return $this->_helper->getDuplicateConfig('category_canonical_tag');
         }
 
         return $result;

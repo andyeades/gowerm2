@@ -1,26 +1,26 @@
 $catalog-event-background-color : $color-gray94 !default;
-$catalog-event-color            : $primary__color !default;
+$catalog-event-color            : $primary-color !default;
 
 //
 //  Catalog Events
-//  ---------------------------------------------
+//
 
 .block-category-event {
     @include lib-css(background, $catalog-event-background-color);
     @include lib-css(color, $catalog-event-color);
-    padding: $indent__s 0 15px;
+    @include co(padding, $indent-s 0 15px);
     text-align: center;
 
     &.block:last-child {
-        margin-bottom: $indent__s;
+        margin-bottom: $indent-s;
     }
 
     .block-title {
-        margin: 0 0 $indent__s;
+        margin: 0 0 $indent-s;
 
         strong {
             @include lib-font-size(15);
-            font-weight: $font-weight__light;
+            @include co(font-weight, $font-weight-light);
         }
     }
 
@@ -34,7 +34,7 @@ $catalog-event-color            : $primary__color !default;
 
         .value {
             @include lib-font-size(18);
-            font-weight: $font-weight__light;
+            @include co(font-weight, $font-weight-light);
         }
 
         .label {
@@ -63,7 +63,7 @@ $catalog-event-color            : $primary__color !default;
         }
 
         .start {
-            padding-right: $indent__xl;
+            padding-right: $indent-xl;
             position: relative;
 
             &:after {
@@ -80,13 +80,13 @@ $catalog-event-color            : $primary__color !default;
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .block-category-event {
         &.block:last-child {
-            margin-bottom: $indent__l;
-            padding: $indent__s 0 $indent__l;
+            margin-bottom: $indent-l;
+            @include co(padding, $indent-s 0 $indent-l);
         }
 
         .block-title {

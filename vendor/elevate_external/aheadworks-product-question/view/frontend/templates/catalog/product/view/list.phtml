@@ -10,26 +10,31 @@ See LICENSE.txt for license details.
 ?>
 <?php $this->getVoteMap();?>
 <?php $questionCollection = $this->getQuestionCollection(); ?>
-<div class="box-collateral aw-pq-question-list-wrapper">
-    <div class="aw-pq-question-title box-title">
+
+
+<div class="box-collateral aw-pq-question-list-wrapper container">
+
+<div class="row">
+    <div class="aw-pq-question-title box-title col-md-3 col-12 order-md-2 order-1">
         <?php if ($this->canAskQuestion()) : ?>
-            <button type="button" class="button aw-pq-list__add-question-button aw-pq-list__button_position_right" title="<?php echo $this->escapeHtml(__('Ask Question')); ?>" ><span><span><?php echo $this->escapeHtml(__('Ask Question')); ?></span></span></button>
+            <button type="button" class="button action secondary aw-pq-list__add-question-button aw-pq-list__button_position_right" title="<?php echo $this->escapeHtml(__('Ask Question')); ?>" ><span><span><?php echo $this->escapeHtml(__('Ask Question')); ?></span></span></button>
         <?php else : ?>
             <div class="aw-pq-list__please-login-note"><?php /* @noEscape */ echo __("You must be <a href='%1'>logged in</a> to ask questions.", $this->getLoginUrl()); ?></div>
         <?php endif; ?>
 
     </div>
+        <?php if ($questionCollection->getSize() > 1) : ?>
+        <div class="aw-pq-question-sort pager col-md-9 col-12 order-md-1 order-2">
+            <?php /* @noEscape */ echo $this->getChildHtml('aw_pq_question_sort'); ?>
+        </div>
+    <?php endif; ?>
     <?php if ($this->canAskQuestion()) : ?>
         <div class="aw-pq-question-form__wrapper aw-pq-question-form" style="display: none;">
             <?php /* @noEscape */ echo $this->getChildHtml('aw_pq_ask_question_form'); ?>
         </div>
     <?php endif; ?>
-    <?php if ($questionCollection->getSize() > 1) : ?>
-        <div class="aw-pq-question-sort pager">
-            <?php /* @noEscape */ echo $this->getChildHtml('aw_pq_question_sort'); ?>
-        </div>
-    <?php endif; ?>
-    <div class="aw-pq-list box-content">
+
+    <div class="aw-pq-list box-content" style="order:3;">
         <?php if ($questionCollection->getSize() > 0) : ?>
             <?php foreach ($questionCollection as $question): ?>
                 <div class="aw-pq-list__question-item aw-pq-list__question-item_hidden">
@@ -102,7 +107,7 @@ See LICENSE.txt for license details.
                             </div>
                             <div class="aw-pq-list__add-answer-button-wrapper">
                                 <?php if ($this->canAnswerQuestion()) : ?>
-                                    <button type="button" class="button aw_pq__add-answer-button" title="<?php echo $this->escapeHtml(__('Add Answer')); ?>"><span><span><?php echo $this->escapeHtml(__('Add Answer')); ?></span></span></button>
+                                    <button type="button" class="button action secondary aw_pq__add-answer-button" title="<?php echo $this->escapeHtml(__('Add Answer')); ?>"><span><span><?php echo $this->escapeHtml(__('Add Answer')); ?></span></span></button>
                                 <?php else : ?>
                                     <?php /* @noEscape */ echo $this->getAnswerMessage(); ?>
                                 <?php endif; ?>

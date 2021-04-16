@@ -1,27 +1,27 @@
 //
 //  Loaders
-//  _____________________________________________
+//
 
 @mixin lib-loader(
-    $_loader-overlay-background-color : $loader-overlay__background-color,
-    $_loader-overlay-z-index          : $loader-overlay__z-index,
-    $_loader-icon-width               : $loader-icon__width,
-    $_loader-icon-height              : $loader-icon__height,
-    $_loader-icon-background-color    : $loader-icon__background-color,
-    $_loader-icon-background-image    : $loader-icon__background-image,
-    $_loader-icon-background-position : $loader-icon__background-position,
-    $_loader-icon-border-radius       : $loader-icon__border_radius,
-    $_loader-icon-padding             : $loader-icon__padding,
-    $_loader-text                     : $loader-text,
-    $_loader-text-color               : $loader-text__color,
-    $_loader-text-font-size           : $loader-text__font-size,
-    $_loader-text-font-family         : $loader-text__font-family,
-    $_loader-text-font-weight         : $loader-text__font-weight,
-    $_loader-text-font-style          : $loader-text__font-style,
-    $_loader-text-padding             : $loader-text__padding
+    $-loader-overlay-background-color : $loader-overlay-background-color,
+    $-loader-overlay-z-index          : $loader-overlay-z-index,
+    $-loader-icon-width               : $loader-icon-width,
+    $-loader-icon-height              : $loader-icon-height,
+    $-loader-icon-background-color    : $loader-icon-background-color,
+    $-loader-icon-background-image    : $loader-icon-background-image,
+    $-loader-icon-background-position : $loader-icon-background-position,
+    $-loader-icon-border-radius       : $loader-icon-border-radius,
+    $-loader-icon-padding             : $loader-icon-padding,
+    $-loader-text                     : $loader-text,
+    $-loader-text-color               : $loader-text-color,
+    $-loader-text-font-size           : $loader-text-font-size,
+    $-loader-text-font-family         : $loader-text-font-family,
+    $-loader-text-font-weight         : $loader-text-font-weight,
+    $-loader-text-font-style          : $loader-text-font-style,
+    $-loader-text-padding             : $loader-text-padding
 ) {
-    @include lib-css(background-color, $_loader-overlay-background-color);
-    @include lib-css(z-index, $_loader-overlay-z-index);
+    @include lib-css(background-color, $-loader-overlay-background-color);
+    @include lib-css(z-index, $-loader-overlay-z-index);
     bottom: 0;
     left: 0;
     position: fixed;
@@ -29,26 +29,26 @@
     top: 0;
 
     &:before {
-        @if $_loader-text == true {
-            @include lib-css(padding, $_loader-text-padding);
+        @if $-loader-text == true {
+            @include lib-css(padding, $-loader-text-padding);
             content: attr(data-text);
             text-align: center;
             vertical-align: baseline;
 
             @include lib-typography(
-                $_color       : $_loader-text-color,
-                $_font-size   : $_loader-text-font-size,
-                $_font-family : $_loader-text-font-family,
-                $_font-weight : $_loader-text-font-weight,
-                $_font-style  : $_loader-text-font-style
+                $-color       : $-loader-text-color,
+                $-font-size   : $-loader-text-font-size,
+                $-font-family : $-loader-text-font-family,
+                $-font-weight : $-loader-text-font-weight,
+                $-font-style  : $-loader-text-font-style
             );
         }
 
-        @include lib-css(background, $_loader-icon-background-color $_loader-icon-background-image no-repeat $_loader-icon-background-position);
-        @include lib-css(border-radius, $_loader-icon-border-radius);
-        @include lib-css(height, $_loader-icon-height);
-        @include lib-css(padding, $_loader-icon-padding);
-        @include lib-css(width, $_loader-icon-width);
+        @include lib-css(background, $-loader-icon-background-color $-loader-icon-background-image no-repeat $-loader-icon-background-position);
+        @include lib-css(border-radius, $-loader-icon-border-radius);
+        @include lib-css(height, $-loader-icon-height);
+        @include lib-css(padding, $-loader-icon-padding);
+        @include lib-css(width, $-loader-icon-width);
         bottom: 0;
 
         content: '';
@@ -61,13 +61,13 @@
 }
 
 @mixin lib-loading(
-    $_loading-background-color : $loading__background-color,
-    $_loading-background-image : $loading__background-image
+    $-loading-background-color : $loading-background-color,
+    $-loading-background-image : $loading-background-image
 ) {
     position: relative;
 
     &:before {
-        @include lib-css(background, $_loading-background-color $_loading-background-image no-repeat 50% 50%);
+        @include lib-css(background, $-loading-background-color $-loading-background-image no-repeat 50% 50%);
         bottom: 0;
         content: '';
         left: 0;

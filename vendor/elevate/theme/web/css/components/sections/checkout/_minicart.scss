@@ -1,50 +1,50 @@
 //colors
 $white: #ffffff;
-$color_silver_chalice_approx: #a8a8a8;
-$color_cadet_blue_approx: #abb0be;
-$color_cornflower_blue_approx: #6394f8;
-$color_mercury_approx: #e8e8e8;
-$color_east_bay_approx: #515783;
+$color-silver-chalice-approx: #a8a8a8;
+$color-cadet-blue-approx: #abb0be;
+$color-cornflower-blue-approx: #6394f8;
+$color-mercury-approx: #e8e8e8;
+$color-east-bay-approx: #515783;
 
-$minicart_main_text_color: $body-color;
+$minicart-main-text-color: $body-color;
 
 //Dropdown Container
 
-$minicart_dropdown_container_bg_color: #FFFFFF !default;
-$minicart_dropdown_container_margin: 1.25rem 0 !default;
-$minicart_dropdown_container_zindex: 5 !default;
-$minicart_dropdown_container_width: 320px !default;
-$minicart_dropdown_container_padding: 1.25rem !default;
-$minicart_dropdown_container_border_radius_on: 1 !default;
-$minicart_dropdown_container_border_radius: 0.1875rem !default;
+$minicart-dropdown-container-bg-color: #FFFFFF !default;
+$minicart-dropdown-container-margin: 1.25rem 0 !default;
+$minicart-dropdown-container-zindex: 5 !default;
+$minicart-dropdown-container-width: 320px !default;
+$minicart-dropdown-container-padding: 1.25rem !default;
+$minicart-dropdown-container-border-radius-on: 1 !default;
+$minicart-dropdown-container-border-radius: 0.1875rem !default;
 
-$minicart_dropdown_container_width_desktop: 600px !default;
+$minicart-dropdown-container-width-desktop: 600px !default;
 
 // Mini Cart Header
-$minicart_header_border_on: 0 !default;
-$minicart_header_border_position: "bottom" !default;
-$minicart_header_border_thickness: 1px !default;
-$minicart_header_border_style: solid !default;
-$minicart_header_border_color: #313d57 !default;
-$minicart_header_padding: 0 0 0.9375rem 0 !default;
+$minicart-header-border-on: 0 !default;
+$minicart-header-border-position: "bottom" !default;
+$minicart-header-border-thickness: 1px !default;
+$minicart-header-border-style: solid !default;
+$minicart-header-border-color: #313d57 !default;
+$minicart-header-padding: 0 0 0.9375rem 0 !default;
 
 
-$minicart_total_text_align: right !default;
+$minicart-total-text-align: right !default;
 
-$minicart_items_padding: 0 !default;
-$minicart_items_item_align_items: center !default;
+$minicart-items-padding: 0 !default;
+$minicart-items-item-align-items: center !default;
 
 
 //
 
-$minicart_counter_background_color: $theme-brand-color-2 !default;
-$minicart_counter_text_color: $theme-general-color-1 !default;
-$minicart_counter_border_thickness: 1px !default;
-$minicart_counter_border_style: solid !default;
-$minicart_counter_border_color: $theme-general-color-1 !default;
-$minicart_counter_position: 'right-centre-offset' !default;
-$minicart_counter_cssposition: relative !default;
-$minicart_counter_cssposition_desktop: relative !default;
+$minicart-counter-background-color: $theme-brand-color-2 !default;
+$minicart-counter-text-color: $theme-general-color-1 !default;
+$minicart-counter-border-thickness: 1px !default;
+$minicart-counter-border-style: solid !default;
+$minicart-counter-border-color: $theme-general-color-1 !default;
+$minicart-counter-position: 'right-centre-offset' !default;
+$minicart-counter-cssposition: relative !default;
+$minicart-counter-cssposition-desktop: relative !default;
 
 // Items
 
@@ -53,73 +53,73 @@ $minicart-item-name-fontsize: 0.8125rem !default;
 
 
 
-$minicart_item_price_color: $theme-brand-color-2 !default;
-$minicart_item_price_margin: 0 0.5rem 0 0 !default;
-$minicart_item_qty_color: $theme-general-color-1 !default;
+$minicart-item-price-color: $theme-brand-color-2 !default;
+$minicart-item-price-margin: 0 0.5rem 0 0 !default;
+$minicart-item-qty-color: $theme-general-color-1 !default;
 
 
 //Button
-$bnt_minicart_checkout_fontsize: 1rem !default;
-$btn_minicart_checkout_width: 100% !default;
-$btn_minicart_checkout_bg_color: $theme-brand-color-2 !default;
-$btn_minicart_checkout_border_color: $theme-brand-color-2 !default;
+$bnt-minicart-checkout-fontsize: 1rem !default;
+$btn-minicart-checkout-width: 100% !default;
+$btn-minicart-checkout-bg-color: $theme-brand-color-2 !default;
+$btn-minicart-checkout-border-color: $theme-brand-color-2 !default;
 
 
-$minicart_basket_order: 1 !default;
-$minicart_basket_side_order: 2 !default;
+$minicart-basket-order: 1 !default;
+$minicart-basket-side-order: 2 !default;
 
 
-$minicart_total_color: #00acb6 !default;
-$minicart_total_fontsize: 1rem !default;
-$minicart_total_fontweight: 700 !default;
-$minicart_total_text_align: right !default;
-$minicart_total_padding: 0 !default;
+$minicart-total-color: #00acb6 !default;
+$minicart-total-fontsize: 1rem !default;
+$minicart-total-fontweight: 700 !default;
+$minicart-total-text-align: right !default;
+$minicart-total-padding: 0 !default;
 
 
-$minicart_shoppingcartwrap_a_align: center !default;
-$minicart_shoppingcartwrap_a_justifycontent: center !default;
-$minicart_shoppingcartwrap_bg_on_desktop: 0 !default;
-$minicart_shoppingcartwrap_bg_color_desktop: #466c5c !default;
-$minicart_shoppingcartwrap_padding_desktop: 0 !default;
+$minicart-shoppingcartwrap-a-align: center !default;
+$minicart-shoppingcartwrap-a-justifycontent: center !default;
+$minicart-shoppingcartwrap-bg-on-desktop: 0 !default;
+$minicart-shoppingcartwrap-bg-color-desktop: #466c5c !default;
+$minicart-shoppingcartwrap-padding-desktop: 0 !default;
 
-$minicart_shoppingcartwrap_border_radius_on: 0 !default;
-$minicart_shoppingcartwrap_border_radius: 1.875rem !default;
+$minicart-shoppingcartwrap-border-radius-on: 0 !default;
+$minicart-shoppingcartwrap-border-radius: 1.875rem !default;
 
-$minicart_shoppingcartwrap_bottom_row_styling: 0 !default;
+$minicart-shoppingcartwrap-bottom-row-styling: 0 !default;
 
-$minicart_basket_btm_row_color: #E6E6E6 !default;
-$minicart_basket_btm_row_font_size: 0.75rem !default;
-$minicart_basket_btm_row_font_weight: 300 !default;
+$minicart-basket-btm-row-color: #E6E6E6 !default;
+$minicart-basket-btm-row-font-size: 0.75rem !default;
+$minicart-basket-btm-row-font-weight: 300 !default;
 
-$minicart_basket_label_fontsize: 0.75rem !default;
-$minicart_basket_label_fontweight: 400 !default;
-$minicart_basket_label_color: #7e808d !default;
-$minicart_basket_text_align: left !default;
+$minicart-basket-label-fontsize: 0.75rem !default;
+$minicart-basket-label-fontweight: 400 !default;
+$minicart-basket-label-color: #7e808d !default;
+$minicart-basket-text-align: left !default;
 
-$minicart_custom_minicart_icon_on: 0 !default;
-$minicart_custom_minicart_icon_url: '../images/header/basket.svg' !default;
-$minicart_custom_minicart_icon_height: 38px !default;
-$minicart_custom_minicart_icon_width: 29px !default;
+$minicart-custom-minicart-icon-on: 0 !default;
+$minicart-custom-minicart-icon-url: '../images/header/basket.svg' !default;
+$minicart-custom-minicart-icon-height: 38px !default;
+$minicart-custom-minicart-icon-width: 29px !default;
 
-$minicart_default_icon_font_size: 1.5rem !default;
+$minicart-default-icon-font-size: 1.5rem !default;
 
 
 // Product Image
 
-$minicart_prod_img_margin: 0 0.75rem 0 0 !default;
-$minicart_prod_img_width: 75px !default;
-$minicart_prod_img_border_radius_on: 1 !default;
-$minicart_prod_img_border_radius: $border-radius !default;
-$minicart_prod_img_align_self: flex-start !default;
+$minicart-prod-img-margin: 0 0.75rem 0 0 !default;
+$minicart-prod-img-width: 75px !default;
+$minicart-prod-img-border-radius-on: 1 !default;
+$minicart-prod-img-border-radius: $border-radius !default;
+$minicart-prod-img-align-self: flex-start !default;
 
 
 // Product Options
 
-$minicart_productoptions_margin: 1rem 0 0 0 !default;
-$minicart_productoptions_item_options_margin: 1rem 0 0 0 !default;
-$minicart_productoptions_item_options_label_margin: 0.375rem 0 0 0 !default;
+$minicart-productoptions-margin: 1rem 0 0 0 !default;
+$minicart-productoptions-item-options-margin: 1rem 0 0 0 !default;
+$minicart-productoptions-item-options-label-margin: 0.375rem 0 0 0 !default;
 
-$mcart_item_message_margin: 0.3rem 0 0 0 !default;
+$mcart-item-message-margin: 0.3rem 0 0 0 !default;
 
 // Items
 
@@ -136,26 +136,26 @@ $minicart-shoppingcartheader-lightertext: #abb0be !default;
 }
 
 .shopping-cart-items {
-    padding: $minicart_items_padding;
+    @include co(padding, $minicart-items-padding);
 
     li {
         //flex-wrap: wrap;
         margin-bottom: 18px;
         list-style-type: none;
         display: flex;
-        align-items: $minicart_items_item_align_items;
+        @include co(align-items, $minicart-items-item-align-items);
         > img, > div {
             flex: 0 1 auto;
         }
     }
 
     img {
-        align-self: $minicart_prod_img_align_self;
+        align-self: $minicart-prod-img-align-self;
 
-        margin: $minicart_prod_img_margin;
-        width: $minicart_prod_img_width;
-        @if $minicart_prod_img_border_radius_on == 1 {
-            border-radius: $minicart_prod_img_border_radius;
+        @include co(margin, $minicart-prod-img-margin);
+        @include co(width, $minicart-prod-img-width);
+        @if $minicart-prod-img-border-radius-on == 1 {
+            border-radius: $minicart-prod-img-border-radius;
         }
     }
     .mcart-item-details {
@@ -165,7 +165,7 @@ $minicart-shoppingcartheader-lightertext: #abb0be !default;
         display: none;
         width: 100%;
         order: 5;
-        margin: $mcart_item_message_margin;
+        @include co(margin, $mcart-item-message-margin);
     }
 
     .item-name {
@@ -176,8 +176,8 @@ $minicart-shoppingcartheader-lightertext: #abb0be !default;
     }
 
     .item-price {
-        color: $minicart_item_price_color;
-        margin: $minicart_item_price_margin;
+        @include co(color, $minicart-item-price-color);
+        @include co(margin, $minicart-item-price-margin);
         .subtotal {
             display: inline;
             .price-including-tax,
@@ -189,17 +189,17 @@ $minicart-shoppingcartheader-lightertext: #abb0be !default;
     }
 
     .item-quantity {
-        color: $minicart_item_qty_color;
+        @include co(color, $minicart-item-qty-color);
     }
     .product.options {
-        margin: $minicart_productoptions_margin;
+        @include co(margin, $minicart-productoptions-margin);
         .toggle {
             cursor: pointer;
         }
         .item-options {
-            margin: $minicart_productoptions_item_options_margin;
+            @include co(margin, $minicart-productoptions-item-options-margin);
             .label {
-                margin: $minicart_productoptions_item_options_label_margin;
+                @include co(margin, $minicart-productoptions-item-options-label-margin);
             }
         }
     }

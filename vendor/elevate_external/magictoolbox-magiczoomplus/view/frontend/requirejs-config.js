@@ -13,7 +13,8 @@ var config = {
     },
     map: {
         '*': {
-            magicToolboxThumbSwitcher: 'MagicToolbox_MagicZoomPlus/js/thumb-switcher'
+            magicToolboxThumbSwitcher: 'MagicToolbox_MagicZoomPlus/js/thumb-switcher',
+            configurable:              'MagicToolbox_MagicZoomPlus/js/configurable'
         }
     }
 };

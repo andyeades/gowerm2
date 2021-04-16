@@ -1,54 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <listingToolbar name="listing_top">
         <massaction name="listing_massaction"
                     component="Magento_Ui/js/grid/tree-massactions">
-            <action name="x_axis_product_attributes"
-                    class="Firebear\ConfigurableProducts\Ui\Component\Listing\MassActions\ProductAttributesDynamicAction">
+            <action name="x_axis_product_attributes" class="Firebear\ConfigurableProducts\Ui\Component\Listing\MassActions\ProductAttributesDynamicAction">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">x_axis_product_attributes</item>
                         <item name="label" xsi:type="string" translate="true">Update Matrix X Axis Attribute</item>
-                        <item name="action_resource" xsi:type="object">
-                            Firebear\ConfigurableProducts\Ui\DataProvider\UpdateMatrixXAxis
-                        </item>
+                        <item name="action_resource" xsi:type="object">Firebear\ConfigurableProducts\Ui\DataProvider\UpdateMatrixXAxis</item>
                     </item>
                 </argument>
             </action>
-            <action name="y_axis_product_attributes"
-                    class="Firebear\ConfigurableProducts\Ui\Component\Listing\MassActions\ProductAttributesDynamicAction">
+            <action name="y_axis_product_attributes" class="Firebear\ConfigurableProducts\Ui\Component\Listing\MassActions\ProductAttributesDynamicAction">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">y_axis_product_attributes</item>
                         <item name="label" xsi:type="string" translate="true">Update Matrix Y Axis Attribute</item>
-                        <item name="action_resource" xsi:type="object">
-                            Firebear\ConfigurableProducts\Ui\DataProvider\UpdateMatrixYAxis
-                        </item>
+                        <item name="action_resource" xsi:type="object">Firebear\ConfigurableProducts\Ui\DataProvider\UpdateMatrixYAxis</item>
                     </item>
                 </argument>
             </action>
         </massaction>
     </listingToolbar>
     <columns name="product_columns" class="Magento\Catalog\Ui\Component\Listing\Columns">
-        <column name="x_axis" component="Magento_Ui/js/grid/columns/select" sortOrder="76">
-            <settings>
-                <addField>true</addField>
-                <options class="Firebear\ConfigurableProducts\Model\Config\Source\ProductAttributeOptions"/>
-                <dataType>select</dataType>
-                <sortable>true</sortable>
-                <label translate="true">Attribute for matrix X-Axis</label>
-            </settings>
+            <column name="x_axis" component="Magento_Ui/js/grid/columns/select" sortOrder="76">
+                <settings>
+                    <addField>true</addField>
+                    <options class="Firebear\ConfigurableProducts\Model\Config\Source\ProductAttributeOptions"/>
+                    <dataType>select</dataType>
+                    <sortable>true</sortable>
+                    <label translate="true">Attribute for matrix X-Axis</label>
+                </settings>
+            </column>
+            <column name="y_axis" component="Magento_Ui/js/grid/columns/select" sortOrder="77">
+                <settings>
+                    <addField>true</addField>
+                    <options class="Firebear\ConfigurableProducts\Model\Config\Source\ProductAttributeOptions"/>
+                    <dataType>select</dataType>
+                    <sortable>true</sortable>
+                    <label translate="true">Attribute for matrix Y-Axis</label>
+                </settings>
         </column>
-        <column name="y_axis" component="Magento_Ui/js/grid/columns/select" sortOrder="77">
-            <settings>
-                <addField>true</addField>
-                <options class="Firebear\ConfigurableProducts\Model\Config\Source\ProductAttributeOptions"/>
-                <dataType>select</dataType>
-                <sortable>true</sortable>
-                <label translate="true">Attribute for matrix Y-Axis</label>
-            </settings>
-        </column>
-    </columns>
+        </columns>
 </listing>

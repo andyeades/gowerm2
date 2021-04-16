@@ -6,7 +6,10 @@
 #cart_shipping_block{
 
     order: 2;
-    width: 100%%;
+    width: 100%;
+
+    margin-bottom: 20px;
+    padding: 0.75rem;
 }
     @media only screen and (min-width: 992px){
         .checkout-cart-index .cart-discount {
@@ -35,201 +38,78 @@ $html = '';
 $om = \Magento\Framework\App\ObjectManager::getInstance();
 $customerSession = $om->get('Magento\Customer\Model\Session');
 //$customerData = $customerSession->getCustomer()->getData(); //get all data of customerData
-$NAV_shipping_code = $customerSession->getCustomer()->getData('nav_shipping_method_code');//get id of customer
 
-$standard_shipping_table =
-    '<table class="table table-striped">
-		<thead>
-			<tr>
-				<td><strong>Product</strong></td>
-				<td class="text-right"><strong>Price (ex VAT)</strong></td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>All goods*</td>
-				<td class="text-right">&pound;9.95</td>
-			</tr>
-			<tr>
-				<td>Assessments &amp; training</td>
-				<td class="text-right">&pound;0.00</td>
-			</tr>
-			<tr>
-				<td>Downloadable software</td>
-				<td class="text-right">&pound;0.00</td>
-			</tr>
-			<tr>
-				<td>Sit-stand platform (each)</td>
-				<td class="text-right">&pound;12.95</td>
-			</tr>
-			<tr>
-				<td>Chair (each)</td>
-				<td class="text-right">&pound;21.95</td>
-			</tr>
-			<tr>
-				<td>Desk (each)</td>
-				<td class="text-right">&pound;29.95</td>
-			</tr>
-		</tbody>
-	</table>
-	<p><em>*Excludes assessments & training, downloadable software, sit-stand platforms, chairs and desks</em></p>';
-$bespoke2_shipping_table =
-    '<table class="table table-striped">
-		<thead>
-			<tr>
-				<td><strong>Product</strong></td>
-				<td class="text-right"><strong>Price (ex VAT)</strong></td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>All goods*</td>
-				<td class="text-right">&pound;9.95</td>
-			</tr>
-			<tr>
-				<td>Assessments &amp; training</td>
-				<td class="text-right">&pound;0.00</td>
-			</tr>
-			<tr>
-				<td>Downloadable software</td>
-				<td class="text-right">&pound;0.00</td>
-			</tr>
-			<tr>
-				<td>Chair (each)</td>
-				<td class="text-right">&pound;0.00</td>
-			</tr>
-			<tr>
-				<td>Sit-stand platform (each)</td>
-				<td class="text-right">&pound;12.95</td>
-			</tr>
-			<tr>
-				<td>Desk (each)</td>
-				<td class="text-right">&pound;29.95</td>
-			</tr>
-		</tbody>
-	</table>
-	<p><em>*Excludes assessments & training, downloadable software, chairs, sit-stand platforms and desks</em></p>';
-$bespoke3_shipping_table =
-    '<table class="table table-striped">
-		<thead>
-			<tr>
-				<td><strong>Product</strong></td>
-				<td class="text-right"><strong>Price (ex VAT)</strong></td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>All goods*</td>
-				<td class="text-right">&pound;5.00</td>
-			</tr>
-			<tr>
-				<td>Assessments &amp; training</td>
-				<td class="text-right">&pound;0.00</td>
-			</tr>
-			<tr>
-				<td>Downloadable software</td>
-				<td class="text-right">&pound;0.00</td>
-			</tr>
-			<tr>
-				<td>Chair (each)</td>
-				<td class="text-right">&pound;10.00</td>
-			</tr>
-			<tr>
-				<td>Sit-stand platform (each)</td>
-				<td class="text-right">&pound;10.00</td>
-			</tr>
-			<tr>
-				<td>Desk (each)</td>
-				<td class="text-right">&pound;25.00</td>
-			</tr>
-		</tbody>
-	</table>
-	<p><em>*Excludes assessments & training, downloadable software, chairs, sit-stand platforms and desks</em></p>';
-$bespoke4_shipping_table =
-    '<table class="table table-striped">
-	<thead>
-		<tr>
-			<td><strong>Product</strong></td>
-			<td class="text-right"><strong>Price (ex VAT)</strong></td>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>All goods*</td>
-			<td class="text-right">&pound;5.00</td>
-		</tr>
-		<tr>
-			<td>Assessments &amp; training</td>
-			<td class="text-right">&pound;0.00</td>
-		</tr>
-		<tr>
-			<td>Downloadable software</td>
-			<td class="text-right">&pound;0.00</td>
-		</tr>
-		<tr>
-			<td>Sit-stand platform (each)</td>
-			<td class="text-right">&pound;12.95</td>
-		</tr>
-		<tr>
-			<td>Chair (each)</td>
-			<td class="text-right">&pound;21.95</td>
-		</tr>
-		<tr>
-			<td>Desk (each)</td>
-			<td class="text-right">&pound;29.95</td>
-		</tr>
-	</tbody>
-</table>
-<p><em>*Excludes assessments & training, downloadable software, sit-stand platforms, chairs and desks</em></p>';
 
-$bespoke5_shipping_table =
-    '<table class="table table-striped">
-	<thead>
-		<tr>
-			<td><strong>Product</strong></td>
-			<td class="text-right"><strong>Price (ex VAT)</strong></td>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>All goods*</td>
-			<td class="text-right">&pound;0.00</td>
-		</tr>
-		<tr>
-			<td>Chair (each)</td>
-			<td class="text-right">&pound;21.95</td>
-		</tr>
-		<tr>
-			<td>Desk (each)</td>
-			<td class="text-right">&pound;29.95</td>
-		</tr>
-	</tbody>
-</table>
-<p><em>*Excludes chairs and desks</em></p>';
-$html = '<div id="cart_shipping_block">';
+//doing lookup - not logged in
 
-if($NAV_shipping_code == 'FLAT500' || $NAV_shipping_code == 'STANDARD_W' ){
+$helper = $this->helper('Elevate\Promotions\Helper\Data');
+$not_logged_in_email = $helper->getConfig('mconnector/custom_settings/not_logged_in_email');
+
+      $currentCustomer = false;
+        if(!empty($not_logged_in_email)){
+        $customerFactory = $om->get('Magento\Customer\Model\CustomerFactory');
+            $currentCustomer = $customerFactory->create()->loadByEmail($not_logged_in_email);
+           
+        }
+
+        if(!$currentCustomer || !$currentCustomer->getId()){
+
+            $currentCustomer = $customerSession->getCustomer();
+
+            $is_contact = (bool) $currentCustomer->getIsContact();
+            if($is_contact){
+                $parent_customer_id = $currentCustomer->getNavContactCustomerId();
+                if(!empty($parent_customer_id)){
+                    $parent_customer =  $currentCustomer
+                        ->getCollection()
+                        ->addAttributeToSelect(['*'])
+                        ->addAttributeToFilter('navision_customer_id', $parent_customer_id)
+                        ->getFirstItem();
+                    if($parent_customer && $parent_customer->getId()){
+                        $currentCustomer = $parent_customer;
+                    }
+                }
+
+            }
+         
+          
+        }
+
+   
+   
+   
+   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+
+$connection = $resource->getConnection();
+
+$tableName = $resource->getTableName('Your Table Name');/****** Your table name******/ 
+
+//Select All Data Present in Table
+
+
+        $NAV_shipping_code = $currentCustomer->getData('nav_shipping_method_code');//get id of customer
+       
+    $sql = "SELECT delivery_cms_block FROM webshopapps_matrixrate WHERE customer_shipping_group = '$NAV_shipping_code'";
+
+   
+           $result = $connection->fetchOne($sql); /****** Return Array with values******/
+            
+                    
+            
+$staticBlock = $objectManager->get('Magento\Cms\Block\BlockFactory')->create();
+
+// Change the your-block-id for the correct block ID
+$staticBlock->setBlockId($result);              
+         $html = '<div id="cart_shipping_block"><p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p>';
+$html .= $staticBlock->toHtml();  
+
+                                                      
+  if(empty($html)){
+      $html = '<div id="cart_shipping_block">';
     $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland: &pound;5.00* (ex VAT)</strong></br>*Excludes assessments &amp; training and downloadable software (&pound;0.00)</p>';
-}elseif($NAV_shipping_code == 'FLAT750'){
-    $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland: &pound;7.50* (ex VAT)</strong></br>*Excludes assessments &amp; training and downloadable software (&pound;0.00)</p>';
-}elseif($NAV_shipping_code == 'FLAT1000'){
-    $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland: &pound;10.00* (ex VAT)</strong></br>*Excludes assessments &amp; training and downloadable software (&pound;0.00)</p>';
-}elseif($NAV_shipping_code == 'FOC'){
-    $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland: &pound;0.00</strong></p>';
-}elseif($NAV_shipping_code == 'BESPOKE2'){
-    $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland:</strong></p>'.$bespoke2_shipping_table;
-}elseif($NAV_shipping_code == 'BESPOKE3'){
-    $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland:</strong></p>'.$bespoke3_shipping_table;
-}elseif($NAV_shipping_code == 'BESPOKE4'){
-    $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland:</strong></p>'.$bespoke4_shipping_table;
-}elseif($NAV_shipping_code == 'BESPOKE5' ){
-    $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland:</strong></p>'.$bespoke5_shipping_table;
-}elseif($NAV_shipping_code == 'STANDARD'){
-    $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland:</strong></p>'.$standard_shipping_table;
-
-}else{
-    $html .= '<p class="shipping-charge"><strong>SHIPPING CHARGES</strong></p><p><strong>UK Mainland &amp; Northern Ireland: &pound;5.00* (ex VAT)</strong></br>*Excludes assessments &amp; training and downloadable software (&pound;0.00)</p>';
-}
+               }
 
 
 

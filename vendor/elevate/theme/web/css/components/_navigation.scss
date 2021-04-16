@@ -1,6 +1,6 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
 $active-nav-indent: 54px !default;
 
@@ -12,7 +12,7 @@ $active-nav-indent: 54px !default;
 }
 
 .nav-sections {
-    @include lib-css(background, $navigation__background);
+    @include lib-css(background, $navigation-background);
 }
 
 .nav-toggle {
@@ -22,9 +22,9 @@ $active-nav-indent: 54px !default;
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__m) {
+@include max-screen($screen-m) {
     .navigation {
         padding: 0;
 
@@ -32,10 +32,10 @@ $active-nav-indent: 54px !default;
             .level-top {
                 position: relative;
                 @include lib-icon-font(
-                    $_icon-font-content  : $icon-down,
-                    $_icon-font-size     : 42px,
-                    $_icon-font-position : after,
-                    $_icon-font-display  : block
+                    $-icon-font-content  : $icon-down,
+                    $-icon-font-size     : 42px,
+                    $-icon-font-position : after,
+                    $-icon-font-display  : block
                 );
 
                 &:after {
@@ -46,8 +46,8 @@ $active-nav-indent: 54px !default;
 
                 &.ui-state-active {
                     @include lib-icon-font-symbol(
-                        $_icon-font-content  : $icon-up,
-                        $_icon-font-position : after
+                        $-icon-font-content  : $icon-up,
+                        $-icon-font-position : after
                     );
                 }
             }
@@ -75,7 +75,7 @@ $active-nav-indent: 54px !default;
 
             .label {
                 display: block;
-                margin-bottom: $indent__xs;
+                margin-bottom: $indent-xs;
             }
 
             &:last-child {
@@ -87,10 +87,10 @@ $active-nav-indent: 54px !default;
             strong {
                 position: relative;
                 @include lib-icon-font(
-                    $_icon-font-content  : $icon-down,
-                    $_icon-font-size     : 42px,
-                    $_icon-font-position : after,
-                    $_icon-font-display  : block
+                    $-icon-font-content  : $icon-down,
+                    $-icon-font-size     : 42px,
+                    $-icon-font-position : after,
+                    $-icon-font-display  : block
                 );
 
                 &:after {
@@ -102,15 +102,15 @@ $active-nav-indent: 54px !default;
 
             &.active strong {
                 @include lib-icon-font-symbol(
-                    $_icon-font-content  : $icon-up,
-                    $_icon-font-position : after
+                    $-icon-font-content  : $icon-up,
+                    $-icon-font-position : after
                 );
             }
         }
 
         .switcher-dropdown {
             @include lib-list-reset-styles();
-            padding: $indent__s 0;
+            @include co(padding, $indent-s 0);
         }
 
         .header.links {
@@ -124,7 +124,7 @@ $active-nav-indent: 54px !default;
                 &.greet.welcome {
                     border-top: 1px solid $color-gray82;
                     font-weight: 700;
-                    padding: 0.8rem $indent__base;
+                    padding: 0.8rem $indent-base;
                 }
 
                 > a {
@@ -134,11 +134,11 @@ $active-nav-indent: 54px !default;
 
             a,
             a:hover {
-                @include lib-css(color, $navigation-level0-item__color);
-                @include lib-css(text-decoration, $navigation-level0-item__text-decoration);
+                @include lib-css(color, $navigation-level0-item-color);
+                @include lib-css(text-decoration, $navigation-level0-item-text-decoration);
                 display: block;
                 font-weight: 700;
-                padding: 0.8rem $indent__base;
+                padding: 0.8rem $indent-base;
             }
 
             .header.links {
@@ -175,16 +175,16 @@ $active-nav-indent: 54px !default;
         }
 
         .nav-sections {
-            $_shadow: 0 0 5px 0 rgba(50, 50, 50, 0.75);
+            $-shadow: 0 0 5px 0 rgba(50, 50, 50, 0.75);
 
-            @include lib-css(box-shadow, $_shadow, 1);
+            @include lib-css(box-shadow, $-shadow, 1);
             left: 0;
             z-index: 99;
         }
 
         .nav-toggle {
             &:after {
-                background: rgba(0, 0, 0, $overlay__opacity);
+                background: rgba(0, 0, 0, $overlay-opacity);
                 content: '';
                 display: block;
                 height: 100%;
@@ -204,8 +204,8 @@ $active-nav-indent: 54px !default;
     }
 
     .nav-sections-item-title {
-        background: darken($navigation__background, 5%);
-        border: solid darken($navigation__background, 10%);
+        background: darken($navigation-background, 5%);
+        border: solid darken($navigation-background, 10%);
         border-width: 0 0 1px 1px;
         box-sizing: border-box;
         float: left;
@@ -238,7 +238,7 @@ $active-nav-indent: 54px !default;
             display: block;
         }
 
-        padding: $indent__m 0;
+        @include co(padding, $indent-m 0);
     }
 
     @include lib-main-navigation();
@@ -246,9 +246,9 @@ $active-nav-indent: 54px !default;
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .nav-toggle {
         display: none;
     }
@@ -256,7 +256,7 @@ $active-nav-indent: 54px !default;
     .nav-sections {
         @include lib-vendor-prefix-flex-shrink(0);
         @include lib-vendor-prefix-flex-basis(auto);
-        //margin-bottom: $indent__m;
+        //margin-bottom: $indent-m;
     }
 
     .nav-sections-item-title {

@@ -1,80 +1,80 @@
 //
 //  Breadcrumbs variables
-//  _____________________________________________
+//
 
 
 //
 //  Breadcrumbs variables
-//  _____________________________________________
+//
 
 //  Current page
-$breadcrumbs-current__color                      : $color-gray-middle5 !default;
+$breadcrumbs-current-color                      : $color-gray-middle5 !default;
 
 $breadcrumbs-font-weight                         : 300 !default;
-$breadcrumbs__font-size                          : 0.75rem !default;
-$breadcrumbs__display                            : false !default;
-$breadcrumbs__container-margin                   : 0.9375rem 0 0 !default;
-$breadcrumbs__padding                            : false !default;
+$breadcrumbs-font-size                          : 0.75rem !default;
+$breadcrumbs-display                            : false !default;
+$breadcrumbs-container-margin                   : 0.9375rem 0 0 !default;
+$breadcrumbs-padding                            : false !default;
 
-$breadcrumbs-icon__use                           : true !default;
-$breadcrumbs-icon__font-content                  : $icon-next !default;
-$breadcrumbs-icon__font                          : $icon-font !default;
-$breadcrumbs-icon__font-size                     : 24px !default;
-$breadcrumbs-icon__font-line-height              : 18px !default;
-$breadcrumbs-icon__font-color                    : false !default;
-$breadcrumbs-icon__font-margin                   : 0 $indent__s !default;
-$breadcrumbs-icon__font-vertical-align           : top !default;
+$breadcrumbs-icon-use                           : true !default;
+$breadcrumbs-icon-font-content                  : $icon-next !default;
+$breadcrumbs-icon-font                          : $icon-font !default;
+$breadcrumbs-icon-font-size                     : 24px !default;
+$breadcrumbs-icon-font-line-height              : 18px !default;
+$breadcrumbs-icon-font-color                    : false !default;
+$breadcrumbs-icon-font-margin                   : 0 $indent-s !default;
+$breadcrumbs-icon-font-vertical-align           : top !default;
 
 //  Current page
-$breadcrumbs-current__color                      : $color-gray64 !default;
-$breadcrumbs-current__font-weight                : $font-weight__regular !default;
-$breadcrumbs-current__background                 : false !default;
-$breadcrumbs-current__border                     : false !default;
+$breadcrumbs-current-color                      : $color-gray64 !default;
+$breadcrumbs-current-font-weight                : $font-weight-regular !default;
+$breadcrumbs-current-background                 : false !default;
+$breadcrumbs-current-border                     : false !default;
 
 //  Current page - gradient background
-$breadcrumbs-current__gradient                   : false !default;
-$breadcrumbs-current__gradient-direction         : vertical !default;
-$breadcrumbs-current__gradient-color-start       : false !default;
-$breadcrumbs-current__gradient-color-end         : false !default;
+$breadcrumbs-current-gradient                   : false !default;
+$breadcrumbs-current-gradient-direction         : vertical !default;
+$breadcrumbs-current-gradient-color-start       : false !default;
+$breadcrumbs-current-gradient-color-end         : false !default;
 
-$breadcrumbs-separator__symbol                   : false !default;
-$breadcrumbs-separator__color                    : $breadcrumbs-current__color !default;
+$breadcrumbs-separator-symbol                   : false !default;
+$breadcrumbs-separator-color                    : $breadcrumbs-current-color !default;
 
 //
 //  Link
-//  ---------------------------------------------
+//
 
 //  Gradient
-$breadcrumbs-link__gradient                      : false !default; // [true|false]
-$breadcrumbs-link__gradient-direction            : false !default; // [true|false]
+$breadcrumbs-link-gradient                      : false !default; // [true|false]
+$breadcrumbs-link-gradient-direction            : false !default; // [true|false]
 
-$breadcrumbs-link__color                         : $primary__color !default;
-$breadcrumbs-link__background                    : false !default;
-$breadcrumbs-link__border                        : false !default;
-$breadcrumbs-link__text-decoration               : none !default;
-$breadcrumbs-link__gradient-color-start          : false !default;
-$breadcrumbs-link__gradient-color-end            : false !default;
+$breadcrumbs-link-color                         : $primary-color !default;
+$breadcrumbs-link-background                    : false !default;
+$breadcrumbs-link-border                        : false !default;
+$breadcrumbs-link-text-decoration               : none !default;
+$breadcrumbs-link-gradient-color-start          : false !default;
+$breadcrumbs-link-gradient-color-end            : false !default;
 
 //  Visited
-$breadcrumbs-link__visited__color                : $primary__color !default;
-$breadcrumbs-link__visited__background           : $breadcrumbs-link__background !default;
-$breadcrumbs-link__visited__border               : $breadcrumbs-link__border !default;
-$breadcrumbs-link__visited__text-decoration      : none !default;
-$breadcrumbs-link__visited__gradient-color-start : false !default;
-$breadcrumbs-link__visited__gradient-color-end   : false !default;
+$breadcrumbs-link-visited-color                : $primary-color !default;
+$breadcrumbs-link-visited-background           : $breadcrumbs-link-background !default;
+$breadcrumbs-link-visited-border               : $breadcrumbs-link-border !default;
+$breadcrumbs-link-visited-text-decoration      : none !default;
+$breadcrumbs-link-visited-gradient-color-start : false !default;
+$breadcrumbs-link-visited-gradient-color-end   : false !default;
 
 //  Hover
-$breadcrumbs-link__hover__color                  : $primary__color !default;
-$breadcrumbs-link__hover__background             : false !default;
-$breadcrumbs-link__hover__border                 : $breadcrumbs-link__border !default;
-$breadcrumbs-link__hover__text-decoration        : underline !default;
-$breadcrumbs-link__hover__gradient-color-start   : false !default;
-$breadcrumbs-link__hover__gradient-color-end     : false !default;
+$breadcrumbs-link-hover-color                  : $primary-color !default;
+$breadcrumbs-link-hover-background             : false !default;
+$breadcrumbs-link-hover-border                 : $breadcrumbs-link-border !default;
+$breadcrumbs-link-hover-text-decoration        : underline !default;
+$breadcrumbs-link-hover-gradient-color-start   : false !default;
+$breadcrumbs-link-hover-gradient-color-end     : false !default;
 
 //  Active
-$breadcrumbs-link__active__color                 : $primary__color !default;
-$breadcrumbs-link__active__background            : $breadcrumbs-link__background !default;
-$breadcrumbs-link__active__border                : $breadcrumbs-link__border !default;
-$breadcrumbs-link__active__text-decoration       : none !default;
-$breadcrumbs-link__active__gradient-color-start  : false !default;
-$breadcrumbs-link__active__gradient-color-end    : false !default;
+$breadcrumbs-link-active-color                 : $primary-color !default;
+$breadcrumbs-link-active-background            : $breadcrumbs-link-background !default;
+$breadcrumbs-link-active-border                : $breadcrumbs-link-border !default;
+$breadcrumbs-link-active-text-decoration       : none !default;
+$breadcrumbs-link-active-gradient-color-start  : false !default;
+$breadcrumbs-link-active-gradient-color-end    : false !default;

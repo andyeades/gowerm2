@@ -30,7 +30,7 @@ class Config  {
 		//New sorting options
 		$customOption['price_desc'] = __('Price : High to Low' );
 		$customOption['price_asc'] = __('Price : Low to High' );
-
+       // 	$customOption['product_rating'] = __( 'Customer Reviews' );
 		$customOption['name'] = $default_options['name'];
 
 		//Merge default sorting options with custom options

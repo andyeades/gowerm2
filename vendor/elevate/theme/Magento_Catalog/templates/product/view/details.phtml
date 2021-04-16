@@ -31,7 +31,7 @@
                     }
 
                  } ?>
-                <div class="data item title" data-role="collapsible" id="tab-label-<?= $block->escapeHtmlAttr($alias) ?>">
+                <div class="data item title tab_<? echo str_replace('.', '_', strtolower($alias)); ?>" data-role="collapsible" id="tab-label-<?= $block->escapeHtmlAttr($alias) ?>">
 
 
 

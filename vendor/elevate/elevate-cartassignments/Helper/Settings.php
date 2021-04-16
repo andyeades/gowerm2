@@ -27,9 +27,6 @@ class Settings extends \Magento\Framework\App\Helper\AbstractHelper {
      * @var TimezoneInterface
      */
     private $timezone;
-
-    protected $donationsEnable;
-
     public function __construct(
 
         \Magento\Framework\Session\SessionManagerInterface $coreSession,
@@ -39,7 +36,7 @@ class Settings extends \Magento\Framework\App\Helper\AbstractHelper {
         \Magento\SalesRule\Model\RuleFactory $ruleFactory,
         \Elevate\CartAssignments\Model\QuoteItemAssignmentsFactory $cartAssignments,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-
+        
     ) {
 
         $this->_coreSession = $coreSession;
@@ -49,7 +46,7 @@ class Settings extends \Magento\Framework\App\Helper\AbstractHelper {
         $this->timezone = $timezone;
         $this->_ruleFactory = $ruleFactory;
         $this->scopeConfig = $scopeConfig;
-        $this->donationsEnable = $this->scopeConfig->getValue('elevate_cartassignments/general/donations_enable');
+
     }
 
 
@@ -65,8 +62,4 @@ class Settings extends \Magento\Framework\App\Helper\AbstractHelper {
 
 
     }
-
-    public function getDonationsEnable() {
-        return $this->donationsEnable;
-}
 }

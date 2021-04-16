@@ -132,8 +132,8 @@ $product_id = $_product->getId();
                     
                     // console.log(data.list);
                     //re-initiate quickview on new list
-                  ELEVATE.Promotions.init("<?php echo $countdown_time; ?>"); 
-                }
+                  ELEVATE.Promotions.init("<?php echo $countdown_time; ?>", "#more_from_collection_container"); 
+                }                                
             });
         } catch (e) {
             console.log(e);

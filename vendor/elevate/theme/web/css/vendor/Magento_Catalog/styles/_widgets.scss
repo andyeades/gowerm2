@@ -2,7 +2,7 @@
 .block-category-link {
     &.widget {
         display: block;
-        margin-bottom: $indent__base;
+        margin-bottom: $indent-base;
     }
 }
 
@@ -46,14 +46,14 @@ $block-widget-prod-item-price-width: 100% !default;
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .block.widget .products-grid .product-item {
 
         .sidebar & {
@@ -69,7 +69,7 @@ $block-widget-prod-item-price-width: 100% !default;
 }
 
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .sidebar .block.widget .pager {
         .item:not(.pages-item-next):not(.pages-item-previous) {
             display: none;

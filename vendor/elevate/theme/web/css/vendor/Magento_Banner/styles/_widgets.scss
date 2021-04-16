@@ -1,6 +1,6 @@
 .block-banners,
 .block-banners-inline {
-    margin-bottom: $indent__xl;
+    margin-bottom: $indent-xl;
 
     .banner-items {
         @include abs-reset-list();
@@ -11,7 +11,7 @@
     }
 
     .banner-item-content {
-        @include lib-css(margin-bottom, $indent__base);
+        @include lib-css(margin-bottom, $indent-base);
 
         img {
             display: block;

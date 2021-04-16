@@ -2,12 +2,12 @@
 =============
 * Improvements:
     * Implement default values. Admin can set default simple product on configurable product edit form.
-
+    
 * Fixed bugs:
     * Fixed an issue with swatch and configurable renderer.
     * Fixed an issue with identical cache on simple product pages.
     * Fixed an issue with swatches on category pages.
-
+    
 * Code quality improvements:
     * Fixed code violations according to Magento Extension Quality Program
 
@@ -20,7 +20,7 @@
     * Disable default magento qty field and stock status for products.
     * Now when you add to the cart add all products that have been specified field qty in matrix.
     * Grid displaying columns: option, Available qty, Stock Status, Price, Tier Price(if enable in config.), Qty.
-    * Add configurable product from category page.
+    * Add configurable product from category page. 
     * If disable Manage Stock in magento, Available qty column hide.
     * Add custom shipping logic with displaying attributes in text input.
 * Fixed bugs:
@@ -32,7 +32,7 @@
     * Fixed Custom content options value in frontend.
     * Fixed issue with cacheable block.
     * Fixed style for matrix.
-
+    
 1.4.4
 =============
 * Improvements:
@@ -41,7 +41,7 @@
 * Fixed bugs:
     * Fixed bugs with any custom attributes types.
     * Fixed issue with the same attribute type in frontend.
-
+    
 1.4.6
 =============
 * Improvements:
@@ -130,7 +130,7 @@
         * Fixed issue at the checkout page when choosing shipping method for a bundle product with a configurable products attached
         * Fixed issue with removing the variations of a custom products, when the variation has a required custom option
         * Fixed issue where the breadcrumbs and URLs were not properly updated when removing selection on the child products
-
+        
     1.5.1
     =============
     * Improvements:
@@ -151,7 +151,7 @@
         * Fixed a matrix issue where custom options were added to products that do not have them
         * Fixed issue where the 'From - To' price was not updated on the categories page
         * Fixed issue with showing/hiding prices, tier prices block and price range for unregistered users on the category page
-        * Added ability to disable adding products with custom options to options of bundle product
+        * Added ability to disable adding products with custom options to options of bundle product 
         * Fixed issue due to which the price of related products changed when using the default variation
         * Fixed issue with adding several product variations to the cart (matrix grid) at once, which has a custom option of file type
         * Fixed a problem where the regular price did not displaying when loading the page (matrix)
@@ -170,46 +170,3 @@
         * Fixed incorrect text formatting on the product edit page in Magento 2.3.4
         * Fixed issue where the link to the reviews tab did not work on the configurable  product page (Magento 2.3.4)
         * Fixed issue with hide prices of bundle product for ‘Not Logged In’ customers
-
-1.5.2
-=============
-* Improvements:
-    * Fixed template overrides as per Magento 2.3.4 standards.
-    * Change configurable js to mixin instead of map.
-    * Template override compatible with Magento2 2.3.3 and 2.3.4.
-    * HistoryJS duplicate for configurable and swatch-render JS.
-    * Price Config doesn't update for Magento2.3.5.
-    * Regenerate a product urls for any product_type.
-    * Introduce loggers for extension logging.
-    * Can restore admin system config back to default.
-* Fixed bugs:
-    * Fixed issue with attributes(description) label translation.
-    * Bug with first load of _setOpenGraph fails if productID not set properly.
-    * Fixed issue, Undefined index error when field missing in product data while edit product.
-    * Fixed issue with incorrect updating of the summary block on the bundle product page
-    * Fix an issue with Requistion list having only simple product and adding that to cart.
-    * Fix issue with an update of product short_description if description is disabled.
-    * Code Refactor
-    * Update of child custom option on edit cart.
-    * Product showing special price block even if not applied, remove condition.
-    * Custom Option is load by id doesn't load correct product.
-    * General phpstan fix.
-    * Fix Bundle Product undefined index issue.
-    * Fix in-correct roundup of tier-prices with Matrix Render.
-    * Fix Bundle with Config product Add to cart issue.
-    * Fixed the issue with updating the qty and price in the matrix
-    * Fixed the issue with updating short_description and description
-    * Fixed minor issues with the matrix on a configurable product page
-    * Fixed issue with the updating price row in the summary block
-    * Fixed issue with formatting the cart position, when the child configurable product of the bundle product has a file type custom option
-    * Fixed a problem with the matrix, in which all options of a configurable product are out of stock (Magento 2.4)
-    * Fixed issue with adding a bundle product to the cart (Magento 2.4)
-    * Fixed issue with custom shipping logic
-    * Fixed price range issue with tier price
-    * Fixed issue with adding product to the bundle product option (Magento 2.4)
-    * Fixed issue with adding configurable product to the cart (Magento 2.4)
-    * Fixed a problem with adding a virtual product to the cart, which is a child of the configurable
-    * Fixed issue with displaying the child products of configurable product
-    * Fixed not allowing saving the same cache on home page with same default values
-    * Fixed a problem with not saving cache on home page
-    * Fixed issue with adding a product to the cart from the product list (Magento 2.4)

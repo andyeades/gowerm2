@@ -168,9 +168,7 @@ class Google_Service_Dialogflow_Resource_ProjectsLocationsAgentsTestCases extend
    * @param array $optParams Optional parameters.
    *
    * @opt_param string updateMask Required. The mask to specify which fields
-   * should be updated. Only a test case's metadata and
-   * replayed_conversation_turns may be updated. The original
-   * test_case_conversation_turns may not be updated.
+   * should be updated. The `creationTime` and `lastTestResult` cannot be updated.
    * @return Google_Service_Dialogflow_GoogleCloudDialogflowCxV3TestCase
    */
   public function patch($name, Google_Service_Dialogflow_GoogleCloudDialogflowCxV3TestCase $postBody, $optParams = array())
@@ -182,16 +180,15 @@ class Google_Service_Dialogflow_Resource_ProjectsLocationsAgentsTestCases extend
   /**
    * Kicks off a test case run. (testCases.run)
    *
-   * @param string $projectsId
-   * @param string $locationsId
-   * @param string $agentsId
+   * @param string $name Required. Format of test case name to run:
+   * `projects//locations/ /agents//testCases/`.
    * @param Google_Service_Dialogflow_GoogleCloudDialogflowCxV3RunTestCaseRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dialogflow_GoogleLongrunningOperation
    */
-  public function run($projectsId, $locationsId, $agentsId, Google_Service_Dialogflow_GoogleCloudDialogflowCxV3RunTestCaseRequest $postBody, $optParams = array())
+  public function run($name, Google_Service_Dialogflow_GoogleCloudDialogflowCxV3RunTestCaseRequest $postBody, $optParams = array())
   {
-    $params = array('projectsId' => $projectsId, 'locationsId' => $locationsId, 'agentsId' => $agentsId, 'postBody' => $postBody);
+    $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('run', array($params), "Google_Service_Dialogflow_GoogleLongrunningOperation");
   }

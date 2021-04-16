@@ -25,6 +25,9 @@
         <container name="page.top" as="page_top" label="After Page Header" after="nav-main-outer"></container>
         <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" as="breadcrumbs" after="page.top"/>
         <container name="page-main-outer" htmlTag="main" htmlId="page-main-outer" after="breadcrumbs" before="breadcrumbs">
+            <container name="pmo-i-vt-container" htmlTag="div" htmlId="pmo-i-vt-container" htmlClass="container" before="-">
+
+            </container>
             <container name="page-main-outer-inner" htmlTag="div" htmlClass="container">
                 <container name="main.content" htmlTag="div" htmlId="maincontent" htmlClass="page-main">
                     <container name="columns.top" label="Before Main Columns"/>
@@ -40,6 +43,9 @@
     <container name="sidebar.additional" label="Sidebar Additional" htmlTag="div"/>
     <container name="header.container" label="Header Container" htmlTag="div"/>
     <container name="footer-container" label="Footer Container" htmlTag="div"/>
+
+    <move element="page.messages" destination="pmo-i-vt-container" />
+
     <referenceContainer name="header.container" remove="true"/>
     <referenceContainer name="sidebar.additional" remove="true"/>
     <referenceContainer name="footer-container" remove="true"/>

@@ -1,7 +1,7 @@
-@if $headerstyle_selected == 'v1' {
+@if $headerstyle-selected == 'v1' {
     .header.links {
         display: flex;
-        font-size: $hdr-top-font-size;
+      @include co(font-size, $hdr-top-font-size);
 
         a {
             color: $hdr-top-link-color;
@@ -14,10 +14,10 @@
 
         li {
             flex: 0 1 auto;
-            margin: $hdr-top-li-margin;
+            @include co(margin, $hdr-top-li-margin);
 
             &:after {
-                content: $hdr-top-break-icon;
+               @include co(content, $hdr-top-break-icon);
                 margin: 0 10px;
             }
 

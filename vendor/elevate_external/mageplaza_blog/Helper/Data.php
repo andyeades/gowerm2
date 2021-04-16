@@ -629,18 +629,12 @@ class Data extends CoreHelper
      */
     public function generateUrlKey($resource, $object, $name)
     {
-        $attempt = -1;
-        do {
-            if ($attempt++ >= 10) {
-                throw new LocalizedException(__('Unable to generate url key. Please check the setting and try again.'));
-            }
-
-            $urlKey = $this->translitUrl->filter($name);
-            if ($urlKey) {
-                $urlKey .= ($attempt ?: '');
-            }
-        } while ($this->checkUrlKey($resource, $object, $urlKey));
-
+     
+        
+      $urlKey = $this->translitUrl->filter($name);
+      
+      
+      
         return $urlKey;
     }
 
@@ -653,9 +647,9 @@ class Data extends CoreHelper
      */
     public function checkUrlKey($resource, $object, $urlKey)
     {
-        if (empty($urlKey)) {
-            return true;
-        }
+    
+    
+    
 
         $adapter = $resource->getConnection();
         $select  = $adapter->select()
@@ -668,8 +662,15 @@ class Data extends CoreHelper
             $select->where($resource->getIdFieldName() . ' != :object_id');
             $binds['object_id'] = (int) $id;
         }
-
-        return $adapter->fetchOne($select, $binds);
+        
+        $data = $adapter->fetchOne($select, $binds);
+           if(count($data) > 1){
+           return $true;
+           }
+           else{
+           return false;
+           }
+        return $data;
     }
 
     /**

@@ -1,56 +1,56 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
-$opc_bs_iic_t_border_on: $chkout-default-border_on !default;
-$opc_bs_iic_t_border_position: $chkout-default-border_position !default;
-$opc_bs_iic_t_border_color: $chkout-default-border_color !default;
-$opc_bs_iic_t_border_style: $chkout-default-border_style !default;
-$opc_bs_iic_t_border_thickness: $chkout-default-border_thickness !default;
+$opc-bs-iic-t-border-on: $chkout-default-border-on !default;
+$opc-bs-iic-t-border-position: $chkout-default-border-position !default;
+$opc-bs-iic-t-border-color: $chkout-default-border-color !default;
+$opc-bs-iic-t-border-style: $chkout-default-border-style !default;
+$opc-bs-iic-t-border-thickness: $chkout-default-border-thickness !default;
 
-$opc_bs_iic_t_border_on_desktop: $chkout-default-border_on_desktop !default;
+$opc-bs-iic-t-border-on-desktop: $chkout-default-border-on-desktop !default;
 
-$opc_bs_iic_t_border_radius_on: $chkout-default-border_radius_on !default;
-$opc_bs_iic_t_border_radius: $chkout-default-border_radius !default;
+$opc-bs-iic-t-border-radius-on: $chkout-default-border-radius-on !default;
+$opc-bs-iic-t-border-radius: $chkout-default-border-radius !default;
 
 
-$opc-block-summary-border_radius_on: 1 !default;
+$opc-block-summary-border-radius-on: 1 !default;
 $opc-block-summary-border-radius: $border-radius !default;
 
-$opc-summary-prodimage-border-radius_on: 1 !default;
+$opc-summary-prodimage-border-radius-on: 1 !default;
 $opc-summary-prodimage-border-radius: $border-radius !default;
 
-$checkout-summary__background-color : #f6f8fb !default;
+$checkout-summary-background-color : #f6f8fb !default;
 
 
-$checkout-summary__padding          : 22px $indent__l !default;
+$checkout-summary-padding          : 22px $indent-l !default;
 
-$checkout-summary-title__margin     : $indent__s !default;
-$checkout-summary-mark-value__color : $color-gray60 !default;
+$checkout-summary-title-margin     : $indent-s !default;
+$checkout-summary-mark-value-color : $color-gray60 !default;
 
-$checkout-summary-items__max-height : 370px !default;
-$checkout-summary-items__padding    : 15px !default;
+$checkout-summary-items-max-height : 370px !default;
+$checkout-summary-items-padding    : 15px !default;
 
-$cm_opc_bs_iic_t_s_font_size: 1.125rem !default;
+$cm-opc-bs-iic-t-s-font-size: 1.125rem !default;
 
 
 
-$opc_bs_iic_t_s_fontweight: 600 !default;
+$opc-bs-iic-t-s-fontweight: 600 !default;
 
 $opc-block-summary-th-fontsize: 0.8375rem !default;
 //
 //  Order Summary
-//  ---------------------------------------------
+//
 
 
 .opc-block-summary {
-    @if $opc-block-summary-border_radius_on == 1 {
+    @if $opc-block-summary-border-radius-on == 1 {
         border-radius: $opc-block-summary-border-radius;
     }
 
-    @include lib-css(background, $checkout-summary__background-color);
-    @include lib-css(padding, $checkout-summary__padding);
-    margin: 0 0 $indent__base;
+    @include lib-css(background, $checkout-summary-background-color);
+    @include lib-css(padding, $checkout-summary-padding);
+    margin: 0 0 $indent-base;
 
     th {
         @include co(font-size, $opc-block-summary-th-fontsize);
@@ -67,7 +67,7 @@ $opc-block-summary-th-fontsize: 0.8375rem !default;
 
     .mark {
         .value {
-            @include lib-css(color, $checkout-summary-mark-value__color);
+            @include lib-css(color, $checkout-summary-mark-value-color);
             display: block;
         }
     }
@@ -80,7 +80,7 @@ $opc-block-summary-th-fontsize: 0.8375rem !default;
                 padding-top: 0;
 
                 strong {
-                    font-weight: $font-weight__regular;
+                    @include co(font-weight, $font-weight-regular);
                 }
             }
         }
@@ -92,31 +92,31 @@ $opc-block-summary-th-fontsize: 0.8375rem !default;
 
     //
     //  Items list
-    //  ---------------------------------------------
+    //
 
     //  Block title
     .items-in-cart {
         > .title {
 
 
-            @if $opc_bs_iic_t_border_on == 1 {
-                @include elevate-border($opc_bs_iic_t_border_color, $opc_bs_iic_t_border_thickness, $opc_bs_iic_t_border_style, $opc_bs_iic_t_border_position);
-                @if $opc_bs_iic_t_border_radius_on == 1 {
-                    border-radius: $opc_bs_iic_t_border_radius;
+            @if $opc-bs-iic-t-border-on == 1 {
+                @include elevate-border($opc-bs-iic-t-border-color, $opc-bs-iic-t-border-thickness, $opc-bs-iic-t-border-style, $opc-bs-iic-t-border-position);
+                @if $opc-bs-iic-t-border-radius-on == 1 {
+                    border-radius: $opc-bs-iic-t-border-radius;
                 }
             }
 
-            @include lib-css(padding, $indent__s $indent__xl $indent__s 0);
+            @include lib-css(padding, $indent-s $indent-xl $indent-s 0);
             cursor: pointer;
 
             @include lib-icon-font(
                 $icon-down,
-                $_icon-font-size        : 16px,
-                $_icon-font-line-height : 12px,
-                $_icon-font-text-hide   : true,
-                $_icon-font-margin      : 3px 0 0,
-                $_icon-font-position    : after,
-                $_icon-font-display     : block
+                $-icon-font-size        : 16px,
+                $-icon-font-line-height : 12px,
+                $-icon-font-text-hide   : true,
+                $-icon-font-margin      : 3px 0 0,
+                $-icon-font-position    : after,
+                $-icon-font-display     : block
             );
             margin-bottom: 0;
 
@@ -125,14 +125,14 @@ $opc-block-summary-th-fontsize: 0.8375rem !default;
             &:after {
                 position: absolute;
                 right: 0;
-                top: $indent__s;
+                top: $indent-s;
             }
 
             strong {
-                @include co(font-weight, $opc_bs_iic_t_s_fontweight, $heading__font-weight__base);
+                @include co(font-weight, $opc-bs-iic-t-s-fontweight, $heading-font-weight-base);
                 margin: 0;
               .column.main & {
-                font-size: $cm_opc_bs_iic_t_s_font_size;
+              @include co(font-size, $cm-opc-bs-iic-t-s-font-size);
               }
             }
         }
@@ -140,8 +140,8 @@ $opc-block-summary-th-fontsize: 0.8375rem !default;
         &.active {
             > .title {
                 @include lib-icon-font-symbol(
-                    $_icon-font-content  : $icon-up,
-                    $_icon-font-position : after
+                    $-icon-font-content  : $icon-up,
+                    $-icon-font-position : after
                 );
             }
         }
@@ -153,11 +153,11 @@ $opc-block-summary-th-fontsize: 0.8375rem !default;
 
     //  Cart items
     .minicart-items-wrapper {
-        @include lib-css(padding, $checkout-summary-items__padding $checkout-summary-items__padding 0 0);
+        @include lib-css(padding, $checkout-summary-items-padding $checkout-summary-items-padding 0 0);
         border: 0;
         .product-image-wrapper {
             img {
-                @if $opc-summary-prodimage-border-radius_on == 1 {
+                @if $opc-summary-prodimage-border-radius-on == 1 {
                     border-radius: $opc-summary-prodimage-border-radius;
                 }
             }
@@ -170,7 +170,7 @@ $opc-block-summary-th-fontsize: 0.8375rem !default;
         z-index: 1;
 
         .secondary {
-            border-top: $border-width__base solid $border-color__base;
+            border-top: $border-width-base solid $border-color-base;
             display: block;
             float: none;
             margin: -1px 0 0;
@@ -186,9 +186,9 @@ $opc-block-summary-th-fontsize: 0.8375rem !default;
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .opc-summary-wrapper {
         .modal-header {
             .action-close {

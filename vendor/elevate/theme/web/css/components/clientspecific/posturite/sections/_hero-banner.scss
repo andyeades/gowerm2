@@ -17,7 +17,7 @@
         position: relative;
 
         h1 {
-            font-size: $hero-h1-fontsize;
+          @include co(font-size, $hero-h1-fontsize);
 
             @include min-screen($desktop-min) {
                 font-size:   $hero-h1-fontsize-desktop;
@@ -25,7 +25,7 @@
         }
 
         h2 {
-            font-weight: $hero-h2-fontweight;
+            @include co(font-weight, $hero-h2-fontweight);
             line-height: $hero-h2-lineheight;
         }
 

@@ -1,5 +1,5 @@
 $toolbar-mode-icon-font-size: 24px !default;
-$toolbar-element-background: $panel--background-color !default;
+$toolbar-element-background: $panel-background-color !default;
 
 
 $toolbar-number-margin: 0 3px !default;
@@ -172,12 +172,7 @@ $toolbar-products-pager-margin-desktopsm-max: false !default;
 $toolbar-products-pager-margin-mobiletablet-max: false !default;
 $toolbar-products-pager-margin-xs-sm: false !default;
 
-
-// Bottom of List/Grid Toolbar
-
-
-
-
+$toolbar-products-pager-fontfamily: false !default;
 $toolbar-products-pager-display: flex !default;
 $toolbar-products-pager-bottom-width: 100% !default;
 $toolbar-products-pager-bottom-margin: 1rem 0 !default;
@@ -267,24 +262,24 @@ $pages-item-next-margin: false !default;
 }
 
 .ev_ln_toolbar_btn {
-    width: $ev-ln-toolbar-btn-width;
+    @include co(width, $ev-ln-toolbar-btn-width);
     flex: 0 1 auto;
-    order: $ev-ln-toolbar-btn-order;
+    @include co(order, $ev-ln-toolbar-btn-order);
     cursor: pointer;
     display: inline-block;
     background: $ev-ln-toolbar-btn-bg-color;
     border: $ev-ln-toolbar-btn-border-thickness $ev-ln-toolbar-btn-border-style $ev-ln-toolbar-btn-border-color;
-    color: $ev-ln-toolbar-btn-color;
+    @include co(color, $ev-ln-toolbar-btn-color);
     @include co(margin, $ev-ln-toolbar-btn-margin);
-    padding: $ev-ln-toolbar-btn-padding;
-    font-size: $ev-ln-toolbar-btn-font-size;
-    font-weight: $ev-ln-toolbar-btn-font-weight;
+    @include co(padding, $ev-ln-toolbar-btn-padding);
+    @include co(font-size, $ev-ln-toolbar-btn-font-size);
+    @include co(font-weight, $ev-ln-toolbar-btn-font-weight);
     line-height: $ev-ln-toolbar-btn-lineheight;
     @if $ev-ln-toolbar-btn-border-radius-on == 1 {
         border-radius: $ev-ln-toolbar-btn-border-radius;
     }
     @if $ev-ln-toolbar-btn-text-transform-on == 1 {
-        text-transform: $ev-ln-toolbar-btn-text-transform;
+        @include co(text-transform, $ev-ln-toolbar-btn-text-transform);
     }
     @if $ev-ln-toolbar-btn-icon-on != 1 {
         > i {
@@ -480,8 +475,8 @@ $pages-item-next-margin: false !default;
 
     .modes {
         @include co(display, $toolbar-products-modes-display);
-        order: $toolbar-products-modes-order;
-        margin: $toolbar-products-modes-margin;
+        @include co(order, $toolbar-products-modes-order);
+        @include co(margin, $toolbar-products-modes-margin);
         @include max-screen($desktop-sm-max) {
             @include co(display, $toolbar-products-modes-display-desktopsm-max, $toolbar-products-modes-display);
 
@@ -489,7 +484,23 @@ $pages-item-next-margin: false !default;
     }
 }
 
-// Targets Second Toolbar at bottom
+
+$top-toolbar-pages-display: false !default;
+
+.top-toolbar {
+ .pages {
+     @include co(display, $top-toolbar-pages-display);
+ }
+}
+
+.bottom-toolbar {
+
+}
+
+
+    // Targets Second Toolbar at bottom
+
+
 .products.wrapper ~ .toolbar-products {
     @if $toolbar-products-bottom-toolbar-on != 1 {
         display: none;
@@ -501,7 +512,7 @@ $pages-item-next-margin: false !default;
 
 
 .pages {
-
+    @include co(font-family, $toolbar-products-pager-fontfamily);
     @include co(display, $toolbar-products-pager-display);
     @include co(align-items, $toolbar-products-pager-alignitems);
     @include co(justify-content, $toolbar-products-pager-justifycontent);
@@ -592,10 +603,10 @@ $pages-item-next-margin: false !default;
     @if $toolbar-amount-disabled == true {
         display: none;
     } @else {
-        margin: $toolbar-amount-margin;
+        @include co(margin, $toolbar-amount-margin);
 
         .toolbar-number {
-            margin: $toolbar-number-margin;
+            @include co(margin, $toolbar-number-margin);
         }
     }
 
@@ -604,7 +615,7 @@ $pages-item-next-margin: false !default;
 
 .sorter.sort-desc {
     &:before {
-        content: $icon-arrow-down;
+       @include co(content, $icon-arrow-down);
     }
 }
 
@@ -618,21 +629,21 @@ $pages-item-next-margin: false !default;
 }
 
 
-$modes-mode-color: $text--color--muted !default;
+$modes-mode-color: $text-color-muted !default;
 $modes-mode-before-color: $modes-mode-color !default;
 $modes-mode-border-on: 1 !default;
 $modes-mode-border-on-mobile: 0 !default;
 $modes-mode-border-position: all-but-right !default;
 $modes-mode-border-radius: false !default;
 
-$modes-mode-border-color: $border-color--base !default;
+$modes-mode-border-color: $border-color-base !default;
 $modes-mode-border-style: solid !default;
 $modes-mode-border-thickness: 2px !default;
 
 
-$modes-mode-active-color: $primary--color--light !default;
+$modes-mode-active-color: $primary-color-light !default;
 $modes-mode-active-background-color: #2f2523 !default;
-$modes-mode-not-active-hover-color: $text--color--muted !default;
+$modes-mode-not-active-hover-color: $text-color-muted !default;
 $modes-mode-not-active-hover-background: darken($toolbar-element-background, 7%) !default;
 
 $modes-mode-border-radius: false !default;
@@ -681,7 +692,7 @@ $modes-list-before-width: false !default;
         @include co(padding, $modes-mode-padding);
         @include co(border-radius, $modes-mode-border-radius);
         float: left;
-        font-weight: $font-weight--regular;
+        @include co(font-weight, $font-weight-regular);
         line-height: 1;
         text-align: center;
         @include co(transition, $modes-mode-transition);
@@ -795,7 +806,7 @@ $modes-list-before-width: false !default;
 
 //
 //  Desktop
-//  ---------------------------------------------
+//
 
 @include min-screen($desktop-min) {
 

@@ -149,16 +149,6 @@ define([
         _renderPrice: function (key, currentOption, currentSelection) {
             var $widget = this;
             var subPriceTemplate = '0';
-            var currentOptionElement = $('#bundle-option-' + currentOption);
-            if (currentOptionElement.length) {
-                    var selectedOption = $('#bundle-option-' + currentOption);
-                    if (selectedOption) {
-                        var dataPriceAmount = selectedOption.attr('data-price-amount');
-                        if (dataPriceAmount) {
-                            currentSelection.prices.finalPrice.amount = parseInt(selectedOption.attr('data-price-amount'));
-                        }
-                }
-            }
 
             var priceBox = this.element
                 .closest(this.options.mainContainer)

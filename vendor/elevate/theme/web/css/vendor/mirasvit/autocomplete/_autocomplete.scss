@@ -82,7 +82,7 @@ $text-color: #333;
 
     .mst-searchautocomplete__close {
         display: none;
-        @include max-screen($mobiletablet_max) {
+        @include max-screen($mobiletablet-max) {
             display: block;
             position: absolute;
             right: 0;
@@ -306,7 +306,7 @@ $text-color: #333;
 }
 
 .mst-searchautocomplete__highlight {
-    font-weight: $font-weight__semibold;
+    @include co(font-weight, $font-weight-semibold);
     color: #1BA1FC;
 }
 
@@ -439,12 +439,6 @@ $text-color: #333;
     z-index: -1;
     left: 15px;
     border: 0 !important;
-}
-
-#search_autocomplete, .search-autocomplete, #searchbox_autocomplete {
-    display: none !important;
-    height: 0 !important;
-    overflow: hidden !important;
 }
 
 // compatibility with porto theme

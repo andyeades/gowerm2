@@ -1,0 +1,28 @@
+@if $sitename == gowercottage {
+    #sh-i-block1 {
+        .sub-hdr-cta-ico {
+            width: 45px;
+            > i {
+                width: 60px;
+                height: 30px;
+            }
+        }
+    }
+
+    .sub-hdr-delivery-ico {
+        background-image: url('/media/theme_assets/usp/delivery-truck.svg') !important;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .sub-hdr-giftmessage-ico {
+        background: url('/media/theme_assets/usp/gift.svg');
+    }
+    .sub-hdr-calendar-ico {
+        background: url('/media/theme_assets/usp/calendar.svg');
+    }
+    .sub-hdr-freezing-ico {
+        background: url('/media/theme_assets/usp/snowflake.svg');
+    }
+
+}

@@ -79,7 +79,7 @@ class Add extends \Magento\Checkout\Controller\Cart
         if (!$this->_formKeyValidator->validate($this->getRequest())) {
            // return $this->resultRedirectFactory->create()->setPath('*/*/');
         }
-
+                  
         $params = $this->getRequest()->getParams();
         $result = [];
         try {
@@ -138,6 +138,11 @@ class Add extends \Magento\Checkout\Controller\Cart
                     $result['success'] = 1;
 
                 }
+                 else{
+                  $result['message'] =  'This item cannot be added to the basket';
+                $result['error'] = 1;
+                 }
+                
                 
            //lets carry on doing this - why did magento decide to do this - did they hit some sort of issue or race condition??     
             if ($product && !$product->getIsSalable()) {
@@ -145,8 +150,7 @@ class Add extends \Magento\Checkout\Controller\Cart
                 $result['error'] = 1;
             }
 
-                
-                
+             
                 return $this->cartResponse($result);
 
         } catch (\Magento\Framework\Exception\LocalizedException $e) {

@@ -90,10 +90,7 @@ class BundlePanel extends \Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\
                                                     'selection_qty' => '',
                                                     'productType' => 'type_id',
                                                 ],
-                                                'links' => [
-                                                    'insertData' => '${ $.provider }:${ $.dataProvider }',
-                                                    '__disableTmpl' => ['insertData' => false],
-                                                ],
+                                                'links' => ['insertData' => '${ $.provider }:${ $.dataProvider }'],
                                                 'imports' => [
                                                     'inputType' => '${$.provider}:${$.dataScope}.type'
                                                 ],

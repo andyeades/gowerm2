@@ -37,12 +37,12 @@
 
 
     .firmness-rating-bottom {
-        padding: $firmness-rating-bottom-padding;
+        @include co(padding, $firmness-rating-bottom-padding);
 
         .container {
             display: flex;
             flex-wrap: wrap;
-            align-items: $firmness-rating-bottom-container-align-items;
+            @include co(align-items, $firmness-rating-bottom-container-align-items);
 
             > div {
                 flex: 0 1 auto;
@@ -72,17 +72,17 @@
 
     }
     .firmness-wmig-outer {
-        width: $firmness-wmig-outer-width;
-        order: $firmness-wmig-outer-order;
+        @include co(width, $firmness-wmig-outer-width);
+        @include co(order, $firmness-wmig-outer-order);
     }
     #firmness-rating-outer {
-        width: $firmness-rating-outer-width;
+        @include co(width, $firmness-rating-outer-width);
         @include min-screen($desktop-medium-min) {
             @include co(width, $firmness-rating-outer-width-desktopmd, $firmness-rating-outer-width);
         }
     }
     #what-makes-it-great {
-        width: $wmig-width;
+        @include co(width, $wmig-width);
 
 
         #product-page-midpage-block & {
@@ -101,9 +101,9 @@
         .what-makes-it-great-toprow-outer {
 
             .what-makes-it-great-inner {
-                padding: $wmig-inner-padding;
+                @include co(padding, $wmig-inner-padding);
                 @include min-screen($desktop-min) {
-                    padding: $wmig-inner-padding-sm;
+                    @include co(padding, $wmig-inner-padding-sm);
                 }
                 @include max-screen($screen-xs-max) {
 
@@ -114,7 +114,7 @@
                     border-bottom: 1px solid $wmig-title-outer-border-color;
 
                     #what-makes-it-great-title-inner {
-                        color: $wmig-title-inner-color;
+                        @include co(color, $wmig-title-inner-color);
                         text-align: center;
                         text-transform: uppercase;
                         font-size: 26px;
@@ -150,7 +150,7 @@
 
             .what-makes-it-great-bottom-row-inner {
                 padding: 40px 20px;
-                color: $wmig-brow-inner-color;
+                @include co(color, $wmig-brow-inner-color);
                 text-align: center;
                 font-size: 14px;
                 position: relative;

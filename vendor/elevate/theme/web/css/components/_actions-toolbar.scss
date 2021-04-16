@@ -4,12 +4,12 @@
         text-align: center;
         .action {
             @include abs-button-responsive();
-            margin-bottom: $indent__s;
+            margin-bottom: $indent-s;
             &:last-child {
                 margin-bottom: 0;
             }
         }
-        margin-bottom: $indent__s;
+        margin-bottom: $indent-s;
         &:last-child {
             margin-bottom: 0;
         }
@@ -29,8 +29,8 @@
 }
 //
 //  Desktop
-//  _____________________________________________
-@include min-screen($screen__m) {
+//
+@include min-screen($screen-m) {
     .actions-toolbar {
         @include lib-actions-toolbar();
         > .secondary,

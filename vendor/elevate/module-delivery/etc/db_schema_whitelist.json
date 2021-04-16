@@ -23,10 +23,12 @@
             "workingdays_min": true,
             "workingdays_max": true,
             "call_day_before": true,
-            "date_range_selection": true
+            "date_range_selection": true,
+            "is_fallback_method": true
         },
         "constraint": {
-            "PRIMARY": true
+            "PRIMARY": true,
+            "FK_A9F36901CC6349C9CB31F8A16F83D821": true
         }
     },
     "elevate_delivery_deliveryarea": {
@@ -97,7 +99,8 @@
             "rule_function": true,
             "rule_sort_value": true,
             "rule_stop_continue": true,
-            "rule_enable": true
+            "rule_enable": true,
+            "rule_value": true
         },
         "constraint": {
             "PRIMARY": true,
@@ -120,7 +123,8 @@
         },
         "constraint": {
             "PRIMARY": true,
-            "FK_6B10F22A784688A8CF1C4355E578F98E": true
+            "FK_6B10F22A784688A8CF1C4355E578F98E": true,
+            "FK_C669A77BF141BE0921D35DA04C4CF1AE": true
         }
     },
     "elevate_delivery_deliveryrules_products": {
@@ -152,7 +156,10 @@
             "delivery_date_selected": true,
             "delivery_option_selected": true,
             "delivery_area_selected": true,
-            "delivery_selected_summarytext": true
+            "delivery_selected_summarytext": true,
+            "detailed_delivery_info_dates": true,
+            "detailed_delivery_teamnumber": true,
+            "ev_giftmessagemessage": true
         }
     },
     "sales_order_address": {
@@ -160,7 +167,27 @@
             "delivery_date_selected": true,
             "delivery_option_selected": true,
             "delivery_area_selected": true,
-            "delivery_selected_summarytext": true
+            "delivery_selected_summarytext": true,
+            "detailed_delivery_info_dates": true,
+            "detailed_delivery_teamnumber": true,
+            "ev_giftmessagemessage": true
+        }
+    },
+    "quote": {
+        "column": {
+            "detailed_delivery_info": true,
+            "detailed_delivery_info_dates": true,
+            "detailed_delivery_teamnumber": true,
+            "ev_giftmessagemessage": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "detailed_delivery_info": true,
+            "detailed_delivery_info_dates": true,
+            "detailed_delivery_teamnumber": true,
+            "ev_giftmessagemessage": true,
+            "delivery_date_selected": true
         }
     }
 }

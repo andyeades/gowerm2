@@ -2,11 +2,11 @@
 
 namespace Elevate\PrintLabels\Controller\Adminhtml\Index;
 
+use Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation;
 use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
 //use PrintNode\Credentials;
 
-use \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation;
+use Magento\Backend\App\Action\Context;
 
 /**
  * Class ShipOrders
@@ -15,7 +15,8 @@ use \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation;
  * @package  Elevate\PrintLabels\Controller\Adminhtml\Edit
  * @author   Richard Jones <richard.jones@elevateweb.co.uk>
  */
-class ShipOrders extends \Magento\Backend\App\Action {
+class ShipOrders extends \Magento\Backend\App\Action
+{
     /**
      * @var \Magento\Sales\Api\OrderRepositoryInterface
      */
@@ -47,15 +48,14 @@ class ShipOrders extends \Magento\Backend\App\Action {
     protected $scopeConfig;
 
     /**
-     * @var \PrintNode\Credentials
+     * @var \Elevate\PrintLabels\Helper\Data
      */
-    protected $printNodeCredentials;
+    protected $helper;
 
     /**
      * @var \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation
      */
     protected $dpdAuthorisation;
-
 
     /**
      * Index constructor.
@@ -67,7 +67,7 @@ class ShipOrders extends \Magento\Backend\App\Action {
      * @param \Magento\Framework\Controller\Result\JsonFactory    $resultJsonFactory
      * @param \Magento\Framework\Encryption\EncryptorInterface    $encryptorInterface
      * @param \Magento\Framework\App\Config\ScopeConfigInterface  $scopeConfig
-     * @param \PrintNode\Credentials                              $printNodeCredentials
+     * @param \Elevate\PrintLabels\Helper\Data                    $helper
      * @param \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation
      */
     public function __construct(
@@ -78,7 +78,7 @@ class ShipOrders extends \Magento\Backend\App\Action {
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Magento\Framework\Encryption\EncryptorInterface $encryptorInterface,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \PrintNode\Credentials $printNodeCredentials,
+        \Elevate\PrintLabels\Helper\Data $helper,
         \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation
     ) {
         parent::__construct($context);
@@ -89,28 +89,8 @@ class ShipOrders extends \Magento\Backend\App\Action {
         $this->accountManagement = $accountManagement;
         $this->encryptorInterface = $encryptorInterface;
         $this->scopeConfig = $scopeConfig;
-        $this->printNodeCredentials = $printNodeCredentials;
         $this->dpdAuthorisation = $dpdAuthorisation;
-        $this->printNodeApiKey = $this->scopeConfig->getValue('elevate_printlabels/printnodedetails/printnodeapikey', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->printNodePrinterId = $this->scopeConfig->getValue('elevate_printlabels/printnodedetails/printnodeprinterid', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiAccountNumber = $this->scopeConfig->getValue('elevate_printlabels/details/api_accountnumber', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiUsername = $this->scopeConfig->getValue('elevate_printlabels/details/api_username', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiPassword = $this->scopeConfig->getValue('elevate_printlabels/details/api_password', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiUrl = $this->scopeConfig->getValue('elevate_printlabels/details/api_url', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderContactName = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/contact_name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderTelephone = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/contact_telephone', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgName = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgStreet = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_street', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgStreet2 = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_locality', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgTownCity = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_towncity', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgCounty = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_county', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgPostcode = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_postcode', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgCountryCode = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_countrycode', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->collectionTime = $this->scopeConfig->getValue('elevate_printlabels/collection/collection_time', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->collectionCutOffTime = $this->scopeConfig->getValue('elevate_printlabels/collection/collection_cutofftime', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->collectionDays = $this->scopeConfig->getValue('elevate_printlabels/collection/collection_days', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-
-
+        $this->helper = $helper;
     }
 
     /**
@@ -119,7 +99,8 @@ class ShipOrders extends \Magento\Backend\App\Action {
      * @return \Magento\Framework\Controller\Result\Json
      * @throws \Exception
      */
-    public function execute() {
+    public function execute()
+    {
 
         /*
         we need a paperwork router
@@ -137,14 +118,12 @@ class ShipOrders extends \Magento\Backend\App\Action {
         $this->dpdPrint();
         exit;
 
-
         $request = $this->getRequest();
-        $orderId = $request->getPost('order_id', NULL);
-        $emailAddress = $request->getPost('email', NULL);
-        $oldEmailAddress = $request->getPost('old_email', NULL);
+        $orderId = $request->getPost('order_id', null);
+        $emailAddress = $request->getPost('email', null);
+        $oldEmailAddress = $request->getPost('old_email', null);
 
         $resultJson = $this->resultJsonFactory->create();
-
 
         // RJ - What's this code for?
 
@@ -170,7 +149,7 @@ class ShipOrders extends \Magento\Backend\App\Action {
                             'message' => __('Email address successfully changed.')
                         ]
                     );
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     return $resultJson->setData(
                         [
                             'error'   => true,
@@ -199,27 +178,29 @@ class ShipOrders extends \Magento\Backend\App\Action {
     /**
      *
      */
-    public function dpdTest() {
-
+    public function dpdTest()
+    {
         $adminUrl = "https://api.interlinkexpress.com/user/?action=login";
 
         $ch = curl_init();
-        $data = array(
+        $data = [
             "username" => "crucialfitness",
             "password" => "Benchpress150"
-        );
+        ];
         $data_string = json_encode($data);
         $ch = curl_init($adminUrl);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt(
-            $ch, CURLOPT_HTTPHEADER, array(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            [
                    'Content-Type: application/json',
                    //   'Content-Length: ' . strlen($data_string)),
                    'Authorization: Basic Y3J1Y2lhbGZpdG5lc3M6QmVuY2hwcmVzczE1MA==',
                    'Accept: application/json'
-               )
+               ]
         );
         $token = curl_exec($ch);
         $token = json_decode($token);
@@ -231,23 +212,25 @@ class ShipOrders extends \Magento\Backend\App\Action {
         //GET http://<host>/rest/default/V1/products/24-MB01?fields=sku,price,name
 
         $ch = curl_init();
-        $data = array(
+        $data = [
             "username" => "crucialfitness",
             "password" => "Benchpress150"
-        );
+        ];
         $data_string = json_encode($data);
         $ch = curl_init($adminUrl);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt(
-            $ch, CURLOPT_HTTPHEADER, array(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            [
                    'Content-Type: application/json',
                    //   'Content-Length: ' . strlen($data_string)),
                    'GeoClient: account/2249368,',
                    'GeoSession: ' . $geosession . '',
                    'Accept: application/json'
-               )
+               ]
         );
         $token = curl_exec($ch);
         if (curl_errno($ch)) {
@@ -265,32 +248,30 @@ class ShipOrders extends \Magento\Backend\App\Action {
         exit;
     }
 
-
     /**
      *
      */
-    public function dpdPrint() {
+    public function dpdPrint()
+    {
         try {
-
             $shippingObject = $this->dpdAuthorisation;
 
             $request = $this->getRequest();
-            $orderId = $request->getPost('order_id', NULL);
-            $emailAddress = $request->getPost('email', NULL);
-            $shipping_contactName = $request->getPost('shipping_contactName', NULL);
-            $shipping_telephone = $request->getPost('shipping_telephone', NULL);
-            $shipping_address_organisation = $request->getPost('shipping_address_organisation', NULL);
-            $shipping_address_countryCode = $request->getPost('shipping_address_countryCode', NULL);
-            $shipping_address_postcode = $request->getPost('shipping_address_postcode', NULL);
-            $shipping_address_street = $request->getPost('shipping_address_street', NULL);
-            $shipping_address_locality = $request->getPost('shipping_address_locality', NULL);
-            $shipping_address_town = $request->getPost('shipping_address_town', NULL);
-            $shipping_address_county = $request->getPost('shipping_address_county', NULL);
-            $shipping_networkCode = $request->getPost('shipping_networkCode', NULL);
-            $shipping_numberOfParcels = $request->getPost('shipping_numberOfParcels', NULL);
-            $shipping_totalWeight = $request->getPost('shipping_totalWeight', NULL);
-            $shipping_deliveryInstructions = $request->getPost('shipping_deliveryInstructions', NULL);
-
+            $orderId = $request->getPost('order_id', null);
+            $emailAddress = $request->getPost('email', null);
+            $shipping_contactName = $request->getPost('shipping_contactName', null);
+            $shipping_telephone = $request->getPost('shipping_telephone', null);
+            $shipping_address_organisation = $request->getPost('shipping_address_organisation', null);
+            $shipping_address_countryCode = $request->getPost('shipping_address_countryCode', null);
+            $shipping_address_postcode = $request->getPost('shipping_address_postcode', null);
+            $shipping_address_street = $request->getPost('shipping_address_street', null);
+            $shipping_address_locality = $request->getPost('shipping_address_locality', null);
+            $shipping_address_town = $request->getPost('shipping_address_town', null);
+            $shipping_address_county = $request->getPost('shipping_address_county', null);
+            $shipping_networkCode = $request->getPost('shipping_networkCode', null);
+            $shipping_numberOfParcels = $request->getPost('shipping_numberOfParcels', null);
+            $shipping_totalWeight = $request->getPost('shipping_totalWeight', null);
+            $shipping_deliveryInstructions = $request->getPost('shipping_deliveryInstructions', null);
 
             $collectionDate = ''; //Date the courrier picks up this order
             // How are we determining this? Cut off admin Time? if after X then Y?, Days Collection Occurs?
@@ -298,24 +279,22 @@ class ShipOrders extends \Magento\Backend\App\Action {
 
             $collectionDate = $this->getCollectionDate();
 
-
             $contactName = '';
             $contactTelephone = '';
             $collectionOrganisation = ''; //should we get this from dpd, can we exclude it?
 
-
             //create shipment
 
-            $shippingArray = array(
-                'jobId'               => NULL,
-                'collectionOnDelivery' => FALSE,
-                'invoice'              => NULL,
+            $shippingArray = [
+                'jobId'               => null,
+                'collectionOnDelivery' => false,
+                'invoice'              => null,
                 'collectionDate'       => $collectionDate,
-                'consolidate'          => FALSE,
+                'consolidate'          => false,
                 'consignment'          => [
                     [
-                        'consignmentNumber'    => NULL,
-                        'consignmentRef'       => NULL,
+                        'consignmentNumber'    => null,
+                        'consignmentRef'       => null,
                         'parcel'               => [],
                         'collectionDetails'    => [
                             'contactDetails' => [
@@ -357,14 +336,14 @@ class ShipOrders extends \Magento\Backend\App\Action {
                         'shippingRef1'         => $orderId,
                         'shippingRef2'         => '',
                         'shippingRef3'         => '',
-                        'customsValue'         => NULL,
+                        'customsValue'         => null,
                         'deliveryInstructions' => $shipping_deliveryInstructions,
-                        'parcelDescription'    => NULL,
-                        'liabilityValue'       => NULL,
-                        'liability'            => FALSE
+                        'parcelDescription'    => null,
+                        'liabilityValue'       => null,
+                        'liability'            => false
                     ]
                 ]
-            );
+            ];
 
             echo "<pre>";
             print_r($shippingArray);
@@ -378,15 +357,12 @@ class ShipOrders extends \Magento\Backend\App\Action {
             $createdLabel = $shippingObject->insertShipping($shippingArray);
 
             if (!empty($createdLabel['error'])) {
-
-                foreach ($createdLabel['error'] AS $key => $val) {
-
-                    $error[] = array(
+                foreach ($createdLabel['error'] as $key => $val) {
+                    $error[] = [
                         'error_code'    => $val['errorCode'],
                         'error_type'    => $val['errorType'],
                         'error_message' => $val['errorMessage']
-                    );
-
+                    ];
                 }
 
                 $reponse_array['error'] = 1;
@@ -398,7 +374,7 @@ class ShipOrders extends \Magento\Backend\App\Action {
             }
 
             $shipmentId = $createdLabel['data']['shipmentId'];
-            $reponse_array['shipment_id'] = $createdLabel['data']['shipmentId'];;
+            $reponse_array['shipment_id'] = $createdLabel['data']['shipmentId'];
             $reponse_array['shipment_id'] = $createdLabel['data']['shipmentId'];
 
             echo "<p><strong>Created Label</strong></p>";
@@ -441,9 +417,7 @@ class ShipOrders extends \Magento\Backend\App\Action {
             echo "<p><strong>Get Label</strong></p>";
             //echo $output;
 
-
-            $credentials = $this->printNodeCredentials;
-            $credentials->setApiKey($this->printNodeApiKey);
+            $credentials = new \PrintNode\Credentials\ApiKey($this->printNodeApiKey);
 
             // Hint: Your API username is in the format description.integer, where description
             // is the name given to the API key when you created it, followed by a dot (.) and an integer.
@@ -522,7 +496,7 @@ class ShipOrders extends \Magento\Backend\App\Action {
             $client_email = 'crucial@crucial-cloud-print.iam.gserviceaccount.com';
 
             $privateKey = file_get_contents($privateKeyPath);
-            $scopes = array('https://www.googleapis.com/auth/cloudprint');
+            $scopes = ['https://www.googleapis.com/auth/cloudprint'];
 
             $client = new \Google_Client();
             $client->addScope("https://www.googleapis.com/auth/cloudprint");
@@ -561,7 +535,7 @@ class ShipOrders extends \Magento\Backend\App\Action {
 
             $content = $output;
             $response = $gcp->submit(
-                array(
+                [
                     'printerid'   => $printerId,
                     'title'       => (string)$order,
                     'content'     => $content,
@@ -570,13 +544,13 @@ class ShipOrders extends \Magento\Backend\App\Action {
                     'ticket'      => '{
         "version": "1.0",
         "print": {
-            "page_orientation": { 
+            "page_orientation": {
                 "type":"PORTRAIT",
             },
             "margins":{
                 "top_microns": 0,
-                "right_microns": 0, 
-                "bottom_microns": 0, 
+                "right_microns": 0,
+                "bottom_microns": 0,
                 "left_microns": 0
             },
             "fit_to_page": {
@@ -591,7 +565,7 @@ class ShipOrders extends \Magento\Backend\App\Action {
                 "vendor_id":"cijns:High"
             },
             "fit_to_page": {
-                "type": 1 
+                "type": 1
             },
             "media_size": {
                 "height_microns":100000,
@@ -600,7 +574,7 @@ class ShipOrders extends \Magento\Backend\App\Action {
         }
     }'
 
-                )
+                ]
             );
             if (!$response->success) {
                 echo "ERROR";
@@ -618,11 +592,9 @@ class ShipOrders extends \Magento\Backend\App\Action {
             echo '<pre>';
             print_r($parcelStatus);
             echo '</pre>';
-
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
-
     }
 
     /**
@@ -632,15 +604,16 @@ class ShipOrders extends \Magento\Backend\App\Action {
      *
      * @return array
      */
-    public function getParcels($numberOfParcels) {
+    public function getParcels($numberOfParcels)
+    {
         $output = [];
-        for($i = 1; $i <= $numberOfParcels; $i++) {
+        for ($i = 1; $i <= $numberOfParcels; $i++) {
             $temp_array = [
-                'auditInfo'     => NULL,
+                'auditInfo'     => null,
                 'isVoided'      => false,
-                'labelNumber'   => NULL,
+                'labelNumber'   => null,
                 'packageNumber' => $i,
-                'parcelNumber'  => NULL
+                'parcelNumber'  => null
             ];
             $output[] = $temp_array;
         }
@@ -654,7 +627,8 @@ class ShipOrders extends \Magento\Backend\App\Action {
      *
      * @return mixed
      */
-    public function getCollectionDate() {
+    public function getCollectionDate()
+    {
         $collectionDate = '';
 
         $currentDateTime = new \DateTime('NOW');
@@ -667,17 +641,14 @@ class ShipOrders extends \Magento\Backend\App\Action {
 
         $collectionDays = $this->collectionDays;
 
-        $collectionDaysArray = explode(',',$collectionDays);
+        $collectionDaysArray = explode(',', $collectionDays);
 
         $currentTime = $currentDateTime->format('H:i');
 
         $currentTimeStr = strtotime($currentTime);
 
-
         if ($currentTimeStr <= $collectionCutOffTime) {
             // Can Ship Today
-
-
         } else {
             // Next Available Day
             $collectionDate->modify("+1 day");
@@ -687,15 +658,12 @@ class ShipOrders extends \Magento\Backend\App\Action {
                 // Ok this day is good
             } else {
                 // All Days in date ('N') format - 0 Sunday
-                $allDays = array(0,1,2,3,4,5,6);
+                $allDays = [0,1,2,3,4,5,6];
 
-                $nonDeliveryDays = array_diff($allDays,$collectionDays);
+                $nonDeliveryDays = array_diff($allDays, $collectionDays);
                 $seperateholidaydates = []; //Need to Add For Bank holidays/etc
-                $this->checkDateSuitability($collectionDate,$nonDeliveryDays,$seperateholidaydates);
-
-
+                $this->checkDateSuitability($collectionDate, $nonDeliveryDays, $seperateholidaydates);
             }
-
         }
 
         $collectDateOutput = $collectionDate->format('Y-m-d\TH:i:s');
@@ -703,12 +671,13 @@ class ShipOrders extends \Magento\Backend\App\Action {
         return $collectDateOutput;
     }
 
-    public static function checkDateSuitability($date, $timeslot_non_deliverydays, $seperateholidaydates) {
+    public static function checkDateSuitability($date, $timeslot_non_deliverydays, $seperateholidaydates)
+    {
         $date_suitable = 0;
 
         // Check to See if we date is suitable if we don't then lets find a day
 
-        while($date_suitable != 1) {
+        while ($date_suitable != 1) {
             if (!in_array($date->format('N'), $timeslot_non_deliverydays)) {
                 // Ok so the delivery_date seems suitable, that's awesome, lets check it's not a Holiday!
 
@@ -719,7 +688,6 @@ class ShipOrders extends \Magento\Backend\App\Action {
                 }
                 // Good to Go!
                 $date_suitable = 1;
-
             } else {
                 $date->modify('+1 day');
                 // We don't deliver via this method on this day, lets find ourselves the next good date.
@@ -732,7 +700,8 @@ class ShipOrders extends \Magento\Backend\App\Action {
      *
      * @return bool
      */
-    protected function _isAllowed() {
+    protected function _isAllowed()
+    {
         return true;
 
         return $this->_authorization->isAllowed('Elevate_PrintLabels::elevate_printlabels');

@@ -150,7 +150,10 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      *   * @var \Magento\Framework\Filesystem
      */
     protected $filesystem;
-
+     protected $customerSession;
+    protected $customerFactory;
+       
+    protected $customerRepository;
     /**
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
      * @param \Psr\Log\LoggerInterface $logger
@@ -173,6 +176,9 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         \Magento\Directory\Model\ResourceModel\Region\CollectionFactory $regionCollectionFactory,
         \Magento\Framework\Filesystem\Directory\ReadFactory $readFactory,
         \Magento\Framework\Filesystem $filesystem,
+        \Magento\Customer\Model\CustomerFactory $customerFactory,
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
+        \Magento\Customer\Model\SessionFactory $customerSession,
         $resourcePrefix = null
     ) {
         parent::__construct($context, $resourcePrefix);
@@ -184,6 +190,10 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->regionCollectionFactory = $regionCollectionFactory;
         $this->readFactory = $readFactory;
         $this->filesystem = $filesystem;
+                $this->customerFactory = $customerFactory;
+
+        $this->customerRepository = $customerRepository;
+        $this->_customerSession = $customerSession;
     }
 
     /**
@@ -264,8 +274,64 @@ function getShippingRatesFromDb($request, $zipRangeSet, $shipping_code){
 
     $om = \Magento\Framework\App\ObjectManager::getInstance();
     $customerSession = $om->get('Magento\Customer\Model\Session');
+    
+    
+      $customer_shipping_group = $customerSession->getCustomer()->getData('nav_shipping_method_code');//get id of customer
+       
+    
+        $not_logged_in_email = $this->coreConfig->getValue('mconnector/custom_settings/not_logged_in_email', \Magento\Store\Model\ScopeInterface::SCOPE_WEBSITE);
+       $currentCustomer = false;
+        if(!empty($not_logged_in_email)){
+            $currentCustomer = $this->customerFactory->create()->loadByEmail($not_logged_in_email);
+        }else{
+
+            // $currentCustomer = $this->registry->registry('currect_customer_price_rules');
+            // $currentCustomer = $this->customerSession->getCustomer();
+
+        }
+
+        if(!($currentCustomer)){
+            // $currentCustomer = $this->customerSession->getCustomer();
+            // $currentCustomer = $this->registry->registry('currect_customer_price_rules');
+
+        }
+
+        if(!$currentCustomer || !$currentCustomer->getId()){
+
+            // if($storeManager->getAreaCode() === 'adminhtml'){
+            //     $currentCustomerId = $this->backendSession->getQuote()->getCustomer()->getId();
+            //     $currentCustomer = $this->customerFactory->create()->load($currentCustomerId);
+            // }else{
+            //    $currentCustomer = $this->customerSession->getCustomer();
+            //}
+            $currentCustomer = $this->_customerSession->create()->getCustomer();
+
+
+
+
+            $is_contact = (bool) $currentCustomer->getIsContact();
+            if($is_contact){
+                $parent_customer_id = $currentCustomer->getNavContactCustomerId();
+                if(!empty($parent_customer_id)){
+                    $parent_customer =  $currentCustomer
+                        ->getCollection()
+                        ->addAttributeToSelect(['*'])
+                        ->addAttributeToFilter('navision_customer_id', $parent_customer_id)
+                        ->getFirstItem();
+                    if($parent_customer && $parent_customer->getId()){
+                        $currentCustomer = $parent_customer;
+                    }
+                }
+
+            }
+       
+        }
+    if($currentCustomer){
+             $customer_shipping_group =  $currentCustomer->getData('nav_shipping_method_code');
+    
+    } 
     //$customerData = $customerSession->getCustomer()->getData(); //get all data of customerData
-    $customer_shipping_group = $customerSession->getCustomer()->getData('nav_shipping_method_code');//get id of customer
+    
 
 
    // $customer_shipping_group = 'STANDARD';
@@ -313,8 +379,16 @@ function getShippingRatesFromDb($request, $zipRangeSet, $shipping_code){
 
     for ($j=0; $j<8; $j++) {
 
+       
+        $select = $adapter->select()->from(
+            $this->getMainTable()
+        )->where(
+            "customer_shipping_group = :customer_shipping_group"
+        )->order(
+            ['dest_country_id DESC', 'dest_region_id DESC', 'dest_zip DESC', 'position ASC']
+        );
 
-
+     /*
         $select = $adapter->select()->from(
             $this->getMainTable()
         )->where(
@@ -322,7 +396,7 @@ function getShippingRatesFromDb($request, $zipRangeSet, $shipping_code){
         )->order(
             ['dest_country_id DESC', 'dest_region_id DESC', 'dest_zip DESC', 'position ASC']
         );
-
+     */
 
 
 
@@ -392,7 +466,7 @@ function getShippingRatesFromDb($request, $zipRangeSet, $shipping_code){
         //    echo $zoneWhere."\n";
         $select->where($zoneWhere);
 
-        $bind[':website_id'] = (int)$request->getWebsiteId();
+     //   $bind[':website_id'] = (int)$request->getWebsiteId();
 
 
         $bind[':customer_shipping_group'] = $customer_shipping_group;
@@ -478,7 +552,7 @@ function getShippingRatesFromDb($request, $zipRangeSet, $shipping_code){
 
 
         }
-    }
+    }           
     return $shippingData;
 }
     /**
@@ -792,7 +866,8 @@ function getShippingRatesFromDb($request, $zipRangeSet, $shipping_code){
 
         $rate_type = $row[$this->importHeaders['rate_type']];
         $shipping_code_group = $row[$this->importHeaders['shipping_code_group']];
-        $shippingMethod = '';
+        $shippingMethod = $row[$this->importHeaders['shipping_method']];
+        $delivery_cms_block = $row[$this->importHeaders['delivery_cms_block']];
         // validate price
         $price = $this->_parseDecimalValue($row[$this->importHeaders['shipping_price']]);
         if ($price === false) {
@@ -853,6 +928,7 @@ $item_price_over,
     $item_price_under_and_equal,
             $product_shipping_group,
             $customer_shipping_group,
+            $delivery_cms_block,
             $attribute_match,
             $product_sku,
             //   $delivery_note,
@@ -891,7 +967,7 @@ $item_price_over,
     'item_price_under_and_equal',
                 'product_shipping_group',
                 'customer_shipping_group',
-
+                     'delivery_cms_block',
                 'attribute_match',
                 'sku',
                 // 'delivery_note',

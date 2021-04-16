@@ -1,20 +1,13 @@
 <?php
-declare(strict_types=1);
 
 namespace Firebear\ConfigurableProducts\Controller\Download;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\App\Response\Http\FileFactory;
-use Magento\Framework\Filesystem;
-use Magento\Framework\Filesystem\Driver\File;
+use Magento\Framework\App\ObjectManager;
+use Magento\Framework\App\Action\Context;
 
-/**
- * Class DownloadCustomOption
- * @package Firebear\ConfigurableProducts\Controller\Download
- */
-class DownloadCustomOption extends Action
+
+class DownloadCustomOption extends \Magento\Framework\App\Action\Action
 {
     /**
      * @var Magento\Framework\App\Response\Http\FileFactory
@@ -27,36 +20,27 @@ class DownloadCustomOption extends Action
     protected $_directory;
 
     /**
-     * @var File
+     * @var \Magento\Framework\Filesystem\Driver\File
      */
     protected $_file;
 
     /**
-     * @var Filesystem
+     * @var \Magento\Framework\Filesystem
      */
     protected $_filesystem;
-    /**
-     * @var Filesystem\DirectoryList
-     */
-    protected $directory;
 
     /**
      * FileFactory $fileFactory
      * DirectoryList $directory
-     * @param Context $context
-     * @param FileFactory $fileFactory
-     * @param Filesystem\DirectoryList $directory
-     * @param File $file
-     * @param Filesystem $filesystem
      */
     public function __construct(
         Context $context,
-        FileFactory $fileFactory,
-        Filesystem\DirectoryList $directory,
-        File $file,
-        Filesystem $filesystem
+        \Magento\Framework\App\Response\Http\FileFactory $fileFactory,
+        \Magento\Framework\Filesystem\DirectoryList $directory,
+        \Magento\Framework\Filesystem\Driver\File $file,
+        \Magento\Framework\Filesystem $filesystem
     ) {
-        $this->_downloader = $fileFactory;
+        $this->_downloader =  $fileFactory;
         $this->directory = $directory;
         $this->_file = $file;
         $this->_filesystem = $filesystem;
@@ -66,8 +50,8 @@ class DownloadCustomOption extends Action
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|void
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * Custom options download action
+     *
      */
     public function execute()
     {
@@ -81,4 +65,5 @@ class DownloadCustomOption extends Action
         $tmpDirPath = $this->_filesystem->getDirectoryWrite(DirectoryList::ROOT)->getAbsolutePath() . $fileName;
         $this->_file->deleteFile($tmpDirPath);
     }
+
 }

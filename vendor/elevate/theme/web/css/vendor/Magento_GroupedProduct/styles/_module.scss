@@ -1,6 +1,6 @@
 .table.grouped {
     @include lib-table-bordered(
-        $_table_type: horizontal
+        $-table-type: horizontal
     );
 
     > thead > tr > th {
@@ -8,12 +8,12 @@
     }
 
     .product-item-name {
-        font-weight: $font-weight__regular;
+        @include co(font-weight, $font-weight-regular);
     }
 
     .price-box {
         .price {
-            font-size: $font-size__base;
+          @include co(font-size, $font-size-base);
         }
     }
 

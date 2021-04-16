@@ -2,103 +2,101 @@
     display: none !important;
 }
 
+// Inc Vat/etc
 .price-wrapper {
-    .price {
-
-    }
 
     &:before, &:after {
-        font-weight: $pwrap_price_after_label_font_weight;
-        font-size: $pwrap_price_after_label_font_size;
-        @include ev-color-output($pwrap_price_after_label_color);
+        @include co(font-weight, $pwrap-price-after-label-font-weight);
+        @include co(font-size, $pwrap-price-after-label-font-size);
+        @include ev-color-output($pwrap-price-after-label-color);
     }
 }
 
 
 .price {
-    @include co(font-family, $price_font_family);
-    font-weight: $price_font_weight;
-    font-size: $price_font_size;
-    @include co(color, $price_color, $body-color);
+    @include co(font-family, $price-font-family);
+     @include co(font-weight, $price-font-weight);
+     @include co(font-size, $price-font-size);
+    @include co(color, $price-color, $body-color);
 }
 
 .price-label {
-    font-weight: $price_label_font_weight;
-    font-size: $price_label_font_size;
-    @include co(color, $price_label_color, $body-color);
+     @include co(font-weight, $price-label-font-weight);
+     @include co(font-size, $price-label-font-size);
+    @include co(color, $price-label-color, $body-color);
 }
 
 .old-price {
-    order: $old_price_order;
+    @include co(order, $old-price-order);
 
-    @if $old_price_text_decoration_labelprice == both {
-        @if $old_price_text_decoration != none {
-            text-decoration: $old_price_text_decoration;
+    @if $old-price-text-decoration-labelprice == both {
+        @if $old-price-text-decoration != none {
+            text-decoration: $old-price-text-decoration;
         }
     }
 
 
     .price-label {
-        @include co(color, $old_price_label_color, $price_label_color);
-        @include co(text-transform, $old_price_label_texttransform);
-        @include co(font-weight, $old_price_label_font_weight, $price_label_font_weight);
+        @include co(color, $old-price-label-color, $price-label-color);
+        @include co(text-transform, $old-price-label-texttransform);
+        @include co(font-weight, $old-price-label-font-weight, $price-label-font-weight);
 
-        @if $old_price_text_decoration_labelprice == label {
-            text-decoration: $old_price_text_decoration;
+        @if $old-price-text-decoration-labelprice == label {
+            text-decoration: $old-price-text-decoration;
         }
     }
 
     .price {
-        @include co(font-size, $old_price_font_size, $price_font_size);
-        @include co(font-weight, $old_price_font_weight, $price_font_weight);
+        @include co(font-size, $old-price-font-size, $price-font-size);
+        @include co(font-weight, $old-price-font-weight, $price-font-weight);
 
-        @if $old_price_text_decoration_labelprice == price {
-            text-decoration: $old_price_text_decoration;
+        @if $old-price-text-decoration-labelprice == price {
+            text-decoration: $old-price-text-decoration;
         }
     }
 
     .price-wrapper {
         &:before, &:after {
-            @include co(font-weight, $old_price_after_label_font_weight, $pwrap_price_after_label_font_weight);
-            @include co(font-size, $old_price_after_label_font_size, $pwrap_price_after_label_font_size);
-            @include ev-color-output($old_price_after_label_color);
+            @include co(font-weight, $old-price-after-label-font-weight, $pwrap-price-after-label-font-weight);
+            @include co(font-size, $old-price-after-label-font-size, $pwrap-price-after-label-font-size);
+            @include ev-color-output($old-price-after-label-color);
         }
 
     }
 }
 
 .minimal-price {
-    order: $minimal_price_order;
+    @include co(order, $minimal-price-order);
 
-    @if $minimal_price_text_decoration_labelprice == both {
-        @if $minimal_price_text_decoration != none {
-            text-decoration: $minimal_price_text_decoration;
+    @if $minimal-price-text-decoration-labelprice == both {
+        @if $minimal-price-text-decoration != none {
+            text-decoration: $minimal-price-text-decoration;
         }
     }
     .price-label {
-        @include co(color, $minimal_price_label_color, $price_label_color);
-        @include co(text-transform, $minimal_price_label_texttransform);
-        @include co(font-weight, $minimal_price_label_font_weight, $price_label_font_weight);
+        @include co(color, $minimal-price-label-color, $price-label-color);
+        @include co(text-transform, $minimal-price-label-texttransform);
+        @include co(font-weight, $minimal-price-label-font-weight, $price-label-font-weight);
 
-        @if $minimal_price_text_decoration_labelprice == label {
-            text-decoration: $minimal_price_text_decoration;
+        @if $minimal-price-text-decoration-labelprice == label {
+            text-decoration: $minimal-price-text-decoration;
         }
     }
 
     .price {
-        @include co(font-size, $minimal_price_font_size, $price_font_size);
-        @include co(font-weight, $minimal_price_font_weight, $price_font_weight);
+        @include co(font-size, $minimal-price-font-size, $price-font-size);
+        @include co(font-weight, $minimal-price-font-weight, $price-font-weight);
 
-        @if $minimal_price_text_decoration_labelprice == price {
-            text-decoration: $minimal_price_text_decoration;
+        @if $minimal-price-text-decoration-labelprice == price {
+            text-decoration: $minimal-price-text-decoration;
         }
     }
 
     .price-wrapper {
         &:before, &:after {
-            @include co(font-weight, $minimal_price_after_label_font_weight, $pwrap_price_after_label_font_weight);
-            @include co(font-size, $minimal_price_after_label_font_size, $pwrap_price_after_label_font_size);
-            @include ev-color-output($minimal_price_after_label_color);
+            @include co(font-weight, $minimal-price-after-label-font-weight, $pwrap-price-after-label-font-weight);
+            @include co(font-size, $minimal-price-after-label-font-size, $pwrap-price-after-label-font-size);
+            @include ev-color-output($minimal-price-after-label-color);
         }
 
     }
@@ -107,70 +105,66 @@
 .product-items {
     .price-box {
         > span {
-            margin: $pitems_pricebox_prices_margin;
+            @include co(margin, $pitems-pricebox-prices-margin);
             &:last-of-type {
-                margin: $pitems_pricebox_prices_margin_last_of_type;
+                @include co(margin, $pitems-pricebox-prices-margin-last-of-type);
             }
         }
     }
     .price {
-        @if $pitems-prices-letter-spacing != 0 {
-            letter-spacing: $pitems-prices-letter-spacing;
-        }
-
-        @include co(font-size, $pitems_shared_prices_font_size, $price_font_size);
+        @include co(letter-spacing,$pitems-prices-letter-spacing);
+        @include co(font-size, $pitems-shared-prices-font-size, $price-font-size);
 
         @include min-screen($desktop-min) {
-            @include co(font-size, $pitems_shared_prices_font_size_desktop, $pitems_shared_prices_font_size);
+            @include co(font-size, $pitems-shared-prices-font-size-desktop, $pitems-shared-prices-font-size);
         }
     }
 
 
     .normal-price {
-        order: $pitems_normal_price_order;
-
+        @include co(order, $pitems-normal-price-order);
         .price {
-            @include co(font-size, $pitems-normal-price-font-size, $pitems_shared_prices_font_size);
+            @include co(font-size, $pitems-normal-price-font-size, $pitems-shared-prices-font-size);
             @include co(font-weight, $pitems-normal-price-font-weight, $normal-price-font-weight);
-            @include co(color, $pitems-normal_price_color, $normal_price_color);
+            @include co(color, $pitems-normal-price-color, $normal-price-color);
 
         }
     }
 
     .old-price {
-        @include co(order, $pitems_old_price_order, $old_price_order);
+        @include co(order, $pitems-old-price-order, $old-price-order);
 
         .price {
-            @include co(font-size, $pitems-old-price-font-size, $pitems_shared_prices_font_size);
+            @include co(font-size, $pitems-old-price-font-size, $pitems-shared-prices-font-size);
             @include co(font-weight, $pitems-old-price-font-weight, $old-price-font-weight);
             @include co(color, $pitems-old-price-color, $old-price-color);
         }
 
         .price-container {
             .price-wrapper {
-                @include co(opacity, $pitems_old_price_opacity);
+                @include co(opacity, $pitems-old-price-opacity);
             }
         }
     }
 
     .minimal-price {
-        order: $pitems_minimal_price_order;
+        @include co(order, $pitems-minimal-price-order);
     }
 }
 
 $xasda: 0;
 
 @if ($xasda == 1) {
-    .price-final_price, .special-price {
+    .price-final-price, .special-price {
         .price {
             @if $pitems-special-price-font-size != $special-price-font-size {
-                font-size: $pitems-special-price-font-size;
+                 @include co(font-size, $pitems-special-price-font-size);
             }
             @if $pitems-special-price-font-weight != $special-price-font-weight {
-                font-weight: $pitems-special-price-font-weight;
+                 @include co(font-weight, $pitems-special-price-font-weight);
             }
             @if $pitems-special-price-color != $special-price-color {
-                color: $pitems-special-price-color;
+                @include co(color, $pitems-special-price-color);
             }
         }
 
@@ -180,93 +174,92 @@ $xasda: 0;
 
 
 .special-price {
-    color: $special_price_color;
-    order: $special_price_order;
-    font-size: $special-price-font-size;
-    @if $special_price_font_weight == $special_price_label_font_weight {
-        font-weight: $special_price_font_weight;
+    @include co(color, $special-price-color);
+    @include co(order, $special-price-order);
+     @include co(font-size, $special-price-font-size);
+
+    @if $special-price-font-weight == $special-price-label-font-weight {
+         @include co(font-weight, $special-price-font-weight);
     }
 
     .price-label,
     .label {
-        @if $special_price_label_capitalisation == 'uppercase' {
-            text-transform: uppercase;
-        }
-        @if $special_price_label_font_weight != $special_price_font_weight {
-            font-weight: $special_price_label_font_weight;
+        @include co(text-transform, $special-price-label-capitalisation);
+        @if $special-price-label-font-weight != $special-price-font-weight {
+             @include co(font-weight, $special-price-label-font-weight);
         }
 
     }
 
     .price {
-        @if $special_price_font_weight != $special_price_label_font_weight {
-            font-weight: $special_price_font_weight;
+        @if $special-price-font-weight != $special-price-label-font-weight {
+             @include co(font-weight, $special-price-font-weight);
         }
 
     }
 }
 
 .main-price, .normal-price {
-    color: $normal_price_color;
-    order: $normal_price_order;
-    font-size: $normal_price_font_size;
-    @if $normal_price_font_weight == $normal_price_label_font_weight {
-        font-weight: $normal_price_font_weight;
+    @include co(color, $normal-price-color);
+    @include co(order, $normal-price-order);
+     @include co(font-size, $normal-price-font-size);
+    @if $normal-price-font-weight == $normal-price-label-font-weight {
+         @include co(font-weight, $normal-price-font-weight);
     }
 
     .price-label,
     .label {
-        @if $normal_price_label_capitalisation == 'uppercase' {
+        @if $normal-price-label-capitalisation == 'uppercase' {
             text-transform: uppercase;
         }
-        @if $normal_price_label_font_weight != $normal_price_font_weight {
-            font-weight: $normal_price_label_font_weight;
+        @if $normal-price-label-font-weight != $normal-price-font-weight {
+             @include co(font-weight, $normal-price-label-font-weight);
         }
 
     }
 
     .price {
-        @if $normal_price_font_weight != $normal_price_label_font_weight {
-            font-weight: $normal_price_font_weight;
+        @if $normal-price-font-weight != $normal-price-label-font-weight {
+             @include co(font-weight, $normal-price-font-weight);
         }
     }
 }
 
 .was-price {
-    color: $was_price_color;
-    order: $was_price_order;
-    font-size: $was_price-font-size;
-    @if $was_price_font_weight == $was_price_label_font_weight {
-        font-weight: $was_price_font_weight;
+    @include co(color, $was-price-color);
+    @include co(order, $was-price-order);
+     @include co(font-size, $was-price-font-size);
+    @if $was-price-font-weight == $was-price-label-font-weight {
+         @include co(font-weight, $was-price-font-weight);
     }
-    @if $was_price_text_decoration_labelprice == both {
+    @if $was-price-text-decoration-labelprice == both {
 
-        @if $was_price_text_decoration != none {
-            text-decoration: $was_price_text_decoration;
+        @if $was-price-text-decoration != none {
+            text-decoration: $was-price-text-decoration;
         }
     }
 
     .price-label,
     .label {
 
-        @if $was_price_label_capitalisation == 'uppercase' {
+        @if $was-price-label-capitalisation == 'uppercase' {
             text-transform: uppercase;
         }
-        @if $was_price_label_font_weight != $was_price_font_weight {
-            font-weight: $was_price_label_font_weight;
+        @if $was-price-label-font-weight != $was-price-font-weight {
+             @include co(font-weight, $was-price-label-font-weight);
         }
-        @if $was_price_text_decoration_labelprice == label {
-            text-decoration: $was_price_text_decoration;
+        @if $was-price-text-decoration-labelprice == label {
+            text-decoration: $was-price-text-decoration;
         }
 
     }
 
     .price {
-        @if $was_price_font_weight != $was_price_label_font_weight {
-            font-weight: $was_price_font_weight;
+        @if $was-price-font-weight != $was-price-label-font-weight {
+             @include co(font-weight, $was-price-font-weight);
         }
-        @if $was_price_text_decoration_labelprice == price {
-            text-decoration: $was_price_text_decoration;
+        @if $was-price-text-decoration-labelprice == price {
+            text-decoration: $was-price-text-decoration;
         }
     }
 }
@@ -279,22 +272,22 @@ $xfaafa: 0;
         > .price-final_price {
             .price-label {
 
-                font-weight: $final_price_label_font_weight;
-                font-size: $final_price_label_font_size;
-                @include ev-color-output($final_price_label_color);
+                 @include co(font-weight, $final-price-label-font-weight);
+                 @include co(font-size, $final-price-label-font-size);
+                @include ev-color-output($final-price-label-color);
             }
 
             .price-wrapper {
                 &:before, &:after {
-                    font-weight: $final_price_after_label_font_weight;
-                    font-size: $final_price_after_label_font_size;
-                    @include ev-color-output($final_price_after_label_color);
+                     @include co(font-weight, $final-price-after-label-font-weight);
+                     @include co(font-size, $final-price-after-label-font-size);
+                    @include ev-color-output($final-price-after-label-color);
                 }
 
                 > .price {
-                    font-weight: $final_price_font_weight;
-                    font-size: $final_price_font_size;
-                    @include ev-color-output($final_price_color);
+                     @include co(font-weight, $final-price-font-weight);
+                     @include co(font-size, $final-price-font-size);
+                    @include ev-color-output($final-price-color);
                 }
             }
         }

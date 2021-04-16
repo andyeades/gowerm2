@@ -11,9 +11,9 @@
         flex: 0 0 auto;
 
         img {
-          width: $feefo-image-width;
+          @include co(width, $feefo-image-width);
             @include min-screen($desktop-min) {
-               width: $feefo-image-width-desktop;
+               @include co(width, $feefo-image-width-desktop);
             }
         }
 
@@ -42,7 +42,7 @@
         }
         @include screen($mobiletablet-min, $mobiletablet-max) {
 
-            width: $feefoouter-width-mobiletabletmax;
+            @include co(width, $feefoouter-width-mobiletabletmax);
         }
         @include min-screen($desktop-min) {
             width: 70%;

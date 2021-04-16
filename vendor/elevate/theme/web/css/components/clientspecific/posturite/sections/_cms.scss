@@ -80,20 +80,20 @@
     }
 
     .content-section {
-        padding: $contentsection-padding;
+        @include co(padding, $contentsection-padding);
         text-align: $contentsection-textalign;
         h1 {
-            font-size: $contentsection-h1-fontsize;
+            @include co(font-size, $contentsection-h1-fontsize);
         }
         h2 {
-            font-size: $contentsection-h2-fontsize;
-            font-weight: $contentsection-h2-fontweight;
-            margin: $contentsection-h2-margin;
+            @include co(font-size, $contentsection-h2-fontsize);
+            @include co(font-weight, $contentsection-h2-fontweight);
+            @include co(margin, $contentsection-h2-margin);
         }
         h3 {
-            font-size: $contentsection-h3-fontsize;
-            font-weight: $contentsection-h3-fontweight;
-            margin: $contentsection-h3-margin;
+            @include co(font-size, $contentsection-h3-fontsize);
+            @include co(font-weight, $contentsection-h3-fontweight);
+            @include co(margin, $contentsection-h3-margin);
         }
 
 
@@ -102,8 +102,8 @@
     .lead {
         .testimonials &,
         .content-section & {
-            font-size: $contentsection-lead-fontsize;
-            margin: $contentsection-lead-margin;
+            @include co(font-size, $contentsection-lead-fontsize);
+            @include co(margin, $contentsection-lead-margin);
             @include min-screen($desktop-min) {
                 @include co(font-size, $contentsection-lead-fontsize-desktop, $contentsection-lead-fontsize);
 

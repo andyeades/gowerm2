@@ -7,9 +7,6 @@ See LICENSE.txt for license details.
 -->
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
-    <head>
-        <css src="Aheadworks_Pquestion::css/style.css"/>
-    </head>
     <body>
         <referenceBlock name="product.info.details">
             <block class="Aheadworks\Pquestion\Block\Question\AjaxContainer" name="aw_pq_ajax_container" template="Aheadworks_Pquestion::catalog/product/view/ajax_container.phtml" group="detailed_info" after="-">

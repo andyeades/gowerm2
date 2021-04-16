@@ -4,10 +4,26 @@
 
 @if $sitename == posturite {
 
-    // header
+    $link-hover-color: #29617d !global;
 
     // Typography
     $font-size-base: 0.875rem !global; // 14px
+    $theme-sans-serif-font-family: 'Poppins', sans-serif !global;
+
+    // Redefine h1 as these - also strip out the luma defaults - as they are all over-ridden anyway
+
+
+    $h1-font-size: 1.5rem !global;
+    $h2-font-size: 1.3125rem !global;
+    $h3-font-size: 1.1875rem !global;
+    $h4-font-size: 1.125rem !global;
+    $h5-font-size: 1rem !global;
+    $h6-font-size: 0.9375rem !global;
+    $headings-margin-bottom: 0.625rem !global;
+
+    // stylelint-disable value-keyword-case
+    $font-family-sans-serif: $theme-sans-serif-font-family !global;
+    $font-family-base: $theme-sans-serif-font-family !global;
 
 
 
@@ -26,9 +42,13 @@
     $price-font-size: 1rem !global;
     $pitems-shared-prices-font-size: 1rem !global;
     $pitems-shared-prices-font-size-desktop: 1rem !global;
+    $pitems-pricebox-prices-margin-last-of-type: false !global;
 
     $price-label-color: #a7a8aa !global;
-    $pwrap-price-after-label-color: $theme-brand-color-2 !global;
+
+    $special-price-label-capitalisation: false !global;
+
+    //$pwrap-price-after-label-color: $theme-brand-color-2 !global;
 
     $old-price-label-font-weight: 400 !global;
     $old-price-font-weight: 400 !global;
@@ -44,6 +64,7 @@
     $minimal-price-font-size: 1.5rem !global;
     $minimal-price-label-color: $price-label-color !global;
     $minimal-price-font-weight: 400 !global;
+    $minimal-price-after-label-font-size: 0.75rem !global;
 
     // Forms
 
@@ -55,10 +76,10 @@
 
 
     // Pview
-    $tab-content--padding-top: 0 !global;
-    $tab-content--padding-right: 0 !global;
-    $tab-content--padding-bottom: 0 !global;
-    $tab-content--padding-left: 0 !global;
+    $tab-content-padding-top: 0 !global;
+    $tab-content-padding-right: 0 !global;
+    $tab-content-padding-bottom: 0 !global;
+    $tab-content-padding-left: 0 !global;
 
 
     $pview-old-price-label-display: inline-block !global;
@@ -66,19 +87,16 @@
     $pview-media-margin: 0 0 2rem 0 !global;
     $pview-media-padding-desktop: 0 70px 3.5rem 0 !global;
 
-    $select2-selection-single-border: unset !global;
-
-
-    $pview-boxtocart-padding: 1.25rem !global;
-    $pview-boxtocart-fieldqty-justifycontent-desktop: flex-end !global;
 
 
     $-accordion-content-padding: false !global;
     $pview-desc-tab-title-font-size: 1.25rem !global;
     $pview-desc-tab-title-fontweight: 300 !global;
     $pview-desc-tab-title-text-transform: false !global;
+    $pview-proddataitems-item-content-padding: 0 0.5rem !global;
     $pview-proddataitems-item-content-padding-desktop: 0 0.625rem !global;
 
+    $accordion-control-color: #0A604D !global;
     $pview-data-items-accordion-control-text-transform: false !global;
     $pview-desc-tab-title-accordion-icon-color: #0A604D !global;
     $pview-desc-tab-title-accordion-icon-color-active: #0A604D !global;
@@ -86,11 +104,7 @@
 
 
     $pinfo-btm-o-margin: 2rem 0 0 0 !global;
-    $pview-addform-margin: 0 !global;
-    $pview-addform-margin-desktop: 0 !global;
 
-    $pview-addform-padding: 1.5rem 0 0 0 !global;
-    $pview-addform-padding-desktop: 1.5rem 0 0 0 !global;
 
     // Tabls
 

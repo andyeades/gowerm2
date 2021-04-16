@@ -780,6 +780,9 @@ if ($_gpsku == '') {
     
     
        ?>
-       <script>
-                  ELEVATE.Promotions.init("<?php echo $countdown_time; ?>"); 
-    </script>
+       <script>   
+       jQuery( document ).ready(function() {
+
+       
+                  ELEVATE.Promotions.init("<?php echo $countdown_time; ?>", ".countdown_timer"); });
+                  </script> 

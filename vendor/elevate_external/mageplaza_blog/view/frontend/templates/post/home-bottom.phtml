@@ -37,8 +37,9 @@
 
         <?php $i = 1;
         // TODO: Make Admin Selection
-        $category_one_id = 10; //(will poss not be this on live!)
-        $category_two_id = 9; //buying guides (might change!)
+        $category_one_id = 14; //(will poss not be this on live!)
+        $category_two_id = 34; //buying guides (might change!)
+        
         $max_number_of_featurecat_articles_to_show = 3;
 
         $cat_one_post_collection = $block->getCategoryPostCollection($category_one_id);
@@ -200,9 +201,7 @@
       $latest_posts_title = __('Latest Posts');
 
       ?>
-          <?php } ?>
       <style>
-      
         .latest-posts .col-md-12 {
           display: flex;
           flex-wrap: wrap;
@@ -256,15 +255,9 @@
         .post-short-description:hover {
           text-decoration:none;
         }
-        
-        @media only screen and (max-width: 991.98px)  {
- .grid-item {
-    width: 100%;
-}
-}
       </style>
 
-  
+      <?php } ?>
 
 
             <div class="col-md-12">

@@ -10,7 +10,6 @@ use Exception;
 use Firebear\ConfigurableProducts\Model\UrlGenerator;
 use Magento\Backend\App\Area\FrontNameResolver;
 use Magento\Catalog\Model\Product;
-use Magento\Catalog\Model\Product\Type;
 use Magento\Catalog\Model\Product\Visibility;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Framework\App\State;
@@ -31,8 +30,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GenerateUrlRewrite extends Command
 {
     const VISIBILITY = 'visibility';
-
-    const PRODUCT_TYPE = 'product_type';
 
     /**
      * @var State
@@ -56,13 +53,9 @@ class GenerateUrlRewrite extends Command
     /**
      * Generates url rewrites for different scopes.
      *
-     * @var UrlGenerator
+     * @var ProductScopeRewriteGenerator
      */
     private $rewriteGenerator;
-    /**
-     * @var Type
-     */
-    private $type;
 
     /**
      * GenerateUrlRewrite constructor.
@@ -73,7 +66,6 @@ class GenerateUrlRewrite extends Command
      * @param UrlGenerator $rewriteGenerator
      * @param State $state
      *
-     * @param Type $type
      * @internal param CollectionFactory $сollectionFactory
      */
     public function __construct(
@@ -81,15 +73,13 @@ class GenerateUrlRewrite extends Command
         StoreManagerInterface $storeManager,
         UrlPersistInterface $urlPersist,
         UrlGenerator $rewriteGenerator,
-        State $state,
-        Type $type
+        State $state
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->storeManager = $storeManager;
         $this->urlPersist = $urlPersist;
         $this->rewriteGenerator = $rewriteGenerator;
         $this->state = $state;
-        $this->type = $type;
         parent::__construct();
     }
 
@@ -106,13 +96,6 @@ class GenerateUrlRewrite extends Command
                 __('Visibility id of the product i.e. 1 = VISIBILITY_NOT_VISIBLE, 2 = VISIBILITY_IN_CATALOG, 
                 3 = VISIBILITY_IN_SEARCH, 4 = VISIBILITY_BOTH'),
                 1
-            ),
-            new InputOption(
-                self::PRODUCT_TYPE,
-                '',
-                InputOption::VALUE_OPTIONAL,
-                __('Product Type of products i.e. simple, configurable, bundle, group etc'),
-                Type::TYPE_SIMPLE
             )
         ];
         $this->setName('firebear:url-rewrite:generate')
@@ -147,16 +130,9 @@ class GenerateUrlRewrite extends Command
             return Cli::RETURN_FAILURE;
         }
 
-        $productType = $input->getOption(self::PRODUCT_TYPE);
-
-        if (!isset($this->type->getOptionArray()[$productType])) {
-            $output->writeln('<error>' . __('Wrong Product Type Passed') . '</error>');
-            return Cli::RETURN_FAILURE;
-        }
-
         $productCollection = $this->collectionFactory->create();
         $productCollection
-            ->addFieldToFilter('type_id', ['eq' => $productType])
+            ->addFieldToFilter('type_id', ['eq' => 'simple'])
             ->addFieldToFilter(
                 'visibility',
                 ['eq' => $visibility]

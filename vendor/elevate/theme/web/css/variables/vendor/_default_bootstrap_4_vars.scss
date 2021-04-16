@@ -144,7 +144,8 @@ $spacers: map-merge(
             2: ($spacer * .5),
             3: $spacer,
             4: ($spacer * 1.5),
-            5: ($spacer * 3)
+            5: ($spacer * 3),
+            6: ($spacer * 3.25)
         ),
         $spacers
 );
@@ -556,6 +557,7 @@ $custom-control-indicator-checked-border-color: $custom-control-indicator-checke
 $custom-control-indicator-focus-box-background-color: lighten($component-active-bg, 35%) !default;
 $custom-control-indicator-focus-box-shadow: $input-focus-box-shadow !default;
 $custom-control-indicator-focus-border-color: $input-focus-border-color !default;
+
 
 $custom-control-indicator-active-color: $component-active-color !default;
 $custom-control-indicator-active-bg: lighten($component-active-bg, 35%) !default;

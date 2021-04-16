@@ -11,7 +11,11 @@
     </type>
 
     <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="Elevate\Themeoptions\Block\Html\Breadcrumbs"/>
+    <preference for="Magento\CheckoutAgreements\Api\Data\AgreementInterface" type="Elevate\Themeoptions\Api\CheckoutAgreements\Data\AgreementInterface"/>
+    <preference for="Magento\CheckoutAgreements\Block\Adminhtml\Agreement\Edit\Form" type="Elevate\Themeoptions\Block\CheckoutAgreements\Adminhtml\Agreement\Edit\Form"/>
 
+    <preference for="Magento\CheckoutAgreements\Model\Agreement" type="Elevate\Themeoptions\Model\CheckoutAgreements\Agreement"/>
+    <preference for="Magento\CheckoutAgreements\Model\AgreementsConfigProvider" type="Elevate\Themeoptions\Model\CheckoutAgreements\AgreementsConfigProvider"/>
 
     <preference for="Elevate\Themeoptions\Api\TranslationsRepositoryInterface" type="Elevate\Themeoptions\Model\TranslationsRepository"/>
     <preference for="Elevate\Themeoptions\Api\Data\TranslationsInterface" type="Elevate\Themeoptions\Model\Data\Translations"/>

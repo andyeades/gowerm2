@@ -445,9 +445,9 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     }
 
     form {
-        width: $evca-cartcontainer-form-width;
-        order: $evca-cartcontainer-form-order;
-        padding: $evca-cartcontainer-form-padding;
+        @include co(width, $evca-cartcontainer-form-width);
+        @include co(order, $evca-cartcontainer-form-order);
+        @include co(padding, $evca-cartcontainer-form-padding);
     }
 
 
@@ -508,8 +508,8 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         @if $evca-cart-summary-border-radius-on == 1 {
             border-radius: $evca-cart-summary-border-radius;
         }
-        @include lib-css(background, $sidebar--background-color);
-        padding: 1px 15px $indent--m;
+        @include lib-css(background, $sidebar-background-color);
+        padding: 1px 15px $indent-m;
 
         > .title {
             display: block;
@@ -532,13 +532,13 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             }
 
             .fieldset {
-                margin: 15px 0 $indent--m $indent--xs;
+                margin: 15px 0 $indent-m $indent-xs;
 
                 .field {
-                    margin: 0 0 $indent--s;
+                    margin: 0 0 $indent-s;
 
                     &.note {
-                        font-size: $font-size--s;
+                      @include co(font-size, $font-size-s);
                     }
                 }
 
@@ -640,7 +640,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
                 );
                 margin-bottom: 0;
                 overflow: hidden;
-                padding: 7px $indent--l 7px $indent--xs;
+                padding: 7px $indent-l 7px $indent-xs;
                 position: relative;
                 border: none;
                 &:focus {
@@ -688,8 +688,8 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         .actions-toolbar {
 
             .primary {
-                width: $evca-cart-discount-primary-width;
-                margin: $evca-cart-discount-primary-margin;
+                @include co(width, $evca-cart-discount-primary-width);
+                @include co(margin, $evca-cart-discount-primary-margin);
             }
         }
     }
@@ -699,9 +699,9 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         position: relative;
         background-color: $evca-addonwrap-bgcolor;
         color: $evca-addonwrap-color;
-        margin: $evca-addonwrap-margin;
+        @include co(margin, $evca-addonwrap-margin);
         border-radius: $evca-addonwrap-border-radius;
-        padding: $evca-addonwrap-padding;
+        @include co(padding, $evca-addonwrap-padding);
         border: $evca-addonwrap-border;
         @include max-screen($desktop-sm-max) {
             @include co(margin, $evca-addonwrap-margin-sm-max, $evca-addonwrap-margin);
@@ -711,17 +711,17 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         }
     }
     .multibox {
-        margin: $evca-multibox-margin;
+        @include co(margin, $evca-multibox-margin);
         border-radius: $evca-multibox-border-radius;
         border: $evca-multibox-border;
-        padding: $evca-multibox-padding;
+        @include co(padding, $evca-multibox-padding);
         @include max-screen($mobilemax) {
-            margin: $evca-multibox-margin-mobilemax;
+            @include co(margin, $evca-multibox-margin-mobilemax);
             border: $evca-multibox-border-mobilemax;
         }
         @include min-screen($desktop-md-min) {
-            padding: $evca-multibox-padding-desktopmd;
-            margin: $evca-multibox-margin-desktopmd;
+            @include co(padding, $evca-multibox-padding-desktopmd);
+            @include co(margin, $evca-multibox-margin-desktopmd);
         }
     }
     .addonrow {
@@ -729,11 +729,11 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         flex-wrap: wrap;
         overflow: hidden;
         position: relative;
-        padding: $evca-addonrow-padding;
+        @include co(padding, $evca-addonrow-padding);
         border: $evca-addonrow-border;
         border-radius: $evca-addonrow-border-radius;
         &.no-increment-qty {
-            padding: $evca-addonrow-no-increment-qty-padding;
+            @include co(padding, $evca-addonrow-no-increment-qty-padding);
         }
     }
 
@@ -791,7 +791,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         cursor: pointer;
         .actions-toolbar {
             @include co(margin, $evca-cart-discount-actionstoolbar-margin);
-            width: $evca-cart-discount-actionstoolbar-width;
+            @include co(width, $evca-cart-discount-actionstoolbar-width);
             @include min-screen($desktop-md-min) {
                 @include co(margin, $evca-cart-discount-actionstoolbar-margin-desktopmd, $evca-cart-discount-actionstoolbar-margin);
                 @include co(width, $evca-cart-discount-actionstoolbar-width-desktopmd, $evca-cart-discount-actionstoolbar-width);
@@ -804,7 +804,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
                 width: 100%;
             }
             .field {
-                width: $evca-cart-discount-field-width;
+                @include co(width, $evca-cart-discount-field-width);
                 @include min-screen($desktop-md-min) {
                     @include co(width, $evca-cart-discount-field-width-desktopmd, $evca-cart-discount-field-width);
                 }
@@ -967,21 +967,21 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         @if $evca-increment-qty-bgcolor == $evca-decrement-qty-bgcolor {
             background-color: $evca-incrementdecrement-qty-bgcolor;
         }
-        font-weight: $evca-incrementdecrement-font-weight;
+        @include co(font-weight, $evca-incrementdecrement-font-weight);
 
         text-align: $evca-incrementdecrement-text-align;
         color: $evca-incrementdecrement-color;
         display: $evca-incrementdecrement-display;
-        align-items: $evca-incrementdecrement-alignitems;
-        justify-content: $evca-incrementdecrement-justifycontent;
+        @include co(align-items, $evca-incrementdecrement-alignitems);
+        @include co(justify-content, $evca-incrementdecrement-justifycontent);
         border-radius: $evca-incrementdecrement-border-radius;
         line-height: $evca-incrementdecrement-line-height;
         height: $evca-incrementdecrement-height;
-        width: $evca-incrementdecrement-width;
+        @include co(width, $evca-incrementdecrement-width);
         @include screen($desktop-medium-min, $desktop-large-max) {
             height: $evca-incrementdecrement-height-desktopmdlg;
             line-height: $evca-incrementdecrement-line-height-desktopmdlg;
-            width: $evca-incrementdecrement-width-desktopmdlg;
+            @include co(width, $evca-incrementdecrement-width-desktopmdlg);
         }
 
         &:hover {
@@ -989,10 +989,10 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         }
 
         &.change_addon_qty {
-            width: $evca-change-addon-qty-width;
+            @include co(width, $evca-change-addon-qty-width);
             line-height: $evca-change-addon-qty-lineheight;
             height: $evca-change-addon-qty-height;
-            margin: $evca-change-addon-qty-margin;
+            @include co(margin, $evca-change-addon-qty-margin);
 
         }
     }
@@ -1004,9 +1004,9 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     }
 
     .decrement_qty {
-        margin: $evca-decrement-qty-margin;
+        @include co(margin, $evca-decrement-qty-margin);
         @include max-screen($mobilemax) {
-            margin: $evca-decrement-qty-margin-mobilemax;
+            @include co(margin, $evca-decrement-qty-margin-mobilemax);
         }
         @if $evca-decrement-qty-bgcolor != $evca-increment-qty-bgcolor {
             background-color: $evca-decrement-qty-bgcolor;
@@ -1019,7 +1019,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
 
     .qty {
         height: $evca-qty-height;
-        margin: $evca-qty-margin;
+        @include co(margin, $evca-qty-margin);
         @if $evca-qty-border-radius-on == 1 {
             border-radius: $evca-qty-border-radius;
         }
@@ -1036,7 +1036,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         }
         &.change_addon_qty_input {
             padding: 0;
-            margin: $evca-qty-change-addon-qty-input-margin;
+            @include co(margin, $evca-qty-change-addon-qty-input-margin);
             height: $evca-qty-change-addon-qty-input-height;
             width: 29px;
         }
@@ -1077,13 +1077,13 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
 
     .addon-change-qty-outer {
         display: flex;
-        justify-content: $evca-addon-changeqty-outer-justifycontent;
-        margin: $evca-addon-changeqty-outer-margin;
+        @include co(justify-content, $evca-addon-changeqty-outer-justifycontent);
+        @include co(margin, $evca-addon-changeqty-outer-margin);
         @include min-screen($desktop-medium-min) {
-            margin: $evca-addon-changeqty-outer-margin-desktopmd;
+            @include co(margin, $evca-addon-changeqty-outer-margin-desktopmd);
         }
         input {
-            margin: $evca-addon-changeqty-input-margin;
+            @include co(margin, $evca-addon-changeqty-input-margin);
         }
     }
     $evca-addon-lightinner-evlightbox-padding-mobiletabletmax: 0 $grid-gutter-width-mobile 0 0 !default;
@@ -1100,9 +1100,9 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         padding:  $evca-addon-lightinner-padding;
         .evlightbox {
             > img {
-                padding: $evca-addon-lightinner-evlightbox-padding;
+                @include co(padding, $evca-addon-lightinner-evlightbox-padding);
                 @include max-screen($mobiletablet-max) {
-                    padding: $evca-addon-lightinner-evlightbox-padding-mobiletabletmax;
+                    @include co(padding, $evca-addon-lightinner-evlightbox-padding-mobiletabletmax);
                 }
                 @if  $evca-addon-lightinner-evlighbox-border-radius-on == 1 {
                     border-radius:  $evca-addon-lightinner-evlighbox-border-radius;
@@ -1116,9 +1116,9 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     }
     .addon_qty_wrapper {
         display: flex;
-        width: $evca-addon-qty-wrapper-width;
-        margin: $evca-addon-qty-wrapper-margin;
-        padding: $evca-addon-qty-wrapper-padding;
+        @include co(width, $evca-addon-qty-wrapper-width);
+        @include co(margin, $evca-addon-qty-wrapper-margin);
+        @include co(padding, $evca-addon-qty-wrapper-padding);
         > span, input {
             flex: 0 1 auto;
         }
@@ -1149,7 +1149,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         @if $evca-btninfo-border-radius-on == 1 {
             border-radius: $evca-btninfo-border-radius;
         }
-        font-size: $evca-btninfo-fontsize;
+      @include co(font-size, $evca-btninfo-fontsize);
         width: 100%;
         text-align: left;
 
@@ -1226,10 +1226,10 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: $evca-cartprice-margin;
+            @include co(margin, $evca-cartprice-margin);
         }
         .evca_cart_price_mobile {
-            margin: $evca-cartprice-mobile-margin;
+            @include co(margin, $evca-cartprice-mobile-margin);
             font-size: 19px;
             margin-top: 10px;
             @include min-screen($desktop-md-min) {
@@ -1279,12 +1279,12 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             background-color: $evca-couponbox-bg-color;
         }
         @if $evca-couponbox-text-transform-on == 1 {
-            text-transform: $evca-couponbox-text-transform;
+            @include co(text-transform, $evca-couponbox-text-transform);
         }
-        padding: $evca-couponbox-padding;
-        margin: $evca-couponbox-margin;
+        @include co(padding, $evca-couponbox-padding);
+        @include co(margin, $evca-couponbox-margin);
         @include max-screen($mobilemax) {
-            margin: $evca-couponbox-margin-mobilemax;
+            @include co(margin, $evca-couponbox-margin-mobilemax);
         }
         text-align: center;
 
@@ -1528,7 +1528,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         background-color: $evca-color-batchtwo-13;
 
         border-radius: 10px;
-        margin: $evca-has-mat-wrap-margin;
+        @include co(margin, $evca-has-mat-wrap-margin);
     }
 
 
@@ -1824,9 +1824,9 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     .evca_checkbox {
         top: $evca-checkbox-top;
         right: $evca-checkbox-right;
-        margin: $evca-checkbox-margin;
+        @include co(margin, $evca-checkbox-margin);
         left: $evca-checkbox-left;
-        width: $evca-checkbox-width;
+        @include co(width, $evca-checkbox-width);
         position: $evca-checkbox-position;
         opacity: $evca-checkbox-opacity;
         height: $evca-checkbox-height;
@@ -1839,9 +1839,9 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
 
         top: $evca-inposittion-top;
         right: $evca-inposittion-right;
-        margin: $evca-inposittion-margin;
+        @include co(margin, $evca-inposittion-margin);
         left: $evca-inposittion-left;
-        width: $evca-inposittion-width;
+        @include co(width, $evca-inposittion-width);
         position: $evca-inposittion-position;
         opacity: $evca-inposittion-opacity;
         height: $evca-inposittion-height;
@@ -1853,9 +1853,9 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     .evca_remove_addon_checkbox {
         top: $evca-remove-addon-checkbox-top;
         right: $evca-remove-addon-checkbox-right;
-        margin: $evca-remove-addon-checkbox-margin;
+        @include co(margin, $evca-remove-addon-checkbox-margin);
         left: $evca-remove-addon-checkbox-left;
-        width: $evca-remove-addon-checkbox-width;
+        @include co(width, $evca-remove-addon-checkbox-width);
         position: $evca-remove-addon-checkbox-position;
         opacity: $evca-remove-addon-checkbox-opacity;
         height: $evca-remove-addon-checkbox-height;
@@ -1867,14 +1867,14 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     // Mattress (or whatever selected Item)
 
     .mid-options-col {
-       padding: $evca-mid-options-col-padding;
+       @include co(padding, $evca-mid-options-col-padding);
         @include max-screen($mobilemax) {
-            padding: $evca-mid-options-col-padding-mobilemax;
+            @include co(padding, $evca-mid-options-col-padding-mobilemax);
         }
     }
 
     .right-options-col {
-        padding: $evca-right-options-col-padding;
+        @include co(padding, $evca-right-options-col-padding);
     }
     $evca-discount-text-container-padding: 1.25rem $grid-gutter-width / 2 0 $grid-gutter-width / 2 !default;
     $evca-discount-text-container-padding-desktop: 1.25rem $grid-gutter-width / 2 0 $grid-gutter-width / 2 !default;
@@ -1883,8 +1883,8 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     $evca-offer-text-align-mobilemax: center !default;
 
     .evca_discount_text_container {
-        padding: $evca-discount-text-container-padding;
-        margin: $evca-discount-text-container-margin;
+        @include co(padding, $evca-discount-text-container-padding);
+        @include co(margin, $evca-discount-text-container-margin);
     }
     .evca_offer_text {
       @include max-screen($mobilemax) {
@@ -3557,7 +3557,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     .totals {
         @include co(font-size, $checkout-cart-index-totals-fontsize);
         .price {
-            @include co(font-size, $checkout-cart-index-totals-price-fontsize, $price_font_size);
+            @include co(font-size, $checkout-cart-index-totals-price-fontsize, $price-font-size);
         }
 
         .paypal-logo img {

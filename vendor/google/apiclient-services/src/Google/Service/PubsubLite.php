@@ -70,6 +70,10 @@ class Google_Service_PubsubLite extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'skipBacklog' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ),
                 'subscriptionId' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -279,7 +283,17 @@ class Google_Service_PubsubLite extends Google_Service
         'topics',
         array(
           'methods' => array(
-            'computeMessageStats' => array(
+            'computeHeadCursor' => array(
+              'path' => 'v1/topicStats/{+topic}:computeHeadCursor',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'topic' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'computeMessageStats' => array(
               'path' => 'v1/topicStats/{+topic}:computeMessageStats',
               'httpMethod' => 'POST',
               'parameters' => array(

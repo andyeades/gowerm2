@@ -62,13 +62,13 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
     .navbar-posturite {
         background-color: #f4f6f8;
         border-radius: $border-radius;
-        padding: $navbar-posturite-padding;
+        @include co(padding, $navbar-posturite-padding);
         @include max-screen($desktop-sm-max) {
             margin-bottom: 1rem;
         }
 
         .navbar-toggler {
-            margin: $navbar-posturite-navbartoggler-margin;
+            @include co(margin, $navbar-posturite-navbartoggler-margin);
 
             @if $navbar-posturite-navbartoggler-border-on != 1 {
                 border: none;
@@ -81,7 +81,7 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
             }
             .navbar-toggler-icon {
                 height: $navbar-posturite-navbartoggler-icon-height;
-                width: $navbar-posturite-navbartoggler-icon-width;
+                @include co(width, $navbar-posturite-navbartoggler-icon-width);
                 background-image: $navbar-posturite-navbartoggler-icon-expanded-bgimage;
             }
             &:focus {
@@ -101,9 +101,9 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
             }
 
             > a {
-                color: $navbar-posturite-navbartitle-a-color;
-                font-weight: $navbar-posturite-navbartitle-a-fontweight;
-                font-size: $navbar-posturite-navbartitle-a-fontsize;
+                @include co(color, $navbar-posturite-navbartitle-a-color);
+                @include co(font-weight, $navbar-posturite-navbartitle-a-fontweight);
+              @include co(font-size, $navbar-posturite-navbartitle-a-fontsize);
             }
         }
         .navbar-header {
@@ -112,17 +112,17 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
         }
 
         .navbar-brand {
-            color: $navbar-posturite-navbarbrand-color;
-            margin: $navbar-posturite-navbarbrand-margin;
-            font-size: $navbar-posturite-navbarbrand-fontsize;
-            font-weight: $navbar-posturite-navbarbrand-fontweight;
+            @include co(color, $navbar-posturite-navbarbrand-color);
+            @include co(margin, $navbar-posturite-navbarbrand-margin);
+          @include co(font-size, $navbar-posturite-navbarbrand-fontsize);
+            @include co(font-weight, $navbar-posturite-navbarbrand-fontweight);
 
             @include min-screen($desktop-medium-min) {
                 display: none;
             }
 
             &:hover, &:focus {
-                color: $navbar-posturite-navbarbrand-hover-color;
+                @include co(color, $navbar-posturite-navbarbrand-hover-color);
             }
 
         }
@@ -134,11 +134,11 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
 
 
         .nav-link {
-            padding: $navbar-posturite-navlink-padding;
-            color: $navbar-posturite-navlink-color;
+            @include co(padding, $navbar-posturite-navlink-padding);
+            @include co(color, $navbar-posturite-navlink-color);
 
             &:hover {
-                color: $navbar-posturite-navlink-hover-color;
+                @include co(color, $navbar-posturite-navlink-hover-color);
             }
         }
 
@@ -166,13 +166,13 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
                     display: block;
                     padding: 5px 18px 5px 15px;
                     border-color: #255f4c;
-                    font-weight: $navbar-posturite-navitem-active-fontweight;
+                    @include co(font-weight, $navbar-posturite-navitem-active-fontweight);
                 }
             }
             &.level1 {
                 a {
                     margin:  $navbar-posturite-navitem-level1-margin;
-                    padding: $navbar-posturite-navitem-level1-padding;
+                    @include co(padding, $navbar-posturite-navitem-level1-padding);
                 }
             }
         }
@@ -187,9 +187,9 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
         }
         .options {
             dt {
-                @include co(font-weight, $sidebar-nav-filter-title-fontweight, $dt--font-weight);
-                margin: $sidebar-nav-filter-title-margin;
-                padding: $sidebar-nav-filter-title-padding;
+                @include co(font-weight, $sidebar-nav-filter-title-fontweight, $dt-font-weight);
+                @include co(margin, $sidebar-nav-filter-title-margin);
+                @include co(padding, $sidebar-nav-filter-title-padding);
                 @if $sidebar-nav-filter-title-border-on == 1 {
                     @include elevate-border($sidebar-nav-filter-title-border-color, $sidebar-nav-filter-title-border-thickness, $sidebar-nav-filter-title-border-style, $sidebar-nav-filter-title-border-position);
                     @if $sidebar-nav-filter-title-border-radius-on == 1 {
@@ -200,7 +200,7 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
             .items {
                 li {
                     line-height: $sidebar-nav-filter-item-lineheight;
-                    margin: $sidebar-nav-filter-item-margin;
+                    @include co(margin, $sidebar-nav-filter-item-margin);
                     .count {
                         @if $sidebar-nav-filter-count-on != 1 {
                             display: none;

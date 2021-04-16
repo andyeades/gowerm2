@@ -1,59 +1,60 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
-$checkout-progress-bar__font-size: 1.125rem !default;
-$checkout-progress-bar__font-weight: $font-weight__light !default;
-$checkout-progress-bar__margin: 2rem !default;
-$checkout-progress-bar-item__background-color: $color-gray-middle1 !default;
-$checkout-progress-bar-item__border_radius: 6px !default;
-$checkout-progress-bar-item__color: $primary__color !default;
-$checkout-progress-bar-item__margin: $indent__s !default;
-$checkout-progress-bar-item__width: 185px !default;
-$checkout-progress-bar-item__active__background-color: $theme-brand-color-2 !default;
-$checkout-progress-bar-item__complete__color: $link__color !default;
+$checkout-progress-bar-font-size: 1.125rem !default;
+$checkout-progress-bar-font-weight: $font-weight-light !default;
+$checkout-progress-bar-margin: 2rem !default;
+$checkout-progress-bar-item-background-color: $color-gray-middle1 !default;
+$checkout-progress-bar-item-border-radius: 6px !default;
+$checkout-progress-bar-item-color: $primary-color !default;
+$checkout-progress-bar-item-margin: $indent-s !default;
+$checkout-progress-bar-item-width: 185px !default;
+$checkout-progress-bar-item-active-background-color: $theme-brand-color-2 !default;
+$checkout-progress-bar-item-complete-color: $link-color !default;
 
-$checkout-progress-bar-item-element__width: 38px !default;
-$checkout-progress-bar-item-element__height: $checkout-progress-bar-item-element__width !default;
+$checkout-progress-bar-item-element-width: 38px !default;
+$checkout-progress-bar-item-element-height: $checkout-progress-bar-item-element-width !default;
 
-$checkout-progress-bar-item-element-inner__background-color: $page__background-color !default;
-$checkout-progress-bar-item-element-inner__color: $checkout-progress-bar-item__color !default;
-$checkout-progress-bar-item-element-outer-radius__width: 6px !default;
-$checkout-progress-bar-item-element-inner__width: $checkout-progress-bar-item-element__width - ($checkout-progress-bar-item-element-outer-radius__width * 2) !default;
-$checkout-progress-bar-item-element-inner__height: $checkout-progress-bar-item-element-inner__width !default;
-$checkout-progress-bar-item-element-inner__active__content: $icon-checkmark !default;
-$checkout-progress-bar-item-element-inner__active__font-size: 1.75rem !default;
-$checkout-progress-bar-item-element-inner__active__line-height: 1 !default;
+$checkout-progress-bar-item-element-inner-background-color: $page-background-color !default;
+$checkout-progress-bar-item-element-inner-color: $checkout-progress-bar-item-color !default;
+$checkout-progress-bar-item-element-outer-radius-width: 6px !default;
+$checkout-progress-bar-item-element-inner-width: $checkout-progress-bar-item-element-width - ($checkout-progress-bar-item-element-outer-radius-width * 2) !default;
+$checkout-progress-bar-item-element-inner-height: $checkout-progress-bar-item-element-inner-width !default;
+$checkout-progress-bar-item-element-inner-active-content: $icon-checkmark !default;
+$checkout-progress-bar-item-element-inner-active-font-size: 1.75rem !default;
+$checkout-progress-bar-item-element-inner-active-line-height: 1 !default;
 
-$opc_progress_bar_width: auto !default;
-$opc_progress_bar_align: center !default;
-$opc_progress_bar_margin: 0 auto 2rem auto !default;
+$opc-progress-bar-width: auto !default;
 
-$opc_progress_bar_width_desktop: 100% !default;
-$opc_progress_bar_align_desktop: center !default;
-$opc_progress_bar_order_desktop: 1 !default;
+$opc-progress-bar-align: center !default;
+$opc-progress-bar-margin: 0 auto 2rem auto !default;
+
+$opc-progress-bar-width-desktop: 100% !default;
+$opc-progress-bar-align-desktop: center !default;
+$opc-progress-bar-order-desktop: 1 !default;
 
 //
 //  Checkout Progress Bar
-//  ---------------------------------------------
+//
 
 .opc-progress-bar {
     @include abs-reset-list();
-    margin: $opc_progress_bar_margin;
+    @include co(margin, $opc-progress-bar-margin);
     counter-reset: i;
     font-size: 0;
-    width: $opc_progress_bar_width;
-    text-align: $opc_progress_bar_align;
+    @include co(width, $opc-progress-bar-width);
+    text-align: $opc-progress-bar-align;
     @include min-screen($desktop-min) {
 
-        @include co(width, $opc_progress_bar_width_desktop, $opc_progress_bar_width);
-        @include co(text-align, $opc_progress_bar_align_desktop, $opc_progress_bar_width);
-        order: $opc_progress_bar_order_desktop;
+        @include co(width, $opc-progress-bar-width-desktop, $opc-progress-bar-width);
+        @include co(text-align, $opc-progress-bar-align-desktop, $opc-progress-bar-width);
+        @include co(order, $opc-progress-bar-order-desktop);
     }
 }
 
 .opc-progress-bar-item {
-    @include lib-css(margin, 0 0 $checkout-progress-bar-item__margin);
+    @include lib-css(margin, 0 0 $checkout-progress-bar-item-margin);
     display: inline-block;
     position: relative;
     text-align: center;
@@ -61,8 +62,8 @@ $opc_progress_bar_order_desktop: 1 !default;
     width: 50%;
 
     &:before { // Horizontal line
-        @include lib-css(background, $checkout-progress-bar-item__background-color);
-        @include lib-css(top, $checkout-progress-bar-item-element__width/2);
+        @include lib-css(background, $checkout-progress-bar-item-background-color);
+        @include lib-css(top, $checkout-progress-bar-item-element-width/2);
         content: '';
         height: 7px;
         left: 0;
@@ -72,13 +73,13 @@ $opc_progress_bar_order_desktop: 1 !default;
 
     &:first-child {
         &:before {
-            @include lib-css(border-radius, $checkout-progress-bar-item__border_radius 0 0 $checkout-progress-bar-item__border_radius);
+            @include lib-css(border-radius, $checkout-progress-bar-item-border-radius 0 0 $checkout-progress-bar-item-border-radius);
         }
     }
 
     &:last-child {
         &:before {
-            @include lib-css(border-radius, 0 $checkout-progress-bar-item__border_radius $checkout-progress-bar-item__border_radius 0);
+            @include lib-css(border-radius, 0 $checkout-progress-bar-item-border-radius $checkout-progress-bar-item-border-radius 0);
         }
     }
 
@@ -89,20 +90,20 @@ $opc_progress_bar_order_desktop: 1 !default;
         word-wrap: break-word;
 
         @include lib-typography(
-            $_color: $checkout-progress-bar-item__background-color,
-            $_font-family: false,
-            $_font-size: $checkout-progress-bar__font-size,
-            $_font-style: false,
-            $_font-weight: $checkout-progress-bar__font-weight,
-            $_line-height: false
+            $-color: $checkout-progress-bar-item-background-color,
+            $-font-family: false,
+            $-font-size: $checkout-progress-bar-font-size,
+            $-font-style: false,
+            $-font-weight: $checkout-progress-bar-font-weight,
+            $-line-height: false
         );
 
         &:before, // Item element
         &:after {
-            @include lib-css(background, $checkout-progress-bar-item__background-color);
-            @include lib-css(height, $checkout-progress-bar-item-element__height);
-            @include lib-css(margin-left, -($checkout-progress-bar-item-element__width/2));
-            @include lib-css(width, $checkout-progress-bar-item-element__width);
+            @include lib-css(background, $checkout-progress-bar-item-background-color);
+            @include lib-css(height, $checkout-progress-bar-item-element-height);
+            @include lib-css(margin-left, -($checkout-progress-bar-item-element-width/2));
+            @include lib-css(width, $checkout-progress-bar-item-element-width);
             border-radius: 50%;
             content: '';
             left: 50%;
@@ -111,41 +112,41 @@ $opc_progress_bar_order_desktop: 1 !default;
         }
 
         &:after { // Item element inner
-            @include lib-css(background, $checkout-progress-bar-item-element-inner__background-color);
-            @include lib-css(height, $checkout-progress-bar-item-element-inner__height);
-            @include lib-css(margin-left, -($checkout-progress-bar-item-element-inner__width/2));
-            @include lib-css(top, $checkout-progress-bar-item-element-outer-radius__width);
-            @include lib-css(width, $checkout-progress-bar-item-element-inner__width);
+            @include lib-css(background, $checkout-progress-bar-item-element-inner-background-color);
+            @include lib-css(height, $checkout-progress-bar-item-element-inner-height);
+            @include lib-css(margin-left, -($checkout-progress-bar-item-element-inner-width/2));
+            @include lib-css(top, $checkout-progress-bar-item-element-outer-radius-width);
+            @include lib-css(width, $checkout-progress-bar-item-element-inner-width);
             content: counter(i);
             counter-increment: i;
             @include lib-typography(
-                $_color: $checkout-progress-bar-item-element-inner__color,
-                $_font-family: false,
-                $_font-size: $checkout-progress-bar__font-size,
-                $_font-style: false,
-                $_font-weight: $font-weight__semibold,
-                $_line-height: false
+                $-color: $checkout-progress-bar-item-element-inner-color,
+                $-font-family: false,
+                $-font-size: $checkout-progress-bar-font-size,
+                $-font-style: false,
+                $-font-weight: $font-weight-semibold,
+                $-line-height: false
             );
         }
     }
 
     &._active {
         &:before {
-            background: $checkout-progress-bar-item__active__background-color;
+            background: $checkout-progress-bar-item-active-background-color;
         }
 
         > span {
-            @include lib-css(color, $checkout-progress-bar-item__color);
+            @include lib-css(color, $checkout-progress-bar-item-color);
 
             &:before {
-                @include lib-css(background, $checkout-progress-bar-item__active__background-color);
+                @include lib-css(background, $checkout-progress-bar-item-active-background-color);
             }
 
             &:after {
-                @include lib-css(content, $checkout-progress-bar-item-element-inner__active__content);
-                @include lib-css(font-family, $icons__font-name);
-                @include lib-css(line-height, $checkout-progress-bar-item-element-inner__active__line-height);
-                @include lib-font-size($checkout-progress-bar-item-element-inner__active__font-size);
+                @include lib-css(content, $checkout-progress-bar-item-element-inner-active-content);
+                @include lib-css(font-family, $icons-font-name);
+                @include lib-css(line-height, $checkout-progress-bar-item-element-inner-active-line-height);
+                @include lib-font-size($checkout-progress-bar-item-element-inner-active-font-size);
             }
         }
     }
@@ -154,13 +155,13 @@ $opc_progress_bar_order_desktop: 1 !default;
         cursor: pointer;
 
         > span {
-            @include lib-css(color, $checkout-progress-bar-item__color);
+            @include lib-css(color, $checkout-progress-bar-item-color);
 
             &:after {
-                @include lib-css(content, $checkout-progress-bar-item-element-inner__active__content);
-                @include lib-css(font-family, $icons__font-name);
-                @include lib-css(line-height, $checkout-progress-bar-item-element-inner__active__line-height);
-                @include lib-font-size($checkout-progress-bar-item-element-inner__active__font-size);
+                @include lib-css(content, $checkout-progress-bar-item-element-inner-active-content);
+                @include lib-css(font-family, $icons-font-name);
+                @include lib-css(line-height, $checkout-progress-bar-item-element-inner-active-line-height);
+                @include lib-font-size($checkout-progress-bar-item-element-inner-active-font-size);
             }
         }
     }
@@ -168,10 +169,10 @@ $opc_progress_bar_order_desktop: 1 !default;
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .opc-progress-bar-item {
-        @include lib-css(width, $checkout-progress-bar-item__width);
+        @include lib-css(width, $checkout-progress-bar-item-width);
     }
 }

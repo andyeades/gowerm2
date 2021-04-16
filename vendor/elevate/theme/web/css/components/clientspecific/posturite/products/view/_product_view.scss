@@ -1,31 +1,46 @@
-.catalog-product-view {
-    .tooltip.content dl {
-        margin-bottom: 0;
-    }
-    .tooltip.content dd {
-        white-space: normal;
-    }
-    .tooltip.content .subtitle {
-        display: inline-block;
-        font-size: 16px;
-        font-weight: 500;
-        margin-bottom: 15px;
+@if $sitename == posturite {
+    .catalog-product-view {
+        .tooltip.content dl {
+            margin-bottom: 0;
+        }
+        .tooltip.content dd {
+            white-space: normal;
+        }
+        .tooltip.content .subtitle {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .tooltip.content .label:first-child {
+            margin-top: 0;
+        }
+        .tooltip.content .values {
+            margin: 0;
+        }
+        .ui-tooltip {
+            position: absolute;
+            z-index: 9999;
+        }
+        .ui-tooltip {
+            background-color: #333;
+            color:            white;
+            padding:          10px;
+            border-radius:    8px;
+        }
     }
 
-    .tooltip.content .label:first-child {
-        margin-top: 0;
-    }
-    .tooltip.content .values {
-        margin: 0;
-    }
-    .ui-tooltip {
-        position: absolute;
-        z-index: 9999;
-    }
-    .ui-tooltip {
-        background-color: #333;
-        color:            white;
-        padding:          10px;
-        border-radius:    8px;
+    $pow-i-tooltipstered-color: #555 !default;
+    $pow-i-tooltipstered-fontsize: 1.0625rem !default;
+
+    .product-options-wrapper {
+            i.tooltipstered {
+                @include co(color, $pow-i-tooltipstered-color);
+                @include co(font-size, $pow-i-tooltipstered-fontsize);
+            }
+
     }
 }
+
+

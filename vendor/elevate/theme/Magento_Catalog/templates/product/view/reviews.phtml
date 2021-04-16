@@ -41,7 +41,7 @@ if (empty($feefo_link_sku)) {
 <script type="text/javascript">
     // Only Load Feefo Widget if Tab is clicked
     var reviews_loaded = 0;
-    jQuery('#tab-label-product-info-reviews-title').on('click', function (e) {
+    jQuery('#tab-label-product-info-reviews-title, #feefoouterwrap').on('click', function (e) {
         url = 'https://api.feefo.com/api/javascript/www.happybeds.co.uk';
         if (reviews_loaded == 0) {
             console.log('reviews_loaded === 0');

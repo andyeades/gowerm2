@@ -8,6 +8,8 @@ class ShippingInformationPlugin
 
     protected $cartInterface;
 
+    protected $cartRepository;
+
     public function __construct(
         \Magento\Quote\Model\QuoteRepository $quoteRepository,
         \Magento\Quote\Api\CartRepositoryInterface $cartRepository
@@ -41,7 +43,6 @@ class ShippingInformationPlugin
         $shippingAddressExtensionAttributes = $shippingAddress->getExtensionAttributes();
 
         if ($shippingAddressExtensionAttributes) {
-
             $delivery_date_selected = $shippingAddressExtensionAttributes->getDeliveryDateSelected();
             $shippingAddress->setDeliveryDateSelected($delivery_date_selected);
 
@@ -74,11 +75,6 @@ class ShippingInformationPlugin
 
             $ev_giftmessagemessage = $shippingAddressExtensionAttributes->getEvGiftmessagemessage();
             $shippingAddress->setEvGiftmessagemessage($ev_giftmessagemessage);
-
-            // data-methodrangedates
-            //$cart->setDetailedDeliveryInfoDates($cart_ext_attributes->getDetailedDeliveryInfoDates());
-            //$cart->setDetailedDeliveryTeamnumber($cart_ext_attributes->getDetailedDeliveryTeamnumber());
         }
-
     }
 }

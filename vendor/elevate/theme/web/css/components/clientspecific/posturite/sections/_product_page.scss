@@ -19,12 +19,21 @@
 
     $pinfo-tab-spec-dt-fontweight: 300 !default;
 
+
     $pinfo-tab-spec-dt-width: 40% !default;
     $pinfo-tab-spec-dt-width-desktop: 40% !default;
+    $pinfo-tab-spec-dt-width-mobile-max: 100% !default;
+
     $pinfo-tab-spec-dd-width: 60% !default;
     $pinfo-tab-spec-dd-width-desktop: 60% !default;
-    $pinfo-tab-spec-dd-margin: 0 !default;
+    $pinfo-tab-spec-dd-width-mobile-max: 100% !default;
 
+
+    $pinfo-tab-spec-dd-margin: 0 !default;
+    $pinfo-tab-spec-dd-margin-mobile-max: 0 !default;
+
+    $pinfo-tab-spec-dd-plus-dd-margin-mobile-max: 0 !default;
+    $pinfo-tab-spec-dd-plus-dd-margin: 0 0 0 $pinfo-tab-spec-dt-width !default;
 
     // Features
 
@@ -88,9 +97,9 @@
         h5,
 
         > p > strong {
-            font-size: $pinfo-tab-desc-title-fontsize;
-            font-weight: $pinfo-tab-desc-title-fontweight;
-            margin: $pinfo-tab-desc-title-margin;
+          @include co(font-size, $pinfo-tab-desc-title-fontsize);
+            @include co(font-weight, $pinfo-tab-desc-title-fontweight);
+            @include co(margin, $pinfo-tab-desc-title-margin);
         }
         > p {
             font-size:  $pinfo-tab-desc-p-fontsize;
@@ -104,14 +113,14 @@
 
     #product-info-specificiations {
         > h5 {
-            font-size: $pinfo-tab-spec-title-fontsize;
-            font-weight: $pinfo-tab-spec-title-fontweight;
-            margin: $pinfo-tab-spec-title-margin;
+          @include co(font-size, $pinfo-tab-spec-title-fontsize);
+            @include co(font-weight, $pinfo-tab-spec-title-fontweight);
+            @include co(margin, $pinfo-tab-spec-title-margin);
         }
         > dl {
             display: flex;
             flex-wrap: wrap;
-            padding: $pinfo-tab-spec-dl-padding;
+            @include co(padding, $pinfo-tab-spec-dl-padding);
             @if $pinfo-tab-spec-dl-border-on == 1 {
                 @include elevate-border($pinfo-tab-spec-dl-border-color, $pinfo-tab-spec-dl-border-thickness, $pinfo-tab-spec-dl-border-style, $pinfo-tab-spec-dl-border-position);
                 @if $pinfo-tab-spec-dl-border-radius-on == 1 {
@@ -124,34 +133,49 @@
             }
 
             > dt {
-                font-weight: $pinfo-tab-spec-dt-fontweight;
-                width: $pinfo-tab-spec-dt-width;
+                @include co(font-weight, $pinfo-tab-spec-dt-fontweight);
+                @include co(width, $pinfo-tab-spec-dt-width);
                 @include min-screen($desktop-min) {
-                    width: $pinfo-tab-spec-dt-width-desktop;
+                    @include co(width, $pinfo-tab-spec-dt-width-desktop, $pinfo-tab-spec-dt-width);
+                }
+                @include max-screen($mobile-max) {
+                    @include co(width, $pinfo-tab-spec-dt-width-mobile-max);
                 }
 
             }
             > dd {
-                margin: $pinfo-tab-spec-dd-margin;
-                width: $pinfo-tab-spec-dd-width;
+                @include co(margin, $pinfo-tab-spec-dd-margin);
+                @include co(width, $pinfo-tab-spec-dd-width);
+                @include max-screen($mobile-max) {
+                    @include co(width, $pinfo-tab-spec-dd-width-mobile-max, $pinfo-tab-spec-dd-width);
+                    @include co(margin, $pinfo-tab-spec-dd-margin-mobile-max);
+                }
                 @include min-screen($desktop-min) {
-                    width: $pinfo-tab-spec-dd-width-desktop;
+                    @include co(width, $pinfo-tab-spec-dd-width-desktop, $pinfo-tab-spec-dd-width);
+
+                }
+                + dd {
+                   @include co(margin, $pinfo-tab-spec-dd-plus-dd-margin);
+                    @include max-screen($mobile-max) {
+                        @include co(margin, $pinfo-tab-spec-dd-plus-dd-margin-mobile-max);
+                    }
                 }
             }
+
         }
     }
 
     #product-info-features {
         > h5 {
-            font-size: $pinfo-tab-features-title-fontsize;
-            font-weight: $pinfo-tab-features-title-fontweight;
-            margin: $pinfo-tab-features-title-margin;
+          @include co(font-size, $pinfo-tab-features-title-fontsize);
+            @include co(font-weight, $pinfo-tab-features-title-fontweight);
+            @include co(margin, $pinfo-tab-features-title-margin);
         }
         > ul {
             list-style-type: $pinfo-tab-features-ul-listtype;
-            margin: $pinfo-tab-features-ul-margin;
+            @include co(margin, $pinfo-tab-features-ul-margin);
             > li {
-                margin: $pinfo-tab-features-ul-li-margin;
+                @include co(margin, $pinfo-tab-features-ul-li-margin);
             }
         }
     }
@@ -159,12 +183,12 @@
     #pinfo-btm-o {
         .additional-data-wrap {
             background-color: $pview-add-d-wrap-bg-color;
-            padding: $pview-add-d-wrap-padding;
-            margin: $pview-add-d-wrap-margin;
-            color: $pview-add-d-color;
+            @include co(padding, $pview-add-d-wrap-padding);
+            @include co(margin, $pview-add-d-wrap-margin);
+            @include co(color, $pview-add-d-color);
 
             a {
-                color: $pview-add-d-blocklink-color;
+                @include co(color, $pview-add-d-blocklink-color);
 
                 &:hover {
                     color: darken($pview-add-d-blocklink-color, 15%);
@@ -180,25 +204,25 @@
             }
 
             h4, h5, h6 {
-                color: $pview-add-d-heading-color;
+                @include co(color, $pview-add-d-heading-color);
             }
 
             h5 {
-                font-size: $pview-add-d-heading-font-size;
-                font-weight: $pview-add-d-heading-font-weight;
-                margin: $pview-add-d-heading-margin;
+              @include co(font-size, $pview-add-d-heading-font-size);
+                @include co(font-weight, $pview-add-d-heading-font-weight);
+                @include co(margin, $pview-add-d-heading-margin);
             }
 
             h6 {
-                font-size: $pview-add-d-subheading-fontsize;
-                font-weight: $pview-add-d-subheading-fontweight;
-                margin: $pview-add-d-subheading-margin;
+              @include co(font-size, $pview-add-d-subheading-fontsize);
+                @include co(font-weight, $pview-add-d-subheading-fontweight);
+                @include co(margin, $pview-add-d-subheading-margin);
             }
 
             .block-link {
-                font-weight: $pview-add-d-blocklink-fontweight;
+                @include co(font-weight, $pview-add-d-blocklink-fontweight);
                 text-decoration: $pview-add-d-blocklink-textdecoration;
-                font-size: $pview-add-d-blocklink-font-size;
+              @include co(font-size, $pview-add-d-blocklink-font-size);
                 display: $pview-add-d-blocklink-display;
             }
 
@@ -212,16 +236,21 @@
         }
 
         .additional-data-title {
-            color: $pview-add-d-title-color;
-            font-weight: $pview-add-d-title-fontweight;
-            margin: $pview-add-d-title-margin;
-            font-size: $pview-add-d-title-font-size;
+            @include co(color, $pview-add-d-title-color);
+            @include co(font-weight, $pview-add-d-title-fontweight);
+            @include co(margin, $pview-add-d-title-margin);
+          @include co(font-size, $pview-add-d-title-font-size);
         }
 
         .additional-data-content {
-            font-size: $pview-add-d-content-font-size;
-            color: $pview-add-d-content-color;
+          @include co(font-size, $pview-add-d-content-font-size);
+            @include co(color, $pview-add-d-content-color);
         }
     }
 
+    #product-info-faqs {
+        > ol {
+            margin-bottom: 1.25rem;
+        }
+    }
 }

@@ -12,7 +12,7 @@ if (!empty($feefo_sku)) {
 
 $rating_label_number = $_product->getData('product_rating') . "<br />";
 $rating_label_class = '';
-
+       $rating_value = ($_product->getData('product_rating')*20)."%";
 switch($rating_label_number) {
     case 5:
         $rating_label_style = '100%;';
@@ -260,7 +260,19 @@ if ($rating_label_number >= 4.7) {
     //echo '<div class="fa fa-star starchecked"></div>';
 
 } ?>
+<style>
+    .feefomainin{
+        width:auto;
+    }
+    
+@media only screen and (max-width: 991.98px) {
 
+.feefomainin{
+        width:205px;
+    }
+
+}}
+</style>
 <?php if($_product->getData('rating_count') > 0){ ?>
 
     <div id="feefoouterwrap" onclick="runme();" style="cursor:pointer;">  <div  id="feefoouter">
@@ -292,7 +304,18 @@ if ($rating_label_number >= 4.7) {
 
         function runme(){
            // jQuery("#reviewPanel").collapse('show');
-            window.location = "#reviewPanel";
+            
+            jQuery( document ).ready(function() {
+     
+     if (!jQuery("#tab-label-product-info-reviews").hasClass("active")) {
+     jQuery("#tab-label-product-info-reviews").click();
+     }
+          document.querySelector('#tab-label-product-info-reviews-title').scrollIntoView({
+  behavior: 'smooth' 
+});
+});
+
+  
         }
 
 

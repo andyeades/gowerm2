@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="full_width" >
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="full_width_nomargintop" >
     <body>
         <attribute name="class" value="kbase"/>
 
@@ -11,6 +11,8 @@
 
         <referenceContainer name="content">
             <block name="kb.category.view" class="Mirasvit\Kb\Block\Category\View" template="Mirasvit_Kb::category/view.phtml">
+                <block class="Mirasvit\Kb\Block\Category\View" name="kb.category.main.landingpage" template="Mirasvit_Kb::category/client-specific/happybeds-helpadvicelandingpage.phtml">
+                </block>
                 <block class="Mirasvit\Kb\Block\Category\View" name="kb.category.articles" template="Mirasvit_Kb::category/articles.phtml">
                     <block class="Mirasvit\Kb\Block\Article\ListArticle" name="kb.category.articles.list" as="kb.article_list" template="Mirasvit_Kb::article/list.phtml">
                         <container name="kb.category.article.list.additional" as="kb.additional" />
@@ -26,6 +28,7 @@
                         </action>
                     </block>
                 </block>
+
             </block>
         </referenceContainer>
     </body>

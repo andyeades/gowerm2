@@ -1,10 +1,10 @@
 
-$collapsible-nav-background: $sidebar__background-color !default;
+$collapsible-nav-background: $sidebar-background-color !default;
 $collapsible-nav-color: $color-gray34 !default;
 $collapsible-nav-current-border: 3px solid transparent !default;
 $collapsible-nav-current-border-color: $color-orange-red1 !default;
 $collapsible-nav-current-color: $color-black !default;
-$collapsible-nav-current-font-weight: $font-weight__semibold !default;
+$collapsible-nav-current-font-weight: $font-weight-semibold !default;
 $collapsible-nav-item-hover-background: $color-gray91 !default;
 $collapsible-nav-item-width: 100% !default;
 
@@ -12,23 +12,23 @@ $collapsible-nav-item-width: 100% !default;
 $collapsible-nav-maxscreen: $screen-sm-max !default;
 $collapsible-nav-off-minscreen: $screen-md-min !default;
 
-$collapsible_nav_title_background_on: 1 !default;
-$collapsible_nav_title_background: #f4f6f8 !default;
-$collapsible_nav_title_padding: $indent__s $indent__xl $indent__s $layout__width-xs-indent !default;
-$collapsible_nav_title_color: $color-gray34 !default;
-$collapsible_nav_title_border_on: 0 !default;
-$collapsible_nav_icon_type: bgimage !default; // other options: bgimage
+$collapsible-nav-title-background-on: 1 !default;
+$collapsible-nav-title-background: #f4f6f8 !default;
+$collapsible-nav-title-padding: $indent-s $indent-xl $indent-s $layout-width-xs-indent !default;
+$collapsible-nav-title-color: $color-gray34 !default;
+$collapsible-nav-title-border-on: 0 !default;
+$collapsible-nav-icon-type: bgimage !default; // other options: bgimage
 
 // bgimage related:
-$collapsible_nav_icon_width: 1rem !default;
-$collapsible_nav_icon_height: 1rem !default;
-$collapsible_nav_icon_expanded_bgimage: url('data:image/svg+xml;utf8,<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 1331l-166 165q-19 19-45 19t-45-19l-531-531-531 531q-19 19-45 19t-45-19l-166-165q-19-19-19-45.5t19-45.5l742-741q19-19 45-19t45 19l742 741q19 19 19 45.5t-19 45.5z"/></svg>') !default;
-$collapsible_nav_icon_closed_bgimage: url('data:image/svg+xml;utf8,<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"/></svg>') !default;
+$collapsible-nav-icon-width: 1rem !default;
+$collapsible-nav-icon-height: 1rem !default;
+$collapsible-nav-icon-expanded-bgimage: url('data:image/svg+xml;utf8,<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 1331l-166 165q-19 19-45 19t-45-19l-531-531-531 531q-19 19-45 19t-45-19l-166-165q-19-19-19-45.5t19-45.5l742-741q19-19 45-19t45 19l742 741q19 19 19 45.5t-19 45.5z"/></svg>') !default;
+$collapsible-nav-icon-closed-bgimage: url('data:image/svg+xml;utf8,<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"/></svg>') !default;
 
-$ss_collapsible_nav_margin_left_mobile_midmax: $grid-gutter-width-mobile !default;
-$ss_collapsible_nav_margin_right_mobile_midmax: $grid-gutter-width-mobile !default;
+$ss-collapsible-nav-margin-left-mobile-midmax: $grid-gutter-width-mobile !default;
+$ss-collapsible-nav-margin-right-mobile-midmax: $grid-gutter-width-mobile !default;
 
-$ss_collapsible_nav_margin_left_mobile: $grid-gutter-width / 2 !default;
-$ss_collapsible_nav_margin_right_mobile: $grid-gutter-width / 2 !default;
+$ss-collapsible-nav-margin-left-mobile: $grid-gutter-width / 2 !default;
+$ss-collapsible-nav-margin-right-mobile: $grid-gutter-width / 2 !default;
 
-$ss_collapsible_nav_margin_bottom_mobile: 1rem !default;
+$ss-collapsible-nav-margin-bottom-mobile: 1rem !default;

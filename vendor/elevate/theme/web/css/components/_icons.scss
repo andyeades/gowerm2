@@ -1,13 +1,13 @@
-$rating_stars_icon_color: #ffc100 !default;
+$rating-stars-icon-color: #ffc100 !default;
 
 @include lib-font-face(
-    $family-name: $icons__font-name,
-    $font-path  : $icons__font-path,
+    $family-name: $icons-font-name,
+    $font-path  : $icons-font-path,
     $font-weight: normal,
     $font-style : normal,
     $font-display: optional
 );
 
 .rating-stars {
-    color: $rating_stars_icon_color;
+    @include co(color, $rating-stars-icon-color);
 }

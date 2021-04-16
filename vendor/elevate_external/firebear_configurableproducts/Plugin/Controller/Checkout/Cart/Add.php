@@ -1,54 +1,53 @@
 <?php
-declare(strict_types=1);
 /**
  * Copyright © 2017 Firebear Studio. All rights reserved.
  */
 
 namespace Firebear\ConfigurableProducts\Plugin\Controller\Checkout\Cart;
 
-use Exception;
 use Firebear\ConfigurableProducts\Helper\Data as IcpHelper;
-use Firebear\ConfigurableProducts\Model\ProcessProductOptions;
-use Firebear\ConfigurableProducts\Model\ProductOptionsRepository;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\Product\Option;
 use Magento\Catalog\Model\Product\Option\Repository;
 use Magento\Catalog\Model\ProductRepository;
-use Magento\Checkout\Helper\Cart;
 use Magento\Checkout\Model\Cart as CustomerCart;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Checkout\Model\CartFactory;
 use Magento\Checkout\Model\Session;
-use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Data\Form\FormKey\Validator;
-use Magento\Framework\Escaper;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\Serialize\Serializer\Json;
-use Magento\Store\Model\ScopeInterface;
+use \Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Psr\Log\LoggerInterface;
-use Zend_Filter_LocalizedToNormalized;
+use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+use Firebear\ConfigurableProducts\Model\ProductOptionsRepository;
 
-/**
- * @deprecated
- * Class Add
- * @package Firebear\ConfigurableProducts\Plugin\Controller\Checkout\Cart
- */
 class Add extends \Magento\Checkout\Controller\Cart\Add
 {
 
     /**
-     * @var IcpHelper
+     * @var CartFactory
      */
-    public $icpHelper;
+    private $cartFactory;
+
     /**
-     * @var Configurable
+     * @var Repository
      */
-    public $configurableProducts;
+    private $optionRepository;
+
+    /**
+     * @var ProductOptionsRepository
+     */
+    private $productOptionsRepository;
+
+    /**
+     * @var Option
+     */
+    private $optionModel;
+
     /**
      * Serializer interface instance.
      *
@@ -56,22 +55,16 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
      * @since 101.1.0
      */
     protected $serializer;
+
     /**
-     * @var CartFactory
+     * @var IcpHelper
      */
-    private $cartFactory;
+    public $icpHelper;
+
     /**
-     * @var Repository
+     * @var Configurable
      */
-    private $optionRepository;
-    /**
-     * @var ProductOptionsRepository
-     */
-    private $productOptionsRepository;
-    /**
-     * @var Option
-     */
-    private $optionModel;
+    public $configurableProducts;
 
     /**
      * Add constructor.
@@ -111,7 +104,7 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
         $this->optionModel = $optionModel;
         $this->icpHelper = $icpHelper;
         $this->serializer = $serializer
-            ?: ObjectManager::getInstance()
+            ?: \Magento\Framework\App\ObjectManager::getInstance()
                 ->get(Json::class);
         $this->configurableProducts = $configurableProducts;
         $this->productOptionsRepository = $productOptionsRepository;
@@ -127,14 +120,6 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
         );
     }
 
-    /**
-     * @see \Firebear\ConfigurableProducts\Plugin\Model\Quote\Quote::aroundAddProduct()
-     * @deprecated
-     * @param \Magento\Checkout\Controller\Cart\Add $subject
-     * @param callable $proceed
-     * @return Add|\Magento\Framework\Controller\Result\Redirect
-     * @throws NoSuchEntityException
-     */
     public function aroundExecute(\Magento\Checkout\Controller\Cart\Add $subject, callable $proceed)
     {
         $product = null;
@@ -149,7 +134,7 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
 
         $matrixSwatch = $this->_scopeConfig->getValue(
             'firebear_configurableproducts/matrix/matrix_swatch',
-            ScopeInterface::SCOPE_STORE
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
         if (!$displayMatrixForCurrentProduct) {
             $displayMatrixForCurrentProduct = $matrixSwatch;
@@ -163,10 +148,10 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
             $params = $this->getRequest()->getParams();
             try {
                 if (isset($params['qty'])) {
-                    $filter = new Zend_Filter_LocalizedToNormalized(
+                    $filter = new \Zend_Filter_LocalizedToNormalized(
                         [
                             'locale' => $this->_objectManager->get(
-                                ResolverInterface::class
+                                \Magento\Framework\Locale\ResolverInterface::class
                             )->getLocale()
                         ]
                     );
@@ -210,13 +195,13 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
             } catch (LocalizedException $e) {
                 if ($this->_checkoutSession->getUseNotice(true)) {
                     $this->messageManager->addNotice(
-                        $this->_objectManager->get(Escaper::class)->escapeHtml($e->getMessage())
+                        $this->_objectManager->get(\Magento\Framework\Escaper::class)->escapeHtml($e->getMessage())
                     );
                 } else {
                     $messages = array_unique(explode("\n", $e->getMessage()));
                     foreach ($messages as $message) {
                         $this->messageManager->addError(
-                            $this->_objectManager->get(Escaper::class)->escapeHtml($message)
+                            $this->_objectManager->get(\Magento\Framework\Escaper::class)->escapeHtml($message)
                         );
                     }
                 }
@@ -224,15 +209,15 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
                 $url = $this->_checkoutSession->getRedirectUrl(true);
 
                 if (!$url) {
-                    $cartUrl = $this->_objectManager->get(Cart::class)->getCartUrl();
+                    $cartUrl = $this->_objectManager->get(\Magento\Checkout\Helper\Cart::class)->getCartUrl();
                     $url = $this->_redirect->getRedirectUrl($cartUrl);
                 }
 
                 return $this->goBack($url);
 
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $this->messageManager->addException($e, __('We can\'t add this item to your shopping cart right now.'));
-                $this->_objectManager->get(LoggerInterface::class)->critical($e);
+                $this->_objectManager->get(\Psr\Log\LoggerInterface::class)->critical($e);
 
                 return $this->goBack();
             }
@@ -256,10 +241,10 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
         } elseif (isset($params['options']) && !isset($params['qty_matrix_product']) && !$matrixSwatch) {
             try {
                 if (isset($params['qty'])) {
-                    $filter = new Zend_Filter_LocalizedToNormalized(
+                    $filter = new \Zend_Filter_LocalizedToNormalized(
                         [
                             'locale' => $this->_objectManager->get(
-                                ResolverInterface::class
+                                \Magento\Framework\Locale\ResolverInterface::class
                             )->getLocale()
                         ]
                     );
@@ -307,13 +292,13 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
             } catch (LocalizedException $e) {
                 if ($this->_checkoutSession->getUseNotice(true)) {
                     $this->messageManager->addNotice(
-                        $this->_objectManager->get(Escaper::class)->escapeHtml($e->getMessage())
+                        $this->_objectManager->get(\Magento\Framework\Escaper::class)->escapeHtml($e->getMessage())
                     );
                 } else {
                     $messages = array_unique(explode("\n", $e->getMessage()));
                     foreach ($messages as $message) {
                         $this->messageManager->addError(
-                            $this->_objectManager->get(Escaper::class)->escapeHtml($message)
+                            $this->_objectManager->get(\Magento\Framework\Escaper::class)->escapeHtml($message)
                         );
                     }
                 }
@@ -321,14 +306,14 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
                 $url = $this->_checkoutSession->getRedirectUrl(true);
 
                 if (!$url) {
-                    $cartUrl = $this->_objectManager->get(Cart::class)->getCartUrl();
+                    $cartUrl = $this->_objectManager->get(\Magento\Checkout\Helper\Cart::class)->getCartUrl();
                     $url = $this->_redirect->getRedirectUrl($cartUrl);
                 }
 
                 return $this->goBack($url);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $this->messageManager->addException($e, __('We can\'t add this item to your shopping cart right now.'));
-                $this->_objectManager->get(LoggerInterface::class)->critical($e);
+                $this->_objectManager->get(\Psr\Log\LoggerInterface::class)->critical($e);
 
                 return $this->goBack();
             }
@@ -344,7 +329,7 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
                             $errorFlag = false;
                         }
 
-                        $filter = new Zend_Filter_LocalizedToNormalized(
+                        $filter = new \Zend_Filter_LocalizedToNormalized(
                             [
                                 'locale' => $subject->_objectManager->get('Magento\Framework\Locale\ResolverInterface')
                                     ->getLocale()
@@ -358,7 +343,8 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
                             ->_objectManager
                             ->create('Magento\Catalog\Model\Product')
                             ->setStoreId($storeId)
-                            ->load($params['product']);
+                            ->load($params['product'])
+                        ;
                         $idSuperAttributesArray = [];
                         $childProduct = $this->configurableProducts->getProductByAttributes(
                             $params['super_attribute'],
@@ -397,8 +383,8 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
                         $subject->_eventManager->dispatch(
                             'checkout_cart_add_product_complete',
                             [
-                                'product' => $product,
-                                'request' => $subject->getRequest(),
+                                'product'  => $product,
+                                'request'  => $subject->getRequest(),
                                 'response' => $subject->getResponse()
                             ]
                         );
@@ -438,7 +424,7 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
 
                 return $subject->goBack($url);
 
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $subject->messageManager->addException(
                     $e,
                     __('We can\'t add this item to your shopping cart right now.') . $e->getMessage()
@@ -467,14 +453,76 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
      * @return
      * @throws NoSuchEntityException
      */
-    protected function addCustomizibleOpionsToProduct(
-        &$params,
-        &$product,
-        $simpleProductId = null,
-        $matrixSwatch = false
-    ) {
-        /** @var ProcessProductOptions $process */
-        $process = $this->_objectManager->create(ProcessProductOptions::class);
-        return $process->addCustomizibleOpionsToProduct($params, $product, $simpleProductId, $matrixSwatch);
+    protected function addCustomizibleOpionsToProduct(&$params, &$product, $simpleProductId = null, $matrixSwatch = false)
+    {
+        $additionalOptions = [];
+        $paramsForNextProduct = $params;
+        foreach ($params['options'] as $optionId => $option) {
+            if (empty($option)) {
+                continue;
+            }
+            $optionModel = $this->optionModel->load($optionId);
+            $productId = $optionModel->getProductId();
+            $addCustomOptions = (!$simpleProductId || $productId == $simpleProductId) ? true : false;
+            $productOption = $this->productRepository->getById($productId);
+            $sku = $productOption->getSku();
+            if ($matrixSwatch) {
+                $sku = $productOption->getData('sku');
+            }
+            $optionModel   = $this->optionRepository->get(
+                $sku,
+                $optionId
+            );
+            if ($productOption->getTypeId() == 'configurable') {
+                continue;
+            }
+            $optionValue = null;
+            if ($addCustomOptions) {
+                foreach ($productOption->getOptions() as $optionProduct) {
+                    if ($optionProduct->getOptionId() == $optionId) {
+                        $optionData = $optionProduct->getValues();
+                        if ($optionProduct->getType() == 'field' || $optionProduct->getType() == 'area'
+                            || $optionProduct->getType() == 'date'
+                            || $optionProduct->getType() == 'date_time'
+                            || $optionProduct->getType() == 'time') {
+                            if ($optionProduct->getType() == 'date') {
+                                $valueString = $option['day'] . "/" . $option['month'] . "/" . $option['year'];
+                            } elseif ($optionProduct->getType() == 'date_time') {
+                                $valueString = $option['day'] . "/" . $option['month'] . "/" . $option['year'] . " "
+                                    . $option['hour'] . ":" . $option['minute'] . " " . strtoupper($option['day_part']);
+                            } elseif ($optionProduct->getType() == 'time') {
+                                $valueString = $option['hour'] . ":" . $option['minute'] . " " . strtoupper($option['day_part']);
+                            } else {
+                                $valueString = $option;
+                            }
+                            $optionValue = $valueString;
+                        } elseif (is_array($optionData)) {
+                            foreach ($optionData as $data) {
+                                if (!is_array($option)) {
+                                    if ($option == $data->getOptionTypeId()) {
+                                        $optionValue = $data->getTitle();
+                                    }
+                                } else {
+                                    foreach ($option as $val) {
+                                        if ($val == $data->getOptionTypeId()) {
+                                            $optionValue .= $data->getTitle() . ' ';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                $optionTitle = $optionModel->getTitle();
+                $additionalOptions[] = [
+                    'label' => $optionTitle,
+                    'value' => $optionValue,
+                ];
+            }
+        }
+        if (!empty($additionalOptions)) {
+            $product->addCustomOption('additional_options', $this->serializer->serialize($additionalOptions));
+        }
+        return $paramsForNextProduct;
     }
 }

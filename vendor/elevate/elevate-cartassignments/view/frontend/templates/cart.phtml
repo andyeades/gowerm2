@@ -27,6 +27,7 @@ $cart = $objectManager->get('\Magento\Checkout\Model\Cart');
 $totalItems = $cart->getQuote()->getItemsCount();
 $totalQuantity = (int)$cart->getQuote()->getItemsQty();
 $subTotal = $cart->getQuote()->getSubtotal();
+$subTotalWithDiscount = (float)$subTotal - (float)$cart->getQuote()->getDiscountAmount();
 $grandTotal = $cart->getQuote()->getGrandTotal();
 ?>
 <style>
@@ -45,16 +46,19 @@ $grandTotal = $cart->getQuote()->getGrandTotal();
   if (strpos($url,'posturite') !== false)
   {
 ?>
+  .checkout-cart-index .addonlight {
 
+    background-color: #235e4b;
+  }
   div#payment-request-button-cart {
     display: none;
   }
   <?
   }
   ?>
-
-
-
+  
+  
+  
   <?php
   $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
   if (strpos($url,'happybeds') !== false)
@@ -78,12 +82,10 @@ $grandTotal = $cart->getQuote()->getGrandTotal();
     <div class="container">
         <div id="stickybar-row" class="row">
             <div id="stickybar-logodetails" class="col-md-4">
-
-
                 <img class="stickybar-logo img-responsive" src="/media/posturite_logo_colored.svg">
-                <div id="toprowtotals">
+                <div style="display:none;" id="toprowtotals">
                     <span id="tritemquantity"><?php echo $totalQuantity; ?></span> Item, Total
-                    <span id="tritemtotal"><span class="price">&pound;<?php echo number_format((float)$grandTotal, 2); ?></span></span>
+                    <span id="tritemtotal"><span class="price price-excluding-tax">&pound;<?php echo number_format((float)$subTotalWithDiscount, 2); ?><span class="price-including-tax price">&pound;<?php echo number_format((float)$grandTotal, 2); ?></span></span>
                 </div>
             </div>
             <div id="stickybar-checkout" class="col-md-8">

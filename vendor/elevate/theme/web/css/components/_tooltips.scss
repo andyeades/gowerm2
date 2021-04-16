@@ -1,8 +1,8 @@
 .tooltip.wrapper {
     @include lib-tooltip(
-        $_tooltip-position        : bottom,
-        $_tooltip-selector-content: '.tooltip.content',
-        $_tooltip-selector-toggle : '.tooltip.toggle'
+        $-tooltip-position        : bottom,
+        $-tooltip-selector-content: '.tooltip.content',
+        $-tooltip-selector-toggle : '.tooltip.toggle'
     );
 
     .tooltip.content {
@@ -22,7 +22,7 @@
         }
 
         .label {
-            margin-top: $indent__s;
+            margin-top: $indent-s;
 
             &:first-child {
                 margin-top: 0;
@@ -42,9 +42,9 @@
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__xs) {
+@include max-screen($screen-xs) {
     .tooltip.wrapper {
         .tooltip.content {
             min-width: 10rem;

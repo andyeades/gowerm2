@@ -3,75 +3,112 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-?>
-<?php
+?><?php
 /**
  * Category view template
  *
  * @var $block \Magento\Catalog\Block\Category\View
  */
-
-?>
-
-
-<?php if ($block->isContentMode() || $block->isMixedMode()) :?>
-  <div class="category-cms">
+?><?php if ($block->isContentMode() || $block->isMixedMode()) : ?>
+    <div class="category-cms">
 
         <div class="short-category">
-      <?= $block->getCmsBlockHtml() ?>
+            <?= $block->getCmsBlockHtml() ?>
+
+        </div>
+    </div>
+
+<?php
+
+    $readmore = intval($block->getCurrentCategory()->getData('ev_landingpages_hide_readmore'));
+
+    if ($readmore != 1) { ?>
+
+    <div class="rmlink" style="text-align:center;">
+        <a href="#" class="read-btn read">Read more</a>
+    </div>
+    <style>
+        .short-category {
+            line-height:        2;
+            transition:         none;
+            -webkit-transition: none;
+            max-height:         126px;
+            overflow:           hidden;
+        }
+    </style>
+    <script type="text/javascript">
+
+        require(['jquery'], function ($) {
+
+                $(".rmlink .read").click(function () {
+                    var descriptionheight = $(".short-category").height();
+                    var descriptionfullheight = $(".short-category").outerHeight();
+                    var descriptionfullheight = $(".short-category").outerHeight();
+
+                    if (descriptionheight == 126) {
+                        $('.short-category').css("max-height", "100%");
+                        $('.short-category').addClass("transition_change");
+
+                        $('.rmlink .read').text('Read Less');
+                    } else {
+                        $('.short-category').css("max-height", "126px");
+                        $('.short-category').removeClass("transition_change");
+                        $('.rmlink .read').text('Read More');
+                    }
+                    // prevent jump-down
+                    return false;
+
+                });
+
+            }
+        );
+
+
+    </script>
+    <?php } ?>
+<?php endif; ?><?php
+$top_pages = $block->getCurrentCategory()->getData('ev_landingpages_top_pages');
+
+$filtered = false;
+if (!empty($top_pages)) {
+
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $stateFilter = $objectManager->create('\Magento\LayeredNavigation\Block\Navigation\State');
+    $selectedFilters = $stateFilter->getActiveFilters();
+    foreach ($selectedFilters as $filter) {
+        $filtered = true;
+        // echo $filter->getName(); // Filter name like Color, Size etc
+        // echo $filter->getLabel(); // Filter value like Black, Blue, Small, Large etc
+    }
+}
+
+if (!empty($top_pages) && !$filtered) {
+
+
+    ?>
+    <style>
+        #top_pages {
+            padding:          8px;
+            background-color: #f6f8fb;
+        }
+
+        @media screen and (max-width: 991.98px) {
+            #top_pages a {
+                display:    inline-block;
+                width:      48%;
+                margin:     1%;
+                text-align: center;
+            }
+        }
+    </style>
+    <div id="top_pages" c;ass="cms-top-pages">
+
+
+        <?php
+
+        echo $top_pages;
+        ?>
 
     </div>
-  </div>
 
-  <div class="rmlink" style="text-align:center;">
-    <a href="#" class="read-btn read">Read more</a>
-  </div>
-<style>
- #page-title-heading{
- display:none !important;
- }
-  .short-category {
-    line-height: 2;
-    transition: none;
-    -webkit-transition: none;
-
-    max-height: 126px;
-    overflow: hidden;
-  }
-  .transition_change{
-
-
-  }
-</style>
-  <script type="text/javascript">
-
-      require([
-              'jquery'
-          ], function ($) {
-
-          $(".rmlink .read").click(function () {
-                  var descriptionheight = $(".short-category").height();
-                  var descriptionfullheight = $(".short-category").outerHeight();
-                  var descriptionfullheight = $(".short-category").outerHeight();
-
-                  if (descriptionheight == 126) {
-                      $('.short-category').css("max-height", "100%");
-                      $('.short-category').addClass("transition_change");
-
-                      $('.rmlink .read').text('Read Less');
-                  } else {
-                      $('.short-category').css("max-height", "126px");
-                      $('.short-category').removeClass("transition_change");
-                      $('.rmlink .read').text('Read More');
-                  }
-                  // prevent jump-down
-                  return false;
-
-              });
-
-          }
-      );
-
-
-  </script>
-<?php endif; ?>
+<?php } ?>

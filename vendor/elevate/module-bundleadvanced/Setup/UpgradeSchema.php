@@ -54,13 +54,13 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'comment' => 'Is Lease Machine'
                 ]
             );
-
+                                
             $installer->getConnection()->addColumn(
                 $installer->getTable('catalog_product_bundle_option'),
                 'default_option_text',
                 [
                     'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                    'length'    => 255,
+                    'length'    => '2M',
                     'nullable' => true,
                     'comment' => 'Default Option Text'
                 ]
@@ -79,6 +79,64 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
         }
 
+
+
+              if (version_compare($context->getVersion(), '1.1.0', '<')) {
+         
+            
+
+            $installer->getConnection()->addColumn(
+                $installer->getTable('catalog_product_option'),
+                'option_tooltip',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length'    => '2M',
+                    'nullable' => true,
+                    'comment' => 'Tooltip'
+                ]
+            );
+
+        
+            $installer->getConnection()->addColumn(
+                $installer->getTable('catalog_product_option'),
+                'option_comment',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length'    => '2M',
+                    'nullable' => true,
+                    'comment' => 'Comment'
+                ]
+            );
+        }
+        
+        
+        
+        
+              if (version_compare($context->getVersion(), '1.1.2', '<')) {
+         
+            
+
+        $definition = [
+            'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            'length'    => '2M',
+            'nullable' => true,
+            'comment' => 'Comment'
+        ];
+        $installer->getConnection()->modifyColumn(
+            $installer->getTable('catalog_product_bundle_option'),
+            'default_option_text',
+            $definition
+        );
+                            
+   
+    
+        }      
+        
+        
+        
+        
+        
+        
         $installer->endSetup();
     }
 }

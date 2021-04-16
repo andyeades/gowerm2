@@ -1,9 +1,8 @@
 $pview-addform-bg-color-on: 1 !default;
-$pview-addform-border-on: 1 !default;
-$pview-addform-border-radius-mobile-on: 0 !default;
-$pview-addform-border-radius-on-mobiletablet: 1 !default;
-$pview-addform-border-radius-on: 1 !default;
-$pview-addform-border-radius-on-desktop: 1 !default;
+
+$pview-addform-borderradius-on-mobiletablet: 1 !default;
+$pview-addform-borderradius-on: 1 !default;
+$pview-addform-borderradius-on-desktop: 1 !default;
 $pview-addform-boxshadow-on: 1 !default;
 
 
@@ -98,7 +97,7 @@ $pview-pinfoprice-margin: 0 !default;
 
 $pview-pinfoprice-priceincex-after-margin: 0 0 0 0.3125rem !default;
 
-$pview-price-box-padding: $indent--l 0 !default;
+$pview-price-box-padding: $indent-l 0 !default;
 $pview-price-box-width-desktop: 100% !default;
 $pview-price-box-width-desktopmd: 100% !default;
 $pview-price-box-width: 100% !default;
@@ -120,11 +119,11 @@ $pview-special-price-label-desktop-font-size: 1rem !default;
 $pview-special-price-label-text-transform: uppercase !default;
 $pview-special-price-label-font-weight: 700 !default;
 $pview-special-price-desktop-font-size: 2rem !default;
-$pview-special-price-desktop-margin: 0 0 $indent--xs 0 !default;
+$pview-special-price-desktop-margin: 0 0 $indent-xs 0 !default;
 $pview-special-price-font-weight: 700 !default;
 
-$pview-old-price-desktop-margin: 0 0 $indent--xs 0 !default;
-$pview-old-price-label-fontsize: $font-size--s !default;
+$pview-old-price-desktop-margin: 0 0 $indent-xs 0 !default;
+$pview-old-price-label-fontsize: $font-size-s !default;
 $pview-old-price-label-margin: 0 !default;
 $pview-old-price-label-display: false !default;
 $pview-old-price-label-display-desktop: false !default;
@@ -134,8 +133,8 @@ $pview-old-price-desktop-font-size: 1rem !default;
 $pview-old-price-font-weight: 700 !default;
 
 
-$pview-normal-price-desktop-margin: 0 0 $indent--xs 0 !default;
-$pview-normal-price-label-desktop-font-size: $font-size--s !default;
+$pview-normal-price-desktop-margin: 0 0 $indent-xs 0 !default;
+$pview-normal-price-label-desktop-font-size: $font-size-s !default;
 $pview-normal-price-label-text-transform: uppercase !default;
 $pview-normal-price-label-font-weight: 700 !default;
 $pview-normal-price-desktop-font-size: 2rem !default;
@@ -177,16 +176,28 @@ $pview-reviews-summary-desktop-alignment: flex-start !default;
 
 $pview-addform-bg-color: #FFFFFF !default;
 
-$pview-addform-padding: 1.5rem 0 !default;
-$pview-addform-padding-desktop: 1.5rem 0 !default;
+
 $pview-addform-margin-mobile: false !default;
+$pview-addform-margin: 0 0 2rem 0 !default;
+$pview-addform-margin-desktopmd: 0 0 2rem 0 !default;
+
+
+$pview-addform-padding: false !default;
+$pview-addform-padding-desktopmd: false !default;
+
+
 $pview-addform-width: false !default;
 $pview-addform-order: false !default;
-$pview-addform-margin: 0 0 2rem 0 !default;
-$pview-addform-margin-desktop: 0 0 2rem 0 !default;
+
+
 $pview-addform-box-shadow-color: rgba(0, 0, 0, .35) !default;
 $pview-addform-box-shadow: 0 0 86px -33px $pview-addform-box-shadow-color !default;
-$pview-addform-border-radius: 0.625rem !default;
+
+
+
+$pview-addform-borderradius-mobile: 0 !default;
+$pview-addform-borderradius: 0.625rem !default;
+$pview-addform-borderradius-desktopmd: 0.625rem !default;
 $pview-addform-border-style: solid !default;
 $pview-addform-border-thickness: 1px !default;
 $pview-addform-border-color: #F0F0F0 !default;
@@ -211,8 +222,8 @@ $pview-boxtocart-margin: 1.875rem 0 0 0 !default;
 $pview-boxtocart-margin-desktop: $pview-boxtocart-margin !default;
 $pview-boxtocart-margin-desktopmd: $pview-boxtocart-margin !default;
 $pview-boxtocart-padding: 1.25rem 1.25rem 0 !default;
-$pview-boxtocart-padding-desktop: $pview-boxtocart-padding !default;
-$pview-boxtocart-padding-desktopmd: $pview-boxtocart-padding !default;
+$pview-boxtocart-padding-desktop: 1.25rem 1.25rem 0 !default;
+$pview-boxtocart-padding-desktopmd: 1.25rem 1.25rem 0 !default;
 
 $pview-boxtocart-justifycontent-desktopmd: false !default;
 $pview-boxtocart-justifycontent-desktop: false !default;
@@ -252,8 +263,8 @@ $pview-boxtocart-qty-fontweight: 400 !default;
 $pview-boxtocart-qty-fontsize: 0.75rem !default;
 $pview-boxtocart-qty-border-radius-on: 1 !default;
 $pview-boxtocart-qty-border-radius: 4px !default;
-$pview-boxtocart-qty-border-color: $form-element-input--border-color !default;
-$pview-boxtocart-qty-border: $form-element-input--border !default;
+$pview-boxtocart-qty-border-color: $form-element-input-border-color !default;
+$pview-boxtocart-qty-border: $form-element-input-border !default;
 $pview-boxtocart-qty-column-height: 2.375rem !default;
 $pview-boxtocart-qty-column-width: 4rem !default;
 $pview-boxtocart-qty-row-height: 3.375rem !default;
@@ -291,7 +302,7 @@ $pview-boxtocart-fieldqty-width: 100% !default;
 $pview-boxtocart-fieldqty-width-desktop: 20% !default;
 $pview-boxtocart-fieldqty-width-desktopmd: 20% !default;
 $pview-boxtocart-fieldqty-width-mobiletabletmax: false !default;
-$pview-boxtocart-fieldqty-margin-mobile: 0 0 $indent--s 0 !default;
+$pview-boxtocart-fieldqty-margin-mobile: 0 0 $indent-s 0 !default;
 $pview-boxtocart-fieldqty-label-on: 1 !default;
 $pview-boxtocart-fieldqty-label-font-weight: 700 !default;
 $pview-boxtocart-fieldqty-label-text-transform-on: 1 !default;
@@ -346,6 +357,7 @@ $pview-addtocart-btn-font-weight: 700 !default;
 $pview-addtocart-btn-border-radius-on: 0 !default;
 $pview-addtocart-btn-border-radius: 3px !default;
 $pview-boxtocart-background: linear-gradient(#f8f8f8, #ffffff) !default;
+
 $pview-boxtocart-borderradius: false !default;
 $pview-boxtocart-borderradius-desktop: false !default;
 $pview-boxtocart-borderradius-desktopmd: false !default;
@@ -362,7 +374,9 @@ $pview-actions-secondary-bgcolor: #434343 !default;
 $pview-options-wrapper-pricenotice-fontsize: $font-size-base !default;
 $pview-options-wrapper-fieldset-field-label-fontsize: 0.8125rem !default;
 $pview-options-wrapper-fieldset-field-label-fontweight: 700 !default;
-$pview-options-wrapper-fieldset-field-label-margin: 0 0 $indent--xs !default;
+$pview-options-wrapper-fieldset-field-label-margin: 0 0 $indent-xs !default;
+
+
 $pview-options-wrapper-padding: 0 0.3125rem !default;
 $pview-options-wrapper-padding-desktopmd: false !default;
 $pview-options-wrapper-padding-desktop: 0 1.25rem !default;
@@ -506,9 +520,9 @@ $pview-media-figure-border-radius-mobilemax: 20px !default;
 $pview-media-figure-border-radius-on: 1 !default;
 $pview-media-figure-border-radius: 20px !default;
 $pview-media-margin-mobilemax: 0 (-$grid-gutter-width-mobile) 20px (-$grid-gutter-width-mobile) !default;
-$pview-media-margin: 0 0 $indent--m 0 !default;
-$pview-media-margin-desktop: 0 0 $indent--m 0 !default;
-$pview-media-margin-desktop-medium: 0 0 $indent--m 0 !default;
+$pview-media-margin: 0 0 $indent-m 0 !default;
+$pview-media-margin-desktop: 0 0 $indent-m 0 !default;
+$pview-media-margin-desktop-medium: 0 0 $indent-m 0 !default;
 $pview-media-padding: 0 !default;
 $pview-media-padding-desktop: 0 7rem 0 0 !default;
 $pview-media-padding-desktop-medium: 0 7rem 0 0 !default;
@@ -530,23 +544,137 @@ $pview-desc-itemtitle-switch-textalign: false !default;
 
 
 
-$pview-desc-tab-title-text-transform: uppercase !default;
+$pview-desc-tab-title-text-transform: false !default;
 $pview-desc-tab-title-font-size: 1.375rem !default;
 $pview-desc-tab-title-lineheight: 2.1875rem !default;
-$pview-desc-tab-title-fontweight: 700 !default;
+$pview-desc-tab-title-fontweight: 600 !default;
 $pview-desc-tab-title-padding-top: 1rem !default;
+$pview-desc-tab-title-padding-bottom: 1rem !default;
+$pview-desc-tab-title-padding-left: 0 !default;
+$pview-desc-tab-title-padding-right: 0 !default;
+
+$pview-desc-tab-control-background-active: ev-false-check($tab-control-background-color, lighten, 15%) !default;
+
+
+$pview-desc-tab-title-icon-right: 0 !default;
 
 $pview-desc-tab-title-accordion-icon-color: #00acb6 !default;
 
 $pview-desc-tab-title-accordion-icon-color-active: #00acb6 !default;
 
-$pview-desc-tab-title-padding-bottom: 1rem !default;
-$pview-desc-tab-title-padding-left: 0 !default;
-$pview-desc-tab-title-padding-right: 0 !default;
+
 
 
 $pview-desc-tab-title-margin: 0 !default;
 
+
+//
+//  Sections variables
+//
+
+//
+//  Tabs
+//
+
+//  Tabs controls
+$tab-control-font-size                      : $font-size-base !default;
+$tab-control-font-family                    : false !default;
+$tab-control-font-weight                    : $font-weight-semibold !default;
+$tab-control-font-style                     : false !default;
+$tab-control-height-base                   : $line-height-computed !default;
+$tab-control-height                         : $indent-base !default;
+$tab-control-line-height                    : $tab-control-height !default;
+$tab-control-margin-right                   : $indent-xs !default;
+$tab-control-padding-top                    : $indent-xs !default;
+$tab-control-padding-right                  : $indent-base !default;
+$tab-control-padding-bottom                 : $tab-control-padding-top !default;
+$tab-control-padding-left                   : $tab-control-padding-right !default;
+$tab-control-border-color                   : $border-color-base !default;
+$tab-control-border-width                   : $border-width-base !default;
+
+//  Current tab
+$tab-control-background-color               : $panel-background-color !default;
+$tab-control-color                          : $text-color-muted !default;
+$tab-control-text-decoration                : none !default;
+
+$tab-control-hover-background-color        : lighten($tab-control-background-color, 5%) !default;
+$tab-control-hover-color                   : $tab-control-color !default;
+$tab-control-hover-text-decoration         : $tab-control-text-decoration !default;
+
+$tab-control-active-background-color       : lighten($tab-control-background-color, 15%) !default;
+$tab-control-active-color                  : $text-color !default;
+$tab-control-active-text-decoration        : $tab-control-text-decoration !default;
+
+$tab-content-background-color               : $tab-control-active-background-color !default;
+$tab-content-border-top-status              : false !default;
+$tab-content-border                         : $tab-control-border-width solid $tab-control-border-color !default;
+
+@if $tab-control-height != false {
+    $tab-content-margin-top                     : $tab-control-height + $tab-control-border-width + $tab-control-padding-top + $tab-control-padding-bottom !default;
+} @else {
+    $tab-content-margin-top                     : $tab-control-border-width + $tab-control-padding-top + $tab-control-padding-bottom !default;
+}
+$tab-content-padding-top                    : $indent-base !default;
+
+$tab-content-padding-right                  : $indent-base !default;
+$tab-content-padding-bottom                 : $tab-content-padding-top !default;
+$tab-content-padding-left                   : $tab-content-padding-right !default;
+
+//
+//  Accordions
+//
+
+$accordion-control-font-family: $tab-control-font-family !default;
+$accordion-control-font-size: $pview-desc-tab-title-font-size !default;
+$accordion-control-font-weight: $pview-desc-tab-title-fontweight !default;
+$accordion-control-font-style: $tab-control-font-style !default;
+$accordion-control-line-height: $pview-desc-tab-title-lineheight !default;
+$accordion-control-height: false !default;
+
+$accordion-control-border-top: $tab-control-border-width solid $tab-control-border-color !default;
+$accordion-control-border-right: false !default;
+$accordion-control-border-bottom: false !default;
+$accordion-control-border-left: false !default;
+
+$accordion-control-background-color: $tab-control-background-color !default;
+$accordion-control-background-color-hover: ev-false-check($tab-control-background-color, lighten, 5%) !default;
+$accordion-control-color-hover: $tab-control-color !default;
+$accordion-control-text-decoration-hover: $tab-control-text-decoration !default;
+$accordion-control-background-color-active: ev-false-check($tab-control-background-color, lighten, 15%) !default;
+$accordion-control-color-active: $text-color !default;
+$accordion-control-text-decoration-active: $tab-control-text-decoration !default;
+
+$accordion-control-margin-bottom: false !default;
+$accordion-control-padding-top: $pview-desc-tab-title-padding-top !default;
+$accordion-control-padding-right: $pview-desc-tab-title-padding-right !default;
+$accordion-control-padding-bottom: $pview-desc-tab-title-padding-bottom !default;
+$accordion-control-padding-left: $pview-desc-tab-title-padding-left !default;
+$accordion-control-padding: $accordion-control-padding-top $accordion-control-padding-right  $accordion-control-padding-bottom $accordion-control-padding-left !default;
+
+
+$accordion-content-background-color: ev-false-check($tab-control-background-color, lighten, 15%) !default;
+$accordion-content-border: $tab-content-border !default;
+$accordion-content-margin: 0 0 $indent-xs !default;
+$accordion-content-padding: $tab-content-padding-top $tab-content-padding-right $tab-content-padding-bottom $tab-content-padding-left !default;
+
+$accordion-control-color: $tab-control-color !default;
+$accordion-control-text-decoration: $tab-control-text-decoration !default;
+$accordion-control-color-visited: $tab-control-color !default;
+$accordion-control-text-decoration-visited: $tab-control-text-decoration !default;
+$accordion-control-background-color-hover: ev-false-check($tab-control-background-color, lighten, 5%) !default;
+$accordion-control-color-hover: $tab-control-color !default;
+
+$accordion-control-visited-color           : $accordion-control-color !default;
+$accordion-control-visited-text-decoration : $accordion-control-text-decoration !default;
+
+
+$accordion-control-hover-background-color  : $tab-control-hover-background-color !default;
+$accordion-control-hover-color             : $tab-control-hover-color !default;
+$accordion-control-hover-text-decoration   : $tab-control-hover-text-decoration !default;
+
+$accordion-control-active-background-color : $tab-control-active-background-color !default;
+$accordion-control-active-color            : $tab-control-active-color !default;
+$accordion-control-active-text-decoration  : $tab-control-active-text-decoration !default;
 
 
 
@@ -661,14 +789,17 @@ $pview-page-main-stretch-content-on-mobiletablet: 0 !default;
 
 $pview-insideqtycontainer-boxtcart-margin: false !default;
 
+
 $pview-insideqtycontainer-control-width: auto !default;
+$pview-insideqtycontainer-control-width-desktopmd: auto !default;
 $pview-insideqtycontainer-control-alignitems: center !default;
 $pview-insideqtycontainer-control-padding: 0.3125rem !default;
+$pview-insideqtycontainer-control-padding-desktopmd: 0.3125rem !default;
 $pview-insideqtycontainer-control-bgcolor: #FFF !default;
 
 $pview-insideqtycontainer-control-border-radius-on: 1 !default;
 $pview-insideqtycontainer-control-border-radius: $border-radius !default;
 
 $pview-insideqtycontainer-control-border-on: 1 !default;
-$pview-insideqtycontainer-control-border-color: $form-element-input--border-color !default;
-$pview-insideqtycontainer-control-border: $form-element-input--border !default;
+$pview-insideqtycontainer-control-border-color: $form-element-input-border-color !default;
+$pview-insideqtycontainer-control-border: $form-element-input-border !default;

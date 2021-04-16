@@ -1,23 +1,22 @@
-$select2_selection_single_border: 1px solid #aaa !default;
+$select2-selection-single-border: 1px solid #aaa !default;
 
-$select2_selection_rendered_color: $body-color !default;
+$select2-selection-rendered-color: $body-color !default;
 
-$select2_selection_rendered_padding: 0 0 0.25rem !default;
+$select2-selection-rendered-padding: 0 0 0.25rem !default;
 
 
-$select2_selection_rendered_fontweight: 600 !default;
+$select2-selection-rendered-fontweight: 600 !default;
 
 
 .select2-selection--single {
     background-color: #fff;
-    border: $select2_selection_single_border;
+    border: $select2-selection-single-border;
     border-radius: 4px;
 
     .select2-selection__rendered {
-        color: $select2_selection_rendered_color;
-        padding: $select2_selection_rendered_padding;
-        font-weight: $select2_selection_rendered_fontweight;
-
+        @include co(color, $select2-selection-rendered-color);
+        @include co(padding, $select2-selection-rendered-padding);
+        @include co(font-weight, $select2-selection-rendered-fontweight);
     }
 
     .select2-selection__clear {

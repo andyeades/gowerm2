@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
     <menu>
-        <add id="Elevate_General::parent" title="Elevate" module="Elevate_PrintLabels" sortOrder="100" resource="Elevate_General::parent"/>
-        <add id="Elevate_PrintLabels::index" title="Print Labels" module="Elevate_PrintLabels" sortOrder="10" action="printlabels/index" resource="Elevate_PrintLabels::index" parent="Elevate_General::parent" />
+        <add id="Elevate_PrintLabels::title" title="Print Labels" module="Elevate_PrintLabels" sortOrder="40" resource="Elevate_PrintLabels::title" parent="Elevate_Core::menu" />
+        <add id="Elevate_PrintLabels::index" title="View Print Labels" module="Elevate_PrintLabels" sortOrder="41" action="printlabels/index" resource="Elevate_PrintLabels::index" parent="Elevate_PrintLabels::title" />
+        <add id="Elevate_PrintLabels::elevate_printlabels" title="Configuration" module="Elevate_PrintLabels" sortOrder="42" action="adminhtml/system_config/edit/section/elevate_printlabels" resource="Elevate_PrintLabels::elevate_printlabels" parent="Elevate_PrintLabels::title" />
+        <add action="printlabels/holidaydates/index" id="Elevate_Printlabels::holidaydates" module="Elevate_PrintLabels" parent="Elevate_PrintLabels::title" resource="Elevate_PrintLabels::holidaydates" sortOrder="43" title="Holiday Dates"/>
     </menu>
 </config>

@@ -146,7 +146,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
     {
         /** @var $collection \WebShopApps\MatrixRate\Model\ResourceModel\Carrier\Matrixrate\Collection */
         $collection = $this->collectionFactory->create();
-        $collection->setConditionFilter($this->getConditionName())->setWebsiteFilter($this->getWebsiteId());
+        //$collection->setConditionFilter($this->getConditionName())->setWebsiteFilter($this->getWebsiteId());
 
         $this->setCollection($collection);
 
@@ -181,7 +181,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
             'dest_zip_to',
             ['header' => __('Zip/Postal Code To'), 'index' => 'dest_zip_to', 'default' => '*']
         );
-
+          /*
         $label = $this->matrixrate->getCode('condition_name_short', $this->getConditionName());
 
         $this->addColumn(
@@ -193,7 +193,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
             'condition_to_value',
             ['header' => $label.__('<='), 'index' => 'condition_to_value']
         );
-
+         */
         $this->addColumn('price', ['header' => __('Shipping Price'), 'index' => 'price']);
 
         $this->addColumn(

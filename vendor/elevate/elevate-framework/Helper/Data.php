@@ -230,7 +230,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
 
     function getLeadTimeInfo($_product) {
 
-
+            $message = '';
+            $extra_class = '';
+      $sku_whitelist = [];      
         $output = '';
 
         if ($_product->getTypeId() == 'configurable') {
@@ -242,73 +244,80 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
         if ($_product->getTypeId() == 'simple') {
 
 
-            if ($_product->isSaleable() && $_product->getQty() > 0) {
+            if($_product->isSaleable()){
+                try {                       
+                    $date_next_available = $_product->getDateNextAvailable();
+                    if ($date_next_available == '' && array_key_exists($_product->getSku(), $sku_whitelist)) {
+                    
+                    
+                    $extra_class = 'xmas_message2';  
+                        $message = 'In Stock - Arrives by Christmas';
+                         $message = '<div class="xmas_message '.$extra_class.'">'.$message.'</div>';
+                        $promo_inject = 1;
+                        
+                        
+                        
+                    }    
+                    else if ($date_next_available == '') {
+                    
+                    
+                    $extra_class = '';  
+                        $message = 'In Stock - Quick Delivery Available';
+                         $message = '<div class="xmas_message '.$extra_class.'">'.$message.'</div>';
+                        $promo_inject = 1;
+                        
+                        
+                        
+                        
+                    } else {
+                        $date = str_replace('/', '-', $date_next_available);
+                        $date_next_available = date('Y-m-d', strtotime($date));
+                        $OldDate = new \DateTime($date_next_available);
+                        $now = new \DateTime(Date('Y-m-d'));
+                        $date_arr = $OldDate->diff($now);
+                        $days_diff = $date_arr->days;
 
-                // TODO Make this if the attribute exists ?
-                $date_next_available = $_product->getDateNextAvailable();
-                if ($date_next_available == '') {
-                      
-                    // TODO: Make Message Admin Driven
-                    $message = $_product->getQty()."In Stock - Quick Delivery Available";
-                     
-                    $output .= "<script>
+                        if ($days_diff < 7) {
+                            $message = 'Usually dispatched within 7 Days';
+                        }
+                        if ($days_diff >= 7 && $days_diff < 14) {
+                            $message = 'Usually dispatched within 1 - 2 weeks';
+                        }
+                        if ($days_diff >= 14 && $days_diff < 21) {
+                            $message = 'Usually dispatched within  2 - 3 weeks';
+                        }
+                        if ($days_diff >= 21 && $days_diff < 35) {
+                            $message = 'Usually dispatched within 3 - 5 weeks';
+                        }
+                        if ($days_diff >= 35 && $days_diff < 56) {
+                            $message = 'Usually dispatched within 5 - 8 weeks';
+                        }
+                        if ($days_diff >= 56 && $days_diff < 84) {
+                            $message = 'Usually dispatched within 2 - 3 months';
+                        }
+                        if ($days_diff >= 84 && $days_diff < 112) {
+                            $message = 'Usually dispatched within 3 - 4 months';
+                        }
+                        if ($days_diff >= 112) {
+                            $message = 'Usually dispatched within 4 - 6 months';
+                        }
+                                                         
+                            $message = '<div class="xmas_message '.$extra_class.'">'.$message.'</div>';
+                        $message .= '<div style="background-color: rgb(230, 242, 255);padding: 18px;"><i class="fa fa-info-circle" style="margin-right: 5px;"></i>This is when this item will leave our warehouse. More accurate delivery dates will be available within checkout, your delivery postcode and any other products you wish to purchase will be taken into account.</div>';
 
-                        jQuery('#promoinject').html('Quick Delivery').show();
-                    </script>";
-
-                } else {
-
-                    $date = str_replace('/', '-', $date_next_available);
-                    $date_next_available = date('Y-m-d', strtotime($date));
-
-                    $OldDate = new \DateTime($date_next_available);
-                    $now = new \DateTime(Date('Y-m-d'));
-                    $date_arr = $OldDate->diff($now);
-                    $days_diff = $date_arr->days;
-
-                    $message = 'Usually dispatched within 7 Days';
-                    if ($days_diff < 7) {
-                        $message = 'Usually dispatched within 7 Days';
-                    }
-                    if ($days_diff >= 7 && $days_diff < 14) {
-                        $message = 'Usually dispatched within 1 - 2 weeks';
-                    }
-                    if ($days_diff >= 14 && $days_diff < 21) {
-                        $message = 'Usually dispatched within  2 - 3 weeks';
-                    }
-                    if ($days_diff >= 21 && $days_diff < 35) {
-                        $message = 'Usually dispatched within 3 - 5 weeks';
-                    }
-                    if ($days_diff >= 35 && $days_diff < 56) {
-                        $message = 'Usually dispatched within 5 - 8 weeks';
-                    }
-                    if ($days_diff >= 56 && $days_diff < 84) {
-                        $message = 'Usually dispatched within 2 - 3 months';
-                    }
-                    if ($days_diff >= 84 && $days_diff < 112) {
-                        $message = 'Usually dispatched within 3 - 4 months';
-                    }
-                    if ($days_diff >= 112) {
-                        $message = 'Usually dispatched within 4 - 6 months';
-                    }
-                     
-                    // ToDO - Make Admin Message
-                    $message .= '<i class="stock_dispatch_message_icon fa fa-info-circle" style="margin-left:5px;cursor:pointer;"></i><div class="stock_dispatch_message" style="display:none;"
-">This is when this item will leave our warehouse. More accurate delivery dates will be available within checkout, your delivery postcode and any other products you wish to purchase will be taken into account.</div>';
-                     $message .= "<script>
-                     
-                     
-                       jQuery('.stock_dispatch_message_icon').on('click', function(){
-                       jQuery('.stock_dispatch_message').toggle();
-                       
-                       });
-                     
-                     </script>";
+                    }                               
+                    
+                    
+                }         
+                catch(Exception $e){
+                    //$message = $e->getMessage();
                 }
-                // Styles are now in SCSS variables $stock_message_bg etc
-                $output .= '<div id="stock_message" class="stock_message">' . $message . '</div>';
-            }
 
+            }
+            else{
+                $message = 'This size is out of stock, please choose another size.';
+            }
+             $output = $message;
         }
 
         return $output;

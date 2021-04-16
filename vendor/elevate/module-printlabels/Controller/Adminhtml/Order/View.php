@@ -55,10 +55,7 @@ class View extends \Magento\Sales\Controller\Adminhtml\Order {
      */
     protected $scopeConfig;
 
-    /**
-     * @var \PrintNode\Credentials
-     */
-    protected $printNodeCredentials;
+
 
     /**
      * @var \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation
@@ -96,7 +93,7 @@ class View extends \Magento\Sales\Controller\Adminhtml\Order {
      * @param \Magento\Sales\Model\Order                                 $orderModel
      * @param \Magento\Framework\Encryption\EncryptorInterface    $encryptorInterface
      * @param \Magento\Framework\App\Config\ScopeConfigInterface  $scopeConfig
-     * @param \PrintNode\Credentials                              $printNodeCredentials
+
      * @param \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation
      * @param \Magento\Framework\Registry $coreRegistry
      */
@@ -117,7 +114,7 @@ class View extends \Magento\Sales\Controller\Adminhtml\Order {
         \Magento\Framework\Controller\Result\RawFactory $resultRawFactory,
         \Magento\Sales\Api\OrderManagementInterface $orderManagement,
         \Psr\Log\LoggerInterface $logger,
-        \PrintNode\Credentials $printNodeCredentials,
+
         \Magento\Customer\Api\AddressRepositoryInterface $addressRepository,
         \Magento\Sales\Model\Order\AddressRepository $orderAddressRepository,
         \Magento\Sales\Api\OrderAddressRepositoryInterface $orderAddressRepo,
@@ -137,7 +134,7 @@ class View extends \Magento\Sales\Controller\Adminhtml\Order {
       $this->resultPageFactory = $resultPageFactory;
       $this->resultLayoutFactory = $resultLayoutFactory;
       $this->resultRawFactory = $resultRawFactory;
-      $this->printNodeCredentials = $printNodeCredentials;
+
       $this->dpdAuthorisation = $dpdAuthorisation;
       $this->addressRepository = $addressRepository;
       $this->orderAddressRepository = $orderAddressRepository;

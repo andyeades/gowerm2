@@ -221,8 +221,42 @@ class SeoRender {
                 'cms_noroute_index',
                 'catalogsearch_advanced_result'
             ];
-            if (in_array($this->getFullActionName(), $pages)) {
+            
+             $currentFullAction = $this->request->getFullActionName();
+             
+             
+$cmspages = array('cms_index_index','cms_page_view');
+if(in_array($currentFullAction, $cmspages)){
+
+      
+         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$cms = $objectManager->get('\Magento\Cms\Model\Page');
+
+
+      
+       if($cms){
+      $no_index_status = $cms->getData('ev_landingpages_noindex');
+              
+               if($no_index_status == 1){
                 $this->pageConfig->setMetadata('robots', 'NOINDEX,NOFOLLOW');
+                }
+                }
+}
+
+
+            $category = $this->registry->registry('current_category');
+            
+               if($category){
+               //no index if selected in the category 
+               $no_index_status = $category->getData('ev_landingpages_noindex');
+              
+               if($no_index_status == 1){
+                $this->pageConfig->setMetadata('robots', 'NOINDEX,NOFOLLOW');
+                }
+              }  
+            
+            if (in_array($this->getFullActionName(), $pages)) {
+               $this->pageConfig->setMetadata('robots', 'NOINDEX,NOFOLLOW');
             }
         }
     }
@@ -266,14 +300,28 @@ class SeoRender {
                 $can_link = '<link rel="canonical" href="' . strtolower($can_link) . '" />';
 
 
-            } else if ($category = $this->registry->registry('current_category') && !$product_page) {
-
-
-
+            } else if ($category = $this->registry->registry('current_category') && !$product_page) {     
+                         $category = $this->registry->registry('current_category');
+                      
+            //get category canonical
+               
+               $category_canonical = $category->getData('ev_landingpages_canonical');
+               if(!empty($category_canonical)){
+              $can_link = '<link rel="canonical" href="' . strtolower($category_canonical) . '" />';
+              return $can_link;
+                }
+                
+                
+             //else default to the current category URL   
             $currentUrl = $this->_storeManager->getStore()->getCurrentUrl();
             $url = parse_url($currentUrl);
             $path = $url['path'];
-            $query = $url['query'];
+              $query = '';
+            
+   if(isset($url['query'])){
+                $query = $url['query'];
+                }
+            
             if (isset($query) && $query != '') {
                 $path .= '?' . $query;
 
@@ -292,11 +340,37 @@ class SeoRender {
             $can_link = '<link rel="canonical" href="' . strtolower($can_url) . '" />';
         }
             else if ($this->request->getModuleName() == 'cms') {
+                     $currentFullAction = $this->request->getFullActionName();
+             
+             
+$cmspages = array('cms_index_index','cms_page_view');
+if(in_array($currentFullAction, $cmspages)){
+
+      
+         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$cms = $objectManager->get('\Magento\Cms\Model\Page');
+
+
+      
+       if($cms){
+      $cms_canonical = $cms->getData('ev_landingpages_canonical');
+              
+               if(!empty($cms_canonical)){
+                  $can_link = '<link rel="canonical" href="' . strtolower($cms_canonical) . '" />';
+                  return $can_link;
+                }
+                }
+}
+
 
                 $currentUrl = $this->_storeManager->getStore()->getCurrentUrl();
+                
+                   $query = '';
                 $url = parse_url($currentUrl);
                 $path = $url['path'];
+                if(isset($url['query'])){
                 $query = $url['query'];
+                }
                 if (isset($query) && $query != '') {
                     $path .= '?' . $query;
 

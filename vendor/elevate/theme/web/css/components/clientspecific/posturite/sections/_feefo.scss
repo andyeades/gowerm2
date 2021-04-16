@@ -55,7 +55,7 @@
         background: $ps-color-convert-2;
         display: inline-block;
         margin: 0 auto;
-        color: $ps-color-convert-89;
+        @include co(color, $ps-color-convert-89);
 
         &:hover {
             border: 1px solid $ps-color-convert-89;
@@ -70,7 +70,7 @@
         background: $ps-color-convert-2;
         display: inline-block;
         margin: 0 auto;
-        color: $ps-color-convert-89;
+        @include co(color, $ps-color-convert-89);
 
         &:hover {
             border: 1px solid $ps-color-convert-89;
@@ -120,7 +120,7 @@
             font-weight: 700;
             border-bottom: 1px solid $ps-color-convert-0;
             padding: 10px;
-            color: $ps-color-convert-58;
+            @include co(color, $ps-color-convert-58);
             white-space: nowrap;
             vertical-align: middle;
         }
@@ -142,7 +142,7 @@
         display: block;
         float: left;
         width: 100%;
-        color: $ps-color-convert-33;
+        @include co(color, $ps-color-convert-33);
         text-align: right;
     }
 

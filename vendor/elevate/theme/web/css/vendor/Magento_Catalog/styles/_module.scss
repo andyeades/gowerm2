@@ -1,7 +1,7 @@
 
 //
 //  Category view
-//  ---------------------------------------------
+//
 
 
 
@@ -18,12 +18,12 @@
 
 //
 //  Sidebar product view
-//  ---------------------------------------------
+//
 
 .sidebar {
     .product-items {
         .product-item {
-            margin-bottom: $indent__base;
+            margin-bottom: $indent-base;
             position: relative;
         }
 
@@ -48,7 +48,7 @@
 
         .product-item-actions {
             display: block;
-            margin-top: $indent__s;
+            margin-top: $indent-s;
         }
 
         .price-box {
@@ -61,7 +61,7 @@
         }
 
         .counter {
-            @include lib-css(color, $primary__color__lighter);
+            @include lib-css(color, $primary-color-lighter);
             @include lib-font-size(12);
             white-space: nowrap;
         }
@@ -93,26 +93,26 @@
 
     //
     //  Product images only
-    //  ---------------------------------------------
+    //
 
     .product-items-images {
         @include abs-add-clearfix();
-        margin-left: -$indent__xs;
+        margin-left: -$indent-xs;
 
         .product-item {
 
             float: left;
-            padding-left: $indent__xs;
+            padding-left: $indent-xs;
         }
     }
 
     //
     //  Product names only
-    //  ---------------------------------------------
+    //
 
     .product-items-names {
         .product-item {
-            margin-bottom: $indent__s;
+            margin-bottom: $indent-s;
         }
 
         .product-item-name {
@@ -123,9 +123,9 @@
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__m) {
+@include max-screen($screen-m) {
 
     .compare,
     .product-addto-links .action.tocompare,
@@ -137,9 +137,9 @@
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
 
 
     .sidebar {
@@ -148,7 +148,7 @@
                 .product-item-photo {
                     float: left;
                     left: auto;
-                    margin: 0 $indent__s $indent__s 0;
+                    margin: 0 $indent-s $indent-s 0;
                     position: relative;
                     top: auto;
                 }
@@ -170,9 +170,9 @@
 
 //
 //  Desktop large
-//  _____________________________________________
+//
 
-@include min-screen($screen__xl) {
+@include min-screen($screen-xl) {
     .sidebar {
         .product-items {
             .product-item-info {
@@ -194,7 +194,7 @@
 
 //
 //  Product page layout
-//  ---------------------------------------------
+//
 
 
 

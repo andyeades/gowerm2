@@ -190,6 +190,18 @@ class View extends Template {
     }
 
     /**
+     * Retrieve current category
+     *
+     * @return \Mirasvit\Kb\Model\Category
+     */
+    public function getCategoryById($category_id) {
+
+            $category = $this->categoryCollectionFactory->create()->getItemById($category_id);
+
+        return $category;
+    }
+
+    /**
      * @return \Mirasvit\Kb\Model\ResourceModel\Category\Collection
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
@@ -213,12 +225,13 @@ class View extends Template {
 
     /**
      * @param $input
+     * @param $pagesize
      *
      * @return \Mirasvit\Kb\Model\ResourceModel\Article\Collection
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getAllArticleCollection($input) {
-        $collection = $this->articleCollectionFactory->create()->addCategoryIdFilter($input)->addFieldToFilter('main_table.is_active', true)->addStoreIdAltFilter($this->context->getStoreManager()->getStore()->getId(),$input)->addCustomerGroupIdFilter($this->customerSession->getCustomerGroupId())->setPageSize(4)->setOrder('position', 'asc');
+    public function getAllArticleCollection($input, $pagesize) {
+        $collection = $this->articleCollectionFactory->create()->addCategoryIdFilter($input)->addFieldToFilter('main_table.is_active', true)->addStoreIdAltFilter($this->context->getStoreManager()->getStore()->getId(),$input)->addCustomerGroupIdFilter($this->customerSession->getCustomerGroupId())->setPageSize($pagesize)->setOrder('position', 'asc');
         return $collection;
     }
 

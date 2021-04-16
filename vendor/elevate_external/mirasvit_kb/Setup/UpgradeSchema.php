@@ -111,5 +111,11 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
             Upgrade_1_0_10::upgrade($installer, $context);
         }
+
+        if (version_compare($context->getVersion(), '1.0.11') < 0) {
+            include_once 'Upgrade_1_0_11.php';
+
+            Upgrade_1_0_11::upgrade($installer, $context);
+        }
     }
 }

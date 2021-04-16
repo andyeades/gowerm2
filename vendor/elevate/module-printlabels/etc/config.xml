@@ -26,11 +26,26 @@
                 <county_trim>1</county_trim>
                 <tele_trim>1</tele_trim>
             </addressvalidation>
+            <printoptions>
+                <print_giftmessage>0</print_giftmessage>
+                <print_packinglist>0</print_packinglist>
+                <print_invoice>0</print_invoice>
+            </printoptions>
             <collection>
-                <collection_time>3pm</collection_time>
+                <collection_time>4pm</collection_time>
                 <collection_cutofftime>3pm</collection_cutofftime>
                 <collection_days>1,2,3,4,5</collection_days>
             </collection>
+            <packagedetails>
+                <packageweightlimit>30</packageweightlimit>
+            </packagedetails>
+            <giftmessage>
+                <printgiftmessagelabelperitem>0</printgiftmessagelabelperitem>
+            </giftmessage>
+            <postcodes>
+                <standardukpostcodes></standardukpostcodes>
+                <alternativedeloption_postcodes>AB31-38; AB41-56; FK17-21; G83; GY9; HS1-9; IM1-99; IV1-IV99; KA27-28; KW0-17; PA20-78; PH15-99; ZE1-3;</alternativedeloption_postcodes>
+            </postcodes>
         </elevate_printlabels>
     </default>
 </config>

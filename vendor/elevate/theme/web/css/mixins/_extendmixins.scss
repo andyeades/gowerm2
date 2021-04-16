@@ -22,7 +22,7 @@
 
     .box-title {
         display: inline-block;
-        margin: 0 0 $indent__xs;
+        margin: 0 0 $indent-xs;
 
         > span {
             @include lib-heading(h4);
@@ -30,7 +30,7 @@
 
         > .action {
             font-weight: 400;
-            margin-left: $indent__s;
+            margin-left: $indent-s;
         }
     }
 
@@ -40,7 +40,7 @@
         }
 
         .box {
-            margin-bottom: $indent__base;
+            margin-bottom: $indent-base;
         }
     }
 }
@@ -61,10 +61,10 @@
 }
 
 @mixin abs-action-button-as-link() {
-    @include lib-button-as-link($_margin: false);
+    @include lib-button-as-link($-margin: false);
     border-radius: 0;
     font-size: inherit;
-    font-weight: $font-weight__regular;
+    @include co(font-weight, $font-weight-regular);
 
     &:active,
     &:not(:focus) {
@@ -76,7 +76,7 @@
     dt {
         clear: left;
         float: left;
-        margin: 0 $indent__s $indent__xs 0;
+        margin: 0 $indent-s $indent-xs 0;
 
         &:after {
             content: ': ';
@@ -86,7 +86,7 @@
     dd {
         display: inline-block;
         float: left;
-        margin: 0 0 $indent__xs;
+        margin: 0 0 $indent-xs;
     }
 }
 
@@ -111,7 +111,7 @@
     margin-left: 0;
 }
 @mixin abs-margin-for-forms-desktop {
-    @include lib-css(margin-left, $form-field-type-label-inline__width);
+    @include lib-css(margin-left, $form-field-type-label-inline-width);
 }
 @mixin abs-visually-hidden {
     @include lib-visually-hidden();
@@ -120,12 +120,12 @@
 @mixin abs-remove-button-for-blocks {
     @include lib-icon-font(
             $icon-remove,
-        $_icon-font-size         : 26px,
-        $_icon-font-line-height  : 15px,
-        $_icon-font-text-hide    : true,
-        $_icon-font-color        : $color-gray19,
-        $_icon-font-color-hover  : $color-gray19,
-        $_icon-font-color-active : $color-gray19
+        $-icon-font-size         : 26px,
+        $-icon-font-line-height  : 15px,
+        $-icon-font-text-hide    : true,
+        $-icon-font-color        : $color-gray19,
+        $-icon-font-color-hover  : $color-gray19,
+        $-icon-font-color-active : $color-gray19
     );
 }
 
@@ -133,7 +133,7 @@
     .fieldset {
         > .field,
         .fields > .field {
-            @include lib-form-field-type-revert($_type: block);
+            @include lib-form-field-type-revert($-type: block);
 
             &:not(:first-child):last-of-type {
                 margin-bottom: 0;
@@ -146,7 +146,7 @@
     .toolbar-amount,
     .limiter,
     .pages {
-        margin-bottom: $indent__m;
+        margin-bottom: $indent-m;
     }
 }
 

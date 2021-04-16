@@ -33,12 +33,16 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
             position: absolute;
             @include rj-transform(translateX(0));
 
+
+
             a {
+
                 @include min-screen($mobile-menu-notvisible) {
-                    height: 30px;
-                    line-height: 30px;
+                    @include co(height, $e-sn-a-height-mobilemenu-notvisible);
+                    @include co(line-height, $e-sn-a-lineheight-mobilemenu-notvisible);
+
                     color: $e-sn-a-desktop-color;
-                    font-size: $e-sn-a-desktop-fontsize;
+                  @include co(font-size, $e-sn-a-desktop-fontsize);
 
                     &:hover {
                         color: $e-sn-a-desktop-hover-color;
@@ -50,8 +54,8 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
             @include min-screen($mobile-menu-notvisible) {
                 // dropdown menu style
                 height: auto;
-                width: $e-sn-desktop-width;
-                padding: $e-sn-desktop-padding;
+                @include co(width, $e-sn-desktop-width);
+                @include co(padding, $e-sn-desktop-padding);
 
                 @if $e-sn-desktop-border-on == 1 {
                     border: $e-sn-desktop-border;
@@ -66,7 +70,7 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
                 width: 96vw;
             }
             @include min-screen($screen-xlg-min) {
-                width: $screen-xlg-min - 30px;
+                @include co(width, $screen-xlg-min - 30px);
             }
 
             &.menu-style-3 {
@@ -75,7 +79,9 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
                         border: $m3-desktop-border;
                     }
                     background: $m3-desktop-bg-color;
+                    @include co(flex-wrap, $m3-desktop-flexwrap);
                 }
+
 
                 a {
                     @include max-screen($mobile-menu-visible-max) {
@@ -102,10 +108,10 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
                         @include min-screen($mobile-menu-notvisible) {
                             color: $m3-desktop-li-a-color;
                             @if $m3-desktop-li-a-textransform-on == 1 {
-                                text-transform: $m3-desktop-li-a-textransform;
+                                @include co(text-transform, $m3-desktop-li-a-textransform);
                             }
-                            @include co('font-size', $m3-desktop-li-a-font-size, $font-size-base);
-                            @include co('margin', $m3-desktop-li-a-margin, $e-sn-has-children-a-desktop-margin);
+                            @include co(font-size, $m3-desktop-li-a-font-size, $font-size-base);
+                            @include co(margin, $m3-desktop-li-a-margin, $e-sn-has-children-a-desktop-margin);
                             @include co(font-weight, $m3-li-a-fontweight-desktop, $font-weight-base);
                         }
                         @include max-screen($mobile-menu-visible-max) {
@@ -239,7 +245,7 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
             > .has-children {
                 > a {
                     @include min-screen($mobile-menu-notvisible) {
-                        margin: $e-sn-has-children-a-desktop-margin;
+                        @include co(margin, $e-sn-has-children-a-desktop-margin);
                         // remove arrows on secondary nav titles
                         &:before,
                         &:after {
@@ -337,6 +343,9 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
                 // Force Hardware Acceleration in WebKit
                 @include rj-transform(translateZ(0));
                 margin-bottom: 20px;
+                @include min-screen($mobile-menu-notvisible) {
+                    @include co(margin, $e-pn-li-ul-ul-margin-mobilemenu-notvisible);
+                }
 
                 ul {
 
@@ -357,7 +366,7 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
                         @include rj-transform(translateX(100%));
                         border: $flyout-border;
                         border-radius: $flyout-border-radius;
-                        font-size: $flyout-header-title-font-size;
+                      @include co(font-size, $flyout-header-title-font-size);
                     }
 
                     .go-back {

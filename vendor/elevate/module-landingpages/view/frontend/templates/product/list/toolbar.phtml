@@ -17,8 +17,11 @@ use Magento\Catalog\Model\Product\ProductList\Toolbar;
 ?>
 
 <?php if ($block->getCollection()->getSize()): ?>
-    <div class="toolbar toolbar-products" data-mage-init='<?= /* @escapeNotVerified */ $block->getWidgetOptionsJson() ?>'>
+    <div class="top-toolbar toolbar toolbar-products" data-mage-init='<?= /* @escapeNotVerified */ $block->getWidgetOptionsJson() ?>'>
         <?php if ($block->isExpanded()){ include ($block->getTemplateFile('Elevate_LandingPages::product/list/toolbar/viewmode.phtml')); } ?>
+
+        <?php include ($block->getTemplateFile('Elevate_LandingPages::product/list/toolbar/contentarea.phtml')) ?>
+
 
         <?php include ($block->getTemplateFile('Elevate_LandingPages::product/list/toolbar/amount.phtml')) ?>
 

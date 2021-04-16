@@ -22,7 +22,6 @@
                 <aspect name="to_order_address" />
             </field>
 
-
             <field name="detailed_delivery_info_dates">
                 <aspect name="to_order_address" />
             </field>
@@ -40,6 +39,14 @@
             </field>
             <field name="detailed_delivery_before_time">
                 <aspect name="to_order_address" />
+            </field>
+            <field name="ev_giftmessagemessage">
+                <aspect name="to_order_address" />
+            </field>
+        </fieldset>
+        <fieldset id="sales_convert_quote">
+            <field name="delivery_date_selected">
+                <aspect name="to_order" />
             </field>
         </fieldset>
     </scope>

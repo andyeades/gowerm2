@@ -1,25 +1,25 @@
 //
 //  Loader variables
-//  _____________________________________________
+//
 
-$loader-overlay__background-color : rgba(255, 255, 255, 0.5) !default;
-$loader-overlay__z-index          : 9999 !default;
+$loader-overlay-background-color : rgba(255, 255, 255, 0.5) !default;
+$loader-overlay-z-index          : 9999 !default;
 
-$loader-icon__width               : 160px !default;
-$loader-icon__height              : 160px !default;
-$loader-icon__background-color    : transparent !default;
-$loader-icon__background-image    : url('../images/loader-2.gif') !default;
-$loader-icon__background-position : 50% 50% !default;
-$loader-icon__border_radius       : 5px !default;
-$loader-icon__padding             : '' !default;
+$loader-icon-width               : 160px !default;
+$loader-icon-height              : 160px !default;
+$loader-icon-background-color    : transparent !default;
+$loader-icon-background-image    : url('../images/loader-2.gif') !default;
+$loader-icon-background-position : 50% 50% !default;
+$loader-icon-border-radius       : 5px !default;
+$loader-icon-padding             : '' !default;
 
 $loader-text                      : false !default;
-$loader-text__color               : $primary__color !default;
-$loader-text__font-size           : $font-size__base !default;
-$loader-text__font-family         : $font-family-base !default;
-$loader-text__font-weight         : $font-weight__regular !default;
-$loader-text__font-style          : $font-style__base !default;
-$loader-text__padding             : 130px 0 0 !default;
+$loader-text-color               : $primary-color !default;
+$loader-text-font-size           : $font-size-base !default;
+$loader-text-font-family         : $font-family-base !default;
+$loader-text-font-weight         : $font-weight-regular !default;
+$loader-text-font-style          : $font-style-base !default;
+$loader-text-padding             : 130px 0 0 !default;
 
-$loading__background-color        : $loader-overlay__background-color !default;
-$loading__background-image        : $loader-icon__background-image !default;
+$loading-background-color        : $loader-overlay-background-color !default;
+$loading-background-image        : $loader-icon-background-image !default;

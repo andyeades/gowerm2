@@ -82,7 +82,7 @@ class Bundle extends \Magento\Bundle\Helper\Catalog\Product\Configuration
         $optionsQuoteItemOption = $item->getOptionByCode('bundle_option_ids');
 
         $bundleOptionsIds = $optionsQuoteItemOption ? json_decode($optionsQuoteItemOption->getValue(), true) : [];
-
+              $is_backorder = false;
         if ($bundleOptionsIds) {
             /** @var \Magento\Bundle\Model\ResourceModel\Option\Collection $optionsCollection */
             $optionsCollection = $typeInstance->getOptionsByIds($bundleOptionsIds, $product);
@@ -96,14 +96,56 @@ class Bundle extends \Magento\Bundle\Helper\Catalog\Product\Configuration
                 $selectionsCollection = $typeInstance->getSelectionsByIds($bundleSelectionIds, $product);
 
                 $bundleOptions = $optionsCollection->appendSelections($selectionsCollection, true);
-
+                    $max_lead_time = 0;
                 foreach ($bundleOptions as $bundleOption) {
                     $bundleOptionHtml = $this->buildOptionData($bundleOption, $item);
+                               if(isset($bundleOptionHtml['backorder']) && $bundleOptionHtml['backorder'] == 'yes'){
+                                        $is_backorder = true;
+                               
+                               }
+                    
+                             
+                       
 
+                        if($bundleOptionHtml['leadtime'] > $max_lead_time){
+                          $max_lead_time = $bundleOptionHtml['leadtime'];
+                        
+                        } 
+                              
                     if (isset($bundleOptionHtml['value']) && $bundleOptionHtml['value']) {
                         $options[] = $bundleOptionHtml;
                     }
+                
                 }
+              
+                    
+            if($max_lead_time > 0){
+                $maxValueInDaysValue = '';
+            $leadtimefloor = floor($max_lead_time % 5);
+
+if ($leadtimefloor == 0) {
+    if ($max_lead_time == 5) {
+        $maxValueInDaysValue = floor($max_lead_time / 5) . ' Week';
+    } else {
+        $maxValueInDaysValue = floor($max_lead_time / 5) . ' Weeks';
+    }
+} else {
+    if (floor($max_lead_time / 5) == 0) {
+        $maxValueInDaysValue = floor($max_lead_time % 5) . ' Working Days';
+    } else {
+        $maxValueInDaysValue = (floor($max_lead_time / 5)+1) . ' Weeks ';
+    }
+}
+
+
+             if($is_backorder){
+  $maxValueInDaysValue = 'Available on request';
+ }
+
+                   $options[] = array('label' => 'Lead Time','value' => $maxValueInDaysValue,'has_html' => '1');    
+            }
+            
+                
             }
         }
 
@@ -206,12 +248,36 @@ class Bundle extends \Magento\Bundle\Helper\Catalog\Product\Configuration
             $bundleOptionData = ['label' => $bundleOption->getTitle(), 'value' => []];
 
             $bundleSelections = $bundleOption->getSelections();
-
+       
             foreach ($bundleSelections as $bundleSelection) {
-                $bundleOptionData['value'][] = $this->buildSelectionData($bundleOption, $bundleSelection, $item);
+            
+            
+            $leadtime = $bundleSelection->getLeadTime();
+
+                             
+            $back_order_message = '';
+        $obj = \Magento\Framework\App\ObjectManager::getInstance();  
+$stockRegistry = $obj->get('Magento\CatalogInventory\Api\StockRegistryInterface');
+$stockitem = $stockRegistry->getStockItem($bundleSelection->getId(),$bundleSelection->getStore()->getWebsiteId());
+$backorder_status = $stockitem->getBackorders();
+$in_stock_status = $stockitem->getIsInStock();
+$qty_in_stock = $stockitem->getQty();
+    $backorder = 'no';
+       
+       if($backorder_status == 2 && $in_stock_status == 1 && $qty_in_stock < 1){
+        $backorder = 'yes';
+        $back_order_message = '<div style="color:#db2727"> - OUT OF STOCK</div>';
+       }
+                
+            
+            
+                $bundleOptionData['value'][] = $this->buildSelectionData($bundleOption, $bundleSelection, $item).$back_order_message;
                 $bundleOptionData['has_html'] = true;
+                    $bundleOptionData['leadtime'] = $leadtime;
+                       $bundleOptionData['backorder'] = $backorder;
             }
 
+              
             return $bundleOptionData;
         }
 

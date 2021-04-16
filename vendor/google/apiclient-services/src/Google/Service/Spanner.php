@@ -168,6 +168,10 @@ class Google_Service_Spanner extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
+                'instanceDeadline' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
@@ -259,6 +263,14 @@ class Google_Service_Spanner extends Google_Service
                   'required' => true,
                 ),
                 'backupId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'encryptionConfig.encryptionType' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'encryptionConfig.kmsKeyName' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

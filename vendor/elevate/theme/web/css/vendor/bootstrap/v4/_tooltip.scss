@@ -3,7 +3,7 @@
   position: absolute;
   z-index: $zindex-tooltip;
   display: block;
-  margin: $tooltip-margin;
+  @include co(margin, $tooltip-margin);
   // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
   // So reset our font and text properties to avoid inheriting weird values.
   @include reset-text();
@@ -17,7 +17,7 @@
   .arrow {
     position: absolute;
     display: block;
-    width: $tooltip-arrow-width;
+    @include co(width, $tooltip-arrow-width);
     height: $tooltip-arrow-height;
 
     &::before {
@@ -30,7 +30,7 @@
 }
 
 .bs-tooltip-top {
-  padding: $tooltip-arrow-height 0;
+  @include co(padding, $tooltip-arrow-height 0);
 
   .arrow {
     bottom: 0;
@@ -48,7 +48,7 @@
 
   .arrow {
     left: 0;
-    width: $tooltip-arrow-height;
+    @include co(width, $tooltip-arrow-height);
     height: $tooltip-arrow-width;
 
     &::before {
@@ -60,7 +60,7 @@
 }
 
 .bs-tooltip-bottom {
-  padding: $tooltip-arrow-height 0;
+  @include co(padding, $tooltip-arrow-height 0);
 
   .arrow {
     top: 0;
@@ -78,7 +78,7 @@
 
   .arrow {
     right: 0;
-    width: $tooltip-arrow-height;
+    @include co(width, $tooltip-arrow-height);
     height: $tooltip-arrow-width;
 
     &::before {
@@ -107,7 +107,7 @@
 // Wrapper for the tooltip content
 .tooltip-inner {
   max-width: $tooltip-max-width;
-  padding: $tooltip-padding-y $tooltip-padding-x;
+  @include co(padding, $tooltip-padding-y $tooltip-padding-x);
   color: $tooltip-color;
   text-align: center;
   background-color: $tooltip-bg;

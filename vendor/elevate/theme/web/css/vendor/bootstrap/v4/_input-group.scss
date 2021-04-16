@@ -100,10 +100,10 @@
 .input-group-text {
   display: flex;
   align-items: center;
-  padding: $input-padding-y $input-padding-x;
+  @include co(padding, $input-padding-y $input-padding-x);
   margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
   @include font-size($input-font-size); // Match inputs
-  font-weight: $font-weight-normal;
+  @include co(font-weight, $font-weight-normal);
   line-height: $input-line-height;
   color: $input-group-addon-color;
   text-align: center;
@@ -136,7 +136,7 @@
 .input-group-lg > .input-group-append > .input-group-text,
 .input-group-lg > .input-group-prepend > .btn,
 .input-group-lg > .input-group-append > .btn {
-  padding: $input-padding-y-lg $input-padding-x-lg;
+  @include co(padding, $input-padding-y-lg $input-padding-x-lg);
   @include font-size($input-font-size-lg);
   line-height: $input-line-height-lg;
   @include border-radius($input-border-radius-lg);
@@ -153,7 +153,7 @@
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
 .input-group-sm > .input-group-append > .btn {
-  padding: $input-padding-y-sm $input-padding-x-sm;
+  @include co(padding, $input-padding-y-sm $input-padding-x-sm);
   @include font-size($input-font-size-sm);
   line-height: $input-line-height-sm;
   @include border-radius($input-border-radius-sm);

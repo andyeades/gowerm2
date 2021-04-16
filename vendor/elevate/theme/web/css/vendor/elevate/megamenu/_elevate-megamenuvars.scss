@@ -176,9 +176,10 @@ $e-sn-desktop-border-radius: 0 !default;
 
 
 $e-sn-a-desktop-color: #ffffff !default;
-$e-sn-a-desktop-fontsize: #ffffff !default;
+$e-sn-a-desktop-fontsize: false !default;
 $e-sn-a-desktop-hover-color: darken($e-sn-a-desktop-color, 15%) !default;
-
+$e-sn-a-height-mobilemenu-notvisible: 30px !default;
+$e-sn-a-lineheight-mobilemenu-notvisible: 30px !default;
 
 
 $e-sn-li-a-desktop-color: #FFF !default;
@@ -188,8 +189,14 @@ $e-sn-li-a-desktop-margin-bottom: 8px !default;
 $e-sn-li-a-desktop-border-bottom-on: 0 !default;
 $e-sn-li-desktop-border-right-on: 0 !default;
 
+
+
 $e-sn-li-desktop-border-right: 1px solid #FFFFFF !default;
 $e-sn-li-a-desktop-border-bottom: 1px solid #FFFFFF !default;
+
+$ev-megamenu-allcolumns-li-padding-mobilemenu-notvis: 0 10px !default;
+
+$e-pn-li-ul-ul-margin-mobilemenu-notvisible: false !default;
 
 
 $e-sn-has-children-a-desktop-margin: 0 0 0.5rem 0 !default;
@@ -202,6 +209,7 @@ $e-sn-mobile-width: $ev-mm-nav-width-mobile !default;
 
 // Menu Style 3
 
+$m3-desktop-flexwrap: wrap !default;
 $m3-desktop-border-on:  1 !default;
 $m3-desktop-bg-color: #FFFFFF !default;
 $m3-desktop-border-color: #808080 !default;
@@ -270,3 +278,232 @@ $flyout-header-title-color:           $brand-primary !default;
 $flyout-header-title-font-size:       1.5rem !default;
 $flyout-header-title-margin:          15px 0 0 0 !default;
 
+@mixin nav-menu() {
+    > a {
+        position: relative;
+        @include min-screen($mobile-menu-notvisible) {
+            &:not(:first-of-type) {
+                margin-top: 2rem;
+            }
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+
+
+        &.selected {
+            @if $mm-dropdown-icons-on == 1 {
+                .dropdown-icon {
+                    &:before {
+                        @include min-screen($mobile-menu-notvisible) {
+                            content: "\f078";
+                            font-family: FontAwesome;
+                            font-size: 9px;
+                            position: absolute;
+                            right: 0;
+                            -webkit-backface-visibility: hidden;
+                            backface-visibility: hidden;
+                            opacity: 0;
+                        }
+                    }
+
+                }
+            }
+
+            &:before {
+                @include min-screen($mobile-menu-notvisible) {
+                    width: 8px;
+                    @include rj-transform(translate(5px) rotate(-45deg));
+                }
+            }
+        }
+
+        @include max-screen($mobile-menu-visible-max) {
+            @include arrow(right);
+        }
+    }
+
+
+    > li {
+        a {
+            @include max-screen($mobile-menu-visible-max) {
+                @include co(padding, $e-pn-li-a-mobile-padding);
+                @include e-pn-a(0);
+            }
+        }
+    }
+
+    .ev_nav_level_3 {
+        @include min-screen($screen-md-min) {
+            overflow: hidden;
+        }
+    }
+}
+
+
+@mixin a_styling(
+    $-a-height             : false,
+    $-a-line-height        :  $-a-height,
+    $-a-border-bottom-on  : 0,
+    $-a-border-bottom  : false,
+    $-a-font-size            : false,
+    $-a-font-weight          : false,
+    $-a-color        : false,
+    $-a-hover-color  : false,
+    $-a-text-transform-on  : 0,
+    $-a-text-transform  : false,
+    $-a-padding: false,
+    $-a-margin: false
+) {
+    @if $-a-height != false {
+        height: $-a-height;
+        line-height: $-a-line-height;
+    }
+
+    @if $-a-border-bottom-on == 1 {
+        border-bottom: $-a-border-bottom;
+    }
+    @if $-a-font-size != false {
+        //font-size: $-a-font-size;
+        @include co(font-size, $-a-font-size, $font-size-base);
+    }
+
+    @if $-a-font-weight != false {
+        //font-size: $-a-font-size;
+        @include co(font-weight, $-a-font-weight, $font-weight-base);
+    }
+
+    @if $-a-color != false {
+        color: $-a-color;
+    }
+    @if $-a-hover-color != false {
+        &:hover {
+            color: $-a-hover-color;
+        }
+    }
+
+    @if $-a-text-transform-on != 0 {
+        @include co(text-transform, $-a-text-transform);
+    }
+    @if $-a-padding != false {
+        @include co(padding, $-a-padding);
+    }
+    @if $-a-margin != false {
+        @include co(margin, $-a-margin);
+    }
+}
+
+
+@mixin e-pn-a($epna-border-bottom: 1) {
+    display: block;
+    height: $mobile-li-a-height;
+    line-height: $mobile-li-a-height;
+    color: $e-pn-a-mobile-color;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @include co(white-space, $e-pn-a-white-space);
+
+
+    @if $epna-border-bottom == 1 {
+        border-bottom: 1px solid $e-pn-a-border-bottom-color;
+    }
+
+}
+
+
+@mixin arrow($side) {
+    &:before, &:after {
+        // arrow icon in CSS - for element with nested unordered lists
+        content: '';
+        position: absolute;
+        top: 50%;
+        margin-top: -1px;
+        display: inline-block;
+        height: 2px;
+        width: 10px;
+        background: $arrow-color-mobile;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    @if $side == 'left' {
+
+        &:before, &:after {
+            // arrow goes on the left side - go back button
+            left: 20px;
+            @include rj-transform-origin(1px 50%);
+        }
+
+        &:before {
+            @include rj-transform(rotate(45deg));
+        }
+
+        &:after {
+            @include rj-transform(rotate(-45deg));
+        }
+    }
+    @if $side == 'right' {
+
+        &:before, &:after {
+            // arrow goes on the right side - children navigation
+            right: 20px;
+            @include rj-transform-origin(9px 50%);
+        }
+
+        &:before {
+            @include rj-transform(rotate(45deg));
+        }
+        &:after {
+            @include rj-transform(rotate(-45deg));
+        }
+    }
+}
+
+@mixin arrow-alt($side) {
+    &:before, &:after {
+        // arrow icon in CSS - for element with nested unordered lists
+        content: '';
+        position: absolute;
+        top: 50%;
+        margin-top: -1px;
+        display: inline-block;
+        height: 2px;
+        width: 10px;
+        background: $arrow-color-mobile;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    @if $side == 'left' {
+
+        &:before, &:after {
+            // arrow goes on the left side - go back button
+            left: 20px;
+            @include rj-transform-origin(1px 50%);
+        }
+
+        &:before {
+            @include rj-transform(rotate(45deg));
+        }
+
+        &:after {
+            @include rj-transform(rotate(-45deg));
+        }
+    }
+    @if $side == 'right' {
+
+        &:before, &:after {
+            // arrow goes on the right side - children navigation
+            right: 20px;
+            @include rj-transform-origin(9px 50%);
+        }
+
+        &:before {
+            @include rj-transform(rotate(45deg));
+        }
+        &:after {
+            @include rj-transform(rotate(-45deg));
+        }
+    }
+}

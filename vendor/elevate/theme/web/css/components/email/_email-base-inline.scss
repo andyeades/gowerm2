@@ -24,7 +24,7 @@
 
 //
 //  Resets
-//  ---------------------------------------------
+//
 
 //  Generic resets
 
@@ -51,7 +51,7 @@ table {
 
 //
 //  Typography
-//  ---------------------------------------------
+//
 
 //  See email-fonts.scss for $font-face declarations
 
@@ -69,18 +69,18 @@ td {
 }
 
 a {
-    color: $link__color;
-    text-decoration: $link__text-decoration;
+    @include co(color, $link-color);
+    text-decoration: $link-text-decoration;
 }
 
 
 //
 //  Layout
-//  ---------------------------------------------
+//
 
 html,
 body {
-    background-color: $email__background-color;
+    background-color: $email-background-color;
 }
 
 .wrapper {
@@ -88,51 +88,51 @@ body {
 }
 
 .wrapper-inner {
-    padding-bottom: $email-content__padding__l;
+    padding-bottom: $email-content-padding-l;
     width: 100%;
 }
 
 .main {
     margin: 0 auto;
     text-align: left; // Necessary to prevent all text from centering in Outlook 2003
-    width: $email-body__width;
+    @include co(width, $email-body-width);
 }
 
 .header {
-    padding: $email-body__padding $email-body__padding 0;
+    @include co(padding, $email-body-padding $email-body-padding 0);
 }
 
 .main-content {
-    background-color: $email-content__background-color;
-    padding: $email-body__padding;
+    background-color: $email-content-background-color;
+    @include co(padding, $email-body-padding);
 }
 
 .footer {
-    padding: 0 $email-body__padding $email-body__padding; // Reduce space between body of email and closing text
+    padding: 0 $email-body-padding $email-body-padding; // Reduce space between body of email and closing text
 }
 
 
 //
 //  Buttons
-//  ---------------------------------------------
+//
 
 .button {
     & > tr > td {
-        padding-bottom: $indent__s;
+        padding-bottom: $indent-s;
     }
 
     .inner-wrapper {
         td {
-            border-radius: $button__border_radius;
-            background-color: $button-primary__background;
+            border-radius: $button-border-radius;
+            background-color: $button-primary-background;
 
             a {
-                border-radius: $button__border_radius;
-                border: 1px solid $button-primary__background;
-                color: $button-primary__color;
+                border-radius: $button-border-radius;
+                border: 1px solid $button-primary-background;
+                @include co(color, $button-primary-color);
                 display: inline-block;
-                font-size: $button__font-size;
-                padding: $button__padding;
+              @include co(font-size, $button-font-size);
+                @include co(padding, $button-padding);
                 text-decoration: none;
             }
         }
@@ -143,21 +143,21 @@ body {
 
 //
 //  Messages
-//  ---------------------------------------------
+//
 
 .message-info,
 .message-gift {
-    width: $table__width;
+    @include co(width, $table-width);
 
     td {
-        background-color: $message-email__background;
-        border: 1px solid $message-email__border-color;
-        color: $message-email__color;
+        background-color: $message-email-background;
+        border: 1px solid $message-email-border-color;
+        @include co(color, $message-email-color);
         margin: 0;
-        padding: $email-content__padding__base;
+        @include co(padding, $email-content-padding-base);
 
         a {
-            color: $message-email-link__color;
+            @include co(color, $message-email-link-color);
         }
 
         h1,
@@ -172,17 +172,17 @@ body {
 }
 
 .message-details {
-    margin-bottom: $indent__s;
+    margin-bottom: $indent-s;
 
     b {
         font-weight: bold;
     }
 
     td {
-        padding-bottom: $indent__xs;
+        padding-bottom: $indent-xs;
 
         b {
-            margin-right: $indent__s;
+            margin-right: $indent-s;
         }
     }
 }

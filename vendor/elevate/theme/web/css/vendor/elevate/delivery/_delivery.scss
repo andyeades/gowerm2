@@ -226,8 +226,8 @@ $del-date-choosedeliverytitle-text-transform: uppercase !default;
 }
 
 .delivery-outer {
-    margin: $del-outer-margin;
-    min-height: $del-outer-minheight;
+    @include co(margin, $del-outer-margin);
+    @include co(min-height, $del-outer-minheight);
 
 }
 
@@ -288,11 +288,11 @@ $del-enter-postcode-font-size-desktop: 2.25rem !default;
     display: table-cell;
     vertical-align: middle;
     color: white;
-    font-size: $del-enter-postcode-font-size;
+  @include co(font-size, $del-enter-postcode-font-size);
     font-weight: 600;
     opacity: 1;
     @include min-screen($desktop-min) {
-        font-size: $del-enter-postcode-font-size-desktop;
+      @include co(font-size, $del-enter-postcode-font-size-desktop);
     }
 }
 
@@ -413,10 +413,10 @@ $del-desc-store-notice-padding: 1.25rem !default;
 
 .delivery-description-store {
     @include co-notzero('padding', $del-desc-store-padding);
-    padding: $del-desc-store-padding;
+    @include co(padding, $del-desc-store-padding);
     text-align: $del-desc-store-textalign;
-    font-size: $del-desc-store-fontsize;
-    font-weight: $del-desc-store-fontweight;
+  @include co(font-size, $del-desc-store-fontsize);
+    @include co(font-weight, $del-desc-store-fontweight);
     @include ev-color-output($del-desc-store-color);
 
     @if $del-desc-store-bg-color-on == 1 {
@@ -428,11 +428,11 @@ $del-desc-store-notice-padding: 1.25rem !default;
     }
 
     .delivery-desc {
-        padding: $del-desc-padding;
+        @include co(padding, $del-desc-padding);
     }
 
     .del-desc-store-notice {
-        padding: $del-desc-store-notice-padding;
+        @include co(padding, $del-desc-store-notice-padding);
         text-align: $del-desc-store-notice-text-align;
         display: flex;
         align-items: center;
@@ -450,10 +450,10 @@ $del-desc-store-notice-padding: 1.25rem !default;
     @include rj-clearfix();
 
     p {
-        padding: $del-btm-message-1-padding;
+        @include co(padding, $del-btm-message-1-padding);
         text-align: $del-btm-message-1-textalign;
-        font-size: $del-btm-message-1-fontsize;
-        font-weight: $del-btm-message-1-fontweight;
+      @include co(font-size, $del-btm-message-1-fontsize);
+        @include co(font-weight, $del-btm-message-1-fontweight);
     }
 
     .delivery_desc {
@@ -488,9 +488,9 @@ $del-desc-store-notice-padding: 1.25rem !default;
 
     .pre-loadingstyle & {
         .mobile-dates-container {
-            width: $del-dates-container-width;
+            @include co(width, $del-dates-container-width);
             height: $del-dates-container-height;
-            padding: $del-dates-container-padding;
+            @include co(padding, $del-dates-container-padding);
 
             @include min-screen($desktop-min) {
                 height: $del-dates-container-height-desktop;
@@ -514,21 +514,21 @@ $del-desc-store-notice-padding: 1.25rem !default;
 }
 
 .delivery-mobile-outer {
-    padding: $delivery-mobile-outer-padding;
+    @include co(padding, $delivery-mobile-outer-padding);
     overflow: hidden;
     @include min-screen($desktop-min) {
-        padding: $delivery-mobile-outer-padding-desktop;
+        @include co(padding, $delivery-mobile-outer-padding-desktop);
     }
 }
 
 .delivery-choose-date {
     color: $del-choosedate-color;
     text-align: $del-choosedate-textalign;
-    font-size: $del-choosedate-font-size;
+  @include co(font-size, $del-choosedate-font-size);
     @include co(font-weight, $del-choosedate-font-weight, $font-weight-base);
-    margin: $del-choosedate-margin;
+    @include co(margin, $del-choosedate-margin);
     @if $del-choosedate-text-transform-on == 1 {
-        text-transform: $del-choosedate-text-transform;
+        @include co(text-transform, $del-choosedate-text-transform);
     }
     @include min-screen($desktop-min) {
         @include co(margin, $del-choosedate-margin-desktop, $del-choosedate-margin);
@@ -537,16 +537,16 @@ $del-desc-store-notice-padding: 1.25rem !default;
 
 
 .mobile-month {
-    width: $del-month-width;
+    @include co(width, $del-month-width);
     display: $del-month-display;
     @include ev-color-output($del-month-color);
     text-align: $del-month-textalign;
-    font-size: $del-month-font-size;
-    font-weight: $del-month-font-weight;
-    margin: $del-month-margin;
+  @include co(font-size, $del-month-font-size);
+    @include co(font-weight, $del-month-font-weight);
+    @include co(margin, $del-month-margin);
 
     @if $del-month-text-transform-on == 1 {
-        text-transform: $del-month-text-transform;
+        @include co(text-transform, $del-month-text-transform);
     }
 
     @if $del-month-border-on == 1 {
@@ -562,27 +562,27 @@ $del-desc-store-notice-padding: 1.25rem !default;
 
 .mobile-date-inner {
     cursor: pointer;
-    width: $del-date-width;
+    @include co(width, $del-date-width);
     display: $del-date-display;
     @if $del-date-display == "flex" {
-        justify-content: $del-date-justifycontent;
+        @include co(justify-content, $del-date-justifycontent);
         flex-wrap: $del-date-flexwrap;
         > div {
-            width: $del-date-children-width;
+            @include co(width, $del-date-children-width);
         }
     }
     @include ev-color-output($del-date-color);
     //height: $del-date-height;
-    padding: $del-date-padding;
+    @include co(padding, $del-date-padding);
     @include co(text-align, $del-date-textalign);
     @include co(font-size, $del-date-font-size);
-    //font-weight: $del-date-font-weight;
+    //@include co(font-weight, $del-date-font-weight);
 
 
-    margin: $del-date-margin;
+    @include co(margin, $del-date-margin);
 
     @if $del-date-text-transform-on == 1 {
-        text-transform: $del-date-text-transform;
+        @include co(text-transform, $del-date-text-transform);
     }
 
     @if $del-date-border-on == 1 {
@@ -603,7 +603,7 @@ $del-desc-store-notice-padding: 1.25rem !default;
 
     .date-number {
         color: $del-date-no-color;
-        font-weight: $del-date-no-font-weight;
+        @include co(font-weight, $del-date-no-font-weight);
         @include co(font-size, $del-date-no-font-size, $font-size-base);
         @include min-screen($desktop-min) {
             @include co(font-size, $del-date-no-font-size-desktop, $del-date-no-font-size);
@@ -612,10 +612,10 @@ $del-desc-store-notice-padding: 1.25rem !default;
 
     .date-selector {
         height: $date-selector-height;
-        width: $date-selector-width;
+        @include co(width, $date-selector-width);
         background-color: $date-selector-bg-color;
         color: $date-selector-color;
-        margin: $date-selector-margin;
+        @include co(margin, $date-selector-margin);
         @if $date-selector-border-on == 1 {
             @include elevate-border($date-selector-border-color, $date-selector-border-thickness, $date-selector-border-style, $date-selector-border-position);
             @if $date-selector-border-radius-on == 1 {
@@ -637,10 +637,10 @@ $del-desc-store-notice-padding: 1.25rem !default;
 
 .fauxradio {
     height: $fauxradio-height;
-    width: $fauxradio-width;
+    @include co(width, $fauxradio-width);
     background-color: $fauxradio-bg-color;
     color: $fauxradio-color;
-    margin: $fauxradio-margin;
+    @include co(margin, $fauxradio-margin);
     @if $fauxradio-border-on == 1 {
         @include elevate-border($fauxradio-border-color, $fauxradio-border-thickness, $fauxradio-border-style, $fauxradio-border-position);
         @if $fauxradio-border-radius-on == 1 {
@@ -673,7 +673,7 @@ $del-desc-store-notice-padding: 1.25rem !default;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: $date-selector-width;
+                @include co(width, $date-selector-width);
                 @include co(color, $date-selector-active-color, $date-selector-color);
                 @include co(background-color, $date-selector-active-bg-color, $date-selector-bg-color);
                 @if $date-selector-active-border-on == 1 {
@@ -761,12 +761,12 @@ $del-desc-store-notice-padding: 1.25rem !default;
     @include ev-color-output($del-date-choosedeliverytitle-color);
 
     text-align: $del-date-choosedeliverytitle-textalign;
-    font-size: $del-date-choosedeliverytitle-font-size;
-    font-weight: $del-date-choosedeliverytitle-font-weight;
-    margin: $del-date-choosedeliverytitle-margin;
+  @include co(font-size, $del-date-choosedeliverytitle-font-size);
+    @include co(font-weight, $del-date-choosedeliverytitle-font-weight);
+    @include co(margin, $del-date-choosedeliverytitle-margin);
 
     @if $del-date-choosedeliverytitle-text-transform-on == 1 {
-        text-transform: $del-date-choosedeliverytitle-text-transform;
+        @include co(text-transform, $del-date-choosedeliverytitle-text-transform);
     }
 
     @if $del-date-choosedeliverytitle-border-on == 1 {
@@ -979,21 +979,21 @@ $del-sel-btn-borderradius: $border-radius !default;
 $del-sel-btn-padding: 1rem 1.5rem !default;
 
 .delivery-date-selected-options {
-    margin: $del-date-sel-opts-margin;
+    @include co(margin, $del-date-sel-opts-margin);
 
     > ul {
         display: flex;
         flex-wrap: $del-day-options-flex-wrap;
-        align-items: $del-day-options-align-items;
-        justify-content: $del-day-options-justify-content;
+        @include co(align-items, $del-day-options-align-items);
+        @include co(justify-content, $del-day-options-justify-content);
 
         > li {
             display: $del-day-options-display;
             cursor: pointer;
             flex: $del-day-options-li-flex;
-            width: $del-day-options-li-width;
-            margin: $del-day-options-li-margin;
-            justify-content: $del-day-options-li-justify-content;
+            @include co(width, $del-day-options-li-width);
+            @include co(margin, $del-day-options-li-margin);
+            @include co(justify-content, $del-day-options-li-justify-content);
             @include min-screen($desktop-min) {
 
             }
@@ -1014,14 +1014,14 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
     cursor: pointer;
     display: $del-radio-selector-display;
     @include ev-color-output($del-radio-selector-color);
-    padding: $del-radio-selector-padding;
+    @include co(padding, $del-radio-selector-padding);
     text-align: $del-radio-selector-textalign;
-    font-size: $del-radio-selector-font-size;
+  @include co(font-size, $del-radio-selector-font-size);
 
-    margin: $del-radio-selector-margin;
+    @include co(margin, $del-radio-selector-margin);
 
     @if $del-radio-selector-text-transform-on == 1 {
-        text-transform: $del-radio-selector-text-transform;
+        @include co(text-transform, $del-radio-selector-text-transform);
     }
 
     @if $del-radio-selector-border-on == 1 {
@@ -1043,7 +1043,7 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
     }
 
     .no-selectables & {
-        padding: $del-radio-selector-noselectables-padding;
+        @include co(padding, $del-radio-selector-noselectables-padding);
     }
 
     .method-price {
@@ -1132,11 +1132,11 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
         cursor: pointer;
         top: $del-option-fauxradio-pos-top;
         right: $del-option-fauxradio-pos-right;
-        width: $del-option-fauxradio-width;
+        @include co(width, $del-option-fauxradio-width);
         @include min-screen($desktop-min) {
             top: $del-option-fauxradio-pos-top-desktop;
             right: $del-option-fauxradio-pos-right-desktop;
-            width: $del-option-fauxradio-width-desktop;
+            @include co(width, $del-option-fauxradio-width-desktop);
         }
         > i {
             @include co(display, $del-radio-selector-fauxradio-i-display);
@@ -1145,27 +1145,27 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
 
     .method-pri {
         @include ev-color-output($del-method-pri-color);
-        padding: $del-method-pri-padding;
-        font-size: $del-method-pri-fontsize;
-        font-weight: $del-method-pri-fontweight;
-        margin: $del-method-pri-margin;
+        @include co(padding, $del-method-pri-padding);
+      @include co(font-size, $del-method-pri-fontsize);
+        @include co(font-weight, $del-method-pri-fontweight);
+        @include co(margin, $del-method-pri-margin);
         @if $del-method-pri-text-transform-on == 1 {
-            text-transform: $del-method-pri-text-transform;
+            @include co(text-transform, $del-method-pri-text-transform);
         }
-        order: $del-method-pri-order;
-        width: $del-method-pri-width;
+        @include co(order, $del-method-pri-order);
+        @include co(width, $del-method-pri-width);
     }
 
     .method-time-delivery-window {
         @include ev-color-output($del-method-time-delivery-window-color);
-        padding: $del-method-time-delivery-window-padding;
-        font-size: $del-method-time-delivery-window-fontsize;
-        font-weight: $del-method-time-delivery-window-fontweight;
-        margin: $del-method-time-delivery-window-margin;
-        order: $del-method-time-delivery-window-order;
+        @include co(padding, $del-method-time-delivery-window-padding);
+      @include co(font-size, $del-method-time-delivery-window-fontsize);
+        @include co(font-weight, $del-method-time-delivery-window-fontweight);
+        @include co(margin, $del-method-time-delivery-window-margin);
+        @include co(order, $del-method-time-delivery-window-order);
 
         @if $del-method-time-delivery-window-text-transform-on == 1 {
-            text-transform: $del-method-time-delivery-window-text-transform;
+            @include co(text-transform, $del-method-time-delivery-window-text-transform);
         }
     }
 
@@ -1183,33 +1183,33 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
         display: flex;
         flex-wrap: wrap;
         @include ev-color-output($del-method-teamnumber-color);
-        padding: $del-method-teamnumber-padding;
-        font-size: $del-method-teamnumber-fontsize;
-        font-weight: $del-method-teamnumber-fontweight;
-        margin: $del-method-teamnumber-margin;
-        order: $del-method-teamnumber-order;
-        align-items: $del-method-teamnumber-align-items;
+        @include co(padding, $del-method-teamnumber-padding);
+      @include co(font-size, $del-method-teamnumber-fontsize);
+        @include co(font-weight, $del-method-teamnumber-fontweight);
+        @include co(margin, $del-method-teamnumber-margin);
+        @include co(order, $del-method-teamnumber-order);
+        @include co(align-items, $del-method-teamnumber-align-items);
         align-self: $del-method-teamnumber-alignself;
         @if $del-method-teamnumber-text-transform-on == 1 {
-            text-transform: $del-method-teamnumber-text-transform;
+            @include co(text-transform, $del-method-teamnumber-text-transform);
         }
 
         > span {
 
-            width: $del-method-teamnumber-ico-width;
+            @include co(width, $del-method-teamnumber-ico-width);
             @include min-screen($desktop-min) {
-                width: $del-method-teamnumber-ico-width-desktop;
+                @include co(width, $del-method-teamnumber-ico-width-desktop);
             }
         }
 
         > div {
 
-            width: $del-method-teamnumber-deltypetext-width;
+            @include co(width, $del-method-teamnumber-deltypetext-width);
 
             display: flex;
             flex-wrap: wrap;
             @include min-screen($desktop-min) {
-                width: $del-method-teamnumber-deltypetext-width-desktop;
+                @include co(width, $del-method-teamnumber-deltypetext-width-desktop);
             }
 
             > span {
@@ -1219,42 +1219,42 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
 
         .method-del-teamnumber-ico {
             @include co(display, $del-method-teamnumber-ico-display);
-            padding: $del-method-teamnumber-ico-padding;
+            @include co(padding, $del-method-teamnumber-ico-padding);
 
             i {
-                font-size: $del-method-teamnumber-ico-fontsize;
+              @include co(font-size, $del-method-teamnumber-ico-fontsize);
             }
         }
 
         .method-del-teamnumber {
             @include co(display, $del-method-teamnumber-display);
             line-height: $del-method-teamnumber-lineheight;
-            margin: $del-method-teamnumber-text-margin;
+            @include co(margin, $del-method-teamnumber-text-margin);
         }
     }
 
     .method-del-type {
         @include ev-color-output($del-method-type-color);
-        padding: $del-method-type-padding;
+        @include co(padding, $del-method-type-padding);
         @include co(font-size, $del-method-type-fontsize);
-        font-weight: $del-method-type-fontweight;
-        margin: $del-method-type-margin;
-        order: $del-method-type-order;
+        @include co(font-weight, $del-method-type-fontweight);
+        @include co(margin, $del-method-type-margin);
+        @include co(order, $del-method-type-order);
         @if $del-method-type-text-transform-on == 1 {
-            text-transform: $del-method-type-text-transform;
+            @include co(text-transform, $del-method-type-text-transform);
         }
     }
 
 
     .method-extra-info {
         @include ev-color-output($del-method-extra-info-color);
-        padding: $del-method-extra-info-padding;
-        font-size: $del-method-extra-info-fontsize;
-        font-weight: $del-method-extra-info-fontweight;
-        margin: $del-method-extra-info-margin;
-        order: $del-method-extra-info-order;
+        @include co(padding, $del-method-extra-info-padding);
+      @include co(font-size, $del-method-extra-info-fontsize);
+        @include co(font-weight, $del-method-extra-info-fontweight);
+        @include co(margin, $del-method-extra-info-margin);
+        @include co(order, $del-method-extra-info-order);
         @if $del-method-extra-info-text-transform-on == 1 {
-            text-transform: $del-method-extra-info-text-transform;
+            @include co(text-transform, $del-method-extra-info-text-transform);
         }
     }
 }
@@ -1308,8 +1308,8 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
 .del-rad-sel-b {
     background-color: $del-rad-sel-b-bgcolor;
     display: flex;
-    align-items: $del-rad-sel-b-alignitems;
-    order: $del-rad-sel-b-order;
+    @include co(align-items, $del-rad-sel-b-alignitems);
+    @include co(order, $del-rad-sel-b-order);
     align-self: $del-rad-sel-b-alignself;
     @include co(min-height, $del-rad-sel-b-maxheight);
     @include co(max-height, $del-rad-sel-b-maxheight);
@@ -1321,8 +1321,8 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
 }
 
 .del-sel-btn-o {
-    order: $del-sel-btn-o-order;
-    width: $del-sel-btn-o-width;
+    @include co(order, $del-sel-btn-o-order);
+    @include co(width, $del-sel-btn-o-width);
 }
 
 
@@ -1331,11 +1331,11 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
     display: inline-block;
     @include button-variant($del-sel-btn-bgcolor, $del-sel-btn-bordercolor);
     @if $del-sel-btn-texttransform-on == 1 {
-        text-transform: $del-sel-btn-texttransform;
+        @include co(text-transform, $del-sel-btn-texttransform);
     }
-    padding: $del-sel-btn-padding;
-    font-size: $del-sel-btn-fontsize;
-    font-weight: $del-sel-btn-fontweight;
+    @include co(padding, $del-sel-btn-padding);
+  @include co(font-size, $del-sel-btn-fontsize);
+    @include co(font-weight, $del-sel-btn-fontweight);
     @include co(margin, $del-sel-btn-margin);
     @if $del-sel-btn-borderradius-on == 1 {
         border-radius: $del-sel-btn-borderradius;

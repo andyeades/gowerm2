@@ -1,40 +1,40 @@
 //colors
-$webforms_color_0: #ddd;
-$webforms_color_1: #888;
-$webforms_color_2: #fff;
-$webforms_color_3: #e02b27;
-$webforms_color_4: #ed8380;
-$webforms_color_5: #eee;
-$webforms_color_6: rgba(255, 212, 96, 0.26);
-$webforms_color_7: #cccccc;
-$webforms_color_8: #ccc;
-$webforms_color_9: rgba(0, 0, 0, .1);
-$webforms_color_10: #333;
-$webforms_color_11: #1f8dd6;
-$webforms_color_12: #f0f0f0;
-$webforms_color_13: #999;
-$webforms_color_14: #777;
-$webforms_color_15: #7d7d7d;
-$webforms_color_16: #f5f5f5;
-$webforms_color_17: rgb(240, 120, 0);
-$webforms_color_18: #f8f8f8;
-$webforms_color_19: #dadada;
-$webforms_color_20: red;
-$webforms_color_21: #00ff08;
-$webforms_color_22: white;
-$webforms_color_23: #8bc53f;
-$webforms_color_24: rgba(0, 0, 0, 0.6);
+$webforms-color-0: #ddd;
+$webforms-color-1: #888;
+$webforms-color-2: #fff;
+$webforms-color-3: #e02b27;
+$webforms-color-4: #ed8380;
+$webforms-color-5: #eee;
+$webforms-color-6: rgba(255, 212, 96, 0.26);
+$webforms-color-7: #cccccc;
+$webforms-color-8: #ccc;
+$webforms-color-9: rgba(0, 0, 0, .1);
+$webforms-color-10: #333;
+$webforms-color-11: #1f8dd6;
+$webforms-color-12: #f0f0f0;
+$webforms-color-13: #999;
+$webforms-color-14: #777;
+$webforms-color-15: #7d7d7d;
+$webforms-color-16: #f5f5f5;
+$webforms-color-17: rgb(240, 120, 0);
+$webforms-color-18: #f8f8f8;
+$webforms-color-19: #dadada;
+$webforms-color-20: red;
+$webforms-color-21: #00ff08;
+$webforms-color-22: white;
+$webforms-color-23: #8bc53f;
+$webforms-color-24: rgba(0, 0, 0, 0.6);
 
 //fonts
-$webforms_font_1: Arial;
-$webforms_font_2: Helvetica;
-$webforms_font_3: sans-serif;
+$webforms-font-1: Arial;
+$webforms-font-2: Helvetica;
+$webforms-font-3: sans-serif;
 
 //urls
-$webforms_url_0: url(../images/stars.gif);
-$webforms_url_1: url(../images/tooltip.png);
-$webforms_url_2: url(../images/ajax-loader-big.gif);
-$webforms_url_3: url(../images/results_stars.png);
+$webforms-url-0: url(../images/stars.gif);
+$webforms-url-1: url(../images/tooltip.png);
+$webforms-url-2: url(../images/ajax-loader-big.gif);
+$webforms-url-3: url(../images/results-stars.png);
 
 
 .webforms {
@@ -69,10 +69,10 @@ div {
         cursor: pointer;
         float: left;
         display: inline;
-        background-image: $webforms_url_0;
+        background-image: $webforms-url-0;
     }
     &.feedback {
-        border: 1px solid $webforms_color_0;
+        border: 1px solid $webforms-color-0;
         padding: 5px 3px 3px;
         display: inline;
     }
@@ -105,7 +105,7 @@ div {
     label {
         font-size: 10px;
         font-weight: normal;
-        color: $webforms_color_1;
+        color: $webforms-color-1;
     }
     input.input-text {
         display: block;
@@ -116,7 +116,7 @@ div {
     text-align: left;
 }
 .tooltip-icon {
-    background-image: $webforms_url_1;
+    background-image: $webforms-url-1;
     background-size: 1.5rem 1.5rem;
     width: 1.5rem;
     height: 1.5rem;
@@ -136,7 +136,7 @@ div {
 .please-wait {
     padding-top: 0.5rem;
     .loading-indicator {
-        background: $webforms_color_2 $webforms_url_2 no-repeat;
+        background: $webforms-color-2 $webforms-url-2 no-repeat;
         background-size: 1.8rem;
         display: inline-block;
         width: 1.8rem;
@@ -156,22 +156,22 @@ div {
 .validation-advice {
     margin-top: 0.7rem;
     font-size: 1.2rem;
-    color: $webforms_color_3;
+    color: $webforms-color-3;
     clear: both;
 }
 .webforms-customer-account-form {
     margin-top: 3rem;
-    border: 1px solid $webforms_color_5;
+    border: 1px solid $webforms-color-5;
     padding: 2rem;
 }
 .webforms-customer-account-message {
-    background: $webforms_color_6;
+    background: $webforms-color-6;
     padding: 3rem;
 }
 .webforms-results-block {
     padding-bottom: 10px;
     margin-bottom: 10px;
-    border-bottom: 1px dotted $webforms_color_7;
+    border-bottom: 1px dotted $webforms-color-7;
     float: left;
     width: 100%;
     clear: both;
@@ -203,13 +203,13 @@ div {
     padding: 0 !important;
     height: 16px;
     position: relative;
-    background: $webforms_url_3 top left repeat-x;
+    background: $webforms-url-3 top left repeat-x;
     li {
         padding: 0;
         margin: 0;
         float: left;
         &.stars-value {
-            background: $webforms_url_3 left bottom;
+            background: $webforms-url-3 left bottom;
             position: absolute;
             height: 16px;
             display: block;
@@ -223,11 +223,11 @@ div {
 .autocomplete-suggestions {
     text-align: left;
     cursor: default;
-    border: 1px solid $webforms_color_8;
+    border: 1px solid $webforms-color-8;
     border-top: 0;
-    background: $webforms_color_2;
+    background: $webforms-color-2;
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-    box-shadow: -1px 1px 3px $webforms_color_9;
+    box-shadow: -1px 1px 3px $webforms-color-9;
     position: absolute;
     display: none;
     z-index: 9999;
@@ -245,13 +245,13 @@ div {
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 1.02em;
-    color: $webforms_color_10;
+    color: $webforms-color-10;
     b {
         font-weight: normal;
-        color: $webforms_color_11;
+        color: $webforms-color-11;
     }
     &.selected {
-        background: $webforms_color_12;
+        background: $webforms-color-12;
     }
 }
 .file-preview {
@@ -267,7 +267,7 @@ div {
         overflow: auto;
         position: relative;
         img {
-            border: solid 1px $webforms_color_13;
+            border: solid 1px $webforms-color-13;
             //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
             border-radius: 3px;
             padding: 3px;
@@ -283,7 +283,7 @@ div {
 }
 .file-progress {
     font-size: 90%;
-    color: $webforms_color_14;
+    color: $webforms-color-14;
 }
 .webforms-datepicker {
     margin-bottom: 1rem;
@@ -337,9 +337,9 @@ div {
             &:before {
                 font-size: 23px;
                 line-height: 23px;
-                color: $webforms_color_15;
+                color: $webforms-color-15;
                 content: '\e612';
-                font-family: $icons__font-name;
+                font-family: $icons-font-name;
                 vertical-align: middle;
                 display: inline-block;
                 font-weight: normal;
@@ -385,14 +385,14 @@ div {
 
 .drop-zone {
     padding: 2rem 0.7rem;
-    color: $webforms_color_14;
-    border: 0.2rem dashed $webforms_color_0;
+    color: $webforms-color-14;
+    border: 0.2rem dashed $webforms-color-0;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 0.4rem;
     opacity: 0.9;
     cursor: pointer;
     &:hover {
-        background-color: $webforms_color_16;
+        background-color: $webforms-color-16;
     }
 }
 .drop-zone-preview-container {
@@ -403,8 +403,8 @@ div {
     vertical-align: top !important;
 }
 .icon-paperclip {
-    color: $webforms_color_17 !important;
-    fill: $webforms_color_17 !important;
+    color: $webforms-color-17 !important;
+    fill: $webforms-color-17 !important;
     svg {
         //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
         transform: rotate(45deg) scaleX(-1);
@@ -414,11 +414,11 @@ div {
     text-align: center !important;
 }
 .drop-zone-preview {
-    background: $webforms_color_18;
-    border: .09167rem solid $webforms_color_19;
+    background: $webforms-color-18;
+    border: .09167rem solid $webforms-color-19;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 0.33333rem;
-    color: $webforms_color_13;
+    color: $webforms-color-13;
     padding: 5px;
     margin-bottom: 5px;
     line-height: inherit;
@@ -443,7 +443,7 @@ div {
 }
 .drop-zone-preview-filename {
     max-width: 62%;
-    color: $webforms_color_10;
+    color: $webforms-color-10;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     word-wrap: normal !important;
@@ -452,7 +452,7 @@ div {
     vertical-align: top !important;
 }
 .drop-zone-preview-filename-end {
-    color: $webforms_color_10;
+    color: $webforms-color-10;
 }
 .drop-zone-preview-size {
     clear: left;
@@ -461,7 +461,7 @@ div {
 .drop-zone-error {
     clear: left;
     float: left !important;
-    color: $webforms_color_20;
+    color: $webforms-color-20;
 }
 .drop-zone-preview-icon-close {
     position: absolute;
@@ -473,14 +473,14 @@ div {
     cursor: pointer !important;
     float: right !important;
     svg {
-        fill: $webforms_color_13;
+        fill: $webforms-color-13;
     }
 }
 .drop-zone-progress {
     position: absolute;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 0.33333rem;
-    background-color: $webforms_color_21;
+    background-color: $webforms-color-21;
     opacity: 0.1;
     height: 100% !important;
     z-index: 1;
@@ -492,7 +492,7 @@ div {
     position: absolute;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 0.33333rem;
-    background-color: $webforms_color_21;
+    background-color: $webforms-color-21;
     opacity: 0.1;
     height: 100% !important;
     z-index: 1;
@@ -513,7 +513,7 @@ div {
 }
 .webforms-popup {
     position: relative;
-    background: $webforms_color_2;
+    background: $webforms-color-2;
     padding: 2rem;
     margin: 2rem auto;
     //Instead of the line below you could use @include box-sizing($bs)
@@ -538,23 +538,23 @@ div {
 }
 .webforms-result-action {
     display: block;
-    background: $webforms_color_16;
+    background: $webforms-color-16;
     text-align: center;
     padding: 0.3rem 0.1rem;
     margin: 0.5rem 0.1rem;
     white-space: nowrap;
-    color: $webforms_color_1;
+    color: $webforms-color-1;
     text-decoration: none;
     &:hover {
         text-decoration: none;
-        color: $webforms_color_22;
-        background: $webforms_color_23;
+        color: $webforms-color-22;
+        background: $webforms-color-23;
     }
 }
 .result-action-delete {
-    border-color: $webforms_color_20;
+    border-color: $webforms-color-20;
     &:hover {
-        background: $webforms_color_20;
+        background: $webforms-color-20;
     }
 }
 .webforms-file-pool {
@@ -564,9 +564,9 @@ div {
 .webforms-file-pool-selectall {
     margin-bottom: 5px;
     label {
-        font: bold 10px/16px $webforms_font_1, $webforms_font_2, $webforms_font_3;
+        font: bold 10px/16px $webforms-font-1, $webforms-font-2, $webforms-font-3;
         text-transform: uppercase;
-        color: $webforms_color_1;
+        color: $webforms-color-1;
         float: none !important;
         margin-left: 5px;
     }
@@ -576,9 +576,9 @@ div {
     flex: 1;
     height: auto;
     text-align: center;
-    font: bold 9px/16px $webforms_font_1, $webforms_font_2, $webforms_font_3;
+    font: bold 9px/16px $webforms-font-1, $webforms-font-2, $webforms-font-3;
     text-transform: uppercase;
-    color: $webforms_color_1;
+    color: $webforms-color-1;
     display: table-cell;
     p {
         padding-top: 5px;
@@ -587,7 +587,7 @@ div {
         clear: both;
         width: 100%;
         label {
-            color: $webforms_color_1;
+            color: $webforms-color-1;
         }
     }
     label {
@@ -603,22 +603,22 @@ div {
     margin-right: 10px;
     height: auto;
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-    box-shadow: 0 0 3px $webforms_color_24;
-    background: $webforms_color_16;
+    box-shadow: 0 0 3px $webforms-color-24;
+    background: $webforms-color-16;
     max-width: 200px;
     padding: 5px 10px;
     &:hover {
         //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-        box-shadow: 0 0 7px $webforms_color_24;
-        background: $webforms_color_22;
-        color: $webforms_color_1;
+        box-shadow: 0 0 7px $webforms-color-24;
+        background: $webforms-color-22;
+        color: $webforms-color-1;
     }
     figure {
         p {
             margin: 10px 0 5px;
         }
         img {
-            background: $webforms_color_22;
+            background: $webforms-color-22;
         }
     }
 }
@@ -638,10 +638,10 @@ div {
     vertical-align: baseline;
 }
 input.validation-failed {
-    border-color: $webforms_color_4;
+    border-color: $webforms-color-4;
 }
 textarea.validation-failed {
-    border-color: $webforms_color_4;
+    border-color: $webforms-color-4;
 }
 .block-webforms-form .actions-toolbar {
     margin: 17px 0;

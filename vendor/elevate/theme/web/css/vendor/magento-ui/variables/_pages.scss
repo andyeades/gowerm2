@@ -1,116 +1,116 @@
 //
 //  Pager variables
-//  _____________________________________________
+//
 
 $pager-color                                 : #5A5A5A !default;
 
-$pager-label__display                        : none !default;
+$pager-label-display                        : none !default;
 $pager-reset-spaces                          : true !default;  // Reset spaces between inline-block elements
 
-$pager__font-size                            : 0.9375rem !default;
-$pager__font-weight                          : $font-weight__light !default;
-$pager__line-height                          : $pager__font-size * 2 !default;
+$pager-font-size                            : 0.9375rem !default;
+$pager-font-weight                          : $font-weight-light !default;
+$pager-line-height                          : $pager-font-size * 2 !default;
 
-$pager-item__display                         : inline-block !default;
-$pager-item__margin                          : 0 0.125rem !default;
-$pager-item__padding                         : 0.25rem 0.9375rem !default;
-$pager-item__border__radius_on                    : 1 !default;
-$pager-item__border__radius                       : 0.25rem !default;
+$pager-item-display                         : inline-block !default;
+$pager-item-margin                          : 0 0.125rem !default;
+$pager-item-padding                         : 0.25rem 0.9375rem !default;
+$pager-item-border-radius-on                    : 1 !default;
+$pager-item-border-radius                       : 0.25rem !default;
 
 
-$pager-actions__padding                      : 0 !default;
+$pager-actions-padding                      : 0 !default;
 
 //  Pager current page
-$pager-current__font-weight                  : $font-weight__light !default;
-$pager-current__color                        : white !default;
-$pager-current__border                       : 1px solid #f0386c !default;
-$pager-current__background                   : #f0386c !default;
-$pager-current__gradient                     : false !default;
-$pager-current__gradient-direction           : false !default;
-$pager-current__gradient-color-start         : false !default;
-$pager-current__gradient-color-end           : false !default;
+$pager-current-font-weight                  : $font-weight-light !default;
+$pager-current-color                        : white !default;
+$pager-current-border                       : 1px solid #f0386c !default;
+$pager-current-background                   : #f0386c !default;
+$pager-current-gradient                     : false !default;
+$pager-current-gradient-direction           : false !default;
+$pager-current-gradient-color-start         : false !default;
+$pager-current-gradient-color-end           : false !default;
 
 //  Pager link page
-$pager__gradient                             : false !default;
-$pager__gradient-direction                   : false !default;
+$pager-gradient                             : false !default;
+$pager-gradient-direction                   : false !default;
 
 //  Pager link default
-$pager__color                                : $pager-color !default;
-$pager__border                               : 1px solid transparent !default;
+$pager-color                                : $pager-color !default;
+$pager-border                               : 1px solid transparent !default;
 
-$pager__text-decoration                      : none !default;
-$pager__background                           : unset !default;
-$pager__gradient-color-start                 : false !default;
-$pager__gradient-color-end                   : false !default;
+$pager-text-decoration                      : none !default;
+$pager-background                           : unset !default;
+$pager-gradient-color-start                 : false !default;
+$pager-gradient-color-end                   : false !default;
 
 //  Pager link visited
-$pager__visited__color                       : $link__visited__color !default;
-$pager__visited__border                      : false !default;
-$pager__visited__background                  : false !default;
-$pager__visited__gradient-color-start        : false !default;
-$pager__visited__gradient-color-end          : false !default;
+$pager-visited-color                       : $link-visited-color !default;
+$pager-visited-border                      : false !default;
+$pager-visited-background                  : false !default;
+$pager-visited-gradient-color-start        : false !default;
+$pager-visited-gradient-color-end          : false !default;
 
 //  Pager link hover
-$pager__hover__color                         : $link__hover__color !default;
-$pager__hover__border                        : false !default;
-$pager__hover__text-decoration               : none !default;
-$pager__hover__background                    : false !default;
-$pager__hover__gradient-color-start          : false !default;
-$pager__hover__gradient-color-end            : false !default;
+$pager-hover-color                         : $link-hover-color !default;
+$pager-hover-border                        : false !default;
+$pager-hover-text-decoration               : none !default;
+$pager-hover-background                    : false !default;
+$pager-hover-gradient-color-start          : false !default;
+$pager-hover-gradient-color-end            : false !default;
 
 
 //  Pager link active
-$pager__active__color                        : $link__active__color !default;
-$pager__active__border                       : false !default;
-$pager__active__background                   : false !default;
-$pager__active__gradient-color-start         : false !default;
-$pager__active__gradient-color-end           : false !default;
+$pager-active-color                        : $link-active-color !default;
+$pager-active-border                       : false !default;
+$pager-active-background                   : false !default;
+$pager-active-gradient-color-start         : false !default;
+$pager-active-gradient-color-end           : false !default;
 
 //  Pager link.action
-$pager-icon__use                             : true !default;
-$pager-icon__previous-content                : $icon-prev !default;
-$pager-icon__next-content                    : $icon-next !default;
-$pager-icon__text-hide                       : true !default;
-$pager-icon__position                        : before !default;
-$pager-icon__font                            : $icon-font !default;
-$pager-icon__font-margin                     : 0 !default;
-$pager-icon__font-vertical-align             : top !default;
-$pager-icon__font-size                       :  0.625rem !default;
-$pager-icon__font-line-height                : $icon-font__line-height !default;
+$pager-icon-use                             : true !default;
+$pager-icon-previous-content                : $icon-prev !default;
+$pager-icon-next-content                    : $icon-next !default;
+$pager-icon-text-hide                       : true !default;
+$pager-icon-position                        : before !default;
+$pager-icon-font                            : $icon-font !default;
+$pager-icon-font-margin                     : 0 !default;
+$pager-icon-font-vertical-align             : top !default;
+$pager-icon-font-size                       :  0.625rem !default;
+$pager-icon-font-line-height                : $icon-font-line-height !default;
 
 //  Pager link.action gradient               : element has a gradient background
-$pager-action__gradient                      : false !default; // [true|false]
-$pager-action__gradient-direction            : false !default; // [true|false]
+$pager-action-gradient                      : false !default; // [true|false]
+$pager-action-gradient-direction            : false !default; // [true|false]
 
 //  Pager link.action default
-$pager-action__color                         : $pager-color !default;
-$pager-action__border                        : 1px solid transparent !default;
-$pager-action__text-decoration               : $pager__text-decoration !default;
+$pager-action-color                         : $pager-color !default;
+$pager-action-border                        : 1px solid transparent !default;
+$pager-action-text-decoration               : $pager-text-decoration !default;
 // Elevate Added
-$pager-action__text-transform                : false !default;
+$pager-action-text-transform                : false !default;
 
-$pager-action__background                    : $pager__background !default;
-$pager-action__gradient-color-start          : false !default;
-$pager-action__gradient-color-end            : false !default;
+$pager-action-background                    : $pager-background !default;
+$pager-action-gradient-color-start          : false !default;
+$pager-action-gradient-color-end            : false !default;
 
 //  Pager link.action visited
-$pager-action__visited__color                : $pager-action__color !default;
-$pager-action__visited__border               : false !default;
-$pager-action__visited__background           : false !default;
-$pager-action__visited__gradient-color-start : false !default;
-$pager-action__visited__gradient-color-end   : false !default;
+$pager-action-visited-color                : $pager-action-color !default;
+$pager-action-visited-border               : false !default;
+$pager-action-visited-background           : false !default;
+$pager-action-visited-gradient-color-start : false !default;
+$pager-action-visited-gradient-color-end   : false !default;
 
 //  Pager link.action hover
-$pager-action__hover__color                  : $pager-action__color !default;
-$pager-action__hover__border                 : false !default;
-$pager-action__hover__background             : false !default;
-$pager-action__hover__text-decoration        : $pager__hover__text-decoration !default;
-$pager-action__hover__gradient-color-start   : false !default;
-$pager-action__hover__gradient-color-end     : false !default;
+$pager-action-hover-color                  : $pager-action-color !default;
+$pager-action-hover-border                 : false !default;
+$pager-action-hover-background             : false !default;
+$pager-action-hover-text-decoration        : $pager-hover-text-decoration !default;
+$pager-action-hover-gradient-color-start   : false !default;
+$pager-action-hover-gradient-color-end     : false !default;
 
 //  Pager link.action active
-$pager-action__active__color                 : $pager-action__color !default;
-$pager-action__active__border                : false !default;
-$pager-action__active__background            : false !default;
-$pager-action__active__gradient-color-start  : false !default;
-$pager-action__active__gradient-color-end    : false !default;
+$pager-action-active-color                 : $pager-action-color !default;
+$pager-action-active-border                : false !default;
+$pager-action-active-background            : false !default;
+$pager-action-active-gradient-color-start  : false !default;
+$pager-action-active-gradient-color-end    : false !default;

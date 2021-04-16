@@ -48,9 +48,9 @@ class Info extends \Magento\Backend\App\Action {
     protected $scopeConfig;
 
     /**
-     * @var \PrintNode\Credentials
+     * @var \Elevate\PrintLabels\Helper\Data
      */
-    protected $printNodeCredentials;
+    protected $helper;
 
     /**
      * @var \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation
@@ -80,7 +80,7 @@ class Info extends \Magento\Backend\App\Action {
      * @param \Magento\Sales\Model\Order                                 $orderModel
      * @param \Magento\Framework\Encryption\EncryptorInterface    $encryptorInterface
      * @param \Magento\Framework\App\Config\ScopeConfigInterface  $scopeConfig
-     * @param \PrintNode\Credentials                              $printNodeCredentials
+     * @param \Elevate\PrintLabels\Helper\Data                    $helper
      * @param \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation
      */
     public function __construct(
@@ -92,11 +92,11 @@ class Info extends \Magento\Backend\App\Action {
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Magento\Framework\Encryption\EncryptorInterface $encryptorInterface,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \PrintNode\Credentials $printNodeCredentials,
         \Magento\Customer\Api\AddressRepositoryInterface $addressRepository,
         \Magento\Sales\Model\Order\AddressRepository $orderAddressRepository,
         \Magento\Sales\Api\OrderAddressRepositoryInterface $orderAddressRepo,
         \Magento\Sales\Model\Order $orderModel,
+        \Elevate\PrintLabels\Helper\Data $helper,
         \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation
     ) {
         parent::__construct($context);
@@ -108,33 +108,15 @@ class Info extends \Magento\Backend\App\Action {
         $this->accountManagement = $accountManagement;
         $this->encryptorInterface = $encryptorInterface;
         $this->scopeConfig = $scopeConfig;
-        $this->printNodeCredentials = $printNodeCredentials;
-        $this->dpdAuthorisation = $dpdAuthorisation;
+
         $this->addressRepository = $addressRepository;
         $this->orderAddressRepository = $orderAddressRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->orderModel = $orderModel;
         $this->orderAddressRepo = $orderAddressRepo;
-        $this->printNodeApiKey = $this->scopeConfig->getValue('elevate_printlabels/printnodedetails/printnodeapikey', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->printNodePrinterId = $this->scopeConfig->getValue('elevate_printlabels/printnodedetails/printnodeprinterid', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiAccountNumber = $this->scopeConfig->getValue('elevate_printlabels/details/api_accountnumber', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiUsername = $this->scopeConfig->getValue('elevate_printlabels/details/api_username', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiPassword = $this->scopeConfig->getValue('elevate_printlabels/details/api_password', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiUrl = $this->scopeConfig->getValue('elevate_printlabels/details/api_url', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderContactName = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/contact_name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderTelephone = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/contact_telephone', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgName = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgStreet = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_street', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgStreet2 = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_locality', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgTownCity = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_towncity', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgCounty = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_county', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgPostcode = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_postcode', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgCountryCode = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_countrycode', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->collectionTime = $this->scopeConfig->getValue('elevate_printlabels/collection/collection_time', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->collectionCutOffTime = $this->scopeConfig->getValue('elevate_printlabels/collection/collection_cutofftime', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->collectionDays = $this->scopeConfig->getValue('elevate_printlabels/collection/collection_days', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
-
+        $this->helper = $helper;
+        $this->dpdAuthorisation = $dpdAuthorisation;
     }
 
     /**
@@ -280,17 +262,17 @@ class Info extends \Magento\Backend\App\Action {
                         'parcel'               => [],
                         'collectionDetails'    => [
                             'contactDetails' => [
-                                'contactName' => $this->senderContactName,
-                                'telephone'   => $this->senderTelephone
+                                'contactName' => $this->helper->getSenderContactName(),
+                                'telephone'   => $this->helper->getSenderTelephone()
                             ],
                             'address'        => [
-                                'organisation' => $this->senderOrgName,
-                                'countryCode'  => $this->senderOrgCountryCode,
-                                'postcode'     => $this->senderOrgPostcode,
-                                'street'       => $this->senderOrgStreet,
-                                'locality'     => $this->senderOrgStreet2,
-                                'town'         => $this->senderOrgTownCity,
-                                'county'       => $this->senderOrgCounty
+                                'organisation' => $this->helper->getSenderOrgName(),
+                                'countryCode'  => $this->helper->getSenderOrgCountryCode(),
+                                'postcode'     => $this->helper->getSenderOrgPostcode(),
+                                'street'       => $this->helper->getSenderOrgStreet(),
+                                'locality'     => $this->helper->getSenderOrgStreet2(),
+                                'town'         => $this->helper->getSenderOrgTownCity(),
+                                'county'       => $this->helper->getSenderOrgCounty()
                             ]
                         ],
                         'deliveryDetails'      => [
@@ -369,8 +351,7 @@ class Info extends \Magento\Backend\App\Action {
 
             $dpdLabel = $this->dpdAuthorisation->getLabel($shipmentId, 'text/vnd.citizen-clp');
 
-            $credentials = $this->printNodeCredentials;
-            $credentials->setApiKey($this->printNodeApiKey);
+            $credentials = new \PrintNode\Credentials\ApiKey($this->printNodeApiKey);
 
             // Hint: Your API username is in the format description.integer, where description
             // is the name given to the API key when you created it, followed by a dot (.) and an integer.

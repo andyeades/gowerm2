@@ -20,6 +20,15 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar {
 			} elseif ($currentOrder == 'price_asc') {
 				$this->_collection->setOrder('price', 'asc');
 			}
+            elseif ($currentOrder == 'position') {
+				$this->_collection->setOrder('position', 'asc');
+			}
+            elseif ($currentOrder == 'name') {
+				$this->_collection->setOrder('name', 'asc');
+			}
+            elseif ($currentOrder == 'product_rating') {
+				$this->_collection->setOrder('product_rating', 'desc');
+			}
 		}     
     
     return $this;

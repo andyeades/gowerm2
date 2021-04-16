@@ -1,49 +1,49 @@
 
-$ev_discprod_alternatives_bg_color: #08152F !default;
-$ev_discprod_alternatives_border_on: 1 !default;
-$ev_discprod_alternatives_border_color: #08152F !default;
-$ev_discprod_alternatives_border_thickness: 1px !default;
-$ev_discprod_alternatives_border_style: solid !default;
-$ev_discprod_alternatives_border_radius_on: 1 !default;
+$ev-discprod-alternatives-bg-color: #08152F !default;
+$ev-discprod-alternatives-border-on: 1 !default;
+$ev-discprod-alternatives-border-color: #08152F !default;
+$ev-discprod-alternatives-border-thickness: 1px !default;
+$ev-discprod-alternatives-border-style: solid !default;
+$ev-discprod-alternatives-border-radius-on: 1 !default;
 
-$ev_discprod_alternatives_border_radius: 10px !default;
-$ev_discprod_alternatives_padding: 0.75rem !default;
-$ev_discprod_alternatives_margin: 0 0 0.75rem !default;
+$ev-discprod-alternatives-border-radius: 10px !default;
+$ev-discprod-alternatives-padding: 0.75rem !default;
+$ev-discprod-alternatives-margin: 0 0 0.75rem !default;
 
-$ev_discprod_alternatives_section_title_color: #FFF !default;
-$ev_discprod_alternatives_section_title_fontweight: $heading__font-weight__base !default;
-$ev_discprod_alternatives_section_title_fontsize: 1rem !default;
-$ev_discprod_alternatives_section_title_padding: 0 !default;
-$ev_discprod_alternatives_section_title_margin: 0 0 0.75rem !default;
+$ev-discprod-alternatives-section-title-color: #FFF !default;
+$ev-discprod-alternatives-section-title-fontweight: $heading-font-weight-base !default;
+$ev-discprod-alternatives-section-title-fontsize: 1rem !default;
+$ev-discprod-alternatives-section-title-padding: 0 !default;
+$ev-discprod-alternatives-section-title-margin: 0 0 0.75rem !default;
 
 
-$ev_discprods_pview_number_of_items_per_row_desktop: 3 !default;
-$ev_discprods_pview_number_of_items_per_row_mobile: 1 !default;
+$ev-discprods-pview-number-of-items-per-row-desktop: 3 !default;
+$ev-discprods-pview-number-of-items-per-row-mobile: 1 !default;
 
-$ev_discprods_alert_border_radius: 10px !default;
+$ev-discprods-alert-border-radius: 10px !default;
 
 #ev-da-outer {
     .alert {
-        border-radius: $ev_discprods_alert_border_radius;
+        border-radius: $ev-discprods-alert-border-radius;
     }
 }
 
 .ev-discprod-alternatives {
-    background: $ev_discprod_alternatives_bg_color;
-    @if $ev_discprod_alternatives_border_on == 1 {
-        @include elevate-border($ev_discprod_alternatives_border_color, $ev_discprod_alternatives_border_thickness, $ev_discprod_alternatives_border_style)
+    background: $ev-discprod-alternatives-bg-color;
+    @if $ev-discprod-alternatives-border-on == 1 {
+        @include elevate-border($ev-discprod-alternatives-border-color, $ev-discprod-alternatives-border-thickness, $ev-discprod-alternatives-border-style)
     }
-    @if $ev_discprod_alternatives_border_radius_on == 1 {
-        border-radius: $ev_discprod_alternatives_border_radius;
+    @if $ev-discprod-alternatives-border-radius-on == 1 {
+        border-radius: $ev-discprod-alternatives-border-radius;
     }
-    @include padding($ev_discprod_alternatives_padding);
-    @include margin($ev_discprod_alternatives_margin);
+    @include padding($ev-discprod-alternatives-padding);
+    @include margin($ev-discprod-alternatives-margin);
     .section-title {
-        @include font-size($ev_discprod_alternatives_section_title_fontsize);
-        color: $ev_discprod_alternatives_section_title_color;
-        font-weight: $ev_discprod_alternatives_section_title_fontweight;
-        @include padding($ev_discprod_alternatives_section_title_padding);
-        @include margin($ev_discprod_alternatives_section_title_margin);
+        @include font-size($ev-discprod-alternatives-section-title-fontsize);
+        color: $ev-discprod-alternatives-section-title-color;
+        @include co(font-weight, $ev-discprod-alternatives-section-title-fontweight);
+        @include padding($ev-discprod-alternatives-section-title-padding);
+        @include margin($ev-discprod-alternatives-section-title-margin);
     }
 }
 
@@ -51,9 +51,9 @@ $ev_discprods_alert_border_radius: 10px !default;
     .ev-discprod-alternatives {
         .product-items {
             .item {
-                width: (100% / $ev_discprods_pview_number_of_items_per_row_mobile);
+                width: (100% / $ev-discprods-pview-number-of-items-per-row-mobile);
                 @include min-screen($desktop-min) {
-                    width: (100% / $ev_discprods_pview_number_of_items_per_row_desktop);
+                    width: (100% / $ev-discprods-pview-number-of-items-per-row-desktop);
                 }
             }
         }

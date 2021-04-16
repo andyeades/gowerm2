@@ -124,13 +124,14 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended {
                                'filter_index' => 'main_table.asecsub_position',
                            )
         );
+
         $this->addColumn(
             'asecsub_created_at', array(
                                  'header'       => __('Created At'),
                                  'name'         => 'asecsub_created_at',
                                  'index'        => 'asecsub_created_at',
                                  'filter_index' => 'main_table.asecsub_created_at',
-                                 'type'         => 'datetime',
+                                 'type'         => 'date',
                              )
         );
         $this->addColumn(
@@ -139,7 +140,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended {
                                  'name'         => 'asecsub_updated_at',
                                  'index'        => 'asecsub_updated_at',
                                  'filter_index' => 'main_table.asecsub_updated_at',
-                                 'type'         => 'datetime',
+                                 'type'         => 'date',
                              )
         );
         /*

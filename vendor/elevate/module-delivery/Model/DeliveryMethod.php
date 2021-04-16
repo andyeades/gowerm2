@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Elevate\Delivery\Model;
 
 use Elevate\Delivery\Api\Data\DeliveryMethodInterface;
@@ -9,8 +8,6 @@ use Magento\Framework\Api\DataObjectHelper;
 
 class DeliveryMethod extends \Magento\Framework\Model\AbstractModel
 {
-
-
     protected $name;
     protected $internal_name;
     protected $day1;
@@ -69,15 +66,14 @@ class DeliveryMethod extends \Magento\Framework\Model\AbstractModel
     public function getDataModel()
     {
         $deliverymethodData = $this->getData();
-        
+
         $deliverymethodDataObject = $this->deliverymethodDataFactory->create();
         $this->dataObjectHelper->populateWithArray(
             $deliverymethodDataObject,
             $deliverymethodData,
             DeliveryMethodInterface::class
         );
-        
+
         return $deliverymethodDataObject;
     }
-
 }

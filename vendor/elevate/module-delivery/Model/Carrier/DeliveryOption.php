@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Elevate\Delivery\Model\Carrier;
 
 use Magento\Quote\Model\Quote\Address\RateRequest;
-use Magento\Shipping\Model\Rate\Result;
 
 class DeliveryOption extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
     \Magento\Shipping\Model\Carrier\CarrierInterface
 {
-
     protected $_code = 'deliveryoption';
 
     protected $_isFixed = true;
@@ -84,16 +81,14 @@ class DeliveryOption extends \Magento\Shipping\Model\Carrier\AbstractCarrier imp
         $delivery_area = $address->getData('delivery_area_selected');
         $delivery_selected_summarytext = $address->getData('delivery_selected_summarytext');
 
-
         if (!empty($delivery_date_selected)) {
-            if ($delivery_date_selected != '0000-00-00 00:00:00') {
-
+            if ($delivery_date_selected != '0000-00-00') {
                 $delivery_method = $this->deliveryMethod->getById($delivery_option_selected);
-                $delivery_fees = $this->elevateHelper->getDeliveryFees($delivery_option_selected,$delivery_area,'day', 'ASC');
+                $delivery_fees = $this->elevateHelper->getDeliveryFees($delivery_option_selected, $delivery_area, 'day', 'ASC');
 
-                $deliverymethod_date = explode(' ',$delivery_date_selected);
+                $deliverymethod_date = explode(' ', $delivery_date_selected);
 
-                $arr_location = date("N",strtotime($deliverymethod_date[0]));
+                $arr_location = date("N", strtotime($deliverymethod_date[0]));
 
                 if (isset($delivery_fees[$arr_location])) {
                     $shippingPrice = $delivery_fees[$arr_location]['fee'];
@@ -101,15 +96,12 @@ class DeliveryOption extends \Magento\Shipping\Model\Carrier\AbstractCarrier imp
                     $shippingPrice = 0;
                     // Log error
                 }
-
-
             } else {
                 $shippingPrice = $this->getConfigData('price');
             }
         } else {
             $shippingPrice = $this->getConfigData('price');
         }
-
 
         $result = $this->_rateResultFactory->create();
 
@@ -122,15 +114,12 @@ class DeliveryOption extends \Magento\Shipping\Model\Carrier\AbstractCarrier imp
             $method->setMethodTitle($this->getConfigData('name'));
 
             if (!empty($delivery_date_selected)) {
-                if ($delivery_date_selected != '0000-00-00 00:00:00') {
+                if ($delivery_date_selected != '0000-00-00') {
                     // This is what is saved in the quote_shipping_rates table (which will be used after page reload as the name!)
 
                     $method->setMethodTitle($delivery_selected_summarytext);
                 }
             }
-
-
-
 
             if ($request->getFreeShipping() === true || $request->getPackageQty() == $this->getFreeBoxes()) {
                 $shippingPrice = '0.00';

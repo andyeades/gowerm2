@@ -4,7 +4,6 @@ namespace Elevate\PrintLabels\Controller\Adminhtml\Edit;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-//use PrintNode\Credentials;
 
 use \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation;
 
@@ -47,16 +46,16 @@ class Index extends Action {
     protected $scopeConfig;
 
     /**
-     * @var \PrintNode\Credentials
+     * @var \Elevate\PrintLabels\Helper\Data
      */
-    protected $printNodeCredentials;
+    protected $helper;
 
     /**
      * @var \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation
      */
     protected $dpdAuthorisation;
 
-    
+
     /**
      * Index constructor.
      *
@@ -67,7 +66,7 @@ class Index extends Action {
      * @param \Magento\Framework\Controller\Result\JsonFactory    $resultJsonFactory
      * @param \Magento\Framework\Encryption\EncryptorInterface    $encryptorInterface
      * @param \Magento\Framework\App\Config\ScopeConfigInterface  $scopeConfig
-     * @param \PrintNode\Credentials                              $printNodeCredentials
+     * @param \Elevate\PrintLabels\Helper\Data                    $helper
      * @param \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation
      */
     public function __construct(
@@ -78,8 +77,9 @@ class Index extends Action {
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Magento\Framework\Encryption\EncryptorInterface $encryptorInterface,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \PrintNode\Credentials $printNodeCredentials,
+        \Elevate\PrintLabels\Helper\Data $helper,
         \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation
+
     ) {
         parent::__construct($context);
 
@@ -89,34 +89,9 @@ class Index extends Action {
         $this->accountManagement = $accountManagement;
         $this->encryptorInterface = $encryptorInterface;
         $this->scopeConfig = $scopeConfig;
-        $this->printNodeCredentials = $printNodeCredentials;
+        $this->helper = $helper;
         $this->dpdAuthorisation = $dpdAuthorisation;
-        $this->printNodeApiKey = $this->scopeConfig->getValue('elevate_printlabels/printnodedetails/printnodeapikey', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->printNodePrinterId = $this->scopeConfig->getValue('elevate_printlabels/printnodedetails/printnodeprinterid', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiAccountNumber = $this->scopeConfig->getValue('elevate_printlabels/details/api_accountnumber', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiUsername = $this->scopeConfig->getValue('elevate_printlabels/details/api_username', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiPassword = $this->scopeConfig->getValue('elevate_printlabels/details/api_password', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->apiUrl = $this->scopeConfig->getValue('elevate_printlabels/details/api_url', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
-
-
-
-        $this->senderContactName = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/contact_name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderTelephone = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/contact_telephone', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgName = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgStreet = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_street', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgStreet2 = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_locality', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgTownCity = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_towncity', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgCounty = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_county', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgPostcode = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_postcode', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->senderOrgCountryCode = $this->scopeConfig->getValue('elevate_printlabels/contactdetails/organisation_countrycode', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-
-
-        $this->collectionTime = $this->scopeConfig->getValue('elevate_printlabels/collection/collection_time', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-
-        $this->collectionCutOffTime = $this->scopeConfig->getValue('elevate_printlabels/collection/collection_cutofftime', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-
-        $this->collectionDays = $this->scopeConfig->getValue('elevate_printlabels/collection/collection_days', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
 
     }
@@ -436,8 +411,8 @@ class Index extends Action {
             //echo $output;
 
 
-            $credentials = $this->printNodeCredentials;
-            $credentials->setApiKey($this->printNodeApiKey);
+            $credentials = new \PrintNode\Credentials\ApiKey($this->printNodeApiKey);
+
 
             // Hint: Your API username is in the format description.integer, where description
             // is the name given to the API key when you created it, followed by a dot (.) and an integer.
@@ -564,13 +539,13 @@ class Index extends Action {
                     'ticket'      => '{
         "version": "1.0",
         "print": {
-            "page_orientation": { 
+            "page_orientation": {
                 "type":"PORTRAIT",
             },
             "margins":{
                 "top_microns": 0,
-                "right_microns": 0, 
-                "bottom_microns": 0, 
+                "right_microns": 0,
+                "bottom_microns": 0,
                 "left_microns": 0
             },
             "fit_to_page": {
@@ -585,7 +560,7 @@ class Index extends Action {
                 "vendor_id":"cijns:High"
             },
             "fit_to_page": {
-                "type": 1 
+                "type": 1
             },
             "media_size": {
                 "height_microns":100000,

@@ -1,18 +1,12 @@
 <?php
-declare(strict_types=1);
 
 namespace Firebear\ConfigurableProducts\Plugin\Model\Quote;
 
-use Firebear\ConfigurableProducts\Model\ProcessProductOptions;
 use Magento\Catalog\Model\Product;
-use Magento\Catalog\Model\Product\Type;
-use Magento\Catalog\Model\Product\Type\AbstractType;
-use Magento\Framework\App\ObjectManager;
-use Magento\Framework\DataObject;
-use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Phrase;
 use Magento\Quote\Model\Quote\Item\Processor;
+use Magento\Framework\Event\ManagerInterface;
+use Magento\Catalog\Model\Product\Type\AbstractType;
 
 class Quote
 {
@@ -59,17 +53,14 @@ class Quote
         $request = null,
         $processMode = AbstractType::PROCESS_MODE_FULL
     ) {
+
+        $superAttribute = '';
+        $bundleOptions = '';
         $productType = $product->getTypeId();
-        if ($productType === Type::TYPE_SIMPLE || $productType === Type::TYPE_VIRTUAL) {
-            return $proceed($product, $request, $processMode);
+        if (!is_numeric($request)) {
+            $superAttribute = $request->getData('super_attribute');
+            $bundleOptions = $request->getData('bundle_option');
         }
-        if ($product && $productType !== Type::TYPE_BUNDLE) {
-            /** @var ProcessProductOptions $process */
-            $process = ObjectManager::getInstance()->create(ProcessProductOptions::class);
-            $process->addCustomizibleOpionsToProduct($request, $product);
-        }
-        $superAttribute = $request->getData('super_attribute');
-        $bundleOptions = $request->getData('bundle_option');
         $newPositionForConfigurableOption = ($superAttribute && $bundleOptions) ? true : false;
         if ($productType == 'bundle' && $newPositionForConfigurableOption) {
             if ($request === null) {
@@ -79,7 +70,7 @@ class Quote
                 $request = $subject->objectFactory->create(['qty' => $request]);
             }
 
-            if (!$request instanceof DataObject) {
+            if (!$request instanceof \Magento\Framework\DataObject) {
                 throw new LocalizedException(
                     __('We found an invalid request for adding product to quote.')
                 );
@@ -96,7 +87,7 @@ class Quote
             /**
              * Error message
              */
-            if (is_string($cartCandidates) || $cartCandidates instanceof Phrase) {
+            if (is_string($cartCandidates) || $cartCandidates instanceof \Magento\Framework\Phrase) {
                 return (string)$cartCandidates;
             }
 

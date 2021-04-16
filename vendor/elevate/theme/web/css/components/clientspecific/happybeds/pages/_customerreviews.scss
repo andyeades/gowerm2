@@ -16,7 +16,7 @@ $feefo-rating-stars-alt:         #ffc200;
     .customer-reviews-header {
         height:          360px;
         text-align:      center;
-        background:      linear-gradient($feefo-color2-rgba-b, $feefo-color2-rgba-b), url(/media/pages/customer-reviews/faces__bg.jpg) no-repeat center;
+        background:      linear-gradient($feefo-color2-rgba-b, $feefo-color2-rgba-b), url(/media/pages/customer-reviews/faces-bg.jpg) no-repeat center;
         background-size: cover;
         @include rj-clearfix();
         .customer-reviews-commenticons {
@@ -212,7 +212,7 @@ $feefo-rating-stars-alt:         #ffc200;
             float: left;
         }
         .feefo-c-r-reviewstars {
-            color: $feefo-rating-stars;
+            @include co(color, $feefo-rating-stars);
             float: right;
         }
         .feefo-c-r-time {

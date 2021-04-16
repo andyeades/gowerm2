@@ -4,31 +4,172 @@
 
 ?>
 
-<?php
-$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
-/** @var \Firebear\ConfigurableProducts\Pricing\Bundle\Render\FinalPriceBox $block */
+<?php  
 
-/** @var \Magento\Bundle\Pricing\Price\FinalPrice $finalPriceModel */
-$finalPriceModel = $block->getPrice();
-$minimalPrice = $finalPriceModel->getMinimalPrice();
-$maximalPrice = $finalPriceModel->getMaximalPrice();
-/** ex: \Magento\Bundle\Pricing\Price\BundleRegularPrice */
-/** @var \Magento\Framework\Pricing\Price\PriceInterface $regularPriceModel */
-$regularPriceModel = $block->getPriceType('regular_price');
-$maximalRegularPrice = $regularPriceModel->getMaximalPrice();
-$minimalRegularPrice = $regularPriceModel->getMinimalPrice();
-$hasFixedPrice = $block->getSaleableItem()->getPriceType() == Magento\Bundle\Model\Product\Price::PRICE_TYPE_FIXED;
-$showPrice = $block->showPrice();
+$debug = false;
+$bypass_cached_pricing = false;
+
+if(isset($_GET['debug']) && $_GET['debug'] == 1){
+$debug = true;
+}
+if(isset($_GET['bypasscache']) && $_GET['bypasscache'] == 1){
+$bypass_cached_pricing = true;
+}
+//$_product = $block->getPriceType('final_price')->getProduct();
+
+
+
+$_product = $block->getPriceType('final_price')->getProduct();
 ?>
-<style>
+     <style>
   .product-info-price .price-box .old-price, .product-options-bottom .price-box .old-price {
     order: 0;
   }
+
+  
 </style>
+<div style="display:none">bundle_sku_price</div>
+<?php
+//&& $this->getRequest()->getFullActionName() == 'catalog_category_view'
+if(!$block->isLoggedIn()  && !$bypass_cached_pricing && 1==2){
+
+
+ echo '<span class="minimal-price amin cached_price"><span class="price-container price-final_price tax weee"> 
+ <span class="price-label">Now</span> <span id="price-including-tax-from-8987" data-label="Inc VAT" data-price-amount="'.number_format((float)$_product->getData('price')*1.2, 2, '.', '').'" data-price-type="finalPrice" class="price-wrapper price-including-tax">
+ <span class="price">&pound;'.number_format((float)$_product->getData('price')*1.2, 2, '.', '').'</span></span>
+ <span id="price-excluding-tax-from-8987" data-label="Exc VAT" data-price-amount="'.number_format((float)$_product->getData('price'), 2, '.', '').'" data-price-type="basePrice" class="price-wrapper price-excluding-tax">
+ <span class="price">&pound;'.number_format((float)$_product->getData('price'), 2, '.', '').'</span></span> </span></span>';
+
+ }
+ else{
+   $is_delcared = false;
+     $mconnect_cached_pricing = false; 
+            $price_type = '';
+            
+         $mconnect_oldPrice = false;   
+         $mconnect_finalPrice = false;   
+     $navPricingData = $block->getMconnectPrice($_product->getId(), 'oldPrice');
+       //  echo "<pre>";
+         
+          //        print_r($navPricingData);
+        // echo "</pre>"; 
+          if($navPricingData['is_nav']){
+                       
+           if($navPricingData['has_nav_cached_price']){
+            // echo "NAV PRICE = ".$navPrice['nav_price'];
+               $mconnect_oldPrice = $navPricingData['nav_price'];
+               $mconnect_cached_pricing = true;
+       
+             
+           }
+           else{
+         
+  //echo "NO NAV PRICE";
+           }
+      
+          }
+    
+    
+     $navPricingData2 = $block->getMconnectPrice($_product->getId(), 'finalPrice');
+       //  echo "<pre>";
+         
+          //        print_r($navPricingData);
+        // echo "</pre>"; 
+          if($navPricingData2['is_nav']){
+                       
+           if($navPricingData2['has_nav_cached_price']){
+            // echo "NAV PRICE = ".$navPrice['nav_price'];
+               $mconnect_finalPrice = $navPricingData2['nav_price'];
+               $mconnect_cached_pricing = true;
+       
+             
+           }
+           else{
+         
+  //echo "NO NAV PRICE";
+           }
+      
+          }
+       
+       
+          
+       if($mconnect_cached_pricing && !$bypass_cached_pricing && 1==2){
+ 
+ if($mconnect_oldPrice){      
+echo '<span class="old-price s2 mconnect_cached_price"><span class="price-container price-final_price tax weee">
+<span class="price-label">Was</span>
+<span id="price-including-tax-old-price-6650" data-label="Inc VAT" data-price-amount="24.000001" data-price-type="oldPrice" class="price-wrapper price-including-tax">
+<span class="price">&pound;'.number_format((float)$mconnect_oldPrice, 2, '.', '').'</span>
+</span><span id="price-excluding-tax-old-price-6650" data-label="Exc VAT" data-price-amount="20" data-price-type="basePrice" class="price-wrapper price-excluding-tax">
+ <span class="price">&pound;'.number_format((float)$mconnect_oldPrice/1.2, 2, '.', '').'</span></span> </span> </span>';       
+ } 
+  if($mconnect_finalPrice){       
+echo '<span class="special-price mconnect_cached_price"><span class="price-container price-final_price tax weee"> 
+<span class="price-label">Now</span>
+<span id="price-including-tax-product-price-6650" data-label="Inc VAT" data-price-amount="18.960001" data-price-type="finalPrice" class="price-wrapper price-including-tax">
+<span class="price">&pound;'.number_format((float)$mconnect_finalPrice, 2, '.', '').'</span></span>
+<span id="price-excluding-tax-product-price-6650" data-label="Exc VAT" data-price-amount="15.8" data-price-type="basePrice" class="price-wrapper price-excluding-tax">
+ <span class="price">&pound;'.number_format((float)$mconnect_finalPrice/1.2, 2, '.', '').'</span></span> </span> </span>';
+  }
+
+
+       
+       
+       
+       
+}
+       else{
+ //get customer
+ 
+   // echo $_product->getData('price');
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
+/** @var \Firebear\ConfigurableProducts\Pricing\Bundle\Render\FinalPriceBox $block */
+if(!$is_delcared){
+$regularPriceModel = $block->getPriceType('regular_price');
+/** @var \Magento\Bundle\Pricing\Price\FinalPrice $finalPriceModel */
+$finalPriceModel = $block->getPrice();
+ }
+$maximalPrice = $finalPriceModel->getMaximalPrice();
+/** ex: \Magento\Bundle\Pricing\Price\BundleRegularPrice */
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $regularPriceModel */
+
+  $maximalRegularPrice = $regularPriceModel->getMaximalPrice();
+
+
+if(!$is_delcared){
+
+  $minimalPrice = $finalPriceModel->getMinimalPrice();
+  $minimalRegularPrice = $regularPriceModel->getMinimalPrice();
+}
+
+
+
+
+$hasFixedPrice = $block->getSaleableItem()->getPriceType() == Magento\Bundle\Model\Product\Price::PRICE_TYPE_FIXED;
+$showPrice = $block->showPrice();
+$showPriceAlways = true;
+
+ 
+ 
+ $now_label = 'From';
+  /*
+if($this->getRequest()->getFullActionName() == 'catalog_category_view' || $this->getRequest()->getFullActionName() == 'catalogsearch_result_index'){
+$now_label = 'From';
+  }
+ */
+ 
+ if($this->getRequest()->getFullActionName() == 'catalog_product_view'){
+$now_label = 'Now';
+  } 
+
+?>
+
+
+
 <?php if ($showPrice === true): ?>
-    <?php if ($block->getSaleableItem()->getPriceView()): ?>
+    <?php if ($block->getSaleableItem()->getPriceView() || $showPriceAlways): ?>
         <?php if ($minimalPrice < $minimalRegularPrice): ?>
-      <span class="old-price a1">
+      <span class="old-price a142">
                 <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalRegularPrice, [
                     'display_label'     => __('Regular Price'),
                     'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
@@ -39,9 +180,10 @@ $showPrice = $block->showPrice();
             </span>
         <?php endif ?>
 
+
     <span class="minimal-price amin">
         <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalPrice, [
-            'display_label'     => __('As low as'),
+            'display_label'     => __($now_label),
             'price_id'          => $block->getPriceId('from-'),
             'include_container' => true,
             'skip_adjustments'  => false, //false will include both pricing
@@ -110,4 +252,10 @@ $showPrice = $block->showPrice();
   <span class="no-price">
       <?php /* @escapeNotVerified */ echo $block->showPrice(); ?>
   </span>
-<?php endif ?>
+<?php endif; ?>
+   <?php
+ 
+  }
+  
+  }
+  ?>

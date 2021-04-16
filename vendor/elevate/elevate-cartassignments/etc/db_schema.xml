@@ -50,7 +50,7 @@
 		<column identity="false" name="position" nullable="true" xsi:type="int"/>
 	</table>
 	<table comment="elevate_cartassignments_quoteitemassignments Table" engine="innodb" name="elevate_cartassignments_quoteitemassignments" resource="default">
-		<column comment="Entity Id" identity="true" name="quoteitemassignments_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+		<column comment="Entity Id" identity="true" name="quoteitemassignments_id" nullable="false" padding="6" unsigned="false" xsi:type="int"/>
 		<constraint referenceId="PRIMARY" xsi:type="primary">
 			<column name="quoteitemassignments_id"/>
 		</constraint>

@@ -44,7 +44,7 @@
 .list-group-item {
   position: relative;
   display: block;
-  padding: $list-group-item-padding-y $list-group-item-padding-x;
+  @include co(padding, $list-group-item-padding-y $list-group-item-padding-x);
   color: $list-group-color;
   background-color: $list-group-bg;
   border: $list-group-border-width solid $list-group-border-color;

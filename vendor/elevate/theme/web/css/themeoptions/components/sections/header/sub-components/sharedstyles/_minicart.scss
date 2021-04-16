@@ -170,14 +170,14 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
 .shopping-cart {
     position: relative;
     background: $hdr-minicart-dropdown-container-bg-color;
-    margin: $hdr-minicart-dropdown-container-margin;
-    width: $hdr-minicart-dropdown-container-width;
+    @include co(margin, $hdr-minicart-dropdown-container-margin);
+    @include co(width, $hdr-minicart-dropdown-container-width);
 
     @if $hdr-minicart-dropdown-container-border-radius-on == 1 {
         border-radius: $hdr-minicart-dropdown-container-border-radius;
     }
 
-    padding: $hdr-minicart-dropdown-container-padding;
+    @include co(padding, $hdr-minicart-dropdown-container-padding);
 
     @include min-screen($desktop-min) {
         @include co(width, $hdr-minicart-dropdown-container-width-desktop, $hdr-minicart-dropdown-container-width);
@@ -188,7 +188,7 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
         @if $hdr-minicart-header-border-on == 1 {
             @include elevate-border($hdr-minicart-header-border-color, $hdr-minicart-header-border-thickness, $hdr-minicart-header-border-style, $hdr-minicart-header-border-position);
         }
-        padding: $hdr-minicart-header-padding;
+        @include co(padding, $hdr-minicart-header-padding);
 
         .shopping-cart-total {
             text-align: $hdr-minicart-total-text-align;
@@ -197,14 +197,14 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
 
     .shopping-cart-items {
 
-        padding: $hdr-minicart-items-padding;
+        @include co(padding, $hdr-minicart-items-padding);
 
         li {
             //flex-wrap: wrap;
             margin-bottom: 18px;
             list-style-type: none;
             display: flex;
-            align-items: $hdr-minicart-items-item-align-items;
+            @include co(align-items, $hdr-minicart-items-item-align-items);
 
             > img, > div {
                 flex: 0 1 auto;
@@ -229,7 +229,7 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
         .mcart-item-message {
             width: 100%;
             order: 5;
-            margin: $mcart-item-message-margin;
+            @include co(margin, $mcart-item-message-margin);
         }
 
         .item-name {
@@ -242,7 +242,7 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
 
         .item-price {
             color: $hdr-minicart-item-price-color;
-            margin: $hdr-minicart-item-price-margin;
+            @include co(margin, $hdr-minicart-item-price-margin);
         }
 
         .item-quantity {
@@ -253,7 +253,7 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
 
 
 .btn-minicart-checkout {
-    width: $btn-minicart-checkout-width;
+    @include co(width, $btn-minicart-checkout-width);
     @if $btn-minicart-checkout-bg-color != $action-primary-bg-color {
         @include button-variant($btn-minicart-checkout-bg-color, $btn-minicart-checkout-border-color);
     }
@@ -291,13 +291,13 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
 
     > a {
         > i {
-            font-size: $hdr-mobile-height - 20;
+          @include co(font-size, $hdr-mobile-height - 20);
         }
 
         display: flex;
 
-        align-items: $hdr-minicart-shoppingcartwrap-a-align;
-        justify-content: $hdr-minicart-shoppingcartwrap-a-justifycontent;
+        @include co(align-items, $hdr-minicart-shoppingcartwrap-a-align);
+        @include co(justify-content, $hdr-minicart-shoppingcartwrap-a-justifycontent);
 
         @include min-screen($mobile-menu-notvisible) {
             @include co(height, $hdr-minicart-shoppingcartwrap-a-height-desktop);
@@ -310,7 +310,7 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
     }
 
     .hdr-basket {
-        order: $hdr-minicart-basket-order;
+        @include co(order, $hdr-minicart-basket-order);
         display: flex;
 
         i {
@@ -319,7 +319,7 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
                 display: inline-block;
                 background: url($hdr-minicart-custom-minicart-icon-url);
                 height: $hdr-minicart-custom-minicart-icon-height;
-                width: $hdr-minicart-custom-minicart-icon-width;
+                @include co(width, $hdr-minicart-custom-minicart-icon-width);
                 background-size: contain;
                 background-repeat: no-repeat;
                 @include min-screen($mobile-menu-notvisible) {
@@ -327,20 +327,20 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
                     @include co(width, $hdr-minicart-custom-minicart-icon-width-desktop, $hdr-minicart-custom-minicart-icon-width);
                 }
             } @else {
-                font-size: $hdr-minicart-default-icon-font-size;
+              @include co(font-size, $hdr-minicart-default-icon-font-size);
             }
         }
     }
 
     .hdr-basket-side {
-        order: $hdr-minicart-basket-side-order;
+        @include co(order, $hdr-minicart-basket-side-order);
     }
 
     .basket-label {
 
         width: 100%;
-        font-size: $hdr-minicart-basket-label-fontsize;
-        font-weight: $hdr-minicart-basket-label-fontweight;
+      @include co(font-size, $hdr-minicart-basket-label-fontsize);
+        @include co(font-weight, $hdr-minicart-basket-label-fontweight);
         color: $hdr-minicart-basket-label-color;
         text-align: $hdr-minicart-basket-text-align;
     }
@@ -358,8 +358,8 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
     .hdr-minicart-basket-btm-row {
         width: 100%;
         color: $hdr-minicart-basket-btm-row-color;
-        font-size: $hdr-minicart-basket-btm-row-font-size;
-        font-weight: $hdr-minicart-basket-btm-row-font-weight;
+      @include co(font-size, $hdr-minicart-basket-btm-row-font-size);
+        @include co(font-weight, $hdr-minicart-basket-btm-row-font-weight);
 
         > .hdr-minicart-total {
             display: initial;
@@ -368,11 +368,14 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
 
     .hdr-minicart-total {
         display: block;
+        &.ie11 {
+            display: inline-block;
+        }
         color: $hdr-minicart-total-color;
-        font-size: $hdr-minicart-total-fontsize;
-        font-weight: $hdr-minicart-total-fontweight;
+      @include co(font-size, $hdr-minicart-total-fontsize);
+        @include co(font-weight, $hdr-minicart-total-fontweight);
         @if $hdr-minicart-total-padding != 0 {
-            padding: $hdr-minicart-total-padding;
+            @include co(padding, $hdr-minicart-total-padding);
         }
 
     }

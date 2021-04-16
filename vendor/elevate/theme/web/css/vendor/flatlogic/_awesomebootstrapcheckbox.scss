@@ -1,6 +1,6 @@
 //
 // Checkboxes
-// --------------------------------------------------
+//
 
 
 $abc-font-family-icon: 'FontAwesome' !default;
@@ -110,7 +110,7 @@ $abc-checkbox-label-after-margin-left-mobilemax: false !default;
 
         &:checked + label::after {
             font-family: $abc-font-family-icon;
-            content: $abc-check-icon;
+           @include co(content, $abc-check-icon);
         }
 
         &:indeterminate + label::after {
@@ -163,7 +163,7 @@ $abc-checkbox-label-after-margin-left-mobilemax: false !default;
 
 //
 // Radios
-// --------------------------------------------------
+//
 
 @mixin radio-variant($parent, $color) {
     #{$parent} input[type="radio"] {

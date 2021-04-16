@@ -39,7 +39,7 @@
   // Workaround for the image size bug in IE
   // See: https://github.com/twbs/bootstrap/pull/28855
   min-height: 1px;
-  padding: $card-spacer-x;
+  @include co(padding, $card-spacer-x);
   color: $card-color;
 }
 
@@ -71,7 +71,7 @@
 //
 
 .card-header {
-  padding: $card-spacer-y $card-spacer-x;
+  @include co(padding, $card-spacer-y $card-spacer-x);
   margin-bottom: 0; // Removes the default margin-bottom of <hN>
   color: $card-cap-color;
   background-color: $card-cap-bg;
@@ -89,7 +89,7 @@
 }
 
 .card-footer {
-  padding: $card-spacer-y $card-spacer-x;
+  @include co(padding, $card-spacer-y $card-spacer-x);
   background-color: $card-cap-bg;
   border-top: $card-border-width solid $card-border-color;
 
@@ -122,7 +122,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  padding: $card-img-overlay-padding;
+  @include co(padding, $card-img-overlay-padding);
 }
 
 .card-img,

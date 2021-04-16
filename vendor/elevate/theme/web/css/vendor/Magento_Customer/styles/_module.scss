@@ -1,24 +1,24 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
-$account-nav-background              : $sidebar__background-color !default;
+$account-nav-background              : $sidebar-background-color !default;
 $account-nav-color                   : false !default;
 
 $account-nav-current-border          : 3px solid transparent !default;
 $account-nav-current-border-color    : $color-orange-red1 !default;
 $account-nav-current-color           : false !default;
-$account-nav-current-font-weight     : $font-weight__semibold !default;
+$account-nav-current-font-weight     : $font-weight-semibold !default;
 
-$account-nav-delimiter__border-color : $color-gray82 !default;
+$account-nav-delimiter-border-color : $color-gray82 !default;
 
 $account-nav-item-hover              : $color-gray91 !default;
 
-$_password-default                   : $color-gray-light01 !default;
-$_password-weak                      : #ffafae !default;
-$_password-medium                    : #ffd6b3 !default;
-$_password-strong                    : #c5eeac !default;
-$_password-very-strong               : #81b562 !default;
+$-password-default                   : $color-gray-light01 !default;
+$-password-weak                      : #ffafae !default;
+$-password-medium                    : #ffd6b3 !default;
+$-password-strong                    : #c5eeac !default;
+$-password-very-strong               : #81b562 !default;
 
 // /**
 //  * Copyright © 2013-2017 Magento, Inc. All rights reserved.
@@ -27,7 +27,7 @@ $_password-very-strong               : #81b562 !default;
 
 //
 //  Variables
-//  _____________________________________________
+//
 
 
 
@@ -35,7 +35,7 @@ $_password-very-strong               : #81b562 !default;
 .block-addresses-list {
     .items.addresses {
         > .item {
-            margin-bottom: $indent__base;
+            margin-bottom: $indent-base;
 
             &:last-child {
                 margin-bottom: 0;
@@ -44,31 +44,31 @@ $_password-very-strong               : #81b562 !default;
     }
 }
 
-$frm_add_edit_nameprefix_control_select_width: false !default;
-$frm_add_edit_nameprefix_control_select_width_desktop: false !default;
+$frm-add-edit-nameprefix-control-select-width: false !default;
+$frm-add-edit-nameprefix-control-select-width-desktop: false !default;
 
-$frm_add_edit_input_width: false !default;
-$frm_add_edit_input_width_desktop: 50% !default;
+$frm-add-edit-input-width: false !default;
+$frm-add-edit-input-width-desktop: 50% !default;
 
-$frm_add_edit_select_width: false !default;
-$frm_add_edit_select_width_desktop: false !default;
+$frm-add-edit-select-width: false !default;
+$frm-add-edit-select-width-desktop: false !default;
 
-$frm_add_edit_postcode_input_width: false !default;
-$frm_add_edit_postcode_input_width_desktop: false !default;
+$frm-add-edit-postcode-input-width: false !default;
+$frm-add-edit-postcode-input-width-desktop: false !default;
 
 .form-address-edit {
     .control {
         input {
-            @include co(width, $frm_add_edit_input_width);
-            @include min-screen($desktop_min) {
-                @include co(width, $frm_add_edit_input_width_desktop, $frm_add_edit_input_width);
+            @include co(width, $frm-add-edit-input-width);
+            @include min-screen($desktop-min) {
+                @include co(width, $frm-add-edit-input-width-desktop, $frm-add-edit-input-width);
 
             }
         }
         select {
-            @include co(width, $frm_add_edit_select_width);
-            @include min-screen($desktop_min) {
-                @include co(width, $frm_add_edit_select_width_desktop, $frm_add_edit_select_width);
+            @include co(width, $frm-add-edit-select-width);
+            @include min-screen($desktop-min) {
+                @include co(width, $frm-add-edit-select-width-desktop, $frm-add-edit-select-width);
 
             }
         }
@@ -77,9 +77,9 @@ $frm_add_edit_postcode_input_width_desktop: false !default;
         .control {
             #prefix {
 
-                @include co('width', $frm_add_edit_nameprefix_control_select_width);
-                @include min-screen($desktop_min) {
-                    @include co('width', $frm_add_edit_nameprefix_control_select_width_desktop, $frm_add_edit_nameprefix_control_select_width);
+                @include co('width', $frm-add-edit-nameprefix-control-select-width);
+                @include min-screen($desktop-min) {
+                    @include co('width', $frm-add-edit-nameprefix-control-select-width-desktop, $frm-add-edit-nameprefix-control-select-width);
 
                 }
             }
@@ -91,9 +91,9 @@ $frm_add_edit_postcode_input_width_desktop: false !default;
         &.zip {
             .control {
                 input {
-                    @include co('width', $frm_add_edit_postcode_input_width);
-                    @include min-screen($desktop_min) {
-                        @include co('width', $frm_add_edit_postcode_input_width_desktop, $frm_add_edit_postcode_input_width);
+                    @include co('width', $frm-add-edit-postcode-input-width);
+                    @include min-screen($desktop-min) {
+                        @include co('width', $frm-add-edit-postcode-input-width-desktop, $frm-add-edit-postcode-input-width);
 
                     }
                 }
@@ -142,7 +142,7 @@ $frm_add_edit_postcode_input_width_desktop: false !default;
 
 //
 //  My account
-//  ---------------------------------------------
+//
 
 $account-address-shipping-actions-display: false !default;
 .account {
@@ -222,7 +222,7 @@ $account-address-shipping-actions-display: false !default;
 
 //
 //  Account navigation
-//  ---------------------------------------------
+//
 
 .account-nav {
     .title {
@@ -246,7 +246,7 @@ $account-address-shipping-actions-display: false !default;
             @include lib-css(color, $account-nav-color);
             border-left: 3px solid transparent;
             display: block;
-            padding: $indent__xs 18px $indent__xs 15px;
+            @include co(padding, $indent-xs 18px $indent-xs 15px);
         }
 
         a {
@@ -271,19 +271,19 @@ $account-address-shipping-actions-display: false !default;
         }
 
         .delimiter {
-            border-top: 1px solid $account-nav-delimiter__border-color;
+            border-top: 1px solid $account-nav-delimiter-border-color;
             display: block;
-            margin: $indent__s 1.8rem;
+            @include co(margin, $indent-s 1.8rem);
         }
     }
 }
 
 //
 //  Blocks & Widgets
-//  ---------------------------------------------
+//
 
 .block {
-    margin-bottom: $indent__xl;
+    margin-bottom: $indent-xl;
     .column.main & {
         &:last-child {
             margin-bottom: 0;
@@ -291,12 +291,12 @@ $account-address-shipping-actions-display: false !default;
     }
 
     .title {
-        //margin-bottom: $indent__s;
+        //margin-bottom: $indent-s;
 
         strong {
            // @include lib-heading(h4);
             .column.main & {
-           //     font-size: $h3__font-size;
+           //   @include co(font-size, $h3-font-size);
             }
         }
     }
@@ -306,13 +306,13 @@ $account-address-shipping-actions-display: false !default;
     }
 
     .box-actions {
-        margin-top: $indent__xs;
+        margin-top: $indent-xs;
     }
 }
 
 //
 //  Password Strength Meter
-//  ---------------------------------------------
+//
 
 .field.password {
     .control {
@@ -331,10 +331,10 @@ $account-address-shipping-actions-display: false !default;
 }
 
 .password-strength-meter {
-    background-color: $_password-default;
-    height: $form-element-input__height;
-    line-height: $form-element-input__height;
-    padding: $form-element-input__padding;
+    background-color: $-password-default;
+    height: $form-element-input-height;
+    line-height: $form-element-input-height;
+    @include co(padding, $form-element-input-padding);
     position: relative;
     z-index: 1;
 
@@ -349,42 +349,42 @@ $account-address-shipping-actions-display: false !default;
 
     .password-none & {
         &:before {
-            background-color: $_password-default;
+            background-color: $-password-default;
             width: 100%;
         }
     }
 
     .password-weak & {
         &:before {
-            background-color: $_password-weak;
+            background-color: $-password-weak;
             width: 25%;
         }
     }
 
     .password-medium & {
         &:before {
-            background-color: $_password-medium;
+            background-color: $-password-medium;
             width: 50%;
         }
     }
 
     .password-strong & {
         &:before {
-            background-color: $_password-strong;
+            background-color: $-password-strong;
             width: 75%;
         }
     }
 
     .password-very-strong & {
         &:before {
-            background-color: $_password-very-strong;
+            background-color: $-password-very-strong;
             width: 100%;
         }
     }
 }
 
 .control.captcha-image {
-    @include lib-css(margin-top, $indent__s);
+    @include lib-css(margin-top, $indent-s);
 
     .captcha-img {
         vertical-align: middle;
@@ -393,11 +393,11 @@ $account-address-shipping-actions-display: false !default;
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
 
 
-@include max-screen($screen__m) {
+@include max-screen($screen-m) {
     .login-container {
         .fieldset {
             &:after {
@@ -416,7 +416,7 @@ $account-address-shipping-actions-display: false !default;
 
     .control.captcha-image {
         .captcha-img {
-            @include lib-css(margin-bottom, $indent__s);
+            @include lib-css(margin-bottom, $indent-s);
             display: block;
         }
     }
@@ -424,9 +424,9 @@ $account-address-shipping-actions-display: false !default;
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
 
 
     //  Full name fieldset
@@ -434,16 +434,16 @@ $account-address-shipping-actions-display: false !default;
         .fullname {
             .field {
                 .label {
-                    @include lib-css(margin, $form-field-type-label-inline__margin);
-                    @include lib-css(padding, $form-field-type-label-inline__padding);
-                    @include lib-css(text-align, $form-field-type-label-inline__align);
-                    @include lib-css(width, $form-field-type-label-inline__width);
+                    @include lib-css(margin, $form-field-type-label-inline-margin);
+                    @include lib-css(padding, $form-field-type-label-inline-padding);
+                    @include lib-css(text-align, $form-field-type-label-inline-align);
+                    @include lib-css(width, $form-field-type-label-inline-width);
                     box-sizing: border-box;
                     float: left;
                 }
 
                 .control {
-                    @include lib-css(width, $form-field-type-control-inline__width);
+                    @include lib-css(width, $form-field-type-control-inline-width);
                     float: left;
                 }
             }
@@ -456,7 +456,7 @@ $account-address-shipping-actions-display: false !default;
 
     //
     //  My account
-    //  ---------------------------------------------
+    //
 
 
     .account {
@@ -484,8 +484,8 @@ $account-address-shipping-actions-display: false !default;
 
             > .item {
                 display: inline-block;
-                font-size: $font-size__base;
-                margin-bottom: $indent__base;
+              @include co(font-size, $font-size-base);
+                margin-bottom: $indent-base;
                 vertical-align: top;
                 width: 48.8%;
 
@@ -503,7 +503,7 @@ $account-address-shipping-actions-display: false !default;
 
     //
     //  Welcome block
-    //  ---------------------------------------------
+    //
 
     .dashboard-welcome-toggler {
         @include lib-visually-hidden();
@@ -511,7 +511,7 @@ $account-address-shipping-actions-display: false !default;
 
     .control.captcha-image {
         .captcha-img {
-            margin: 0 $indent__s $indent__s 0;
+            margin: 0 $indent-s $indent-s 0;
         }
     }
 }

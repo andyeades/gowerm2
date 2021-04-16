@@ -1,247 +1,247 @@
 //
 //  Typography variables
-//  _____________________________________________
+//
 
 //
 //  Fonts
-//  ---------------------------------------------
+//
 
 //  Path
-$icons__font-path               : "../fonts/Luma-Icons" !default;
+$icons-font-path               : "../fonts/Luma-Icons" !default;
 
 //  Names
-$icons__font-name               : 'luma-icons' !default; // ToDo UI                                         : we need to rename (it shouldn't use blank theme name) or move icon fonts to blank theme
+$icons-font-name               : 'luma-icons' !default; // ToDo UI                                         : we need to rename (it shouldn't use blank theme name) or move icon fonts to blank theme
 
 //  Font families
-$font-family-name__base         : 'Open Sans' !default;
-$font-family__sans-serif        : 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
-$font-family__serif             : Georgia, 'Times New Roman', Times, serif !default;
-$font-family__monospace         : Menlo, Monaco, Consolas, 'Courier New', monospace !default;
+$font-family-name-base         : 'Open Sans' !default;
+$font-family-sans-serif        : 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$font-family-serif             : Georgia, 'Times New Roman', Times, serif !default;
+$font-family-monospace         : Menlo, Monaco, Consolas, 'Courier New', monospace !default;
 
-$font-family-base              : $font-family-name__base, $font-family__sans-serif !default;
+$font-family-base              : $font-family-name-base, $font-family-sans-serif !default;
 
 //  Sizes
-$root__font-size                : 62.5% !default; // Defines ratio between root font size and base font size, 1rem = 10px
-$font-size-ratio__base          : 1.4 !default; // Defines ratio of the root font-size to the base font-size
+$root-font-size                : 62.5% !default; // Defines ratio between root font size and base font size, 1rem = 10px
+$font-size-ratio-base          : 1.4 !default; // Defines ratio of the root font-size to the base font-size
 
 $font-size-unit                 : rem !default; // The unit to which most typography values will be converted by default
-$font-size-unit-ratio           : $root__font-size * 16 / 100 / 1% !default; // Ratio of the root font-size to the font-size unit
+$font-size-unit-ratio           : $root-font-size * 16 / 100 / 1% !default; // Ratio of the root font-size to the font-size unit
 $font-size-unit-convert         : true !default; // Controls whether font-size values are converted to the specified font-size unit
 
-$font-size__base                : 1rem !default; //
-$font-size__xxl                 : 1.5rem !default;
-$font-size__xl                  : 1.375rem !default; // 22px;
-$font-size__l                   : 1.125rem !default; // 18px;
-$font-size__m                   : 0.875rem  !default; // 14px
-$font-size__s                   : 0.75rem !default; // 12px
-$font-size__xs                  : 0.6875rem !default; // 11px
+$font-size-base                : 1rem !default; //
+$font-size-xxl                 : 1.5rem !default;
+$font-size-xl                  : 1.375rem !default; // 22px;
+$font-size-l                   : 1.125rem !default; // 18px;
+$font-size-m                   : 0.875rem  !default; // 14px
+$font-size-s                   : 0.75rem !default; // 12px
+$font-size-xs                  : 0.6875rem !default; // 11px
 
 //  Weights
-$font-weight__light             : 300 !default;
-$font-weight__regular           : 400 !default;
-$font-weight__heavier           : 500 !default;
-$font-weight__semibold          : 600 !default;
-$font-weight__bold              : 700 !default;
+$font-weight-light             : 300 !default;
+$font-weight-regular           : 400 !default;
+$font-weight-heavier           : 500 !default;
+$font-weight-semibold          : 600 !default;
+$font-weight-bold              : 700 !default;
 
 //  Styles
-$font-style__base               : normal !default;
-$font-style__emphasis           : italic !default;
+$font-style-base               : normal !default;
+$font-style-emphasis           : italic !default;
 
 //  Line heights
-$line-height__base              : 1.5 !default;
-$line-height__computed          : 1.5 !default;
+$line-height-base              : 1.5 !default;
+$line-height-computed          : 1.5 !default;
 
-$line-height__xl                : 1.7 !default;
-$line-height__l                 : 1.5 !default;
-$line-height__s                 : 1.33 !default;
+$line-height-xl                : 1.7 !default;
+$line-height-l                 : 1.5 !default;
+$line-height-s                 : 1.33 !default;
 
 //  Colors
-$text__color                    : $primary__color !default;
-$text__color__intense           : $primary__color__darker !default;
-$text__color__muted             : $primary__color__lighter !default;
+$text-color                    : $primary-color !default;
+$text-color-intense           : $primary-color-darker !default;
+$text-color-muted             : $primary-color-lighter !default;
 
 //
 //  Indents
-//  ---------------------------------------------
+//
 
-$indent__standard               : 1.25rem !default;
-$indent__base                   : 1.25rem !default;
-$indent__xl                     : $indent__base * 2 !default; // 40px
-$indent__l                      : $indent__base * 1.5 !default; // 30px
-$indent__m                      : $indent__base * 1.1 !default; // 25px
-$indent__s                      : 0.625rem !default; // 10px
-$indent__xs                     : $indent__base / 4 !default; // 5px
+$indent-standard               : 1.25rem !default;
+$indent-base                   : 1.25rem !default;
+$indent-xl                     : $indent-base * 2 !default; // 40px
+$indent-l                      : $indent-base * 1.5 !default; // 30px
+$indent-m                      : $indent-base * 1.1 !default; // 25px
+$indent-s                      : 0.625rem !default; // 10px
+$indent-xs                     : $indent-base / 4 !default; // 5px
 
 
 
 //
 //  Borders
-//  ---------------------------------------------
+//
 
-$border-color__base             : darken($page__background-color, 18%) !default;
-$border-width__base             : 0.0625rem !default;
+$border-color-base             : darken($page-background-color, 18%) !default;
+$border-width-base             : 0.0625rem !default;
 
 //
 //  Links
-//  ---------------------------------------------
+//
 
-$link__color                    : $color-blue1 !default;
-$link__text-decoration          : none !default;
+$link-color                    : $color-blue1 !default;
+$link-text-decoration          : none !default;
 
-$link__visited__color           : false;
-$link__visited__text-decoration : false;
+$link-visited-color           : false;
+$link-visited-text-decoration : false;
 
-$link__hover__color             : $color-blue2 !default;
-$link__hover__text-decoration   : underline !default;
+$link-hover-color             : $color-blue2 !default;
+$link-hover-text-decoration   : underline !default;
 
-$link__active__color            : $active__color !default;
-$link__active__text-decoration  : underline !default;
+$link-active-color            : $active-color !default;
+$link-active-text-decoration  : underline !default;
 
 //
 //  Focus
-//  ---------------------------------------------
+//
 
-$focus__color                   : $color-sky-blue1 !default;
-$focus__box-shadow              : 0 0 3px 1px $focus__color !default;
+$focus-color                   : $color-sky-blue1 !default;
+$focus-box-shadow              : 0 0 3px 1px $focus-color !default;
 
 //
 //  Lists
-//  ---------------------------------------------
+//
 
-$list__color__base              : false !default;
-$list__font-size__base          : false !default;
-$list__margin-top               : 0 !default;
-$list__margin-bottom            : $indent__m !default;
+$list-color-base              : false !default;
+$list-font-size-base          : false !default;
+$list-margin-top               : 0 !default;
+$list-margin-bottom            : $indent-m !default;
 
-$list-item__margin-top          : 0 !default;
-$list-item__margin-bottom       : $indent__s !default;
+$list-item-margin-top          : 0 !default;
+$list-item-margin-bottom       : $indent-s !default;
 
-$dl__margin-top                 : 0 !default;
-$dl__margin-bottom              : $indent__base !default;
+$dl-margin-top                 : 0 !default;
+$dl-margin-bottom              : $indent-base !default;
 
-$dt__margin-top                 : 0 !default;
-$dt__margin-bottom              : $indent__xs !default;
-$dt__font-weight                : $font-weight__bold !default;
+$dt-margin-top                 : 0 !default;
+$dt-margin-bottom              : $indent-xs !default;
+$dt-font-weight                : $font-weight-bold !default;
 
-$dd__margin-top                 : 0 !default;
-$dd__margin-bottom              : $indent__s !default;
+$dd-margin-top                 : 0 !default;
+$dd-margin-bottom              : $indent-s !default;
 
 //
 //  Paragraphs
-//  ---------------------------------------------
+//
 
-$p__margin-top                  : 0 !default;
-$p__margin-bottom               : $indent__s !default;
+$p-margin-top                  : 0 !default;
+$p-margin-bottom               : $indent-s !default;
 
 //
 //  Headings
 
-//  ---------------------------------------------
+//
 
-$heading__font-family-base     : false !default;
-$heading__font-weight__base     : $font-weight__semibold !default;
-$heading__line-height__base     : 1.1 !default;
-$heading__color__base           : false !default;
-$heading__font-style__base      : false !default;
-$heading__margin-top__base      : $indent__base !default;
-$heading__margin-bottom__base   : $indent__base !default;
+$heading-font-family-base     : false !default;
+$heading-font-weight-base     : $font-weight-semibold !default;
+$heading-line-height-base     : 1.1 !default;
+$heading-color-base           : false !default;
+$heading-font-style-base      : false !default;
+$heading-margin-top-base      : $indent-base !default;
+$heading-margin-bottom-base   : $indent-base !default;
 
-$h1__font-size                  : 1.5rem !default; // 26px
-$h1__font-color                 : $heading__color__base !default;
-$h1__font-family                : $heading__font-family-base !default;
-$h1__font-weight                : $heading__font-weight__base !default;
-$h1__font-style                 : $heading__font-style__base !default;
-$h1__line-height                : $heading__line-height__base !default;
-$h1__margin-top                 : 0 !default;
-$h1__margin-bottom              : $heading__margin-bottom__base !default;
-$h1__font-size-desktop          : 1.5rem !default; // 40px
+$h1-font-size                  : 1.5rem !default; // 26px
+$h1-font-color                 : $heading-color-base !default;
+$h1-font-family                : $heading-font-family-base !default;
+$h1-font-weight                : $heading-font-weight-base !default;
+$h1-font-style                 : $heading-font-style-base !default;
+$h1-line-height                : $heading-line-height-base !default;
+$h1-margin-top                 : 0 !default;
+$h1-margin-bottom              : $heading-margin-bottom-base !default;
+$h1-font-size-desktop          : 1.5rem !default; // 40px
 
-$h2__font-size                  : 1.375rem !default; // 26px
-$h2__font-color                 : $heading__color__base !default;
-$h2__font-family                : $heading__font-family-base !default;
-$h2__font-weight                : $heading__font-weight__base !default;
-$h2__font-style                 : $heading__font-style__base !default;
-$h2__line-height                : $heading__line-height__base !default;
-$h2__margin-top                 : $indent__m !default;
-$h2__margin-bottom              : $heading__margin-bottom__base !default;
+$h2-font-size                  : 1.375rem !default; // 26px
+$h2-font-color                 : $heading-color-base !default;
+$h2-font-family                : $heading-font-family-base !default;
+$h2-font-weight                : $heading-font-weight-base !default;
+$h2-font-style                 : $heading-font-style-base !default;
+$h2-line-height                : $heading-line-height-base !default;
+$h2-margin-top                 : $indent-m !default;
+$h2-margin-bottom              : $heading-margin-bottom-base !default;
 
-$h3__font-size                  : 1.125rem !default; // 18px
-$h3__font-color                 : $heading__color__base !default;
-$h3__font-family                : $heading__font-family-base !default;
-$h3__font-weight                : $heading__font-weight__base !default;
-$h3__font-style                 : $heading__font-style__base !default;
-$h3__line-height                : $heading__line-height__base !default;
-$h3__margin-top                 : $indent__base * 0.75 !default;
-$h3__margin-bottom              : $indent__s !default;
+$h3-font-size                  : 1.125rem !default; // 18px
+$h3-font-color                 : $heading-color-base !default;
+$h3-font-family                : $heading-font-family-base !default;
+$h3-font-weight                : $heading-font-weight-base !default;
+$h3-font-style                 : $heading-font-style-base !default;
+$h3-line-height                : $heading-line-height-base !default;
+$h3-margin-top                 : $indent-base * 0.75 !default;
+$h3-margin-bottom              : $indent-s !default;
 
-$h4__font-size                  : 0.875rem !default; // 14px
-$h4__font-color                 : $heading__color__base !default;
-$h4__font-family                : $heading__font-family-base !default;
-$h4__font-weight                : $font-weight__bold !default;
-$h4__font-style                 : $heading__font-style__base !default;
-$h4__line-height                : $heading__line-height__base !default;
-$h4__margin-top                 : $heading__margin-top__base !default;
-$h4__margin-bottom              : $heading__margin-bottom__base !default;
+$h4-font-size                  : 0.875rem !default; // 14px
+$h4-font-color                 : $heading-color-base !default;
+$h4-font-family                : $heading-font-family-base !default;
+$h4-font-weight                : $font-weight-bold !default;
+$h4-font-style                 : $heading-font-style-base !default;
+$h4-line-height                : $heading-line-height-base !default;
+$h4-margin-top                 : $heading-margin-top-base !default;
+$h4-margin-bottom              : $heading-margin-bottom-base !default;
 
-$h5__font-size                  : 0.75rem !default; // 12px
-$h5__font-color                 : $heading__color__base !default;
-$h5__font-family                : $heading__font-family-base !default;
-$h5__font-weight                : $font-weight__bold !default;
-$h5__font-style                 : $heading__font-style__base !default;
-$h5__line-height                : $heading__line-height__base !default;
-$h5__margin-top                 : $heading__margin-top__base !default;
-$h5__margin-bottom              : $heading__margin-bottom__base !default;
+$h5-font-size                  : 0.75rem !default; // 12px
+$h5-font-color                 : $heading-color-base !default;
+$h5-font-family                : $heading-font-family-base !default;
+$h5-font-weight                : $font-weight-bold !default;
+$h5-font-style                 : $heading-font-style-base !default;
+$h5-line-height                : $heading-line-height-base !default;
+$h5-margin-top                 : $heading-margin-top-base !default;
+$h5-margin-bottom              : $heading-margin-bottom-base !default;
 
-$h6__font-size                  : 0.625rem !default; // 10px
-$h6__font-color                 : $heading__color__base !default;
-$h6__font-family                : $heading__font-family-base !default;
-$h6__font-weight                : $font-weight__bold !default;
-$h6__font-style                 : $heading__font-style__base !default;
-$h6__line-height                : $heading__line-height__base !default;
-$h6__margin-top                 : $heading__margin-top__base !default;
-$h6__margin-bottom              : $heading__margin-bottom__base !default;
+$h6-font-size                  : 0.625rem !default; // 10px
+$h6-font-color                 : $heading-color-base !default;
+$h6-font-family                : $heading-font-family-base !default;
+$h6-font-weight                : $font-weight-bold !default;
+$h6-font-style                 : $heading-font-style-base !default;
+$h6-line-height                : $heading-line-height-base !default;
+$h6-margin-top                 : $heading-margin-top-base !default;
+$h6-margin-bottom              : $heading-margin-bottom-base !default;
 
-$heading__small-color           : $primary__color !default;
-$heading__small-line-height     : 1 !default;
-$heading__small-size            : ($font-size__xs / $font-size__base) * 100% !default;
+$heading-small-color           : $primary-color !default;
+$heading-small-line-height     : 1 !default;
+$heading-small-size            : ($font-size-xs / $font-size-base) * 100% !default;
 
 //  Code blocks
-$code__background-color         : $panel__background-color !default;
-$code__color                    : $primary__color__darker !default;
-$code__font-size                : $font-size__s !default;
-$code__padding                  : 2px 4px !default;
+$code-background-color         : $panel-background-color !default;
+$code-color                    : $primary-color-darker !default;
+$code-font-size                : $font-size-s !default;
+$code-padding                  : 2px 4px !default;
 
-$pre__background-color          : $panel__background-color !default;
-$pre__border-color              : $border-color__base !default;
-$pre__border-width              : $border-width__base !default;
-$pre__color                     : $primary__color__darker !default;
+$pre-background-color          : $panel-background-color !default;
+$pre-border-color              : $border-color-base !default;
+$pre-border-width              : $border-width-base !default;
+$pre-color                     : $primary-color-darker !default;
 
-$kbd__background-color          : $panel__background-color !default;
-$kbd__color                     : $primary__color__darker !default;
+$kbd-background-color          : $panel-background-color !default;
+$kbd-color                     : $primary-color-darker !default;
 
 //  Blockquote
-$blockquote__border-color       : $border-color__base !default;
-$blockquote__border-width       : 0 !default;
-$blockquote__content-before     : '\2014 \00A0' !default;
-$blockquote__font-size          : $font-size__base !default;
-$blockquote__font-style         : $font-style__emphasis !default;
-$blockquote__margin             : 0 0 $indent__base $indent__xl !default;
-$blockquote__padding            : 0 !default;
+$blockquote-border-color       : $border-color-base !default;
+$blockquote-border-width       : 0 !default;
+$blockquote-content-before     : '\2014 \00A0' !default;
+$blockquote-font-size          : $font-size-base !default;
+$blockquote-font-style         : $font-style-emphasis !default;
+$blockquote-margin             : 0 0 $indent-base $indent-xl !default;
+$blockquote-padding            : 0 !default;
 
-$blockquote-small__color        : $primary__color !default;
-$blockquote-small__font-size    : $font-size__xs !default;
+$blockquote-small-color        : $primary-color !default;
+$blockquote-small-font-size    : $font-size-xs !default;
 
-$cite__font-style               : $font-style__base !default;
+$cite-font-style               : $font-style-base !default;
 
 //  Misc
-$hr__border-color               : $border-color__base !default;
-$hr__border-style               : solid !default;
-$hr__border-width               : $border-width__base !default;
+$hr-border-color               : $border-color-base !default;
+$hr-border-style               : solid !default;
+$hr-border-width               : $border-width-base !default;
 
-$mark__color                    : $primary__color__dark !default;
-$mark__background-color         : $panel__background-color !default;
+$mark-color                    : $primary-color-dark !default;
+$mark-background-color         : $panel-background-color !default;
 
-$abbr__border-color             : $border-color__base !default;
+$abbr-border-color             : $border-color-base !default;
 
 //  Disable filters output in css
 $disable-filters                : false !default;

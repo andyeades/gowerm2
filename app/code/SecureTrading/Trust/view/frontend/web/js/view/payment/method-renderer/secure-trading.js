@@ -45,7 +45,8 @@ define(
                             if (isFrame == "1") {
                                 var $form = $("<form>")
                                     .attr("method", "POST")
-                                    .attr("action", window.checkoutConfig.payment[self.getCode()].iframeUrl);
+                                    .attr("action", window.checkoutConfig.payment[self.getCode()].iframeUrl+'/orderId/'+orderID);
+                                                                        
                                 $form.append($("<input type='hidden'>").attr("name", "orderId").val(orderID));
                                 $('body').append($form);
                                 $form.submit();

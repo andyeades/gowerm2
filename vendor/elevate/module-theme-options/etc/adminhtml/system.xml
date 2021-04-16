@@ -103,6 +103,18 @@
                     <comment>Outer Container</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="enable_evproductcompare" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+                    <label>Enable Product Compare</label>
+                    <comment>Compare Link</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="enable_evproductwishlist" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+                    <label>Enable Wishlist</label>
+                    <comment>Wishlist Links</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
                 <field id="enable_evproductaddto" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
                     <label>Enable Product Add To Block</label>
                     <comment>Compare/Wishlist Links</comment>
@@ -137,8 +149,19 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
+            <group id="newsletter" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Footer Newsletter</label>
+                <field id="input_placeholder" showInDefault="1" showInStore="1" showInWebsite="1" type="text" sortOrder="1">
+                    <label>Input Placeholder Text</label>
+                    <comment>Enter your email address</comment>
+                </field>
+                <field id="button_text" showInDefault="1" showInStore="1" showInWebsite="1" type="text" sortOrder="1">
+                    <label>Button Text</label>
+                    <comment>Sign Up</comment>
+                </field>
+            </group>
 
-		</section>
+        </section>
         <section id="evto_email_options" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
             <label>Email Options</label>
             <tab>elevate</tab>

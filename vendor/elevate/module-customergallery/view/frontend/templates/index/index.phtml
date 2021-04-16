@@ -1,4 +1,12 @@
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+
+<!-- or the reference on CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
 <style>
+
+
+
     *, :after, :before {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -27,18 +35,18 @@
     bottom: 15px;
   }
     
-    
-    .overlay {
+.overlay {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     height: 100%;
-    width: 100%;
     opacity: 0;
     -webkit-transition: .5s ease;
     transition: .5s ease;
+    width: calc(100% - 14px);
+    margin-left: 7px;
 }
     
     
@@ -95,14 +103,13 @@ a#btn-cart-view {
 	
 	
 
-    
 .top-intro {
     text-align: center;
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
-    margin-bottom: 15px;
+    border-top: 0px solid black;
+    border-bottom: 0px solid black;
+    margin-bottom: 45px;
+    margin-top: 40px;
 }
-    
   
     @media screen and (max-width: 991.98px){
         
@@ -214,14 +221,30 @@ a#btn-cart-view {
   opcity:0.8;
 
 }
-</style>
+@media (min-width: 768px){
+.bs-modal-dialog {
+    max-width: 1000px;
+    margin: 1.75rem auto;
+}
+}
+ .bs-modal-body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.bs-modal-header{
+border-bottom:0px;
+}
 
+</style>
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
 
 <div class="container">
-    <div class="row">
+<div class="row">
 
 
-      <div class="col-md-12">
+<div class="col-md-12">
 <div class="top-intro">
 <h1>Our Products, Your Home</h1>
 <h2>Styled, snapped, shared and shoppable!</h2>
@@ -229,8 +252,8 @@ a#btn-cart-view {
 <p>Need inspiration? See and shop our favourite customer images from our feed. Or share your interior style by tagging @HappyBeds in your Happy Beds furniture images for a chance to feature in our feed.
 </p>
 </div>
-        </div>
-        </div>
+</div>
+</div>
     
 </div>
 
@@ -239,9 +262,9 @@ a#btn-cart-view {
 <div class="container test">
 
     
-   <div id="full_swap" class="row">
+<div id="full_swap" class="row">
    
-    <div id="insert_anchor"></div>
+<div id="insert_anchor"></div>
 
 </div> 
 </div>	 
@@ -323,7 +346,47 @@ var ELEVATE = ELEVATE || {};
                 
                   
         
-        }
+        },
+        
+           runSlick = function(){
+           require(['jquery', 'slick'], function($, slick){
+
+
+$('.swipeContainer').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+
+  ]
+});   
+});
+           },
         attachEventHandlers = function(){
    
    
@@ -387,6 +450,9 @@ var ELEVATE = ELEVATE || {};
             },
             attachEventHandlersLoad: function () {
                 attachEventHandlersLoad();
+            },
+            runSlick: function () {
+                runSlick();
             }
         };
     }());
@@ -398,9 +464,29 @@ ELEVATE.CustomerGallery.init();
         jQuery('#loadmore').click(function() {
 ELEVATE.CustomerGallery.attachEventHandlers();      
         });
+       
+       
+       
+var currentscrollHeight = 0;
+var lockScroll = false;
+
+jQuery(window).on("scroll", function(){
+    const scrollHeight = jQuery('#page-main-outer').height();
+    const scrollPos = Math.floor(jQuery(window).height() + jQuery(window).scrollTop());
+    const isBottom = scrollHeight - 300 < scrollPos;
+
+    if (isBottom && currentscrollHeight < scrollHeight) {
+
+        jQuery('#loadmore').click();
+
+        currentscrollHeight = scrollHeight;
+    }
+});
+
+
         
 </script>
-
+  
 
         <style>
         .hide_me{

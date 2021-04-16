@@ -67,16 +67,15 @@
   "version": "2.3.5",
   "minimum-stability": "dev",
   "prefer-stable" : true,
-  "repositories": {
-    "0": {
-      "type": "composer",
-      "url": "https://repo.magento.com/"
-    },
-    "elevate-repo": {
-      "type": "composer",
-      "url": "https://s2.crucialfitness.co.uk/"
-    }
-  },
+  "repositories": [
+                                                 
+  {"type": "composer", "url": "https://repo.magento.com/"},                                
+  {"type": "composer", "url": "https://repo.packagist.com/elevateweb/elevate-platform/"},
+  {"packagist.org": false}
+  
+   
+ 
+  ],
   "extra": {
     "magento-force": "override",
     "composer-exit-on-patch-failure": true

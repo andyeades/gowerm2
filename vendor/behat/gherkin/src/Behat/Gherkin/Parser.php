@@ -183,7 +183,15 @@ class Parser
      */
     protected function parseExpression()
     {
-        switch ($type = $this->predictTokenType()) {
+        $type = $this->predictTokenType();
+
+        while ($type === 'Comment') {
+            $this->expectTokenType('Comment');
+
+            $type = $this->predictTokenType();
+        }
+
+        switch ($type) {
             case 'Feature':
                 return $this->parseFeature();
             case 'Background':
@@ -206,8 +214,6 @@ class Parser
                 return $this->parseNewline();
             case 'Tag':
                 return $this->parseTags();
-            case 'Comment':
-                return $this->parseComment();
             case 'Language':
                 return $this->parseLanguage();
             case 'EOS':
@@ -442,7 +448,12 @@ class Parser
 
         array_push($this->passedNodesStack, 'Outline');
 
-        while (in_array($this->predictTokenType(), array('Step', 'Examples', 'Newline', 'Text', 'Comment', 'Tag'))) {
+        while (in_array($nextTokenType = $this->predictTokenType(), array('Step', 'Examples', 'Newline', 'Text', 'Comment', 'Tag'))) {
+            if ($nextTokenType === 'Comment') {
+                $this->lexer->skipPredictedToken();
+                continue;
+            }
+
             $node = $this->parseExpression();
 
             if ($node instanceof StepNode) {
@@ -646,18 +657,6 @@ class Parser
         $this->expectTokenType('Newline');
 
         return "\n";
-    }
-
-    /**
-     * Parses next comment token & returns it's string content.
-     *
-     * @return BackgroundNode|FeatureNode|OutlineNode|ScenarioNode|StepNode|TableNode|string
-     */
-    protected function parseComment()
-    {
-        $this->expectTokenType('Comment');
-
-        return $this->parseExpression();
     }
 
     /**

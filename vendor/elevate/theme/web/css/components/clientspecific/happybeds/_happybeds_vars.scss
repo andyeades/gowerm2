@@ -166,6 +166,10 @@
 
     $pgrid-price-box-was-now-prices-display-mode: row !global;
 
+    // Category Pages
+
+    $ev-ln-filter-price-fontsize: 0.75rem !global;
+
     // Footer
     $ftr-m-padding-desktop: 0 !global;
 
@@ -184,7 +188,7 @@
     $ftr-above-bg-color: #006b7f !global;
     $ftr-above-text-color: #FFFFFF !global;
     $ftr-above-text-hover-color: darken($ftr-above-text-color, 15%) !global;
-    $ftr-above-font-size: $font-size__s !global;
+    $ftr-above-font-size: $font-size-s !global;
     $ftr-above-padding: 0 !global;
 
     $ftr-below-bg-color: #0e1936 !global;
@@ -224,6 +228,18 @@
     $pview-boxtocart-padding: 35px 10px 10px !global;
     $pview-boxtocart-padding-desktop: 1.25rem 1.25rem 0 !global;
     $pview-boxtocart-padding-desktopmd:  1.25rem 1.25rem 0 !global;
+
+    // Accordion
+    $pview-proddataitems-item-content-padding: 1rem !global;
+    //$pview-data-items-accordion-control-text-transform: uppercase !global;
+    $pview-desc-tab-title-icon-right: 0.5rem !global;
+    $pview-desc-tab-title-padding-top: 1.8rem !global;
+    $pview-desc-tab-title-padding-bottom: 1.8rem !global;
+    $pview-desc-tab-title-padding-left: 0.5rem !global;
+    $pview-desc-tab-title-padding-right: 0.5rem !global;
+
+    $pview-desc-tab-control-background-active: white !global;
+
 
     // Product Listings
 
@@ -282,16 +298,16 @@
 
 
     //colors
-    $hb-csstoscss-color_0: #fff;
-    $hb-csstoscss-color_1: #000;
-    $hb-csstoscss-color_2: #f0f0f0;
+    $hb-csstoscss-color-0: #fff;
+    $hb-csstoscss-color-1: #000;
+    $hb-csstoscss-color-2: #f0f0f0;
 
-    $hb-csstoscss-color_4: #cce5ff;
-    $hb-csstoscss-color_5: #006b7f;
-    $hb-csstoscss-color_6: white;
+    $hb-csstoscss-color-4: #cce5ff;
+    $hb-csstoscss-color-5: #006b7f;
+    $hb-csstoscss-color-6: white;
 
     //fonts
-    $hb-csstoscss-font_0: FontAwesome;
+    $hb-csstoscss-font-0: FontAwesome;
 
 
 
@@ -320,14 +336,8 @@
     }
 
 
-    .rmclink {
-        margin-bottom: 15px;
-        text-decoration: underline;
-        font-weight: bold;
-    }
-
     .xmas_message {
-        background: $hb-csstoscss-color_4;
+        background: $hb-csstoscss-color-4;
         padding: 0.875rem;
         width: auto;
         max-width: 100%;
@@ -339,26 +349,26 @@
         }
     }
     .xmas_message2 {
-        background: $hb-csstoscss-color_5;
-        color: $hb-csstoscss-color_6;
+        background: $hb-csstoscss-color-5;
+        @include co(color, $hb-csstoscss-color-6);
         position: relative;
         font-size: 15px;
         &:before {
             content: "\f1bb";
-            font-family: $hb-csstoscss-font_0;
+            font-family: $hb-csstoscss-font-0;
             font-style: normal;
             font-weight: normal;
             text-decoration: inherit;
-            color: $hb-csstoscss-color_0;
+            @include co(color, $hb-csstoscss-color-0);
             padding-right: 0.5em;
         }
         &:after {
             content: "\f1bb";
-            font-family: $hb-csstoscss-font_0;
+            font-family: $hb-csstoscss-font-0;
             font-style: normal;
             font-weight: normal;
             text-decoration: inherit;
-            color: $hb-csstoscss-color_0;
+            @include co(color, $hb-csstoscss-color-0);
             padding-left: 0.5em;
         }
     }
@@ -475,13 +485,7 @@
                 padding: 0 0 4px 10px;
             }
         }
-        .feefo-image {
-            display: none;
-        }
-        #feefoouter {
-            margin: 0 auto;
-            border: none;
-        }
+
         .products-grid {
             .product-image-photo {
                 min-height: 150px;
@@ -497,7 +501,7 @@
             overflow-y: auto;
         }
         .more-from-collection2.show_ev_furniture_block {
-            background-color: $hb-csstoscss-color_2;
+            background-color: $hb-csstoscss-color-2;
             padding: 18px 0 3px;
             margin: 0 0 30px 0;
         }
@@ -542,8 +546,8 @@
         }
         .products.wrapper ~ .toolbar .pages {
             display: flex;
-            margin: auto;
-            width: 100% !important;
+            width:   auto;
+            margin:  auto;
             margin-bottom: 10px !important;
         }
         .checkout-cart-index #discount-coupon-form .actions-toolbar {
@@ -558,8 +562,8 @@
 
         .customer-account-login {
             a.action.remind {
-                background-color: $hb-csstoscss-color_0;
-                color: $hb-csstoscss-color_1;
+                background-color: $hb-csstoscss-color-0;
+                @include co(color, $hb-csstoscss-color-1);
                 border: none;
                 text-decoration: underline;
                 padding: 0.5rem 0 !important;

@@ -136,6 +136,12 @@ class InstallSchema implements InstallSchemaInterface
             255,
             ['nullable' => false],
             'Shipping Method'
+        )->addColumn(
+            'delivery_cms_block',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            255,
+            ['nullable' => false],
+            'Shipping Method'
         )->addIndex(
             $installer->getIdxName(
                 'webshopapps_matrixrate',

@@ -1,69 +1,69 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
 
 
-$checkout-wrapper__margin: $indent__base !default;
-$checkout-wrapper__columns: 8 !default;
+$checkout-wrapper-margin: $indent-base !default;
+$checkout-wrapper-columns: 8 !default;
 
 
-$chkout-default-border_on: 1 !default;
-$chkout-default-border_position: bottom !default;
-$chkout-default-border_color: #eeebe8 !default;
-$chkout-default-border_style: solid !default;
-$chkout-default-border_thickness: 1px !default;
+$chkout-default-border-on: 1 !default;
+$chkout-default-border-position: bottom !default;
+$chkout-default-border-color: #eeebe8 !default;
+$chkout-default-border-style: solid !default;
+$chkout-default-border-thickness: 1px !default;
 
-$chkout-default-border_on_desktop: 1 !default;
+$chkout-default-border-on-desktop: 1 !default;
 
-$chkout-default-border_radius_on: 1 !default;
-$chkout-default-border_radius: 5px !default;
-
-
-
-
-$checkout-step-title__border_on: $chkout-default-border_on !default;
-$checkout-step-title__border_position: $chkout-default-border_position !default;
-$checkout-step-title__border_color: $chkout-default-border_color !default;
-$checkout-step-title__border_style: $chkout-default-border_style !default;
-$checkout-step-title__border_thickness: $chkout-default-border_thickness !default;
-
-$checkout-step-title__border_on_desktop: $chkout-default-border_on_desktop !default;
-
-$checkout-step-title__border_radius_on: $chkout-default-border_radius_on !default;
-$checkout-step-title__border_radius: $chkout-default-border_radius !default;
+$chkout-default-border-radius-on: 1 !default;
+$chkout-default-border-radius: 5px !default;
 
 
 
-$checkout-step-title__font-size: 1.625rem !default;
-$checkout-step-title__font-weight: 700 !default;
-$checkout-step-title__padding: 0 0 $indent__s 0 !default;
 
-$checkout-step-title-mobile__font-size: 1.125rem !default;
-$checkout_ph_logo_img_width: false !default;
-$checkout_ph_logo_display: false !default;
-$checkout_ph_logo_width: false !default;
+$checkout-step-title-border-on: $chkout-default-border-on !default;
+$checkout-step-title-border-position: $chkout-default-border-position !default;
+$checkout-step-title-border-color: $chkout-default-border-color !default;
+$checkout-step-title-border-style: $chkout-default-border-style !default;
+$checkout-step-title-border-thickness: $chkout-default-border-thickness !default;
 
-$opc_wrapper_width: 100% !default;
-$opc_wrapper_width_desktop: 66.66667% !default;
-$opc_wrapper_order_desktop: 5 !default;
-$opc_wrapper_padding_desktop: 0 1.875rem 0 0 !default;
+$checkout-step-title-border-on-desktop: $chkout-default-border-on-desktop !default;
+
+$checkout-step-title-border-radius-on: $chkout-default-border-radius-on !default;
+$checkout-step-title-border-radius: $chkout-default-border-radius !default;
 
 
-$checkout_page_header_margin: 0 0 1.5rem 0 !default;
-$checkout_page_header_padding: 1rem 0 1.5rem 0 !default;
+
+$checkout-step-title-font-size: 1.625rem !default;
+$checkout-step-title-font-weight: 700 !default;
+$checkout-step-title-padding: 0 0 $indent-s 0 !default;
+
+$checkout-step-title-mobile-font-size: 1.125rem !default;
+$checkout-ph-logo-img-width: false !default;
+$checkout-ph-logo-display: false !default;
+$checkout-ph-logo-width: false !default;
+
+$opc-wrapper-width: 100% !default;
+$opc-wrapper-width-desktop: 66.66667% !default;
+$opc-wrapper-order-desktop: 5 !default;
+$opc-wrapper-padding-desktop: 0 1.875rem 0 0 !default;
 
 
-$chk_page_hdr_border_on: $chkout-default-border_on !default;
-$chk_page_hdr_border_position: $chkout-default-border_position !default;
-$chk_page_hdr_border_color: $chkout-default-border_color !default;
-$chk_page_hdr_border_style: $chkout-default-border_style !default;
-$chk_page_hdr_border_thickness: $chkout-default-border_thickness !default;
+$checkout-page-header-margin: 0 0 1.5rem 0 !default;
+$checkout-page-header-padding: 1rem 0 1.5rem 0 !default;
 
-$chk_page_hdr_border_on_desktop: $chkout-default-border_on_desktop !default;
 
-$chk_page_hdr_border_radius_on: $chkout-default-border_radius_on !default;
-$chk_page_hdr_border_radius: $chkout-default-border_radius !default;
+$chk-page-hdr-border-on: $chkout-default-border-on !default;
+$chk-page-hdr-border-position: $chkout-default-border-position !default;
+$chk-page-hdr-border-color: $chkout-default-border-color !default;
+$chk-page-hdr-border-style: $chkout-default-border-style !default;
+$chk-page-hdr-border-thickness: $chkout-default-border-thickness !default;
+
+$chk-page-hdr-border-on-desktop: $chkout-default-border-on-desktop !default;
+
+$chk-page-hdr-border-radius-on: $chkout-default-border-radius-on !default;
+$chk-page-hdr-border-radius: $chkout-default-border-radius !default;
 
 $checkout-page-header-display-mobiletabletmax: false !default;
 $checkout-page-header-flexwrap-mobiletabletmax: false !default;
@@ -87,24 +87,24 @@ $checkout-page-header-mycart-margin-mobiletabletmax: false !default;
 $checkout-page-header-mycart-width-mobiletabletmax: false !default;
 
 @mixin abs-checkout-title {
-    font-weight: $checkout-step-title__font-weight;
-    @include rfs($checkout-step-title__font-size);
+    @include co(font-weight, $checkout-step-title-font-weight);
+    @include rfs($checkout-step-title-font-size);
 
-    @if $checkout-step-title__border_on == 1 {
-        @include elevate-border($checkout-step-title__border_color, $checkout-step-title__border_thickness, $checkout-step-title__border_style, $checkout-step-title__border_position);
-        @if $checkout-step-title__border_radius_on == 1 {
-            border-radius: $checkout-step-title__border_radius;
+    @if $checkout-step-title-border-on == 1 {
+        @include elevate-border($checkout-step-title-border-color, $checkout-step-title-border-thickness, $checkout-step-title-border-style, $checkout-step-title-border-position);
+        @if $checkout-step-title-border-radius-on == 1 {
+            border-radius: $checkout-step-title-border-radius;
         }
     }
-    @include co(padding,  $checkout-step-title__padding);
+    @include co(padding,  $checkout-step-title-padding);
 
-    @include lib-css(padding-bottom, $checkout-step-title__padding);
+    @include lib-css(padding-bottom, $checkout-step-title-padding);
     @include min-screen($desktop-min) {
-        @if $checkout-step-title__border_on_desktop == 1 {
-            @if $checkout-step-title__border_on != 1 {
-                @include elevate-border($checkout-step-title__border_color, $checkout-step-title__border_thickness, $checkout-step-title__border_style, $checkout-step-title__border_position);
-                @if $checkout-step-title__border_radius_on == 1 {
-                    border-radius: $checkout-step-title__border_radius;
+        @if $checkout-step-title-border-on-desktop == 1 {
+            @if $checkout-step-title-border-on != 1 {
+                @include elevate-border($checkout-step-title-border-color, $checkout-step-title-border-thickness, $checkout-step-title-border-style, $checkout-step-title-border-position);
+                @if $checkout-step-title-border-radius-on == 1 {
+                    border-radius: $checkout-step-title-border-radius;
                 }
             }
         }
@@ -120,15 +120,15 @@ $checkout-page-header-mycart-width-mobiletabletmax: false !default;
 
         .header {
             position: relative;
-            margin: $checkout_page_header_margin;
-            padding: $checkout_page_header_padding;
+            @include co(margin, $checkout-page-header-margin);
+            @include co(padding, $checkout-page-header-padding);
 
 
 
-            @if $checkout-step-title__border_on == 1 {
-                @include elevate-border($checkout-step-title__border_color, $checkout-step-title__border_thickness, $checkout-step-title__border_style, $checkout-step-title__border_position);
-                @if $checkout-step-title__border_radius_on == 1 {
-                    border-radius: $checkout-step-title__border_radius;
+            @if $checkout-step-title-border-on == 1 {
+                @include elevate-border($checkout-step-title-border-color, $checkout-step-title-border-thickness, $checkout-step-title-border-style, $checkout-step-title-border-position);
+                @if $checkout-step-title-border-radius-on == 1 {
+                    border-radius: $checkout-step-title-border-radius;
                 }
             }
 
@@ -142,10 +142,10 @@ $checkout-page-header-mycart-width-mobiletabletmax: false !default;
         }
 
         .logo {
-            @include co(display, $checkout_ph_logo_display);
-            @include co(width, $checkout_ph_logo_width);
+            @include co(display, $checkout-ph-logo-display);
+            @include co(width, $checkout-ph-logo-width);
             img {
-                @include co(width, $checkout_ph_logo_img_width);
+                @include co(width, $checkout-ph-logo-img-width);
                 margin: 0 auto;
             }
             @include max-screen($mobiletablet-max) {
@@ -182,7 +182,7 @@ $checkout-page-header-mycart-width-mobiletabletmax: false !default;
 }
 
 .checkout-container {
-    @include lib-css(margin, 0 0 $checkout-wrapper__margin);
+    @include lib-css(margin, 0 0 $checkout-wrapper-margin);
     display: flex;
     flex-wrap: wrap;
     @include min-screen($desktop-min) {
@@ -191,13 +191,13 @@ $checkout-page-header-mycart-width-mobiletabletmax: false !default;
 }
 
 .opc-wrapper {
-    @include co(width, $opc_wrapper_width);
-    @include co(margin, 0 0 $checkout-wrapper__margin);
+    @include co(width, $opc-wrapper-width);
+    @include co(margin, 0 0 $checkout-wrapper-margin);
 
     @include min-screen($desktop-min) {
-        @include co(width, $opc_wrapper_width-desktop, $opc-wrapper-width);
-        @include co(order, $opc_wrapper_order_desktop);
-        @include co(padding, $opc_wrapper_padding_desktop);
+        @include co(width, $opc-wrapper-width-desktop, $opc-wrapper-width);
+        @include co(order, $opc-wrapper-order-desktop);
+        @include co(padding, $opc-wrapper-padding-desktop);
     }
 
     .opc {
@@ -209,7 +209,7 @@ $checkout-page-header-mycart-width-mobiletabletmax: false !default;
 
         .opc-wrapper {
             .step-title {
-                @include lib-css(font-size, $checkout-step-title-mobile__font-size);
+                @include lib-css(font-size, $checkout-step-title-mobile-font-size);
                 border-bottom: 0;
                 padding-bottom: 0;
             }
@@ -217,7 +217,7 @@ $checkout-page-header-mycart-width-mobiletabletmax: false !default;
     }
 
     .step-content {
-        margin: 0 0 $indent__xl;
+        margin: 0 0 $indent-xl;
     }
 }
 

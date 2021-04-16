@@ -67,21 +67,21 @@
 
 
         #pinfo-btm-o {
-            width: $byob-btm-o-width-mobile;
+            @include co(width, $byob-btm-o-width-mobile);
             @include min-screen($desktop-min) {
-                width: $byob-btm-o-width-desktop;
+                @include co(width, $byob-btm-o-width-desktop);
             }
 
             #pinfo-btm-m {
-                width: $byob-btm-m-width-mobile;
+                @include co(width, $byob-btm-m-width-mobile);
                 @include min-screen($desktop-min) {
-                    width: $byob-btm-m-width-desktop;
+                    @include co(width, $byob-btm-m-width-desktop);
                 }
             }
         }
 
         .product-info-main {
-            width: $byob-product-info-main-width;
+            @include co(width, $byob-product-info-main-width);
             @include min-screen($desktop-md-min) {
                 @include co(width, $byob-product-info-main-width-desktopmd, $byob-product-info-main-width);
             }
@@ -89,7 +89,7 @@
         }
 
         .product.media {
-            width: $byob-product-media-width;
+            @include co(width, $byob-product-media-width);
             @include min-screen($desktop-md-min) {
                 @include co(width, $byob-product-media-width-desktopmd, $byob-product-media-width);
             }
@@ -749,7 +749,7 @@
 
 
     #grey_options_wrap {
-        padding: $byob-gow-padding;
+        @include co(padding, $byob-gow-padding);
         width: 100%;
         margin: 0;
         background-color: white;
@@ -840,7 +840,7 @@
 
     #tab-0 {
         display: block;
-        padding: $byob-tabs-tab0-padding;
+        @include co(padding, $byob-tabs-tab0-padding);
         text-align: center;
 
         @include min-screen($desktop-min) {
@@ -883,7 +883,7 @@
     .tabs-menu {
         flex: 1 1 auto;
         margin-right: -1px;
-        width: $byob-tabs-container-tabmenu-width;
+        @include co(width, $byob-tabs-container-tabmenu-width);
 
         @include min-screen($desktop-min) {
             @include co(width, $byob-tabs-container-tabmenu-width-desktop, $byob-tabs-container-tabmenu-width);
@@ -978,8 +978,8 @@
 
     // Next Button
     .byob-next {
-        width: $byob-next-button-width;
-        margin: $byob-next-button-margin;
+        @include co(width, $byob-next-button-width);
+        @include co(margin, $byob-next-button-margin);
         @include min-screen($desktop-min) {
             @include co(margin, $byob-next-button-margin-desktop, $byob-next-button-margin);
             @include co(width, $byob-next-button-width-desktop, $byob-next-button-width);
@@ -987,7 +987,7 @@
     }
     .tab {
         flex: 1 1 auto;
-        width: $byob-tabs-container-tab-width;
+        @include co(width, $byob-tabs-container-tab-width);
         border: 1px solid #d4d4d1;
         background-color: #fff;
         display: flex;
@@ -1041,15 +1041,15 @@
         .options-list {
             display: flex;
             flex-wrap: wrap;
-            padding: $byob-options-list-padding;
+            @include co(padding, $byob-options-list-padding);
             @include min-screen($desktop-min) {
                 @include co(padding, $byob-options-list-padding-desktop, $byob-options-list-padding);
             }
 
             li {
                 flex: 0 1 auto;
-                width: $byob-options-list-width;
-                padding: $byob-options-list-li-padding;
+                @include co(width, $byob-options-list-width);
+                @include co(padding, $byob-options-list-li-padding);
                 text-align: center;
                 @include min-screen($desktop-min) {
                     @include co(padding, $byob-options-list-li-padding-desktop, $byob-options-list-li-padding);
@@ -1068,7 +1068,7 @@
             }
 
             .grid {
-                margin: $byob-options-list-grid-margin;
+                @include co(margin, $byob-options-list-grid-margin);
             }
 
             #nohead {
@@ -1086,7 +1086,7 @@
         #options-82-list {
             li {
                 @include min-screen($desktop-min) {
-                    width: $byob-options82list-li-width;
+                    @include co(width, $byob-options82list-li-width);
                 }
             }
 
@@ -1095,7 +1095,7 @@
         #options-84-list {
             li {
                 @include min-screen($desktop-min) {
-                    width: $byob-options84list-li-width;
+                    @include co(width, $byob-options84list-li-width);
                 }
             }
 
@@ -1104,7 +1104,7 @@
         #options-85-list {
             li {
                 @include min-screen($desktop-min) {
-                    width: $byob-options85list-li-width;
+                    @include co(width, $byob-options85list-li-width);
                 }
             }
 
@@ -1113,7 +1113,7 @@
         #options-86-list {
             li {
                 @include min-screen($desktop-min) {
-                    width: $byob-options86list-li-width;
+                    @include co(width, $byob-options86list-li-width);
                 }
             }
 
@@ -1134,11 +1134,11 @@
         #options-66-list {
             li {
                 flex: 0 1 auto;
-                width: $byob-options-list-66-width;
+                @include co(width, $byob-options-list-66-width);
                 padding: 1%;
                 text-align: center;
                 @include min-screen($desktop-min) {
-                    width: $byob-options-list-66-width-desktop;
+                    @include co(width, $byob-options-list-66-width-desktop);
                 }
             }
         }
@@ -1283,7 +1283,7 @@
 
         h2 {
             text-align: $byob-desc-wrap-h2-textalign;
-            padding: $byob-desc-wrap-h2-padding;
+            @include co(padding, $byob-desc-wrap-h2-padding);
             color: white;
             @include min-screen($desktop-md-min) {
                 @include co(padding, $byob-desc-wrap-h2-padding-desktopmd, $byob-desc-wrap-h2-padding);
@@ -1385,7 +1385,7 @@
 
         .button {
             flex: 0 1 auto;
-            width: $byob-filters-buttongroup-btn-width;
+            @include co(width, $byob-filters-buttongroup-btn-width);
             padding: 0;
             background-color: unset;
             border: 2px solid transparent;
@@ -1517,7 +1517,7 @@
     }
 
     .mytab-pane {
-        color: $mytab-pane-text-color;
+        @include co(color, $mytab-pane-text-color);
 
         h3,
         p {

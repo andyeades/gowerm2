@@ -8,7 +8,7 @@ $fme-prod-attachments-category-title-fontsize: 0.9375rem !default;
 @if $sitename == posturite {
     .fme-prod-attachment-row {
         > div {
-            margin: $fme-prod-attachment-rowitem-margin;
+            @include co(margin, $fme-prod-attachment-rowitem-margin);
         }
         .content-wrap {
             display: flex;
@@ -16,7 +16,7 @@ $fme-prod-attachments-category-title-fontsize: 0.9375rem !default;
 
         }
         .embed-container {
-            margin: $fme-prod-attachment-embed-container-margin;
+            @include co(margin, $fme-prod-attachment-embed-container-margin);
         }
     }
     .pattach-icon {
@@ -24,8 +24,8 @@ $fme-prod-attachments-category-title-fontsize: 0.9375rem !default;
         width: 20px;
     }
     .fme-prod-attachments-categorytitle {
-        font-size: $fme-prod-attachments-category-title-fontsize;
-        margin: $fme-prod-attachments-category-title-margin;
+      @include co(font-size, $fme-prod-attachments-category-title-fontsize);
+        @include co(margin, $fme-prod-attachments-category-title-margin);
         &:first-of-type {
             margin-top: 0;
         }

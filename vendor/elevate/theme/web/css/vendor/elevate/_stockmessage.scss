@@ -1,42 +1,42 @@
-$stock_message_bg: rgb(204, 229, 255) !default;
-$stock_message_padding: 0.875rem !default;
-$stock_message_width: auto !default;
-$stock_message_maxwidth: 100% !default;
-$stock_message_margin: 1rem 0 !default;
-$stock_message_textalign: center !default;
-$stock_message_border_radius_on: 0 !default;
-$stock_message_border_radius: $border-color__base !default;
+$stock-message-bg: rgb(204, 229, 255) !default;
+$stock-message-padding: 0.875rem !default;
+$stock-message-width: auto !default;
+$stock-message-maxwidth: 100% !default;
+$stock-message-margin: 1rem 0 !default;
+$stock-message-textalign: center !default;
+$stock-message-border-radius-on: 0 !default;
+$stock-message-border-radius: $border-color-base !default;
 
-$stock_handlingtime_bg: #cce5ff !default;
+$stock-handlingtime-bg: #cce5ff !default;
 
-$stock_handlingtimehdrcolor: #db2727 !default;
+$stock-handlingtimehdrcolor: #db2727 !default;
 
 
-$stock_dispatchmessage_bg: rgb(230, 242, 255) !default;
-$stock_dispatchmessage_margin: 1rem 0 0 0 !default;
-$stock_dispatchmessage_padding: 1.125rem !default;
+$stock-dispatchmessage-bg: rgb(230, 242, 255) !default;
+$stock-dispatchmessage-margin: 1rem 0 0 0 !default;
+$stock-dispatchmessage-padding: 1.125rem !default;
 
-$stock_dispatchmessage_icon_margin: 0 0.3125rem 0 0 !default;
+$stock-dispatchmessage-icon-margin: 0 0.3125rem 0 0 !default;
 
 #stock_message {
 
 }
 
 .stock_message {
-    background: $stock_message_bg;
-    padding: $stock_message_padding;
-    width: $stock_message_width;
-    max-width: $stock_message_maxwidth;
-    margin: $stock_message_margin;
-    text-align: $stock_message_textalign;
-    @if $stock_message_border_radius_on == 1 {
-        border-radius: $stock_message_border_radius;
+    @include co(background, $stock-message-bg);
+    @include co(padding, $stock-message-padding);
+    @include co(width, $stock-message-width);
+    @include co(max-width, $stock-message-maxwidth);
+    @include co(margin, $stock-message-margin);
+    @include co(text-align, $stock-message-textalign);
+    @if $stock-message-border-radius-on == 1 {
+    @include co(border-radius, $stock-message-border-radius);
     }
 }
 
 #stock_handlingtime {
 
-    background: $stock_handlingtime_bg;
+    background: $stock-handlingtime-bg;
 
 
     strong {
@@ -44,16 +44,16 @@ $stock_dispatchmessage_icon_margin: 0 0.3125rem 0 0 !default;
     }
 
     .stock_handlingtimehdr {
-        color: $stock_handlingtimehdrcolor;
+        color: $stock-handlingtimehdrcolor;
     }
 }
 
 .stock_dispatchmessage {
-    margin: $stock_dispatchmessage_margin;
-    background: $stock_dispatchmessage_bg;
-    padding: $stock_dispatchmessage_padding;
+    @include co(margin, $stock-dispatchmessage-margin);
+    background: $stock-dispatchmessage-bg;
+    @include co(padding, $stock-dispatchmessage-padding);
 
     > i {
-        margin: $stock_dispatchmessage_icon_margin;
+        @include co(margin, $stock-dispatchmessage-icon-margin);
     }
 }

@@ -306,12 +306,7 @@ class Gallery extends \Magento\Catalog\Block\Product\View\Gallery
         $altglobal_promotion_countdown_list_background_colour = $this->promotion_helper->getConfig('elevate_promotions/countdown/altcountdown_list_background_colour');
         $altglobal_promotion_countdown_list_font_colour_over = $this->promotion_helper->getConfig('elevate_promotions/countdown/altcountdown_list_font_colour_over');
         $altglobal_promotion_cats = $this->promotion_helper->getConfig('elevate_promotions/countdown/altcategories');
-          $elevate_promotion_promo_text_listing = $this->promotion_helper->getConfig('elevate_promotions/productpage/image_overlay_text');
-$elevate_promotion_enable_overlay = $this->promotion_helper->getConfig('elevate_promotions/productpage/enable_overlay');
-$elevate_promotion_promo_listing_background_colour = $this->promotion_helper->getConfig('elevate_promotions/productpage/image_overlay_background_colour');
-$elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfig('elevate_promotions/productpage/image_overlay_font_colour');
-         
-               
+
         $global_promotion = false;
 
         if ($_gpsku == '') {
@@ -335,11 +330,29 @@ $elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfi
         $product_price = '0.00';
         $product_special_price = '0.00';
 
-        $product_price = (float)$product->getPriceInfo()->getPrice('regular_price')->getValue();
-        //get $_product special price    
-        $product_special_price = (float)$product->getFinalPrice();
+        $product_price = (float)number_format($product['price'], '2', '.', ',');
+        //get $_product special price
+        $product_special_price = (float)number_format($product['special_price'], '2', '.', ',');
+
+        if ($product['msrp'] > 0) {
+            $orignumber = (float)number_format($product['msrp'], '2', '.', '');
+
+            // $difference = ($orignumber - $product_price);
+
+            $difference = ($orignumber - $product_special_price);
+            $percent = $difference / $orignumber;
+
+            $orignumber2 = $product_price;
+
+            if ($product_price != 0.00) {
+                $difference2 = ($product_price - $product_special_price);
+                $percent2 = $difference2 / $product_price;
+            } else {
+                $percent2 = -1;
+            }
 
 
+        } else {
 
             $difference = ($product_price - $product_special_price);
 
@@ -348,6 +361,8 @@ $elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfi
             } else {
                 $percent = 0;
             }
+
+        }
 
         $percent_friendly = number_format($percent * 100, 0) . '%';
         $percent_friendly2 = number_format($percent2 * 100, 0) . '%';
@@ -362,38 +377,7 @@ $elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfi
             }
 
         }
-        
-          if ($elevate_promotion_enable_overlay) {
-            if ((array_key_exists($product->getSku(), $global_promotion_skus) || $global_promotion) && !array_key_exists($product->getSku(), $global_blacklist)) { 
 
-                                        
-                                    
-                                    
- $save_off_output .= "<div class='p-img-icon save-icon save-icon2  ts1' style='
-             
-    color: " . $elevate_promotion_promo_listing_font_colour . ";
-    background-color: " . $elevate_promotion_promo_listing_background_colour . " !important;
-    height: auto;
-
-    line-height: initial;
-    padding: 10px;
-    width: 100%;
-    top: auto;
-    bottom: 0;
-    border-radius:0px !important;
-    bottom: 0px !important;
- 
-    width: 100% !important;
-    text-transform: uppercase;
-    position: absolute !important;
-    top: initial !important;
-    '>" . $elevate_promotion_promo_text_listing . "</div>";
-                                    
-                                          
-                                    }                                    
-                            }
-                            
-       /*                     
         if ($global_promotion_enabled) {
             if ((array_key_exists($product->getSku(), $global_promotion_skus) || $global_promotion) && !array_key_exists($product->getSku(), $global_blacklist)) {
 
@@ -404,7 +388,7 @@ $elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfi
     color: " . $global_promotion_font_colour . ";
     background-color: " . $global_promotion_background_colour . ";
     height: auto;
- 
+    /*border-bottom: 0px solid #fff400;*/
     line-height: initial;
     padding: 10px;
     width: 100%;
@@ -415,7 +399,7 @@ $elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfi
                 }
             }
         }
-       */
+
 
         if (array_key_exists($product->getSku(), $myarr) && (number_format($percent2 * 100, 0) > 0)) {
             $save_off_output2 = "<div class=\"p-img-icon save-icon save-icon2\">+ An Extra $percent_friendly2 OFF</div>";
@@ -423,7 +407,7 @@ $elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfi
             $save_off_output2 = '';
         }
 
-        if (intval($productDiscontinued) === 1 && !$product->isSaleable()) {
+        if (intval($productDiscontinued) === 1) {
             $save_off_output = "<div class=\"p-img-icon discontinued-icon\"><span class=\"disccont\">Product</span><span class=\"disccont\">Discontinued</span></div>";
         }
 
@@ -442,7 +426,7 @@ $elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfi
 
 
         $date = $product['discontinued_date'];
-        if(!empty($date) && !$product->isSaleable()){
+        if(!empty($date)){
             if(strtotime($date) < strtotime('30000 days')) {
                 // this is true
                 $class = 'pimg-soldout';
@@ -472,7 +456,7 @@ $elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfi
 
             $originalBlock = $this->getOriginalBlock();
 
-            if (count($images) < 1) {
+            if (!$images->count()) {
                 $this->renderedGalleryHtml[$id] = $isAssociatedProduct ? '' : $this->getPlaceholderHtml();
                 return $this;
             }
@@ -563,9 +547,46 @@ $elevate_promotion_promo_listing_font_colour = $this->promotion_helper->getConfi
                     $selector = str_replace('<a ', '<a class="'.$class.'" ', $selector);
                 }
             }
-
+               //elevate edit
+                                  $images_360 = $product->getImages360();
+              $images_360_count = $product->getCount360();
+              if(empty($images_360_count) || !is_numeric($images_360_count)){
+              $images_360_count = 36;
+              }
+              $images_360_ext = $product->getExt360();
+             $images_360_thumb = '/360images/360icon.jpg';
+             if($images_360 == 'triggerpoint/grid_1_black'){
+              $images_360_thumb = '/360images/'.$images_360.'/grid-1-black-rotate.gif';
+             }
+             else if($images_360 == 'triggerpoint/grid_1_camo'){
+              $images_360_thumb = '/360images/'.$images_360.'/camo-gif.gif';
+             }
+             else if($images_360 == 'triggerpoint/grid_1_orange'){
+              $images_360_thumb = '/360images/'.$images_360.'/orange-gif.gif';
+             }
+             else if($images_360 == 'triggerpoint/grid_1_lime'){
+              $images_360_thumb = '/360images/'.$images_360.'/lime-gif.gif';
+             }
+             else if($images_360 == 'triggerpoint/grid_1_pink'){
+              $images_360_thumb = '/360images/'.$images_360.'/pink-gif.gif';
+             }
+                if(!empty($images_360)){
+              //  if (isset($data['magic360-icon'])) {
+                    $data['magic360-icon'] =
+                        '<a class="mt-thumb-switcher-360 mz-thumb" href="#" title=""><img src="'.$images_360_thumb.'" alt=""></a>';
+                    array_unshift($selectorsArray, $data['magic360-icon']);
+                    
+                }
+          
+               //elevate edit
             foreach ($containersData as $containerId => $containerHTML) {
                 $displayStyle = $defaultContainerId == $containerId ? 'block' : 'none';
+              
+                   if ('mt360Container' == $containerId && !empty($images_360)) {
+
+$containerHTML = '<a id="spin" class="Magic360" href="/360images/'.$images_360.'/01.'.$images_360_ext.'" data-magic360-options="filename:{col}.'.$images_360_ext.'; large-filename: {col}.'.$images_360_ext.'; columns:'.$images_360_count.';"><img src="/360images/'.$images_360.'/01.'.$images_360_ext.'" alt=""/></a>';
+
+     }
                 $mainHTML .= "<div id=\"{$containerId}\" style=\"display: {$displayStyle};\">{$containerHTML}</div>";
             }
 

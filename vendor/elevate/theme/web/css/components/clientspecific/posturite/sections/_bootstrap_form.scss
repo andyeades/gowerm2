@@ -10,19 +10,19 @@
     .bootstrap-form {
         .webforms {
             .fieldset {
-                padding: $bs-form-webforms-fieldset-padding;
+                @include co(padding, $bs-form-webforms-fieldset-padding);
             }
             .field {
-                padding: $bs-form-webforms-fieldset-field-padding;
+                @include co(padding, $bs-form-webforms-fieldset-field-padding);
             }
         }
         .webforms .fieldset,
         .form-list {
-            width: $bootstrap-form-formlist-width;
-            margin: $bootstrap-form-formlist-margin;
+            @include co(width, $bootstrap-form-formlist-width);
+            @include co(margin, $bootstrap-form-formlist-margin);
             @include min-screen($desktop-min) {
-                width: $bootstrap-form-formlist-width-desktop;
-                margin: $bootstrap-form-formlist-margin-desktop;
+                @include co(width, $bootstrap-form-formlist-width-desktop);
+                @include co(margin, $bootstrap-form-formlist-margin-desktop);
             }
             label, .label {
                 &.required em {
@@ -40,11 +40,11 @@
                 @include border-radius($input-border-radius-lg);
             }
             select {
-                padding: $input-padding-y-lg $input-padding-x-lg;
+                @include co(padding, $input-padding-y-lg $input-padding-x-lg);
             }
 
             .input-box {
-                //padding: $input-padding-y-lg 0;
+                //@include co(padding, $input-padding-y-lg 0);
                 text-align: center;
 
             }
@@ -86,7 +86,7 @@
             p.required {
                 font-size: 0.75rem;
                 text-align: right;
-                color: $ps-color-convert-44;
+                @include co(color, $ps-color-convert-44);
                 clear: both;
                 margin: 0 0 10px;
             }

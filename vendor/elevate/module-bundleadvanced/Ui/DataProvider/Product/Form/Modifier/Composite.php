@@ -9,7 +9,10 @@ class Composite extends \Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\Co
 {
     public function modifyData(array $data)
     {
-
+          $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
+$logger = new \Zend\Log\Logger();
+$logger->addWriter($writer);
+$logger->info('Your text message');        
         /** @var \Magento\Catalog\Api\Data\ProductInterface $product */
         $product = $this->locator->getProduct();
         $modelId = $product->getId();

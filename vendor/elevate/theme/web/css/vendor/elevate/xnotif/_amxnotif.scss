@@ -1,16 +1,16 @@
 //
 //  Notification Section
-//  ____________________________________________
+//
 
 //
 //  Variables
-//  --------------------------------------------
+//
 
-$amxnotif-block-label__color: #2F2F2F;
+$amxnotif-block-label-color: #2F2F2F;
 
 //
 //  Common
-//  ----------------------------------------------
+//-
 
 
 .amxnotif-block {
@@ -24,7 +24,7 @@ $amxnotif-block-label__color: #2F2F2F;
     margin-bottom: 5px;
 
     label {
-        @include lib-css(color, $amxnotif-block-label__color);
+        @include lib-css(color, $amxnotif-block-label-color);
         display: block;
         color: #2F2F2F;
         font-weight: bold;

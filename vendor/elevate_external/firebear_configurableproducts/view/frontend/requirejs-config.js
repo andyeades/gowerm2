@@ -6,24 +6,21 @@
 var config = {
     config: {
         mixins: {
-            'Magento_ConfigurableProduct/js/configurable': {
-                'Firebear_ConfigurableProducts/js/configurable-mixin': true
-            },
-            'Magento_Swatches/js/swatch-renderer': {
-                'Firebear_ConfigurableProducts/js/swatch-renderer-mixin': true
-            }
+            'Firebear_ConfigurableProducts/js/configurable': {
+                'Firebear_ConfigurableProducts/js/mixin/configurable': true
+            }, 'Magento_Catalog/js/price-utils':
+                {
+                    'Firebear_ConfigurableProducts/js/mixin/price-utils': true
+                }
         }
     },
     map: {
         '*': {
+            configurable : 'Firebear_ConfigurableProducts/js/configurable',
             jqueryHistory: 'Firebear_ConfigurableProducts/js/jquery.history',
-
             productSummary    : 'Firebear_ConfigurableProducts/js/product-summary',
             priceBundle       : 'Firebear_ConfigurableProducts/js/price-bundle',
             configurableBundle: 'Firebear_ConfigurableProducts/js/configurable_bundle'
         }
-    },
-    shim: {
-        jqueryHistory: ["jquery"]
     }
 };

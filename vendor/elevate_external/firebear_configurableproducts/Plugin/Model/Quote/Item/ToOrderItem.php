@@ -1,79 +1,105 @@
 <?php
-declare(strict_types=1);
-/**
- * ToOrderItem
- *
- * @copyright Copyright © 2020 Firebear Studio. All rights reserved.
- * @author    fbeardev@gmail.com
- */
-
 namespace Firebear\ConfigurableProducts\Plugin\Model\Quote\Item;
-
-use Closure;
-use Exception;
-use Firebear\ConfigurableProducts\Logger\Logger;
-use Magento\Framework\App\ObjectManager;
-use Magento\Framework\Serialize\Serializer\Json;
-use Magento\Quote\Model\Quote\Item\AbstractItem;
+use Magento\Framework\DataObject\Copy;
+use Magento\Quote\Model\Quote\Item;
+use Magento\Quote\Model\Quote\Address\Item as AddressItem;
+use Magento\Sales\Api\Data\OrderItemInterfaceFactory as OrderItemFactory;
 use Magento\Sales\Api\Data\OrderItemInterface;
 
-class ToOrderItem
+
+class ToOrderItem  extends \Magento\Quote\Model\Quote\Item\ToOrderItem
 {
-    /**
-     * @var Logger
+   /**
+     * @var Copy
      */
-    protected $logger;
+    protected $objectCopyService;
 
     /**
-     * @var Json|mixed|null
+     * @var OrderItemFactory
+     */
+    protected $orderItemFactory;
+
+    /**
+     * @var \Magento\Framework\Api\DataObjectHelper
+     */
+    protected $dataObjectHelper;
+    
+    /**
+     * Serializer interface instance.
+     *
+     * @var \Magento\Framework\Serialize\Serializer\Json
+     * @since 101.1.0
      */
     protected $serializer;
 
     /**
-     * ToOrderItem constructor.
-     * @param Logger $logger
-     * @param Json|null $serializer
+     * @param OrderItemFactory $orderItemFactory
+     * @param Copy $objectCopyService
+     * @param \Magento\Framework\Api\DataObjectHelper $dataObjectHelper
      */
     public function __construct(
-        Logger $logger,
-        Json $serializer = null
+        OrderItemFactory $orderItemFactory,
+        Copy $objectCopyService,
+        \Magento\Framework\Api\DataObjectHelper $dataObjectHelper,
+        \Magento\Framework\Serialize\Serializer\Json $serializer = null
     ) {
-        $this->logger = $logger;
-        $this->serializer = $serializer ?: ObjectManager::getInstance()
-            ->get(Json::class);
+        $this->orderItemFactory = $orderItemFactory;
+        $this->objectCopyService = $objectCopyService;
+        $this->dataObjectHelper = $dataObjectHelper;
+        $this->serializer = $serializer ?: \Magento\Framework\App\ObjectManager::getInstance()
+            ->get(\Magento\Framework\Serialize\Serializer\Json::class);
     }
 
-    /**
-     * @param \Magento\Quote\Model\Quote\Item\ToOrderItem $subject
-     * @param Closure $proceed
-     * @param AbstractItem $item
-     * @param array $additional
-     * @return OrderItemInterface
-     */
-    public function aroundConvert(
-        \Magento\Quote\Model\Quote\Item\ToOrderItem $subject,
-        Closure $proceed,
-        AbstractItem $item,
-        $additional = []
-    ) {
-        $additionalOptions = [];
-        /** @var $orderItem OrderItemInterface */
-        $orderItem = $proceed($item, $additional);
-        try {
-            $options = $orderItem->getProductOptions();
-            if ($item->getOptionByCode('additional_options')) {
-                $additionalOptions = $item->getOptionByCode('additional_options');
-            }
 
-            if (!empty($additionalOptions)) {
-                $options['additional_options'] = $this->serializer->unserialize(
-                    $item->getOptionByCode('additional_options')->getValue()
-                );
-            }
-            $orderItem->setProductOptions($options);
-        } catch (Exception $exception) {
-            $this->logger->error($exception->getMessage());
+    public function convert($item, $data = [])
+    {
+
+        $options = $item->getProductOrderOptions();
+        if (!$options) {
+            $options = $item->getProduct()->getTypeInstance()->getOrderOptions($item->getProduct());
+        }
+        $additionalOptions = $item->getOptionByCode('additional_options');
+        $orderItemData = $this->objectCopyService->getDataFromFieldset(
+            'quote_convert_item',
+            'to_order_item',
+            $item
+        );
+        if (!$item->getNoDiscount()) {
+            $data = array_merge(
+                $data,
+                $this->objectCopyService->getDataFromFieldset(
+                    'quote_convert_item',
+                    'to_order_item_discount',
+                    $item
+                )
+            );
+        }
+
+        $orderItem = $this->orderItemFactory->create();
+        $this->dataObjectHelper->populateWithArray(
+            $orderItem,
+            array_merge($orderItemData, $data),
+            '\Magento\Sales\Api\Data\OrderItemInterface'
+        );
+        if (!empty($additionalOptions)) {
+            $attributesInfo = isset($options['attributes_info']) ? $options['attributes_info'] : [];
+            $options['attributes_info'] = array_merge($attributesInfo, $this->serializer->unserialize($additionalOptions->getValue()));
+        }
+
+        /**Setting custom options to item **/
+        if($item->getOptionByCode('additional_options'))
+            $options['additional_options'] = $this->serializer->unserialize($item->getOptionByCode('additional_options')->getValue());
+
+        $orderItem->setProductOptions($options);
+        if ($item->getParentItem()) {
+            $orderItem->setQtyOrdered(
+                $orderItemData[OrderItemInterface::QTY_ORDERED] * $item->getParentItem()->getQty()
+            );
         }
         return $orderItem;
+
     }
+
+
+
 }

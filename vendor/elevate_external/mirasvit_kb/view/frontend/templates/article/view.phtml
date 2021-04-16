@@ -1,17 +1,4 @@
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<!--
-<link rel="stylesheet" type="text/css" href="/js/webforms/opentip/opentip.css"/>
-<link rel="stylesheet" type="text/css" href="/skin/frontend/base/default/webforms/form.css" media="all"/>
-<link rel="stylesheet" type="text/css" href="/skin/frontend/base/default/webforms/results.css" media="all"/>
-<link rel="stylesheet" type="text/css" href="/skin/frontend/base/default/webforms/stars.css" media="all"/>
-<link rel="stylesheet" type="text/css" href="/skin/frontend/happybeds/default/bootstrap/dist/elevate-list-and-view-5.css" media="all">
 
-<script type="text/javascript" src="/js/webforms/logic.js"></script>
-<script type="text/javascript" src="/js/webforms/dropzone.js"></script>
-<script type="text/javascript" src="/js/webforms/opentip/opentip-native-excanvas.min.js"></script>
-<script type="text/javascript" src="/js/webforms/multistep.js"></script>
-<script type="text/javascript" src="/skin/frontend/happybeds/default/bootstrap/js/slick.min.js"></script>
--->
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-580f7e82adb58548"></script>
@@ -152,7 +139,7 @@ $helper = $block->getHelper();
 
     <div class="container">
         <div class="row kb-article-row">
-            <div class="left-sidebar-sharing col-md-1 hidden-xs">
+            <div class="left-sidebar-sharing d-none d-md-block col-md-1">
 
 
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
@@ -160,7 +147,7 @@ $helper = $block->getHelper();
 
 
             </div>
-            <div class="col-xs-12 col-sm-8 kb-article-wrapper">
+            <div class="col-12 col-sm-9 col-md-8 kb-article-wrapper">
                 <div id="kb-article-view-inner" class="kb-article-view-inner">
 
                     <h1><?php echo $article->getName() ?></h1>
@@ -647,8 +634,9 @@ $helper = $block->getHelper();
         jQuery('.kb-article-sidebar').on('activate.bs.scrollspy', function () {
             var activeitem = jQuery('.kb-article-tg-list-pri li.active');
             //console.log(activeitem);
+            console.log('here 3');
             if (jQuery(activeitem).hasClass('kb-article-tg-list-outer')) {
-
+                console.log('here 4');
                 var data_parent_name = jQuery(activeitem).attr('data-parent-name');
                 var itemstohide = jQuery('.kb-article-tg-list-inner[data-section-parent]');
                 var itemstoshow = jQuery('.kb-article-tg-list-inner[data-section-parent="' + data_parent_name + '"]');
@@ -685,8 +673,10 @@ $helper = $block->getHelper();
             jQuery('.kb-article-sidebar').on('activate.bs.scrollspy', function () {
                 var activeitem = jQuery('.kb-article-tg-list-pri li.active');
                 //console.log(activeitem);
+                console.log('here 2');
                 if (jQuery(activeitem).hasClass('kb-article-tg-list-outer')) {
 
+                    console.log('here 1');
                     var data_parent_name = jQuery(activeitem).attr('data-parent-name');
                     var itemstohide = jQuery('.kb-article-tg-list-inner[data-section-parent]');
                     var itemstoshow = jQuery('.kb-article-tg-list-inner[data-section-parent="' + data_parent_name + '"]');
@@ -712,133 +702,134 @@ $helper = $block->getHelper();
             });
 
 
-            function ev_recalcaffixwidth() {
-                var windowcheck = ev_checkWindowWidth();
-                var size_element = jQuery('#kb-article-sidebar-outer').width();
-                console.log("Recalc Affix Width");
-                console.log(size_element);
-                if (windowcheck === true) {
-                    jQuery('.kb-article-sidebar').css('width', size_element + 'px');
-                } else {
-                    jQuery('.kb-article-sidebar').css('width', '');
-                    jQuery('.kb-article-sidebar').css('width', '100%;');
-                }
+
+
+            //ev_moveNavigation();
+        });
+        function ev_recalcaffixwidth() {
+            var windowcheck = ev_checkWindowWidth();
+            var size_element = jQuery('#kb-article-sidebar-outer').width();
+            console.log("Recalc Affix Width");
+            console.log(size_element);
+            if (windowcheck === true) {
+                jQuery('.kb-article-sidebar').css('width', size_element + 'px');
+            } else {
+                jQuery('.kb-article-sidebar').css('width', '');
+                jQuery('.kb-article-sidebar').css('width', '100%;');
+            }
+        }
+
+        function ev_checkWindowWidth() {
+            //check window width (scrollbar included)
+            var e = window,
+                a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
             }
 
-            function ev_checkWindowWidth() {
-                //check window width (scrollbar included)
-                var e = window,
-                    a = 'inner';
-                if (!('innerWidth' in window)) {
-                    a = 'client';
-                    e = document.documentElement || document.body;
-                }
+            var width = e[a + 'Width'];
 
-                var width = e[a + 'Width'];
+            if (width >= MqL) {
+                return true;
+            } else {
 
-                if (width >= MqL) {
-                    return true;
-                } else {
+                return false;
+            }
+        }
 
+        function ev_moveNavigation() {
+            var desktop = ev_checkWindowWidth();
+            var guidesearchbox = jQuery('#guide-search-wrap');
+            var guidesaddtionalcontent = jQuery('#categories-wrap');
+
+            if (desktop === true) {
+                ev_openuparticlesidebar();
+                guidesearchbox.detach().appendTo('.kb-article-sidebar');
+                guidesaddtionalcontent.detach().appendTo('.kb-article-sidebar');
+
+            }
+
+            if (desktop === false) {
+
+                jQuery('.smooth-goto').on('click', function () {
+                    jQuery('html, body').animate({scrollTop: jQuery(this.hash).offset().top - 70}, 1000);
+                    ev_closeuparticlesidebar();
                     return false;
-                }
-            }
+                });
 
-            function ev_moveNavigation() {
-                var desktop = ev_checkWindowWidth();
-                var guidesearchbox = jQuery('#guide-search-wrap');
-                var guidesaddtionalcontent = jQuery('#categories-wrap');
+                jQuery('#kb-article-tg-list-outer').hide();
+                ev_closeuparticlesidebar();
 
-                if (desktop === true) {
-                    ev_openuparticlesidebar();
-                    guidesearchbox.detach().appendTo('.kb-article-sidebar');
-                    guidesaddtionalcontent.detach().appendTo('.kb-article-sidebar');
-
-                }
-
-                if (desktop === false) {
-
-                    jQuery('.smooth-goto').on('click', function () {
-                        jQuery('html, body').animate({scrollTop: jQuery(this.hash).offset().top - 70}, 1000);
-                        ev_closeuparticlesidebar();
-                        return false;
-                    });
-
-                    jQuery('#kb-article-tg-list-outer').hide();
+                jQuery('.kb-article-tg-list-outer').click(function () {
+                    var selected = jQuery(this);
                     ev_closeuparticlesidebar();
+                });
 
-                    jQuery('.kb-article-tg-list-outer').click(function () {
-                        var selected = jQuery(this);
-                        ev_closeuparticlesidebar();
-                    });
+                guidesearchbox.detach().appendTo('#additonal-content-bottom');
+                guidesaddtionalcontent.detach().appendTo('#additonal-content-bottom');
 
-                    guidesearchbox.detach().appendTo('#additonal-content-bottom');
-                    guidesaddtionalcontent.detach().appendTo('#additonal-content-bottom');
-
-                    // Configure/customize these variables.
-                    var showChar = 50;  // How many characters are shown by default
-                    var ellipsestext = "...";
-                    var moretext = "Show more >";
-                    var lesstext = "Show less";
+                // Configure/customize these variables.
+                var showChar = 50;  // How many characters are shown by default
+                var ellipsestext = "...";
+                var moretext = "Show more >";
+                var lesstext = "Show less";
 
 
-                    jQuery('.more').each(function () {
-                        var content = jQuery(this).html();
+                jQuery('.more').each(function () {
+                    var content = jQuery(this).html();
 
-                        if (content.length > showChar) {
+                    if (content.length > showChar) {
 
-                            var c = content.substr(0, showChar);
-                            var h = content.substr(showChar, content.length - showChar);
+                        var c = content.substr(0, showChar);
+                        var h = content.substr(showChar, content.length - showChar);
 
-                            var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+                        var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
 
-                            jQuery(this).html(html);
-                        }
+                        jQuery(this).html(html);
+                    }
 
-                    });
+                });
 
-                    jQuery(".morelink").click(function () {
-                        if (jQuery(this).hasClass("less")) {
-                            jQuery(this).removeClass("less");
-                            jQuery(this).html(moretext);
-                        } else {
-                            jQuery(this).addClass("less");
-                            jQuery(this).html(lesstext);
-                        }
-                        jQuery(this).parent().prev().toggle();
-                        jQuery(this).prev().toggle();
-                        return false;
-                    });
+                jQuery(".morelink").click(function () {
+                    if (jQuery(this).hasClass("less")) {
+                        jQuery(this).removeClass("less");
+                        jQuery(this).html(moretext);
+                    } else {
+                        jQuery(this).addClass("less");
+                        jQuery(this).html(lesstext);
+                    }
+                    jQuery(this).parent().prev().toggle();
+                    jQuery(this).prev().toggle();
+                    return false;
+                });
 
 
-                }
             }
+        }
 
-            function ev_openuparticlesidebar() {
-                jQuery('#kb-article-tg-list-outer').slideDown();
-                jQuery('#kb-article-tg-title .open-close-sidebaritem i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
-                jQuery('#kb-article-sidebar-outer').addClass('opened-up').removeClass('closed-up');
+        function ev_openuparticlesidebar() {
+            jQuery('#kb-article-tg-list-outer').slideDown();
+            jQuery('#kb-article-tg-title .open-close-sidebaritem i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+            jQuery('#kb-article-sidebar-outer').addClass('opened-up').removeClass('closed-up');
 //      jQuery('body').css("overflow", "hidden");
+        }
+
+        function ev_closeuparticlesidebar() {
+            jQuery('#kb-article-tg-list-outer').slideUp();
+            jQuery('#kb-article-tg-title .open-close-sidebaritem i').removeClass('fa-chevron-down').addClass('fa-chevron-right');
+            jQuery('#kb-article-sidebar-outer').removeClass('opened-up').addClass('closed-up');
+        }
+
+        jQuery('.kb-article-tg-title').click(function () {
+            var selected = jQuery(this);
+            if (jQuery('#kb-article-tg-list-outer').is(':visible')) {
+                ev_closeuparticlesidebar();
+            } else {
+                ev_openuparticlesidebar();
             }
 
-            function ev_closeuparticlesidebar() {
-                jQuery('#kb-article-tg-list-outer').slideUp();
-                jQuery('#kb-article-tg-title .open-close-sidebaritem i').removeClass('fa-chevron-down').addClass('fa-chevron-right');
-                jQuery('#kb-article-sidebar-outer').removeClass('opened-up').addClass('closed-up');
-            }
 
-            jQuery('.kb-article-tg-title').click(function () {
-                var selected = jQuery(this);
-                if (jQuery('#kb-article-tg-list-outer').is(':visible')) {
-                    ev_closeuparticlesidebar();
-                } else {
-                    ev_openuparticlesidebar();
-                }
-
-
-            });
-
-            ev_moveNavigation();
         });
     });
 

@@ -1,21 +1,21 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
-$popup-marker__size: 7px !default;
+$popup-marker-size: 7px !default;
 
 
-$bs_modal_footer_addtocart_justify_content: center !default;
-$bs_modal_footer_addtocart_align_items: center !default;
-$bs_modal_footer_addtocart_flex_wrap_max: $mobiletablet_max;
+$bs-modal-footer-addtocart-justify-content: center !default;
+$bs-modal-footer-addtocart-align-items: center !default;
+$bs-modal-footer-addtocart-flex-wrap-max: $mobiletablet-max;
 
 .bs-modal-footer {
     > .add-to-cart {
         width: 100%;
         display: flex;
-        align-items: $bs_modal_footer_addtocart_align_items;
-        justify-content: $bs_modal_footer_addtocart_justify_content;
-        @include max-screen($bs_modal_footer_addtocart_flex_wrap_max) {
+        @include co(align-items, $bs-modal-footer-addtocart-align-items);
+        @include co(justify-content, $bs-modal-footer-addtocart-justify-content);
+        @include max-screen($bs-modal-footer-addtocart-flex-wrap-max) {
             flex-wrap: wrap;
         }
     }
@@ -28,30 +28,30 @@ $bs_modal_footer_addtocart_flex_wrap_max: $mobiletablet_max;
     &.popup {
         .action {
             &.close {
-                @include lib-css(bottom, $popup-button-close__position-bottom);
-                @include lib-css(left, $popup-button-close__position-left);
-                @include lib-css(position, $popup-button-close__position);
+                @include lib-css(bottom, $popup-button-close-position-bottom);
+                @include lib-css(left, $popup-button-close-position-left);
+                @include lib-css(position, $popup-button-close-position);
                 height: 40px;
                 right: 0;
                 top: 0;
                 width: 40px;
                 z-index: 1001;
                 @include lib-popup-button-close-icon(
-                    $popup-button-close__icon,
-                    $popup-icon-font__content,
+                    $popup-button-close-icon,
+                    $popup-icon-font-content,
                     $popup-icon-font,
-                    $popup-icon-font__size,
-                    $popup-icon-font__line-height,
-                    $popup-icon-font__color,
-                    $popup-icon-font__color-hover,
-                    $popup-icon-font__color-active,
-                    $popup-icon-font__margin,
-                    $popup-icon-font__vertical-align,
-                    $popup-icon-font__position,
-                    $popup-icon-font__text-hide
+                    $popup-icon-font-size,
+                    $popup-icon-font-line-height,
+                    $popup-icon-font-color,
+                    $popup-icon-font-color-hover,
+                    $popup-icon-font-color-active,
+                    $popup-icon-font-margin,
+                    $popup-icon-font-vertical-align,
+                    $popup-icon-font-position,
+                    $popup-icon-font-text-hide
                 );
                 @include _lib-popup-button-close-reset(
-                    $popup-button-close__reset
+                    $popup-button-close-reset
                 );
             }
         }
@@ -60,22 +60,22 @@ $bs_modal_footer_addtocart_flex_wrap_max: $mobiletablet_max;
 
 .popup-pointer {
     @include lib-pointer(
-        $_size                        : $popup-marker__size,
-        $_background-color            : $popup__background,
-        $_border-color                : $popup__border-color,
-        $_position__vertical__value   : 2px,
-        $_position__horizontal__value : 2px
+        $-size                        : $popup-marker-size,
+        $-background-color            : $popup-background,
+        $-border-color                : $popup-border-color,
+        $-position-vertical-value   : 2px,
+        $-position-horizontal-value : 2px
     );
-    margin-left: -$popup-marker__size * 2;
+    margin-left: -$popup-marker-size * 2;
     position: absolute;
-    top: -$popup-marker__size * 2;
+    top: -$popup-marker-size * 2;
 }
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__s) {
+@include min-screen($screen-s) {
     .ui-dialog {
         &.popup {
             width: 420px;

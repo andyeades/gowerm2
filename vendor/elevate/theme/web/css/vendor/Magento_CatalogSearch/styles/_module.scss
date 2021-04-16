@@ -1,12 +1,12 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
-$autocomplete__background-color  : $color-white;
-$autocomplete__border            : 1px solid $form-element-input__border-color;
-$autocomplete-item__border       : 1px solid $color-gray90;
-$autocomplete-item__hover__color : $color-gray91;
-$autocomplete-item-amount__color : $color-gray60;
+$autocomplete-background-color  : $color-white;
+$autocomplete-border            : 1px solid $form-element-input-border-color;
+$autocomplete-item-border       : 1px solid $color-gray90;
+$autocomplete-item-hover-color : $color-gray91;
+$autocomplete-item-amount-color : $color-gray60;
 
 .search-autocomplete {
 
@@ -20,18 +20,18 @@ $autocomplete-item-amount__color : $color-gray60;
         @include lib-list-reset-styles();
 
         li {
-            @include lib-css(border-top, $autocomplete-item__border);
+            @include lib-css(border-top, $autocomplete-item-border);
             cursor: pointer;
             margin: 0;
-            padding: $indent__xs $indent__xl $indent__xs $indent__s;
+            @include co(padding, $indent-xs $indent-xl $indent-xs $indent-s);
             position: relative;
             text-align: left;
             white-space: normal;
 
             &:not(:empty) {
                 border-top: 0;
-                @include lib-css(border, $autocomplete__border);
-                @include lib-css(background, $autocomplete__background-color);
+                @include lib-css(border, $autocomplete-border);
+                @include lib-css(background, $autocomplete-background-color);
             }
 
             &:first-child {
@@ -40,14 +40,14 @@ $autocomplete-item-amount__color : $color-gray60;
 
             &:hover,
             &.selected {
-                @include lib-css(background, $autocomplete-item__hover__color);
+                @include lib-css(background, $autocomplete-item-hover-color);
             }
 
             .amount {
-                @include lib-css(color, $autocomplete-item-amount__color);
+                @include lib-css(color, $autocomplete-item-amount-color);
                 position: absolute;
                 right: 7px;
-                top: $indent__xs;
+                top: $indent-xs;
             }
         }
     }
@@ -107,5 +107,5 @@ $autocomplete-item-amount__color : $color-gray60;
 }
 
 .search.summary {
-    margin-bottom: $indent__s;
+    margin-bottom: $indent-s;
 }

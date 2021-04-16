@@ -1,33 +1,33 @@
 //
 //  Sales Module Styles
-//  _____________________________________________
+//
 // inline styles moved to _email-inline.scss
 
-@include max-screen($screen__xs) {
+@include max-screen($screen-xs) {
     //  Shrink order number in order email so it will fit on single line on small screens
     .email-summary {
         h1 {
             // output 24px
-            font-size: ceil(1.7 * $font-size__base) !important; // sass-lint:disable-line no-important
+            font-size: ceil(1.7 * $font-size-base) !important; // sass-lint:disable-line no-important
         }
     }
 }
 
 //
 //  Order Summary
-//  ----------------------------------------------
+//-
 
-@include max-screen($screen__xs) {
+@include max-screen($screen-xs) {
     //  Stack columns
     .order-details {
         .address-details,
         .method-info {
             display: block;
-            padding: $email-content__padding__base 0 !important; // sass-lint:disable-line no-important
+            @include co(padding, $email-content-padding-base 0 !important); // sass-lint:disable-line no-important
             width: auto !important; // sass-lint:disable-line no-important
 
             h3 {
-                margin-bottom: $indent__xs !important; // sass-lint:disable-line no-important
+                margin-bottom: $indent-xs !important; // sass-lint:disable-line no-important
                 margin-top: 0 !important; // sass-lint:disable-line no-important
             }
         }

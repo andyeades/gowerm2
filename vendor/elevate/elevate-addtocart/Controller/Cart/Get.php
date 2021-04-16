@@ -11,7 +11,7 @@ use stdClass;
 class Get extends \Magento\Framework\App\Action\Action
 {
 
-
+     
     /**
      * @var Session
      */
@@ -31,7 +31,7 @@ class Get extends \Magento\Framework\App\Action\Action
     protected $_logger;
 
 
-
+          
 
     /**
      * Index constructor.
@@ -49,7 +49,7 @@ class Get extends \Magento\Framework\App\Action\Action
         $this->_jsonHelper = $jsonHelper;
         $this->_logger = $logger;
         $this->session = $session;
-
+        
 
     }
 
@@ -124,6 +124,12 @@ if (!empty($bespoke_image)) {
         $totalQuantity = $cart->getQuote()->getItemsQty();
         $subTotal = $cart->getQuote()->getSubtotal();
         $grandTotal = $cart->getQuote()->getGrandTotal();
+        $shippingAmountExVat = $cart->getQuote()->getShippingAddress()->getShippingAmount();
+         $shippingAmountIncVat = $cart->getQuote()->getShippingAddress()->getShippingInclTax();       
+        
+        
+        
+           $grandTotal = $grandTotal - $shippingAmountIncVat;
                        $responseData = [
                   'errors' => false,
                   'has_basket' => $hasBasket,
@@ -131,6 +137,8 @@ if (!empty($bespoke_image)) {
                   'total_quantity' => $totalQuantity,
                   'sub_total' => $subTotal,
                   'grand_total' => $grandTotal,
+                   'shipping_amount_ex_vat' => $shippingAmountExVat,
+                    'shipping_amount_inc_vat' => $shippingAmountIncVat,
                   'item_data' => $itemData
         ];
 

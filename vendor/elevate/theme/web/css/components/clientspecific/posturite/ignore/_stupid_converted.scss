@@ -11,7 +11,7 @@
         padding: 8px 15px;
         margin-bottom: 20px;
         display: inline-block;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         font-size: 1.4em;
         text-transform: uppercase;
     }
@@ -36,7 +36,7 @@
             filter: alpha(opacity=94);
 
             span {
-                color: $ps-color-convert-104;
+                @include co(color, $ps-color-convert-104);
                 font-weight: 400;
                 font-size: 12px;
             }
@@ -51,7 +51,7 @@
     }
 
     .info-label {
-        color: $ps-color-convert-21;
+        @include co(color, $ps-color-convert-21);
         margin-top: 15px;
     }
 
@@ -69,7 +69,7 @@
 
         &.bottom-message {
             font-size: 20px;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         &.quote {
@@ -87,7 +87,7 @@
 
         &.company-name {
             font-size: 10px;
-            color: $ps-color-convert-215;
+            @include co(color, $ps-color-convert-215);
         }
 
     }
@@ -108,12 +108,12 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 1.2em;
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
             text-transform: uppercase;
             margin-top: 10px;
 
             &:hover {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 background: $ps-color-convert-21;
             }
         }
@@ -142,7 +142,7 @@
             background-color: $ps-color-convert-143;
             background-image: $ps-url-convert-43;
             background-repeat: repeat-x;
-            color: $ps-color-convert-36;
+            @include co(color, $ps-color-convert-36);
             width: 225px;
             padding: 10px 5px;
             float: left;
@@ -170,13 +170,13 @@
             &:hover {
                 text-decoration: none;
                 background: $ps-color-convert-89;
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
             }
         }
 
 
         &.learning-resource-link.active {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-decoration: none;
             background-color: $ps-color-convert-21;
         }
@@ -293,7 +293,7 @@
                         background: $ps-color-convert-21;
                         display: block;
                         height: 85px;
-                        color: $ps-color-convert-2;
+                        @include co(color, $ps-color-convert-2);
                         text-indent: 0;
                         font-size: 18px;
 
@@ -349,7 +349,7 @@
 
             label {
                 float: left;
-                color: $ps-color-convert-4;
+                @include co(color, $ps-color-convert-4);
                 position: relative;
                 z-index: 0;
                 font-size: 16px;
@@ -383,7 +383,7 @@
             border: none;
             background: 0 0;
             padding: 0;
-            color: $ps-color-convert-17;
+            @include co(color, $ps-color-convert-17);
             margin-bottom: 20px;
         }
     }
@@ -434,52 +434,52 @@
     }
 
     .section-green {
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         background-color: $ps-color-convert-21;
         background-image: linear-gradient(to bottom, $ps-color-convert-27, $ps-color-convert-21 100%);
-        filter: progid:dximagetransform.microsoft.gradient(startcolorstr='$ps_color_convert_27', endcolorstr='$ps_color_convert_21', gradienttype=0); // sass-lint:disable-line space-after-colon
+        filter: progid:dximagetransform.microsoft.gradient(startcolorstr='$ps-color-convert-27', endcolorstr='$ps-color-convert-21', gradienttype=0); // sass-lint:disable-line space-after-colon
         background-repeat: repeat-x;
         background-size: cover;
 
         h1 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         h2 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         h3 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         a {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
     }
 
     .section-blue {
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         background-color: $ps-color-convert-26;
         background-image: linear-gradient(to bottom, $ps-color-convert-28, $ps-color-convert-26 100%);
-        filter: progid:dximagetransform.microsoft.gradient(startcolorstr='$ps_color_convert_28', endcolorstr='$ps_color_convert_26', gradienttype=0); // sass-lint:disable-line space-after-colon
+        filter: progid:dximagetransform.microsoft.gradient(startcolorstr='$ps-color-convert-28', endcolorstr='$ps-color-convert-26', gradienttype=0); // sass-lint:disable-line space-after-colon
         background-repeat: repeat-x;
         background-size: cover;
 
         h1 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         h2 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         h3 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         a {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
     }
 
@@ -488,7 +488,7 @@
         background-color: $ps-color-convert-29;
 
         h1 {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
         }
     }
 
@@ -541,7 +541,7 @@
         display: inline-block;
 
         h1 {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
         }
     }
 
@@ -581,7 +581,7 @@
         padding: 50px 0;
 
         h2 {
-            color: $ps-color-convert-4;
+            @include co(color, $ps-color-convert-4);
             margin-bottom: 34px;
         }
 
@@ -596,7 +596,7 @@
         }
 
         h2 {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
             font-size: 16px;
             font-weight: 700;
             text-align: center;
@@ -617,15 +617,15 @@
 
         .label {
             font-style: italic;
-            color: $ps-color-convert-33;
+            @include co(color, $ps-color-convert-33);
             font-size: 12px;
             padding: 0;
-            color: $ps-color-convert-34;
+            @include co(color, $ps-color-convert-34);
             font-size: 12px;
         }
 
         .value {
-            color: $ps-color-convert-34;
+            @include co(color, $ps-color-convert-34);
         }
 
         img {
@@ -640,7 +640,7 @@
         padding: 10px;
 
         .value {
-            color: $ps-color-convert-34;
+            @include co(color, $ps-color-convert-34);
         }
 
         img {
@@ -649,7 +649,7 @@
         }
 
         .label {
-            color: $ps-color-convert-34;
+            @include co(color, $ps-color-convert-34);
             font-size: 12px;
         }
     }
@@ -664,9 +664,9 @@
 
         > .panel-heading {
             background-image: linear-gradient(to bottom, $ps-color-convert-35 0, $ps-color-convert-21 100%);
-            filter: progid:dximagetransform.microsoft.gradient(startcolorstr='$ps_color_convert_35', endcolorstr='$ps_color_convert_21', gradienttype=0); // sass-lint:disable-line space-after-colon
+            filter: progid:dximagetransform.microsoft.gradient(startcolorstr='$ps-color-convert-35', endcolorstr='$ps-color-convert-21', gradienttype=0); // sass-lint:disable-line space-after-colon
             background-repeat: repeat-x;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
     }
 
@@ -675,12 +675,12 @@
         margin-top: -5px;
 
         h2 {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
             margin-bottom: 5px;
         }
 
         .workrite-user h2 {
-            color: $ps-color-convert-26;
+            @include co(color, $ps-color-convert-26);
         }
     }
 
@@ -785,7 +785,7 @@
 
     .nav-title {
         span {
-            color: $ps-color-convert-36;
+            @include co(color, $ps-color-convert-36);
             background-color: $ps-color-convert-18;
             display: block;
             padding: 10px;
@@ -793,7 +793,7 @@
             border-bottom: 1px solid $ps-color-convert-0;
             text-transform: uppercase;
             background-color: $ps-color-convert-37;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             background-image: $ps-url-convert-4;
             background-repeat: no-repeat;
             background-position: 206px 18px;
@@ -1164,24 +1164,24 @@
         font-weight: 700;
         line-height: 13px;
         background: $ps-url-convert-5 2px 0 no-repeat;
-        color: $ps-color-convert-44;
+        @include co(color, $ps-color-convert-44);
         float: left;
         bottom: 0;
     }
 
 
     .success {
-        color: $ps-color-convert-47;
+        @include co(color, $ps-color-convert-47);
         font-weight: 700;
     }
 
     .error {
-        color: $ps-color-convert-48;
+        @include co(color, $ps-color-convert-48);
         font-weight: 700;
     }
 
     .notice {
-        color: $ps-color-convert-49;
+        @include co(color, $ps-color-convert-49);
     }
 
 
@@ -1215,12 +1215,12 @@
 
     .page-title {
         h1 {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
         }
 
         h2 {
-            color: $ps-color-convert-21;
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
+            @include co(color, $ps-color-convert-21);
             font-size: 30px;
         }
 
@@ -1238,7 +1238,7 @@
         }
 
         span {
-            color: $ps-color-convert-4;
+            @include co(color, $ps-color-convert-4);
         }
     }
 
@@ -1278,7 +1278,7 @@
         font-size: 15px;
         font-weight: 700;
         margin: 0 0 6px;
-        color: $ps-color-convert-55;
+        @include co(color, $ps-color-convert-55);
     }
 
     .hide-page-title-search {
@@ -1315,7 +1315,7 @@
         font-size: 12px;
         line-height: 1.15;
         text-align: center;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
     }
 
     .best-seller-link {
@@ -1355,11 +1355,11 @@
         a {
             font-family: $ps-font-convert-0;
             font-size: 12px;
-            color: $ps-color-convert-36;
+            @include co(color, $ps-color-convert-36);
             text-decoration: none;
 
             &:hover {
-                color: $ps-color-convert-77;
+                @include co(color, $ps-color-convert-77);
                 text-decoration: none;
             }
         }
@@ -1367,7 +1367,7 @@
         span {
             font-family: $ps-font-convert-0;
             font-size: 11px;
-            color: $ps-color-convert-78;
+            @include co(color, $ps-color-convert-78);
         }
     }
 
@@ -1435,11 +1435,11 @@
 
 
     .greystar {
-        color: $ps-color-convert-0;
+        @include co(color, $ps-color-convert-0);
     }
 
     .goldstar {
-        color: $ps-color-convert-91;
+        @include co(color, $ps-color-convert-91);
     }
 
 
@@ -1453,7 +1453,7 @@
             width: 15px;
             height: 15px;
             position: relative;
-            color: $ps-color-convert-112;
+            @include co(color, $ps-color-convert-112);
             cursor: help;
             display: inline-block;
             margin-left: 10px;
@@ -1481,7 +1481,7 @@
         border: 2px solid $ps-color-convert-4;
         background-color: $ps-color-convert-2;
         font-weight: 400;
-        color: $ps-color-convert-104;
+        @include co(color, $ps-color-convert-104);
         font-size: 12px;
         padding: 10px;
         width: 335px;
@@ -1571,7 +1571,7 @@
             margin: 12px;
 
             a {
-                color: $ps-color-convert-87;
+                @include co(color, $ps-color-convert-87);
             }
 
             li {
@@ -1582,7 +1582,7 @@
                     font-weight: 700;
 
                     a {
-                        color: $ps-color-convert-83;
+                        @include co(color, $ps-color-convert-83);
                     }
                 }
             }
@@ -1688,7 +1688,7 @@
     }
 
     .po-warning {
-        color: $ps-color-convert-132;
+        @include co(color, $ps-color-convert-132);
     }
 
     .order-received {
@@ -1716,14 +1716,14 @@
         margin-left: 20px;
 
         .best-selling a.product-name:hover {
-            color: $ps-color-convert-86;
+            @include co(color, $ps-color-convert-86);
         }
     }
 
     .best-selling {
         h3 {
             margin: 12px 0 6px;
-            color: $ps-color-convert-55;
+            @include co(color, $ps-color-convert-55);
             font-size: 1.2em;
         }
 
@@ -1759,7 +1759,7 @@
         }
 
         a.product-name {
-            color: $ps-color-convert-86;
+            @include co(color, $ps-color-convert-86);
         }
     }
 
@@ -1801,7 +1801,7 @@
         text-align: center;
         font-size: 10px;
         background: $ps-color-convert-149;
-        color: $ps-color-convert-4;
+        @include co(color, $ps-color-convert-4);
     }
 
     #march-terms-dialog {
@@ -1820,7 +1820,7 @@
 
     h4 {
         &.block-call-to-action {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             background: $ps-color-convert-21;
             font-weight: 400;
             padding: 7px;
@@ -1828,7 +1828,7 @@
             margin: 0;
 
             a {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 display: block;
             }
         }
@@ -1843,7 +1843,7 @@
             margin: 0;
 
             a {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 display: block;
                 float: left;
                 width: 50%;
@@ -1877,7 +1877,7 @@
         border-bottom: 1px solid $ps-color-convert-149;
 
         h2 {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
             padding: 10px;
         }
 
@@ -1937,7 +1937,7 @@
         .client-quotie {
             margin-top: 10px !important;
             font-style: italic;
-            color: $ps-color-convert-152;
+            @include co(color, $ps-color-convert-152);
             width: 170px;
             margin: 0 auto;
         }
@@ -1961,7 +1961,7 @@
             padding: 0;
             background: 0 0;
             border: 0;
-            color: $ps-color-convert-23;
+            @include co(color, $ps-color-convert-23);
         }
     }
 
@@ -2006,11 +2006,11 @@
         background-color: transparent;
 
         p {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         a {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-decoration: underline;
 
             &:hover {
@@ -2019,7 +2019,7 @@
         }
 
         h3 {
-            color: $ps-color-convert-57;
+            @include co(color, $ps-color-convert-57);
         }
 
         .division-information {
@@ -2046,7 +2046,7 @@
         }
 
         a {
-            color: $ps-color-convert-4;
+            @include co(color, $ps-color-convert-4);
         }
 
         &:hover {
@@ -2111,7 +2111,7 @@
         width: 295px;
         background-color: $ps-color-convert-57;
         display: block;
-        color: $ps-color-convert-33;
+        @include co(color, $ps-color-convert-33);
         font-weight: 700;
         border: 2px solid $ps-color-convert-0;
     }
@@ -2127,7 +2127,7 @@
         }
 
         a {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
             display: block;
             float: left;
             width: 309px;
@@ -2144,7 +2144,7 @@
             }
 
             &:hover {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 border: 2px solid $ps-color-convert-158;
                 cursor: pointer;
                 text-decoration: none;
@@ -2178,7 +2178,7 @@
             border-left: 0;
             border-right: 0;
             background: $ps-color-convert-57;
-            color: $ps-color-convert-4;
+            @include co(color, $ps-color-convert-4);
             padding: 5px;
             text-align: left;
             font-size: 1.6em;
@@ -2304,10 +2304,10 @@
         .main-category-slogan {
             font-style: italic;
             font-size: 1.2em;
-            color: $ps-color-convert-159;
+            @include co(color, $ps-color-convert-159);
 
             span {
-                color: $ps-color-convert-23;
+                @include co(color, $ps-color-convert-23);
                 font-style: normal;
             }
         }
@@ -2345,11 +2345,11 @@
             font-size: 1em;
             border: 1px solid $ps-color-convert-17;
             margin-bottom: 0;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         a {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
             display: block;
             float: left;
             width: 100%;
@@ -2360,7 +2360,7 @@
             border-right: 1px solid $ps-color-convert-0;
 
             &:hover {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 cursor: pointer;
                 text-decoration: none;
                 background: $ps-color-convert-161;
@@ -2421,7 +2421,7 @@
 
         span {
             font-size: .8em;
-            color: $ps-color-convert-33;
+            @include co(color, $ps-color-convert-33);
             display: block;
             margin-top: 10px;
         }
@@ -2554,7 +2554,7 @@
             background-color: $ps-color-convert-2;
 
             a {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 background-image: $ps-url-convert-69;
                 background-repeat: repeat-x;
                 border: 1px solid $ps-color-convert-113;
@@ -2710,7 +2710,7 @@
         margin: 10px 0 14px;
 
         span {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-align: center;
             font-size: 9px;
             float: right;
@@ -2739,7 +2739,7 @@
         border: 1px solid $ps-color-convert-78;
         width: 212px;
         padding: 5px 10px 0;
-        color: $ps-color-convert-4;
+        @include co(color, $ps-color-convert-4);
         min-height: 25px;
         height: auto !important;
         margin: 0;
@@ -2771,7 +2771,7 @@
         margin-right: 14px;
 
         a.learning-resource-link:hover {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-decoration: none;
             background-color: $ps-color-convert-21;
         }
@@ -2789,7 +2789,7 @@
             }
 
             a {
-                color: $ps-color-convert-36;
+                @include co(color, $ps-color-convert-36);
                 background-color: $ps-color-convert-100;
                 display: block;
                 padding: 7px 0 7px 10px;
@@ -2800,13 +2800,13 @@
 
         a {
             &:hover {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 background-color: $ps-color-convert-21;
                 text-decoration: none;
             }
 
             &.active {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 background-color: $ps-color-convert-21;
                 text-decoration: none;
             }
@@ -2833,7 +2833,7 @@
         background-color: $ps-color-convert-100;
         border: 1px solid $ps-color-convert-9;
         display: block;
-        color: $ps-color-convert-36;
+        @include co(color, $ps-color-convert-36);
         margin-bottom: 14px;
     }
 
@@ -2881,7 +2881,7 @@
             margin: 0;
             font-size: 1.4em;
             font-style: italic;
-            color: $ps-color-convert-159;
+            @include co(color, $ps-color-convert-159);
             line-height: 1.6em;
         }
 
@@ -2918,7 +2918,7 @@
 
             .client-quotie {
                 font-style: italic;
-                color: $ps-color-convert-152;
+                @include co(color, $ps-color-convert-152);
                 width: auto;
                 margin: 0 auto;
                 padding: 0 20px 13px;
@@ -2946,11 +2946,11 @@
         }
 
         .service-intro-content h2 {
-            color: $ps-color-convert-169;
+            @include co(color, $ps-color-convert-169);
         }
 
         .action-link.external-link {
-            color: $ps-color-convert-154;
+            @include co(color, $ps-color-convert-154);
         }
     }
 
@@ -2960,11 +2960,11 @@
         }
 
         .service-intro-content h2 {
-            color: $ps-color-convert-170;
+            @include co(color, $ps-color-convert-170);
         }
 
         .action-link.external-link {
-            color: $ps-color-convert-156;
+            @include co(color, $ps-color-convert-156);
         }
     }
 
@@ -3117,7 +3117,7 @@
             padding: 4px 10px;
             display: inline-block;
             float: left;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             margin-top: 25px;
             margin-bottom: 15px;
         }
@@ -3154,7 +3154,7 @@
             h5 {
                 margin-bottom: 0;
                 font-size: 1.2em;
-                color: $ps-color-convert-8;
+                @include co(color, $ps-color-convert-8);
                 font-weight: 700;
             }
 
@@ -3267,7 +3267,7 @@
     .region-title {
         padding: 10px;
         margin-bottom: 20px;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         display: block;
         border: 1px solid $ps-color-convert-0;
         background: $ps-color-convert-21;
@@ -3421,7 +3421,7 @@
         cursor: pointer;
 
         span {
-            color: $ps-color-convert-8;
+            @include co(color, $ps-color-convert-8);
             background-color: $ps-color-convert-2;
             padding: 2px;
             border: 1px solid $ps-color-convert-4;
@@ -3458,7 +3458,7 @@
 
         .uk-area-title {
             padding: 5px 20px;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-align: center;
             margin: 0;
         }
@@ -3573,7 +3573,7 @@
             background-repeat: repeat-x;
             background-position: top;
             display: block;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             font-weight: 700;
             //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
             border-radius: 4px;
@@ -3646,7 +3646,7 @@
 
         h4.tagline {
             font-size: 1.6em;
-            color: $ps-color-convert-67;
+            @include co(color, $ps-color-convert-67);
             padding: 7px;
             background-color: $ps-color-convert-2;
             border-top: 1px solid $ps-color-convert-9;
@@ -3831,7 +3831,7 @@
 
         h2 {
             font-size: 1.2em;
-            color: $ps-color-convert-36;
+            @include co(color, $ps-color-convert-36);
             padding: 7px;
             min-height: 40px;
             margin-bottom: 0;
@@ -3905,7 +3905,7 @@
         }
 
         h5 {
-            color: $ps-color-convert-104;
+            @include co(color, $ps-color-convert-104);
             font-size: 1.2em;
             line-height: 1.4em;
             font-weight: 400;
@@ -3988,7 +3988,7 @@
                 background-image: $ps-url-convert-43;
                 background-repeat: repeat-x;
                 border: 1px solid $ps-color-convert-9;
-                color: $ps-color-convert-36;
+                @include co(color, $ps-color-convert-36);
                 display: block;
                 float: left;
                 padding: 5px;
@@ -4157,7 +4157,7 @@
         }
 
         .home-tagline {
-            color: $ps-color-convert-4;
+            @include co(color, $ps-color-convert-4);
             font-size: .8em;
         }
     }
@@ -4174,16 +4174,16 @@
 
         span {
             &.active {
-                color: $ps-color-convert-23;
+                @include co(color, $ps-color-convert-23);
             }
 
             a span {
-                color: $ps-color-convert-22;
+                @include co(color, $ps-color-convert-22);
             }
         }
 
         &.home-tagline span {
-            color: $ps-color-convert-4;
+            @include co(color, $ps-color-convert-4);
         }
     }
 
@@ -4212,7 +4212,7 @@
 
         h3 {
             margin-top: 14px;
-            color: $ps-color-convert-67;
+            @include co(color, $ps-color-convert-67);
             font-size: 1.4em;
             padding: 0 10px;
         }
@@ -4253,7 +4253,7 @@
             padding: 2px 7px;
             float: left;
             margin-left: 7px;
-            color: $ps-color-convert-8;
+            @include co(color, $ps-color-convert-8);
             background-color: $ps-color-convert-2;
             border: 1px solid $ps-color-convert-9;
             //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
@@ -4261,7 +4261,7 @@
 
             &.activeSlide {
                 background-color: $ps-color-convert-4;
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
             }
 
             &:focus {
@@ -4314,7 +4314,7 @@
             padding: 8px;
             float: right;
             font-size: .8em;
-            color: $ps-color-convert-33;
+            @include co(color, $ps-color-convert-33);
             font-style: italic;
         }
     }
@@ -4327,7 +4327,7 @@
         margin-top: 20px;
         display: block;
         padding: 2px 6px;
-        color: $ps-color-convert-4;
+        @include co(color, $ps-color-convert-4);
         border: 1px solid $ps-color-convert-113;
         font-weight: 700;
     }
@@ -4372,19 +4372,19 @@
         position: relative;
 
         em {
-            color: $ps-color-convert-67;
+            @include co(color, $ps-color-convert-67);
             font-style: normal;
         }
 
         h2 {
             font-size: 1.6em;
             font-weight: 700;
-            color: $ps-color-convert-4;
+            @include co(color, $ps-color-convert-4);
         }
 
         h3 {
             font-size: 1.4em;
-            color: $ps-color-convert-4;
+            @include co(color, $ps-color-convert-4);
         }
     }
 
@@ -4430,7 +4430,7 @@
                 background-repeat: repeat-x;
                 //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
                 border-radius: 6px 6px 6px 6px;
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 padding: 6px 15px;
                 font-weight: 700;
             }
@@ -4489,7 +4489,7 @@
         position: relative;
 
         h2 {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
             font-size: 1.8em;
         }
 
@@ -4504,7 +4504,7 @@
         }
 
         .action-button-reverse {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-decoration: none;
             background-color: $ps-color-convert-67;
             background: $ps-url-convert-64 repeat-x scroll center top transparent;
@@ -4518,7 +4518,7 @@
             text-align: center;
 
             &:hover {
-                color: $ps-color-convert-67;
+                @include co(color, $ps-color-convert-67);
                 text-decoration: none;
                 background-color: $ps-color-convert-144;
                 background-image: $ps-url-convert-43;
@@ -4561,7 +4561,7 @@
             background-repeat: repeat-x;
             //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
             border-radius: 6px 6px 6px 6px;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             padding: 6px 15px;
             font-weight: 700;
         }
@@ -4628,7 +4628,7 @@
                 list-style: decimal;
                 margin-left: 20px;
                 font-size: 1.2em;
-                color: $ps-color-convert-23;
+                @include co(color, $ps-color-convert-23);
             }
         }
     }
@@ -4756,13 +4756,13 @@
             .xmas-offer-block-content {
                 width: 196px;
                 padding: 20px;
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 float: left;
                 background: $ps-url-convert-130 repeat-x scroll left bottom $ps-color-convert-187;
                 font-family: $ps-font-convert-5, $ps-font-convert-6, $ps-font-convert-7, $ps-font-convert-8;
 
                 h3 {
-                    color: $ps-color-convert-2;
+                    @include co(color, $ps-color-convert-2);
                     font-size: 1.8em;
                     margin-bottom: 15px;
                     font-family: $ps-font-convert-3;
@@ -4777,7 +4777,7 @@
                 text-align: center;
                 font-size: 2em;
                 padding: 6px 14px;
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 background: $ps-color-convert-188;
                 margin-top: 10px;
             }
@@ -4799,7 +4799,7 @@
 
         h2.gift-group-head {
             background: $ps-color-convert-21;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-transform: uppercase;
             padding: 6px 14px;
             margin-top: 10px;
@@ -4891,7 +4891,7 @@
                     border-width: 0 0 1px 1px;
                     font-size: 14px;
                     font-weight: 700;
-                    color: $ps-color-convert-2;
+                    @include co(color, $ps-color-convert-2);
 
                     &:first-child {
                         border-width: 0 0 1px;
@@ -4914,7 +4914,7 @@
             padding: 8px;
             font-size: 14px;
             font-weight: 400;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             background: $ps-color-convert-190;
         }
 
@@ -4926,7 +4926,7 @@
             padding: 8px;
             font-size: 12px;
             font-weight: 400;
-            color: $ps-color-convert-8;
+            @include co(color, $ps-color-convert-8);
         }
     }
 
@@ -4954,7 +4954,7 @@
 
         a {
             font-size: 1.2em;
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
             display: block;
         }
     }
@@ -4973,7 +4973,7 @@
     }
 
     .cms-banner-links {
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         background-color: $ps-color-convert-193;
         border-top: 1px solid $ps-color-convert-0;
         font-size: 16px;
@@ -4984,7 +4984,7 @@
         }
 
         a {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-decoration: none;
             padding: 10px 0;
             background: $ps-color-convert-8;
@@ -4994,7 +4994,7 @@
             text-align: center;
 
             &:hover {
-                color: $ps-color-convert-194;
+                @include co(color, $ps-color-convert-194);
                 background: $ps-color-convert-23;
             }
         }
@@ -5007,36 +5007,36 @@
         border: 1px solid $ps-color-convert-196;
 
         h3 {
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
         }
     }
 
     .offers-intro-content {
         background: $ps-color-convert-197;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         padding: 34px;
         border-top: 1px dotted $ps-color-convert-2;
 
         a {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-decoration: underline !important;
         }
     }
 
     .black-friday-intro-content {
         background: $ps-color-convert-198;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         padding: 34px;
         padding-top: 0;
 
         h3 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
     }
 
     .counter {
         font-size: 12px;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
 
         span {
             display: block;
@@ -5050,26 +5050,26 @@
 
     .xmas-offers-intro-content {
         background: $ps-color-convert-199;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         padding: 34px;
         padding-top: 0;
 
         a {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             text-decoration: underline !important;
         }
 
         h1 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         h2 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
     }
 
     .backsupport {
-        color: $ps-color-convert-200;
+        @include co(color, $ps-color-convert-200);
         background-color: $ps-color-convert-201;
         border-top: 1px solid $ps-color-convert-0;
         font-size: 16px;
@@ -5110,7 +5110,7 @@
         position: absolute;
         text-align: center;
         text-transform: uppercase;
-        color: $ps-color-convert-204;
+        @include co(color, $ps-color-convert-204);
         font-weight: 700;
         font-family: $ps-font-convert-4;
         margin-top: 25%;
@@ -5154,7 +5154,7 @@
 
     .home-btn {
         border: 2px solid $ps-color-convert-2;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
     }
 
     .content-left {
@@ -5199,23 +5199,23 @@
         }
 
         h2 {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         p {
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         .home-btn-content {
             border: 1px solid $ps-color-convert-2;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
     }
 
 
     .home-btn-content {
         border: 1px solid $ps-color-convert-208;
-        color: $ps-color-convert-23;
+        @include co(color, $ps-color-convert-23);
     }
 
     .inner {
@@ -5225,11 +5225,11 @@
         h2 {
             font-size: 32px;
             text-transform: uppercase;
-            color: $ps-color-convert-209;
+            @include co(color, $ps-color-convert-209);
         }
 
         p {
-            color: $ps-color-convert-210;
+            @include co(color, $ps-color-convert-210);
         }
     }
 
@@ -5255,17 +5255,17 @@
             height: 230px;
 
             h3 {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 font-size: 24px;
             }
 
             p {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 font-size: 15px;
             }
 
             a {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 font-size: 15px;
             }
         }
@@ -5293,15 +5293,15 @@
             height: 205px;
 
             h3 {
-                color: $ps-color-convert-211;
+                @include co(color, $ps-color-convert-211);
             }
 
             p {
-                color: $ps-color-convert-211;
+                @include co(color, $ps-color-convert-211);
             }
 
             a {
-                color: $ps-color-convert-211;
+                @include co(color, $ps-color-convert-211);
             }
         }
     }
@@ -5313,7 +5313,7 @@
 
     .nav-pills {
         .active {
-            color: $ps-color-convert-207;
+            @include co(color, $ps-color-convert-207);
             border-bottom: 1px solid $ps-color-convert-207;
             //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
             border-radius: 0 !important;
@@ -5343,7 +5343,7 @@
             //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
             transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out, background-position 300ms ease-in-out;
             margin-left: 5px;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             padding: 0;
             font-size: 20px;
         }
@@ -5355,7 +5355,7 @@
         margin-top: 20px;
         padding-top: 40px;
         padding-bottom: 40px;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         text-align: center;
     }
 
@@ -5371,7 +5371,7 @@
 
 
     .dopdown-arrow {
-        color: $ps-color-convert-217;
+        @include co(color, $ps-color-convert-217);
         padding-left: 5px;
     }
 
@@ -5400,7 +5400,7 @@
     }
 
     .post-details {
-        color: $ps-color-convert-218;
+        @include co(color, $ps-color-convert-218);
         display: none;
     }
 
@@ -5457,7 +5457,7 @@
         h2.product-name {
             min-height: 2.7em;
             font-size: 1.2em;
-            color: $ps-color-convert-21;
+            @include co(color, $ps-color-convert-21);
             text-align: center;
             width: 270px;
             margin: 0 auto;
@@ -5483,7 +5483,7 @@
         float: right;
         margin-top: 10px;
         text-align: right;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
     }
 
 
@@ -5704,7 +5704,7 @@
         font-size: 21px;
         font-weight: 700;
         line-height: 1;
-        color: $ps-color-convert-2 !important;
+        @include co(color, $ps-color-convert-2 !important);
         //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
         text-shadow: none !important;
         opacity: 1 !important;
@@ -5753,7 +5753,7 @@
         //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
         border-radius: 19px;
         background-color: $ps-color-convert-223;
-        color: $ps-color-convert-2 !important;
+        @include co(color, $ps-color-convert-2 !important);
         text-align: center;
         font-size: 1em;
         position: absolute;
@@ -5895,13 +5895,13 @@
     }
 
     .product-help-name {
-        color: $ps-color-convert-8;
+        @include co(color, $ps-color-convert-8);
         font-size: 50px !important;
     }
 
     .offer-label {
         z-index: 2;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         position: absolute;
         top: 10px;
         left: 0;
@@ -5985,7 +5985,7 @@
             width: 100%;
             height: 100%;
             display: none;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
 
         .before {
@@ -5993,7 +5993,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             background: $ps-color-convert-135;
         }
     }
@@ -6035,7 +6035,7 @@
         display: inline;
         width: 250px;
         background: $ps-color-convert-235;
-        color: $ps-color-convert-8;
+        @include co(color, $ps-color-convert-8);
         border: none;
         text-transform: uppercase;
         font-weight: 400;
@@ -6050,7 +6050,7 @@
         display: inline;
         width: 250px;
         background: $ps-color-convert-235;
-        color: $ps-color-convert-8;
+        @include co(color, $ps-color-convert-8);
         border: none;
         text-transform: uppercase;
         font-weight: 400;
@@ -6125,10 +6125,10 @@
             background-color: $ps-color-convert-19;
             margin-bottom: 15px;
             padding: 30px;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
 
             h3 {
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
             }
         }
 
@@ -6166,7 +6166,7 @@
     }
 
     .call-banner {
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
     }
 
     .bottom-background {
@@ -6210,7 +6210,7 @@
         }
 
         span {
-            color: $ps-color-convert-241;
+            @include co(color, $ps-color-convert-241);
         }
 
         @include max-screen($screen-md-max) {
@@ -6240,7 +6240,7 @@
         background-position-y: 32px;
         padding: 112px 20px 20px;
         margin-top: 40px;
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
     }
 
     .overview-content-wrap {
@@ -6276,7 +6276,7 @@
     }
 
     .call-to-action .btn-outline-inverse:hover {
-        color: $ps-color-convert-26;
+        @include co(color, $ps-color-convert-26);
     }
 
     .list-icon-group p {
@@ -6291,7 +6291,7 @@
     }
 
     .sidebar-nav a {
-        color: $ps-color-convert-36;
+        @include co(color, $ps-color-convert-36);
         background-color: $ps-color-convert-18;
         display: block;
         padding: 10px;
@@ -6305,7 +6305,7 @@
 
         &.active {
             background-color: $ps-color-convert-21;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
         }
     }
 
@@ -6314,7 +6314,7 @@
             background: $ps-color-convert-39;
             padding: 0;
             font: bold 15px/40px $ps-font-convert-0, $ps-font-convert-1, $ps-font-convert-2;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             border: 1px solid $ps-color-convert-40;
 
             span {
@@ -6325,7 +6325,7 @@
 
         &:hover span {
             font: bold 15px/40px $ps-font-convert-0, $ps-font-convert-1, $ps-font-convert-2;
-            color: $ps-color-convert-2;
+            @include co(color, $ps-color-convert-2);
             background: $ps-color-convert-41;
 
             span {
@@ -6336,7 +6336,7 @@
 
         &.no-checkout span {
             background-position: 0 100%;
-            color: $ps-color-convert-42;
+            @include co(color, $ps-color-convert-42);
 
             span {
                 background-position: 100% 100%;
@@ -6383,7 +6383,7 @@
         border-left: 0;
         border-right: 0;
         padding: 3px 10px;
-        color: $ps-color-convert-76;
+        @include co(color, $ps-color-convert-76);
         font-weight: 700;
         font-size: 1em;
         text-align: center;
@@ -6393,7 +6393,7 @@
         background: $ps-url-convert-29 0 2px no-repeat;
         padding: 2px 0 2px 25px;
         font-weight: 700;
-        color: $ps-color-convert-83;
+        @include co(color, $ps-color-convert-83);
     }
 
 
@@ -6424,7 +6424,7 @@
         font-size: 1.5em;
         margin-bottom: 20px;
         font-weight: 400;
-        color: $ps-color-convert-58;
+        @include co(color, $ps-color-convert-58);
 
         .rating {
             font-weight: 700;
@@ -6432,7 +6432,7 @@
 
         .feefo-total-count {
             font-size: .8em;
-            color: $ps-color-convert-33;
+            @include co(color, $ps-color-convert-33);
         }
 
         span.previous-reviews {
@@ -6455,7 +6455,7 @@
 
     .tier-prices-grouped li {
         padding: 2px 0;
-        color: $ps-color-convert-49;
+        @include co(color, $ps-color-convert-49);
 
         .price {
             font-weight: 700;
@@ -6761,7 +6761,7 @@
 
             th {
                 background: $ps-color-convert-4;
-                color: $ps-color-convert-2;
+                @include co(color, $ps-color-convert-2);
                 border-right: 1px solid $ps-color-convert-9;
                 padding: 5px;
                 font-weight: 700;
@@ -6849,7 +6849,7 @@
                     background-color: $ps-color-convert-143;
                     background-image: $ps-url-convert-43;
                     background-repeat: repeat-x;
-                    color: $ps-color-convert-36;
+                    @include co(color, $ps-color-convert-36);
                     width: 174px;
                     padding: 5px;
                     display: block;
@@ -6925,7 +6925,7 @@
     }
 
     .xmas-links.backsupport a:hover {
-        color: $ps-color-convert-2;
+        @include co(color, $ps-color-convert-2);
         background: $ps-color-convert-199;
     }
 

@@ -1,23 +1,23 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
-$braintree-input-border__color              : $color-gray76 !default;
+$braintree-input-border-color              : $color-gray76 !default;
 
-$braintree-error__color                     : $color-red10 !default;
-$braintree-focus__color                     : $color-blue2 !default;
-$braintree-success__color                   : $color-dark-green1 !default;
+$braintree-error-color                     : $color-red10 !default;
+$braintree-focus-color                     : $color-blue2 !default;
+$braintree-success-color                   : $color-dark-green1 !default;
 
-$braintree-paypal-icon__height              : 16px !default;
-$braintree-paypal-icon__width               : 16px !default;
-$braintree-paypal-account__padding-right    : 50px !default;
-$braintree-paypal-account__padding-vertical : 15px !default;
-
-
-$braintree_css_included: 0 !default;
+$braintree-paypal-icon-height              : 16px !default;
+$braintree-paypal-icon-width               : 16px !default;
+$braintree-paypal-account-padding-right    : 50px !default;
+$braintree-paypal-account-padding-vertical : 15px !default;
 
 
-@if $braintree_css_included != 1 {
+$braintree-css-included: 0 !default;
+
+
+@if $braintree-css-included != 1 {
 
     .payment-method-braintree {
 
@@ -26,16 +26,16 @@ $braintree_css_included: 0 !default;
         }
 
         .hosted-control {
-            @include lib-form-element-input($_type: input-text);
+            @include lib-form-element-input($-type: input-text);
             position: relative;
             width: 225px;
 
             &.braintree-hosted-fields-focused {
-                border-color: $braintree-focus__color;
+                border-color: $braintree-focus-color;
             }
 
             &.braintree-hosted-fields-invalid:not(.braintree-hosted-fields-focused) {
-                border-color: $braintree-error__color;
+                border-color: $braintree-error-color;
 
                 & ~ .hosted-error {
                     height: auto;
@@ -44,7 +44,7 @@ $braintree_css_included: 0 !default;
             }
 
             &.braintree-hosted-fields-valid {
-                border-color: $braintree-success__color;
+                border-color: $braintree-success-color;
             }
 
             &.hosted-cid {
@@ -80,7 +80,7 @@ $braintree_css_included: 0 !default;
 
         .hosted-error {
             clear: both;
-            color: $braintree-error__color;
+            color: $braintree-error-color;
             font-size: 1.2rem;
             height: 0;
             margin-top: 7px;
@@ -89,30 +89,30 @@ $braintree_css_included: 0 !default;
     }
 
     .braintree-paypal-logo {
-        margin-top: $indent__s;
+        margin-top: $indent-s;
         text-align: center;
     }
 
     .braintree-paypal-account {
-        padding: $braintree-paypal-account__padding-vertical 0 $braintree-paypal-account__padding-vertical $braintree-paypal-account__padding-right;
+        @include co(padding, $braintree-paypal-account-padding-vertical 0 $braintree-paypal-account-padding-vertical $braintree-paypal-account-padding-right);
         position: relative;
 
         @include lib-icon-image(
-            $_icon-image          : '../Magento_Braintree/images/paypal-small.png',
-            $_icon-image-position : before,
-            $_icon-image-width    : $braintree-paypal-icon__width,
-            $_icon-image-height   : $braintree-paypal-icon__height
+            $-icon-image          : '../Magento-Braintree/images/paypal-small.png',
+            $-icon-image-position : before,
+            $-icon-image-width    : $braintree-paypal-icon-width,
+            $-icon-image-height   : $braintree-paypal-icon-height
         );
 
         &:before {
-            left: $braintree-paypal-account__padding-right / 2 - $braintree-paypal-icon__width / 2;
-            margin-top: -$braintree-paypal-icon__height / 2;
+            left: $braintree-paypal-account-padding-right / 2 - $braintree-paypal-icon-width / 2;
+            margin-top: -$braintree-paypal-icon-height / 2;
             position: absolute;
             top: 50%;
         }
 
         .payment-method-type {
-            font-weight: $font-weight__bold;
+            @include co(font-weight, $font-weight-bold);
         }
 
         .payment-method-description {
@@ -164,9 +164,9 @@ $braintree_css_included: 0 !default;
 
     //
     //  Desktop
-    //  _____________________________________________
+    //
 
-    @include min-screen($screen__m) {
+    @include min-screen($screen-m) {
         .payment-method-braintree {
             .cvv {
                 .field-tooltip {

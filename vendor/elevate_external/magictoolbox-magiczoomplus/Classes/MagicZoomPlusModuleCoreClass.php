@@ -71,6 +71,8 @@ class MagicZoomPlusModuleCoreClass
         //$headers[] = '<link type="text/css" href="' . $cssPath . '/magiczoomplus.module.css" rel="stylesheet" media="screen" />';
         $headers[] = '<script type="text/javascript" src="' . $jsPath . '/magiczoomplus.js"></script>';
         $headers[] = '<script type="text/javascript" src="' . $jsPath . '/magictoolbox.utils.js"></script>';
+             $headers[] = '<script type="text/javascript" src="' . $jsPath . '/magic360.js"></script>';
+                  $headers[] = '<link rel="stylesheet" type="text/css" media="all" href="' . $jsPath . '/magic360.css" />';
         $headers[] = $this->getOptionsTemplate();
         return "\r\n" . implode("\r\n", $headers) . "\r\n";
     }

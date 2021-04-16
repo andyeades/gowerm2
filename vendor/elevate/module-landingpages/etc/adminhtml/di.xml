@@ -7,5 +7,14 @@
                 <item name="manufacturer" xsi:type="string">manufacturer</item>
             </argument>
         </arguments>
+    </type>   
+        <type name="Magento\Catalog\Model\Category\DataProvider">
+        <plugin name="elevate_landingpages_schema_faq_dataprovider" type="Elevate\LandingPages\Model\Category\DataProvider" sortOrder="5" />
     </type>
+        
+ 
+      <type name="Magento\Catalog\Model\CategoryRepository">
+        <plugin name="CategoryRepositoryEvLpSchemaFaq" type="Elevate\LandingPages\Plugin\SaveCategory" />
+   </type>
+    
 </config>

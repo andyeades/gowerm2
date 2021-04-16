@@ -70,10 +70,20 @@ class RegisterUrlRewriteObserver implements ObserverInterface
         }
         $this->urlRewrite->setRewriteMode('KBASE', $this->config->isUrlRewriteEnabled());
         $this->urlRewrite->registerBasePath('KBASE', $this->config->getBaseUrl());
+        //Original
+        /*
         $this->urlRewrite->registerPath(
             'KBASE',
             'ARTICLE',
             '[category_key]/[article_key]',
+            'kbase_article_view'
+        );
+        */
+
+        $this->urlRewrite->registerPath(
+            'KBASE',
+            'ARTICLE',
+            '[article_key]',
             'kbase_article_view'
         );
         $this->urlRewrite->registerPath('KBASE', 'CATEGORY', '[category_key]', 'kbase_category_view');

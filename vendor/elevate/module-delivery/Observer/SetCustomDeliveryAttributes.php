@@ -20,7 +20,6 @@ class SetCustomDeliveryAttributes implements ObserverInterface
      */
     protected $objectCopyService;
 
-
     /**
      * @param \Magento\Framework\DataObject\Copy $objectCopyService
 
@@ -47,39 +46,27 @@ class SetCustomDeliveryAttributes implements ObserverInterface
         /* @var \Magento\Quote\Model\Quote $quote */
         $quote = $observer->getEvent()->getData('quote');
 
-
         // This Works!!!
         // RJ - 3/7/2020
 
         $this->objectCopyService->copyFieldsetToTarget('sales_convert_quote_address', 'to_order_address', $quote, $order);
 
-
-
         $detailed_delivery_teamnumber = $quote->getShippingAddress()->getDetailedDeliveryTeamnumber();
         $detailed_delivery_info_dates = $quote->getShippingAddress()->getDetailedDeliveryInfoDates();
 
-        //$order->setShippingDescription('My Test');
+        $delivery_date_selected = $quote->getShippingAddress()->getDeliveryDateSelected();
+        $delivery_option_selected = $quote->getShippingAddress()->getDeliveryOptionSelected();
+        $delivery_area_selected = $quote->getShippingAddress()->getDeliveryAreaSelected();
+
+        $order->setDeliveryDateSelected($delivery_date_selected);
+        $order->setDeliveryOptionSelected($delivery_option_selected);
+        $order->setDeliveryAreaSelected($delivery_area_selected);
+
 
         $order->setDetailedDeliveryInfoDates($detailed_delivery_info_dates);
         $order->setDetailedDeliveryTeamnumber($detailed_delivery_teamnumber);
 
-
-
-        $ev_giftmessagemessage = $quote->getEvGiftmessagemessage();
-        $order->setEvGiftmessagemessage($ev_giftmessagemessage);
-
-        if ($ev_giftmessagemessage) {
-            $gift_message_obj = $this->giftMessageFactory->create();
-
-            $gift_message = $order->getEvGiftmessagemessage();
-            $gift_message_obj->setMessage($gift_message);
-
-            $this->giftMessageResource->save($gift_message_obj);
-
-            $gift_message_id = $gift_message_obj->getId();
-            $order->setGiftMessageId($gift_message_id);
-        }
-       //$order->save();
+        //$order->save();
 
         return $this;
     }

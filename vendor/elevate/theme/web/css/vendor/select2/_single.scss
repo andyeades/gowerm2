@@ -1,4 +1,4 @@
-$select2_selection_single_padding: 0.625rem !default;
+$select2-selection-single-padding: 0.625rem !default;
 
 .select2-selection--single {
     box-sizing: border-box;
@@ -7,7 +7,7 @@ $select2_selection_single_padding: 0.625rem !default;
     display: block;
 
     height: auto;
-    padding: $select2_selection_single_padding;
+    @include co(padding, $select2-selection-single-padding);
 
     user-select: none;
     -webkit-user-select: none;

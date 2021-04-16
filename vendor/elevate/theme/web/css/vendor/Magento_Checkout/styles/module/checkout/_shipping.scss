@@ -1,75 +1,75 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
-$checkout-shipping-address__max-width           : 600px !default;
-$checkout-shipping-address__margin-top          : 1.75rem !default;
+$checkout-shipping-address-max-width           : 600px !default;
+$checkout-shipping-address-margin-top          : 1.75rem !default;
 
-$checkout-shipping-item-icon__color             : $color-white !default;
-$checkout-shipping-item-icon__content           : $icon-checkmark !default;
+$checkout-shipping-item-icon-color             : $color-white !default;
+$checkout-shipping-item-icon-content           : $icon-checkmark !default;
 
-$checkout-shipping-item__border                 : 0.125rem solid transparent !default;
-$checkout-shipping-item__line-height            : 1.875rem !default;
-$checkout-shipping-item__margin                 : 0 0 $indent__base !default;
-$checkout-shipping-item__padding                : $indent__base ($indent__l + 0.3125rem) $indent__base $indent__base !default;
-$checkout-shipping-item__transition             : 0.3s border-color !default;
-$checkout-shipping-item__width                  : 100% / 3 !default;
-$checkout-shipping-item-tablet__width           : 100% / 2 !default;
-$checkout-shipping-item-mobile__width           : 100% !default;
-$checkout-shipping-item__border_radius_on       : 1 !default;
-$checkout-shipping-item__border_radius          : $border-radius !default;
-$checkout-shipping-item__active__border-color   : $theme-brand-color-2 !default;
-$checkout-shipping-item-icon__background-color  : $checkout-shipping-item__active__border-color !default;
+$checkout-shipping-item-border                 : 0.125rem solid transparent !default;
+$checkout-shipping-item-line-height            : 1.875rem !default;
+$checkout-shipping-item-margin                 : 0 0 $indent-base !default;
+$checkout-shipping-item-padding                : $indent-base ($indent-l + 0.3125rem) $indent-base $indent-base !default;
+$checkout-shipping-item-transition             : 0.3s border-color !default;
+$checkout-shipping-item-width                  : 100% / 3 !default;
+$checkout-shipping-item-tablet-width           : 100% / 2 !default;
+$checkout-shipping-item-mobile-width           : 100% !default;
+$checkout-shipping-item-border-radius-on       : 1 !default;
+$checkout-shipping-item-border-radius          : $border-radius !default;
+$checkout-shipping-item-active-border-color   : $theme-brand-color-2 !default;
+$checkout-shipping-item-icon-background-color  : $checkout-shipping-item-active-border-color !default;
 
-$checkout-shipping-item-icon__selected__height  : 27px !default;
-$checkout-shipping-item-icon__selected__width   : 1.813rem !default;
+$checkout-shipping-item-icon-selected-height  : 27px !default;
+$checkout-shipping-item-icon-selected-width   : 1.813rem !default;
 
-$checkout-shipping-item-mobile__padding         : 0 0 15px !default;
-$checkout-shipping-item-mobile__margin          : $checkout-shipping-item-mobile__padding !default;
-$checkout-shipping-item-mobile__active__padding : 0.9375rem ($indent__l + 0.3125rem) 0.9375rem 1.125rem !default;
+$checkout-shipping-item-mobile-padding         : 0 0 15px !default;
+$checkout-shipping-item-mobile-margin          : $checkout-shipping-item-mobile-padding !default;
+$checkout-shipping-item-mobile-active-padding : 0.9375rem ($indent-l + 0.3125rem) 0.9375rem 1.125rem !default;
 
-$checkout-shipping-item-before__border-color    : $color-gray80 !default;
-$checkout-shipping-item-before__height          : calc(100% - 20px) !default;
-
-
-$checkout_shipping_method_border_on: $chkout-default-border_on !default;
-$checkout_shipping_method_border_position: top !default;
-$checkout_shipping_method_border_color: $chkout-default-border_color !default;
-$checkout_shipping_method_border_style: $chkout-default-border_style !default;
-$checkout_shipping_method_border_thickness: $chkout-default-border_thickness !default;
-
-$checkout_shipping_method_border_on_desktop: $chkout-default-border_on_desktop !default;
-
-$checkout_shipping_method_border_radius_on: $chkout-default-border_radius_on !default;
-$checkout_shipping_method_border_radius: $chkout-default-border_radius !default;
+$checkout-shipping-item-before-border-color    : $color-gray80 !default;
+$checkout-shipping-item-before-height          : calc(100% - 20px) !default;
 
 
+$checkout-shipping-method-border-on: $chkout-default-border-on !default;
+$checkout-shipping-method-border-position: top !default;
+$checkout-shipping-method-border-color: $chkout-default-border-color !default;
+$checkout-shipping-method-border-style: $chkout-default-border-style !default;
+$checkout-shipping-method-border-thickness: $chkout-default-border-thickness !default;
+
+$checkout-shipping-method-border-on-desktop: $chkout-default-border-on-desktop !default;
+
+$checkout-shipping-method-border-radius-on: $chkout-default-border-radius-on !default;
+$checkout-shipping-method-border-radius: $chkout-default-border-radius !default;
 
 
 
-$checkout-shipping-method__padding              : $indent__base !default;
 
 
-$opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
+$checkout-shipping-method-padding              : $indent-base !default;
+
+
+$opc-wrapper-form-fieldset-note-font-size       :  0.75rem !default;
 //
 //  Common
-//  _____________________________________________
+//
 
 .opc-wrapper {
 
     //
     //  Shipping Address
-    //  ---------------------------------------------
+    //
 
     .form-login,
     .form-shipping-address {
-        @include lib-css(margin-top, $checkout-shipping-address__margin-top);
-        margin-bottom: $indent__base;
+        @include lib-css(margin-top, $checkout-shipping-address-margin-top);
+        margin-bottom: $indent-base;
 
         .fieldset {
             .note {
-                font-size: $opc_wrapper_form_fieldset_note_font_size;
-                margin-top: $indent__s;
+              @include co(font-size, $opc-wrapper-form-fieldset-note-font-size);
+                margin-top: $indent-s;
             }
         }
     }
@@ -80,31 +80,31 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
 
     .shipping-address-item {
 
-        @include lib-css(border, $checkout-shipping-item__border);
-        @include lib-css(line-height, $checkout-shipping-item__line-height);
-        @include lib-css(margin, $checkout-shipping-item__margin);
-        @include lib-css(padding, $checkout-shipping-item__padding);
-        @include lib-css(transition, $checkout-shipping-item__transition);
-        @include lib-css(width, $checkout-shipping-item-tablet__width);
+        @include lib-css(border, $checkout-shipping-item-border);
+        @include lib-css(line-height, $checkout-shipping-item-line-height);
+        @include lib-css(margin, $checkout-shipping-item-margin);
+        @include lib-css(padding, $checkout-shipping-item-padding);
+        @include lib-css(transition, $checkout-shipping-item-transition);
+        @include lib-css(width, $checkout-shipping-item-tablet-width);
         display: inline-block;
-        font-size: $font-size__base;
+      @include co(font-size, $font-size-base);
         position: relative;
         vertical-align: top;
         word-wrap: break-word;
 
         &.selected-item {
-            @if $checkout-shipping-item__border_radius_on == 1 {
-                border-radius: $checkout-shipping-item__border_radius;
+            @if $checkout-shipping-item-border-radius-on == 1 {
+                border-radius: $checkout-shipping-item-border-radius;
             }
-            @include lib-css(border-color, $checkout-shipping-item__active__border-color);
+            @include lib-css(border-color, $checkout-shipping-item-active-border-color);
 
             &:after {
-                @include lib-css(background, $checkout-shipping-item-icon__background-color);
-                @include lib-css(color, $checkout-shipping-item-icon__color);
-                @include lib-css(content, $checkout-shipping-item-icon__content);
-                @include lib-css(font-family, $icons__font-name);
-                @include lib-css(height, $checkout-shipping-item-icon__selected__height);
-                @include lib-css(width, $checkout-shipping-item-icon__selected__width);
+                @include lib-css(background, $checkout-shipping-item-icon-background-color);
+                @include lib-css(color, $checkout-shipping-item-icon-color);
+                @include lib-css(content, $checkout-shipping-item-icon-content);
+                @include lib-css(font-family, $icons-font-name);
+                @include lib-css(height, $checkout-shipping-item-icon-selected-height);
+                @include lib-css(width, $checkout-shipping-item-icon-selected-width);
                 font-size: 27px;
                 line-height: 21px;
                 padding-top: 2px;
@@ -128,18 +128,18 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
     }
 
     .action-show-popup {
-        margin: 0 0 $indent__base;
+        margin: 0 0 $indent-base;
 
         > span {
             &:before {
                 content: '+';
-                padding-right: $indent__xs;
+                padding-right: $indent-xs;
             }
         }
     }
     .shipping-address-items {
         .action {
-            margin: $indent__base 0 0;
+            @include co(margin, $indent-base 0 0);
             &:first-of-type {
                 // edit-address-link
                 float: left;
@@ -154,7 +154,7 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
 
 //
 //  Shipping Methods
-//  ---------------------------------------------
+//
 
 .checkout-shipping-method {
     .step-title {
@@ -162,20 +162,10 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
     }
 
     .no-quotes-block {
-        margin: $indent__base 0;
+        @include co(margin, $indent-base 0);
     }
 }
 
-.methods-shipping {
-    .actions-toolbar {
-        .action {
-            &.primary {
-                //@include lib-button-l();
-               // margin: $indent__base 0 0;
-            }
-        }
-    }
-}
 
 .table-checkout-shipping-method {
     thead {
@@ -187,16 +177,16 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
     tbody {
         td {
 
-            @if $checkout_shipping_method_border_on == 1 {
-                @include elevate-border($checkout_shipping_method_border_color, $checkout_shipping_method_border_thickness, $checkout_shipping_method_border_style, $checkout_shipping_method_border_position);
-                @if $checkout_shipping_method_border_radius_on == 1 {
-                    border-radius: $checkout_shipping_method_border_radius;
+            @if $checkout-shipping-method-border-on == 1 {
+                @include elevate-border($checkout-shipping-method-border-color, $checkout-shipping-method-border-thickness, $checkout-shipping-method-border-style, $checkout-shipping-method-border-position);
+                @if $checkout-shipping-method-border-radius-on == 1 {
+                    border-radius: $checkout-shipping-method-border-radius;
                 }
 
             }
 
-            @include lib-css(padding-bottom, $checkout-shipping-method__padding);
-            @include lib-css(padding-top, $checkout-shipping-method__padding);
+            @include lib-css(padding-bottom, $checkout-shipping-method-padding);
+            @include lib-css(padding-top, $checkout-shipping-method-padding);
 
             &:first-child {
                 padding-left: 0;
@@ -215,7 +205,7 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
         .row-error {
             td {
                 border-top: none;
-                padding-bottom: $indent__s;
+                padding-bottom: $indent-s;
                 padding-top: 0;
             }
         }
@@ -235,12 +225,12 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
         @include max-screen($mobiletablet-max) {
             @include lib-icon-font(
                     $icon-settings,
-                $_icon-font-size         : 28px,
-                $_icon-font-line-height  : 28px,
-                $_icon-font-text-hide    : true,
-                $_icon-font-color        : $color-gray19,
-                $_icon-font-color-hover  : $color-gray19,
-                $_icon-font-color-active : $color-gray19
+                $-icon-font-size         : 28px,
+                $-icon-font-line-height  : 28px,
+                $-icon-font-text-hide    : true,
+                $-icon-font-color        : $color-gray19,
+                $-icon-font-color-hover  : $color-gray19,
+                $-icon-font-color-active : $color-gray19
             );
             margin: 0;
             position: absolute;
@@ -254,40 +244,40 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__s) {
+@include max-screen($screen-s) {
     .opc-wrapper {
         .form-login {
-            @include lib-css(border-bottom, 1px solid $checkout-shipping-item-before__border-color);
-            @include lib-css(margin, $checkout-shipping-item-mobile__padding);
-            @include lib-css(padding, $checkout-shipping-item-mobile__padding);
+            @include lib-css(border-bottom, 1px solid $checkout-shipping-item-before-border-color);
+            @include lib-css(margin, $checkout-shipping-item-mobile-padding);
+            @include lib-css(padding, $checkout-shipping-item-mobile-padding);
         }
 
         .shipping-address-item {
-            @include lib-css(border-bottom, 1px solid $checkout-shipping-item-before__border-color);
-            @include lib-css(margin, $checkout-shipping-item-mobile__margin);
-            @include lib-css(padding, $checkout-shipping-item-mobile__padding);
+            @include lib-css(border-bottom, 1px solid $checkout-shipping-item-before-border-color);
+            @include lib-css(margin, $checkout-shipping-item-mobile-margin);
+            @include lib-css(padding, $checkout-shipping-item-mobile-padding);
             width: 100%;
 
             &.selected-item {
-                @include lib-css(padding, $checkout-shipping-item-mobile__active__padding);
+                @include lib-css(padding, $checkout-shipping-item-mobile-active-padding);
                 border-bottom-width: 2px;
 
                 .edit-address-link {
-                    @include lib-css(right, $checkout-shipping-item-icon__selected__width + $indent__s);
+                    @include lib-css(right, $checkout-shipping-item-icon-selected-width + $indent-s);
                 }
             }
         }
 
         .form-login,
         .form-shipping-address {
-            @include lib-css(margin-top, $checkout-shipping-address__margin-top);
+            @include lib-css(margin-top, $checkout-shipping-address-margin-top);
         }
 
         .action-select-shipping-item {
             float: none;
-            margin-top: $indent__s;
+            margin-top: $indent-s;
             width: 100%;
         }
 
@@ -301,9 +291,9 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .checkout-shipping-method {
         .actions-toolbar {
             > .primary {
@@ -321,7 +311,7 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
     .opc-wrapper {
         .form-login,
         .form-shipping-address {
-            @include lib-css(max-width, $checkout-shipping-address__max-width);
+            @include lib-css(max-width, $checkout-shipping-address-max-width);
         }
     }
     .table-checkout-shipping-method {
@@ -329,14 +319,14 @@ $opc_wrapper_form_fieldset_note_font_size       :  0.75rem !default;
     }
 }
 
-@include min-screen($screen__l) {
+@include min-screen($screen-l) {
     .opc-wrapper {
         .shipping-address-item {
-            @include lib-css(width, $checkout-shipping-item__width);
+            @include lib-css(width, $checkout-shipping-item-width);
 
             &:before {
-                @include lib-css(background, $checkout-shipping-item-before__border-color);
-                @include lib-css(height, $checkout-shipping-item-before__height);
+                @include lib-css(background, $checkout-shipping-item-before-border-color);
+                @include lib-css(height, $checkout-shipping-item-before-height);
                 content: '';
                 left: 0;
                 position: absolute;

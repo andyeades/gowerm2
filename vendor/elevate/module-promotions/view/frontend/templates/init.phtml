@@ -1,12 +1,9 @@
-<?php 
+<?php
 $helper = $this->helper('Elevate\Promotions\Helper\Data');
 
+$countdown_time = $helper->getConfig('elevate_promotions/countdown/countdown_time');
 
- $countdown_time = $helper->getConfig('elevate_promotions/countdown/countdown_time');
-
-
-
- $whitelist_array["HAPPY_BEDS_MIRAGE_NATURAL_WOOL.3924"] = '1';
+$whitelist_array["HAPPY_BEDS_MIRAGE_NATURAL_WOOL.3924"] = '1';
 $whitelist_array["HAPPY_BEDS_NEW_SENSATION_1200_.663"] = '1';
 $whitelist_array["HAPPY_BEDS_MEMORY_STRESS_FREE_.547"] = '1';
 $whitelist_array["HAPPY_BEDS_BAMBOO_POCKET_1500_.1032"] = '1';
@@ -66,8 +63,8 @@ $whitelist_array["CALMING_3000_MATTRESS.1415"] = '1';
 
 ?>
 
-    <script>
-    
+<script>
+
 
     var ELEVATE = ELEVATE || {};
 
@@ -77,24 +74,22 @@ $whitelist_array["CALMING_3000_MATTRESS.1415"] = '1';
 
 
             var processStart = null,
-                processStop =  null,
-                bindSubmit =  true,
+                processStop = null,
+                bindSubmit = true,
                 element = jQuery('#product_addtocart_form'),
-                minicartSelector =  '[data-block="minicart"]',
-                messagesSelector =  '[data-placeholder="messages"]',
-                productStatusSelector =  '.stock.available',
-                addToCartButtonSelector =  '.ev_tocart2',
-                addToCartButtonDisabledClass =  'disabled',
-                addToCartButtonTextWhileAdding =  '',
-                addToCartButtonTextAdded =  '',
+                minicartSelector = '[data-block="minicart"]',
+                messagesSelector = '[data-placeholder="messages"]',
+                productStatusSelector = '.stock.available',
+                addToCartButtonSelector = '.ev_tocart2',
+                addToCartButtonDisabledClass = 'disabled',
+                addToCartButtonTextWhileAdding = '',
+                addToCartButtonTextAdded = '',
                 overrideUrl = false,
-                addToCartButtonTextDefault =  '',
+                addToCartButtonTextDefault = '',
                 urlParams = '';
 
 
-        
-
-            getTimeRemaining = function(endtime) {
+            getTimeRemaining = function (endtime) {
                 var t = Date.parse(endtime) - Date.parse(new Date());
                 var seconds = Math.floor((t / 1000) % 60);
                 var minutes = Math.floor((t / 1000 / 60) % 60);
@@ -107,53 +102,50 @@ $whitelist_array["CALMING_3000_MATTRESS.1415"] = '1';
                     'minutes': minutes,
                     'seconds': seconds
                 };
-            },
+            }
 
-             initializeClock = function(id, endtime) {
+                initializeClock = function (id, endtime) {
+                    //console.log(id + " .days");
+                    var daysSpan = jQuery(id + " .days");
+                    var hoursSpan = jQuery(id + " .hours");
+                    var minutesSpan = jQuery(id + " .minutes");
+                    var secondsSpan = jQuery(id + " .seconds");
 
-
-                      console.log(id + " .days");
-                var daysSpan = jQuery(id + " .days");
-                var hoursSpan = jQuery(id + " .hours");
-                var minutesSpan = jQuery(id + " .minutes");
-                var secondsSpan = jQuery(id + " .seconds");
-
-                function updateClock() {
-                    var t = getTimeRemaining(endtime);
-                          console.log((t.days));
-                    daysSpan.each(function () {
-                        jQuery(this).html(t.days);
-                    });
-                    hoursSpan.each(function () {
-                        jQuery(this).html(('0' + t.hours).slice(-2));
-                    });
-                    minutesSpan.each(function () {
-                        jQuery(this).html(('0' + t.minutes).slice(-2));
-                    });
-                    secondsSpan.each(function () {
-                        jQuery(this).html(('0' + t.seconds).slice(-2));
-                    });
+                    function updateClock() {
+                        var t = getTimeRemaining(endtime);
+                        //console.log((t.days));
+                        daysSpan.each(function () {
+                            jQuery(this).html(t.days);
+                        });
+                        hoursSpan.each(function () {
+                            jQuery(this).html(('0' + t.hours).slice(-2));
+                        });
+                        minutesSpan.each(function () {
+                            jQuery(this).html(('0' + t.minutes).slice(-2));
+                        });
+                        secondsSpan.each(function () {
+                            jQuery(this).html(('0' + t.seconds).slice(-2));
+                        });
 
 
-                    if (t.total <= 0) {
-                        clearInterval(timeinterval);
+                        if (t.total <= 0) {
+                            clearInterval(timeinterval);
 
+                        }
                     }
+
+                    updateClock();
+                    var timeinterval = setInterval(updateClock, 1000);
                 }
 
-                updateClock();
-                var timeinterval = setInterval(updateClock, 1000);
-            },
 
+                init = function (promo_end_time, selector) {
+                    var deadline = new Date(promo_end_time);
 
-             init = function(promo_end_time, selector)
-            {
-                var deadline = new Date(promo_end_time);
-                
-            initializeClock(selector, deadline);
-            }
+                    initializeClock(selector, deadline);
+                }
             return {
-                init : function(promo_end_time, selector) {
+                init: function (promo_end_time, selector) {
                     init(promo_end_time, selector);
                 }
 
@@ -165,56 +157,50 @@ $whitelist_array["CALMING_3000_MATTRESS.1415"] = '1';
 
     ELEVATE.Promotions.init("<?php echo $countdown_time; ?>", '.mainpromo');
     ELEVATE.Promotions.init("<?php echo $countdown_time; ?>", '#subheading-bar');
-    
-    
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
-
-today = mm + '/' + dd + '/' + yyyy;
-document.write(today);
-
-var dateArr = {};
-dateArr["01"] = 'Jan';
-dateArr["02"] = 'Feb';
-dateArr["03"] = 'Mar';
-dateArr["04"] = 'Apr';
-dateArr["05"] = 'May';
-dateArr["06"] = 'Jun';
-dateArr["07"] = 'Jul';
-dateArr["08"] = 'Aug';
-dateArr["09"] = 'Sep';
-dateArr["10"] = 'Oct';
-dateArr["11"] = 'Nov';
-dateArr["12"] = 'Dec';
+    ELEVATE.Promotions.init("<?php echo $countdown_time; ?>", '#ppslidewrap');
 
 
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+
+
+    var dateArr = {};
+    dateArr["01"] = 'Jan';
+    dateArr["02"] = 'Feb';
+    dateArr["03"] = 'Mar';
+    dateArr["04"] = 'Apr';
+    dateArr["05"] = 'May';
+    dateArr["06"] = 'Jun';
+    dateArr["07"] = 'Jul';
+    dateArr["08"] = 'Aug';
+    dateArr["09"] = 'Sep';
+    dateArr["10"] = 'Oct';
+    dateArr["11"] = 'Nov';
+    dateArr["12"] = 'Dec';
+
+
+    //console.log(dateArr[mm] + " " + dd + ", " + yyyy + " 10:59:59");
+    ELEVATE.Promotions.init(dateArr[mm] + " " + dd + ", " + yyyy + " 10:59:59", '#countdown_timer_free');
 
 
 
-                                                console.log(dateArr[mm]+ " "+dd+", "+yyyy+" 10:59:59");
-                                       ELEVATE.Promotions.init(dateArr[mm]+ " "+dd+", "+yyyy+" 10:59:59", '#countdown_timer_free');
-                 
-                 
-                 
-                 
-                 <?php
-                  $product = \Magento\Framework\App\ObjectManager::getInstance()
-    ->get(\Magento\Framework\Registry::class)
-    ->registry('current_product');
-               
-                  if($product && array_key_exists($product->getSku(), $whitelist_array)){
-                 
-                 
-                 ?>
-var today = new Date().getHours();
-console.log("TODAY:"+today);         
-if (today >= 0 && today < 11) {   
-  jQuery('.freedelwrap').show();
-} 
-                    <?php } ?>             
-            //var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
-          
+
+    <?php
+    $product = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Framework\Registry::class)->registry('current_product');
+
+    if ($product && array_key_exists($product->getSku(), $whitelist_array)) {
+        ?>
+    var today = new Date().getHours();
+    //console.log("TODAY:" + today);
+    if (today >= 0 && today < 11) {
+        jQuery('.freedelwrap').show();
+    }
+    <?php
+    } ?>
+    //var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+
 </script>
-    

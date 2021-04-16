@@ -1,16 +1,16 @@
 //
 //  Shopping cart
-//  ---------------------------------------------
+//
 
 //  Summary block
 
 .cart-summary-totals {
     .mark {
-        font-weight: $font-weight__regular;
+        @include co(font-weight, $font-weight-regular);
         padding-left: 4px;
 
         strong {
-            font-weight: $font-weight__regular;
+            @include co(font-weight, $font-weight-regular);
         }
     }
 
@@ -20,14 +20,14 @@
         white-space: nowrap;
 
         strong {
-            font-weight: $font-weight__regular;
+            @include co(font-weight, $font-weight-regular);
         }
     }
 
     .grand {
         .mark,
         .amount {
-            padding-top: $indent__base;
+            padding-top: $indent-base;
         }
 
         .amount {
@@ -35,33 +35,33 @@
             text-align: right;
 
             strong {
-                font-weight: $font-weight__bold;
+                @include co(font-weight, $font-weight-bold);
             }
         }
     }
 
     .msrp {
-        margin-bottom: $indent__s;
+        margin-bottom: $indent-s;
     }
 
     .totals-tax {
         &-summary {
             .mark,
             .amount {
-                @include lib-css(border-top, $border-width__base solid $border-color__base);
-                @include lib-css(border-bottom, $border-width__base solid $border-color__base);
+                @include lib-css(border-top, $border-width-base solid $border-color-base);
+                @include lib-css(border-bottom, $border-width-base solid $border-color-base);
                 cursor: pointer;
             }
 
             .amount .price {
                 @include lib-icon-font(
                         $icon-down,
-                    $_icon-font-size      : 14px,
-                    $_icon-font-text-hide : true,
-                    $_icon-font-position  : after,
-                    $_icon-font-display   : block
+                    $-icon-font-size      : 14px,
+                    $-icon-font-text-hide : true,
+                    $-icon-font-position  : after,
+                    $-icon-font-display   : block
                 );
-                padding-right: $indent__m;
+                padding-right: $indent-m;
                 position: relative;
 
                 &:after {
@@ -79,8 +79,8 @@
 
                 .amount .price {
                     @include lib-icon-font-symbol(
-                        $_icon-font-content  : $icon-up,
-                        $_icon-font-position : after
+                        $-icon-font-content  : $icon-up,
+                        $-icon-font-position : after
                     );
                 }
             }
@@ -88,7 +88,7 @@
 
         &-details {
             display: none;
-            @include lib-css(border-bottom, $border-width__base solid $border-color__base);
+            @include lib-css(border-bottom, $border-width-base solid $border-color-base);
 
             &.shown {
                 display: table-row;
@@ -113,17 +113,17 @@
 .cart.table-wrapper {
     .items {
         thead + .item {
-            border-top: $border-width__base solid $border-color__base;
+            border-top: $border-width-base solid $border-color-base;
         }
 
         > .item {
-            border-bottom: $border-width__base solid $border-color__base;
+            border-bottom: $border-width-base solid $border-color-base;
             position: relative;
         }
     }
 
     .col {
-        padding-top: $indent__base;
+        padding-top: $indent-base;
 
         &.qty {
             .input-text {
@@ -139,7 +139,7 @@
 
     .item {
         &-actions td {
-            padding-bottom: $indent__s;
+            padding-bottom: $indent-s;
             text-align: center;
             white-space: normal;
         }
@@ -148,7 +148,7 @@
             &.item {
                 display: block;
                 min-height: 75px;
-                padding: $indent__m 0 $indent__s 75px;
+                @include co(padding, $indent-m 0 $indent-s 75px);
                 position: relative;
             }
         }
@@ -160,8 +160,8 @@
         > .action {
             //@extend button;
             @include lib-link-as-button();
-            margin-bottom: $indent__s;
-            margin-right: $indent__s;
+            margin-bottom: $indent-s;
+            margin-right: $indent-s;
 
             &:last-child {
                 margin-right: 0;
@@ -172,7 +172,7 @@
     .action {
         &.help.map {
             @include abs-action-button-as-link();
-            font-weight: $font-weight__regular;
+            @include co(font-weight, $font-weight-regular);
         }
     }
 
@@ -193,7 +193,7 @@
 
         &-item-name {
             display: inline-block;
-            font-weight: $font-weight__regular;
+            @include co(font-weight, $font-weight-regular);
             margin-top: -6px;
         }
     }
@@ -208,12 +208,12 @@
     .item-options {
         @include abs-product-options-list();
         @include abs-add-clearfix();
-        font-size: $font-size__s;
-        margin-bottom: $indent__s;
+      @include co(font-size, $font-size-s);
+        margin-bottom: $indent-s;
     }
 
     .product-item-name + .item-options {
-        margin-top: $indent__s;
+        margin-top: $indent-s;
     }
 
     .product-image-wrapper {
@@ -227,7 +227,7 @@
 
     .action.configure {
         display: inline-block;
-        margin: 0 0 $indent__base;
+        margin: 0 0 $indent-base;
     }
 }
 
@@ -250,9 +250,9 @@
         &.continue {
           @include lib-button-icon(
               $icon-prev,
-            $_icon-font-size        : 12px,
-            $_icon-font-line-height : 16px,
-            $_icon-font-position    : before
+            $-icon-font-size        : 12px,
+            $-icon-font-line-height : 16px,
+            $-icon-font-position    : before
           );
           @include lib-link-as-button();
 
@@ -264,12 +264,12 @@
         &.update {
           @include lib-button-icon(
               $icon-update,
-            $_icon-font-size        : 14px,
-            $_icon-font-line-height : 14px
+            $-icon-font-size        : 14px,
+            $-icon-font-line-height : 14px
           );
-          padding-left: $indent__xs;
+          padding-left: $indent-xs;
           @include min-screen($desktop-min) {
-            margin-left: $indent__s;
+            margin-left: $indent-s;
           }
         }
       }
@@ -277,7 +277,7 @@
 
     .checkout-methods-items {
         @include abs-reset-list();
-        margin-top: $indent__base;
+        margin-top: $indent-base;
         text-align: center;
 
         .action.primary {
@@ -286,7 +286,7 @@
 
         .item {
             & + .item {
-                margin-top: $indent__base;
+                margin-top: $indent-base;
             }
         }
     }
@@ -295,13 +295,13 @@
 //  Products pager
 .cart-products-toolbar {
     .toolbar-amount {
-        margin: $indent__m 0 15px;
+        @include co(margin, $indent-m 0 15px);
         padding: 0;
         text-align: center;
     }
 
     .pages {
-        margin: 0 0 $indent__m;
+        margin: 0 0 $indent-m;
         text-align: center;
 
         .items {
@@ -313,12 +313,12 @@
 }
 
 .cart-products-toolbar-top {
-    border-bottom: $border-width__base solid $border-color__base;
+    border-bottom: $border-width-base solid $border-color-base;
 }
 
 //
 //  Cross sell
-//  ---------------------------------------------
+//
 
 .block.crosssell {
     margin-top: 70px;
@@ -343,9 +343,9 @@
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__m) {
+@include max-screen($screen-m) {
     .cart {
         &.table-wrapper {
             overflow: inherit;
@@ -373,8 +373,8 @@
                     &:before {
                         content: attr(data-th) ':';
                         display: block;
-                        font-weight: $font-weight__bold;
-                        padding-bottom: $indent__s;
+                        @include co(font-weight, $font-weight-bold);
+                        padding-bottom: $indent-s;
                     }
                 }
 
@@ -401,7 +401,7 @@
                 &.update,
                 &.continue,
                 &.clear {
-                    margin: 0 auto $indent__s;
+                    margin: 0 auto $indent-s;
                 }
 
                 &.update,
@@ -415,9 +415,9 @@
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .cart-container {
         @include abs-add-clearfix();
 
@@ -441,8 +441,8 @@
         .block {
             .fieldset {
                 .field {
-                    @include lib-form-field-type-revert($_type: block);
-                    margin: 0 0 $indent__s;
+                    @include lib-form-field-type-revert($-type: block);
+                    margin: 0 0 $indent-s;
                 }
             }
         }
@@ -458,7 +458,7 @@
             .item {
                 .col {
                     &.item {
-                        padding: 27px 8px $indent__s;
+                        padding: 27px 8px $indent-s;
                     }
                 }
 
@@ -473,7 +473,7 @@
                 &-item-photo {
                     display: table-cell;
                     max-width: 100%;
-                    padding-right: $indent__base;
+                    padding-right: $indent-base;
                     position: static;
                     vertical-align: top;
                     width: 1%;
@@ -496,7 +496,7 @@
         }
 
         .action {
-            margin-bottom: $indent__s;
+            margin-bottom: $indent-s;
         }
     }
 
@@ -535,7 +535,7 @@
 
         .cart {
             + .cart-products-toolbar {
-                margin-top: $indent__m;
+                margin-top: $indent-m;
             }
         }
     }

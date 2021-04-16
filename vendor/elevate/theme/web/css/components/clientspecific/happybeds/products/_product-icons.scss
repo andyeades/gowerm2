@@ -53,12 +53,12 @@
             .product-item-details {
                 .product-icons {
                     display: $pitems-picons-display;
-                    width: $pitems-picons-width;
+                    @include co(width, $pitems-picons-width);
                     height: $pitems-picons-height;
-                    margin: $pitems-picons-margin;
-                    padding: $pitems-picons-padding;
+                    @include co(margin, $pitems-picons-margin);
+                    @include co(padding, $pitems-picons-padding);
                     text-align: $pitems-picons-textalign;
-                    order: $pitems-picons-order;
+                    @include co(order, $pitems-picons-order);
 
                     @include min-screen($desktop-min) {
                         @include co(width, $pitems-picons-width-desktop, $pitems-picons-width);
@@ -72,8 +72,8 @@
 
                     > img {
                         flex: 0 1 auto;
-                        width: $pitems-picons-img-width;
-                        padding: $pitems-picons-img-padding;
+                        @include co(width, $pitems-picons-img-width);
+                        @include co(padding, $pitems-picons-img-padding);
 
                     }
 
@@ -85,12 +85,12 @@
                 .product-item-details {
                     .product-icons {
 
-                        width: $plist-picons-width;
+                        @include co(width, $plist-picons-width);
                         height: $plist-picons-height;
-                        margin: $plist-picons-margin;
-                        padding: $plist-picons-padding;
+                        @include co(margin, $plist-picons-margin);
+                        @include co(padding, $plist-picons-padding);
                         text-align: $plist-picons-textalign;
-                        order: $plist-picons-order;
+                        @include co(order, $plist-picons-order);
 
                         @include min-screen($desktop-min) {
                             @include co(width, $plist-picons-width-desktop, $plist-picons-width);
@@ -105,9 +105,9 @@
                         > img {
                             flex: 0 1 auto;
                             height: $plist-picons-img-height;
-                            width: $plist-picons-img-width;
-                            padding: $plist-picons-img-padding;
-                            margin: $plist-picons-img-margin;
+                            @include co(width, $plist-picons-img-width);
+                            @include co(padding, $plist-picons-img-padding);
+                            @include co(margin, $plist-picons-img-margin);
 
                         }
                     }
@@ -121,7 +121,7 @@
                     .price-box {
 
 
-                        padding: $pgrid-noicons-price-box-padding;
+                        @include co(padding, $pgrid-noicons-price-box-padding);
                     }
 
 

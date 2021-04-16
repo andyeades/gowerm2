@@ -1,69 +1,69 @@
 
 $p-img-icon-display: false !default;
-$p_img_z_index: 2 !default;
-$p_img_color: #FFF !default;
-$p_img_pos_top: 10px !default;
-$p_img_pos_left: 0 !default;
-$p_img_bg_color: #f0386c !default;
-$p_img_font_weight: 300 !default;
-$p_img_font_size: 0.6875rem !default;
-$p_img_texttransform_on: 1 !default;
-$p_img_texttransform: uppercase !default;
-$p_img_width: 73px !default;
-$p_img_height: 33px !default;
-$p_img_line_height: $p_img_height !default;
-$p_img_text_align: center !default;
-$p_img_discontinued_icon_bg_color: #cda301 !default;
-$p_img_topleft_bg_color: #f0386c !default;
+$p-img-z-index: 2 !default;
+$p-img-color: #FFF !default;
+$p-img-pos-top: 10px !default;
+$p-img-pos-left: 0 !default;
+$p-img-bg-color: #f0386c !default;
+$p-img-font-weight: 300 !default;
+$p-img-font-size: 0.6875rem !default;
+$p-img-texttransform-on: 1 !default;
+$p-img-texttransform: uppercase !default;
+$p-img-width: 73px !default;
+$p-img-height: 33px !default;
+$p-img-line-height: $p-img-height !default;
+$p-img-text-align: center !default;
+$p-img-discontinued-icon-bg-color: #cda301 !default;
+$p-img-topleft-bg-color: #f0386c !default;
 $p-img-topleft-fontfamily: false !default;
 
-$p_img_border_radius_on: 1 !default;
-$p_img_border_radius: 5px !default;
+$p-img-border-radius-on: 1 !default;
+$p-img-border-radius: 5px !default;
 
-$p_img_border_radius_position: 'right only' !default;
+$p-img-border-radius-position: 'right only' !default;
 
 // Save Icon
-$p_img_topleft_border_radius_on: 1 !default;
-$p_img_topleft_border_radius_position: 'right only' !default;
-$p_img_topleft_pview_on: 1 !default;
-$p_img_topleft_plistgrid_on: 1 !default;
+$p-img-topleft-border-radius-on: 1 !default;
+$p-img-topleft-border-radius-position: 'right only' !default;
+$p-img-topleft-pview-on: 1 !default;
+$p-img-topleft-plistgrid-on: 1 !default;
 
 // Discontinued (replaces save on Discontinued)
 
 
 
 // EL Guarantee
-$p_img_topright_bg_color: #00858d !default;
-$p_img_topright_border_radius_on: 1 !default;
-$p_img_topright_border_radius_position: 'left only' !default;
-$p_img_topright_pview_on: 1 !default;
-$p_img_topright_plistgrid_on: 0 !default;
+$p-img-topright-bg-color: #00858d !default;
+$p-img-topright-border-radius-on: 1 !default;
+$p-img-topright-border-radius-position: 'left only' !default;
+$p-img-topright-pview-on: 1 !default;
+$p-img-topright-plistgrid-on: 0 !default;
 
 // Bottom Full
 
-$p_img_bottom_full_border_radius_on: 0 !default;
+$p-img-bottom-full-border-radius-on: 0 !default;
 
 
 
 .p-img-icon {
     @include co(display, $p-img-icon-display);
-    z-index: $p_img_z_index;
-    color:            $p_img_color;
+    z-index: $p-img-z-index;
+    color:            $p-img-color;
     position:         absolute;
-    top:              $p_img_pos_top;
-    left:             $p_img_pos_left;
-    background-color: $p_img_bg_color;
-    font-weight:      $p_img_font_weight;
-    font-size:        $p_img_font_size;
-    width:                      $p_img_width;
-    height:                     $p_img_height;
-    line-height:                $p_img_line_height;
-    text-align: $p_img_text_align;
-    @if $p_img_border_radius_on == 1 {
-        @include ev-border-radius($p_img_border_radius_position, $p_img_border_radius);
+    top:              $p-img-pos-top;
+    left:             $p-img-pos-left;
+    background-color: $p-img-bg-color;
+    font-weight:      $p-img-font-weight;
+    font-size:        $p-img-font-size;
+    width:                      $p-img-width;
+    height:                     $p-img-height;
+    line-height:                $p-img-line-height;
+    text-align: $p-img-text-align;
+    @if $p-img-border-radius-on == 1 {
+        @include ev-border-radius($p-img-border-radius-position, $p-img-border-radius);
     }
-    @if $p_img_texttransform_on == 1 {
-        text-transform: $p_img_texttransform;
+    @if $p-img-texttransform-on == 1 {
+        @include co(text-transform, $p-img-texttransform);
     }
     opacity: 1;
     span {
@@ -92,7 +92,7 @@ $p_img_bottom_full_border_radius_on: 0 !default;
 }
 
 .save-iconbf, .p-img-bottom-full {
-    @if $p_img_bottom_full_border_radius_on == 0 {
+    @if $p-img-bottom-full-border-radius-on == 0 {
         border-radius: unset;
     }
 
@@ -100,24 +100,24 @@ $p_img_bottom_full_border_radius_on: 0 !default;
 
 .p-img-top-left, .save-icon, .discontinued-icon {
     @include co(font-family, $p-img-topleft-fontfamily);
-    background-color: $p_img_topleft_bg_color;
+    background-color: $p-img-topleft-bg-color;
 
     .product-items & {
-        @if $p_img_topleft_plistgrid_on == 0 {
+        @if $p-img-topleft-plistgrid-on == 0 {
             display: none;
         }
     }
     .product.media & {
 
 
-        @if $p_img_topleft_border_radius_position == 'right only' {
-            @if $pview_media_figure_border_radius_on == 1 {
+        @if $p-img-topleft-border-radius-position == 'right only' {
+            @if $pview-media-figure-border-radius-on == 1 {
                 @include max-screen($mobile-max) {
                     border-top-left-radius: unset;
                 }
-                @if $pview_media_figure_border_radius > $p_img_pos_top {
+                @if $pview-media-figure-border-radius > $p-img-pos-top {
                     // Border in top left corner will be sticking out
-                    border-top-left-radius: $pview_media_figure_border_radius - $p_img_pos_top;
+                    border-top-left-radius: $pview-media-figure-border-radius - $p-img-pos-top;
                 }
 
 
@@ -129,30 +129,30 @@ $p_img_bottom_full_border_radius_on: 0 !default;
 
 }
 .discontinued-icon {
-    background-color: $p_img_discontinued_icon_bg_color;
+    background-color: $p-img-discontinued-icon-bg-color;
 }
 
 .p-img-top-right, .el-guarantee {
 
-    background-color:     $p_img_topright_bg_color;
-    @if $p_img_border_radius_on == 1 {
-        @include ev-border-radius($p_img_topright_border_radius_position, $p_img_border_radius);
+    background-color:     $p-img-topright-bg-color;
+    @if $p-img-border-radius-on == 1 {
+        @include ev-border-radius($p-img-topright-border-radius-position, $p-img-border-radius);
     }
 
     .product-items & {
-        @if $p_img_topright_plistgrid_on == 0 {
+        @if $p-img-topright-plistgrid-on == 0 {
             display: none;
         }
     }
     .product.media & {
-        @if $p_img_topright_border_radius_position == 'left only' {
-            @if $pview_media_figure_border_radius_on == 1 {
+        @if $p-img-topright-border-radius-position == 'left only' {
+            @if $pview-media-figure-border-radius-on == 1 {
                 @include max-screen($mobile-max) {
                     border-top-right-radius: unset;
                 }
-                @if $pview_media_figure_border_radius > $p_img_pos_top {
+                @if $pview-media-figure-border-radius > $p-img-pos-top {
                     // Border in top right corner will be sticking out
-                    border-top-right-radius: $pview_media_figure_border_radius - $p_img_pos_top;
+                    border-top-right-radius: $pview-media-figure-border-radius - $p-img-pos-top;
                 }
 
 

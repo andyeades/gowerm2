@@ -246,7 +246,7 @@ jQuery('.old-price span.price-label').html('RRP');
 
                 if(stock_message === ''){
                     jQuery('#stock_message').hide();
-                }             
+                }
                 else{
 
                     jQuery('#stock_message').html(stock_message).show();
@@ -334,15 +334,7 @@ jQuery('.old-price span.price-label').html('RRP');
                     ) {
                         title = config.customAttributes[productId].name.value;
                     }
-                  
-                    const queryString = window.location.search;
-                 var currentUrl = location.protocol + '//' + location.host + location.pathname;
-                 
-                 //
-               
-                   if(currentUrl != url){
-                    History.replaceState(null, title, url+queryString);
-                    }
+                    History.replaceState(null, title, url);
                 }
             });
         }

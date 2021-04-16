@@ -1,10 +1,13 @@
 @if $sitename == happybeds {
 
-    $link-color: #5A5A5A !global;
-    $link-hover-color: darken($link-color, 15%) !global;
+    $font-size-base: 0.75rem !global;
 
     $theme-sans-serif-font-family: 'Poppins', sans-serif !global;
     $theme-serif-font-family: 'PT Serif', serif !global;
+
+    $link-color: #5A5A5A !global;
+    $link-hover-color: darken($link-color, 15%) !global;
+
 
     // stylelint-disable value-keyword-case
     $font-family-sans-serif: $theme-sans-serif-font-family !global;
@@ -18,7 +21,7 @@
     $pwrap-price-after-label-font-weight: 600 !global;
     $pwrap-price-after-label-font-size: 0.875rem !global;
 
-    $pview-data-items-accordion-control-text-transform: uppercase !global;
+
 
     // Product List/Grid
 

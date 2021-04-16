@@ -1,38 +1,38 @@
-$ev_hdr_tabs_align_items: center !default;
+$ev-hdr-tabs-align-items: center !default;
 
-$ev_hdr_tabs_li_padding: 1rem 0.75rem !default;
-$ev_hdr_tabs_li_text_transform_on: 1 !default;
-$ev_hdr_tabs_li_text_transform: uppercase !default;
-$ev_hdr_tabs_li_a_padding: 0.25rem 1.25rem !default;
-$ev_hdr_tabs_li_a_fontsize: 0.9375rem !default;
-$ev_hdr_tabs_li_a_fontweight: 600 !default;
-$ev_hdr_tabs_li_a_color: white !default;
-$ev_hdr_tabs_li_a_hover_color: darken($ev_hdr_tabs_li_a_color, 15%) !default;
-$ev_hdr_tabs_li_width: auto !default;
+$ev-hdr-tabs-li-padding: 1rem 0.75rem !default;
+$ev-hdr-tabs-li-text-transform-on: 1 !default;
+$ev-hdr-tabs-li-text-transform: uppercase !default;
+$ev-hdr-tabs-li-a-padding: 0.25rem 1.25rem !default;
+$ev-hdr-tabs-li-a-fontsize: 0.9375rem !default;
+$ev-hdr-tabs-li-a-fontweight: 600 !default;
+$ev-hdr-tabs-li-a-color: white !default;
+$ev-hdr-tabs-li-a-hover-color: darken($ev-hdr-tabs-li-a-color, 15%) !default;
+$ev-hdr-tabs-li-width: auto !default;
 
 
 .ev-hdr-tabs {
     display: flex;
     flex-wrap: wrap;
-    align-items: $ev_hdr_tabs_align_items;
+    @include co(align-items, $ev-hdr-tabs-align-items);
 
     > li {
-        width: $ev_hdr_tabs_li_width;
+        @include co(width, $ev-hdr-tabs-li-width);
         flex: 0 1 auto;
-        padding: $ev_hdr_tabs_li_padding;
+        @include co(padding, $ev-hdr-tabs-li-padding);
 
-        @if $ev_hdr_tabs_li_text_transform_on == 1 {
-            text-transform: $ev_hdr_tabs_li_text_transform;
+        @if $ev-hdr-tabs-li-text-transform-on == 1 {
+            @include co(text-transform, $ev-hdr-tabs-li-text-transform);
         }
 
         > a {
-            font-size: $ev_hdr_tabs_li_a_fontsize;
-            font-weight: $ev_hdr_tabs_li_a_fontweight;
-            color: $ev_hdr_tabs_li_a_color;
-            padding: $ev_hdr_tabs_li_a_padding;
+            @include co(font-size, $ev-hdr-tabs-li-a-fontsize);
+            @include co(font-weight, $ev-hdr-tabs-li-a-fontweight);
+            color: $ev-hdr-tabs-li-a-color;
+            @include co(padding, $ev-hdr-tabs-li-a-padding);
 
             &:hover {
-                color: $ev_hdr_tabs_li_a_hover_color;
+                color: $ev-hdr-tabs-li-a-hover-color;
             }
 
 

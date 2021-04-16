@@ -26,7 +26,6 @@ return array(
     'Flow\\JSONPath' => array($vendorDir . '/flow/jsonpath/src'),
     'Dflydev\\DotAccessData' => array($vendorDir . '/dflydev/dot-access-data/src'),
     'Cm\\RedisSession\\' => array($vendorDir . '/colinmollenhour/php-redis-session-abstract/src'),
-    'Braintree' => array($vendorDir . '/braintree/braintree_php/lib'),
     'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
     'Bcn\\Component\\Json\\' => array($vendorDir . '/bcncommerce/json-stream'),
     'BaconQrCode' => array($vendorDir . '/bacon/bacon-qr-code/src'),

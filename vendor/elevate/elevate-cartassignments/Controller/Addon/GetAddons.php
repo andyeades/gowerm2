@@ -485,16 +485,17 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
 
         $settingsHelper = $objectManager->get('Elevate\CartAssignments\Helper\Settings');
         $price_type = $settingsHelper->getPriceType();
-                 $output_price_add_ex = $this->quoteItemObjectMain['row_total'];
-            $output_price_add_inc = $this->quoteItemObjectMain['row_total_incl_tax'];
-       
+
+        if ($price_type == 'ex_vat') {
+
+            $output_price_add = $this->quoteItemObjectMain['row_total'];
+        } else {
+            $output_price_add = $this->quoteItemObjectMain['row_total_incl_tax'];
+        }
         if ($this->quoteItemObjectMain['discount_amount'] > 0) {
-            $output_price_add_ex = $output_price_add_ex - ($this->quoteItemObjectMain['discount_amount']);
-              $output_price_add_inc = $output_price_add_inc - ($this->quoteItemObjectMain['discount_amount']);
+            $output_price_add = $output_price_add - ($this->quoteItemObjectMain['discount_amount']);
         }
 
-          $_pricingHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
-               
         $qty = 1;
         $original_item_qty = $this->quoteItemObjectMain['qty'];
 
@@ -505,29 +506,13 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
                                                                     $qty);
 
          */
-                 $output = '';
-     $output .= '<div class="price-excluding-tax">'.$_pricingHelper->currency($output_price_add_ex,true,false).'</div>';
-        $output .= '<div class="price-including-tax">'.$_pricingHelper->currency($output_price_add_inc,true,false).'</div>';
-                $response['price_update'] = $output;
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+
         foreach ($mobile_price_update as $key => $val) {
-                            $output = '';
-     $output .= '<div class="price-excluding-tax">'.$_pricingHelper->currency($val + $output_price_add_ex,true,false).'</div>';
-        $output .= '<div class="price-including-tax">'.$_pricingHelper->currency($val + $output_price_add_inc,true,false).'</div>';
-            $response['mobile_price_update'][$key] = $output;
+
+            $response['mobile_price_update'][$key] = $val + $output_price_add;
         }
         /// $response['left_side'] =   $output['output'];
-     
+        $response['price_update'] = $output_price_add;
         $response['list'] = $productOutputBuilt;
         echo json_encode($response);
 
@@ -613,10 +598,10 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
         }
 
         $productOutput .= '<div class="row">
-         <div class="col-md-2 col-xs-3 col-3" style="padding:0;"><img style="max-width:100%;" src="/media' . $icon . '" />
+         <div class="col-md-2 col-xs-3 col-4" style="padding:0;"><img style="max-width:100%;" src="/media' . $icon . '" />
                   </div>
 
-                   <div class="col-md-10 col-xs-9 col-9" >
+                   <div class="col-md-10 col-xs-9 col-8" >
                     <div class="replacewrap">
                         <div style="font-weight: bold;margin-bottom: 10px;font-size: 14px;">' . $data['title'] . '</div>';
 
@@ -896,7 +881,7 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
                                 $discountBreakdown[$ruleID] = $discount->getAmount();
                             }
 
-                        }
+                        }                                                         
                         //$productOutput .= 'andy';
                        // $productOutput .= print_r($discountBreakdown, true);
                         $ruleFactory = $objectManager->create('Magento\SalesRule\Model\RuleFactory')->create();
@@ -1085,7 +1070,11 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
         $parent_product,
         $linked_id
     ) {
-
+    
+    if($item_product_sku == 'BORN-FREE-DONATION'){
+    return false;
+    }
+      
 
         /*
          * contained in data
@@ -1133,62 +1122,15 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
 
         }
         //echo $parent_product->getId();
-       $store_ids = explode(',', $data['store_ids']);
-        $store_ids = array_flip($store_ids);
 
-                     $current_store_id = $this->_objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore()->getId();
-        if(!array_key_exists($current_store_id, $store_ids) && !array_key_exists(0, $store_ids)){
-
-            $this->addValidationError($data['addon_id'], 'nostore-'.$current_store_id);
-            return false;
-
-
-        }
         // $parent_product = Mage::getModel('catalog/product')->load($parent_product->getId());
-        if (!is_object($parent_product)) {
+        if (is_object($parent_product)) {
             //       echo "PRODUCT";
-            $parent_product = $objectManager->create('Magento\Catalog\Model\Product')->load($parent_product);
+            $parent_product = $objectManager->create('Magento\Catalog\Model\Product')->load($parent_product->getId());
         }
 
+        if ($data->getData()) {
 
-
-
-$attribute_matchups[1] = array('attribute_id' => '1320', 'value' => '1257');
-$attribute_matchups[3] = array('attribute_id' => '1320', 'value' => '1257');
-$attribute_matchups[5] = array('attribute_id' => '1320', 'value' => '1257');
-$attribute_matchups[2] = array('attribute_id' => '1320', 'value' => '1792');
-$attribute_matchups[4] = array('attribute_id' => '1320', 'value' => '1792');
-$attribute_matchups[7] = array('attribute_id' => '1320', 'value' => '1261');
-$attribute_matchups[8] = array('attribute_id' => '1320', 'value' => '1256');
-$attribute_matchups[46] = array('attribute_id' => '1320', 'value' => '1257');
-$attribute_matchups[49] = array('attribute_id' => '1320', 'value' => '1792');
-$attribute_matchups[51] = array('attribute_id' => '1320', 'value' => '1257');
-$attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
-
-  
-        if ($data->getData()) { 
-
-                  //  echo "ADDON ID = ".$data['cartassignments_id']."<br>";
-                    
-                                        
-             if(array_key_exists($data['cartassignments_id'], $attribute_matchups)){
-           $attribute_match_attribute_code = 'delivery';
-              
-            if($attribute_matchups[$data['cartassignments_id']]['value'] == $parent_product->getDelivery()){
-                       
-            }      
-            else{
-                return false;
-            }
-            
-       //needs addon matc
-       
-       //delivery
-       
-       
-       
-       }
-        /*
             if ($data->getAttributes()) {
                 foreach ($data->getAttributes()->getData() as $attributes) {
                     $attribute_id = $attributes['attribute_id'];
@@ -1208,7 +1150,6 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
                     }
                 }
             }
-            */
             //EADES
 
             //additions needed - validate if product is purchasable
@@ -1219,7 +1160,7 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
 
             if (is_object($parent_product)) {
                 if ($assigned_skus) {
-                  //  echo "PARENT";
+                    echo "PARENT";
 
                 }
 
@@ -1245,8 +1186,8 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
             ///// VALIDATION START
             //If this is a product - check it is valid otherwise just skip
             //dependant addon validation
-
-            $dependant_addon_blacklist = $data['dependant_addon_blacklist'];
+              
+            $dependant_addon_blacklist = $data['dependant_addon_blacklist'];  
             $dependant_addon_blacklist_exp = explode(',', $dependant_addon_blacklist);
 
             foreach ($dependant_addon_blacklist_exp as $key => $val) {
@@ -1262,10 +1203,10 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
                     }
                 }
 
-            }
+            }     
             $dependant_addon_ids = $data['dependant_addon_ids'];
             $dependant_addon_ids_exp = explode(',', $dependant_addon_ids);
-           
+
             foreach ($dependant_addon_ids_exp as $key => $val) {
 
 
@@ -1294,10 +1235,10 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
             $results = $connection->fetchCol($attribute_information);
 
             $cats = array_flip($results);
-              
+
             //Assigned categories for the addon
             $match_id = $data['assigned_categories'];
-             
+
             if ($data['addon_type'] == 'multibox') {
 
                 // $check = Mage::helper('core')->isModuleEnabled('Elevate_AssociatedConfigurable');
@@ -1324,19 +1265,19 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
             }
 
             if (!empty($match_id) && $match_id != 0) {
-                  
+                //        echo "MATCH";
 
                 $match_id_exp = explode(',', $match_id);
-                       
+
                 $do_break = false;
-                             
+
                 //   if ($_GET['debug'] == 1) {
                 //echo $data->getData('addon_id');
                 //print_r($match_id_exp);
                 //   }
                 foreach ($match_id_exp as $key => $val) {
                     if (array_key_exists(trim($val), $cats)) {
-                        
+
                         $do_break = true;
 
                     }
@@ -2219,36 +2160,18 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
 
                 }
             }
-        }  
-        
-        
-             $final_price_ex = $final_price;
- $final_price_inc = $final_price;                                        
-        if ($quoteItemObject) {
-            $final_price = $quoteItemObject->getPrice(); 
-            
- 
-  $final_price_ex = $quoteItemObject->getPrice();
-                $final_price_inc = $quoteItemObject->getData('price_incl_tax');
-              
-                                                              
         }
-        else{
-              $final_price_ex = $product_check->getFinalPrice();
-                                          
-             $final_price_inc = $product_check->getPriceInfo()->getPrice('final_price')->getAmount()->getValue();  
-             
-                                                                                             
-        }                        
-        
- 
-                         
+        if ($quoteItemObject) {
+            $final_price = $quoteItemObject->getPrice();
+        }
+        // $productOutput .= "FINAL PRICE:$final_price <br>";
         if ($line_discounts_enabled == '1' && $quoteItemObject) {
 
 
-            //$final_price_end = $final_price - ((($final_price / 100) * $data['discount_percentage']));
-            //$final_price = $final_price_end;
-            
+            $final_price_end = $final_price - ((($final_price / 100) * $data['discount_percentage']));
+            $final_price = $final_price_end;
+
+            $final_price = $quoteItemObject->getPrice();
 
             if ($quoteItemObject->getDiscountAmount() > 0) {
                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
@@ -2258,52 +2181,33 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
                 if ($price_type == 'ex_vat') {
 
                     $rot_total = $quoteItemObject->getRowTotal() / $quoteItemObject->getQty();
-                     
                 } else {
 
 
                     $rot_total = $quoteItemObject->getRowTotalInclTax() / $quoteItemObject->getQty();
-              
                     // echo $rot_total;
                 }
 
                 $final_price = $rot_total - ($quoteItemObject->getDiscountAmount() / $quoteItemObject->getQty());
-                
-                       $rot_total_ex = $quoteItemObject->getRowTotal() / $quoteItemObject->getQty();
-                    $rot_total_inc = $quoteItemObject->getRowTotal() / $quoteItemObject->getQty();
-                    
-                    
-                   $final_price_ex =  $rot_total_ex - ($quoteItemObject->getDiscountAmount() / $quoteItemObject->getQty());
-                  $final_price_inc = $rot_total_inc - ($quoteItemObject->getDiscountAmount() / $quoteItemObject->getQty());
+
             } else {
 
                 $final_price = $quoteItemObject->getRowTotalInclTax() / $quoteItemObject->getQty();
-                  $final_price_ex =  $quoteItemObject->getRowTotal() / $quoteItemObject->getQty();
-                  $final_price_inc = $quoteItemObject->getRowTotalInclTax() / $quoteItemObject->getQty();
+
             }
 
         } else {
 
 
             $final_price = $final_price - (($final_price / 100) * $data->getData('discount_percentage'));
-                $final_price_ex = $final_price_ex - (($final_price_ex / 100) * $data->getData('discount_percentage'));
-                    $final_price_inc = $final_price_inc - (($final_price_inc / 100) * $data->getData('discount_percentage'));
         }
-                  
- 
-                   $output_price = '';
-         $_pricingHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
-                    $output_price .= '<div class="price-excluding-tax">'.$_pricingHelper->currency($final_price_ex,true,false).'</div>';
-        $output_price .= '<div class="price-including-tax">'.$_pricingHelper->currency($final_price_inc,true,false).'</div>';
-        
-        
-        $productOutput .= '        <div style="font-weight: bold;margin-bottom: 10px;font-size: 16px;" class="mbpromotop ' . $extra_class . '">' . $output_price . ' ' . $qty_text . '
+
+        $final_price = $this->pricingHelper->currency($final_price, true, false);
+        $productOutput .= '        <div style="font-weight: bold;margin-bottom: 10px;font-size: 16px;" class="mbpromotop ' . $extra_class . '">' . $final_price . ' ' . $qty_text . '
                          </div>';
         $productOutput .= '<div class="replacewrap">';
-        
-        
-        $productOutput .= '<span class="evlightbox " data-body-type="ajax" data-size="modal-lg" data-json="true" data-title="Quick View" data-footer-type="div" 
-             data-body="/ev_cartassignments/show/popup/id/' . $product->getId() . '" style="cursor:pointer; ' . $link_style . '">
+        $productOutput .= '<span class="evlightbox "  data-size="modal-lg" data-title="Quick View" data-footer-type="div" data-body-type="url"
+             data-body="/assignments/addon/cartassignments/id/' . $product->getId() . '" style="cursor:pointer; ' . $link_style . '">
                              <div style="font-weight: bold;margin-bottom: 10px;font-size: 14px;">' . $title . '</div></span>
 
             <script>ELEVATE.Lightbox.attachEventHandlers();</script>
@@ -2403,7 +2307,7 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
                 $output['mobile_price']['price'] = ($quoteItemChildbject->getRowTotal());
                 $my_price = $quoteItemChildbject->getPrice();
                 // $output_price = $_item->getPrice() - ($_item->getDiscountAmount() / $_item->getQty());
-            } else if ($line_discounts_enabled == '1' && $quoteItemChildbject) {
+            } else if ($line_discounts_enabled == '1' && $quoteItemObject) {
                 $my_price = $quoteItemChildbject->getPrice();
                 //      $my_price =  $my_price - (($my_price / 100) * $data->getData('discount_percentage'));
 
@@ -2426,12 +2330,8 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
 
             $new_quote = $this->_cart->getQuote();
             $new_quote->collectTotals();
-            $discountBreakdown = [];   
-            $itemDiscountBreakdown = false;            
-            if($quoteItemChildbject){              
-        $itemDiscountBreakdown = $quoteItemChildbject->getExtensionAttributes()->getDiscounts();     
-        
-        }                
+            $discountBreakdown = [];
+        $itemDiscountBreakdown = $quoteItemChildbject->getExtensionAttributes()->getDiscounts();
         if ($itemDiscountBreakdown) {
             foreach ($itemDiscountBreakdown as $value) {
                 /* @var \Magento\SalesRule\Api\Data\DiscountDataInterface $discount */
@@ -2518,33 +2418,21 @@ $attribute_matchups[52] = array('attribute_id' => '1320', 'value' => '1792');
         $price_type = $settingsHelper->getPriceType();
 
         if ($already_added) {
-          
-            
-            
-           $final_price_ex = $quoteItemObject->getRowTotal();   
-           $final_price_inc = $quoteItemObject->getRowTotalInclTax();     
-                                                                         
+            if ($price_type == 'ex_vat') {
+
+                $output_price_add = $quoteItemObject->getRowTotal();
+            } else {
+                $output_price_add = $quoteItemObject->getRowTotalInclTax();
+            }
             if ($quoteItemObject->getDiscountAmount() > 0) {
                 $output_price_add = $output_price_add - ($quoteItemObject->getDiscountAmount());
-                
-                  $final_price_ex = $final_price_ex - ($quoteItemObject->getDiscountAmount());
-                    $final_price_inc = $final_price_inc - ($quoteItemObject->getDiscountAmount());                                                                  
             }
-                    
-            
-                   $final_price_ex = ($final_price_ex / $quoteItemObject->getQty()) * $qty;
-                         $final_price_inc = ($final_price_inc / $quoteItemObject->getQty()) * $qty;
- 
-                   $output_price = '';
-         $_pricingHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
-                    $output_price .= '<div class="price-excluding-tax">'.$_pricingHelper->currency($final_price_ex,true,false).'</div>';
-        $output_price .= '<div class="price-including-tax">'.$_pricingHelper->currency($final_price_inc,true,false).'</div>';
-            
-                    
-         
+
+            $output_price_add = ($output_price_add / $quoteItemObject->getQty()) * $qty;
+            $output_price_add = $this->pricingHelper->currency($output_price_add, true, false);
 
             $productOutput .= '<div class="addon_price_float floattop" data-qty="' . $qty . '" id="rowpriceprod_' . $quote_item_id_parent.$addon_id . '">
-' . ($output_price) . '</div>';
+' . ($output_price_add) . '</div>';
         }
         else{
             $productOutput .= '<div class="addon_price_float floattop" data-qty="' . $qty . '" id="rowpriceprod_' . $quote_item_id_parent.$addon_id . '">

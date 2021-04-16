@@ -3,7 +3,7 @@ $prod-view-info-description-font-size: 0.875rem !default;
 @if $sitename == happybeds {
 
     .product-info-description {
-        font-size: $prod-view-info-description-font-size;
+        @include co(font-size, $prod-view-info-description-font-size);
     }
     .product-info-dimensions {
         .pull-right {

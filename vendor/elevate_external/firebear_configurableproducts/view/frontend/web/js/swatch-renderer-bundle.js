@@ -1272,7 +1272,6 @@ define([
                             }
 
                             prices['bundle-option-bundle_option[' + $widget.options.optionId + ']'] = result;
-                            $('#bundle-option-' + $widget.options.optionId).attr('data-price-amount', result.finalPrice.amount);
 
                             if (typeof ($widget.customOptionsPrice) !== 'undefined') {
                                 result.finalPrice.amount = parseFloat(result.finalPrice.amount) + $widget.customOptionsPrice;

@@ -1,29 +1,29 @@
 //
 //  Ratings
-//  _____________________________________________
+//
 
 //  Rating-vote mixin
 @mixin lib-rating-vote(
-    $_icon-count          : $rating-icon__count,
-    $_icon-content        : $rating-icon__content,
-    $_icon-font           : $rating-icon__font,
-    $_icon-font-size      : $rating-icon__font-size,
-    $_icon-letter-spacing : $rating-icon__letter-spacing,
-    $_icon-color          : $rating-icon__color,
-    $_icon-color-active   : $rating-icon__active__color
+    $-icon-count          : $rating-icon-count,
+    $-icon-content        : $rating-icon-content,
+    $-icon-font           : $rating-icon-font,
+    $-icon-font-size      : $rating-icon-font-size,
+    $-icon-letter-spacing : $rating-icon-letter-spacing,
+    $-icon-color          : $rating-icon-color,
+    $-icon-color-active   : $rating-icon-active-color
 ) {
     overflow: hidden;
 
     &:before {
         @include _lib-rating-icon-defalt(
-            $_icon-font,
-            $_icon-font-size,
-            $_icon-letter-spacing,
-            $_icon-color
+            $-icon-font,
+            $-icon-font-size,
+            $-icon-letter-spacing,
+            $-icon-color
         );
         @include lib-rating-icons-content(
-            $_icon-count,
-            $_icon-content
+            $-icon-count,
+            $-icon-content
         );
         display: block;
         position: absolute;
@@ -54,10 +54,10 @@
 
         &:before {
             @include _lib-rating-icon-defalt(
-                $_icon-font,
-                $_icon-font-size,
-                $_icon-letter-spacing,
-                $_icon-color-active
+                $-icon-font,
+                $-icon-font-size,
+                $-icon-letter-spacing,
+                $-icon-color-active
             );
             opacity: 0;
         }
@@ -76,28 +76,28 @@
     }
 
     @include _lib-rating-iteration(
-        $_icon-content,
-        $_icon-count
+        $-icon-content,
+        $-icon-count
     );
 }
 
 //  Rating-summary mixin
 @mixin lib-rating-summary(
-    $_icon-count          : $rating-icon__count,
-    $_icon-content        : $rating-icon__content,
-    $_icon-font           : $rating-icon__font,
-    $_icon-font-size      : $rating-icon__font-size,
-    $_icon-letter-spacing : $rating-icon__letter-spacing,
-    $_icon-color          : $rating-icon__color,
-    $_icon-color-active   : $rating-icon__active__color,
-    $_label-hide          : $rating-label__hide
+    $-icon-count          : $rating-icon-count,
+    $-icon-content        : $rating-icon-content,
+    $-icon-font           : $rating-icon-font,
+    $-icon-font-size      : $rating-icon-font-size,
+    $-icon-letter-spacing : $rating-icon-letter-spacing,
+    $-icon-color          : $rating-icon-color,
+    $-icon-color-active   : $rating-icon-active-color,
+    $-label-hide          : $rating-label-hide
 ) {
     overflow: hidden;
     white-space: nowrap;
-    @include _lib-rating-label-hide($_label-hide);
+    @include _lib-rating-label-hide($-label-hide);
 
     .rating-result {
-        @include lib-css(width, ($_icon-font-size * $_icon-count) + ceil($_icon-letter-spacing * ($_icon-count - 1)));
+        @include lib-css(width, ($-icon-font-size * $-icon-count) + ceil($-icon-letter-spacing * ($-icon-count - 1)));
         display: inline-block;
         position: relative;
         vertical-align: middle;
@@ -109,12 +109,12 @@
             width: 100%;
             z-index: 1;
             @include _lib-rating-summary-icon-default(
-                $_icon-font,
-                $_icon-font-size,
-                $_icon-letter-spacing,
-                $_icon-count,
-                $_icon-content,
-                $_icon-color
+                $-icon-font,
+                $-icon-font-size,
+                $-icon-letter-spacing,
+                $-icon-count,
+                $-icon-content,
+                $-icon-color
             );
         }
 
@@ -126,12 +126,12 @@
                 position: relative;
                 z-index: 2;
                 @include _lib-rating-summary-icon-default(
-                    $_icon-font,
-                    $_icon-font-size,
-                    $_icon-letter-spacing,
-                    $_icon-count,
-                    $_icon-content,
-                    $_icon-color-active
+                    $-icon-font,
+                    $-icon-font-size,
+                    $-icon-letter-spacing,
+                    $-icon-count,
+                    $-icon-content,
+                    $-icon-color-active
                 );
             }
 
@@ -149,38 +149,38 @@
 }
 
 //  Internal use mixins
-@mixin _lib-rating-label-hide($_label-hide) {
-    @if $_label-hide == true {
+@mixin _lib-rating-label-hide($-label-hide) {
+    @if $-label-hide == true {
         @include lib-rating-summary-label-hide();
     }
 }
 
 @mixin _lib-rating-iteration(
-    $_icon-content,
-    $_icon-count
+    $-icon-content,
+    $-icon-count
 ) {
-    @for $_index from $_icon-count to 0 {
-        .rating-#{$_index} {
-            z-index: $_icon-count - ($_index - 2);
+    @for $-index from $-icon-count to 0 {
+        .rating-#{$-index} {
+            z-index: $-icon-count - ($-index - 2);
             &:before {
-                @include lib-rating-icons-content($_index, $_icon-content);
+                @include lib-rating-icons-content($-index, $-icon-content);
             }
         }
     }
 }
 
 @mixin _lib-rating-icon-defalt(
-    $_icon-font,
-    $_icon-font-size,
-    $_icon-letter-spacing,
-    $_icon-color
+    $-icon-font,
+    $-icon-font-size,
+    $-icon-letter-spacing,
+    $-icon-color
 ) {
-    @include lib-css(color, $_icon-color);
-    @include lib-css(font-family, $_icon-font);
-    @include lib-css(font-size, $_icon-font-size);
-    @include lib-css(height, $_icon-font-size);
-    @include lib-css(letter-spacing, $_icon-letter-spacing);
-    @include lib-css(line-height, $_icon-font-size);
+    @include lib-css(color, $-icon-color);
+    @include lib-css(font-family, $-icon-font);
+    @include lib-css(font-size, $-icon-font-size);
+    @include lib-css(height, $-icon-font-size);
+    @include lib-css(letter-spacing, $-icon-letter-spacing);
+    @include lib-css(line-height, $-icon-font-size);
     font-style: normal;
     font-weight: normal;
     speak: none;
@@ -189,21 +189,21 @@
 }
 
 @mixin _lib-rating-summary-icon-default(
-    $_icon-font,
-    $_icon-font-size,
-    $_icon-letter-spacing,
-    $_icon-count,
-    $_icon-content,
-    $_icon-color
+    $-icon-font,
+    $-icon-font-size,
+    $-icon-letter-spacing,
+    $-icon-count,
+    $-icon-content,
+    $-icon-color
 ) {
     -webkit-font-smoothing: antialiased;
-    @include lib-css(color, $_icon-color);
-    @include lib-css(font-family, $_icon-font);
-    @include lib-css(font-size, $_icon-font-size);
-    @include lib-css(height, $_icon-font-size);
-    @include lib-css(letter-spacing, $_icon-letter-spacing);
-    @include lib-css(line-height, $_icon-font-size);
-    @include lib-rating-icons-content($_icon-count, $_icon-content);
+    @include lib-css(color, $-icon-color);
+    @include lib-css(font-family, $-icon-font);
+    @include lib-css(font-size, $-icon-font-size);
+    @include lib-css(height, $-icon-font-size);
+    @include lib-css(letter-spacing, $-icon-letter-spacing);
+    @include lib-css(line-height, $-icon-font-size);
+    @include lib-rating-icons-content($-icon-count, $-icon-content);
     display: block;
     font-style: normal;
     font-weight: normal;
@@ -211,14 +211,14 @@
 }
 
 @mixin lib-rating-icons-content(
-    $_icon-count: $rating-icon__count,
-    $_icon-content: $rating-icon__content
+    $-icon-count: $rating-icon-count,
+    $-icon-content: $rating-icon-content
 ) {
-    $_icon-content-result: $_icon-content;
+    $-icon-content-result: $-icon-content;
 
-    @for $_index from $_icon-count to 1 {
-        $_icon-content-result:  $_icon-content-result + $_icon-content;
+    @for $-index from $-icon-count to 1 {
+        $-icon-content-result:  $-icon-content-result + $-icon-content;
     }
 
-    content: $_icon-content-result;
+   @include co(content, $-icon-content-result);
 }

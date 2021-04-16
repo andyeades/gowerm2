@@ -73,7 +73,7 @@ function activate_cc_m2_uk(){
 	}
 }
 var cc_index = 0;
-requirejs(['jquery','evDelivery'], function( $, evDelivery ) {
+requirejs(['jquery'], function( $) {
 	jQuery( document ).ready(function() {
 		if(crafty_cfg.enabled){
 			setInterval(activate_cc_m2_uk,200);

@@ -54,9 +54,41 @@
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="landingpage_attributes_id"/>
     </constraint>
-  </table>
+  </table> 
     <table name="elevate_landingpages_categories" resource="default" engine="innodb" comment="Landing Page Attributes Table">
         <column xsi:type="varchar" name="landingpage_landingpage_id" nullable="true" length="255" comment="Landing Page ID"/>
         <column xsi:type="smallint" name="category_id" padding="6" unsigned="false" nullable="true" identity="false" comment="No Index"/>
+    </table>
+    
+    
+ <table name="elevate_landingpages_schema_faq" resource="default" engine="innodb" comment="Landing Page Attributes Table">
+    <column xsi:type="int" name="landingpage_faq_id" padding="11" unsigned="true" nullable="false" identity="true" comment="Landing Page ID"/>
+  
+        <column xsi:type="text" name="question" nullable="false" comment="Category Id"/>
+        <column xsi:type="text" name="answer" nullable="false" comment="Category Id"/>
+
+            <column xsi:type="int" name="position" padding="10" unsigned="true" nullable="true" identity="false"
+                comment="Default Billing Address"/>
+                
+
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+
+           <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="true" identity="false"
+                comment="Default Billing Address"/>
+                
+                   
+           <column xsi:type="int" name="landingpage_id" padding="10" unsigned="true" nullable="true" identity="false"
+                comment="Default Billing Address"/> 
+   
+           <column xsi:type="int" name="cms_id" padding="10" unsigned="true" nullable="true" identity="false"
+                comment="Default Billing Address"/>
+     
+   <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="landingpage_faq_id"/>
+    </constraint>
+     
     </table>
 </schema>

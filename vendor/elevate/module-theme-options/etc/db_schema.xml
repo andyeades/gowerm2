@@ -130,4 +130,10 @@
         <column xsi:type="text" name="translations_content" nullable="true" comment="translations_content"/>
         <column xsi:type="varchar" length="255" name="translations_area_code" nullable="false" comment="translations_area_code"/>
     </table>
+
+    <table name="checkout_agreement" resource="default" engine="innodb" comment="Checkout Agreement">
+        <column xsi:type="smallint" name="seperate_linktext" padding="6" unsigned="false" nullable="false" identity="false"
+                default="0" comment="seperate_linktext"/>
+        <column xsi:type="text" name="link_text" nullable="true" comment="Link Text"/>
+    </table>
 </schema>

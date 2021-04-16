@@ -1,6 +1,6 @@
 .checkout-agreements-block {
     .checkout-agreements {
-        margin-bottom: $indent__base;
+        margin-bottom: $indent-base;
     }
 
     .action-show {
@@ -16,10 +16,10 @@
 //  Checkout Agreements in popup
 .checkout-agreements-items {
     @include abs-reset-list();
-    padding-bottom: $indent__l;
+    padding-bottom: $indent-l;
 
     .checkout-agreements-item {
-        margin-bottom: $indent__base;
+        margin-bottom: $indent-base;
     }
 
     .checkout-agreements-item-title {

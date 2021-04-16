@@ -11,7 +11,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 /**
  * Class OrderRepositoryPlugin
  */
-class OrderRepositoryPlugin
+class CartInterfacePlugin
 {
     /**
      * Order Extension Attributes Factory
@@ -35,7 +35,7 @@ class OrderRepositoryPlugin
      *
      * @return OrderInterface
      */
-    public function afterGet(OrderRepositoryInterface $subject, OrderInterface $order)
+    public function afterGet(CartInterface $subject, OrderInterface $order)
     {
 
         $billingAddress = $order->getBillingAddress();

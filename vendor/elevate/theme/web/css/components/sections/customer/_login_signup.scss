@@ -40,6 +40,7 @@ $loginc-actions-text-transform-on: 0 !default;
 $loginc-actions-text-transform: uppercase !default;
 
 
+
 // Applies to Both New Account/Existing
 
 $loginc-blocks-width: 100% !default;
@@ -99,6 +100,22 @@ $loginforms-legend-border-position: bottom !default;
 $loginforms-legend-border-thickness: 1px !default;
 $loginforms-legend-border-style: solid !default;
 
+$loginc-fs-after-margin-top: 35px !default;
+$loginc-fs-after-margin-top-desktop: 35px !default;
+$loginc-fs-after-margin-top-desktopmd: 35px !default;
+$loginc-fs-after-margin-left-desktop: $form-field-type-label-inline-width !default;
+$loginc-fs-after-margin-left-desktopmd: $form-field-type-label-inline-width !default;
+
+$loginc-fs-f-display: false !default;
+$loginc-fs-f-display-desktop: flex !default;
+$loginc-fs-f-display-desktopmd: flex !default;
+
+$loginc-fs-f-flexwrap: false !default;
+$loginc-fs-f-children-width: false !default;
+
+$loginc-fs-f-control-width: false !default;
+
+$loginc-fs-f-lbl-width: false !default;
 
 
 .login-container {
@@ -114,7 +131,7 @@ $loginforms-legend-border-style: solid !default;
 
     .block-customer-login {
         @include co(width, $loginc-existing-width, $loginc-blocks-width);
-        order: $loginc-existing-order;
+        @include co(order, $loginc-existing-order);
         @include min-screen($desktop-medium-min) {
             @include co(width, $loginc-existing-width-desktopmd, $loginc-blocks-width-desktopmd);
         }
@@ -151,7 +168,7 @@ $loginforms-legend-border-style: solid !default;
                     line-height: initial;
                     font-weight: initial !important;
                     &:hover {
-                        font-size: $font-size-base;
+                      @include co(font-size, $font-size-base);
                         background-color: unset;
                         padding: unset;
                         color: lighten($body-color, 15%);
@@ -170,18 +187,18 @@ $loginforms-legend-border-style: solid !default;
 
     .block-new-customer {
         @include co(width, $loginc-newaccount-width, $loginc-blocks-width);
-        order: $loginc-newaccount-order;
+        @include co(order, $loginc-newaccount-order);
         @include min-screen($desktop-medium-min) {
             @include co(width, $loginc-newaccount-width-desktopmd, $loginc-newaccount-width);
         }
     }
 
     .block {
-        width: $loginc-blocks-width;
-        padding: $loginc-blocks-padding;
+        @include co(width, $loginc-blocks-width);
+        @include co(padding, $loginc-blocks-padding);
         @include min-screen($desktop-medium-min) {
-            width: $loginc-blocks-width-desktopmd;
-            padding: $loginc-blocks-padding-desktopmd;
+            @include co(width, $loginc-blocks-width-desktopmd);
+            @include co(padding, $loginc-blocks-padding-desktopmd);
         }
         &-new-customer {
             .actions-toolbar {
@@ -190,9 +207,9 @@ $loginforms-legend-border-style: solid !default;
         }
 
         .block-title {
-            font-size: $loginc-blocktitle-fontsize;
-            margin: $loginc-blocktitle-margin;
-            padding: $loginc-blocktitle-padding;
+          @include co(font-size, $loginc-blocktitle-fontsize);
+            @include co(margin, $loginc-blocktitle-margin);
+            @include co(padding, $loginc-blocktitle-padding);
 
             @if $loginc-blocktitle-border-on == 1 {
                 @include elevate-border($loginc-blocktitle-border-color, $loginc-blocktitle-border-thickness, $loginc-blocktitle-border-style, $loginc-blocktitle-border-position);
@@ -204,21 +221,34 @@ $loginforms-legend-border-style: solid !default;
     .fieldset {
         @include lib-form-hasrequired(bottom);
 
+
         &:after {
-            margin-top: 35px;
+            @include co(margin-top, $loginc-fs-after-margin-top);
+
             @include min-screen($desktop-min) {
-                @include abs-margin-for-forms-desktop();
+                @include co(margin-top, $loginc-fs-after-margin-top-desktop, $loginc-fs-after-margin-top);
+                @include co(margin-left, $loginc-fs-after-margin-left-desktop)
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(margin-top,$loginc-fs-after-margin-top-desktopmd ,$loginc-fs-after-margin-top-desktop, $loginc-fs-after-margin-top);
+                @include co(margin-left, $loginc-fs-after-margin-left-desktopmd, $loginc-fs-after-margin-left-desktop)
             }
         }
 
         > .field {
+            @include co(flex-wrap, $loginc-fs-f-flexwrap);
+            @include co(display, $loginc-fs-f-display);
+
             @include min-screen($desktop-min) {
-                display: flex;
+                @include co(display, $loginc-fs-f-display-desktop, $loginc-fs-f-display);
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(display, $loginc-fs-f-display-desktopmd, $loginc-fs-f-display-desktop, $loginc-fs-f-display);
             }
 
             > .label,
             > .control {
-
+                @include co(width, $loginc-fs-f-children-width);
                 @include min-screen($desktop-min) {
                     flex: 0 1 auto;
                     float: none;
@@ -226,18 +256,22 @@ $loginforms-legend-border-style: solid !default;
             }
             > .control {
                 //width: 55%;
+                @include co(width, $loginc-fs-f-control-width);
                 input {
                     @include min-screen($desktop-min) {
                         width: 81%;
                     }
                 }
             }
+            > .label {
+                @include co(width, $loginc-fs-f-lbl-width);
+            }
         }
     }
 
     .form {
         .legend {
-            padding: $loginforms-legend-padding;
+            @include co(padding, $loginforms-legend-padding);
             @if $loginforms-legend-border-on == 1 {
                 @include elevate-border($loginforms-legend-border-color, $loginforms-legend-border-thickness, $loginforms-legend-border-style, $loginforms-legend-border-position);
 
@@ -269,7 +303,7 @@ $customer-form-forgotpassword-pagetitlewrapper-margin: 1rem auto 2rem auto !defa
 .customer-account-forgotpassword {
     .page-title-wrapper {
         @if $customer-form-centered-on == 1 {
-            width: $customer-form-centered-width;
+            @include co(width, $customer-form-centered-width);
             margin-left: $customer-form-centered-margin-left;
             margin-right: $customer-form-centered-margin-right;
             text-align: center;
@@ -286,7 +320,7 @@ $customer-form-forgotpassword-pagetitlewrapper-margin: 1rem auto 2rem auto !defa
 .customer-account-forgotpassword {
     .page-title-wrapper {
         text-align: center;
-        margin: $customer-form-forgotpassword-pagetitlewrapper-margin;
+        @include co(margin, $customer-form-forgotpassword-pagetitlewrapper-margin);
     }
 
     @include min-screen($desktop-min) {
@@ -341,9 +375,9 @@ $customer-form-forgotpassword-pagetitlewrapper-margin: 1rem auto 2rem auto !defa
     .primary,
     .secondary {
         .action {
-            padding: $actions-padding;
-            font-size: $actions-font-size;
-            font-weight: $actions-font-weight;
+            @include co(padding, $actions-padding);
+          @include co(font-size, $actions-font-size);
+            @include co(font-weight, $actions-font-weight);
             @if $actions-border-radius-on == 1 {
                 border-radius: $actions-border-radius;
             }
@@ -369,8 +403,68 @@ $customer-form-forgotpassword-pagetitlewrapper-margin: 1rem auto 2rem auto !defa
 
 }
 
+$cac-fca-display: flex !default;
+$cac-fca-flexwrap: wrap !default;
 
+
+$cac-ci-order: 1 !default;
+$cac-ca-order: 3 !default;
+
+$cac-rmb-order: 7 !default;
+$cac-fr-order: 8 !default;
+$cac-at-order: 9 !default;
+
+$cac-fr-gb-margin: 2rem auto !default;
+
+$cac-ci-width: false !default;
+
+$cac-ca-width: false !default;
+
+
+$cac-rmb-width: false !default;
+$cac-at-width: false !default;
+
+$cac-fca-children-width: 100% !default;
+
+.form.create.account {
+    @include co(display, $cac-fca-display);
+    @include co(flex-wrap, $cac-fca-flexwrap);
+    > div,
+    > fieldset {
+        @include co(width, $cac-fca-children-width);
+    }
+}
 .customer-account-create {
+
+
+
+
+    .create {
+        &.info {
+            @include co(order, $cac-ci-order);
+            @include co(width, $cac-ci-width);
+        }
+        &.account {
+            @include co(order, $cac-ca-order);
+            @include co(width, $cac-ca-width);
+        }
+    }
+
+    #remember-me-box {
+        @include co(order, $cac-rmb-order);
+        @include co(width, $cac-rmb-width);
+    }
+    .actions-toolbar {
+        @include co(order, $cac-at-order);
+        @include co(width, $cac-at-width);
+    }
+    .field-recaptcha {
+        @include co(order, $cac-fr-order);
+        .grecaptcha-badge {
+            @include co(margin, $cac-fr-gb-margin);
+
+        }
+    }
 
 }
 
@@ -385,7 +479,7 @@ $customer-form-forgotpassword-pagetitlewrapper-margin: 1rem auto 2rem auto !defa
             @include co(width, $customer-form-centered-width-desktop, $customer-form-centered-width);
         }
         @include min-screen($desktop-md-min) {
-            @include co(width, $customer-form-centered-width-desktopmd,$customer-form-centered-width-desktop, $customer-form-centered-width);
+            @include co(width, $customer-form-centered-width-desktopmd, $customer-form-centered-width-desktop, $customer-form-centered-width);
         }
     }
 }

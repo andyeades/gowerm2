@@ -25,13 +25,13 @@
             @include button-variant($prod-soc-links-action-bgcolor, $prod-soc-links-action-bordercolor);
             display: flex;
             align-items: center;
-            font-size: $prod-soc-links-action-fontsize;
-            padding: $prod-soc-links-action-padding;
-            font-weight: $prod-soc-links-action-fontweight;
-            margin: $prod-soc-links-action-icon-margin;
+          @include co(font-size, $prod-soc-links-action-fontsize);
+            @include co(padding, $prod-soc-links-action-padding);
+            @include co(font-weight, $prod-soc-links-action-fontweight);
+            @include co(margin, $prod-soc-links-action-icon-margin);
 
             &:last-of-type {
-                margin: $prod-soc-links-action-item-lastoftype-margin;
+                @include co(margin, $prod-soc-links-action-item-lastoftype-margin);
             }
 
             @include min-screen($desktop-min) {
@@ -47,7 +47,7 @@
             }
 
             > i {
-                margin: $prod-soc-links-action-icon-margin;
+                @include co(margin, $prod-soc-links-action-icon-margin);
             }
 
             > span {

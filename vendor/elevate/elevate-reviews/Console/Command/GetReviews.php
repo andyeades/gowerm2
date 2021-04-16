@@ -21,7 +21,7 @@ class GetReviews extends Command
     protected $boostArray = [];
     protected $_orderCollectionFactory;
     protected $orderRepository;
-    protected $merchant = 'happybeds';
+    protected $merchant = 'posturite';
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectmanager,
         \Magento\Catalog\Api\ProductRepositoryInterface $productrepository,
@@ -57,7 +57,7 @@ class GetReviews extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-                       $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_FRONTEND); // or \Magento\Framework\App\Area::AREA_ADMINHTML, depending on your needs
+        $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_FRONTEND); // or \Magento\Framework\App\Area::AREA_ADMINHTML, depending on your needs
             echo date('c');
 
             $initialMem = memory_get_usage();
@@ -101,7 +101,7 @@ class GetReviews extends Command
         //$productCollection->setStoreId(0);
                                       
              
-    // $productCollection->addAttributeToFilter('sku', array('eq' => 'YORKIE_GREY_FABRIC_OTTOMAN_BED.250'));
+   // $productCollection->addAttributeToFilter('sku', array('eq' => 'OPLOFTWEB'));
         $productCollection->load();
 
         $productCollection->setOrder('entity_id', 'DESC');

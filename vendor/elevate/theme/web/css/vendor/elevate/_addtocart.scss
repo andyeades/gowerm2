@@ -13,73 +13,73 @@
 
 
 // Makes it same height as Button When Spinner is switched in.
-$ev_tocart2_spinner_height: 30px !default;
-$ev_tocart2_spinner_width: 30px !default;
-$ev_tocart2_borderthickness: $btn-border-width * 2 !default;
+$ev-tocart2-spinner-height: 30px !default;
+$ev-tocart2-spinner-width: 30px !default;
+$ev-tocart2-borderthickness: $btn-border-width * 2 !default;
 
-$ev_tocart2_rem_height: $pview_btc_a_button_lineheight + convertrem($ev_tocart2_borderthickness);
-$ev_tocart2_withspinner_height: convertrem($ev_tocart2_spinner_height) + convertrem($ev_tocart2_borderthickness);
-$ev_tocart2_margin: ($ev_tocart2_rem_height - $ev_tocart2_withspinner_height) / 2 auto;
+$ev-tocart2-rem-height: $pview-btc-a-button-lineheight + convertrem($ev-tocart2-borderthickness);
+$ev-tocart2-withspinner-height: convertrem($ev-tocart2-spinner-height) + convertrem($ev-tocart2-borderthickness);
+$ev-tocart2-margin: ($ev-tocart2-rem-height - $ev-tocart2-withspinner-height) / 2 auto;
 
 
 
 // Popup?
 
-$ev_addtocart_modal_button_padding: 0.9375rem 0 !default;
+$ev-addtocart-modal-button-padding: 0.9375rem 0 !default;
 
-$ev_addtocart_modal_button_bg_color_on: 0 !default;
-$ev_addtocart_modal_button_bg_color: #FFF !default;
-
-
-$ev_addtocart_modal_button_fontsize: 1rem !default;
-$ev_addtocart_modal_button_fontweight: 700 !default;
+$ev-addtocart-modal-button-bg-color-on: 0 !default;
+$ev-addtocart-modal-button-bg-color: #FFF !default;
 
 
-$ev_addtocart_modal_button_border_radius_on: 1 !default;
-$ev_addtocart_modal_button_border_radius: 5px !default;
+$ev-addtocart-modal-button-fontsize: 1rem !default;
+$ev-addtocart-modal-button-fontweight: 700 !default;
 
 
-$ev_addtocart_modal_button_border_on: 0 !default;
-$ev_addtocart_modal_button_border_color: $border-color !default;
-$ev_addtocart_modal_button_border_position: all !default;
-$ev_addtocart_modal_button_border_thickness: 1px !default;
-$ev_addtocart_modal_button_border_style: solid !default;
+$ev-addtocart-modal-button-border-radius-on: 1 !default;
+$ev-addtocart-modal-button-border-radius: 5px !default;
 
 
-$ev_addtocart_modal_button_texttransform_on: 1 !default;
-$ev_addtocart_modal_button_texttransform: uppercase !default;
+$ev-addtocart-modal-button-border-on: 0 !default;
+$ev-addtocart-modal-button-border-color: $border-color !default;
+$ev-addtocart-modal-button-border-position: all !default;
+$ev-addtocart-modal-button-border-thickness: 1px !default;
+$ev-addtocart-modal-button-border-style: solid !default;
 
-$ev_addtocart_modal_button_transition:  background-color .5s ease-in, color .5s ease-in !default;
 
-$ev_addtocart_modal_button_width_mobile: 100% !default;
-$ev_addtocart_modal_button_width_desktop: 50% !default;
-$ev_addtocart_modal_button_margin_mobile: 0 0 1rem 0 !default;
-$ev_addtocart_modal_button_margin_desktop: 0 0.25rem !default;
+$ev-addtocart-modal-button-texttransform-on: 1 !default;
+$ev-addtocart-modal-button-texttransform: uppercase !default;
+
+$ev-addtocart-modal-button-transition:  background-color .5s ease-in, color .5s ease-in !default;
+
+$ev-addtocart-modal-button-width-mobile: 100% !default;
+$ev-addtocart-modal-button-width-desktop: 50% !default;
+$ev-addtocart-modal-button-margin-mobile: 0 0 1rem 0 !default;
+$ev-addtocart-modal-button-margin-desktop: 0 0.25rem !default;
 
 .add-to-cart {
     .action.button {
         cursor: pointer;
-        padding: $ev_addtocart_modal_button_padding;
-        margin: $ev_addtocart_modal_button_margin_mobile;
-        @include co(font-weight, $ev_addtocart_modal_button_fontweight, $font-weight-normal);
-        @include ev-fontsize-output($ev_addtocart_modal_button_fontsize);
-        width: $ev_addtocart_modal_button_width_mobile;
-        @if $ev_addtocart_modal_button_bg_color_on == 1 {
-            background: $ev_addtocart_modal_button_bg_color;
+        @include co(padding, $ev-addtocart-modal-button-padding);
+        @include co(margin, $ev-addtocart-modal-button-margin-mobile);
+        @include co(font-weight, $ev-addtocart-modal-button-fontweight, $font-weight-normal);
+        @include ev-fontsize-output($ev-addtocart-modal-button-fontsize);
+        @include co(width, $ev-addtocart-modal-button-width-mobile);
+        @if $ev-addtocart-modal-button-bg-color-on == 1 {
+            background: $ev-addtocart-modal-button-bg-color;
         }
-        @if $ev_addtocart_modal_button_border_radius_on == 1 {
-            border-radius: $ev_addtocart_modal_button_border_radius;
+        @if $ev-addtocart-modal-button-border-radius-on == 1 {
+            border-radius: $ev-addtocart-modal-button-border-radius;
         }
-        @if $ev_addtocart_modal_button_border_on == 1 {
-            @include elevate-border($ev_addtocart_modal_button_border_color, $ev_addtocart_modal_button_border_thickness, $ev_addtocart_modal_button_border_style, $ev_addtocart_modal_button_border_position);
+        @if $ev-addtocart-modal-button-border-on == 1 {
+            @include elevate-border($ev-addtocart-modal-button-border-color, $ev-addtocart-modal-button-border-thickness, $ev-addtocart-modal-button-border-style, $ev-addtocart-modal-button-border-position);
 
         }
-        @if $ev_addtocart_modal_button_texttransform_on == 1 {
-            text-transform: $ev_addtocart_modal_button_texttransform;
+        @if $ev-addtocart-modal-button-texttransform-on == 1 {
+            @include co(text-transform, $ev-addtocart-modal-button-texttransform);
         }
         @include min-screen($desktop-min) {
-            margin: $ev_addtocart_modal_button_margin_desktop;
-            width: $ev_addtocart_modal_button_width_desktop;
+            @include co(margin, $ev-addtocart-modal-button-margin-desktop);
+            @include co(width, $ev-addtocart-modal-button-width-desktop);
         }
     }
 }
@@ -87,8 +87,8 @@ $ev_addtocart_modal_button_margin_desktop: 0 0.25rem !default;
 
 .ev_tocart2 {
     .spinner-fading-circle {
-        height: $ev_tocart2_spinner_height;
-        width: $ev_tocart2_spinner_width;
-        margin: $ev_tocart2_margin;
+        height: $ev-tocart2-spinner-height;
+        @include co(width, $ev-tocart2-spinner-width);
+        @include co(margin, $ev-tocart2-margin);
     }
 }

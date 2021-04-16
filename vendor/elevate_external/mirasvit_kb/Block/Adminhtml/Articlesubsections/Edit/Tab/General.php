@@ -121,11 +121,11 @@ class General extends \Magento\Backend\Block\Widget\Form
             ]);
         }
         $fieldset->addField('parentarticlesection_id', 'select', [
-            'label'    => __('Parent Article'),
+            'label'    => __('Parent Article Section'),
             'required' => true,
             'name'     => 'parentarticlesection_id',
             'value'    => $articlesubsections->getParentarticlesectionId(),
-            'values'   => $this->kbData->toArticleOptionArray(),
+            'values'   => $this->kbData->toArticleSectionOptionArray(),
         ]);
 
         $fieldset->addField('asecsub_name', 'text', [

@@ -8,7 +8,8 @@ $ev-reduce-coloroverides: 1 !default;
 
 $ev-include-magicszoom-scss: 1 !default;
 $ev-include-magicscroll-scss: 1 !default;
-
+$ahead-prodquestion-include: true !default;
+$feefo-productview-include: true !default;
 
 // Include Our Admin Set Variables Here - Ensures any that are part of calculations for Other Variables use these, not the defaults;
 
@@ -154,6 +155,9 @@ $desktop-lg-max: $desktop-large-max;
 @import "vendor/our_bootstrap_4_vars";
 
 
+//
+
+
 // Pages
 
 $page-main-outer-margin: 15px 0 0 0;
@@ -189,13 +193,13 @@ $alternate-transition: all 500ms ease-in-out;
 // All Lists = List Style Type = none by default
 $sitewide-list-style-type: none;
 $rounded-buttons: false;
-$link__visited__color: false;
-$link__active__color: false;
+$link-visited-color: false;
+$link-active-color: false;
 $btn-active-box-shadow: none;
 $btn-focus-box-shadow: none;
 
 
-$form-element-input__font-size: 0.75rem !default;
+$form-element-input-font-size: 0.75rem !default;
 
 
 // Landing Pages

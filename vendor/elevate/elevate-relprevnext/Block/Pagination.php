@@ -120,6 +120,11 @@ class Pagination extends Template
      */
     public function getLimit(): int
     {
+    
+    $limit = $this->getToolbar()->getLimit();
+    if(!is_numeric($limit)){
+        return false;
+    }
         return $this->getToolbar()->getLimit();
     }
 

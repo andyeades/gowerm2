@@ -55,6 +55,7 @@ class Sitemap extends CoreSitemap
     const PATTERN       = '/http:\\\\/';
     const URL_BASIC     = 0;
     const URL           = 1;
+    const URL_RAW     = 2;    
     const HOMEPAGE_PATH = 'web/default/cms_home_page';
 
     /**
@@ -67,6 +68,18 @@ class Sitemap extends CoreSitemap
      */
     protected $_coreProductFactory;
 
+    /**
+     * @var LandingPageFactory
+     */
+    protected $_landingPageFactory;
+    /**
+     * @var \Mirasvit\Kb\Model\ResourceModel\Article\CollectionFactory
+     */
+    private $articleCollectionFactory;
+    /**
+     * @var \Magento\Framework\UrlInterface
+     */  
+    private $urlBuilder;    
     /**
      * @var PageFactory
      */
@@ -119,6 +132,9 @@ class Sitemap extends CoreSitemap
         PageFactory $corePageFactory,
         ProductFactory $coreProductFactory,
         CategoryFactory $coreCategoryFactory,
+        \Elevate\LandingPages\Model\LandingPageFactory $landingPageFactory,
+        \Mirasvit\Kb\Model\ResourceModel\Article\CollectionFactory $articleCollectionFactory,
+        \Magento\Framework\UrlInterface $urlBuilder,
         Item $stockItem,
         DateTime $modelDate,
         StoreManagerInterface $storeManager,
@@ -132,6 +148,9 @@ class Sitemap extends CoreSitemap
         $this->_coreProductFactory = $coreProductFactory;
         $this->_corePageFactory = $corePageFactory;
         $this->_coreCategoryFactory = $coreCategoryFactory;
+        $this->_landingPageFactory = $landingPageFactory;
+        $this->articleCollectionFactory = $articleCollectionFactory;
+        $this->urlBuilder = $urlBuilder;
         $this->stockItem = $stockItem;
 
         parent::__construct(
@@ -170,7 +189,17 @@ class Sitemap extends CoreSitemap
                 'url_type'   => self::URL,
             ]
         );
-
+        
+        
+        /* Landing Pages */
+        $this->_sitemapItems[] = new DataObject(
+            [
+                'changefreq' => $helper->getCategoryChangefreq($storeId),
+                'priority'   => $helper->getCategoryPriority($storeId),
+                'collection' => $this->_getLandingPageCollection($storeId),
+                'url_type'   => self::URL_RAW,
+            ]
+        );
         $this->_sitemapItems[] = new DataObject(
             [
                 'changefreq' => $helper->getProductChangefreq($storeId),
@@ -188,7 +217,15 @@ class Sitemap extends CoreSitemap
                 'url_type'   => self::URL,
             ]
         );
-
+        $this->_sitemapItems[] = new DataObject(
+            [
+                'changefreq' => $helper->getPageChangefreq($storeId),
+                'priority'   => $helper->getPagePriority($storeId),
+                'collection' => $this->_getKnowledgebaseCollection($storeId),
+                'url_type'   => self::URL_RAW,
+            ]
+        );
+        
         if ($this->helperConfig->isEnableAdditionalLinks($storeId)) {
             $this->_sitemapItems[] = new DataObject(
                 [
@@ -215,6 +252,9 @@ class Sitemap extends CoreSitemap
             $priority = $item->getPriority();
             $urlType = $item->getUrlType();
             foreach ($item->getCollection() as $itemChild) {
+            
+       
+            
                 $xml = $this->getSitemapRow(
                     $itemChild->getUrl(),
                     $urlType,
@@ -282,6 +322,8 @@ class Sitemap extends CoreSitemap
     ) {
         if ($urlType == self::URL) {
             $url = $this->_getUrl($url);
+        }else if ($urlType == self::URL_RAW) {
+            $url = $url;
         } else {
             $url = $this->convertUrl($url);
         }
@@ -299,7 +341,7 @@ class Sitemap extends CoreSitemap
             // Add Images to sitemap
             foreach ($images->getCollection() as $image) {
                 $row .= '<image:image>';
-                $row .= '<image:loc>' . htmlspecialchars($this->_getMediaUrl($image->getUrl())) . '</image:loc>';
+                $row .= '<image:loc>' . htmlspecialchars(($image->getUrl())) . '</image:loc>';
                 $row .= '<image:title>' . htmlspecialchars($images->getTitle()) . '</image:title>';
                 if ($image->getCaption()) {
                     $row .= '<image:caption>' . htmlspecialchars($image->getCaption()) . '</image:caption>';
@@ -309,7 +351,7 @@ class Sitemap extends CoreSitemap
             // Add PageMap image for Google web search
             $row .= '<PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0"><DataObject type="thumbnail">';
             $row .= '<Attribute name="name" value="' . htmlspecialchars($images->getTitle()) . '"/>';
-            $row .= '<Attribute name="src" value="' . htmlspecialchars($this->_getMediaUrl($images->getThumbnail()))
+            $row .= '<Attribute name="src" value="' . htmlspecialchars(($images->getThumbnail()))
                     . '"/>';
             $row .= '</DataObject></PageMap>';
         }
@@ -351,8 +393,10 @@ class Sitemap extends CoreSitemap
     public function _getCategoryCollection($storeId)
     {
         $collection = [];
-
+        
         foreach ($this->_categoryFactory->create()->getCollection($storeId) as $item) {
+        
+            
             if ($this->_coreCategoryFactory->create()->load($item->getId())->getData('mp_exclude_sitemap') == 1) {
                 continue;
             }
@@ -362,6 +406,85 @@ class Sitemap extends CoreSitemap
         return $collection;
     }
 
+    /**
+     * Get Landing Page collection
+     *
+     * @param $storeId
+     *
+     * @return array
+     */
+    public function _getLandingPageCollection($storeId)
+    {
+        $landingPageCollection = [];
+              
+        $id = 1;
+
+    
+        foreach ($this->_landingPageFactory->create()->getCollection($storeId) as $item) {
+            if ($item !== null) {
+                $obj = ObjectManager::getInstance()->create(\Magento\Framework\DataObject::class);
+                $obj->setData('id', $id++);
+            
+                 $obj->setData('name', $item->getPageTitle());
+                $obj->setData('url', $this->prepareSitemapUrl($item->getUrlKey()));
+                $obj->setData('updated_at', $this->getSitemapTime());
+                $landingPageCollection[] = $obj;
+            }
+        }
+              
+
+  
+        
+        
+      
+        return $landingPageCollection;
+    }
+
+
+   /**
+     * @param int $storeId
+     * @return \Magento\Framework\DataObject|bool
+     */
+    public function _getKnowledgebaseCollection($storeId)
+    {
+       $postCollection = [];
+        $postCollectionFactory = $this->articleCollectionFactory->create()
+            ->addStoreIdFilter($storeId)
+            ->addVisibilityFilter();
+
+        if ($postCollectionFactory->getSize() <= 0) {
+            return false;
+        }
+
+        $postCollection = null;
+        /** @var \Mirasvit\Kb\Model\Article $post */
+        foreach ($postCollectionFactory as $post) {
+            $postCollection[] = new \Magento\Framework\DataObject(
+                [
+                    'name' => $post->getName(),
+                    'url' => $post->getUrl(),
+                ]
+            );
+            
+         
+        }
+
+
+        return $postCollection;
+    }
+
+
+    /**
+     * @param string $url
+     * @return string
+     */
+    private function prepareSitemapUrl($url)
+    {
+        $baseUrl = $this->urlBuilder->getBaseUrl();
+
+
+        return $baseUrl.$url;
+    }    
     /**
      * Get page collection
      *

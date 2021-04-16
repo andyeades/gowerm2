@@ -1,17 +1,17 @@
 //
 //  Sales Module Styles
-//  _____________________________________________
+//
 
 .email-summary {
     h1 {
-        margin-bottom: $indent__xs;
+        margin-bottom: $indent-xs;
     }
 }
 
 
 //
 //  Order Summary
-//  ----------------------------------------------
+//-
 
 .order-details {
     width: 100%;
@@ -19,7 +19,7 @@
     tr {
         > .address-details,
         > .method-info {
-            padding: $email-content__padding__base $email-content__padding__base $email-content__padding__base 0;
+            @include co(padding, $email-content-padding-base $email-content-padding-base $email-content-padding-base 0);
             width: 50%;
 
             h3 {
@@ -30,16 +30,16 @@
         //  Prevent extra spacing on Payment & Shipping Method row
         & + .method-info {
             > td {
-                padding: 0 0 $email-content__padding__base;
+                padding: 0 0 $email-content-padding-base;
             }
         }
     }
 
     .payment-method {
-        margin-bottom: $indent__s;
+        margin-bottom: $indent-s;
 
         .title {
-            font-weight: $font-weight__regular;
+            @include co(font-weight, $font-weight-regular);
         }
 
         .data.table {
@@ -48,7 +48,7 @@
             }
 
             th {
-                padding-right: $email-content__padding__base;
+                padding-right: $email-content-padding-base;
             }
         }
     }
@@ -57,7 +57,7 @@
 //  Remove address and phone number link color on iOS
 .address-details a {
     // copy instead of using @extend .no-link-a; as we can't access non-inline emails styles like in less version
-    color: $text__color !important; // sass-lint:disable-line no-important
+    color: $text-color !important; // sass-lint:disable-line no-important
     cursor: default !important; // sass-lint:disable-line no-important
     text-decoration: none !important; // sass-lint:disable-line no-important
 }
@@ -65,10 +65,10 @@
 
 //
 //  Shipment Tracking
-//  ----------------------------------------------
+//-
 
 .shipment-track {
-    @include lib-table($table__width, 0);
+    @include lib-table($table-width, 0);
 
     thead,
     tbody {
@@ -76,7 +76,7 @@
             > th,
             > td {
                 background-color: $color-gray95;
-                padding: $email-content__padding__base;
+                @include co(padding, $email-content-padding-base);
                 width: 50%;
             }
 
@@ -93,11 +93,11 @@
 
 //
 //  Items Table
-//  ----------------------------------------------
+//-
 
 .email-items {
-    @include lib-table($table__width, 0);
-    border: $table__border-width $table__border-style $table__border-color;
+    @include lib-table($table-width, 0);
+    border: $table-border-width $table-border-style $table-border-color;
 
     thead,
     tfoot {
@@ -113,11 +113,11 @@
     > tbody {
         > tr {
             > th {
-                padding: $email-content__padding__base;
+                @include co(padding, $email-content-padding-base);
             }
 
             > td {
-                padding: $email-content__padding__base;
+                @include co(padding, $email-content-padding-base);
 
                 &.message-gift {
                     border-top: none;
@@ -132,7 +132,7 @@
         > tr {
             > th,
             > td {
-                border-top: $table__border-width $table__border-style $table__border-color;
+                border-top: $table-border-width $table-border-style $table-border-color;
             }
 
             & + tr {
@@ -149,18 +149,18 @@
     }
 
     .product-name {
-        font-weight: $font-weight__bold;
-        margin-bottom: $email-content__padding__s;
+        @include co(font-weight, $font-weight-bold);
+        margin-bottom: $email-content-padding-s;
     }
 
     .has-extra .sku {
-        margin-bottom: $email-content__padding__base;
+        margin-bottom: $email-content-padding-base;
     }
 
     .item-info {
         dl {
             margin-bottom: 0;
-            padding-left: $email-content__padding__m;
+            padding-left: $email-content-padding-m;
 
             dt,
             dd {
@@ -169,7 +169,7 @@
             }
 
             dd {
-                padding-left: $email-content__padding__base;
+                padding-left: $email-content-padding-base;
             }
         }
     }
@@ -190,12 +190,12 @@
     .order-totals {
         > tr {
             > th {
-                font-weight: $font-weight__regular;
+                @include co(font-weight, $font-weight-regular);
             }
 
             > th,
             > td {
-                padding: $email-content__padding__base;
+                @include co(padding, $email-content-padding-base);
                 text-align: right;
             }
 

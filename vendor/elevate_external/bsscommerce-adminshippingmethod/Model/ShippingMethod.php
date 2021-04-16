@@ -126,9 +126,13 @@ class ShippingMethod extends AbstractCarrier implements CarrierInterface
     public function collectRates(RateRequest $request)
     {
         if (!$this->getConfigFlag('active') || !$this->isAdmin()) {
-            return false;
+           // return false;
         }
-
+        
+       $is_punchout = $this->requestInterface->getParam('punchout_shipping');
+       if($is_punchout != 1){
+       return;
+       }  
         /** @var Result $result */
         $result = $this->rateResultFactory->create();
         /** @var Method $method */
@@ -200,7 +204,7 @@ class ShippingMethod extends AbstractCarrier implements CarrierInterface
      *
      */
     public function checkValue($request)
-    {
+    {          
         if (!$this->checkActive()) {
             return false;
         }
@@ -236,7 +240,7 @@ class ShippingMethod extends AbstractCarrier implements CarrierInterface
      * @return bool
      */
     public function checkActive()
-    {
+    {             return true;
         if (!$this->getConfigFlag('active') || !$this->isAdmin()) {
             return false;
         }

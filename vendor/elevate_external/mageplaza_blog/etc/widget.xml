@@ -43,17 +43,11 @@
                     <parameter name="show_type" value="category"/>
                 </depends>
             </parameter>
-            <parameter name="sub_title" xsi:type="text" required="false" visible="true">
-                <label>Sub Title</label>
-            </parameter>
             <parameter name="template" xsi:type="select" required="true" visible="true">
                 <label>Template</label>
                 <options>
                     <option name="posts" value="Mageplaza_Blog::widget/posts.phtml" selected="true">
                         <label>Default Posts Template</label>
-                    </option>
-                    <option name="posts-alt" value="Mageplaza_Blog::widget/posts-alt.phtml" selected="true">
-                        <label>Alternate Posts (GowerCottage Style) Template</label>
                     </option>
                 </options>
             </parameter>
@@ -61,7 +55,6 @@
         <containers>
             <container name="content">
                 <template name="posts" value="posts"/>
-                <template name="posts-alt" value="posts-alt"/>
             </container>
         </containers>
     </widget>

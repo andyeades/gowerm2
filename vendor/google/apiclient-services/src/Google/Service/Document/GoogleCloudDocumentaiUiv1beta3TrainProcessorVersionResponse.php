@@ -17,19 +17,12 @@
 
 class Google_Service_Document_GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionResponse extends Google_Model
 {
-  protected $processorVersionType = 'Google_Service_Document_GoogleCloudDocumentaiUiv1beta3ProcessorVersion';
-  protected $processorVersionDataType = '';
+  public $processorVersion;
 
-  /**
-   * @param Google_Service_Document_GoogleCloudDocumentaiUiv1beta3ProcessorVersion
-   */
-  public function setProcessorVersion(Google_Service_Document_GoogleCloudDocumentaiUiv1beta3ProcessorVersion $processorVersion)
+  public function setProcessorVersion($processorVersion)
   {
     $this->processorVersion = $processorVersion;
   }
-  /**
-   * @return Google_Service_Document_GoogleCloudDocumentaiUiv1beta3ProcessorVersion
-   */
   public function getProcessorVersion()
   {
     return $this->processorVersion;

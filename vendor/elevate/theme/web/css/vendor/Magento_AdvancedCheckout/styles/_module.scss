@@ -8,7 +8,7 @@
 
                 .field {
                     display: inline-block;
-                    margin-bottom: $indent__s;
+                    margin-bottom: $indent-s;
                     vertical-align: top;
                 }
 
@@ -29,7 +29,7 @@
 
         .skus {
             > .label {
-                margin-top: $indent__s;
+                margin-top: $indent-s;
             }
         }
 
@@ -52,8 +52,8 @@
             .actions-toolbar {
                 clear: both;
                 @include lib-actions-toolbar(
-                    $_actions-toolbar-actions-position : left,
-                    $_actions-toolbar-margin           : 0 0 $indent__base
+                    $-actions-toolbar-actions-position : left,
+                    $-actions-toolbar-margin           : 0 0 $indent-base
                 );
                 @include lib-actions-toolbar-clear-floats();
 
@@ -64,25 +64,25 @@
         }
 
         .reset {
-            margin: $indent__s 0;
+            @include co(margin, $indent-s 0);
         }
 
         .note {
             display: block;
-            margin: 0 0 $indent__base;
+            margin: 0 0 $indent-base;
         }
     }
 }
 
 .block-cart-failed {
 
-    margin-top: $indent__xl;
+    margin-top: $indent-xl;
 
     .block-title {
-        @include lib-font-size($h2__font-size);
+        @include lib-font-size($h2-font-size);
 
         strong {
-            font-weight: $h2__font-weight;
+            @include co(font-weight, $h2-font-weight);
         }
     }
 
@@ -90,16 +90,16 @@
         text-align: center;
 
         .action {
-            margin-bottom: $indent__s;
+            margin-bottom: $indent-s;
         }
     }
 }
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__s) {
+@include max-screen($screen-s) {
     .column {
         .block-addbysku {
             .sku {
@@ -110,10 +110,10 @@
             .action {
                 &.remove {
                     @include lib-button-icon(
-                        $_icon-font-content   : $icon-remove,
-                        $_icon-font-text-hide : true,
-                        $_icon-font-size      : 28px,
-                        $_icon-font-margin    : 1px 0 0
+                        $-icon-font-content   : $icon-remove,
+                        $-icon-font-text-hide : true,
+                        $-icon-font-size      : 28px,
+                        $-icon-font-margin    : 1px 0 0
                     );
                     @include lib-button-reset();
                 }
@@ -122,7 +122,7 @@
     }
 }
 
-@include min-screen($screen__s) {
+@include min-screen($screen-s) {
     .column {
         .block-addbysku {
             .action {
@@ -138,9 +138,9 @@
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .block-cart-failed {
 
 

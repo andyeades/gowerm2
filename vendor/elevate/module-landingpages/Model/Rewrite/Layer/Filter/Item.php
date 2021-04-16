@@ -24,13 +24,14 @@ class Item extends \Magento\Catalog\Model\Layer\Filter\Item
     protected $_filterModel;
 
     protected $_scopeConfig;
+     protected $_resource;
     /**
      * Construct
      * @param FilterModel $filterModel
      * @param \Magento\Framework\UrlInterface $url
      * @param \Magento\Theme\Block\Html\Pager $htmlPagerBlock
      * @param array $data
-     *
+     *        
      */
     public function __construct(
         FilterModel $filterModel,
@@ -40,6 +41,7 @@ class Item extends \Magento\Catalog\Model\Layer\Filter\Item
         \Magento\Framework\App\RequestInterface $request,
         \Magento\Framework\Registry $coreRegistry,
         \Elevate\LandingPages\Model\LandingPage $landingPage,
+        \Magento\Framework\App\ResourceConnection $resource,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
 
 
@@ -53,8 +55,21 @@ class Item extends \Magento\Catalog\Model\Layer\Filter\Item
         $this->_scopeConfig = $scopeConfig;
         $this->_coreRegistry = $coreRegistry;
         $this->landingPage = $landingPage;
+         $this->resource = $resource;
         parent::__construct($url, $htmlPagerBlock, $data);
     }
+    
+    
+       public function getCategoryUrl($categoryId) 
+   {
+       $connection = $this->resource->getConnection();
+     
+       
+       $result = $connection->fetchOne("select request_path from url_rewrite where entity_type = 'category' and entity_id = $categoryId");
+   //     $result = $connection->fetchOne("SELECT n.value AS url_key FROM catalog_category_entity_varchar n WHERE n.attribute_id IN ( SELECT `attribute_id` FROM eav_attribute WHERE attribute_code = 'url_key' AND entity_type_id IN ( SELECT entity_type_id FROM eav_entity_type WHERE entity_type_code = 'catalog_category' ) ) and n.entity_id = $categoryId");       
+      return $result;
+   }
+    
     public function getCurrentCategory()
     {
         return $this->_registry->registry('current_category');
@@ -979,13 +994,18 @@ if($is_landing_page){
         if($this->getFilter()->getRequestVar() == "cat"){
             //return "CAT";
             $categoryId = $this->getValue();
-
+               
 
            // if landing page - then add in the calcs
 
-            $category = $this->_categoryFactory->create()->load($categoryId);
 
-            $return = $category->getUrl();
+           // beds page for example catrgories would have no url if this not done
+           // $category = $this->_categoryFactory->create()->load($categoryId);
+            
+            $cat_url_db_lookup = $this->getCategoryUrl($categoryId);
+            
+            
+            $return = $cat_url_db_lookup;
 
 
             $contactModel = $this->landingPage;
@@ -1002,7 +1022,7 @@ if(is_array($currentLandingAttributes)){
          unset($this->_linkParameters['p']);
 
 
-            $landingPage = $contactModel->loadByAttributesCalc($this->_linkParameters, $category->getId(), true);
+            $landingPage = $contactModel->loadByAttributesCalc($this->_linkParameters, $categoryId, true);
 
 
             if(is_numeric($landingPage['landingpage_id'])) {

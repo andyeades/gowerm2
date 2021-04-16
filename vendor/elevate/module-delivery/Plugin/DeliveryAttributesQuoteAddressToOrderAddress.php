@@ -32,11 +32,14 @@ class DeliveryAttributesQuoteAddressToOrderAddress
         /** @var $orderAddress \Magento\Sales\Model\Order\Address */
         $orderAddress = $proceed($quoteAddress, $additional);
 
+
         if ($quoteAddress->getEvGiftmessagemessage()) {
             $gift_message_obj = $this->giftMessageFactory->create();
 
             $gift_message = $quoteAddress->getEvGiftmessagemessage();
+            $gift_message .= "+ 3 +";
             $gift_message_obj->setMessage($gift_message);
+
 
             $this->giftMessageResource->save($gift_message_obj);
 
@@ -73,8 +76,8 @@ class DeliveryAttributesQuoteAddressToOrderAddress
         $orderAddress->setDetailedDeliveryStartTime($quoteAddress->getDetailedDeliveryStartTime());
         $orderAddress->setDetailedDeliveryBeforeTime($quoteAddress->getDetailedDeliveryBeforeTime());
         $orderAddress->setDetailedDeliveryEndTime($quoteAddress->getDetailedDeliveryEndTime());
-        $orderAddress->setEvGiftmessagemessage($quoteAddress->getEvGiftmessagemessage());
 
+        $orderAddress->setEvGiftmessagemessage($quoteAddress->getEvGiftmessagemessage());
 
         return $orderAddress;
     }

@@ -26,7 +26,7 @@ class DeliveryAttributesQuoteToOrder
         $order->setDetailedDeliveryInfo($detailedDeliveryinfoDates);
         $order->setDetailedDeliveryInfoDates($detailedDeliveryinfoDates);
         $order->setDetailedDeliveryTeamnumber($detailedDeliveryTeamnumber);
-        $order->setEvGiftMessagemessage($ev_giftmessagemessage);
+        $order->setEvGiftmessagemessage($ev_giftmessagemessage);
 
 
         return $order;

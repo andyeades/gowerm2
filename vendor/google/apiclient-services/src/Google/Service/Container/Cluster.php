@@ -22,6 +22,8 @@ class Google_Service_Container_Cluster extends Google_Collection
   protected $addonsConfigDataType = '';
   protected $authenticatorGroupsConfigType = 'Google_Service_Container_AuthenticatorGroupsConfig';
   protected $authenticatorGroupsConfigDataType = '';
+  protected $autopilotType = 'Google_Service_Container_Autopilot';
+  protected $autopilotDataType = '';
   protected $autoscalingType = 'Google_Service_Container_ClusterAutoscaling';
   protected $autoscalingDataType = '';
   protected $binaryAuthorizationType = 'Google_Service_Container_BinaryAuthorization';
@@ -71,6 +73,8 @@ class Google_Service_Container_Cluster extends Google_Collection
   public $nodeIpv4CidrSize;
   protected $nodePoolsType = 'Google_Service_Container_NodePool';
   protected $nodePoolsDataType = 'array';
+  protected $notificationConfigType = 'Google_Service_Container_NotificationConfig';
+  protected $notificationConfigDataType = '';
   protected $privateClusterConfigType = 'Google_Service_Container_PrivateClusterConfig';
   protected $privateClusterConfigDataType = '';
   protected $releaseChannelType = 'Google_Service_Container_ReleaseChannel';
@@ -119,6 +123,20 @@ class Google_Service_Container_Cluster extends Google_Collection
   public function getAuthenticatorGroupsConfig()
   {
     return $this->authenticatorGroupsConfig;
+  }
+  /**
+   * @param Google_Service_Container_Autopilot
+   */
+  public function setAutopilot(Google_Service_Container_Autopilot $autopilot)
+  {
+    $this->autopilot = $autopilot;
+  }
+  /**
+   * @return Google_Service_Container_Autopilot
+   */
+  public function getAutopilot()
+  {
+    return $this->autopilot;
   }
   /**
    * @param Google_Service_Container_ClusterAutoscaling
@@ -483,6 +501,20 @@ class Google_Service_Container_Cluster extends Google_Collection
   public function getNodePools()
   {
     return $this->nodePools;
+  }
+  /**
+   * @param Google_Service_Container_NotificationConfig
+   */
+  public function setNotificationConfig(Google_Service_Container_NotificationConfig $notificationConfig)
+  {
+    $this->notificationConfig = $notificationConfig;
+  }
+  /**
+   * @return Google_Service_Container_NotificationConfig
+   */
+  public function getNotificationConfig()
+  {
+    return $this->notificationConfig;
   }
   /**
    * @param Google_Service_Container_PrivateClusterConfig

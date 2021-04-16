@@ -1,9 +1,9 @@
 .multicheckout {
     .title {
-        margin-bottom: $indent__l;
+        margin-bottom: $indent-l;
 
         strong {
-            font-weight: $font-weight__regular;
+            @include co(font-weight, $font-weight-regular);
         }
     }
 
@@ -29,8 +29,8 @@
 
             &.item {
                 .action.edit {
-                    font-weight: $font-weight__regular;
-                    margin-left: $indent__s;
+                    @include co(font-weight, $font-weight-regular);
+                    margin-left: $indent-s;
                 }
             }
         }
@@ -45,14 +45,14 @@
     }
 
     > .actions-toolbar {
-        margin-top: $indent__xl;
+        margin-top: $indent-xl;
     }
 
 
     .item-options {
         @include abs-product-options-list();
         @include abs-add-clearfix();
-        margin: $indent__s 0 0;
+        @include co(margin, $indent-s 0 0);
     }
 
     @include abs-account-blocks();
@@ -86,14 +86,14 @@
 
     .block-title,
     .block-content .title {
-        border-bottom: $border-width__base solid $border-color__base;
-        padding-bottom: $indent__s;
+        border-bottom: $border-width-base solid $border-color-base;
+        padding-bottom: $indent-s;
 
         strong {
-            font-weight: $font-weight__regular;
+            @include co(font-weight, $font-weight-regular);
 
             span {
-                @include lib-css(color, $primary__color__light);
+                @include lib-css(color, $primary-color-light);
             }
         }
     }
@@ -109,13 +109,13 @@
 
     .box-title {
         span {
-            margin-right: $indent__s;
+            margin-right: $indent-s;
         }
     }
 
     .box-shipping-method {
         .price {
-            font-weight: $font-weight__bold;
+            @include co(font-weight, $font-weight-bold);
         }
     }
 
@@ -124,7 +124,7 @@
             margin: 0;
 
             .legend.box-title {
-                margin: 0 0 $indent__xs;
+                margin: 0 0 $indent-xs;
             }
         }
     }
@@ -134,11 +134,11 @@
     }
 
     .checkout-review .grand.totals {
-        @include lib-font-size($font-size__xl);
-        margin-bottom: $indent__xl;
+        @include lib-font-size($font-size-xl);
+        margin-bottom: $indent-xl;
 
         .mark {
-            font-weight: $font-weight__regular;
+            @include co(font-weight, $font-weight-regular);
         }
     }
 }

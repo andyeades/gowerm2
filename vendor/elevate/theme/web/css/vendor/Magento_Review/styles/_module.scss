@@ -1,6 +1,6 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
 $review-ratings-left: 25% !default;
 $reviews-indent-desktop: 1.875rem !default;
@@ -23,11 +23,11 @@ $reviews-indent-mobile: 1rem !default;
 
 //
 //  Add review block
-//  ---------------------------------------------
+//
 
 .block {
     &.add.review {
-        margin-bottom: $indent__xl;
+        margin-bottom: $indent-xl;
 
         > .title {
             @include lib-heading(h2);
@@ -35,7 +35,7 @@ $reviews-indent-mobile: 1rem !default;
 
         .legend {
             @include lib-heading(h3);
-            margin: 0 0 $indent__base;
+            margin: 0 0 $indent-base;
         }
 
         .field.rating {
@@ -43,7 +43,7 @@ $reviews-indent-mobile: 1rem !default;
 
             .label {
                 display: table-cell;
-                padding: $indent__xs 0;
+                @include co(padding, $indent-xs 0);
                 vertical-align: middle;
             }
 
@@ -61,7 +61,7 @@ $reviews-indent-mobile: 1rem !default;
 
         .review {
             &.item {
-                margin-bottom: $indent__xl;
+                margin-bottom: $indent-xl;
             }
 
             &.title {
@@ -78,58 +78,58 @@ $reviews-indent-mobile: 1rem !default;
 }
 
 .customer-review.view {
-    margin-bottom: $indent__base;
+    margin-bottom: $indent-base;
 
     .review.title,
     .ratings-summary,
     .product-details {
-        margin-bottom: $indent__base;
+        margin-bottom: $indent-base;
     }
 }
 
-$pitems_prodreviewsummary_rating_summary_margin: 0 0.1875rem 0 0 !default;
-$pitems_prodreviewsummary_reviewsactions_texttransform_on: 1 !default;
-$pitems_prodreviewsummary_reviewsactions_texttransform: lowercase  !default;
+$pitems-prodreviewsummary-rating-summary-margin: 0 0.1875rem 0 0 !default;
+$pitems-prodreviewsummary-reviewsactions-texttransform-on: 1 !default;
+$pitems-prodreviewsummary-reviewsactions-texttransform: lowercase  !default;
 
 
 $pitems-prodreviewsummary-action-border: false !default;
 $pitems-prodreviewsummary-action-background: false !default;
-$pitems_prodreviewsummary_action_disable_btn_styles: 1 !default;
+$pitems-prodreviewsummary-action-disable-btn-styles: 1 !default;
 
-$pitems_prodreviewsummary_action_fontsize: 0.875rem !default;
-$pitems_prodreviewsummary_action_color: #A9AAAB !default;
-$pitems_prodreviewsummary_action_hover_color: darken($pitems_prodreviewsummary_action_color, 15%) !default;
-$pitems_prodreviewsummary-display: flex !default;
-$pitems_prodreviewsummary-alignitems: center !default;
-$pitems_prodreviewsummary-flexwrap: false !default;
-$pitems_prodreviewsummary-flexwrap-desktopmd: false !default;
+$pitems-prodreviewsummary-action-fontsize: 0.875rem !default;
+$pitems-prodreviewsummary-action-color: #A9AAAB !default;
+$pitems-prodreviewsummary-action-hover-color: darken($pitems-prodreviewsummary-action-color, 15%) !default;
+$pitems-prodreviewsummary-display: flex !default;
+$pitems-prodreviewsummary-alignitems: center !default;
+$pitems-prodreviewsummary-flexwrap: false !default;
+$pitems-prodreviewsummary-flexwrap-desktopmd: false !default;
 
 .product-reviews-summary {
-    @include co(display, $pitems_prodreviewsummary-display);
-    @include co(align-items, $pitems_prodreviewsummary-alignitems);
-    @include co(flex-wrap, $pitems_prodreviewsummary-flexwrap);
+    @include co(display, $pitems-prodreviewsummary-display);
+    @include co(align-items, $pitems-prodreviewsummary-alignitems);
+    @include co(flex-wrap, $pitems-prodreviewsummary-flexwrap);
     @include min-screen($desktop-md-min) {
-        @include co(flex-wrap, $pitems_prodreviewsummary-flexwrap-desktopmd, $pitems_prodreviewsummary-flexwrap);
+        @include co(flex-wrap, $pitems-prodreviewsummary-flexwrap-desktopmd, $pitems-prodreviewsummary-flexwrap);
     }
 
     > div {
         flex: 0 1 auto;
     }
     .rating-summary {
-      margin: $pitems_prodreviewsummary_rating_summary_margin;
+      @include co(margin, $pitems-prodreviewsummary-rating-summary-margin);
     }
 
   .reviews-actions {
-      @if $pitems_prodreviewsummary_reviewsactions_texttransform_on == 1 {
-          text-transform: $pitems_prodreviewsummary_reviewsactions_texttransform;
+      @if $pitems-prodreviewsummary-reviewsactions-texttransform-on == 1 {
+          @include co(text-transform, $pitems-prodreviewsummary-reviewsactions-texttransform);
       }
     .action {
        // Nested because of clearActionStyles() below
-        @if $pitems_prodreviewsummary_action_disable_btn_styles == 1 {
+        @if $pitems-prodreviewsummary-action-disable-btn-styles == 1 {
 
 
             &:hover {
-                @include co(color, $pitems_prodreviewsummary_action_hover_color, $link-hover-color);
+                @include co(color, $pitems-prodreviewsummary-action-hover-color, $link-hover-color);
             }
         }
     }
@@ -137,22 +137,22 @@ $pitems_prodreviewsummary-flexwrap-desktopmd: false !default;
 
     .action {
 
-        @if $pitems_prodreviewsummary_action_disable_btn_styles == 1 {
+        @if $pitems-prodreviewsummary-action-disable-btn-styles == 1 {
 
-            $pitems_clas_fontsize: null;
-            $pitems_clas_color: null;
+            $pitems-clas-fontsize: null;
+            $pitems-clas-color: null;
 
 
-            @if $pitems_prodreviewsummary_action_fontsize != $btn-font-size {
-                $pitems_clas_fontsize: $pitems_prodreviewsummary_action_fontsize;
+            @if $pitems-prodreviewsummary-action-fontsize != $btn-font-size {
+                $pitems-clas-fontsize: $pitems-prodreviewsummary-action-fontsize;
             }
 
-            @if $pitems_prodreviewsummary_action_color != $link-color {
-                $pitems_clas_color: $pitems_prodreviewsummary_action_color;
+            @if $pitems-prodreviewsummary-action-color != $link-color {
+                $pitems-clas-color: $pitems-prodreviewsummary-action-color;
             }
 
-            @include clearActionStyles($pitems_clas_fontsize, $pitems_clas_color);
-            height: $rating-icon__font-size;
+            @include clearActionStyles($pitems-clas-fontsize, $pitems-clas-color);
+            height: $rating-icon-font-size;
 
         }
         @include co(border, $pitems-prodreviewsummary-action-border);
@@ -170,16 +170,16 @@ $pitems_prodreviewsummary-flexwrap-desktopmd: false !default;
 }
 
 
-$oldstar_rating_bg_image_url: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIGZpbGw9IiNGRkZGRkYiID4gICAgPHBhdGggZD0iTSAyNSAyLjI3MzQzNzUgTCAxOC42MDkzNzUgMTguNDgwNDY5IEwgMC44MTA1NDY4OCAxOS40MTc5NjkgTCAxNC42NDg0MzggMzAuNDEyMTA5IEwgMTAuMDcwMzEyIDQ3LjIyMjY1NiBMIDI1IDM3Ljc3MTQ4NCBMIDM5LjkyOTY4OCA0Ny4yMjI2NTYgTCAzNS4zNTE1NjIgMzAuNDEyMTA5IEwgNDkuMTg5NDUzIDE5LjQxNzk2OSBMIDMxLjM5MDYyNSAxOC40ODA0NjkgTCAyNSAyLjI3MzQzNzUgeiI+PC9wYXRoPjwvc3ZnPg==") !default;
+$oldstar-rating-bg-image-url: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIGZpbGw9IiNGRkZGRkYiID4gICAgPHBhdGggZD0iTSAyNSAyLjI3MzQzNzUgTCAxOC42MDkzNzUgMTguNDgwNDY5IEwgMC44MTA1NDY4OCAxOS40MTc5NjkgTCAxNC42NDg0MzggMzAuNDEyMTA5IEwgMTAuMDcwMzEyIDQ3LjIyMjY1NiBMIDI1IDM3Ljc3MTQ4NCBMIDM5LjkyOTY4OCA0Ny4yMjI2NTYgTCAzNS4zNTE1NjIgMzAuNDEyMTA5IEwgNDkuMTg5NDUzIDE5LjQxNzk2OSBMIDMxLjM5MDYyNSAxOC40ODA0NjkgTCAyNSAyLjI3MzQzNzUgeiI+PC9wYXRoPjwvc3ZnPg==") !default;
 
-$oldstar_rating_span_bg_image_url: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIGZpbGw9IiNmMWM0MGYiID4gICAgPHBhdGggZD0iTSAyNSAyLjI3MzQzNzUgTCAxOC42MDkzNzUgMTguNDgwNDY5IEwgMC44MTA1NDY4OCAxOS40MTc5NjkgTCAxNC42NDg0MzggMzAuNDEyMTA5IEwgMTAuMDcwMzEyIDQ3LjIyMjY1NiBMIDI1IDM3Ljc3MTQ4NCBMIDM5LjkyOTY4OCA0Ny4yMjI2NTYgTCAzNS4zNTE1NjIgMzAuNDEyMTA5IEwgNDkuMTg5NDUzIDE5LjQxNzk2OSBMIDMxLjM5MDYyNSAxOC40ODA0NjkgTCAyNSAyLjI3MzQzNzUgeiI+PC9wYXRoPjwvc3ZnPg==") !default;
+$oldstar-rating-span-bg-image-url: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIGZpbGw9IiNmMWM0MGYiID4gICAgPHBhdGggZD0iTSAyNSAyLjI3MzQzNzUgTCAxOC42MDkzNzUgMTguNDgwNDY5IEwgMC44MTA1NDY4OCAxOS40MTc5NjkgTCAxNC42NDg0MzggMzAuNDEyMTA5IEwgMTAuMDcwMzEyIDQ3LjIyMjY1NiBMIDI1IDM3Ljc3MTQ4NCBMIDM5LjkyOTY4OCA0Ny4yMjI2NTYgTCAzNS4zNTE1NjIgMzAuNDEyMTA5IEwgNDkuMTg5NDUzIDE5LjQxNzk2OSBMIDMxLjM5MDYyNSAxOC40ODA0NjkgTCAyNSAyLjI3MzQzNzUgeiI+PC9wYXRoPjwvc3ZnPg==") !default;
 
 
 // Gold - No Spacing
-$star_rating_gold_nospacing: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNDNweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNDMgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5yZXZpZXctc3RhcjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJyZXZpZXctc3RhciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Ikdyb3VwIiBmaWxsPSIjRjZDMjQ0Ij4KICAgICAgICAgICAgPHBhdGggZD0iTTQyLjg5LDE1LjQ5MiBDNDIuNjA5LDE0LjYyNyA0MS44MzYsMTQuMDExIDQwLjkyMywxMy45MyBMMjguNTEsMTIuODA4IEwyMy42MDIsMS4zNzkgQzIzLjI0LDAuNTQxIDIyLjQxNiwwIDIxLjUsMCBDMjAuNTg0LDAgMTkuNzYsMC41NDEgMTkuMzk4LDEuMzc5IEwxNC40OSwxMi44MDggTDIuMDc1LDEzLjkzIEMxLjE2MywxNC4wMTMgMC4zOTMsMTQuNjI3IDAuMTEsMTUuNDkyIEMtMC4xNzQsMTYuMzU5IDAuMDg4LDE3LjMxIDAuNzc4LDE3LjkwOSBMMTAuMTYsMjYuMDk1IEw3LjM5NCwzOC4yMjEgQzcuMTkxLDM5LjExMiA3LjUzOSw0MC4wMzQgOC4yODIsNDAuNTY4IEM4LjY4Miw0MC44NTQgOS4xNSw0MS4wMDEgOS42MjEsNDEuMDAxIEMxMC4wMjgsNDEuMDAxIDEwLjQzMSw0MC44OTIgMTAuNzkzLDQwLjY3NiBMMjEuNSwzNC4zMSBMMzIuMjAzLDQwLjY3NiBDMzIuOTg2LDQxLjE0NCAzMy45NzMsNDEuMTAzIDM0LjcxNiw0MC41NjggQzM1LjQ1OSw0MC4wMzIgMzUuODA3LDM5LjExMSAzNS42MDQsMzguMjIxIEwzMi44MzgsMjYuMDk1IEw0Mi4yMiwxNy45MSBDNDIuOTEsMTcuMzEgNDMuMTc0LDE2LjM2MSA0Mi44OSwxNS40OTIgWiIgaWQ9IlBhdGgiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==") !default;
+$star-rating-gold-nospacing: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNDNweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNDMgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5yZXZpZXctc3RhcjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJyZXZpZXctc3RhciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Ikdyb3VwIiBmaWxsPSIjRjZDMjQ0Ij4KICAgICAgICAgICAgPHBhdGggZD0iTTQyLjg5LDE1LjQ5MiBDNDIuNjA5LDE0LjYyNyA0MS44MzYsMTQuMDExIDQwLjkyMywxMy45MyBMMjguNTEsMTIuODA4IEwyMy42MDIsMS4zNzkgQzIzLjI0LDAuNTQxIDIyLjQxNiwwIDIxLjUsMCBDMjAuNTg0LDAgMTkuNzYsMC41NDEgMTkuMzk4LDEuMzc5IEwxNC40OSwxMi44MDggTDIuMDc1LDEzLjkzIEMxLjE2MywxNC4wMTMgMC4zOTMsMTQuNjI3IDAuMTEsMTUuNDkyIEMtMC4xNzQsMTYuMzU5IDAuMDg4LDE3LjMxIDAuNzc4LDE3LjkwOSBMMTAuMTYsMjYuMDk1IEw3LjM5NCwzOC4yMjEgQzcuMTkxLDM5LjExMiA3LjUzOSw0MC4wMzQgOC4yODIsNDAuNTY4IEM4LjY4Miw0MC44NTQgOS4xNSw0MS4wMDEgOS42MjEsNDEuMDAxIEMxMC4wMjgsNDEuMDAxIDEwLjQzMSw0MC44OTIgMTAuNzkzLDQwLjY3NiBMMjEuNSwzNC4zMSBMMzIuMjAzLDQwLjY3NiBDMzIuOTg2LDQxLjE0NCAzMy45NzMsNDEuMTAzIDM0LjcxNiw0MC41NjggQzM1LjQ1OSw0MC4wMzIgMzUuODA3LDM5LjExMSAzNS42MDQsMzguMjIxIEwzMi44MzgsMjYuMDk1IEw0Mi4yMiwxNy45MSBDNDIuOTEsMTcuMzEgNDMuMTc0LDE2LjM2MSA0Mi44OSwxNS40OTIgWiIgaWQ9IlBhdGgiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==") !default;
 
 // White - No Spacing
-$star_rating_white_nospacing: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNDRweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNDQgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5yZXZpZXctc3Rhci13aGl0ZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJyZXZpZXctc3Rhci13aGl0ZSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Ikdyb3VwIiBmaWxsPSIjRkZGRkZGIj4KICAgICAgICAgICAgPHBhdGggZD0iTTQzLjg2NDc3MjcsMTUuNDkyIEM0My41NzczODY0LDE0LjYyNyA0Mi43ODY4MTgyLDE0LjAxMSA0MS44NTMwNjgyLDEzLjkzIEwyOS4xNTc5NTQ1LDEyLjgwOCBMMjQuMTM4NDA5MSwxLjM3OSBDMjMuNzY4MTgxOCwwLjU0MSAyMi45MjU0NTQ1LDAgMjEuOTg4NjM2NCwwIEMyMS4wNTE4MTgyLDAgMjAuMjA5MDkwOSwwLjU0MSAxOS44Mzg4NjM2LDEuMzc5IEwxNC44MTkzMTgyLDEyLjgwOCBMMi4xMjIxNTkwOSwxMy45MyBDMS4xODk0MzE4MiwxNC4wMTMgMC40MDE5MzE4MTgsMTQuNjI3IDAuMTEyNSwxNS40OTIgQy0wLjE3Nzk1NDU0NSwxNi4zNTkgMC4wOSwxNy4zMSAwLjc5NTY4MTgxOCwxNy45MDkgTDEwLjM5MDkwOTEsMjYuMDk1IEw3LjU2MjA0NTQ1LDM4LjIyMSBDNy4zNTQ0MzE4MiwzOS4xMTIgNy43MTAzNDA5MSw0MC4wMzQgOC40NzAyMjcyNyw0MC41NjggQzguODc5MzE4MTgsNDAuODU0IDkuMzU3OTU0NTUsNDEuMDAxIDkuODM5NjU5MDksNDEuMDAxIEMxMC4yNTU5MDkxLDQxLjAwMSAxMC42NjgwNjgyLDQwLjg5MiAxMS4wMzgyOTU1LDQwLjY3NiBMMjEuOTg4NjM2NCwzNC4zMSBMMzIuOTM0ODg2NCw0MC42NzYgQzMzLjczNTY4MTgsNDEuMTQ0IDM0Ljc0NTExMzYsNDEuMTAzIDM1LjUwNSw0MC41NjggQzM2LjI2NDg4NjQsNDAuMDMyIDM2LjYyMDc5NTUsMzkuMTExIDM2LjQxMzE4MTgsMzguMjIxIEwzMy41ODQzMTgyLDI2LjA5NSBMNDMuMTc5NTQ1NSwxNy45MSBDNDMuODg1MjI3MywxNy4zMSA0NC4xNTUyMjczLDE2LjM2MSA0My44NjQ3NzI3LDE1LjQ5MiBaIiBpZD0iUGF0aCI+PC9wYXRoPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+") !default;
+$star-rating-white-nospacing: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNDRweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNDQgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5yZXZpZXctc3Rhci13aGl0ZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJyZXZpZXctc3Rhci13aGl0ZSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Ikdyb3VwIiBmaWxsPSIjRkZGRkZGIj4KICAgICAgICAgICAgPHBhdGggZD0iTTQzLjg2NDc3MjcsMTUuNDkyIEM0My41NzczODY0LDE0LjYyNyA0Mi43ODY4MTgyLDE0LjAxMSA0MS44NTMwNjgyLDEzLjkzIEwyOS4xNTc5NTQ1LDEyLjgwOCBMMjQuMTM4NDA5MSwxLjM3OSBDMjMuNzY4MTgxOCwwLjU0MSAyMi45MjU0NTQ1LDAgMjEuOTg4NjM2NCwwIEMyMS4wNTE4MTgyLDAgMjAuMjA5MDkwOSwwLjU0MSAxOS44Mzg4NjM2LDEuMzc5IEwxNC44MTkzMTgyLDEyLjgwOCBMMi4xMjIxNTkwOSwxMy45MyBDMS4xODk0MzE4MiwxNC4wMTMgMC40MDE5MzE4MTgsMTQuNjI3IDAuMTEyNSwxNS40OTIgQy0wLjE3Nzk1NDU0NSwxNi4zNTkgMC4wOSwxNy4zMSAwLjc5NTY4MTgxOCwxNy45MDkgTDEwLjM5MDkwOTEsMjYuMDk1IEw3LjU2MjA0NTQ1LDM4LjIyMSBDNy4zNTQ0MzE4MiwzOS4xMTIgNy43MTAzNDA5MSw0MC4wMzQgOC40NzAyMjcyNyw0MC41NjggQzguODc5MzE4MTgsNDAuODU0IDkuMzU3OTU0NTUsNDEuMDAxIDkuODM5NjU5MDksNDEuMDAxIEMxMC4yNTU5MDkxLDQxLjAwMSAxMC42NjgwNjgyLDQwLjg5MiAxMS4wMzgyOTU1LDQwLjY3NiBMMjEuOTg4NjM2NCwzNC4zMSBMMzIuOTM0ODg2NCw0MC42NzYgQzMzLjczNTY4MTgsNDEuMTQ0IDM0Ljc0NTExMzYsNDEuMTAzIDM1LjUwNSw0MC41NjggQzM2LjI2NDg4NjQsNDAuMDMyIDM2LjYyMDc5NTUsMzkuMTExIDM2LjQxMzE4MTgsMzguMjIxIEwzMy41ODQzMTgyLDI2LjA5NSBMNDMuMTc5NTQ1NSwxNy45MSBDNDMuODg1MjI3MywxNy4zMSA0NC4xNTUyMjczLDE2LjM2MSA0My44NjQ3NzI3LDE1LjQ5MiBaIiBpZD0iUGF0aCI+PC9wYXRoPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+") !default;
 
 
 // Gold - Spacing to Right
@@ -190,38 +190,38 @@ $non-sure: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz
 
 
 // Gold - Spacing to Right
-$star_rating_gold_spacingtoright: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTRweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNTQgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5yZXZpZXctc3RhcjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJyZXZpZXctc3RhciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Ikdyb3VwIiBmaWxsPSIjRjZDMjQ0Ij4KICAgICAgICAgICAgPHBhdGggZD0iTTQzLjg2NDc3MjcsMTUuNDkyIEM0My41NzczODY0LDE0LjYyNyA0Mi43ODY4MTgyLDE0LjAxMSA0MS44NTMwNjgyLDEzLjkzIEwyOS4xNTc5NTQ1LDEyLjgwOCBMMjQuMTM4NDA5MSwxLjM3OSBDMjMuNzY4MTgxOCwwLjU0MSAyMi45MjU0NTQ1LDAgMjEuOTg4NjM2NCwwIEMyMS4wNTE4MTgyLDAgMjAuMjA5MDkwOSwwLjU0MSAxOS44Mzg4NjM2LDEuMzc5IEwxNC44MTkzMTgyLDEyLjgwOCBMMi4xMjIxNTkwOSwxMy45MyBDMS4xODk0MzE4MiwxNC4wMTMgMC40MDE5MzE4MTgsMTQuNjI3IDAuMTEyNSwxNS40OTIgQy0wLjE3Nzk1NDU0NSwxNi4zNTkgMC4wOSwxNy4zMSAwLjc5NTY4MTgxOCwxNy45MDkgTDEwLjM5MDkwOTEsMjYuMDk1IEw3LjU2MjA0NTQ1LDM4LjIyMSBDNy4zNTQ0MzE4MiwzOS4xMTIgNy43MTAzNDA5MSw0MC4wMzQgOC40NzAyMjcyNyw0MC41NjggQzguODc5MzE4MTgsNDAuODU0IDkuMzU3OTU0NTUsNDEuMDAxIDkuODM5NjU5MDksNDEuMDAxIEMxMC4yNTU5MDkxLDQxLjAwMSAxMC42NjgwNjgyLDQwLjg5MiAxMS4wMzgyOTU1LDQwLjY3NiBMMjEuOTg4NjM2NCwzNC4zMSBMMzIuOTM0ODg2NCw0MC42NzYgQzMzLjczNTY4MTgsNDEuMTQ0IDM0Ljc0NTExMzYsNDEuMTAzIDM1LjUwNSw0MC41NjggQzM2LjI2NDg4NjQsNDAuMDMyIDM2LjYyMDc5NTUsMzkuMTExIDM2LjQxMzE4MTgsMzguMjIxIEwzMy41ODQzMTgyLDI2LjA5NSBMNDMuMTc5NTQ1NSwxNy45MSBDNDMuODg1MjI3MywxNy4zMSA0NC4xNTUyMjczLDE2LjM2MSA0My44NjQ3NzI3LDE1LjQ5MiBaIiBpZD0iUGF0aCI+PC9wYXRoPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+");
+$star-rating-gold-spacingtoright: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTRweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNTQgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5yZXZpZXctc3RhcjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJyZXZpZXctc3RhciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Ikdyb3VwIiBmaWxsPSIjRjZDMjQ0Ij4KICAgICAgICAgICAgPHBhdGggZD0iTTQzLjg2NDc3MjcsMTUuNDkyIEM0My41NzczODY0LDE0LjYyNyA0Mi43ODY4MTgyLDE0LjAxMSA0MS44NTMwNjgyLDEzLjkzIEwyOS4xNTc5NTQ1LDEyLjgwOCBMMjQuMTM4NDA5MSwxLjM3OSBDMjMuNzY4MTgxOCwwLjU0MSAyMi45MjU0NTQ1LDAgMjEuOTg4NjM2NCwwIEMyMS4wNTE4MTgyLDAgMjAuMjA5MDkwOSwwLjU0MSAxOS44Mzg4NjM2LDEuMzc5IEwxNC44MTkzMTgyLDEyLjgwOCBMMi4xMjIxNTkwOSwxMy45MyBDMS4xODk0MzE4MiwxNC4wMTMgMC40MDE5MzE4MTgsMTQuNjI3IDAuMTEyNSwxNS40OTIgQy0wLjE3Nzk1NDU0NSwxNi4zNTkgMC4wOSwxNy4zMSAwLjc5NTY4MTgxOCwxNy45MDkgTDEwLjM5MDkwOTEsMjYuMDk1IEw3LjU2MjA0NTQ1LDM4LjIyMSBDNy4zNTQ0MzE4MiwzOS4xMTIgNy43MTAzNDA5MSw0MC4wMzQgOC40NzAyMjcyNyw0MC41NjggQzguODc5MzE4MTgsNDAuODU0IDkuMzU3OTU0NTUsNDEuMDAxIDkuODM5NjU5MDksNDEuMDAxIEMxMC4yNTU5MDkxLDQxLjAwMSAxMC42NjgwNjgyLDQwLjg5MiAxMS4wMzgyOTU1LDQwLjY3NiBMMjEuOTg4NjM2NCwzNC4zMSBMMzIuOTM0ODg2NCw0MC42NzYgQzMzLjczNTY4MTgsNDEuMTQ0IDM0Ljc0NTExMzYsNDEuMTAzIDM1LjUwNSw0MC41NjggQzM2LjI2NDg4NjQsNDAuMDMyIDM2LjYyMDc5NTUsMzkuMTExIDM2LjQxMzE4MTgsMzguMjIxIEwzMy41ODQzMTgyLDI2LjA5NSBMNDMuMTc5NTQ1NSwxNy45MSBDNDMuODg1MjI3MywxNy4zMSA0NC4xNTUyMjczLDE2LjM2MSA0My44NjQ3NzI3LDE1LjQ5MiBaIiBpZD0iUGF0aCI+PC9wYXRoPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+");
 
 // White - Spacing to Right
-$star_rating_white_spacingtoright: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTRweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNTQgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5yZXZpZXctc3RhcjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJyZXZpZXctc3RhciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Ikdyb3VwIiBmaWxsPSIjRkZGRkZGIj4KICAgICAgICAgICAgPHBhdGggZD0iTTQzLjg2NDc3MjcsMTUuNDkyIEM0My41NzczODY0LDE0LjYyNyA0Mi43ODY4MTgyLDE0LjAxMSA0MS44NTMwNjgyLDEzLjkzIEwyOS4xNTc5NTQ1LDEyLjgwOCBMMjQuMTM4NDA5MSwxLjM3OSBDMjMuNzY4MTgxOCwwLjU0MSAyMi45MjU0NTQ1LDAgMjEuOTg4NjM2NCwwIEMyMS4wNTE4MTgyLDAgMjAuMjA5MDkwOSwwLjU0MSAxOS44Mzg4NjM2LDEuMzc5IEwxNC44MTkzMTgyLDEyLjgwOCBMMi4xMjIxNTkwOSwxMy45MyBDMS4xODk0MzE4MiwxNC4wMTMgMC40MDE5MzE4MTgsMTQuNjI3IDAuMTEyNSwxNS40OTIgQy0wLjE3Nzk1NDU0NSwxNi4zNTkgMC4wOSwxNy4zMSAwLjc5NTY4MTgxOCwxNy45MDkgTDEwLjM5MDkwOTEsMjYuMDk1IEw3LjU2MjA0NTQ1LDM4LjIyMSBDNy4zNTQ0MzE4MiwzOS4xMTIgNy43MTAzNDA5MSw0MC4wMzQgOC40NzAyMjcyNyw0MC41NjggQzguODc5MzE4MTgsNDAuODU0IDkuMzU3OTU0NTUsNDEuMDAxIDkuODM5NjU5MDksNDEuMDAxIEMxMC4yNTU5MDkxLDQxLjAwMSAxMC42NjgwNjgyLDQwLjg5MiAxMS4wMzgyOTU1LDQwLjY3NiBMMjEuOTg4NjM2NCwzNC4zMSBMMzIuOTM0ODg2NCw0MC42NzYgQzMzLjczNTY4MTgsNDEuMTQ0IDM0Ljc0NTExMzYsNDEuMTAzIDM1LjUwNSw0MC41NjggQzM2LjI2NDg4NjQsNDAuMDMyIDM2LjYyMDc5NTUsMzkuMTExIDM2LjQxMzE4MTgsMzguMjIxIEwzMy41ODQzMTgyLDI2LjA5NSBMNDMuMTc5NTQ1NSwxNy45MSBDNDMuODg1MjI3MywxNy4zMSA0NC4xNTUyMjczLDE2LjM2MSA0My44NjQ3NzI3LDE1LjQ5MiBaIiBpZD0iUGF0aCI+PC9wYXRoPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+");
+$star-rating-white-spacingtoright: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTRweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNTQgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5yZXZpZXctc3RhcjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJyZXZpZXctc3RhciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Ikdyb3VwIiBmaWxsPSIjRkZGRkZGIj4KICAgICAgICAgICAgPHBhdGggZD0iTTQzLjg2NDc3MjcsMTUuNDkyIEM0My41NzczODY0LDE0LjYyNyA0Mi43ODY4MTgyLDE0LjAxMSA0MS44NTMwNjgyLDEzLjkzIEwyOS4xNTc5NTQ1LDEyLjgwOCBMMjQuMTM4NDA5MSwxLjM3OSBDMjMuNzY4MTgxOCwwLjU0MSAyMi45MjU0NTQ1LDAgMjEuOTg4NjM2NCwwIEMyMS4wNTE4MTgyLDAgMjAuMjA5MDkwOSwwLjU0MSAxOS44Mzg4NjM2LDEuMzc5IEwxNC44MTkzMTgyLDEyLjgwOCBMMi4xMjIxNTkwOSwxMy45MyBDMS4xODk0MzE4MiwxNC4wMTMgMC40MDE5MzE4MTgsMTQuNjI3IDAuMTEyNSwxNS40OTIgQy0wLjE3Nzk1NDU0NSwxNi4zNTkgMC4wOSwxNy4zMSAwLjc5NTY4MTgxOCwxNy45MDkgTDEwLjM5MDkwOTEsMjYuMDk1IEw3LjU2MjA0NTQ1LDM4LjIyMSBDNy4zNTQ0MzE4MiwzOS4xMTIgNy43MTAzNDA5MSw0MC4wMzQgOC40NzAyMjcyNyw0MC41NjggQzguODc5MzE4MTgsNDAuODU0IDkuMzU3OTU0NTUsNDEuMDAxIDkuODM5NjU5MDksNDEuMDAxIEMxMC4yNTU5MDkxLDQxLjAwMSAxMC42NjgwNjgyLDQwLjg5MiAxMS4wMzgyOTU1LDQwLjY3NiBMMjEuOTg4NjM2NCwzNC4zMSBMMzIuOTM0ODg2NCw0MC42NzYgQzMzLjczNTY4MTgsNDEuMTQ0IDM0Ljc0NTExMzYsNDEuMTAzIDM1LjUwNSw0MC41NjggQzM2LjI2NDg4NjQsNDAuMDMyIDM2LjYyMDc5NTUsMzkuMTExIDM2LjQxMzE4MTgsMzguMjIxIEwzMy41ODQzMTgyLDI2LjA5NSBMNDMuMTc5NTQ1NSwxNy45MSBDNDMuODg1MjI3MywxNy4zMSA0NC4xNTUyMjczLDE2LjM2MSA0My44NjQ3NzI3LDE1LjQ5MiBaIiBpZD0iUGF0aCI+PC9wYXRoPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+");
 
-$star_rating_span_bg_image_url: $star_rating_gold_spacingtoright !default;
-$star_rating_bg_image_url: $star_rating_white_spacingtoright !default;
-
-
+$star-rating-span-bg-image-url: $star-rating-gold-spacingtoright !default;
+$star-rating-bg-image-url: $star-rating-white-spacingtoright !default;
 
 
-$rating_result_width: 140px !default;
-$rating_result_height: 28px !default;
-$rating_result_margin: 0 auto !default;
 
-$rating_result_star_rating_bg_width: $rating_result_width !default;
-$rating_result_star_rating_bg_height: $rating_result_height !default;
-$rating_result_star_rating_bg_image_url: $star_rating_white_spacingtoright !default;
-$rating_result_star_rating_span_bg_image_url: $star_rating_gold_spacingtoright !default;
+
+$rating-result-width: 140px !default;
+$rating-result-height: 28px !default;
+$rating-result-margin: 0 auto !default;
+
+$rating-result-star-rating-bg-width: $rating-result-width !default;
+$rating-result-star-rating-bg-height: $rating-result-height !default;
+$rating-result-star-rating-bg-image-url: $star-rating-white-spacingtoright !default;
+$rating-result-star-rating-span-bg-image-url: $star-rating-gold-spacingtoright !default;
 
 .rating-summary {
     .rating-result {
-        margin: $rating_result_margin;
+        @include co(margin, $rating-result-margin);
     }
 }
 
 .rating-result {
-    height: $rating_result_height;
+    height: $rating-result-height;
     position: relative;
-    width: $rating_result_width; // Really Don't Modify! REALLY - not without modifying it in 20 other places (in code)
+    @include co(width, $rating-result-width); // Really Don't Modify! REALLY - not without modifying it in 20 other places (in code)
     flex: 0 1 auto;
-    margin: $rating_result_margin;
+    @include co(margin, $rating-result-margin);
 
     > span:before,
     &:before {
@@ -229,30 +229,30 @@ $rating_result_star_rating_span_bg_image_url: $star_rating_gold_spacingtoright !
         bottom: 0;
         content: "";
         display: block;
-        height: $rating_result_star_rating_bg_height;
+        height: $rating-result-star-rating-bg-height;
         left: 0;
         position: absolute;
         right: 0;
         top: 0;
-        width: $rating_result_star_rating_bg_width;
+        @include co(width, $rating-result-star-rating-bg-width);
     }
     &:before {
-        background-image: $rating_result_star_rating_bg_image_url;
+        background-image: $rating-result-star-rating-bg-image-url;
         background-repeat: repeat-x;
-        background-size: $rating_result_star_rating_bg_width / 5;
+        background-size: $rating-result-star-rating-bg-width / 5;
     }
     > span {
         display: block;
         text-indent: -10000px;
-        width: $rating_result_star_rating_bg_width;
-        height: $rating_result_star_rating_bg_height;
+        @include co(width, $rating-result-star-rating-bg-width);
+        height: $rating-result-star-rating-bg-height;
         position: absolute;
         overflow: hidden;
 
         &:before {
-            background-image: $rating_result_star_rating_span_bg_image_url;
+            background-image: $rating-result-star-rating-span-bg-image-url;
             background-repeat: repeat-x;
-            background-size: $rating_result_star_rating_bg_width / 5;
+            background-size: $rating-result-star-rating-bg-width / 5;
             text-indent: 10000px;
         }
     }
@@ -262,20 +262,20 @@ $rating_result_star_rating_span_bg_image_url: $star_rating_gold_spacingtoright !
 
 
 
-$include_reviews_extra: 0 !default;
+$include-reviews-extra: 0 !default;
 
-@if $include_reviews_extra == 1 {
+@if $include-reviews-extra == 1 {
 
 
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
 .customer-review {
     .product-details {
         @include abs-add-clearfix();
-        margin-bottom: $indent__xl;
+        margin-bottom: $indent-xl;
     }
 
     .product-media {
@@ -288,10 +288,10 @@ $include_reviews_extra: 0 !default;
 
     .review-details {
         .customer-review-rating {
-            @include lib-css(margin-bottom, $indent__base);
+            @include lib-css(margin-bottom, $indent-base);
 
             .item {
-                @include lib-css(margin-bottom, $indent__s);
+                @include lib-css(margin-bottom, $indent-s);
 
                 &:last-child {
                     margin-bottom: 0;
@@ -301,12 +301,12 @@ $include_reviews_extra: 0 !default;
 
         .review-title {
             @include lib-heading(h3);
-            @include lib-css(font-weight, $font-weight__semibold);
-            @include lib-css(margin-bottom, $indent__base);
+            @include lib-css(font-weight, $font-weight-semibold);
+            @include lib-css(margin-bottom, $indent-base);
         }
 
         .review-content {
-            @include lib-css(margin-bottom, $indent__base);
+            @include lib-css(margin-bottom, $indent-base);
         }
     }
 
@@ -329,12 +329,12 @@ $include_reviews_extra: 0 !default;
         .label,
         .control {
             display: table-cell;
-            padding-bottom: $indent__s;
+            padding-bottom: $indent-s;
             vertical-align: top;
         }
 
         .label {
-            padding-right: $indent__s;
+            padding-right: $indent-s;
             padding-top: 6px;
         }
 
@@ -346,14 +346,14 @@ $include_reviews_extra: 0 !default;
 
 //
 //  Review product page
-//  ---------------------------------------------
+//
 
 .review-item {
   display: flex;
   flex-wrap: wrap;
   border-bottom: 1px solid $color-gray79;
     margin: 0;
-    padding: $indent__base 0;
+    @include co(padding, $indent-base 0);
     > div {
       flex: 0 1 auto;
     }
@@ -381,7 +381,7 @@ $include_reviews_extra: 0 !default;
 .review {
     &-toolbar {
         border-top: 1px solid $color-gray79;
-        margin: 0 0 $indent__base;
+        margin: 0 0 $indent-base;
         text-align: center;
 
         &:first-child {
@@ -391,7 +391,7 @@ $include_reviews_extra: 0 !default;
         .pages {
             border-bottom: 1px solid $color-gray79;
             display: block;
-            padding: $indent__base 0;
+            @include co(padding, $indent-base 0);
             text-align: center;
         }
 
@@ -414,7 +414,7 @@ $include_reviews_extra: 0 !default;
 
     .fieldset &-legend.legend {
         @include abs-reset-left-margin();
-        margin-bottom: $indent__base;
+        margin-bottom: $indent-base;
 
         strong {
             display: block;
@@ -424,13 +424,13 @@ $include_reviews_extra: 0 !default;
 
     &-field-rating {
         .control {
-            margin-bottom: 1.2 * $indent__xl;
-            margin-top: $indent__s;
+            margin-bottom: 1.2 * $indent-xl;
+            margin-top: $indent-s;
         }
     }
 
     &-list {
-        margin-bottom: $indent__l;
+        margin-bottom: $indent-l;
 
         .block-title strong {
             @include lib-heading(h2);
@@ -446,19 +446,19 @@ $include_reviews_extra: 0 !default;
 
     &-title {
         @include lib-heading(h3);
-        margin: 0 0 $indent__base;
+        margin: 0 0 $indent-base;
     }
 
     &-content {
-        margin-bottom: $indent__base;
+        margin-bottom: $indent-base;
     }
 }
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__s) {
+@include min-screen($screen-s) {
     .review {
         &-form {
             max-width: 500px;
@@ -469,7 +469,7 @@ $include_reviews_extra: 0 !default;
             margin: 0 0 $reviews-indent-desktop;
 
             .pages {
-                padding: $reviews-indent-desktop 0;
+                @include co(padding, $reviews-indent-desktop 0);
             }
         }
 

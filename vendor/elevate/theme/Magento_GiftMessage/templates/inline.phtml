@@ -137,12 +137,12 @@ case 'multishipping_address': ?>
                             <p>Please type your message below exactly as you wish it to appear on gift card.</p>
                             <p>If you want to include the recipient and senders name please include it in the box, otherwise it won't be included.</p>
                             <p>If you don't want to add a message you can leave this box blank.</p>
-                            <p>The maximum number of characters allowed is 200.</p>
+                            <p>The maximum number of characters allowed is 230.</p>
                             <?php // Removed To/From Fields - Gower - if reimplementing - needs to be site specific! ?>
                             <div class="field text">
                                 <label for="gift-message-<?= (int) $block->getEntity()->getId() ?>-message" class="label"><span><?= $block->escapeHtml(__('Message')) ?></span></label>
                                 <div class="control">
-                                    <textarea id="gift-message-<?= (int) $block->getEntity()->getId() ?>-message" class="input-text" name="giftmessage[quote_address][<?= (int) $block->getEntity()->getId() ?>][message]" title="<?= $block->escapeHtmlAttr(__('Message')) ?>" rows="5" cols="40" maxlength="200"><?= /* @noEscape */ $block->getEscaped($block->getMessage()->getMessage()) ?></textarea>
+                                    <textarea id="gift-message-<?= (int) $block->getEntity()->getId() ?>-message" class="input-text" name="giftmessage[quote_address][<?= (int) $block->getEntity()->getId() ?>][message]" title="<?= $block->escapeHtmlAttr(__('Message')) ?>" rows="5" cols="40" maxlength="230"><?= /* @noEscape */ $block->getEscaped($block->getMessage()->getMessage()) ?></textarea>
                                 </div>
                             </div>
                         </fieldset>

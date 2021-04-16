@@ -1,26 +1,24 @@
 <?php
 
-
 namespace Elevate\Delivery\Model;
 
-use Elevate\Delivery\Api\DeliveryFeeRepositoryInterface;
-use Elevate\Delivery\Api\Data\DeliveryFeeSearchResultsInterfaceFactory;
 use Elevate\Delivery\Api\Data\DeliveryFeeInterfaceFactory;
-use Magento\Framework\Api\DataObjectHelper;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Reflection\DataObjectProcessor;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Elevate\Delivery\Api\Data\DeliveryFeeSearchResultsInterfaceFactory;
+use Elevate\Delivery\Api\DeliveryFeeRepositoryInterface;
 use Elevate\Delivery\Model\ResourceModel\DeliveryFee as ResourceDeliveryFee;
 use Elevate\Delivery\Model\ResourceModel\DeliveryFee\CollectionFactory as DeliveryFeeCollectionFactory;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
+use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
+use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Reflection\DataObjectProcessor;
+use Magento\Store\Model\StoreManagerInterface;
 
 class DeliveryFeeRepository implements DeliveryFeeRepositoryInterface
 {
-
     protected $resource;
 
     protected $deliveryFeeFactory;
@@ -92,15 +90,15 @@ class DeliveryFeeRepository implements DeliveryFeeRepositoryInterface
             $storeId = $this->storeManager->getStore()->getId();
             $deliveryFee->setStoreId($storeId);
         } */
-        
+
         $deliveryFeeData = $this->extensibleDataObjectConverter->toNestedArray(
             $deliveryFee,
             [],
             \Elevate\Delivery\Api\Data\DeliveryFeeInterface::class
         );
-        
+
         $deliveryFeeModel = $this->deliveryFeeFactory->create()->setData($deliveryFeeData);
-        
+
         try {
             $this->resource->save($deliveryFeeModel);
         } catch (\Exception $exception) {
@@ -132,22 +130,22 @@ class DeliveryFeeRepository implements DeliveryFeeRepositoryInterface
         \Magento\Framework\Api\SearchCriteriaInterface $criteria
     ) {
         $collection = $this->deliveryFeeCollectionFactory->create();
-        
+
         $this->extensionAttributesJoinProcessor->process(
             $collection,
             \Elevate\Delivery\Api\Data\DeliveryFeeInterface::class
         );
-        
+
         $this->collectionProcessor->process($criteria, $collection);
-        
+
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
-        
+
         $items = [];
         foreach ($collection as $model) {
             $items[] = $model->getDataModel();
         }
-        
+
         $searchResults->setItems($items);
         $searchResults->setTotalCount($collection->getSize());
         return $searchResults;
@@ -183,8 +181,8 @@ class DeliveryFeeRepository implements DeliveryFeeRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function create() {
+    public function create()
+    {
         return $this->metadata->getNewInstance();
-
     }
 }

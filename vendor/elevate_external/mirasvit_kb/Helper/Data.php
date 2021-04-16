@@ -49,6 +49,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     protected $articleRepository;
 
+    /**
+     * @var \Mirasvit\Kb\Api\ArticlesectionsRepositoryInterface
+     */
+    protected $articleSectionsRepository;
+
     /** @var \Elevate\Themeoptions\Helper\General
      *
      */
@@ -69,7 +74,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Framework\App\Helper\Context $context
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Mirasvit\Kb\Api\ArticleRepositoryInterface $articleRepository
-     *
+     * @param \Mirasvit\Kb\Api\ArticlesectionsRepositoryInterface $articleSectionsRepository
      * @param \Elevate\Themeoptions\Helper\General $ev_helper
      */
     public function __construct(
@@ -80,6 +85,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Mirasvit\Kb\Api\ArticleRepositoryInterface $articleRepository,
+        \Mirasvit\Kb\Api\ArticlesectionsRepositoryInterface $articleSectionsRepository,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
         \Magento\Framework\Api\SortOrderBuilder $sortOrderBuilder,
         \Magento\Framework\Api\Filter $filter,
@@ -94,6 +100,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->categoryCollectionFactory = $categoryCollectionFactory;
         $this->storeManager              = $storeManager;
         $this->articleRepository         = $articleRepository;
+        $this->articleSectionsRepository = $articleSectionsRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->sortOrderBuilder = $sortOrderBuilder;
         $this->filterBuilder = $filterBuilder;
@@ -152,6 +159,46 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $output;
 
     }
+
+    public function toArticleSectionOptionArray() {
+
+        $filters = array(
+            array(
+                'field' => 'articlesection_id',
+                'value' => '',
+                'condition_type' => 'notnull'
+            )
+        );
+
+        $sortorder = array(
+            'field' => 'articlesection_id',
+            'direction' => 'DESC'
+        );
+
+
+        $searchCriteria = $this->ev_helper->buildSearchCriteria($filters, $sortorder);
+        $articlessections = $this->articleSectionsRepository->getList($searchCriteria);
+
+
+        $output = array();
+
+        foreach ($articlessections->getItems() as $articlesection) {
+
+            $innerarticlesection = $articlesection->getAllData();
+
+            $new_array = array(
+                'value' => $innerarticlesection['articlesection_id'],
+                'label' => $innerarticlesection['articlesection_id'].' - '.$innerarticlesection['asec_name']
+            );
+
+            $output[] = $new_array;
+        }
+
+        return $output;
+
+    }
+
+
 
     /**
      * @param bool $emptyOption

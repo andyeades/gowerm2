@@ -1,8 +1,8 @@
 .block.filter {
-    margin-bottom: $indent__xl;
+    margin-bottom: $indent-xl;
 
     .filter-title {
-        margin-bottom: $indent__base;
+        margin-bottom: $indent-base;
 
         strong {
             font-size: 18px;
@@ -12,17 +12,17 @@
 
 .block-subtitle {
     display: inline-block;
-    margin-bottom: $indent__s;
+    margin-bottom: $indent-s;
 }
 
 .filter-current {
     .item {
-        margin-bottom: $indent__s;
+        margin-bottom: $indent-s;
     }
 
     .filter-label {
         display: block;
-        font-weight: $font-weight__bold;
+        @include co(font-weight, $font-weight-bold);
 
         &:after {
             content: ':';
@@ -30,7 +30,7 @@
     }
 
     + .filter-actions {
-        margin-bottom: $indent__l;
+        margin-bottom: $indent-l;
     }
 }
 
@@ -45,12 +45,12 @@
 
     .filter-options-title {
         @include lib-heading(h4);
-        margin: 0 0 $indent__s;
+        margin: 0 0 $indent-s;
         word-break: break-all;
     }
 
     .filter-options-content {
-        margin: 0 0 $indent__m;
+        margin: 0 0 $indent-m;
 
         .item {
             margin-bottom: 3px;
@@ -58,7 +58,7 @@
     }
 
     .count {
-        @include lib-css(color, $text__color__muted);
+        @include lib-css(color, $text-color-muted);
 
         &:before {
             content: '(';
@@ -86,7 +86,7 @@
         position: relative;
 
         .label {
-            font-weight: $font-weight__bold;
+            @include co(font-weight, $font-weight-bold);
         }
 
         .action.remove {

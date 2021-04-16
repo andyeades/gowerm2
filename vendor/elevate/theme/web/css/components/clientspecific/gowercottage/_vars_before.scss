@@ -15,8 +15,8 @@
 
     //body
 
-    $body-background: linear-gradient(180deg, white 0%, #e9e8d6 50%, #e9e8d6 100%) !global;
-
+//    $body-background: linear-gradient(180deg, white 0%, #e9e8d6 50%, #e9e8d6 100%) !global;
+    $body-background: #F5F7F3 !global;
 
     @font-face {
         font-family: BookmanJFPro-Regular;
@@ -36,7 +36,7 @@
     $h1-lineheight: 2.75rem !global;
 
 
-    $h4__font-size                  : 1rem !global;
+    $h4-font-size                  : 1rem !global;
 
     // Tables
 
@@ -44,16 +44,16 @@
 
     // Messages
 
-    $message--font-size: 1rem !global;
+    $message-font-size: 1rem !global;
 
-    $message-info--background: $theme-brand-color-2 !global;
-    $message-info--color                 : $theme-brand-color-3 !global;
-    $message-info-icon--color-inner: $theme-brand-color-3 !global;
+    $message-info-background: $theme-brand-color-2 !global;
+    $message-info-color                 : $theme-brand-color-3 !global;
+    $message-info-icon-color-inner: $theme-brand-color-3 !global;
     //Link
 
     $link-color: $theme-brand-color-3 !global;
-    $link--color: $theme-brand-color-3 !global;
-    $link--hover--color: darken($theme-brand-color-3, 15%) !global;
+    $link-color: $theme-brand-color-3 !global;
+    $link-hover-color: darken($theme-brand-color-3, 15%) !global;
 
 
     $link-action-text-decoration: underline !global;
@@ -68,6 +68,59 @@
     $actions-font-size: 1rem !global;
 
     // Header
+
+
+
+    // Hdr Search
+
+
+
+    $hdr-search-style: expandsfromjusticon !global;
+    $hdr-search-text-color: #302624 !global;
+    $hdr-search-placeholder-text-color: #9D998B !global;
+
+
+    $hdr-search-input-width-desktop: 0 !global;
+    $hdr-search-input-show-search-width-desktop: 100% !global;
+    $hdr-search-input-show-search-padding-desktop:  6px 10px 6px 20px !global;
+    //$hdr-search-input-display-desktop: none !global;
+    //$hdr-search-input-display-desktopmd: none !global;
+    $hdr-search-input-font-size: 14px !global;
+    $hdr-search-input-text-color: #302624 !global;
+    $hdr-search-input-bg-color: #DBD8C8 !global;
+    $hdr-search-input-borderradius-position: 'right only' !global;
+    $hdr-search-input-borderradius: 44px !global;
+    $hdr-search-input-borderradius-on: 1 !global;
+    $hdr-search-input-padding: false !global;
+    $hdr-search-input-padding-desktop: 0 !global;
+    $hdr-search-input-transition-desktop: all 0.6s ease-in-out !global;
+    $hdr-search-input-padding-mobilemax: 0 0 0 20px !global;
+    $hdr-search-border-on: false !global;
+    $hdr-search-border-color: #DBD8C8 !global;
+    $hdr-search-border-position: bottom !global;
+    $hdr-search-border-thickness: 1px !global;
+    $hdr-search-border-style: solid !global;
+
+    $hdr-search-icon-position: left !global;
+    $hdr-search-icon-color: #E7E9D5 !global;
+
+
+
+    $hdr-search-wrap-backgroundcolor-mobilemax: false !global;
+    $hdr-search-wrap-width: 85% !global;
+    $hdr-search-wrap-padding-desktop: false !global;
+    $hdr-search-wrap-margin: 0 auto 0 0 !global;
+    $hdr-search-wrap-margin-mobilemax: 0 !global;
+
+    $hdr-search-inputgroup-flexalignitems: center !global;
+    $hdr-search-inputgroup-btn-background: #423431 !global;
+    $hdr-search-inputgroup-btn-height: 54px !global;
+    $hdr-search-inputgroup-btn-width: 54px !global;
+    $hdr-search-inputgroup-btn-borderradius: 54px !global;
+    $hdr-search-inputgroup-btn-padding: 0 !global;
+    $hdr-search-inputgroup-btn-zindex: 9999 !global;
+    $hdr-search-inputgroup-btn-margin: 0 -10px 0 0 !global;
+    $hdr-search-inputgroup-btn-flex: 0 0 auto !global;
 
     $hdr-mi-padding-leftright-mobilemenumax: 0 !global;
 
@@ -156,9 +209,34 @@
     $hdr-lihdraccli-myacc-link-textalign: false !global;
     $hdr-lihdraccli-myacc-link-height-mobiletabletmax: false !global;
 
+    // Header
+    $include-header-dropdown-content: true !global;
+
+
+    // Drop Down Menu Thingy
+
+    //$hdr-top-hdr-top-list-margin-mobilemenunotvisible: 0 !global;
+    //$hdr-top-hdr-top-list-width-mobilemenunotvisible: 186px !global;
+
+    $hdr-acc-dropdowncontent-top: $hdr-myacc-link-height-desktop - 15px !global;
+    $hdr-acc-dropdowncontent-left: -100px !global;
+    $hdr-acc-dropdowncontent-border-radius: 20px !global;
+
+    $hdr-acc-dropdowncontent-color: #000 !default;
+    $hdr-acc-dropdowncontent-background: #ffffff !default;
+
+    $hdr-acc-ta-link-start-color: #3a6e5d !default;
+    $hdr-acc-ta-link-start-background: unset !default;
+    $hdr-acc-ta-link-start-fontsize: 0.8125rem !default;
+    $hdr-acc-ta-link-start-hover-color: #ff7567 !default;
+    $hdr-acc-ta-link-start-hover-text-decoration: underline !default;
+
+    $hdr-mobile-menu-label-fontfamily: $font-family-sans-serif !global;
+    $hdr-minicart-counter-fontfamily: $font-family-sans-serif !global;
+
     // Mini Cart
     $hdr-minicart-custom-minicart-icon-on: 1 !global;
-    $hdr-minicart-custom-minicart-icon-url: '/pub/media/theme_assets/carticon/dark-bag.svg' !global;
+    $hdr-minicart-custom-minicart-icon-url: '/media/theme_assets/carticon/dark-bag.svg' !global;
     $hdr-minicart-custom-minicart-icon-height: 33px !global;
     $hdr-minicart-custom-minicart-icon-width: 24px !global;
 
@@ -207,7 +285,7 @@
 
 
     $e-pn-fontsize-mobile: false !global;
-    $ev_mm_nav_width_mobile: 320px !global;
+    $ev-mm-nav-width-mobile: 320px !global;
 
 
     $nav-bar-outer-bg-color: #302624 !global;
@@ -226,7 +304,7 @@
 
 
     $e-pn-li-a-desktop-color: #E7E9D5 !global;
-    $e_pn_li_a_desktop_text_transform_on: 0 !global;
+    $e-pn-li-a-desktop-text-transform-on: 0 !global;
     $e-pn-li-a-desktop-large-padding: 0 17px !global;
     $e-pn-li-flex-desktop: 0 1 auto !global;
 
@@ -241,7 +319,7 @@
     $m3-desktop-border-on: 0 !global;
     $m3-desktop-li-a-margin: 0 0 0.5rem 0 !global;
     $m3-desktop-li-a-font-size: false !global;
-    $m3_ul_li_a_font_size_desktop: false !global;
+    $m3-ul-li-a-font-size-desktop: false !global;
 
 
     $mm-dropdown-icons-on: 0 !global;
@@ -273,10 +351,26 @@
     $pview-desc-itemtitle-switch-border-thickness: 1px !global;
     $pview-desc-itemtitle-switch-border-style: solid !global;
 
+    $tab-control-color: #928665 !global;
+    $tab-control-height: 3.5rem !global;
+    $tab-control-line-height: 3.5rem !global;
+    $tab-control-padding-top: 0 !global;
+    $tab-control-padding-right: 0 !global;
+    $tab-control-padding-bottom: 0 !global;
+    $tab-control-padding-left: 0 !global;
+
+
+    $tab-control-background-color: false !global;
+    $accordion-content-background-color: false !global;
+    $accordion-control-background-color-hover: transparent !global;
+    $tab-control-active-background-color: false !global;
+    $tab-control-active-color: #2C231E !global;
+    //$tab-content-background-color: #FEFFFF !global;
+
 
     // Form
-    $input-text__font-size: 1rem !global;
-    $form-element-input__font-size: 1rem !global;
+    $input-text-font-size: 1rem !global;
+    $form-element-input-font-size: 1rem !global;
 
 
 }

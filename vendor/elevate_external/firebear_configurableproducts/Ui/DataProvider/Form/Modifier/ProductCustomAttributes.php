@@ -47,9 +47,7 @@ class ProductCustomAttributes extends AbstractModifier
             return $data;
         }
         foreach ($this->getFields() as $field) {
-            if (isset($productData[$field]) && $productData[$field]) {
-                $data[$productId][static::DATA_SOURCE_DEFAULT][$field] = $productData[$field];
-            }
+            $data[$productId][static::DATA_SOURCE_DEFAULT][$field] = $productData[$field];
         }
         if (isset($productData['linked_attributes']) && $productData['linked_attributes']) {
             $data[$productId][static::DATA_SOURCE_DEFAULT]['linked_attributes'] = explode(

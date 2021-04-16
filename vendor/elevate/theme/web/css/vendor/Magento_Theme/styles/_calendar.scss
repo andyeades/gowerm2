@@ -1,29 +1,29 @@
 //colors
-$mage_calendar_color_0: #ff8400;
-$mage_calendar_color_1: #ff9635;
-$mage_calendar_color_2: #000000;
-$mage_calendar_color_3: #ffffff;
-$mage_calendar_color_4: #efefef;
-$mage_calendar_color_5: rgba(0, 0, 0, 0.35);
-$mage_calendar_color_6: #cfcfcf;
-$mage_calendar_color_7: #f9eae7;
-$mage_calendar_color_8: #f3d7d2;
-$mage_calendar_color_9: #ffdf66;
-$mage_calendar_color_10: #dadada;
-$mage_calendar_color_11: #f98b25;
-$mage_calendar_color_12: #f9f9f9;
-$mage_calendar_color_13: #959595;
+$mage-calendar-color-0: #ff8400;
+$mage-calendar-color-1: #ff9635;
+$mage-calendar-color-2: #000000;
+$mage-calendar-color-3: #ffffff;
+$mage-calendar-color-4: #efefef;
+$mage-calendar-color-5: rgba(0, 0, 0, 0.35);
+$mage-calendar-color-6: #cfcfcf;
+$mage-calendar-color-7: #f9eae7;
+$mage-calendar-color-8: #f3d7d2;
+$mage-calendar-color-9: #ffdf66;
+$mage-calendar-color-10: #dadada;
+$mage-calendar-color-11: #f98b25;
+$mage-calendar-color-12: #f9f9f9;
+$mage-calendar-color-13: #959595;
 
 .ui-datepicker {
     display: none;
     z-index: 999999 !important;
     padding: 15px;
-    border: $mage_calendar_color_3 4px solid;
+    border: $mage-calendar-color-3 4px solid;
     //Instead of the line below you could use @include box-sizing($bs)
     box-sizing: border-box;
-    background: $mage_calendar_color_4;
+    background: $mage-calendar-color-4;
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-    box-shadow: 5px 5px 10px 0 $mage_calendar_color_5;
+    box-shadow: 5px 5px 10px 0 $mage-calendar-color-5;
     width: auto;
     .ui-datepicker-header {
         position: relative;
@@ -51,7 +51,7 @@ $mage_calendar_color_13: #959595;
             height: 0;
             border: solid;
             border-width: 5px 8px 5px 0;
-            border-color: transparent $mage_calendar_color_1 transparent transparent;
+            border-color: transparent $mage-calendar-color-1 transparent transparent;
         }
     }
     .ui-datepicker-next {
@@ -72,11 +72,11 @@ $mage_calendar_color_13: #959595;
             height: 0;
             border: solid;
             border-width: 5px 8px 5px 0;
-            border-color: transparent $mage_calendar_color_1 transparent transparent;
+            border-color: transparent $mage-calendar-color-1 transparent transparent;
             margin-left: 0;
             margin-top: -5px;
             border-width: 5px 0 5px 8px;
-            border-color: transparent transparent transparent $mage_calendar_color_1;
+            border-color: transparent transparent transparent $mage-calendar-color-1;
         }
     }
     .ui-datepicker-title {
@@ -105,20 +105,20 @@ $mage_calendar_color_13: #959595;
             padding: 4px;
             text-align: right;
             text-decoration: none;
-            color: $mage_calendar_color_2;
+            color: $mage-calendar-color-2;
         }
         a {
             display: block;
             padding: 4px;
             text-align: right;
             text-decoration: none;
-            color: $mage_calendar_color_2;
+            color: $mage-calendar-color-2;
         }
     }
     .ui-datepicker-buttonpane {
         overflow: hidden;
         padding-top: 10px;
-        border-top: $mage_calendar_color_6 1px solid;
+        border-top: $mage-calendar-color-6 1px solid;
         button {
             border-style: initial;
             padding: 0.5rem;
@@ -130,47 +130,47 @@ $mage_calendar_color_13: #959595;
         }
     }
     .ui-datepicker-calendar {
-        background: $mage_calendar_color_3;
-        border: $mage_calendar_color_6 1px solid;
+        background: $mage-calendar-color-3;
+        border: $mage-calendar-color-6 1px solid;
         border-collapse: collapse;
         td {
-            border: $mage_calendar_color_6 1px solid;
+            border: $mage-calendar-color-6 1px solid;
             a {
                 padding: 4px;
                 display: block;
             }
             .ui-state-hover {
-                background: $mage_calendar_color_7;
+                background: $mage-calendar-color-7;
             }
         }
         th {
-            background: $mage_calendar_color_4;
-            border: $mage_calendar_color_6 1px solid;
+            background: $mage-calendar-color-4;
+            border: $mage-calendar-color-6 1px solid;
             padding: 4px;
             text-transform: uppercase;
         }
         .ui-datepicker-week-col {
             text-align: center;
-            border: $mage_calendar_color_6 1px solid;
+            border: $mage-calendar-color-6 1px solid;
         }
         .ui-datepicker-today {
-            background: $mage_calendar_color_8;
+            background: $mage-calendar-color-8;
         }
         .ui-state-active {
-            background: $mage_calendar_color_9;
+            background: $mage-calendar-color-9;
         }
         .ui-state-disabled {
-            background: $mage_calendar_color_12;
+            background: $mage-calendar-color-12;
             span {
-                color: $mage_calendar_color_13;
+                color: $mage-calendar-color-13;
             }
         }
     }
     .ui-datepicker-next-hover span {
-        border-color: transparent $mage_calendar_color_0 transparent transparent;
+        border-color: transparent $mage-calendar-color-0 transparent transparent;
     }
     .ui-datepicker-prev-hover span {
-        border-color: transparent $mage_calendar_color_0 transparent transparent;
+        border-color: transparent $mage-calendar-color-0 transparent transparent;
     }
     select.ui-datepicker-month-year {
         width: 100%;
@@ -258,7 +258,7 @@ $mage_calendar_color_13: #959595;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 10px;
     border: none;
-    background: $mage_calendar_color_10;
+    background: $mage-calendar-color-10;
     .ui-slider-handle {
         margin-left: -5px;
     }
@@ -268,7 +268,7 @@ $mage_calendar_color_13: #959595;
     width: 10px;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 10px;
-    background: $mage_calendar_color_11;
+    background: $mage-calendar-color-11;
     display: block;
     position: absolute;
 }

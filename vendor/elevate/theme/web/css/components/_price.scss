@@ -1,6 +1,6 @@
 //  Prices
 
-$price_incex_price_padding: 0 0.3125rem 0 0 !default;
+$price-incex-price-padding: 0 0.3125rem 0 0 !default;
 
 @mixin price-style-1() {
     .price {
@@ -31,38 +31,56 @@ $price_incex_price_padding: 0 0.3125rem 0 0 !default;
 
 
 
+
+$price-inc-after-content: false !default;
+
+$price-ex-after-content: false !default;
+
+
+
+
 @mixin price-style-3() {
     .price-including-tax,
     .price-excluding-tax {
         .price {
-
-            padding: $price_incex_price_padding;
+            @include co(padding, $price-incex-price-padding);
         }
-
         .cart-tax-total {
             cursor: pointer;
             padding-right: 12px;
             position: relative;
             @include lib-icon-font(
                     $icon-down,
-                $_icon-font-size        : 1rem,
-                $_icon-font-line-height : 10px,
-                $_icon-font-margin      : 3px 0 0 0,
-                $_icon-font-position    : after
+                $-icon-font-size        : 1rem,
+                $-icon-font-line-height : 10px,
+                $-icon-font-margin      : 3px 0 0 0,
+                $-icon-font-position    : after
             );
 
             &:after {
                 position: absolute;
-                right: -$indent__s;
+                right: -$indent-s;
                 top: 3px;
             }
 
             &-expanded {
                 @include lib-icon-font-symbol(
-                    $_icon-font-content  : $icon-up,
-                    $_icon-font-position : after
+                    $-icon-font-content  : $icon-up,
+                    $-icon-font-position : after
                 );
             }
+        }
+    }
+
+    .price-including-tax {
+        &:after {
+            @include co(content, $price-inc-after-content);
+
+        }
+    }
+    .price-excluding-tax {
+        &:after {
+            @include co(content, $price-ex-after-content);
         }
     }
 

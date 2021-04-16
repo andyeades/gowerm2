@@ -87,13 +87,13 @@ $ftr-nwsltr-icon-margin-desktop: 0 0.625rem 0 0 !default;
 
 $ftr-nwsltr-input-background: transparent !default;
 $ftr-nwsltr-input-fontsize: 0.75rem !default;
+$ftr-nwsltr-input-fontsize-mobilemax: false !default;
 $ftr-nwsltr-input-font-weight: 400 !default;
 $ftr-nwsltr-input-color: #495057 !default;
 $ftr-nwsltr-input-padding: false !default;
 $ftr-nwsltr-input-height: 44px !default;
 $ftr-nwsltr-input-border-on: 1 !default;
 $ftr-nwsltr-input-border: false !default;
-$ftr-nwsltr-input-border-radius-on: 0 !default;
 $ftr-nwsltr-input-border-radius: 5px !default;
 $ftr-nwsltr-input-border-color: #e2e2e2 !default;
 $ftr-nwsltr-input-border-type: solid !default;
@@ -123,7 +123,7 @@ $ftr-nwsltr-btn-padding-horizontal: 0.75rem !default;
 
 $ftr-m-bg-color: false !default;
 $ftr-m-hdr-text-color: #FFFFFF !default;
-$ftr-m-font-size: $font-size__s !default;
+$ftr-m-font-size: $font-size-s !default;
 $ftr-m-hdr-font-size: 1.188rem !default;
 $ftr-m-hdr-font-weight: 600 !default;
 $ftr-m-hdr-text-transform-on: 1 !default;
@@ -362,7 +362,7 @@ $ftr-block-ul-collapsible-margin-mobile: 0 !default;
 $ftr-block-ul-collapsible-margin-desktop: 0 !default;
 
 $ftr-copyright-padding: 0.75rem 0 0 0 !default;
-$ftr-copyright-fontsize: $font-size__s !default;
+$ftr-copyright-fontsize: $font-size-s !default;
 $ftr-copyright-fontfamily: false !default;
 $ftr-copyright-border-on: 1 !default;
 $ftr-copyright-border-color: #313d57 !default;
@@ -373,7 +373,7 @@ $ftr-copyright-border-position: top !default;
 $ftr-above-bg-color: #006b7f !default;
 $ftr-above-text-color: #FFFFFF !default;
 
-$ftr-above-font-size: $font-size__s !default;
+$ftr-above-font-size: $font-size-s !default;
 $ftr-above-padding: 0 !default;
 
 $ftr-above-bgimage-on: 0 !default;
@@ -401,7 +401,7 @@ $ftr-below-border-position: top !default;
 $ftr-below-bg-color: false !default;
 $ftr-below-text-color: #FFFFFF !default;
 
-$ftr-below-font-size: $font-size__s !default;
+$ftr-below-font-size: $font-size-s !default;
 $ftr-below-padding: 0 0 1.25rem 0 !default;
 
 $ftr-below-inner-padding: 0 !default;
@@ -444,14 +444,36 @@ $ftr-soc-i-border-style: solid !default;
 $ftr-soc-i-border-color: #313d57 !default;
 
 
+
+
+
+
+
+
+
 $ftr-soc-i-justify-content: center !default;
 $ftr-soc-i-justify-content-desktop: center !default;
+$ftr-soc-i-justify-content-desktopmd: center !default;
+$ftr-soc-i-justify-content-desktoplg: center !default;
+$ftr-soc-i-justify-content-desktopxl: center !default;
+
 $ftr-soc-i-align-items: center !default;
 $ftr-soc-i-align-items-desktop: center !default;
+$ftr-soc-i-align-items-desktopmd: center !default;
+$ftr-soc-i-align-items-desktoplg: center !default;
+$ftr-soc-i-align-items-desktopxl: center !default;
+
 $ftr-soc-i-margin: 0 auto !default;
-$ftr-soc-i-padding: 1.5rem 0 !default;
 $ftr-soc-i-margin-desktop: 0 0 2.813rem 0 !default;
+$ftr-soc-i-margin-desktopmd: 0 0 2.813rem 0 !default;
+$ftr-soc-i-margin-desktoplg: 0 0 2.813rem 0 !default;
+$ftr-soc-i-margin-desktopxl: 0 0 2.813rem 0 !default;
+
+$ftr-soc-i-padding: 1.5rem 0 !default;
 $ftr-soc-i-padding-desktop: 1.5rem 0 !default;
+$ftr-soc-i-padding-desktopmd: 1.5rem 0 !default;
+$ftr-soc-i-padding-desktoplg: 1.5rem 0 !default;
+$ftr-soc-i-padding-desktopxl: 1.5rem 0 !default;
 
 $ftr-soc-i-i-bg-color: #FFFFFF !default;
 $ftr-soc-i-i-display: flex !default;
@@ -505,6 +527,23 @@ $ftr-soc-i-a-margin-left-firstoftype-sm-on: 1 !default;
 $ftr-soc-i-a-margin-left-firstoftype-md-on: 1 !default;
 $ftr-soc-i-a-margin-left-firstoftype-lg-on: 1 !default;
 $ftr-soc-i-a-margin-left-firstoftype-xl-on: 1 !default;
+
+$ftr-soc-i-a-padding: 0 0.625rem 0 0 !default;
+$ftr-soc-i-a-padding-desktopsm: 0 1.5rem 0 0 !default;
+$ftr-soc-i-a-padding-desktopmd: 0 1.5rem 0 0 !default;
+$ftr-soc-i-a-padding-desktoplg: 0 1.5rem 0 0 !default;
+$ftr-soc-i-a-padding-desktopxl: 0 1.5rem 0 0 !default;
+$ftr-soc-i-a-padding-right-lastoftype-on: 1 !default;
+$ftr-soc-i-a-padding-right-lastoftype-sm-on: 1 !default;
+$ftr-soc-i-a-padding-right-lastoftype-md-on: 1 !default;
+$ftr-soc-i-a-padding-right-lastoftype-lg-on: 1 !default;
+$ftr-soc-i-a-padding-right-lastoftype-xl-on: 1 !default;
+
+$ftr-soc-i-a-padding-left-firstoftype-on: 1 !default;
+$ftr-soc-i-a-padding-left-firstoftype-sm-on: 1 !default;
+$ftr-soc-i-a-padding-left-firstoftype-md-on: 1 !default;
+$ftr-soc-i-a-padding-left-firstoftype-lg-on: 1 !default;
+$ftr-soc-i-a-padding-left-firstoftype-xl-on: 1 !default;
 
 
 $ftr-soc-i-a-border: false !default;
@@ -641,13 +680,13 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
 
 
     h4 {
-        font-size: $ftr-m-hdr-font-size;
-        font-weight: $ftr-m-hdr-font-weight;
+        @include co(font-size, $ftr-m-hdr-font-size);
+        @include co(font-weight, $ftr-m-hdr-font-weight);
         @if $ftr-m-hdr-text-transform-on == 1 {
-            text-transform: $ftr-m-hdr-text-trans;
+            @include co(text-transform, $ftr-m-hdr-text-trans);
         }
-        margin: $ftr-m-hdr-margin-mobile;
-        padding: $ftr-m-hdr-padding-mobile;
+        @include co(margin, $ftr-m-hdr-margin-mobile);
+        @include co(padding, $ftr-m-hdr-padding-mobile);
         color: $ftr-m-hdr-text-color;
         position: relative;
 
@@ -665,7 +704,7 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
                 font-weight: normal;
                 text-decoration: inherit;
                 color: $ftr-m-hdr-text-color;
-                font-size: $ftr-m-hdr-font-size;
+                @include co(font-size, $ftr-m-hdr-font-size);
                 padding-left: 1rem;
                 position: relative;
                 right: 0;
@@ -674,10 +713,10 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
 
         @include min-screen($desktop-min) {
             @if $ftr-m-hdr-margin != $ftr-m-hdr-margin-mobile {
-                margin: $ftr-m-hdr-margin;
+                @include co(margin, $ftr-m-hdr-margin);
             }
             @if $ftr-m-hdr-padding != $ftr-m-hdr-padding-mobile {
-                padding: $ftr-m-hdr-padding;
+                @include co(padding, $ftr-m-hdr-padding);
             }
 
         }
@@ -695,7 +734,7 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     @include co(margin, $ftr-m-ti-margin);
     @include co(padding, $ftr-m-ti-padding);
     flex-wrap: wrap;
-    justify-content: $ftr-m-ti-justify-content;
+    @include co(justify-content, $ftr-m-ti-justify-content);
 
     @include max-screen($mobilemax) {
         @include co(margin, $ftr-m-ti-margin-mobilemax);
@@ -725,17 +764,17 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     > input {
 
         @if $ftr-input-search-input-margin != 0 {
-            margin: $ftr-input-search-input-margin;
+            @include co(margin, $ftr-input-search-input-margin);
             @if $ftr-input-search-input-margin-mobile-xsmidmax != $ftr-input-search-input-margin {
                 @include max-screen($screen-xs-mid-max) {
-                    margin: $ftr-input-search-input-margin-mobile-xsmidmax;
+                    @include co(margin, $ftr-input-search-input-margin-mobile-xsmidmax);
                 }
             }
 
         }
         @include min-screen($desktop-min) {
             @if $ftr-input-search-input-margin-desktop != 0 {
-                margin: $ftr-input-search-input-margin-desktop;
+                @include co(margin, $ftr-input-search-input-margin-desktop);
             }
         }
     }
@@ -752,14 +791,14 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     .btn.footer-input-search-button {
         white-space: nowrap;
         @if $ftr-input-search-btn-text-transform-on == 1 {
-            text-transform: $ftr-input-search-btn-text-transform;
+            @include co(text-transform, $ftr-input-search-btn-text-transform);
         }
         @if $ftr-input-search-btn-align == "right" {
             margin-left: auto;
         }
         @include button-variant($ftr-input-search-bg-color, $ftr-input-search-border-color);
         @include max-screen($screen-xs-mid-max) {
-            width: $ftr-input-search-btn-width-mobile;
+            @include co(width, $ftr-input-search-btn-width-mobile);
         }
     }
 }
@@ -769,8 +808,8 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     .footer-block {
         flex: $ftr-block-flex;
         text-align: center;
-        width: $ftr-block-width;
-        padding: $ftr-block-padding;
+        @include co(width, $ftr-block-width);
+        @include co(padding, $ftr-block-padding);
 
         @include min-screen($desktop-min) {
             @include co(flex, $ftr-block-flex-desktop, $ftr-block-flex);
@@ -790,20 +829,20 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
 
 
         > div {
-            margin: $ftr-block-internal-div-margin-mobile;
+            @include co(margin, $ftr-block-internal-div-margin-mobile);
             @include min-screen($desktop-min) {
-                margin: $ftr-block-internal-div-margin-default;
+                @include co(margin, $ftr-block-internal-div-margin-default);
             }
             @include screen($screen-sm-min, $screen-md-min) {
                 // if More than One
 
                 &:last-child {
-                    margin: $ftr-block-internal-div-last-child-margin-sm;
+                    @include co(margin, $ftr-block-internal-div-last-child-margin-sm);
                 }
             }
             @include min-screen($screen-lg-min) {
                 &:last-child {
-                    margin: $ftr-block-internal-div-last-child-margin-desktop;
+                    @include co(margin, $ftr-block-internal-div-last-child-margin-desktop);
                 }
             }
 
@@ -820,23 +859,23 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
             list-style-type: none;
             padding: 0;
             display: none;
-            margin: $ftr-block-ul-collapsible-margin-mobile;
+            @include co(margin, $ftr-block-ul-collapsible-margin-mobile);
             @include min-screen($desktop-min) {
                 display: block;
-                margin: $ftr-block-ul-collapsible-margin-desktop;
+                @include co(margin, $ftr-block-ul-collapsible-margin-desktop);
             }
 
             li {
-                padding: $ftr-m-li-padding; // Redund
+                @include co(padding, $ftr-m-li-padding); // Redund
                 &:last-child {
                     padding: 0;
                 }
 
                 a {
                     display: block;
-                    padding: $ftr-m-li-a-padding-mobile;
+                    @include co(padding, $ftr-m-li-a-padding-mobile);
                     @include min-screen($desktop-min) {
-                        padding: $ftr-m-li-a-padding-desktop;
+                        @include co(padding, $ftr-m-li-a-padding-desktop);
                     }
                     color: $ftr-m-text-color;
 
@@ -855,7 +894,7 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     @if $ftr-block-1-enabled != true {
         display: none;
     } @else {
-        order: $ftr-block-1-order;
+        @include co(order, $ftr-block-1-order);
         @include co(padding, $ftr-block-1-padding, $ftr-block-padding);
         @include co(width, $ftr-block-1-width, $ftr-block-width);
 
@@ -899,7 +938,7 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     @if $ftr-block-2-enabled != true {
         display: none;
     } @else {
-        order: $ftr-block-2-order;
+        @include co(order, $ftr-block-2-order);
         @include co(padding, $ftr-block-2-padding, $ftr-block-padding);
         @include co(width, $ftr-block-2-width, $ftr-block-width);
 
@@ -943,7 +982,7 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     @if $ftr-block-3-enabled != true {
         display: none;
     } @else {
-        order: $ftr-block-3-order;
+        @include co(order, $ftr-block-3-order);
         @include co(padding, $ftr-block-3-padding, $ftr-block-padding);
         @include co(width, $ftr-block-3-width, $ftr-block-width);
 
@@ -987,7 +1026,7 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     @if $ftr-block-4-enabled != true {
         display: none;
     } @else {
-        order: $ftr-block-4-order;
+        @include co(order, $ftr-block-4-order);
         @include co(padding, $ftr-block-4-padding, $ftr-block-padding);
         @include co(width, $ftr-block-4-width, $ftr-block-width);
 
@@ -1045,8 +1084,8 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
 
 
 #ev-footer-inner-top {
-    padding: $ftr-footer-inner-top-padding;
-    margin: $ftr-footer-inner-top-margin;
+    @include co(padding, $ftr-footer-inner-top-padding);
+    @include co(margin, $ftr-footer-inner-top-margin);
     text-align: $ftr-footer-inner-top-text-align;
 }
 
@@ -1148,6 +1187,8 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
         }
 
         input {
+
+
             @include co(background, $ftr-nwsltr-input-background);
             @include co(border-radius, $ftr-nwsltr-input-border-radius);
             @include co(color, $ftr-nwsltr-input-color);
@@ -1156,6 +1197,11 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
             @include co(font-size, $ftr-nwsltr-input-fontsize);
             @include co(font-weight, $ftr-nwsltr-input-font-weight);
             @include co(font-family, $ftr-nwsltr-input-fontfamily);
+
+            @include max-screen($mobilemax) {
+                @include co(font-size, $ftr-nwsltr-input-fontsize-mobilemax);
+            }
+
 
             &:-webkit-autofill,
             &:-webkit-autofill:hover,
@@ -1200,19 +1246,19 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     }
 
     .home-newsletter-text {
-        margin: $ftr-nwsltr-text-margin;
+        @include co(margin, $ftr-nwsltr-text-margin);
         justify-content: center;
-        width: $ftr-nwsltr-text-container-width;
+        @include co(width, $ftr-nwsltr-text-container-width);
         order: 1;
         @include co(flex-wrap, $ftr-nwsltr-flexwrap);
 
         @include min-screen($desktop-medium-min) {
             justify-content: initial;
             @if $ftr-nwsltr-text-margin-desktop != $ftr-nwsltr-text-margin {
-                margin: $ftr-nwsltr-text-margin-desktop;
+                @include co(margin, $ftr-nwsltr-text-margin-desktop);
             }
             @include co(flex-wrap, $ftr-nwsltr-flexwrap-desktop, $ftr-nwsltr-flexwrap);
-            width: $ftr-nwsltr-text-container-width-desktop;
+            @include co(width, $ftr-nwsltr-text-container-width-desktop);
         }
     }
 
@@ -1225,7 +1271,7 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
         @include max-screen($mobilemax) {
             @include co(margin, $ftr-nwsltr-btn-margin-mobilemax);
         }
-        margin: $ftr-nwsltr-btn-margin;
+        @include co(margin, $ftr-nwsltr-btn-margin);
         vertical-align: top;
         color: $ftr-nwsltr-btn-color;
         background-color: $ftr-nwsltr-btn-bg-color;
@@ -1250,8 +1296,8 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     @if $ftr-nwsltr-icon-on == 1 {
         i {
             display: $ftr-nwsltr-icon-display;
-            order: $ftr-nwsltr-icon-order;
-            margin: $ftr-nwsltr-icon-margin;
+            @include co(order, $ftr-nwsltr-icon-order);
+            @include co(margin, $ftr-nwsltr-icon-margin);
 
             @include min-screen($desktop-min) {
                 @include co(display, $ftr-nwsltr-icon-display-desktop, $ftr-nwsltr-icon-display);
@@ -1266,13 +1312,13 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
 
 
     h3 {
-        font-weight: $ftr-nwsltr-hdrtext-fontweight;
+        @include co(font-weight, $ftr-nwsltr-hdrtext-fontweight);
         color: $ftr-nwsltr-hdrtext-color;
-        font-size: $ftr-nwsltr-hdrtext-fontsize;
+        @include co(font-size, $ftr-nwsltr-hdrtext-fontsize);
         letter-spacing: $ftr-nwsltr-hdrtext-letter-spacing;
-        order: $ftr-nwsltr-hdrtext-order;
+        @include co(order, $ftr-nwsltr-hdrtext-order);
         @include co(text-transform, $ftr-nwsltr-hdrtext-text-transform);
-        margin: $ftr-nwsltr-hdrtext-margin;
+        @include co(margin, $ftr-nwsltr-hdrtext-margin);
         @include min-screen($desktop-min) {
             @include co(margin, $ftr-nwsltr-hdrtext-margin-desktop, $ftr-nwsltr-hdrtext-margin);
             @include co(font-size, $ftr-nwsltr-hdrtext-fontsize-desktop, $ftr-nwsltr-hdrtext-fontsize);
@@ -1328,9 +1374,9 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
 }
 
 #footer-cards {
-    padding: $ftr-cards-padding;
+    @include co(padding, $ftr-cards-padding);
     display: flex;
-    align-items: $ftr-cards-alignitems;
+    @include co(align-items, $ftr-cards-alignitems);
 
     @include max-screen($screen-sm-max) {
         justify-content: center;
@@ -1345,7 +1391,7 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
             background-image: $ftr-cards-cardssingle-url;
             background-size: $ftr-cards-cardssingle-bgsize;
             height: $ftr-cards-cardssingle-height;
-            width: $ftr-cards-cardssingle-width;
+            @include co(width, $ftr-cards-cardssingle-width);
             @include max-screen($mobilemax) {
                 max-width: 300px;
             }
@@ -1365,7 +1411,7 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     } @else {
         .ftr-card-block {
             height: $ftr-card-block-height;
-            width: $ftr-card-block-width;
+            @include co(width, $ftr-card-block-width);
         }
 
 
@@ -1396,14 +1442,14 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
             width: 131px;
         }
         > div {
-            margin: $ftr-cards-cards-multi-margin;
-            width: $ftr-cards-cards-multi-width;
+            @include co(margin, $ftr-cards-cards-multi-margin);
+            @include co(width, $ftr-cards-cards-multi-width);
             @include min-screen($screen-md-min) {
                 @include co(margin, $ftr-cards-cards-multi-margin-desktop, $ftr-cards-cards-multi-margin);
             }
 
             &:last-of-type {
-                margin: $ftr-cards-cards-multi-lot-margin;
+                @include co(margin, $ftr-cards-cards-multi-lot-margin);
                 @include min-screen($screen-md-min) {
                     @include co(margin, $ftr-cards-cards-multi-lot-margin-desktop, $ftr-cards-cards-multi-lot-margin);
                 }
@@ -1449,21 +1495,21 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
 
 #footer-mid-left {
     flex: 0 1 auto;
-    width: $ev-ftr-bic-ml-width-mobile;
+    @include co(width, $ev-ftr-bic-ml-width-mobile);
 
     @if $ev-ftr-bic-ml-display == flex {
         display: flex;
         @if $ev-ftr-bic-ml-justify-content-on == 1 {
-            justify-content: $ev-ftr-bic-ml-justify-content;
+            @include co(justify-content, $ev-ftr-bic-ml-justify-content);
         }
 
     }
 
 
     @include min-screen($screen-md-min) {
-        width: $ev-ftr-bic-ml-width-desktop;
+        @include co(width, $ev-ftr-bic-ml-width-desktop);
         @if $ev-ftr-bic-ml-justify-content-desktopmd-on == 1 {
-            justify-content: $ev-ftr-bic-ml-justify-content-desktopmd;
+            @include co(justify-content, $ev-ftr-bic-ml-justify-content-desktopmd);
         } @else if $ev-ftr-bic-ml-justify-content-on == 1 {
             justify-content: initial;
         }
@@ -1473,18 +1519,18 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
 
 #footer-mid-right {
     flex: 0 1 auto;
-    padding: $ev-ftr-bic-mr-padding-mobile;
+    @include co(padding, $ev-ftr-bic-mr-padding-mobile);
     display: flex;
-    justify-content: $ev-ftr-bic-mr-justifycontent;
-    align-items: $ev-ftr-bic-mr-alignitems-mobile;
-    width: $ev-ftr-bic-mr-width-mobile;
+    @include co(justify-content, $ev-ftr-bic-mr-justifycontent);
+    @include co(align-items, $ev-ftr-bic-mr-alignitems-mobile);
+    @include co(width, $ev-ftr-bic-mr-width-mobile);
     @include min-screen($desktop-medium-min) {
         @include co(align-items, $ev-ftr-bic-mr-alignitems-desktop, $ev-ftr-bic-mr-alignitems-mobile);
         @include co(justify-content, $ev-ftr-bic-mr-justifycontent-desktop, $ev-ftr-bic-mr-justifycontent);
         @include co(padding, $ev-ftr-bic-mr-padding-desktop, $ev-ftr-bic-mr-padding-mobile);
     }
     @include min-screen($screen-md-min) {
-        width: $ev-ftr-bic-mr-width-desktop;
+        @include co(width, $ev-ftr-bic-mr-width-desktop);
     }
 
 }
@@ -1494,14 +1540,14 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
 
     .ftr-mid-left-il {
         flex: $ftr-mid-left-il-flex;
-        margin: $ftr-mid-left-il-margin;
-        padding: $ftr-mid-left-il-padding;
+        @include co(margin, $ftr-mid-left-il-margin);
+        @include co(padding, $ftr-mid-left-il-padding);
     }
     .ftr-mid-left-il-i {
         background-image: $ftr-mid-left-il-i-url;
         background-size: $ftr-mid-left-il-i-bgsize;
         height: $ftr-mid-left-il-i-height;
-        width: $ftr-mid-left-il-i-width;
+        @include co(width, $ftr-mid-left-il-i-width);
         background-repeat: no-repeat;
     }
 }
@@ -1530,17 +1576,19 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
 @if $ftr-soc-i-include == true {
 
     $ftr-soc-i-a-width-on: false !default;
+    $ftr-soc-i-display: flex !default;
 
     .footer-social-icons {
-        display: flex;
 
-        @if $ftr-soc-i-flex-wrap == wrap {
-            flex-wrap: $ftr-soc-i-flex-wrap;
-        }
-        align-items: $ftr-soc-i-align-items;
-        justify-content: $ftr-soc-i-justify-content;
+
+        @include co(display, $ftr-soc-i-display);
+        @include co(flex-wrap, $ftr-soc-i-flex-wrap);
+        @include co(align-items, $ftr-soc-i-align-items);
+        @include co(justify-content, $ftr-soc-i-justify-content);
         @include co(margin, $ftr-soc-i-margin);
         @include co(padding, $ftr-soc-i-padding);
+
+
 
         @if $ftr-soc-i-border-on == 1 {
             @include elevate-border($ftr-soc-i-border-color, $ftr-soc-i-border-thickness, $ftr-soc-i-border-style, $ftr-soc-i-border-position);
@@ -1553,6 +1601,27 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
             @include co(justify-content, $ftr-soc-i-justify-content-desktop, $ftr-soc-i-justify-content);
         }
 
+        @include min-screen($desktop-md-min) {
+            @include co(margin, $ftr-soc-i-margin-desktopmd, $ftr-soc-i-margin-desktop, $ftr-soc-i-margin);
+            @include co(padding, $ftr-soc-i-padding-desktopmd, $ftr-soc-i-padding-desktop, $ftr-soc-i-padding);
+            @include co(align-items, $ftr-soc-i-align-items-desktopmd, $ftr-soc-i-align-items-desktop, $ftr-soc-i-align-items);
+            @include co(justify-content, $ftr-soc-i-justify-content-desktopmd, $ftr-soc-i-justify-content-desktop, $ftr-soc-i-justify-content);
+        }
+
+        @include min-screen($desktop-large-min) {
+            @include co(margin, $ftr-soc-i-margin-desktoplg, $ftr-soc-i-margin-desktopmd, $ftr-soc-i-margin-desktop, $ftr-soc-i-margin);
+            @include co(padding, $ftr-soc-i-padding-desktoplg, $ftr-soc-i-padding-desktopmd, $ftr-soc-i-padding-desktop, $ftr-soc-i-padding);
+            @include co(align-items, $ftr-soc-i-align-items-desktoplg, $ftr-soc-i-align-items-desktopmd, $ftr-soc-i-align-items-desktop, $ftr-soc-i-align-items);
+            @include co(justify-content, $ftr-soc-i-justify-content-desktoplg, $ftr-soc-i-justify-content-desktopmd, $ftr-soc-i-justify-content-desktop, $ftr-soc-i-justify-content);
+        }
+
+        @include min-screen($desktop-xl-min) {
+            @include co(margin, $ftr-soc-i-margin-desktopxl, $ftr-soc-i-margin-desktoplg, $ftr-soc-i-margin-desktopmd, $ftr-soc-i-margin-desktop, $ftr-soc-i-margin);
+            @include co(padding, $ftr-soc-i-padding-desktopxl, $ftr-soc-i-padding-desktoplg, $ftr-soc-i-padding-desktopmd, $ftr-soc-i-padding-desktop, $ftr-soc-i-padding);
+            @include co(align-items, $ftr-soc-i-align-items-desktopxl, $ftr-soc-i-align-items-desktoplg, $ftr-soc-i-align-items-desktopmd, $ftr-soc-i-align-items-desktop, $ftr-soc-i-align-items);
+            @include co(justify-content, $ftr-soc-i-justify-content-desktopxl, $ftr-soc-i-justify-content-desktoplg, $ftr-soc-i-justify-content-desktopmd, $ftr-soc-i-justify-content-desktop, $ftr-soc-i-justify-content);
+        }
+
         a {
             @include co(text-decoration, $ftr-soc-i-a-textdecoration);
             @include co(margin, $ftr-soc-i-a-margin);
@@ -1561,6 +1630,7 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
             @include co(transition, $ftr-soc-i-a-transition);
             @include co(justify-content, $ftr-soc-i-a-justifycontent);
             @include co(display, $ftr-soc-i-a-display);
+            @include co(padding, $ftr-soc-i-a-padding);
 
             @if $ftr-soc-i-a-margin-left-firstoftype-on == 1 {
                 &:first-of-type {
@@ -1573,6 +1643,16 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
                 }
             }
 
+            @if $ftr-soc-i-a-padding-left-firstoftype-on == 1 {
+                &:first-of-type {
+                    padding-left: 0;
+                }
+            }
+            @if $ftr-soc-i-a-padding-right-lastoftype-on == 1 {
+                &:last-of-type {
+                    padding-right: 0;
+                }
+            }
 
             @include min-screen($desktop-min) {
                 @include co(justify-content, $ftr-soc-i-a-justifycontent-desktop, $ftr-soc-i-a-justifycontent);
@@ -1605,11 +1685,37 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
 
                 }
                 @include co(margin, $ftr-soc-i-a-margin-desktopsm, $ftr-soc-i-a-margin);
+                @include co(padding, $ftr-soc-i-a-padding-desktopsm, $ftr-soc-i-a-padding);
+                @if $ftr-soc-i-a-padding-right-lastoftype-sm-on == 1 {
+                    &:last-of-type {
+                        padding-right: 0;
+                    }
+                } @else {
+                    @if $ftr-soc-i-a-padding-right-lastoftype-on == 1 {
+                        &:last-of-type {
+                            padding-right: initial;
+                        }
+                    }
 
+                }
+                @if $ftr-soc-i-a-padding-left-firstoftype-sm-on == 1 {
+                    &:first-of-type {
+                        padding-left: 0;
+                    }
+                } @else {
+                    @if $ftr-soc-i-a-padding-left-firstoftype-on == 1 {
+                        &:first-of-type {
+                            padding-left: initial;
+                        }
+                    }
+
+                }
 
             }
-            @include min-screen($desktop-medium-min) {
+            @include min-screen($desktop-md-min) {
                 @include co(margin, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
+
+                @include co(padding, $ftr-soc-i-a-padding-desktopmd, $ftr-soc-i-a-padding, $ftr-soc-i-a-padding-desktopsm);
 
                 @include co(width, $ftr-soc-i-a-width-md, $ftr-soc-i-a-width-sm, $ftr-soc-i-a-width);
 
@@ -1641,11 +1747,42 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
                         }
                     }
                 }
+
+
+                @if $ftr-soc-i-a-padding-right-lastoftype-md-on == 1 {
+                    @if $ftr-soc-i-a-padding-right-lastoftype-sm-on != 1 {
+                        &:last-of-type {
+                            padding-right: 0;
+                        }
+                    }
+
+                } @else {
+                    @if $ftr-soc-i-a-padding-right-lastoftype-on == 1 {
+                        &:last-of-type {
+                            padding-right: initial;
+                        }
+                    }
+                }
+                @if $ftr-soc-i-a-padding-left-firstoftype-md-on == 1 {
+                    @if $ftr-soc-i-a-padding-left-firstoftype-sm-on != 1 {
+                        &:first-of-type {
+                            padding-left: 0;
+                        }
+                    }
+
+                } @else {
+                    @if $ftr-soc-i-a-padding-left-firstoftype-on == 1 {
+                        &:first-of-type {
+                            padding-left: initial;
+                        }
+                    }
+                }
             }
 
             @include min-screen($desktop-large-min) {
                 @include co(margin, $ftr-soc-i-a-margin-desktoplg, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
                 @include co(width, $ftr-soc-i-a-width-lg, $ftr-soc-i-a-width-md, $ftr-soc-i-a-width-sm, $ftr-soc-i-a-width);
+                @include co(margin, $ftr-soc-i-a-margin-desktoplg, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
                 @if $ftr-soc-i-a-margin-right-lastoftype-lg-on == 1 {
                     @if $ftr-soc-i-a-margin-right-lastoftype-md-on != 1 {
                         &:last-of-type {
@@ -1672,6 +1809,33 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
                         }
                     }
                 }
+                @include co(padding, $ftr-soc-i-a-padding-desktoplg, $ftr-soc-i-a-padding-desktopmd, $ftr-soc-i-a-padding, $ftr-soc-i-a-padding-desktopsm);
+                @if $ftr-soc-i-a-padding-right-lastoftype-lg-on == 1 {
+                    @if $ftr-soc-i-a-padding-right-lastoftype-md-on != 1 {
+                        &:last-of-type {
+                            padding-right: 0;
+                        }
+                    }
+                } @else {
+                    @if $ftr-soc-i-a-padding-right-lastoftype-on == 1 {
+                        &:last-of-type {
+                            padding-right: initial;
+                        }
+                    }
+                }
+                @if $ftr-soc-i-a-padding-left-firstoftype-lg-on == 1 {
+                    @if $ftr-soc-i-a-padding-left-firstoftype-md-on != 1 {
+                        &:first-of-type {
+                            padding-left: 0;
+                        }
+                    }
+                } @else {
+                    @if $ftr-soc-i-a-padding-left-firstoftype-on == 1 {
+                        &:first-of-type {
+                            padding-left: initial;
+                        }
+                    }
+                }
                 &:hover {
                     i {
                         @include co(transition, $ftr-soc-i-a-transition);
@@ -1684,11 +1848,19 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
                 @include co(margin, $ftr-soc-i-a-margin-desktopxl, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
 
                 @include co(width, $ftr-soc-i-a-width-xl, $ftr-soc-i-a-width-lg, $ftr-soc-i-a-width-sm, $ftr-soc-i-a-width);
-
+                @include co(margin, $ftr-soc-i-a-margin-desktopxl, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
                 @if $ftr-soc-i-a-margin-right-lastoftype-xl-on == 1 {
                     &:last-of-type {
                         @if $ftr-soc-i-a-margin-right-lastoftype-xl-on != 1 {
                             margin-right: 0;
+                        }
+                    }
+                }
+                @include co(padding, $ftr-soc-i-a-padding-desktopxl, $ftr-soc-i-a-padding-desktopmd, $ftr-soc-i-a-padding, $ftr-soc-i-a-padding-desktopsm);
+                @if $ftr-soc-i-a-padding-right-lastoftype-xl-on == 1 {
+                    &:last-of-type {
+                        @if $ftr-soc-i-a-padding-right-lastoftype-xl-on != 1 {
+                            padding-right: 0;
                         }
                     }
                 }
@@ -1869,7 +2041,7 @@ $ftr-copy-r-width-mobiletabletmax: false !default;
 .footer-copy-left,
 .footer-copy-right {
     flex: $ftr-copy-lr-flex;
-    width: $ftr-copy-lr-width;
+    @include co(width, $ftr-copy-lr-width);
     line-height: $ftr-copy-lr-line-height;
     text-align: $ftr-copy-lr-text-align;
     @include min-screen($screen-md-min) {
@@ -1901,6 +2073,3 @@ $ftr-copy-r-width-mobiletabletmax: false !default;
 
     }
 }
-
-
-

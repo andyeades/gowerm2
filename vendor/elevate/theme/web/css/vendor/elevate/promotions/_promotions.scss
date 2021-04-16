@@ -6,28 +6,18 @@ $ev-promo-subheadingbar-fontfamily: false !default;
     @include co(background, $ev-promo-subheadingbar-background);
     @include co(padding, $ev-promo-subheadingbar-padding);
     @include co(font-family, $ev-promo-subheadingbar-fontfamily);
-
-
-
-
-
-
 }
 
 
 // Sub heading Inner
+$ev-promo-subheading-inner-padding: 10px 0 !default;
 $ev-promo-subheading-inner-margin: 0 auto !default;
 $ev-promo-subheading-inner-display: flex !default;
 $ev-promo-subheading-inner-alignitems: center !default;
 $ev-promo-subheading-inner-justifycontent: center !default;
 
 
-
-
 $ev-promo-subheading-inner-a-textdecoration: none !default;
-
-
-
 
 // Usp Text Bar
 $ev-promo-usptextbar-a-textdecoration: none !default;
@@ -37,6 +27,7 @@ $ev-promo-usptextbar-a-textdecoration: none !default;
     @include co(align-items, $ev-promo-subheading-inner-alignitems);
     @include co(justify-content, $ev-promo-subheading-inner-justifycontent);
     @include co(margin, $ev-promo-subheading-inner-margin);
+    @include co(padding, $ev-promo-subheading-inner-padding);
 
     a {
         @include co(text-decoration, $ev-promo-subheading-inner-a-textdecoration);
@@ -510,7 +501,7 @@ $ev-promo-shiblocksitewide-display-desktopxl: false !default;
 $ev-promo-subhdrctaico-display: flex !default;
 $ev-promo-subhdrctaico-alignitems: center !default;
 $ev-promo-subhdrctaico-justifycontent: center !default;
-$ev-promo-subhdrctaico-width: center !default;
+$ev-promo-subhdrctaico-width: 35px !default;
 $ev-promo-subhdrctaico-margin: 0 4px !default;
 $ev-promo-subhdrctaico-margin-desktopxl: 0 10px !default;
 
@@ -537,26 +528,6 @@ $ev-promo-subhdrctaico-i-width: 30px !default;
         @include co(background-repeat, $ev-promo-subhdrctaico-i-backgroundrepeat);
         @include co(height, $ev-promo-subhdrctaico-i-height);
         @include co(width, $ev-promo-subhdrctaico-i-width);
-    }
-}
-
-
-$ev-promo-subhdrtext-lineheight: false !default;
-$ev-promo-subhdrtext-fontsize: false !default;
-$ev-promo-subhdrtext-texttransform: false !default;
-$ev-promo-subhdrtext-fontweight: false !default;
-
-$ev-promo-subhdrtext-fontsize-max: false !default;
-
-
-.sub-hdr-hdr-text {
-    @include co(line-height, $ev-promo-subhdrtext-lineheight);
-    @include co(font-size, $ev-promo-subhdrtext-fontsize);
-
-    @include co(text-transform, $ev-promo-subhdrtext-texttransform);
-    @include co(font-weight, $ev-promo-subhdrtext-fontweight);
-    @include max-screen($mobile-max) {
-        @include co(font-size, $ev-promo-subhdrtext-fontsize-max);
     }
 }
 

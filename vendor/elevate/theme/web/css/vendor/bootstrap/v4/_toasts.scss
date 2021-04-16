@@ -32,7 +32,7 @@
 .toast-header {
   display: flex;
   align-items: center;
-  padding: $toast-padding-y $toast-padding-x;
+  @include co(padding, $toast-padding-y $toast-padding-x);
   color: $toast-header-color;
   background-color: $toast-header-background-color;
   background-clip: padding-box;
@@ -40,5 +40,5 @@
 }
 
 .toast-body {
-  padding: $toast-padding-x; // apply to both vertical and horizontal
+  @include co(padding, $toast-padding-x); // apply to both vertical and horizontal
 }

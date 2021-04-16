@@ -1,11 +1,11 @@
 // stylelint-disable selector-pseudo-class-no-unknown
 
-$include_gift_message_styles: false !default;
+$include-gift-message-styles: false !default;
 
-@if $include_gift_message_styles != false {
+@if $include-gift-message-styles != false {
     //
     //  Variables
-    //  _____________________________________________
+    //
 
 
     // Cart Discount
@@ -49,19 +49,19 @@ $include_gift_message_styles: false !default;
 
 
 
-    $gift-message-field-label__color : $color-gray40 !default;
-    $gift-item-block__border-color   : $color-gray-light5 !default;
-    $gift-item-block__border-width   : $border-width__base !default;
+    $gift-message-field-label-color : $color-gray40 !default;
+    $gift-item-block-border-color   : $color-gray-light5 !default;
+    $gift-item-block-border-width   : $border-width-base !default;
 
 
 
     .gift-message {
         .field {
-            margin-bottom: $indent__base;
+            margin-bottom: $indent-base;
 
             .label {
-                @include lib-css(color, $gift-message-field-label__color);
-                @include lib-css(font-weight, $font-weight__regular);
+                @include lib-css(color, $gift-message-field-label-color);
+                @include lib-css(font-weight, $font-weight-regular);
             }
         }
     }
@@ -78,12 +78,12 @@ $include_gift_message_styles: false !default;
     }
 
     .gift-options-title {
-        margin: 0 0 $indent__base;
+        margin: 0 0 $indent-base;
     }
 
     .gift-options-content {
         .fieldset {
-            margin: 0 0 $indent__base;
+            margin: 0 0 $indent-base;
         }
     }
 
@@ -93,7 +93,7 @@ $include_gift_message_styles: false !default;
                 float: none;
 
                 .action {
-                    margin: $indent__s $indent__base 0 0;
+                    @include co(margin, $indent-s $indent-base 0 0);
                 }
             }
         }
@@ -101,31 +101,31 @@ $include_gift_message_styles: false !default;
 
     .action-gift {
         @include lib-link-as-button();
-        margin-bottom: $indent__s;
-        margin-right: $indent__s;
+        margin-bottom: $indent-s;
+        margin-right: $indent-s;
 
         &:last-child {
             margin-right: 0;
         }
         @include lib-button-icon(
                 $icon-down,
-            $_icon-font-size        : 0.75rem,
-            $_icon-font-line-height : 16px,
-            $_icon-font-position    : after
+            $-icon-font-size        : 0.75rem,
+            $-icon-font-line-height : 16px,
+            $-icon-font-position    : after
         );
 
         &.active,
         &._active {
             @include lib-icon-font-symbol(
                     $icon-up,
-                $_icon-font-position: after
+                $-icon-font-position: after
             );
         }
     }
 
     //
     //  In-table block
-    //  ---------------------------------------------
+    //
 
     .cart {
         &.table-wrapper {
@@ -134,7 +134,7 @@ $include_gift_message_styles: false !default;
                 clear: left;
                 display: none;
                 float: left;
-                margin: $indent__s 0 $indent__base;
+                @include co(margin, $indent-s 0 $indent-base);
                 text-align: left;
                 width: 100%;
 
@@ -147,48 +147,48 @@ $include_gift_message_styles: false !default;
 
     //
     //  Collapsible block
-    //  ---------------------------------------------
+    //
 
     .gift-item-block {
         margin: 0;
 
         &._active {
             .title {
-                @include lib-icon-font-symbol($icon-up, $_icon-font-position : after);
+                @include lib-icon-font-symbol($icon-up, $-icon-font-position : after);
             }
         }
 
         .title {
 
-            @include lib-css(font-weight, $font-weight__bold);
+            @include lib-css(font-weight, $font-weight-bold);
             border-radius: 3px;
 
 
             &:active,
-            &:_active {
-                @include lib-css(box-shadow, $button__shadow);
+            &._active {
+                @include lib-css(box-shadow, $button-shadow);
             }
         }
 
         .content {
             @include abs-add-clearfix();
-            @include lib-css(border-bottom, $gift-item-block__border-width solid $gift-item-block__border-color);
-            padding: $indent__s $indent__s $indent__base;
+            @include lib-css(border-bottom, $gift-item-block-border-width solid $gift-item-block-border-color);
+            @include co(padding, $indent-s $indent-s $indent-base);
             position: relative;
         }
     }
 
     //
     //  Account order gift message
-    //  ---------------------------------------------
+    //
 
     .order-details-items {
         .order-gift-message,
         .block-order-details-gift-message {
             .item-options {
                 dt {
-                    @include lib-css(font-weight, $font-weight__regular);
-                    margin: $indent__s 0;
+                    @include lib-css(font-weight, $font-weight-regular);
+                    @include co(margin, $indent-s 0);
                 }
             }
 
@@ -224,13 +224,13 @@ $include_gift_message_styles: false !default;
 
             .action.show {
                 @include lib-icon-font(
-                    $_icon-font-content   : $icon-down,
-                    $_icon-font-size      : 22px,
-                    $_icon-font-text-hide : false,
-                    $_icon-font-position  : after,
-                    $_icon-font-display   : inline-block
+                    $-icon-font-content   : $icon-down,
+                    $-icon-font-size      : 22px,
+                    $-icon-font-text-hide : false,
+                    $-icon-font-position  : after,
+                    $-icon-font-display   : inline-block
                 );
-                padding-right: $indent__base;
+                padding-right: $indent-base;
                 position: relative;
 
                 &:after {
@@ -241,8 +241,8 @@ $include_gift_message_styles: false !default;
 
                 &.expanded {
                     @include lib-icon-font-symbol(
-                        $_icon-font-content  : $icon-up,
-                        $_icon-font-position : after
+                        $-icon-font-content  : $icon-up,
+                        $-icon-font-position : after
                     );
                 }
             }
@@ -250,15 +250,15 @@ $include_gift_message_styles: false !default;
     }
 
     .block-order-details-gift-message {
-        border-top: $border-width__base solid $border-color__base;
-        padding-top: $indent__s;
+        border-top: $border-width-base solid $border-color-base;
+        padding-top: $indent-s;
     }
 
     //
     //  Mobile
-    //  _____________________________________________
+    //
 
-    @include max-screen($screen__m) {
+    @include max-screen($screen-m) {
         .gift-options {
             .actions-toolbar {
                 .action-update {
@@ -270,25 +270,25 @@ $include_gift_message_styles: false !default;
         }
 
         .gift-item-block {
-            @include lib-css(border-top, $gift-item-block__border-width solid $gift-item-block__border-color);
+            @include lib-css(border-top, $gift-item-block-border-width solid $gift-item-block-border-color);
             border-bottom: 0;
         }
 
         .cart {
             &.table-wrapper {
                 .gift-content {
-                    margin-right: -$indent__s;
+                    margin-right: -$indent-s;
                 }
             }
         }
     }
 
-    @include max-screen($screen__s) {
+    @include max-screen($screen-s) {
         .cart {
             &.table-wrapper {
                 .gift-content {
-                    border-bottom: $border-width__base solid $border-color__base;
-                    margin-bottom: $indent__base;
+                    border-bottom: $border-width-base solid $border-color-base;
+                    margin-bottom: $indent-base;
                 }
             }
         }
@@ -296,12 +296,12 @@ $include_gift_message_styles: false !default;
 
     //
     //  Desktop
-    //  _____________________________________________
+    //
 
-    @include min-screen($screen__m) {
+    @include min-screen($screen-m) {
         .gift-message {
             .field {
-                margin-bottom: $indent__base;
+                margin-bottom: $indent-base;
             }
         }
 
@@ -319,7 +319,7 @@ $include_gift_message_styles: false !default;
 
                     .action {
                         float: right;
-                        margin-left: $indent__base;
+                        margin-left: $indent-base;
                     }
 
                     .action-cancel {
@@ -331,7 +331,7 @@ $include_gift_message_styles: false !default;
 
                 &:nth-child(3) {
                     &:before {
-                        @include lib-css(border-left, 1px solid $gift-item-block__border-color);
+                        @include lib-css(border-left, 1px solid $gift-item-block-border-color);
                         bottom: 5rem;
                         content: '';
                         display: block;
@@ -346,7 +346,7 @@ $include_gift_message_styles: false !default;
         }
 
         .gift-options-title {
-            @include lib-css(font-weight, $font-weight__light);
+            @include lib-css(font-weight, $font-weight-light);
             @include lib-font-size(18);
         }
 
@@ -380,14 +380,14 @@ $include_gift_message_styles: false !default;
                         @include co(font-size, $cart-gift-item-block-title-font-size);
                         @include co(font-weight, $cart-gift-item-block-title-font-weight);
                         @include lib-icon-font(
-                            $_icon-font-content: $icon-down,
-                            $_icon-font-size: $gift-message-cart-gift-item_icon-font-size,
-                            $_icon-font-position: after,
-                            $_icon-font-display: block
+                            $-icon-font-content: $icon-down,
+                            $-icon-font-size: $gift-message-cart-gift-item-icon-font-size,
+                            $-icon-font-position: after,
+                            $-icon-font-display: block
                         );
                         margin-bottom: 0;
                         overflow: hidden;
-                        padding: 7px $indent__l 7px $indent__xs;
+                        padding: 7px $indent-l 7px $indent-xs;
                         position: relative;
                         border: none;
                         &:focus {
@@ -401,7 +401,7 @@ $include_gift_message_styles: false !default;
 
                         strong {
                             .column.main & {
-                                @include font-size($gift-message-cart-gift-item_font-size);
+                                @include font-size($gift-message-cart-gift-item-font-size);
                             }
                         }
                     }
@@ -414,8 +414,8 @@ $include_gift_message_styles: false !default;
                     &._active {
                         > .title {
                             @include lib-icon-font-symbol(
-                                $_icon-font-content: $icon-up,
-                                $_icon-font-position: after
+                                $-icon-font-content: $icon-up,
+                                $-icon-font-position: after
                             );
                         }
 
@@ -428,7 +428,7 @@ $include_gift_message_styles: false !default;
                     .field {
                         .control {
                             input {
-                                height: $gift-message-cart-gift-item_input_height;
+                                height: $gift-message-cart-gift-item-input-height;
                             }
                         }
                     }
@@ -437,8 +437,8 @@ $include_gift_message_styles: false !default;
                 .actions-toolbar {
 
                     .primary {
-                        width: $gift-message-cart-gift-item_primary_width;
-                        margin: $gift-message-cart-gift-item_primary_margin;
+                        @include co(width, $gift-message-cart-gift-item-primary-width);
+                        @include co(margin, $gift-message-cart-gift-item-primary-margin);
                     }
                 }
             }
@@ -446,7 +446,7 @@ $include_gift_message_styles: false !default;
 
         //
         //  In-table block
-        //  ---------------------------------------------
+        //
 
         .cart {
             &.table-wrapper {
@@ -458,7 +458,7 @@ $include_gift_message_styles: false !default;
 
         //
         //  Multiple Shipping Checkout
-        //  ---------------------------------------------
+        //
 
         .order-options,
         .table-order-review {

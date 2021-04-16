@@ -46,8 +46,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
  body {
     margin: 0; // 1
     font-family: $font-family-base;
-    font-size: $font-size-base;
-    font-weight: $font-weight-base;
+  @include co(font-size, $font-size-base);
+    @include co(font-weight, $font-weight-base);
     line-height: $line-height-base;
     color: $body-color;
     text-align: $body-text-align; // 3
@@ -142,7 +142,7 @@ ul ol {
 }
 
 dt {
-    font-weight: $dt-font-weight;
+    @include co(font-weight, $dt-font-weight);
 }
 
 dd {
@@ -156,7 +156,7 @@ blockquote {
 
 b,
 strong {
-    font-weight: $strong_b_font_weight; // Add the correct font weight in Chrome, Edge, and Safari
+    @include co(font-weight, $strong-b-font-weight); // Add the correct font weight in Chrome, Edge, and Safari
 }
 
 small {

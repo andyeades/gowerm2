@@ -12,10 +12,7 @@ $elevate_advanced_select = true;
 if($elevate_advanced_select){
 
 
-
 ?>
-
-
 
 
 <?php } ?>
@@ -34,7 +31,55 @@ if($elevate_advanced_select){
       if($default_option_tooltip != ''){
           ?>
 
-          <a href="#"  title="<?php echo $block->escapeQuote(__('What is this?')) ?>" data-mage-init='{"tooltip": {"content": "<?php echo $default_option_tooltip ?>"}}'><span><i class="fa fa-info-circle fa-lg tooltipstered"></i></span></a>
+         <!-- <a href="#" id="tippyclick_<?= $block->escapeHtmlAttr($_option->getId()) ?>"  title="<?php echo $block->escapeQuote(__('What is this?')) ?>"><span><i class="fa fa-info-circle fa-lg tooltipstered"></i></span></a>  -->
+   
+   <style>
+   
+
+
+
+/*Tooltip Fix*/
+
+.product-options-wrapper .fieldset {
+     overflow: initial;
+    
+    }
+.catalog-product-view .tooltip {
+  
+    z-index: initial;
+    }
+    
+         .field .tooltip .tooltip-content {
+    min-width: 400px;
+  font-size: 14px;
+   border: 1px solid #bbb !important;
+}
+.field .tooltip .tooltip-content h5 {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+.field .tooltip .tooltip-content p {
+    margin-bottom: 12px;
+} 
+ @media only screen and (max-width: 991.98px) {
+   .field .tooltip .tooltip-content {
+    min-width: 200px;
+  
+}
+ 
+ }
+.my-tooltip {
+    .lib-tooltip(right);
+}
+   </style>
+<span class="field">
+<span class="tooltip" style="display:inline-block;       right: initial;
+    bottom: initial;">
+    <a href="#" class="tooltip-toggle"><i class="fa fa-info-circle fa-lg tooltipstered"></i></a>
+    <span class="tooltip-content"><?php echo $default_option_tooltip; ?></span>
+</span>
+</span>
 
       <?php
       }
@@ -77,6 +122,14 @@ if($elevate_advanced_select) {
         $output_array = [];
         if($elevate_advanced_select) {
             $option .= '<option value="" >'.$default_option_text.'</option>';
+              
+              $output_array[] = "{
+                  id: '',
+                  text: '<div style=\"color:green\">enhancement</div>',
+                  html: '$default_option_text',
+                  title: 'enchancement'
+              }";
+              
         } else {
 
             $option .= '<option value="" >'.$block->escapeHtml($default_option_text).'</option>';
@@ -218,7 +271,10 @@ echo implode(',',$output_array);
 
 
 
+
 <script>
+
+    /*
     require(['jquery', 'tippy'], function ($, tippy) {
         // Tippify all titled elements
 
@@ -234,10 +290,10 @@ $('#tippyclick_<?= $block->escapeHtmlAttr($_option->getId()) ?>').css("backgroun
                 interactive: true,
                 trigger: 'click',
                 theme: 'honeybee',
-                content: '<strong>Bolded content</strong>'
+                content: '<?php echo $default_option_tooltip ?>'
             });
 
     });
-
+  */
 
 </script>

@@ -1,94 +1,94 @@
 //
 //  Dropdowns variables
-//  _____________________________________________
+//
 
 //
 //  Variables simple dropdown
-//  ---------------------------------------------
+//
 
-$dropdown-actions__padding                        : false !default;
+$dropdown-actions-padding                        : false !default;
 
-$dropdown-list__min-width                         : 100% !default;
-$dropdown-list__width                             : false !default;
-$dropdown-list__height                            : false !default;
-$dropdown-list__margin-top                        : 4px !default;
-$dropdown-list__position-top                      : 100% !default;
-$dropdown-list__position-right                    : false !default;
-$dropdown-list__position-bottom                   : false !default;
-$dropdown-list__position-left                     : false !default;
-$dropdown-list__pointer                           : true !default; // [true|false]
-$dropdown-list__background                        : $color-white !default;
-$dropdown-list__border                            : 1px solid $color-gray-light2 !default;
-$dropdown-list__shadow                            : 0 3px 3px rgba(0, 0, 0, 0.15) !default; // [''|none|value]
-$dropdown-list__z-index                           : 100 !default;
+$dropdown-list-min-width                         : 100% !default;
+$dropdown-list-width                             : false !default;
+$dropdown-list-height                            : false !default;
+$dropdown-list-margin-top                        : 4px !default;
+$dropdown-list-position-top                      : 100% !default;
+$dropdown-list-position-right                    : false !default;
+$dropdown-list-position-bottom                   : false !default;
+$dropdown-list-position-left                     : false !default;
+$dropdown-list-pointer                           : true !default; // [true|false]
+$dropdown-list-background                        : $color-white !default;
+$dropdown-list-border                            : 1px solid $color-gray-light2 !default;
+$dropdown-list-shadow                            : 0 3px 3px rgba(0, 0, 0, 0.15) !default; // [''|none|value]
+$dropdown-list-z-index                           : 100 !default;
 
-$dropdown-list-pointer__border                    : $color-gray-light2 !default;
-$dropdown-list-pointer__position                  : left !default; // [left|right]
-$dropdown-list-pointer__position-top              : -12px !default;
-$dropdown-list-pointer__position-left-right       : 10px !default;
+$dropdown-list-pointer-border                    : $color-gray-light2 !default;
+$dropdown-list-pointer-position                  : left !default; // [left|right]
+$dropdown-list-pointer-position-top              : -12px !default;
+$dropdown-list-pointer-position-left-right       : 10px !default;
 
-$dropdown-list-item__border                       : 0 !default;
-$dropdown-list-item__padding                      : 3px $indent__xs !default;
-$dropdown-list-item__margin                       : 0 !default;
-$dropdown-list-item__hover                        : $color-gray91 !default;
+$dropdown-list-item-border                       : 0 !default;
+$dropdown-list-item-padding                      : 3px $indent-xs !default;
+$dropdown-list-item-margin                       : 0 !default;
+$dropdown-list-item-hover                        : $color-gray91 !default;
 
-$dropdown-toggle-icon__content                    : $icon-pointer-down !default;
-$dropdown-toggle-icon__font                       : $button-icon__font !default;
-$dropdown-toggle-icon__font-size                  : $button-icon__font-size !default;
-$dropdown-toggle-icon__font-line-height           : $button-icon__line-height !default;
-$dropdown-toggle-icon__font-color                 : $button-icon__color !default;
-$dropdown-toggle-icon__font-color-hover           : $button-icon__hover__font-color !default;
-$dropdown-toggle-icon__font-color-active          : $button-icon__active__font-color !default;
-$dropdown-toggle-icon__font-margin                : $button-icon__margin !default;
-$dropdown-toggle-icon__position                   : after !default;
-$dropdown-toggle-icon__font-vertical-align        : $button-icon__vertical-align !default;
-$dropdown-toggle-icon__text-hide                  : $button-icon__text-hide !default;
+$dropdown-toggle-icon-content                    : $icon-pointer-down !default;
+$dropdown-toggle-icon-font                       : $button-icon-font !default;
+$dropdown-toggle-icon-font-size                  : $button-icon-font-size !default;
+$dropdown-toggle-icon-font-line-height           : $button-icon-line-height !default;
+$dropdown-toggle-icon-font-color                 : $button-icon-color !default;
+$dropdown-toggle-icon-font-color-hover           : $button-icon-hover-font-color !default;
+$dropdown-toggle-icon-font-color-active          : $button-icon-active-font-color !default;
+$dropdown-toggle-icon-font-margin                : $button-icon-margin !default;
+$dropdown-toggle-icon-position                   : after !default;
+$dropdown-toggle-icon-font-vertical-align        : $button-icon-vertical-align !default;
+$dropdown-toggle-icon-text-hide                  : $button-icon-text-hide !default;
 
-$dropdown-toggle-icon__active__content            : $icon-pointer-up !default;
+$dropdown-toggle-icon-active-content            : $icon-pointer-up !default;
 
 //
 //  Variables split dropdown
-//  ---------------------------------------------
+//
 
-$dropdown-split-actions__padding                  : 0 $indent__xs !default;
-$dropdown-split-toggle__actions__padding          : 4px $indent__xs !default;
-$dropdown-split-button__actions__padding          : false !default;
-$dropdown-split-toggle__position                  : right !default;
+$dropdown-split-actions-padding                  : 0 $indent-xs !default;
+$dropdown-split-toggle-actions-padding          : 4px $indent-xs !default;
+$dropdown-split-button-actions-padding          : false !default;
+$dropdown-split-toggle-position                  : right !default;
 
-$dropdown-split-list__min-width                   : $dropdown-list__min-width !default;
-$dropdown-split-list__width                       : $dropdown-list__width !default;
-$dropdown-split-list__height                      : $dropdown-list__height !default;
-$dropdown-split-list__margin-top                  : $dropdown-list__margin-top !default;
-$dropdown-split-list__position-top                : $dropdown-list__position-top !default;
-$dropdown-split-list__position-right              : $dropdown-list__position-right !default;
-$dropdown-split-list__position-bottom             : $dropdown-list__position-bottom !default;
-$dropdown-split-list__position-left               : $dropdown-list__position-left !default;
-$dropdown-split-list__background                  : $dropdown-list__background !default;
-$dropdown-split-list__border                      : $dropdown-list__border !default;
-$dropdown-split-list__pointer                     : $dropdown-list__pointer !default;
-$dropdown-split-list__pointer-border              : $dropdown-list-pointer__border !default;
-$dropdown-split-list__pointer-position            : $dropdown-split-toggle__position !default;
-$dropdown-split-list__pointer-position-top        : $dropdown-list-pointer__position-top !default;
-$dropdown-split-list__pointer-position-left-right : $dropdown-list-pointer__position-left-right !default;
-$dropdown-split-list__item-border                 : $dropdown-list-item__border !default;
-$dropdown-split-list__item-padding                : $dropdown-list-item__padding !default;
-$dropdown-split-list__item-margin                 : $dropdown-list-item__margin !default;
-$dropdown-split-list__item-hover                  : $dropdown-list-item__hover !default;
+$dropdown-split-list-min-width                   : $dropdown-list-min-width !default;
+$dropdown-split-list-width                       : $dropdown-list-width !default;
+$dropdown-split-list-height                      : $dropdown-list-height !default;
+$dropdown-split-list-margin-top                  : $dropdown-list-margin-top !default;
+$dropdown-split-list-position-top                : $dropdown-list-position-top !default;
+$dropdown-split-list-position-right              : $dropdown-list-position-right !default;
+$dropdown-split-list-position-bottom             : $dropdown-list-position-bottom !default;
+$dropdown-split-list-position-left               : $dropdown-list-position-left !default;
+$dropdown-split-list-background                  : $dropdown-list-background !default;
+$dropdown-split-list-border                      : $dropdown-list-border !default;
+$dropdown-split-list-pointer                     : $dropdown-list-pointer !default;
+$dropdown-split-list-pointer-border              : $dropdown-list-pointer-border !default;
+$dropdown-split-list-pointer-position            : $dropdown-split-toggle-position !default;
+$dropdown-split-list-pointer-position-top        : $dropdown-list-pointer-position-top !default;
+$dropdown-split-list-pointer-position-left-right : $dropdown-list-pointer-position-left-right !default;
+$dropdown-split-list-item-border                 : $dropdown-list-item-border !default;
+$dropdown-split-list-item-padding                : $dropdown-list-item-padding !default;
+$dropdown-split-list-item-margin                 : $dropdown-list-item-margin !default;
+$dropdown-split-list-item-hover                  : $dropdown-list-item-hover !default;
 
-$dropdown-split-button__border_radius-fix         : false !default;
-$dropdown-split-list__shadow                      : $dropdown-list__shadow !default; // [''|none|value]
-$dropdown-split-list__z-index                     : $dropdown-list__z-index !default;
+$dropdown-split-button-border-radius-fix         : false !default;
+$dropdown-split-list-shadow                      : $dropdown-list-shadow !default; // [''|none|value]
+$dropdown-split-list-z-index                     : $dropdown-list-z-index !default;
 
-$dropdown-split-toggle-icon__content              : $dropdown-toggle-icon__content !default;
-$dropdown-split-toggle-icon__font                 : $button-icon__font !default;
-$dropdown-split-toggle-icon__font-size            : $button-icon__font-size !default;
-$dropdown-split-toggle-icon__font-line-height     : $button-icon__line-height !default;
-$dropdown-split-toggle-icon__font-color           : $button-icon__color !default;
-$dropdown-split-toggle-icon__font-color-hover     : $button-icon__hover__font-color !default;
-$dropdown-split-toggle-icon__font-color-active    : $button-icon__active__font-color !default;
-$dropdown-split-toggle-icon__font-margin          : $button-icon__margin !default;
-$dropdown-split-toggle-icon__font-vertical-align  : $button-icon__vertical-align !default;
-$dropdown-split-toggle-icon__position             : $dropdown-toggle-icon__position !default;
-$dropdown-split-toggle-icon__text-hide            : true !default; // [true|false]
+$dropdown-split-toggle-icon-content              : $dropdown-toggle-icon-content !default;
+$dropdown-split-toggle-icon-font                 : $button-icon-font !default;
+$dropdown-split-toggle-icon-font-size            : $button-icon-font-size !default;
+$dropdown-split-toggle-icon-font-line-height     : $button-icon-line-height !default;
+$dropdown-split-toggle-icon-font-color           : $button-icon-color !default;
+$dropdown-split-toggle-icon-font-color-hover     : $button-icon-hover-font-color !default;
+$dropdown-split-toggle-icon-font-color-active    : $button-icon-active-font-color !default;
+$dropdown-split-toggle-icon-font-margin          : $button-icon-margin !default;
+$dropdown-split-toggle-icon-font-vertical-align  : $button-icon-vertical-align !default;
+$dropdown-split-toggle-icon-position             : $dropdown-toggle-icon-position !default;
+$dropdown-split-toggle-icon-text-hide            : true !default; // [true|false]
 
-$dropdown-split-toggle-icon__active__content      : $dropdown-toggle-icon__active__content !default;
+$dropdown-split-toggle-icon-active-content      : $dropdown-toggle-icon-active-content !default;

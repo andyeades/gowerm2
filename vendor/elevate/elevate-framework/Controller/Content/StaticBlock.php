@@ -84,7 +84,7 @@ protected $blockFactory;
              return $array;
         }
 
-        return false;
+        return __('Static block content not found');
     }
     /**
      * Execute view action
@@ -104,69 +104,15 @@ protected $blockFactory;
        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $filterProvider = $objectManager->create('\Magento\Cms\Model\Template\FilterProvider');
 $storeManager = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
- 
-                                    $content = $this->getCmsBlockContent($identifier);
-                                    if(!$content){
-                                     echo __('Static block content not found');
-                                     exit;
-                                    }
-                  
-preg_match_all('!\d+!', $identifier, $matches);
-
-                              
-        if(!isset($matches[0])){
-          echo __('Static block content not found');
-           exit;
-        }
-      
-      
-      $calendar_day = $matches[0];  
-  $dateTime = new \DateTime();
-/**
- * You can get the string by using format
- */
-$current_date = $dateTime->format('d');
-if($current_date > 25){
-$current_date = 1;
-}      
-         
-if(isset($_GET['dayoverride'])){
-
-$current_date =  $_GET['dayoverride'];
-}
-  
-
-    $expire = $this->getRequest()->getParam("expire");
-
-    if($expire == 'yes' && $current_date > $calendar_day){
-     echo __('This Deal has expired');
-      exit;
-    }
-      
-else if($calendar_day >= $current_date){
- 
-
-
 
         $html = $filterProvider->getBlockFilter()
                             ->setStoreId($storeManager->getStore()->getId())
-                            ->filter($content['content']);
-                    }
-                    else if($calendar_day < $current_date){
-                    
-                      echo __('This deal will be open soon');
-      exit;
-                    
-                    
-                    }
-                    
-                    
-                    
-                    
+                            ->filter($this->getCmsBlockContent($identifier)['content']);
+
         $responseData = [
             'errors' => false,
             'html' => $html,
-            'title' => $content['title']
+            'title' => $this->getCmsBlockContent($identifier)['title']
         ];
         echo json_encode($responseData);
 

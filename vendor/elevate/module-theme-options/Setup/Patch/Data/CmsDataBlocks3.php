@@ -64,37 +64,7 @@ class CmsDataBlocks3 implements DataPatchInterface, PatchRevertableInterface
     {
         $this->moduleDataSetup->getConnection()->startSetup();
         //The code that you want apply in the patch
-        try {
-            $this->blockRepository->getById('ev-footer-above-inner-content');
-        } catch (NoSuchEntityException $e) {
-            $cmsBlock = $this->blockInterfaceFactory->create();
-            $content = '<div id="home-newsletter">
-<div class="container-ev">
-<div id="home-newsletter-inner">
-<form action="/newsletter/subscriber/new/" method="post" id="newsletter-validate-detail">
-<div id="home-news">
-<div class="home-newsletter-text">
-<i class="fa fa-paper-plane-o fa-3x"></i>
-<h3>Sign Up To Our Newsletter</h3>
-<div class="newsletter-additional">For the latest news &amp; Offers</div>
-</div>
-<div class="home-newsletter-input-container">
-<div class="home-newsletter-input">
-<input placeholder="Enter your email address" name="email" id="newsletter" class="form-control required-entry validate-email" title="Sign up for our newsletter">
-<button class="btn btn-newsletter action primary" title="Subscribe" type="submit">Sign Up</button>
-</div>
-</div>
-</div>
-</form>
-</div> </div>
-</div>';
-            $cmsBlock->setIdentifier('ev-footer-above-inner-content');
-            $cmsBlock->setTitle('ev-footer-above-inner-content');
-            $cmsBlock->setContent($content);
-            $cmsBlock->setData('stores', [Store::DEFAULT_STORE_ID]); // DEFAULT_STORE_ID = 0
-            $this->blockRepository->save($cmsBlock);
-        }
-
+       // ev-footer-above-inner-content was here
         try {
             $this->blockRepository->getById('ev-footer-main-inside-top-inner-content');
         } catch (NoSuchEntityException $e) {

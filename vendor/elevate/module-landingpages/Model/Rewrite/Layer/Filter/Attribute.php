@@ -45,11 +45,11 @@ protected $linkOverrides = [];
         $this->linkOverrides['mattress_firmness']['url']['soft'][] = 2;
         $this->linkOverrides['mattress_firmness']['url']['soft'][] = 3;
 
-        $this->linkOverrides['mattress_firmness']['url']['soft_medium'][] = 3;
-        $this->linkOverrides['mattress_firmness']['url']['soft_medium'][] = 4;
-        $this->linkOverrides['mattress_firmness']['url']['soft_medium'][] = 5;
-        $this->linkOverrides['mattress_firmness']['url']['soft_medium'][] = 6;
-        $this->linkOverrides['mattress_firmness']['url']['soft_medium'][] = 7;
+        $this->linkOverrides['mattress_firmness']['url']['medium_soft'][] = 3;
+        $this->linkOverrides['mattress_firmness']['url']['medium_soft'][] = 4;
+        $this->linkOverrides['mattress_firmness']['url']['medium_soft'][] = 5;
+        $this->linkOverrides['mattress_firmness']['url']['medium_soft'][] = 6;
+        $this->linkOverrides['mattress_firmness']['url']['medium_soft'][] = 7;
 
         $this->linkOverrides['mattress_firmness']['url']['medium'][] = 7;
         $this->linkOverrides['mattress_firmness']['url']['medium'][] = 8;
@@ -69,8 +69,8 @@ protected $linkOverrides = [];
         $this->linkOverrides['mattress_firmness']['url']['firm'][] = 18;
         $this->linkOverrides['mattress_firmness']['url']['firm'][] = 19;
 
-        $this->linkOverrides['mattress_firmness']['label']['medium'] = 'Soft';
-        $this->linkOverrides['mattress_firmness']['label']['soft_medium'] = 'Soft / Medium';
+        $this->linkOverrides['mattress_firmness']['label']['soft'] = 'Soft';
+        $this->linkOverrides['mattress_firmness']['label']['medium_soft'] = 'Soft / Medium';
         $this->linkOverrides['mattress_firmness']['label']['medium'] = 'Medium';
         $this->linkOverrides['mattress_firmness']['label']['medium_firm'] = 'Medium / Firm';
         $this->linkOverrides['mattress_firmness']['label']['firm'] = 'Firm';
@@ -90,7 +90,7 @@ protected $linkOverrides = [];
         $paramjoin = [];
         $param = [];
 
-
+          
         if(count($vals) > 0){
                 foreach ($vals AS $key => $val) {
 
@@ -98,7 +98,9 @@ protected $linkOverrides = [];
 
 
 if(!empty($val)){
+
     if(isset($this->linkOverrides['mattress_firmness']['label'][$val])){
+     
     $this->getLayer()->getState()->addFilter($this->_createItem($this->linkOverrides['mattress_firmness']['label'][$val], $val));
 
     }
@@ -146,14 +148,14 @@ if(!empty($val)){
 
            // return $this;
         }
-
+              
         //get any filter overrides - like firmness
         if (array_key_exists($this->_requestVar, $this->linkOverrides)) {
             $param = $this->convertArray($this->_requestVar, $filter);
-
+          
             foreach($param as $key => $val){
 
-
+             
                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
                 $_product = $objectManager->create('Magento\Catalog\Model\Product');
@@ -165,7 +167,7 @@ if(!empty($val)){
                     $val = $attr->getSource()->getOptionId($val);
 
                 }
-
+                       
                 $this->_appliedOptionIds[] = $val;
             }
         }

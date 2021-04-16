@@ -31,11 +31,17 @@ class WebhookConfiguration extends \Magento\Config\Block\System\Config\Form\Fiel
         $storeId = (int)$this->request->getParam('store', 0);
         $websiteId = (int)$this->request->getParam('website', 0);
 
-        if ($storeId)
+        if ($storeId){
             return $storeId;
-        else if ($websiteId)
+            }
+        else if ($websiteId){
+      
+      if($websiteId == '173'){
+      return 172;
+      }
+      
             return $this->storeManager->getWebsite($websiteId)->getDefaultStore()->getId();
-
+                             }
         return 0; // Default store
     }
 

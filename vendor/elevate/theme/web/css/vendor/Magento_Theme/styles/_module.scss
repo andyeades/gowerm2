@@ -1,36 +1,36 @@
 //
 //  Theme variables
-//  _____________________________________________
+//
 
 //  Messages
-$message-global-note__background           : $color-yellow-light2 !default;
-$message-global-note__border-color         : $color-yellow-light3 !default;
-$message-global-note__color                : $text__color !default;
+$message-global-note-background           : $color-yellow-light2 !default;
+$message-global-note-border-color         : $color-yellow-light3 !default;
+$message-global-note-color                : $text-color !default;
 
-$message-global-note-link__color           : $link__color !default;
-$message-global-note-link__color-hover     : $link__hover__color !default;
-$message-global-note-link__color-active    : $link__active__color !default;
+$message-global-note-link-color           : $link-color !default;
+$message-global-note-link-color-hover     : $link-hover-color !default;
+$message-global-note-link-color-active    : $link-active-color !default;
 
-$message-global-caution__background        : $color-red9 !default;
-$message-global-caution__border-color      : none !default;
-$message-global-caution__color             : $color-white !default;
+$message-global-caution-background        : $color-red9 !default;
+$message-global-caution-border-color      : none !default;
+$message-global-caution-color             : $color-white !default;
 
-$message-global-caution-link__color        : $link__color !default;
-$message-global-caution-link__color-hover  : $link__hover__color !default;
-$message-global-caution-link__color-active : $link__active__color !default;
+$message-global-caution-link-color        : $link-color !default;
+$message-global-caution-link-color-hover  : $link-hover-color !default;
+$message-global-caution-link-color-active : $link-active-color !default;
 
 
 //  Footer
-$footer__background-color                  : false !default;
+$footer-background-color                  : false !default;
 
 //
 //  Header
-//  ---------------------------------------------
+//
 
 .page-main {
   > .page-title-wrapper {
     .page-title + .action {
-      margin-top: $indent__l;
+      margin-top: $indent-l;
     }
   }
 }
@@ -42,7 +42,7 @@ $footer__background-color                  : false !default;
 
   &:focus {
     @include lib-css(background, $color-gray94);
-    @include lib-css(padding, $indent__s);
+    @include lib-css(padding, $indent-s);
     box-sizing: border-box;
     left: 0;
     position: absolute;
@@ -60,7 +60,7 @@ $footer__background-color                  : false !default;
 
 //
 //  Global notice
-//  ---------------------------------------------
+//
 
 .message.global {
   p {
@@ -69,7 +69,7 @@ $footer__background-color                  : false !default;
 
   &.noscript,
   &.cookie {
-    @include lib-message($_message-type: global-note);
+    @include lib-message($-message-type: global-note);
     margin: 0;
   }
 
@@ -81,84 +81,20 @@ $footer__background-color                  : false !default;
     z-index: 3;
 
     .actions {
-      margin-top: $indent__s;
+      margin-top: $indent-s;
     }
   }
 
-  &.demo {
-    @include lib-message($_message-type: global-caution);
-    margin-bottom: 0;
-    text-align: center;
-  }
-}
-
-//
-//  Footer
-//  ---------------------------------------------
-
-.page-footer {
-  @include lib-css(background-color, $footer__background-color);
-  margin-top: auto;
-}
-
-.footer {
-  &.content {
-    border-top: 1px solid $border-color__base;
-  }
-}
-
-.page-header,
-.page-footer {
-  .switcher {
-    margin-right: 10px;
-
-    .options {
-      @include lib-dropdown(
-        $_dropdown-actions-padding            : 0,
-        $_dropdown-list-item-padding          : 0,
-        $_dropdown-toggle-icon-content        : $icon-down,
-        $_dropdown-toggle-active-icon-content : $icon-up,
-        $_icon-font-text-hide                 : true,
-        $_icon-font-size                      : 22px,
-        $_icon-font-line-height               : 22px,
-        $_dropdown-list-min-width             : 160px
-      );
-
-      ul.dropdown {
-        a {
-          display: block;
-          padding: 8px;
-
-          &:hover {
-            text-decoration: none;
-          }
-        }
-      }
-    }
-
-    li {
-      font-size: $font-size__s;
-      margin: 0;
-    }
-
-    .label {
-      @include abs-visually-hidden();
-    }
-
-    strong {
-      font-weight: $font-weight__regular;
-    }
-  }
 }
 
 //
 //  Widgets
-//  ---------------------------------------------
+//
 
 .sidebar {
   .widget.block:not(:last-child),
   .widget:not(:last-child) {
-    margin-bottom: $indent__xl;
+    margin-bottom: $indent-xl;
   }
 }
 
@@ -170,22 +106,15 @@ $footer__background-color                  : false !default;
   }
 }
 
-.page-header,
-.page-footer {
-  .widget.block {
-    @include lib-css(margin, $indent__base 0);
-  }
-}
-
 .no-display {
   @include abs-no-display();
 }
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
 
 
   .page-wrapper {
@@ -210,51 +139,6 @@ $footer__background-color                  : false !default;
     padding: 0 8px;
   }
 
-  .header {
-    &.panel {
-      > .header.links {
-        float: right;
-        font-size: 0;
-        @include lib-list-inline();
-        margin-left: auto;
-
-        > li {
-          font-size: $font-size__base;
-          margin: 0 0 0 15px;
-
-          &.welcome,
-          a {
-            line-height: 1.4;
-          }
-
-          &.welcome {
-            a {
-              @include lib-css(padding-left, $indent__xs);
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .page-header {
-    border: 0;
-    margin-bottom: 0;
-
-    .panel.wrapper {
-      border-bottom: 1px solid $secondary__color;
-    }
-
-    .header.panel {
-      @include abs-add-clearfix();
-      padding-bottom: $indent__s;
-      padding-top: $indent__s;
-    }
-
-    .switcher {
-      display: inline-block;
-    }
-  }
 
   .page-main {
     > .page-title-wrapper {
@@ -264,27 +148,7 @@ $footer__background-color                  : false !default;
 
       .page-title + .action {
         float: right;
-        margin-top: $indent__base;
-      }
-    }
-  }
-
-
-
-  .footer {
-    &.content {
-
-      .links {
-        display: inline-block;
-        margin-bottom: 20px;
-        padding: 0 50px 0 0;
-        vertical-align: top;
-      }
-
-      .switcher.store {
-        display: inline-block;
-        padding-right: 50px;
-        vertical-align: top;
+        margin-top: $indent-base;
       }
     }
   }

@@ -1,23 +1,19 @@
 <?php
-declare(strict_types=1);
 
 namespace Firebear\ConfigurableProducts\Model;
 
-use Exception;
 use Firebear\ConfigurableProducts\Api\Data;
-use Firebear\ConfigurableProducts\Api\DefaultProductOptionsRepositoryInterface;
-use Magento\Catalog\Model\ProductRepository;
 use Magento\Framework\Config\Dom\ValidationException;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\NotFoundException;
+use Magento\Framework\Webapi\Exception;
+use Magento\Catalog\Model\ProductRepository;
 
-class DefaultProductOptionsRepository implements DefaultProductOptionsRepositoryInterface
+class DefaultProductOptionsRepository implements
+    \Firebear\ConfigurableProducts\Api\DefaultProductOptionsRepositoryInterface
 {
-    /**
-     * @var ProductRepository
-     */
-    protected $productRepository;
     /**
      * @var ResourceModel\DefaultProductOptions
      */
@@ -27,19 +23,24 @@ class DefaultProductOptionsRepository implements DefaultProductOptionsRepository
      */
     private $defaultProductOptionsFactory;
     /**
+     * @var ProductRepository
+     */
+    protected $productRepository;
+    /**
      * @var array
      */
     private $entities = [];
 
     /**
-     * DefaultProductOptionsRepository constructor.
+     * ProductOptionsRepository constructor.
+     *
      * @param ResourceModel\DefaultProductOptions $defaultProductOptionsResource
      * @param DefaultProductOptionsFactory $defaultProductOptionsFactory
      * @param ProductRepository $productRepository
      */
     public function __construct(
         \Firebear\ConfigurableProducts\Model\ResourceModel\DefaultProductOptions $defaultProductOptionsResource,
-        DefaultProductOptionsFactory $defaultProductOptionsFactory,
+        \Firebear\ConfigurableProducts\Model\DefaultProductOptionsFactory $defaultProductOptionsFactory,
         ProductRepository $productRepository
     ) {
         $this->defaultProductOptionsResource = $defaultProductOptionsResource;
@@ -62,7 +63,7 @@ class DefaultProductOptionsRepository implements DefaultProductOptionsRepository
                 $childrenIds[] = $child->getId();
             }
             if (in_array($productId, $childrenIds)) {
-                $existingParent = $this->getByParentId($defaultProductOptionsInterface->getParentId());
+                    $existingParent = $this->getByParentId($defaultProductOptionsInterface->getParentId());
                 if ($existingParent->getLinkId()) {
                     $defaultProductOptionsInterface = $defaultProductOptionsInterface
                         ->setLinkId($existingParent->getLinkId());
@@ -74,37 +75,15 @@ class DefaultProductOptionsRepository implements DefaultProductOptionsRepository
                     unset($this->entities);
                 } catch (ValidationException $e) {
                     throw new CouldNotSaveException(__($e->getMessage()));
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     throw new CouldNotSaveException(
                         __('Unable to save model %1', $defaultProductOptionsInterface->getLinkId())
                     );
                 }
-                return $defaultProductOptionsInterface;
+                    return $defaultProductOptionsInterface;
             }
         }
         return false;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getByParentId($parentId)
-    {
-        $model = $this->defaultProductOptionsFactory->create();
-        $this->defaultProductOptionsResource->load($model, $parentId, 'parent_id');
-
-        return $model;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function deleteById($linkId)
-    {
-        $model = $this->get($linkId);
-        $this->delete($model);
-
-        return true;
     }
 
     /**
@@ -133,11 +112,33 @@ class DefaultProductOptionsRepository implements DefaultProductOptionsRepository
             $this->defaultProductOptionsResource->delete($defaultProductOptionsInterface);
         } catch (ValidationException $e) {
             throw new CouldNotSaveException(__($e->getMessage()));
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new CouldNotDeleteException(
                 __('Unable to remove entity with ID%', $defaultProductOptionsInterface->getLinkId())
             );
         }
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getByParentId($parentId)
+    {
+        $model = $this->defaultProductOptionsFactory->create();
+        $this->defaultProductOptionsResource->load($model, $parentId, 'parent_id');
+
+        return $model;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deleteById($linkId)
+    {
+        $model = $this->get($linkId);
+        $this->delete($model);
+
         return true;
     }
 

@@ -1,10 +1,10 @@
 //
 //  Resetes
-//  _____________________________________________
+//
 
 //
 //  Magento reset
-//  ---------------------------------------------
+//
 
 @mixin lib-magento-reset() {
     body {
@@ -90,7 +90,7 @@
     textarea:not([disabled]),
     select:not([disabled]) {
         &:focus {
-            @include lib-css(box-shadow, $focus__box-shadow);
+            @include lib-css(box-shadow, $focus-box-shadow);
         }
     }
 }

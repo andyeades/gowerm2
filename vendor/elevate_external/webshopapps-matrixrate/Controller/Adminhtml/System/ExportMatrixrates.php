@@ -81,12 +81,12 @@ class ExportMatrixrates extends \Magento\Config\Controller\Adminhtml\System\Abst
             'WebShopApps\MatrixRate\Block\Adminhtml\Carrier\Matrixrate\Grid'
         );
         $website = $this->storeManager->getWebsite($this->getRequest()->getParam('website'));
-        if ($this->getRequest()->getParam('conditionName')) {
-            $conditionName = $this->getRequest()->getParam('conditionName');
-        } else {
-            $conditionName = $website->getConfig('carriers/matrixrate/condition_name');
-        }
-        $gridBlock->setWebsiteId($website->getId())->setConditionName($conditionName);
+     //   if ($this->getRequest()->getParam('conditionName')) {
+      //      $conditionName = $this->getRequest()->getParam('conditionName');
+      //  } else {
+      //      $conditionName = $website->getConfig('carriers/matrixrate/condition_name');
+      //  }
+      //  $gridBlock->setWebsiteId($website->getId())->setConditionName($conditionName);
         $content = $gridBlock->getCsvFile();
         return $this->fileFactory->create($fileName, $content, DirectoryList::VAR_DIR);
     }

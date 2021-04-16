@@ -1,32 +1,32 @@
 //
 //  Variables
-//  _____________________________________________
+//
 
 
-$chkout_paymeth_title_border_on: $chkout-default-border_on !default;
-$chkout_paymeth_title_border_position: $chkout-default-border-position !default;
-$chkout_paymeth_title_border_color: $chkout-default-border_color !default;
-$chkout_paymeth_title_border_style: $chkout-default-border_style !default;
-$chkout_paymeth_title_border_thickness: $chkout-default-border_thickness !default;
+$chkout-paymeth-title-border-on: $chkout-default-border-on !default;
+$chkout-paymeth-title-border-position: $chkout-default-border-position !default;
+$chkout-paymeth-title-border-color: $chkout-default-border-color !default;
+$chkout-paymeth-title-border-style: $chkout-default-border-style !default;
+$chkout-paymeth-title-border-thickness: $chkout-default-border-thickness !default;
 
-$chkout_paymeth_title_border_on_desktop: $chkout-default-border_on_desktop !default;
+$chkout-paymeth-title-border-on-desktop: $chkout-default-border-on-desktop !default;
 
-$chkout_paymeth_title_border_radius_on: $chkout-default-border_radius_on !default;
-$chkout_paymeth_title_border_radius: $chkout-default-border_radius !default;
+$chkout-paymeth-title-border-radius-on: $chkout-default-border-radius-on !default;
+$chkout-paymeth-title-border-radius: $chkout-default-border-radius !default;
 
 
-$checkout-payment-method-title__padding        : $checkout-shipping-method__padding !default;
-$checkout-payment-method-title-mobile__padding : 15px !default;
+$checkout-payment-method-title-padding        : $checkout-shipping-method-padding !default;
+$checkout-payment-method-title-mobile-padding : 15px !default;
 
-$checkout-payment-method-content__padding__xl  : 22px !default;
+$checkout-payment-method-content-padding-xl  : 22px !default;
 
-$checkout-billing-address-details__line-height : 27px !default;
-$checkout-billing-address-details__padding     : 0 0 0 23px !default;
-$checkout-billing-address-form__max-width      : $checkout-shipping-address__max-width !default;
+$checkout-billing-address-details-line-height : 27px !default;
+$checkout-billing-address-details-padding     : 0 0 0 23px !default;
+$checkout-billing-address-form-max-width      : $checkout-shipping-address-max-width !default;
 
 //
 //  Common
-//  _____________________________________________
+//
 
 .checkout-payment-method {
     .step-title {
@@ -49,10 +49,10 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
 
         & + .payment-method {
             .payment-method-title {
-                @if $chkout_paymeth_title_border_on == 1 {
-                    @include elevate-border($chkout_paymeth_title_border_color, $chkout_paymeth_title_border_thickness, $chkout_paymeth_title_border_style, $chkout_paymeth_title_border_position);
-                    @if $chkout_paymeth_title_border_radius_on == 1 {
-                        border-radius: $chkout_paymeth_title_border_radius;
+                @if $chkout-paymeth-title-border-on == 1 {
+                    @include elevate-border($chkout-paymeth-title-border-color, $chkout-paymeth-title-border-thickness, $chkout-paymeth-title-border-style, $chkout-paymeth-title-border-position);
+                    @if $chkout-paymeth-title-border-radius-on == 1 {
+                        border-radius: $chkout-paymeth-title-border-radius;
                     }
 
                 }
@@ -75,18 +75,18 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
     }
 
     .payment-method-title {
-        @include lib-css(padding, $checkout-payment-method-title__padding 0);
+        @include lib-css(padding, $checkout-payment-method-title-padding 0);
         margin: 0;
 
         .payment-icon {
             display: inline-block;
-            margin-right: $indent__xs;
+            margin-right: $indent-xs;
             vertical-align: middle;
         }
 
         .action-help {
             display: inline-block;
-            margin-left: $indent__xs;
+            margin-left: $indent-xs;
             &.paypal-actionhelp {
                 display: none;
             }
@@ -95,10 +95,10 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
 
     .payment-method-content {
         display: none;
-        @include lib-css(padding, 0 0 $indent__base $checkout-payment-method-content__padding__xl);
+        @include lib-css(padding, 0 0 $indent-base $checkout-payment-method-content-padding-xl);
         .fieldset {
             &:not(:last-child) {
-                margin: 0 0 $indent__base;
+                margin: 0 0 $indent-base;
             }
         }
     }
@@ -106,22 +106,22 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
     .payment-group {
         & + .payment-group {
             .step-title {
-                margin: $indent__base 0 0;
+                @include co(margin, $indent-base 0 0);
             }
         }
     }
 
     .field-select-billing,
     .billing-address-form {
-        @include lib-css(max-width, $checkout-billing-address-form__max-width);
+        @include lib-css(max-width, $checkout-billing-address-form-max-width);
     }
 
     .billing-address-same-as-shipping-block {
-        margin: 0 0 $indent__s;
+        margin: 0 0 $indent-s;
     }
 
     .checkout-billing-address {
-        margin: 0 0 $indent__base;
+        margin: 0 0 $indent-base;
 
         .primary {
             .action-update {
@@ -134,14 +134,14 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
         }
 
         .billing-address-details {
-            @include lib-css(line-height, $checkout-billing-address-details__line-height);
-            @include lib-css(padding, $checkout-billing-address-details__padding);
+            @include lib-css(line-height, $checkout-billing-address-details-line-height);
+            @include lib-css(padding, $checkout-billing-address-details-padding);
         }
     }
 
     .payment-method-note {
         & + .checkout-billing-address {
-            margin-top: $indent__base;
+            margin-top: $indent-base;
         }
     }
 
@@ -158,7 +158,7 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
     }
 
     .no-payments-block {
-        margin: $indent__base 0;
+        @include co(margin, $indent-base 0);
     }
 
     .payments {
@@ -170,25 +170,25 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__m) {
+@include max-screen($screen-m) {
     .checkout-payment-method {
         .payment-methods {
-            @include lib-css(margin, 0 -($checkout-payment-method-title-mobile__padding));
+            @include lib-css(margin, 0 -($checkout-payment-method-title-mobile-padding));
         }
 
         .payment-method-title {
-            @include lib-css(padding, $checkout-payment-method-title-mobile__padding)
+            @include lib-css(padding, $checkout-payment-method-title-mobile-padding)
         }
 
         .payment-method-content {
-            @include lib-css(padding, 0 $checkout-payment-method-title-mobile__padding $indent__base);
+            @include lib-css(padding, 0 $checkout-payment-method-title-mobile-padding $indent-base);
         }
 
         .checkout-billing-address {
             .action-cancel {
-                margin-top: $indent__s;
+                margin-top: $indent-s;
             }
         }
     }
@@ -196,9 +196,9 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .checkout-payment-method {
         .actions-toolbar {
             .primary {
@@ -219,7 +219,7 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
         .payment-method-content {
             .fieldset {
                 > .field {
-                    margin: 0 0 $indent__base;
+                    margin: 0 0 $indent-base;
 
                     &.type {
                         .control {
@@ -244,7 +244,7 @@ $checkout-billing-address-form__max-width      : $checkout-shipping-address__max
 
         .actions-toolbar {
             .action-cancel {
-                margin: 6px $indent__base 0 0;
+                margin: 6px $indent-base 0 0;
             }
         }
     }

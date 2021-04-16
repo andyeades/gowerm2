@@ -21,34 +21,50 @@ $product_type = $helper->getOriginalProduct($block)->getTypeId();
 
 $style = 'style="display: none;"';
 
-
-   
 if ($product_type == "configurable") {
    // $style = 'style="display: none;"';
-        $productSalable = $helper->isItemSalable($product);
-
-    if ($productSalable != false) {
-        $style = 'style="display: none;"';
-    } else {
-        $style = '';
-    }
 }
-if ($product_type == "simple") {
-    $productSalable = $helper->isItemSalable($product);
-
-    if ($productSalable != false) {
-        $style = 'style="display: none;"';
-    } else {
-        $style = '';
+//if ($product_type == "simple") {
+      /*
+                $obj = \Magento\Framework\App\ObjectManager::getInstance();  
+$stockRegistry = $obj->get('Magento\CatalogInventory\Api\StockRegistryInterface');
+$stockitem = $stockRegistry->getStockItem($product->getId(),$product->getStore()->getWebsiteId());
+$backorder_status = $stockitem->getBackorders();
+$in_stock_status = $stockitem->getIsInStock();
+$qty_in_stock = $stockitem->getQty();
+    if(!$in_stock_status){
+    $in_stock_status = 0;
     }
+ echo "$backorder_status|$in_stock_status|$qty_in_stock<br>";      
+       if( $in_stock_status == 0 && $qty_in_stock < 1){
+        $style = '';
+       }
+      */ 
+       
+       
+           $productSalable = $product->isSaleable();
 
-}
+    if ($productSalable) {            
+  
+        $style = 'style="display: none;"';
+    } else {    
+?>
+     <style>
+             .product-add-form {
+    background-color: #fff !important; 
+    border: solid 1px #fff;
+    }
+     </style>
+<?php   
+        $style = '';
+    }         
+//}
 ?>
 
 <div class="amxnotif-block"  class="testing123445" data-action="<?= /* @noEscape */ $url; ?>" <?= $style; ?>>
     <form id="form-validate-stock" method="post" action="<?= /* @noEscape */ $url; ?>">
         <label for="notification-container-<?= /* @noEscape */ $productId ?>">
-            <i class="fa fa-1.5x fa-info-circle"></i>&nbsp;
+            
             <?= /* @noEscape */ __('Subscribe to back in stock notification') ?>
         </label>
         <div class="notification-container" id="notification-container-<?= /* @noEscape */ $productId ?>">
@@ -91,7 +107,8 @@ if ($product_type == "simple") {
 
             <div class="actions-toolbar amxnotif_guest_action">
                 <div class="primary">
-                    <button type="submit" class="action submit primary">
+                    <button type="submit" class="action submit primary" style="background-color: #e66100;
+    border-color: #e66100;">
                         <span><?= $block->escapeHtml(__('Subscribe')); ?></span>
                     </button>
                 </div>

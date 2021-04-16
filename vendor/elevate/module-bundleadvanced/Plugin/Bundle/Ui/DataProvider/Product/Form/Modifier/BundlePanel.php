@@ -11,8 +11,10 @@ class BundlePanel
      * @param $meta
      * @return mixed
      */
+     
+     //types in here  - /vendor/magento/module-ui/Component/Form/Element
     public function afterModifyMeta(\Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\BundlePanel $subject, $meta)
-    {
+    {                
         $fieldSet = [
             'default_option_text' => [
                 'dataType' => Form\Element\DataType\Number::NAME,
@@ -23,7 +25,7 @@ class BundlePanel
             ],
             'option_tooltip' => [
                 'dataType' => Form\Element\DataType\Number::NAME,
-                'formElement'   => Form\Element\Input::NAME,
+                'formElement'   => Form\Element\Textarea::NAME,
                 'label' => 'Tooltip',
                 'dataScope' => 'option_tooltip',
                 'sortOrder' => 40

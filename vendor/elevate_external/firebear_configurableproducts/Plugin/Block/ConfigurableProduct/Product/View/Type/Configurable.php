@@ -1,254 +1,299 @@
 <?php
-declare(strict_types=1);
 /**
  * Copyright © 2017 Firebear Studio. All rights reserved.
  */
 
 namespace Firebear\ConfigurableProducts\Plugin\Block\ConfigurableProduct\Product\View\Type;
 
-use Exception;
-use Firebear\ConfigurableProducts\Framework\Serializer\Json;
-use Firebear\ConfigurableProducts\Helper\Data as ICPHelper;
-use Firebear\ConfigurableProducts\Logger\Logger;
-use Firebear\ConfigurableProducts\Model\Inventory\ProductStockQty;
 use Firebear\ConfigurableProducts\Model\Product\Defaults;
-use Firebear\ConfigurableProducts\Model\ProductOptionsRepository;
-use Firebear\ConfigurableProducts\Service\ProductProvider;
-use Magento\Catalog\Api\Data\ProductInterface;
-use Magento\Catalog\Model\Product;
-use Magento\Catalog\Pricing\Price\TierPrice;
-use Magento\CatalogInventory\Api\StockConfigurationInterface;
-use Magento\ConfigurableProduct\Block\Product\View\Type\Configurable as ConfigurableBlock;
-use Magento\ConfigurableProduct\Model\Product\Type\Configurable as TypeConfigurable;
-use Magento\Customer\Model\Session as CustomerSession;
-use Magento\Framework\App\ProductMetadataInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Customer\Model\Session;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Pricing\Render;
+use Magento\Framework\Module\Manager;
 use Magento\Framework\Registry;
-use Magento\Framework\View\LayoutInterface;
+use \Magento\Framework\Json\EncoderInterface;
+use \Magento\Framework\Json\DecoderInterface;
 use Magento\Swatches\Helper\Data as SwatchesHelper;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\CatalogInventory\Api\StockStateInterface;
+use Firebear\ConfigurableProducts\Helper\Data as CpiHelper;
+use Magento\CatalogInventory\Api\StockConfigurationInterface;
+use Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable as ConfigurableProductObject;
+use Magento\Framework\App\ResourceConnection;
+
 
 class Configurable
 {
     const ALL_CUSTOMER_GROUPS = 32000;
-    const CATALOG_CATEGORY_VIEW_LAYOUT = 'catalog_category_view';
-    const CMS_INDEX_INDEX_LAYOUT = 'cms_index_index';
-    const CUSTOM_ATTRIBUTES = 'customAttributes';
 
     /**
-     * @var string[]
-     */
-    protected $_configProductAttributes = [
-        'name',
-        'description',
-        'short_description',
-        'sku',
-        'breadcrumbs'
-    ];
-
-    /**
-     * @var string[]
-     */
-    protected $_defaultParentAttr = [
-        'description',
-        'short_description'
-    ];
-
-    /**
-     * @var ConfigurableBlock
-     */
-    protected $configurableBlock;
-
-    /**
-     * @var ICPHelper
-     */
-    protected $cpiHelper;
-
-    /**
-     * @var LayoutInterface
-     */
-    protected $layout;
-
-    /**
+     * Core registry.
+     *
      * @var Registry
      */
-    protected $coreRegistry;
+    private $coreRegistry;
 
     /**
-     * @var ProductProvider
+     * @var EncoderInterface
      */
-    protected $productProvider;
+    private $jsonEncoder;
 
     /**
-     * @var Json
+     * @var DecoderInterface
      */
-    protected $jsonSerializer;
+    private $jsonDecoder;
 
     /**
-     * @var SwatchesHelper
+     * @var ScopeConfigInterface
      */
-    protected $swatchesHelper;
-
-    /**
-     * @var RequestInterface
-     */
-    protected $request;
-
-    /**
-     * @var array
-     */
-    protected $settings = [];
+    private $scopeConfig;
 
     /**
      * @var Defaults
      */
-    protected $productDefaults;
+    private $productDefaults;
 
     /**
-     * @var ProductOptionsRepository
+     * @var ProductRepositoryInterface
      */
-    protected $productOptionsRepository;
+    private $productRepository;
 
     /**
-     * @var StockConfigurationInterface
+     * @var Manager
      */
-    protected $stockConfigurationInterface;
+    private $moduleManager;
 
     /**
-     * @var ProductStockQty
+     * @var SwatchesHelper
      */
-    protected $productStockQty;
+    private $swatchesHelper;
 
     /**
-     * @var ProductInterface|mixed|null
+     * @var RequestInterface
      */
-    protected $currentParentProduct;
+    private $request;
 
     /**
-     * @var CustomerSession
+     * @var []
+     */
+    private $settings;
+
+    /**
+     * @var \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable
+     */
+    private $subject;
+
+    /**
+     * @var \Magento\Framework\View\LayoutInterface
+     */
+    private $layout;
+
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
+     * @var \Magento\CatalogInventory\Api\StockStateInterface
+     */
+    private $stockStateInterface;
+
+    /**
+     * @var \Firebear\ConfigurableProducts\Helper\Data
+     */
+    private $cpiHelper;
+
+    /**
+     * @var \Magento\CatalogInventory\Api\StockConfigurationInterface
+     */
+    private $stockConfigurationInterface;
+
+    /**
+     * @var \Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable
+     */
+    private $configurableProductObject;
+
+    /**
+     * @var \Magento\Framework\UrlInterface
+     */
+    private $urlInterface;
+
+    /**
+     * @var \Firebear\ConfigurableProducts\Model\ProductOptionsRepository
+     */
+    private $productOptionsRepository;
+
+    /**
+     * @var ResourceConnection
+     */
+    protected  $resourceConnection;
+
+    /**
+     * @var Session
      */
     protected $customerSession;
 
     /**
-     * @var ProductMetadata
-     */
-    protected $productMetaData;
-
-    /**
-     * @var Logger
-     */
-    protected $logger;
-
-    /**
-     * Configurable constructor.
-     * @param ICPHelper $icpHelper
-     * @param Registry $coreRegistry
-     * @param Json $jsonSerializer
-     * @param ProductProvider $productProvider
-     * @param SwatchesHelper $swatchesHelper
-     * @param Defaults $productDefaults
-     * @param ProductOptionsRepository $productOptionsRepository
-     * @param StockConfigurationInterface $stockConfigurationInterface
-     * @param ProductStockQty $productStockQty
-     * @param CustomerSession $customerSession
-     * @param Logger $logger
-     * @param ProductMetadataInterface $productMetaData
+     * @param Registry                   $coreRegistry
+     * @param EncoderInterface           $jsonEncoder
+     * @param DecoderInterface           $jsonDecoder
+     * @param ScopeConfigInterface       $scopeConfig
+     * @param Defaults                   $productDefaults
+     * @param Manager                    $moduleManager
+     * @param ProductRepositoryInterface $productRepository
+     * @param SwatchesHelper             $swatchesHelper
+     * @param RequestInterface           $request
+     * @param ResourceConnection $resourceConnection
      */
     public function __construct(
-        ICPHelper $icpHelper,
         Registry $coreRegistry,
-        Json $jsonSerializer,
-        ProductProvider $productProvider,
-        SwatchesHelper $swatchesHelper,
+        EncoderInterface $jsonEncoder,
+        DecoderInterface $jsonDecoder,
+        ScopeConfigInterface $scopeConfig,
         Defaults $productDefaults,
-        ProductOptionsRepository $productOptionsRepository,
+        Manager $moduleManager,
+        ProductRepositoryInterface $productRepository,
+        SwatchesHelper $swatchesHelper,
+        RequestInterface $request,
+        StoreManagerInterface $storeManager,
+        StockStateInterface $stockStateInterface,
+        CpiHelper $cpiHelper,
         StockConfigurationInterface $stockConfigurationInterface,
-        ProductStockQty $productStockQty,
-        CustomerSession $customerSession,
-        Logger $logger,
-        ProductMetadataInterface $productMetaData
+        ConfigurableProductObject $configurableProductObject,
+        \Magento\Framework\UrlInterface $urlInterface,
+        \Firebear\ConfigurableProducts\Model\ProductOptionsRepository $productOptionsRepository,
+        ResourceConnection $resourceConnection,
+        Session $customerSession
     ) {
-        $this->cpiHelper = $icpHelper;
-        $this->coreRegistry = $coreRegistry;
-        $this->productProvider = $productProvider;
-        $this->jsonSerializer = $jsonSerializer;
-        $this->swatchesHelper = $swatchesHelper;
-        $this->productDefaults = $productDefaults;
-        $this->productOptionsRepository = $productOptionsRepository;
+        $this->coreRegistry                = $coreRegistry;
+        $this->jsonEncoder                 = $jsonEncoder;
+        $this->jsonDecoder                 = $jsonDecoder;
+        $this->scopeConfig                 = $scopeConfig;
+        $this->productDefaults             = $productDefaults;
+        $this->moduleManager               = $moduleManager;
+        $this->productRepository           = $productRepository;
+        $this->swatchesHelper              = $swatchesHelper;
+        $this->request                     = $request;
+        $this->storeManager                = $storeManager;
+        $this->stockStateInterface         = $stockStateInterface;
+        $this->cpiHelper                   = $cpiHelper;
         $this->stockConfigurationInterface = $stockConfigurationInterface;
-        $this->productStockQty = $productStockQty;
+        $this->configurableProductObject   = $configurableProductObject;
+        $this->urlInterface                = $urlInterface;
+        $this->productOptionsRepository    = $productOptionsRepository;
+        $this->resourceConnection = $resourceConnection;
         $this->customerSession = $customerSession;
-        $this->productMetaData = $productMetaData;
-        $this->logger = $logger;
     }
 
     /**
-     * @param ConfigurableBlock $configurableBlock
-     * @param $result
-     * @return bool|string
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @param \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable $subject
+     * @param                                                                   $result
+     *
+     * @return string
      */
     public function afterGetJsonConfig(
-        ConfigurableBlock $configurableBlock,
+        \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable $subject,
         $result
     ) {
-        $this->configurableBlock = $configurableBlock;
-        $this->layout = $configurableBlock->getLayout();
-        $this->request = $configurableBlock->getRequest();
-        $config = [];
-        try {
-            $fullActionName = $this->request->getFullActionName();
-            if ($fullActionName == self::CATALOG_CATEGORY_VIEW_LAYOUT ||
-                $fullActionName == self::CMS_INDEX_INDEX_LAYOUT) {
-                if ($this->cpiHelper->getGeneralConfig('general/disable_swatches_functionallity_in_listing')) {
-                    return $result;
-                }
-            }
-            $data = $this->coreRegistry->registry('firebear_configurableproducts');
-            if (isset($data['child_id'])) {
-                $productId = $data['child_id'];
-            } else {
-                $productId = $configurableBlock->getProduct()->getId();
-            }
-            $config = $this->jsonSerializer->jsonDecode($result);
-            $enablePreselect = $this->cpiHelper->getGeneralConfig('general/enable_preselect');
-            if ($enablePreselect) {
-                /**
-                 * Prepare default values for configurable product
-                 */
-                $isProductHasSwatch = $this->swatchesHelper
-                    ->isProductHasSwatch($this->configurableBlock->getProduct());
-                $defaultValues = $this->prepareDefaultValues($config, $productId, $isProductHasSwatch);
-                $usedProductId = $this->productDefaults->getDefaultProductId($configurableBlock->getProduct());
-                if ((empty($defaultValues) || count($config['attributes']) != count($defaultValues))
-                    && $usedProductId
-                ) {
-                    $defaultValues = $this->prepareDefaultValues($config, $usedProductId, $isProductHasSwatch);
-                }
-                $config['defaultValues'] = $defaultValues;
-            }
 
+
+
+        if ($this->request->getFullActionName() == 'catalog_category_view' || $this->request->getFullActionName() == 'elevate_landingpages_index_index') {
+           // if ($this->cpiHelper->getGeneralConfig('general/disable_swatches_functionallity_in_listing')) {
+                 return $result;
+           // }
+        }
+        $this->subject = $subject;
+        $this->layout  = $this->subject->getLayout();
+        $data          = $this->coreRegistry->registry('firebear_configurableproducts');
+
+        if (isset($data['child_id'])) {
+            $productId = $data['child_id'];
+        } else {
+            $productId = $this->subject->getProduct()->getId();
+        }
+        $config = $this->jsonDecoder->decode($result);
+
+        $enablePreselect = $this->cpiHelper->getGeneralConfig('general/enable_preselect');
+        if ($enablePreselect) {
             /**
-             * Do not replace page content on category view page.
+             * Prepare default values for configurable product
              */
-            if ($this->request->getFullActionName() === self::CATALOG_CATEGORY_VIEW_LAYOUT) {
-                $config['doNotReplaceData'] = true;
+            $isProductHasSwatch = $this->swatchesHelper->isProductHasSwatch($this->subject->getProduct());
+
+            $defaultValues = $this->prepareDefaultValues($config, $productId, $isProductHasSwatch);
+
+            $usedProductId = $this->productDefaults->getDefaultProductId($this->subject->getProduct());
+
+            if ((empty($defaultValues) || count($config['attributes']) != count($defaultValues)) && $usedProductId) {
+                $defaultValues = $this->prepareDefaultValues($config, $usedProductId, $isProductHasSwatch);
             }
-            if ($this->request->getFullActionName() !== self::CATALOG_CATEGORY_VIEW_LAYOUT) {
-                $config['bundle_id'] = isset($this->request->getParams()['id']) ?
-                    $this->request->getParams()['id'] : null;
-            } else {
-                $config['bundle_id'] = null;
-            }
-            $this->prepareGeneralConfig($config);
-            $this->prepareParentProductOptions($config);
-            $this->prepareSimpleProductOptions($config);
-        } catch (Exception $exception) {
-            $this->logger->critical($exception->getMessage());
+            $config['defaultValues'] = $defaultValues;
+        }
+        $config['currencySymbol'] = $this->storeManager->getStore()->getCurrentCurrency()->getCurrencySymbol();
+        /**
+         * Do not replace page content on category view page.
+         */
+        if ($this->request->getFullActionName() == 'catalog_category_view') {
+            $config['doNotReplaceData'] = true;
+        }
+        if ($this->request->getFullActionName() !== 'catalog_category_view') {
+            $config['bundle_id'] = isset($this->subject->getRequest()->getParams()['id']) ?
+                $this->subject->getRequest()->getParams()['id'] : null;
+        } else {
+            $config['bundle_id'] = null;
         }
 
-        return $this->jsonSerializer->jsonEncode($config);
+        /**
+         * Prepare simple product attributes, such as name, sku, description
+         */
+        $config['considerTierPricesInFromToPrice'] = $this->cpiHelper->getGeneralConfig('general/price_range_compatible_with_tier_price');
+        $config['hidePrice'] = $this->cpiHelper->hidePrice();
+        $config = $this->getOptions($config);
+        $config['setOpenGraphUrl'] = $this->urlInterface->getUrl('cpi/product/UpdateOpenGraph');
+        if (!$this->cpiHelper->hidePrice()) {
+            $config['hidePrice'] = false;
+        } else {
+            $config['hidePrice'] = true;
+            $config['priceText'] = $this->cpiHelper->getGeneralConfig('general/price_text');
+        }
+        $config['urls']['parent'] = $subject->getProductUrl($subject->getProduct());
+        $result = $this->jsonEncoder->encode($config);
+        return $result;
+    }
+
+    /**
+     * @param \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable $subject
+     * @param                                                                   $result
+     *
+     * @return mixed
+     */
+    public function afterGetCacheKeyInfo(
+        \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable $subject,
+        $result
+    ) {
+
+        /**
+         * Prevent save same cache on category view page and product view page with same default values.
+         */
+        if ($this->request->getFullActionName() == 'catalog_category_view') {
+            $result[] = 'doNotReplaceData';
+            return $result;
+        }
+        if ($subject->getProduct()->getTypeId() == 'configurable') {
+            $jsonConfig = $subject->getJsonConfig();
+            $config     = $this->jsonDecoder->decode($jsonConfig);
+
+            /**
+             * Different cache for different simple products.
+             */
+            if (isset($config['defaultValues']) && !empty($config['defaultValues'])) {
+                $result[] = http_build_query($config['defaultValues']);
+            }
+        }
+        return $result;
     }
 
     /**
@@ -280,77 +325,53 @@ class Configurable
     }
 
     /**
-     * @param array $config
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * Get extension settings.
+     *
+     * @return mixed
      */
-    protected function prepareGeneralConfig(array &$config)
+    private function getSettings()
     {
-        $config['currencySymbol'] = $this->configurableBlock->getCurrentStore()
-            ->getCurrentCurrency()
-            ->getCurrencySymbol();
-        $config['considerTierPricesInFromToPrice'] = $this->cpiHelper
-            ->getGeneralConfig('general/price_range_compatible_with_tier_price');
-        $config['hidePrice'] = $this->cpiHelper->hidePrice();
-        $config['priceText'] = $this->cpiHelper->getGeneralConfig('general/price_text');
-        $config['setOpenGraphUrl'] = $this->configurableBlock->getUrl('cpi/product/UpdateOpenGraph');
-        $versionNumber = $this->productMetaData->getVersion();
-        if ($versionNumber >= '2.4') {
-            $config['attribute_prefix'] = 'data-';
-        } else {
-            $config['attribute_prefix'] = '';
+        if (!$this->settings) {
+            $this->settings = $this->scopeConfig->getValue(
+                'firebear_configurableproducts/general',
+                \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+            );
         }
-        if ($this->cpiHelper->getGeneralConfig('general/price_range_category_from_to_option')) {
-            $config['disaplyingFromToPrice'] = true;
-        }
-        if ($this->cpiHelper->getGeneralConfig('general/price_range_category')) {
-            $config['priceRange'] = true;
-        }
-        if (isset($settings['allow_deselect_swatch']) && $settings['allow_deselect_swatch'] == 1) {
-            $config['allow_deselect_swatch'] = true;
-        }
-        if ($this->cpiHelper->getGeneralConfig('general/price_range_category_original')) {
-            $config['defaultPriceWithRange'] = true;
-        }
-        $config['useCustomOptionsForVariations'] =
-            $this->cpiHelper->getGeneralConfig('general/use_custom_options_for_variations');
-        $config['loadOptionsUrl'] = $this->configurableBlock->getUrl('cpi/product/LoadOptions');
-        if ($this->stockConfigurationInterface->getManageStock() == 0) {
-            $config['configManageStock'] = false;
-        } else {
-            $config['configManageStock'] = true;
-        }
+
+        return $this->settings;
     }
 
     /**
-     * @param array $config
-     * @throws NoSuchEntityException
+     * Get Options
+     *
+     * @param $config
+     *
+     * @return mixed
      */
-    protected function prepareParentProductOptions(array &$config)
+    public function getOptions($config)
     {
         $parentProductId = $config['productId'];
+        $customerGroupId = $this->customerSession->getCustomerGroupId();
         if ($parentProductId) {
-            $parentProduct = $this->productProvider->getProductById($parentProductId);
+            $parentProduct = $this->productRepository->getById($parentProductId);
             $productOptions = $this->productOptionsRepository->getByProductId($parentProductId);
             $productAttributes = $parentProduct->getAttributes();
             $config['parentProductName'] = $parentProduct->getName();
             if ($config['bundle_id']) {
                 try {
-                    $bundleProduct = $this->productProvider->getProductById($config['bundle_id']);
+                    $bundleProduct = $this->productRepository->getById($config['bundle_id']);
                 } catch (NoSuchEntityException $e) {
                     $bundleProduct = false;
                 }
                 if ($bundleProduct && $bundleProduct->getTypeId() == 'bundle') {
                     $bundleProductOptions = $this->productOptionsRepository->getByProductId($config['bundle_id']);
-                    if ($bundleProductOptions->getLinkedAttributes()) {
-                        $config['linkedAttributes'] = explode(',', $bundleProductOptions->getLinkedAttributes());
-                    }
+                    $config['linkedAttributes'] = explode(',', $bundleProductOptions->getLinkedAttributes());
                     $currentTime = strtotime('now');
-                    $specialFromDate = !$bundleProduct->getSpecialFromDate() ?: strtotime($bundleProduct->getSpecialFromDate());
-                    $specialToDatePrice = !$bundleProduct->getSpecialToDate() ?: strtotime($bundleProduct->getSpecialToDate());
+                    $specialFromDate = strtotime($bundleProduct->getSpecialFromDate());
+                    $specialToDatePrice = strtotime($bundleProduct->getSpecialToDate());
                     $specialPrice = $bundleProduct->getSpecialPrice();
                     if (($specialFromDate <= $currentTime && $currentTime < $specialToDatePrice)
-                        || !$specialToDatePrice
-                    ) {
+                        || !$specialToDatePrice) {
                         $config['special_price'] = ($specialPrice > 0) ? $specialPrice : false;
                     } else {
                         $config['special_price'] = false;
@@ -387,162 +408,193 @@ class Configurable
                     $config['y_matrix_axis']['id'] = $value['id'];
                 }
             }
-            $config[self::CUSTOM_ATTRIBUTES]['parent'] = $this->renderAttributesParent($parentProduct);
-            $this->currentParentProduct = $parentProduct;
-            $config['urls']['parent'] = $this->configurableBlock
-                ->getProductUrl($parentProduct);
-            if (!isset($config['deliveryDate']['parent'])) {
-                if (isset($parentProduct) && $parentProduct) {
-                    $config['deliveryDate']['parent'] = $this->renderDeliveryDateBlock($parentProduct);
+            $config['customAttributes']['parent'] = $this->renderAttributesParent($parentProduct);
+        }
+        if ($this->cpiHelper->getGeneralConfig('general/change_breadcrumbs')) {
+            $config['customAttributes']['parent']['.breadcrumbs .items .product'] = [
+                'value' => $parentProduct->getName(),
+                'class' => $this->cpiHelper->getGeneralConfig('general/breadcrumbs_id_class')
+            ];
+        }
+
+        if ($this->stockConfigurationInterface->getManageStock() == 0) {
+            $config['configManageStock'] = false;
+        } else {
+            $config['configManageStock'] = true;
+        }
+
+        if ($this->cpiHelper->getGeneralConfig('general/price_range_category_from_to_option')) {
+            $config['disaplyingFromToPrice'] = true;
+        }
+
+        $settings = $this->getSettings();
+        $allowedProducts = $this->subject->getAllowProducts();
+        if ($this->cpiHelper->getGeneralConfig('general/price_range_category')) {
+            $config['priceRange'] = true;
+        }
+        if (isset($settings['allow_deselect_swatch']) && $settings['allow_deselect_swatch'] == 1) {
+            $config['allow_deselect_swatch'] = true;
+        }
+        if ($this->cpiHelper->getGeneralConfig('general/price_range_category_original')) {
+            $config['defaultPriceWithRange'] = true;
+        }
+        $config['useCustomOptionsForVariations'] =
+            $this->cpiHelper->getGeneralConfig('general/use_custom_options_for_variations');
+        $config['loadOptionsUrl'] = $this->urlInterface->getUrl('cpi/product/LoadOptions');
+        foreach ($allowedProducts as $product) {
+            $productId = $product->getId();
+            $product = $this->productRepository->getById($productId);
+            $webSiteId = $product->getStore()->getWebsiteId();
+            $select = $this->resourceConnection->getConnection()->select()
+                ->from($this->resourceConnection->getTableName('cataloginventory_stock_item'))
+                ->where('product_id=?', $productId)
+                ->where('stock_id', $webSiteId);
+            $stock_info = $this->resourceConnection->getConnection()->fetchRow($select);
+
+            $stockQty = (int)$stock_info['qty'];
+            $config['stock_info'][$productId]['is_in_stock'] = (int)$stock_info['is_in_stock'];
+            $config['stock_info'][$productId]['product_discontinued'] = (int)$product->getData('product_discontinued');
+
+            $config['stockQty'][$productId] = $stockQty;
+
+            if ($this->cpiHelper->getGeneralConfig('matrix/tier_price')) {
+                $productTierPrices = $product->getTierPrices();
+                $iterator = 0;
+                foreach ($productTierPrices as $tierPriceItem) {
+                    $tierPriceCustomerGroupId = $tierPriceItem->getCustomerGroupId();
+                    if ($tierPriceCustomerGroupId == $customerGroupId ||
+                        $tierPriceCustomerGroupId == self::ALL_CUSTOMER_GROUPS) {
+                        $config['tierPrice'][$productId]['qty'][$iterator] = $tierPriceItem->getQty();
+                        $config['tierPrice'][$productId]['price'][$iterator] = $tierPriceItem->getValue();
+                        $config['tierPrice2'][$productId]['price'][round($tierPriceItem->getQty(), 0)] = round(
+                            $tierPriceItem->getValue(),
+                            0
+                        );
+                    }
+                    $iterator++;
                 }
             }
-        }
-    }
 
-    /**
-     * @param ProductInterface $product
-     * @return array
-     * @throws NoSuchEntityException
-     */
-    protected function renderAttributesParent(ProductInterface $product)
-    {
-        $customAttributes = $this->renderAttributes($product);
-        /**
-         * Render price on category page
-         */
-        if ($this->request->getFullActionName() === self::CATALOG_CATEGORY_VIEW_LAYOUT) {
-            $priceRenderBlock = $this->layout->getBlock('product.price.render.default');
-            if ($priceRenderBlock) {
-                $priceHtml = $priceRenderBlock->render(
-                    'final_price',
-                    $product,
-                    []
+            if ($this->cpiHelper->getGeneralConfig('shippign_logic/enable')) {
+                if ($product->getCustomAttribute(
+                    $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_start')
+                )) {
+                    $config['deliveryDate'][$productId]['startdate'] = $product->getCustomAttribute(
+                        $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_start')
+                    )->getValue();
+                }
+                if ($product->getCustomAttribute(
+                    $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_end')
+                )) {
+                    $config['deliveryDate'][$productId]['enddate'] = $product->getCustomAttribute(
+                        $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_end')
+                    )->getValue();
+                }
+                if ($product->getCustomAttribute(
+                    $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_text')
+                )) {
+                    $text                                       = $product->getCustomAttribute(
+                        $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_text')
+                    )->getValue();
+                    $text                                       = $this->parseAttributeText($text, $productId);
+                    $config['deliveryDate'][$productId]['text'] = $text;
+                }
+                $config['deliveryDate']['block'] = $this->cpiHelper->getGeneralConfig(
+                    'shippign_logic/custom_attr_block'
                 );
-                $customAttributes['.price-final_price'] = [
-                    'value' => $priceHtml,
-                    'class' => '.price-final_price'
+            }
+
+            if (isset($parentProduct)) {
+                /**
+                 * Render default product attributes.
+                 */
+                $config['customAttributes'][$productId] = $this->renderAttributes($product, $parentProduct);
+            }
+
+            /**
+             * Render tier prices templates for each simple product.
+             */
+            if (isset($settings['change_tier_prices']) && $settings['change_tier_prices'] == 1 && !$config['hidePrice']) {
+                $config['customAttributes'][$productId]['tier_prices_html'] = $this->renderTierPrice($product);
+            }
+
+            /**
+             * Render attributes block.
+             */
+            if (isset($settings['change_attributes_block']) && $settings['change_attributes_block'] == 1) {
+                $config['customAttributes'][$productId]['attributes_html'] = $this->renderAttributesBlock($product);
+            }
+
+            /**
+             * Render simple product urls.
+             */
+            $config['urls'][$productId] = $this->prepareUrls($product);
+
+            /**
+             * Render custom product attributes.
+             */
+            $config['customAttributes'][$productId]['custom_1'] = $this->renderCustomBlock($product, 1);
+            $config['customAttributes'][$productId]['custom_2'] = $this->renderCustomBlock($product, 2);
+            $config['customAttributes'][$productId]['custom_3'] = $this->renderCustomBlock($product, 3);
+
+            /**
+             * Change breadcrumbs
+             */
+            if ($this->cpiHelper->getGeneralConfig('general/change_breadcrumbs')) {
+                $config['customAttributes'][$productId]['.breadcrumbs .items .product'] = [
+                    'value' => $product->getName(),
+                    'class' => $this->cpiHelper->getGeneralConfig('general/breadcrumbs_id_class')
+                ];
+            }
+
+            /**
+             * Show left qty in stock
+             */
+            if ($this->cpiHelper->getGeneralConfig('general/left_in_stock')) {
+                $config['customAttributes'][$productId]['left_in_stock'] = [
+                    'value' => $stockQty,
+                    'class' => '.stock.available'
                 ];
             }
         }
-        return $customAttributes;
-    }
 
-    /**
-     * @param ProductInterface $product
-     * @param ProductInterface $parentProduct
-     * @return array
-     * @throws NoSuchEntityException
-     */
-    protected function renderAttributes(ProductInterface $product, $parentProduct = null)
-    {
-        $settings = $this->getSettings();
-        $customAttributes = [];
-        foreach ($this->_configProductAttributes as $attributeCode) {
-            $value = null;
-            if (isset($settings['change_' . $attributeCode]) && $settings['change_' . $attributeCode] == 1) {
-                $value = $product->getData($attributeCode);
-                if ($attributeCode === 'breadcrumbs') {
-                    $value = $product->getName();
+        if (!isset($config['deliveryDate']['parent'])) {
+            if (isset($parentProduct) && $parentProduct) {
+                if ($parentProduct->getCustomAttribute(
+                    $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_start')
+                )) {
+                    $config['deliveryDate']['parent']['startdate'] = $parentProduct->getCustomAttribute(
+                        $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_start')
+                    )->getValue();
                 }
-                if ($parentProduct instanceof ProductInterface) {
-                    if (in_array($attributeCode, $this->_defaultParentAttr)) {
-                        if ((!$value || empty($value) || $value == '')
-                            || !$this->cpiHelper->getGeneralConfig(
-                                'general/change_' . $attributeCode
-                            )
-                        ) {
-                            $value = $parentProduct->getData($attributeCode);
-                        }
-                    }
+                if ($parentProduct->getCustomAttribute(
+                    $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_end')
+                )) {
+                    $config['deliveryDate']['parent']['enddate'] = $parentProduct->getCustomAttribute(
+                        $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_end')
+                    )->getValue();
                 }
-                if ($value) {
-                    $value = $this->cpiHelper->getAttrContent($value);
-                }
-                if ($value) {
-                    $customAttributes[$attributeCode] = [
-                        'value' => $value,
-                        'class' => $settings[$attributeCode . '_id_class']
-                    ];
-                }
-            } elseif ($product->getTypeId() === 'simple') {
-                if (in_array($attributeCode, $this->_defaultParentAttr)
-                    && $parentProduct instanceof ProductInterface
-                ) {
-                    $value = $product->getData($attributeCode);
-                    if ((!$value || empty($value) || $value == '')
-                        || !$this->cpiHelper->getGeneralConfig(
-                            'general/change_' . $attributeCode
-                        )
-                    ) {
-                        $value = $parentProduct->getData($attributeCode);
-                    }
-                    if ($value) {
-                        $value = $this->cpiHelper->getAttrContent($value);
-                    }
-                    if ($value) {
-                        $customAttributes[$attributeCode] = [
-                            'value' => $value,
-                            'class' => $settings[$attributeCode . '_id_class']
-                        ];
-                    }
+                if ($parentProduct->getCustomAttribute(
+                    $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_text')
+                )) {
+                    $text = $parentProduct->getCustomAttribute(
+                        $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_text')
+                    )->getValue();
+                    $text = $this->parseAttributeText($text, $parentProduct->getId());
+                    $config['deliveryDate']['parent']['text'] = $text;
                 }
             }
         }
-        return $customAttributes;
+        return $config;
     }
 
     /**
-     * Get extension settings.
+     * Parse attributes in text field attribute
      *
-     * @return mixed
-     */
-    private function getSettings()
-    {
-        if (!$this->settings) {
-            $this->settings = $this->cpiHelper->getGeneralConfig('general');
-        }
-        return $this->settings;
-    }
-
-    /**
-     * @param ProductInterface $product
-     * @return array
-     * @throws NoSuchEntityException
-     */
-    protected function renderDeliveryDateBlock(ProductInterface $product)
-    {
-        $deliveryDate = [];
-        if ($product->getCustomAttribute(
-            $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_start')
-        )) {
-            $deliveryDate['startdate'] = $product->getCustomAttribute(
-                $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_start')
-            )->getValue();
-        }
-        if ($product->getCustomAttribute(
-            $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_end')
-        )) {
-            $deliveryDate['enddate'] = $product->getCustomAttribute(
-                $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_end')
-            )->getValue();
-        }
-        if ($product->getCustomAttribute(
-            $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_text')
-        )) {
-            $text = $product->getCustomAttribute(
-                $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_code_text')
-            )->getValue();
-            $text = $this->parseAttributeText($text, $product->getId());
-            $deliveryDate['text'] = $text;
-        }
-        return $deliveryDate;
-    }
-
-    /**
      * @param $attributeText
      * @param $productId
-     * @return string|string[]
-     * @throws NoSuchEntityException
+     *
+     * @return mixed
      */
     private function parseAttributeText($attributeText, $productId)
     {
@@ -551,19 +603,19 @@ class Configurable
             return $attributeText;
         }
         $attributesArray = [];
-        $tempText = $attributeText;
+        $tempText        = $attributeText;
         for ($i = 0; $i < $countAttributes; $i++) {
             $positionAttributeStart = strpos($tempText, '[');
-            $positionAttributeEnd = strpos($tempText, ']');
-            $attributesArray[] = $attr = substr(
+            $positionAttributeEnd   = strpos($tempText, ']');
+            $attributesArray[]      = $attr = substr(
                 $tempText,
                 $positionAttributeStart,
                 $positionAttributeEnd - $positionAttributeStart + 1
             );
-            $tempText = substr($tempText, $positionAttributeEnd + 1);
+            $tempText               = substr($tempText, $positionAttributeEnd + 1);
         }
         foreach ($attributesArray as $attribute) {
-            $product = $this->productProvider->getProductById($productId);
+            $product         = $this->productRepository->getById($productId);
             $attributeString = str_replace(['[', ']'], '', $attribute);
             if ($product->getCustomAttribute(str_replace(['[', ']'], '', $attribute))) {
                 $attributeText = str_replace(
@@ -578,104 +630,116 @@ class Configurable
     }
 
     /**
-     * Prepare simple product attributes, such as name, sku, description
-     * @param array $config
-     * @throws NoSuchEntityException
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * Render default product attributes.
+     *
+     * @param \Magento\Catalog\Api\Data\ProductInterface $product
+     * @param $parentProduct
+     *
+     * @return array
      */
-    protected function prepareSimpleProductOptions(array &$config)
+    private function renderAttributes(\Magento\Catalog\Api\Data\ProductInterface $product, $parentProduct = null)
     {
-        $settings = $this->getSettings();
-        $customerGroupId = $this->customerSession->getCustomerGroupId();
-        $allowedProducts = $this->configurableBlock->getAllowProducts();
-        $config['deliveryDate']['block'] = $this->cpiHelper->getGeneralConfig('shippign_logic/custom_attr_block');
-        /** @var Product $product */
-        foreach ($allowedProducts as $product) {
-            $productId = intval($product->getId());
-            $product = $this->productProvider->getProductById($productId);
-            $websiteId = intval($product->getStore()->getWebsiteId());
-            $stockQty = $this->productStockQty->getProductQty($productId, $websiteId);
-            $config['stockQty'][$productId] = $stockQty;
-
-            if (isset($this->currentParentProduct)) {
-                /**
-                 * Render Simple Product Data
-                 */
-                $config[self::CUSTOM_ATTRIBUTES][$productId] = $this->renderAttributes(
-                    $product,
-                    $this->currentParentProduct
-                );
-            }
-            /**
-             * Render tier prices templates for each simple product.
-             */
-            if (isset($settings['change_tier_prices']) && $settings['change_tier_prices'] == 1 && !$config['hidePrice']) {
-                $config[self::CUSTOM_ATTRIBUTES][$productId]['tier_prices_html'] = $this->renderTierPrice($product);
-            }
-
-            /**
-             * Render attributes block.
-             */
-            if (isset($settings['change_attributes_block']) && $settings['change_attributes_block'] == 1) {
-                $config[self::CUSTOM_ATTRIBUTES][$productId]['attributes_html'] = $this
-                    ->renderAttributesBlock($product);
-            }
-
-            /**
-             * Render simple product urls.
-             */
-            $config['urls'][$productId] = $this->prepareUrls($product);
-
-            /**
-             * Render custom product attributes.
-             */
-            $config[self::CUSTOM_ATTRIBUTES][$productId]['custom_1'] = $this->renderCustomBlock($product, 1);
-            $config[self::CUSTOM_ATTRIBUTES][$productId]['custom_2'] = $this->renderCustomBlock($product, 2);
-            $config[self::CUSTOM_ATTRIBUTES][$productId]['custom_3'] = $this->renderCustomBlock($product, 3);
-
-            /**
-             * Show left qty in stock
-             */
-            if ($this->cpiHelper->getGeneralConfig('general/left_in_stock')) {
-                $config[self::CUSTOM_ATTRIBUTES][$productId]['left_in_stock'] = [
-                    'value' => $stockQty,
-                    'class' => '.stock.available'
-                ];
-            }
-            if ($this->cpiHelper->getGeneralConfig('shippign_logic/enable')) {
-                $config['deliveryDate'][$productId] = $this->renderDeliveryDateBlock($product);
-            }
-
-            if ($this->cpiHelper->getGeneralConfig('matrix/tier_price')) {
-                $productTierPrices = $product->getTierPrices();
-                $iterator = 0;
-                foreach ($productTierPrices as $tierPriceItem) {
-                    $tierPriceCustomerGroupId = $tierPriceItem->getCustomerGroupId();
-                    if ($tierPriceCustomerGroupId == $customerGroupId ||
-                        $tierPriceCustomerGroupId == self::ALL_CUSTOMER_GROUPS
-                    ) {
-                        $config['tierPrice'][$productId]['qty'][$iterator] = $tierPriceItem->getQty();
-                        $config['tierPrice'][$productId]['price'][$iterator] = $tierPriceItem->getValue();
-                        $config['tierPrice2'][$productId]['price'][round($tierPriceItem->getQty(), 0)] = $tierPriceItem->getValue();
+        $attributesArray  = ['name', 'description', 'short_description', 'sku'];
+        $settings         = $this->getSettings();
+        $customAttributes = [];
+        foreach ($attributesArray as $attributeCode) {
+            if (isset($settings['change_' . $attributeCode]) && $settings['change_' . $attributeCode] == 1) {
+                $value = $product->getData($attributeCode);
+                if ($attributeCode == 'description' || $attributeCode == 'short_description') {
+                    if ($value == '' || empty($value)
+                        || !$this->cpiHelper->getGeneralConfig(
+                            'general/change_description'
+                        )) {
+                        if (!$parentProduct) {
+                            $parent = $this->configurableProductObject->getParentIdsByChild($product->getId());
+                            $parentProduct = $this->productRepository->getById($parent[0]);
+                        }
+                        $value = $parentProduct->getData($attributeCode);
                     }
-                    $iterator++;
+                }
+                if ($value) {
+                    $value = $this->cpiHelper->getAttrContent($value);
+                }
+                $customAttributes[$attributeCode] = [
+                    'value' => $value,
+                    'class' => $settings[$attributeCode . '_id_class']
+                ];
+            } else {
+                if ($attributeCode == 'description' || $attributeCode == 'short_description') {
+                    $value = $product->getData($attributeCode);
+                    if ($value == '' || empty($value)
+                        || !$this->cpiHelper->getGeneralConfig(
+                            'general/change_description'
+                        )) {
+                        if (!$parentProduct) {
+                            $parent = $this->configurableProductObject->getParentIdsByChild($product->getId());
+                            $parentProduct = $this->productRepository->getById($parent[0]);
+                        }
+                        $value = $parentProduct->getData($attributeCode);
+                    }
+                    if ($value) {
+                        $value = $this->cpiHelper->getAttrContent($value);
+                    }
+                    $customAttributes[$attributeCode] = [
+                        'value' => $value,
+                        'class' => $settings[$attributeCode . '_id_class']
+                    ];
                 }
             }
         }
+        return $customAttributes;
+    }
+
+    private function renderAttributesParent(\Magento\Catalog\Api\Data\ProductInterface $product)
+    {
+        $attributesArray  = ['name', 'description', 'short_description', 'sku'];
+        $settings         = $this->getSettings();
+        $customAttributes = [];
+
+        foreach ($attributesArray as $attributeCode) {
+            if (isset($settings['change_' . $attributeCode]) && $settings['change_' . $attributeCode] == 1) {
+                $value                            = $product->getData($attributeCode);
+                if ($value) {
+                    $value = $this->cpiHelper->getAttrContent($value);
+                }
+                $customAttributes[$attributeCode] = [
+                    'value' => $value,
+                    'class' => $settings[$attributeCode . '_id_class']
+                ];
+            }
+        }
+        /**
+         * Render price on category page
+         */
+        if ($this->request->getFullActionName() == 'catalog_category_view') {
+            $priceRenderBlock = $this->layout->getBlock('product.price.render.default');
+            if ($priceRenderBlock) {
+                $priceHtml = $priceRenderBlock->render(
+                    'final_price',
+                    $product,
+                    array()
+                );
+                $customAttributes['.price-final_price'] = [
+                    'value' => $priceHtml,
+                    'class' => '.price-final_price'
+                ];
+            }
+        }
+        return $customAttributes;
     }
 
     /**
      * Render tier prices templates for each simple product.
      *
-     * @param ProductInterface $product
+     * @param \Magento\Catalog\Api\Data\ProductInterface $product
      *
      * @return array
      */
-    protected function renderTierPrice(ProductInterface $product)
+    private function renderTierPrice(\Magento\Catalog\Api\Data\ProductInterface $product)
     {
-        $settings = $this->getSettings();
+        $settings    = $this->getSettings();
         $priceRender = $this->layout->getBlock('product.price.render.default');
-        $priceHtml = '';
+        $priceHtml   = '';
         if (!$priceRender) {
             $priceRender = $this->layout->createBlock(
                 'Magento\Framework\Pricing\Render',
@@ -685,37 +749,39 @@ class Configurable
         }
         if ($priceRender) {
             $priceHtml = $priceRender->render(
-                TierPrice::PRICE_CODE,
+                \Magento\Catalog\Pricing\Price\TierPrice::PRICE_CODE,
                 $product,
-                ['zone' => Render::ZONE_ITEM_LIST]
+                ['zone' => \Magento\Framework\Pricing\Render::ZONE_ITEM_LIST]
             );
         }
         //solve conflict with FireGento MageSetup
-        if ($this->cpiHelper->isModuleEnabled('FireGento_MageSetup')) {
+        if ($this->moduleManager->isEnabled('FireGento_MageSetup')) {
             preg_match('/<div class=\"price\-details\">(.*?)<\/div>/s', $priceHtml, $match);
             if (count($match)) {
                 $priceDetailsBlock = $match[0];
                 $priceHtml = str_replace($priceDetailsBlock, '', $priceHtml);
             }
         }
-        return [
-            'value' => $priceHtml,
-            'class' => $settings['tier_prices_id_class'],
-            'replace' => true,
+        $html = [
+            'value'     => $priceHtml,
+            'class'     => $settings['tier_prices_id_class'],
+            'replace'   => true,
             'container' => '.prices-tier-container'
         ];
+
+        return $html;
     }
 
     /**
      * Render attributes block.
      *
-     * @param ProductInterface $product
+     * @param \Magento\Catalog\Api\Data\ProductInterface $product
      *
      * @return array
      */
-    protected function renderAttributesBlock(ProductInterface $product)
+    private function renderAttributesBlock(\Magento\Catalog\Api\Data\ProductInterface $product)
     {
-        $settings = $this->getSettings();
+        $settings        = $this->getSettings();
         $attributesBlock = $this->layout
             ->getBlock('firebear.product.attributes');
 
@@ -741,17 +807,17 @@ class Configurable
         $html = $attributesBlock->toHtml();
         if ($html) {
             $attributesHtml = [
-                'value' => $html,
-                'class' => $settings['attributes_block_class'],
+                'value'   => $html,
+                'class'   => $settings['attributes_block_class'],
                 'replace' => true,
             ];
         } else {
-            $attributesBlock->setProduct($this->configurableBlock->getProduct());
+            $attributesBlock->setProduct($this->subject->getProduct());
             $html = $attributesBlock->toHtml();
 
             $attributesHtml = [
-                'value' => $html,
-                'class' => $settings['attributes_block_class'],
+                'value'   => $html,
+                'class'   => $settings['attributes_block_class'],
                 'replace' => true,
             ];
         }
@@ -760,33 +826,13 @@ class Configurable
     }
 
     /**
-     * @param ProductInterface $product
-     *
-     * @return string
-     */
-    protected function prepareUrls(ProductInterface $product)
-    {
-        $settings = $this->getSettings();
-        $url = '';
-
-        if (isset($settings['change_url'])
-            && $settings['change_url'] == 1
-        ) {
-            $url = $product->getProductUrl();
-        }
-
-        return $url;
-    }
-
-    /**
      * Render custom block.
      *
-     * @param ProductInterface $product
+     * @param \Magento\Catalog\Api\Data\ProductInterface $product
      *
-     * @param $number
      * @return array
      */
-    private function renderCustomBlock(ProductInterface $product, $number)
+    private function renderCustomBlock(\Magento\Catalog\Api\Data\ProductInterface $product, $number)
     {
         $settings = $this->getSettings();
 
@@ -820,32 +866,21 @@ class Configurable
     }
 
     /**
-     * @param ConfigurableBlock $subject
-     * @param $result
-     * @return mixed
+     * @param \Magento\Catalog\Api\Data\ProductInterface $product
+     *
+     * @return string
      */
-    public function afterGetCacheKeyInfo(
-        ConfigurableBlock $subject,
-        $result
-    ) {
-        /**
-         * Prevent save same cache on category view page and product view page with same default values.
-         */
-        $fullActionName = $subject->getRequest()->getFullActionName();
-        if ($fullActionName == self::CATALOG_CATEGORY_VIEW_LAYOUT || $fullActionName == self::CMS_INDEX_INDEX_LAYOUT) {
-            $result[] = 'doNotReplaceData';
-            return $result;
+    private function prepareUrls(\Magento\Catalog\Api\Data\ProductInterface $product)
+    {
+        $settings = $this->getSettings();
+        $url      = '';
+
+        if (isset($settings['change_url'])
+            && $settings['change_url'] == 1
+        ) {
+            $url = $product->getProductUrl();
         }
-        if ($subject->getProduct()->getTypeId() == TypeConfigurable::TYPE_CODE) {
-            $jsonConfig = $subject->getJsonConfig();
-            $config = $this->jsonSerializer->jsonDecode($jsonConfig);
-            /**
-             * Different cache for different simple products.
-             */
-            if (isset($config['defaultValues']) && !empty($config['defaultValues'])) {
-                $result[] = http_build_query($config['defaultValues']);
-            }
-        }
-        return $result;
+
+        return $url;
     }
 }

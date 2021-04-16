@@ -45,7 +45,7 @@
             }
 
             position: relative;
-            margin: $faq-h2-margin;
+            @include co(margin, $faq-h2-margin);
 
             a {
                 color: #222;
@@ -65,7 +65,7 @@
             }
         }
         h3 {
-            margin: $faq-h3-margin;
+            @include co(margin, $faq-h3-margin);
         }
     }
 

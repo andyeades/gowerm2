@@ -2,7 +2,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\BundlePanel">
         <plugin name="bundle_addtional_options" type="Elevate\BundleAdvanced\Plugin\Bundle\Ui\DataProvider\Product\Form\Modifier\BundlePanel" sortOrder="1000"/>
-    </type>
+    </type> 
+       
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions">
+        <plugin name="catalog_additional_options" type="Elevate\BundleAdvanced\Plugin\Ui\DataProvider\Product\Form\Modifier\OptionPanel" sortOrder="1000"/>
+    </type>    
+                                
     <preference for="Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\Composite" type="Elevate\BundleAdvanced\Ui\DataProvider\Product\Form\Modifier\Composite"/>
     <preference for="Magento\Bundle\Model\Product\OptionList" type="Elevate\BundleAdvanced\Model\Bundle\Product\OptionList"/>
     <type name="Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\Composite">

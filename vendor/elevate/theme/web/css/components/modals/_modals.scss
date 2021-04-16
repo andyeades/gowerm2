@@ -1,37 +1,37 @@
 //
 //  Lib -> Components -> Modals
-//  _____________________________________________
+//
 
 //
 //  Variables
-//  ---------------------------------------------
+//
 
-$modal__background-color                         : $color-white !default;
-$modal__box-shadow                               : 0 0 12px 2px rgba(0, 0, 0, 0.35) !default;
+$modal-background-color                         : $color-white !default;
+$modal-box-shadow                               : 0 0 12px 2px rgba(0, 0, 0, 0.35) !default;
 
-$modal-popup__indent-vertical                    : 5rem !default;
-$modal-popup__padding                            : 3rem !default;
-$modal-popup__width                              : 75% !default;
-$modal-popup__z-index                            : $modal__z-index !default;
+$modal-popup-indent-vertical                    : 5rem !default;
+$modal-popup-padding                            : 3rem !default;
+$modal-popup-width                              : 75% !default;
+$modal-popup-z-index                            : $modal-z-index !default;
 
-$modal-slide__first__indent-left                 : 0 !default;
-$modal-slide__indent-left                        : 4.5rem !default;
-$modal-slide__padding                            : 2.6rem !default;
-$modal-slide__z-index                            : $modal__z-index !default;
+$modal-slide-first-indent-left                 : 0 !default;
+$modal-slide-indent-left                        : 4.5rem !default;
+$modal-slide-padding                            : 2.6rem !default;
+$modal-slide-z-index                            : $modal-z-index !default;
 
-$modal-slide-header__padding-vertical            : 2.1rem !default;
+$modal-slide-header-padding-vertical            : 2.1rem !default;
 
-$modal-popup-confirm__width                      : 50rem !default;
+$modal-popup-confirm-width                      : 50rem !default;
 
-$modal-popup-image-box__border-color             : $color-gray80 !default;
-$modal-popup-image-box__max-width                : 78rem !default;
+$modal-popup-image-box-border-color             : $color-gray80 !default;
+$modal-popup-image-box-max-width                : 78rem !default;
 
-$modal-popup-image-box-preview-image__max-height : 54rem !default;
-$modal-popup-image-box-preview__max-width        : calc(#{$modal-popup-image-box-preview-image__max-height} + #{(2 * $indent__base)}) !default;
+$modal-popup-image-box-preview-image-max-height : 54rem !default;
+$modal-popup-image-box-preview-max-width        : calc(#{$modal-popup-image-box-preview-image-max-height} + #{(2 * $indent-base)}) !default;
 
 //
 //  Utilities
-//  ---------------------------------------------
+//
 
 @mixin lib-modal() {
     bottom: 0;
@@ -55,16 +55,16 @@ $modal-popup-image-box-preview__max-width        : calc(#{$modal-popup-image-box
     }
 
     .modal-inner-wrap {
-        @include lib-css(background-color, $modal__background-color);
-        @include lib-css(box-shadow, $modal__box-shadow);
+        @include lib-css(background-color, $modal-background-color);
+        @include lib-css(box-shadow, $modal-box-shadow);
         opacity: 1;
         pointer-events: auto;
     }
 }
 
 @mixin lib-modal-slide() {
-    @include lib-css(left, $modal-slide__first__indent-left);
-    @include lib-css(z-index, $modal-slide__z-index);
+    @include lib-css(left, $modal-slide-first-indent-left);
+    @include lib-css(z-index, $modal-slide-z-index);
 
     &._show {
         .modal-inner-wrap {
@@ -83,7 +83,7 @@ $modal-popup-image-box-preview__max-width        : calc(#{$modal-popup-image-box
 }
 
 @mixin lib-modal-popup() {
-    @include lib-css(z-index, $modal-popup__z-index);
+    @include lib-css(z-index, $modal-popup-z-index);
     left: 0;
     overflow-y: auto;
 
@@ -94,8 +94,8 @@ $modal-popup-image-box-preview__max-width        : calc(#{$modal-popup-image-box
     }
 
     .modal-inner-wrap {
-        @include lib-css(margin, $modal-popup__indent-vertical auto);
-        @include lib-css(width, $modal-popup__width);
+        @include lib-css(margin, $modal-popup-indent-vertical auto);
+        @include lib-css(width, $modal-popup-width);
         @include lib-vendor-prefix-display(flex);
         @include lib-vendor-prefix-flex-direction(column);
         box-sizing: border-box;
@@ -119,7 +119,7 @@ body {
 
 //  Modals overlay
 .modals-overlay {
-    @include lib-css(z-index, $overlay__z-index);
+    @include lib-css(z-index, $overlay-z-index);
 }
 
 .modal-slide,
@@ -154,12 +154,12 @@ body {
     .modal-header,
     .modal-content,
     .modal-footer {
-        @include lib-css(padding, 0 $modal-slide__padding $modal-slide__padding);
+        @include lib-css(padding, 0 $modal-slide-padding $modal-slide-padding);
     }
 
     .modal-header {
-        @include lib-css(padding-bottom, $modal-slide-header__padding-vertical);
-        @include lib-css(padding-top, $modal-slide-header__padding-vertical);
+        @include lib-css(padding-bottom, $modal-slide-header-padding-vertical);
+        @include lib-css(padding-top, $modal-slide-header-padding-vertical);
     }
 }
 
@@ -194,8 +194,8 @@ body {
     .modal-header,
     .modal-content,
     .modal-footer {
-        @include lib-css(padding-left, $modal-popup__padding);
-        @include lib-css(padding-right, $modal-popup__padding);
+        @include lib-css(padding-left, $modal-popup-padding);
+        @include lib-css(padding-right, $modal-popup-padding);
     }
 
     .modal-header,
@@ -205,14 +205,14 @@ body {
     }
 
     .modal-header {
-        @include lib-css(padding-bottom, $modal-popup__padding / 2.5);
-        @include lib-css(padding-top, $modal-popup__padding);
+        @include lib-css(padding-bottom, $modal-popup-padding / 2.5);
+        @include lib-css(padding-top, $modal-popup-padding);
     }
 
     .modal-footer {
         margin-top: auto;
-        @include lib-css(padding-bottom, $modal-popup__padding);
-        @include lib-css(padding-top, $modal-popup__padding);
+        @include lib-css(padding-bottom, $modal-popup-padding);
+        @include lib-css(padding-top, $modal-popup-padding);
     }
 
     .modal-footer-actions {
@@ -222,10 +222,10 @@ body {
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
 //  Mobile transform to modal-slide
-@include max-screen($screen__m) {
+@include max-screen($screen-m) {
     .modal-popup {
         &.modal-slide {
             @include lib-modal-slide();

@@ -8,7 +8,7 @@
 
 .spinner-border {
   display: inline-block;
-  width: $spinner-width;
+  @include co(width, $spinner-width);
   height: $spinner-height;
   vertical-align: text-bottom;
   border: $spinner-border-width solid currentColor;
@@ -19,7 +19,7 @@
 }
 
 .spinner-border-sm {
-  width: $spinner-width-sm;
+  @include co(width, $spinner-width-sm);
   height: $spinner-height-sm;
   border-width: $spinner-border-width-sm;
 }
@@ -39,7 +39,7 @@
 
 .spinner-grow {
   display: inline-block;
-  width: $spinner-width;
+  @include co(width, $spinner-width);
   height: $spinner-height;
   vertical-align: text-bottom;
   background-color: currentColor;
@@ -50,6 +50,6 @@
 }
 
 .spinner-grow-sm {
-  width: $spinner-width-sm;
+  @include co(width, $spinner-width-sm);
   height: $spinner-height-sm;
 }

@@ -17,8 +17,19 @@ $modifier = $helper->getAuthorByPost($_post, true);
 $modifierName = $modifier !== null ? $modifier->getName() : '';
 $isLogged = ($block->isLoggedIn()) ? 'Yes' : 'No';
 $color = $helper->getBlogConfig('general/font_color');
-?>
 
+
+$show_featured_image_on_post = false;
+
+
+
+
+?>
+ <style>
+   .evblog #page-main-outer h1.page-title {
+    padding-left: 0;
+}
+ </style>
 <div class="mp-blog-view">
     <div class="mp-post-info">
         <?php if ($authorName && $helper->showAuthorInfo()) :
@@ -47,12 +58,14 @@ $color = $helper->getBlogConfig('general/font_color');
 
     <div class="mpcss post-view" id="mpblog-list-container">
         <div class="post-list-content">
+            <?php if($show_featured_image_on_post){ ?>
             <div class="post-view-image">
                 <?php if ($_post->getImage()) : ?>
                     <img class="img-responsive" src="<?= str_replace('https://p1.posturite.co.uk/media/mageplaza/blog/post/', 'https://www.posturite.co.uk/blog/wp-content/', $block->getImageUrl($_post->getImage())); ?>"
                          alt="<?= $block->escapeHtml($_post->getName()); ?>"/>
                 <?php endif; ?>
             </div>
+            <?php } ?>
             <?php if ($helper->getBlogConfig('share/enabled')) : ?>
                 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?= $helper->getBlogConfig('share/pubid_id') ?>" async="async"></script>
                 <div class="mpcss">

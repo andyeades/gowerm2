@@ -246,7 +246,7 @@ table {
 }
 
 .table-wrapper {
-    margin-bottom: $indent__base;
+    margin-bottom: $indent-base;
     @include max-screen($mobiletablet-max) {
         @include lib-table-overflow();
         position: relative; // To hide unnecessary horizontal scrollbar in Safari
@@ -256,8 +256,8 @@ table {
         &:not(.cart) {
             &:not(.totals) {
                 @include lib-table-bordered(
-                    $_table_type         : light,
-                    $_table_border-width : $table__border-width
+                    $-table-type         : light,
+                    $-table-border-width : $table-border-width
                 );
 
                 tfoot {
@@ -266,14 +266,14 @@ table {
                             th,
                             td {
 
-                                border-top: $table__border-width $table__border-style $table__border-color;
-                                padding-top: $indent__base;
+                                border-top: $table-border-width $table-border-style $table-border-color;
+                                padding-top: $indent-base;
                             }
                         }
                     }
 
                     .mark {
-                        font-weight: $font-weight__regular;
+                        @include co(font-weight, $font-weight-regular);
                         text-align: right;
                     }
                 }
@@ -283,11 +283,11 @@ table {
 
                     tbody > tr {
                         > td:first-child {
-                            //padding-top: $indent__base;
+                            //padding-top: $indent-base;
                         }
 
                         > td:last-child {
-                            //padding-bottom: $indent__base;
+                            //padding-bottom: $indent-base;
                         }
                     }
                     &.additional-attributes {
@@ -303,7 +303,7 @@ table {
                                 &:last-child {
                                     @include max-screen($mobiletablet-max) {
                                         border: none;
-                                        padding: 0 0 $indent__xs;
+                                        padding: 0 0 $indent-xs;
                                     }
                                 }
                             }

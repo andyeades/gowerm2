@@ -6,11 +6,10 @@
 
 // @codingStandardsIgnoreFile
 
-use Firebear\ConfigurableProducts\ViewModel\Product\Renderer\Bundle;
+?>
 
+<?php
 $_product = $block->getProduct();
-/** @var Bundle $bundleViewModel */
-$bundleViewModel = $block->getBundleViewModel()
 ?>
 <?php if ($_product->isSaleable() && $block->hasOptions()): ?>
     <div id="bundleSummary"
@@ -79,8 +78,7 @@ $bundleViewModel = $block->getBundleViewModel()
                             </strong> : <span data-role="bundle-summary-price-<?php /* @escapeNotVerified */
                             echo __('%1', '<%- data._option_id_ %>') ?>">
                             <?php /* @escapeNotVerified */
-                            echo $block->getData('firebear_catalog_product_view')->priceCurrency->getCurrencySymbol() . __('%1',
-                                    '<%- data.price %>') ?>
+                            echo $block->getData('firebear_catalog_product_view')->priceCurrency->getCurrencySymbol() . __('%1', '<%- data.price %>') ?>
                         </span>
                         </div>
                     </script>
@@ -94,9 +92,8 @@ $bundleViewModel = $block->getBundleViewModel()
                             <div class="summary-option-super" data-container="summary-super"></div>
                             <div class="summary-option-custom" data-container="summary-custom"></div>
                             <% if (data.is_multi) {%>
-                            <div class="summary-option-price"
-                                 data-container="summary-price-<?php /* @escapeNotVerified */
-                                 echo __('%1', '<%- data._option_id_ %>') ?>"></div>
+                            <div class="summary-option-price" data-container="summary-price-<?php /* @escapeNotVerified */
+                            echo __('%1', '<%- data._option_id_ %>') ?>"></div>
                         </div>
                         <% } else {%>
                         <div class="summary-option-price" data-container="summary-price"></div>
@@ -106,7 +103,7 @@ $bundleViewModel = $block->getBundleViewModel()
             </div>
         </div>
     </div>
-    <?php if (!$bundleViewModel->hidePrice()) : ?>
+    <?php if (!$block->getData('icpHelper')->hidePrice()) :?>
         <script type="text/x-magento-init">
         {
             ".product-add-form": {

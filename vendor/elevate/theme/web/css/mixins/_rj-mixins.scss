@@ -1,6 +1,7 @@
 // sass-lint:disable space-around-operator
 // sass-lint:disable no-vendor-prefixes
 // sass-lint:disable no-misspelled-properties
+// stylelint-disable length-zero-no-unit
 // stylelint-disable number-leading-zero
 
 
@@ -50,27 +51,42 @@
     transition: initial;
 }
 
+// If Passed Variable is False, then output false, else output string
+
+@function ev-false-check($var, $functionname, $value) {
+
+    @if $var == false {
+        @return false;
+    } @else {
+        @return #{$functionname}($var, $value);
+    }
+}
+
+
 
 //
 @mixin ev-color-output($color) {
-    @if $ev_reduce_coloroverides == 1 {
+    @if $color != false {
+        @if $ev-reduce-coloroverides == 1 {
 
-        @if $color != $body-color {
+            @if $color != $body-color {
+                @include m2-lib-css(color, $color);
+            }
+            // Other wise no output;
+        } @else {
             @include m2-lib-css(color, $color);
         }
-        // Other wise no output;
-    } @else {
-        @include m2-lib-css(color, $color);
     }
+
 }
 
 // Compares Passed Font Size to Base Font Size
 // If the same it won't output, unless force_output is 0
 // If use_rfs is set to 1 it will use the rfs font-size mixin for scaling
 
-@mixin ev-fontsize-output($fontsize: $font-size-base, $force_output: 0, $use_rfs: 1) {
+@mixin ev-fontsize-output($fontsize: $font-size-base, $force-output: 0, $use-rfs: 1) {
     @if $fontsize != $font-size-base {
-        @if $use_rfs == 1 {
+        @if $use-rfs == 1 {
             @include rfs($fontsize);
         } @else {
             font-size: $fontsize;
@@ -111,26 +127,51 @@
 // if Var 1 is set, and var 2 is not null then values will be compared and var1 only output if values are different
 // if Var 1 is set, and var 2 is null, var 1 will be output.
 // same goes for 3 and 4 only will ouput var1 if all are not the same - useful for breakpoints
-@mixin co($property, $var1, $var2: null, $var3: null, $var4: null) {
+@mixin co($property, $var1, $var2: null, $var3: null, $var4: null, $var5: null) {
+
     @if $var1 != false {
         @if $var2 == null {
-            #{$property}: $var1;
+            @if $property == 'border-radius' {
+                @include rj-border-radius($var1);
+            } @else {
+                #{$property}: $var1;
+            }
+
         } @else if $var3 == null {
             @if $var1 != $var2 {
-                #{$property}: $var1;
+                @if $property == 'border-radius' {
+                    @include rj-border-radius($var1);
+                } @else {
+                    #{$property}: $var1;
+                }
             }
         } @else if $var4 == null {
             @if $var1 != $var2 and $var1 != $var3 {
-                #{$property}: $var1;
+                @if $property == 'border-radius' {
+                    @include rj-border-radius($var1);
+                } @else {
+                    #{$property}: $var1;
+                }
+            }
+        } @else if $var5 == null {
+            // All 5 are set
+            @if $var1 != $var2 and $var1 != $var3 and $var1 != $var4 {
+                @if $property == "border-radius" {
+                    @include rj-border-radius($var1);
+                } @else {
+                    #{$property}: $var1;
+                }
             }
         } @else {
-            // All 4 are set
-            @if $var1 != $var2 and $var1 != $var3 and $var1 != $var4 {
-                #{$property}: $var1;
+            // All 6 are set
+            @if $var1 != $var2 and $var1 != $var3 and $var1 != $var4 and $var1 != $var5 {
+                @if $property == "border-radius" {
+                    @include rj-border-radius($var1);
+                } @else {
+                    #{$property}: $var1;
+                }
             }
         }
-
-
     }
 }
 
@@ -153,7 +194,7 @@
 
 // Button sizes
 @mixin ev-button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
-    padding: $padding-y $padding-x;
+    @include co(padding, $padding-y $padding-x);
     @include font-size($font-size);
     line-height: $line-height;
     @include border-radius($border-radius);
@@ -161,27 +202,27 @@
 
 
 @mixin m2-lib-css(
-    $_property,
-    $_value,
-    $_prefix: 0
+    $-property,
+    $-value,
+    $-prefix: 0
 ) {
-    @if $_value == 0 {
-        $_value: strip-unit($_value);
+    @if $-value == 0 {
+        $-value: strip-unit($-value);
     }
 
-    @if $_value != '' and $_value != false {
-        @if type-of($_value) == list {
-            $_isFalse: false;
-            @each $_item in $_value {
-                @if $_item == false {
-                    $_isFalse: true;
+    @if $-value != '' and $-value != false {
+        @if type-of($-value) == list {
+            $-isFalse: false;
+            @each $-item in $-value {
+                @if $-item == false {
+                    $-isFalse: true;
                 }
             }
-            @if $_isFalse == false {
-                #{$_property}: $_value;
+            @if $-isFalse == false {
+                #{$-property}: $-value;
             }
         } @else {
-            #{$_property}: $_value;
+            #{$-property}: $-value;
         }
     }
 }
@@ -253,41 +294,41 @@
 /// @param {string} $border-position
 ///  Position (All, Top, Left, Bottom, etc)
 @mixin elevate-border($border-color: black, $border-thickness: 1px, $border-type: solid, $border-position: all) {
-    $border_output: $border-thickness $border-type $border-color;
+    $border-output: $border-thickness $border-type $border-color;
 
 
 
 
 
     @if $border-color == false {
-        $border_output: $border-thickness $border-type;
+        $border-output: $border-thickness $border-type;
     }
 
 
     @if $border-position == 'all' {
 
-        border: $border_output;
+        border: $border-output;
     }
     @if $border-position == 'top' {
-        border-top: $border_output;
+        border-top: $border-output;
     }
     @if $border-position == 'bottom' {
-        border-bottom: $border_output;
+        border-bottom: $border-output;
     }
     @if $border-position == 'right' {
-        border-right: $border_output;
+        border-right: $border-output;
     }
     @if $border-position == 'left' {
-        border-left: $border_output;
+        border-left: $border-output;
     }
     @if $border-position == 'top-bottom' {
-        border-top: $border_output;
-        border-bottom: $border_output;
+        border-top: $border-output;
+        border-bottom: $border-output;
     }
     @if $border-position == 'all-but-right' {
-        border-left: $border_output;
-        border-top: $border_output;
-        border-bottom: $border_output;
+        border-left: $border-output;
+        border-top: $border-output;
+        border-bottom: $border-output;
     }
 
 }
@@ -1082,7 +1123,7 @@ $c-action: #000 !default;
             padding-left: $item-padding-left;
 
             &:before {
-                content: $font-awesome-icon;
+                @include co(content, $font-awesome-icon);
                 font-family: FontAwesome;
                 display: inline-block;
                 width: $item-width;

@@ -1,17 +1,17 @@
 //
 //  Layout variables
-//  _____________________________________________
+//
 
 //  Widths
-$layout__width                      : '' !default; // for the fixed width layout
-$layout__max-width                  : 1440px !default;
-$layout-indent__width               : 20px !default;
-$layout__width-xs-indent            : 15px !default;
+$layout-width                      : '' !default; // for the fixed width layout
+$layout-max-width                  : 1440px !default;
+$layout-indent-width               : 20px !default;
+$layout-width-xs-indent            : 15px !default;
 
 //  Classnames defining different layouts
 $layout-class-1column               : page-layout-1column !default;
-$layout-class-2columns__left        : page-layout-2columns-left !default;
-$layout-class-2columns__right       : page-layout-2columns-right !default;
+$layout-class-2columns-left        : page-layout-2columns-left !default;
+$layout-class-2columns-right       : page-layout-2columns-right !default;
 $layout-class-3columns              : page-layout-3columns !default;
 
 //  Variables used for layout grid
@@ -19,17 +19,17 @@ $total-columns                      : 12 !default;
 $gutter-width                       : 0 !default;
 
 //  Variables for layout columns
-$layout-column__width               : $total-columns !default;
-$layout-column__sidebar-width       : 3 !default;
-$layout-column__left-width          : $layout-column__sidebar-width !default;
-$layout-column__right-width         : $layout-column__sidebar-width !default;
+$layout-column-width               : $total-columns !default;
+$layout-column-sidebar-width       : 3 !default;
+$layout-column-left-width          : $layout-column-sidebar-width !default;
+$layout-column-right-width         : $layout-column-sidebar-width !default;
 
 //  Variables for layout columns depending on layout used
-$layout-column-main__width-1        : 100% !default;
-$layout-column-main__width-2-left   : $layout-column__width - $layout-column__left-width !default;
-$layout-column-main__width-2-right  : $layout-column__width - $layout-column__right-width !default;
-$layout-column-main__width-3        : $layout-column__width - $layout-column__left-width - $layout-column__right-width !default;
+$layout-column-main-width-1        : 100% !default;
+$layout-column-main-width-2-left   : $layout-column-width - $layout-column-left-width !default;
+$layout-column-main-width-2-right  : $layout-column-width - $layout-column-right-width !default;
+$layout-column-main-width-3        : $layout-column-width - $layout-column-left-width - $layout-column-right-width !default;
 
 //  Checkout columns width
-$layout-column-checkout__width-left : 3 !default;
-$layout-column-checkout__width-main : $layout-column__width - $layout-column-checkout__width-left !default;
+$layout-column-checkout-width-left : 3 !default;
+$layout-column-checkout-width-main : $layout-column-width - $layout-column-checkout-width-left !default;

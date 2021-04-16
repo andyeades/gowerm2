@@ -29,6 +29,11 @@ class Delivery extends \Magento\Framework\App\Action\Action {
     protected $non_working_days;
 
     /**
+     * @var \Elevate\Delivery\Helper\General
+     */
+    protected $ev_delivery_helper;
+
+    /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $resultPageFactory;
@@ -151,6 +156,7 @@ class Delivery extends \Magento\Framework\App\Action\Action {
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Framework\App\Action\Context $context,
+        \Elevate\Delivery\Helper\General $ev_delivery_helper,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\Json\Helper\Data $jsonHelper,
@@ -174,6 +180,7 @@ class Delivery extends \Magento\Framework\App\Action\Action {
         \Elevate\Delivery\Api\HolidaydatesRepositoryInterface $holidayDatesRepository
     ) {
         $this->scopeConfig = $scopeConfig;
+        $this->ev_delivery_helper = $ev_delivery_helper;
         $this->resultPageFactory = $resultPageFactory;
         $this->jsonHelper = $jsonHelper;
         $this->logger = $logger;
@@ -295,6 +302,7 @@ class Delivery extends \Magento\Framework\App\Action\Action {
                 }
 
                 $cart_productids[] = $product_id;
+                $cart_productids[] = $product_id;
                 $cart_skus[] = $product_sku;
                 $cart_qty_data[$product_id] = $qty;
             }
@@ -381,7 +389,13 @@ class Delivery extends \Magento\Framework\App\Action\Action {
 
             if (empty($delivery_area_match)) {
                 // No matched area, return with message/etc?
-                return false;
+
+
+                $output = array(
+                    'methods_available_count' => 0,
+                    'error_message'           => "Unfortunately we don't deliver this/these products to your postcode at present. Please try again with a different postcode or contact our customer service team."
+                );
+                return $this->jsonResponse($output);
             }
 
             // Now we have our matched area, we need to get the Calendar Data/Fees/Etc
@@ -850,7 +864,7 @@ class Delivery extends \Magento\Framework\App\Action\Action {
             // All Combo Rules Checked
 
             if (count($delivery_methods_matched) > 0) {
-                $output = $this->getDeliveryOutput($delivery_methods_matched, $cart_items_data, $cart_items_data_more);
+                $output = $this->ev_delivery_helper->getDeliveryOutput($delivery_methods_matched, $cart_items_data, $cart_items_data_more);
             } else {
                 // Fall Back Methods Check
                 $fallback_methods_count = count($delivery_area_fallbackmethods[$delivery_area_id]);
@@ -866,7 +880,7 @@ class Delivery extends \Magento\Framework\App\Action\Action {
                         $delivery_methods_matched[$deliverymethod_toadd_id] = $deliverymethod_toadd;
                     }
 
-                    $output = $this->getDeliveryOutput($delivery_methods_matched, $cart_items_data, $cart_items_data_more);
+                    $output = $this->ev_delivery_helper->getDeliveryOutput($delivery_methods_matched, $cart_items_data, $cart_items_data_more);
 
                 } else {
                     // On The off Chance no Method is set as a fall back
@@ -1113,12 +1127,41 @@ class Delivery extends \Magento\Framework\App\Action\Action {
         $postcodesCount = 0;
 
         //get the short postcode (as we are only matching by the first part of the code for a uk code)
+        $match_found = false;
 
         if (preg_match('/ ?([0-9])[ABD-HJLNP-UW-Z]{2}$/i', $postcode, $match, PREG_OFFSET_CAPTURE)) {
             $postcode = substr($postcode, 0, $match[0][1]);
+            $match_found = true;
+            $split_array = preg_split('/(?=\d)/', $match[0][0],2);
         }
 
+
+
+        // Ok But If a Partial Code is Entered?
+        // Ultimately it's what it is based on so it is geolocation valid
+
+        if ($match_found === false) {
+            if (preg_match('/^[A-Z]{1,2}\d[A-Z\d]?/i', $postcode, $match, PREG_OFFSET_CAPTURE)) {
+                $postcode = $match[0][0];
+                $match_found = true;
+                $split_array = preg_split('/(?=\d)/', $match[0][0],2);
+            }
+        }
+
+        // Can we speed this up with a Preg Split?
+
+        $split_postcode = $split_array[0];
+
         foreach ($postcodes as $postcode_from_list) {
+
+            // Check if It's likely to be in there?
+
+            if(strpos($postcode_from_list, $split_postcode) === false){
+                // skip
+                continue;
+            }
+
+
 
             if (strlen(trim($postcode_from_list)) > 0) {
                 $postcodesCount++;
@@ -1133,6 +1176,10 @@ class Delivery extends \Magento\Framework\App\Action\Action {
                     $postcodeletters = preg_replace("/[^a-zA-Z]/", "", $postcodesbounds[0]);
 
                     $postcodevaluerange = array_values(array_filter(explode($postcodeletters, $postcode_from_list), "Self::RemoveFalseButNotZero"));
+
+
+
+
                     if (strpos($postcodevaluerange[0], '-')) {
                         //remove - from array value
                         $postcodevaluerange[0] = substr($postcodevaluerange[0], 0, strpos($postcodevaluerange[0], '-'));
@@ -1192,7 +1239,7 @@ class Delivery extends \Magento\Framework\App\Action\Action {
         return $count;
     }
 
-    public function getDeliveryOutput(
+    public function OldgetDeliveryOutput(
         $deliverymethods,
         $cart_item_data,
         $cart_items_data_more

@@ -10,7 +10,7 @@
 .custom-control {
   position: relative;
   display: block;
-  min-height: $font-size-base * $line-height-base;
+  @include co(min-height, $font-size-base * $line-height-base);
   padding-left: $custom-control-gutter + $custom-control-indicator-size;
 }
 
@@ -221,10 +221,10 @@
   display: inline-block;
   width: 100%;
   height: $custom-select-height;
-  padding: $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) $custom-select-padding-y $custom-select-padding-x;
+  @include co(padding, $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) $custom-select-padding-y $custom-select-padding-x);
   font-family: $custom-select-font-family;
   @include font-size($custom-select-font-size);
-  font-weight: $custom-select-font-weight;
+  @include co(font-weight, $custom-select-font-weight);
   line-height: $custom-select-line-height;
   color: $custom-select-color;
   vertical-align: middle;
@@ -328,7 +328,7 @@
 
   @each $lang, $value in $custom-file-text {
     &:lang(#{$lang}) ~ .custom-file-label::after {
-      content: $value;
+     @include co(content, $value);
     }
   }
 
@@ -344,9 +344,9 @@
   left: 0;
   z-index: 1;
   height: $custom-file-height;
-  padding: $custom-file-padding-y $custom-file-padding-x;
+  @include co(padding, $custom-file-padding-y $custom-file-padding-x);
   font-family: $custom-file-font-family;
-  font-weight: $custom-file-font-weight;
+  @include co(font-weight, $custom-file-font-weight);
   line-height: $custom-file-line-height;
   color: $custom-file-color;
   background-color: $custom-file-bg;
@@ -362,7 +362,7 @@
     z-index: 3;
     display: block;
     height: $custom-file-height-inner;
-    padding: $custom-file-padding-y $custom-file-padding-x;
+    @include co(padding, $custom-file-padding-y $custom-file-padding-x);
     line-height: $custom-file-line-height;
     color: $custom-file-button-color;
     content: "Browse";
@@ -400,7 +400,7 @@
   }
 
   &::-webkit-slider-thumb {
-    width: $custom-range-thumb-width;
+    @include co(width, $custom-range-thumb-width);
     height: $custom-range-thumb-height;
     margin-top: ($custom-range-track-height - $custom-range-thumb-height) / 2; // Webkit specific
     @include gradient-bg($custom-range-thumb-bg);
@@ -416,7 +416,7 @@
   }
 
   &::-webkit-slider-runnable-track {
-    width: $custom-range-track-width;
+    @include co(width, $custom-range-track-width);
     height: $custom-range-track-height;
     color: transparent; // Why?
     cursor: $custom-range-track-cursor;
@@ -427,7 +427,7 @@
   }
 
   &::-moz-range-thumb {
-    width: $custom-range-thumb-width;
+    @include co(width, $custom-range-thumb-width);
     height: $custom-range-thumb-height;
     @include gradient-bg($custom-range-thumb-bg);
     border: $custom-range-thumb-border;
@@ -442,7 +442,7 @@
   }
 
   &::-moz-range-track {
-    width: $custom-range-track-width;
+    @include co(width, $custom-range-track-width);
     height: $custom-range-track-height;
     color: transparent;
     cursor: $custom-range-track-cursor;
@@ -453,7 +453,7 @@
   }
 
   &::-ms-thumb {
-    width: $custom-range-thumb-width;
+    @include co(width, $custom-range-thumb-width);
     height: $custom-range-thumb-height;
     margin-top: 0; // Edge specific
     margin-right: $custom-range-thumb-focus-box-shadow-width; // Workaround that overflowed box-shadow is hidden.
@@ -471,7 +471,7 @@
   }
 
   &::-ms-track {
-    width: $custom-range-track-width;
+    @include co(width, $custom-range-track-width);
     height: $custom-range-track-height;
     color: transparent;
     cursor: $custom-range-track-cursor;

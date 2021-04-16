@@ -1,6 +1,6 @@
 //
 //  Color variables
-//  _____________________________________________
+//
 
 $color-white             : #fff !default;
 $color-black             : #000 !default;
@@ -85,19 +85,19 @@ $color-yellow1           : #ff0 !default;
 
 //
 //  Color nesting
-//  ---------------------------------------------
+//
 
-$primary__color          : $color-gray20 !default;
-$primary__color__dark    : darken($primary__color, 35%) !default; // #000
-$primary__color__darker  : darken($primary__color, 13.5%) !default; // #111
-$primary__color__lighter : lighten($primary__color, 29%) !default; // #7d7d7d
-$primary__color__light   : lighten($primary__color, 45%) !default; // #a6a6a6
+$primary-color          : $color-gray20 !default;
+$primary-color-dark    : darken($primary-color, 35%) !default; // #000
+$primary-color-darker  : darken($primary-color, 13.5%) !default; // #111
+$primary-color-lighter : lighten($primary-color, 29%) !default; // #7d7d7d
+$primary-color-light   : lighten($primary-color, 45%) !default; // #a6a6a6
 
-$secondary__color        : $color-gray91 !default;
-$secondary__color__light : lighten($secondary__color, 5%) !default;
+$secondary-color        : $color-gray91 !default;
+$secondary-color-light : lighten($secondary-color, 5%) !default;
 
-$page__background-color  : $color-white !default;
-$panel__background-color : darken($page__background-color, 6%) !default;
+$page-background-color  : $color-white !default;
+$panel-background-color : darken($page-background-color, 6%) !default;
 
-$active__color           : $color-orange-red1 !default;
-$error__color            : $color-red10 !default;
+$active-color           : $color-orange-red1 !default;
+$error-color            : $color-red10 !default;

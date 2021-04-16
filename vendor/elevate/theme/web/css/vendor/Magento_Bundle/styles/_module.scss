@@ -3,7 +3,7 @@
 // Redund
 
 .bundle-actions {
-    margin: $indent__s 0;
+    @include co(margin, $indent-s 0);
     .action.primary {
         @include lib-button-l();
     }
@@ -11,11 +11,11 @@
 
 .bundle-options-container {
     clear: both;
-    margin-bottom: $indent__xl;
+    margin-bottom: $indent-xl;
 
     .legend.title {
         @include lib-heading(h2);
-        @include min-screen($desktop_sm_min) {
+        @include min-screen($desktop-sm-min) {
             @include abs-reset-left-margin();
         }
     }
@@ -29,17 +29,17 @@
     }
 
     .product-options-wrapper {
-        margin-bottom: $indent__l;
+        margin-bottom: $indent-l;
     }
 
     .action.back {
-        margin-bottom: $indent__l;
+        margin-bottom: $indent-l;
     }
 
     .price-box {
         .price {
-            font-size: $font-size__l;
-            font-weight: $font-weight__bold;
+          @include co(font-size, $font-size-l);
+            @include co(font-weight, $font-weight-bold);
         }
     }
 
@@ -48,10 +48,10 @@
     }
 
     .block-bundle-summary {
-        @include lib-css(background, $secondary__color);
-        padding: $indent__s $indent__base;
+        @include lib-css(background, $secondary-color);
+        @include co(padding, $indent-s $indent-base);
 
-        @include min-screen($desktop_sm_min) {
+        @include min-screen($desktop-sm-min) {
             float: right;
             position: relative;
             width: 40%;
@@ -63,7 +63,7 @@
         }
 
         .bundle-summary {
-            margin-top: $indent__l;
+            margin-top: $indent-l;
 
             &.empty {
                 display: none;
@@ -79,14 +79,14 @@
             @include abs-reset-list();
 
             > li {
-                margin-bottom: $indent__s;
+                margin-bottom: $indent-s;
             }
         }
 
         .box-tocart {
             .actions {
                 display: inline-block;
-                margin-bottom: $indent__s;
+                margin-bottom: $indent-s;
             }
 
             .action.primary {
@@ -98,7 +98,7 @@
             > .action {
                 @include lib-button();
                 @include lib-link-as-button();
-                @include lib-css(border-radius, $button__border_radius);
+                @include lib-css(border-radius, $button-border-radius);
                 @include lib-button-s();
                 vertical-align: top;
             }
@@ -107,17 +107,17 @@
     .nested {
         .field.qty {
             .label {
-                @include lib-css(font-weight, $form-field-label__font-weight);
-                @include lib-css(margin, 0 0 $indent__xs);
+                @include lib-css(font-weight, $form-field-label-font-weight);
+                @include lib-css(margin, 0 0 $indent-xs);
                 display: inline-block;
             }
 
-            @include lib-css(margin-top, $form-field__vertical-indent);
+            @include lib-css(margin-top, $form-field-vertical-indent);
         }
     }
 
     p.required {
-        @include lib-css(color, $form-field-label-asterisk__color);
+        @include lib-css(color, $form-field-label-asterisk-color);
     }
 
     .product-options-bottom {

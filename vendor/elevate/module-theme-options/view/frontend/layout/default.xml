@@ -47,14 +47,17 @@
             </container>
         </referenceContainer>
         <referenceContainer name="page.wrapper">
+
             <container name="ev.footer.above" htmlTag="div" htmlId="elevate-footer-above">
                 <container name="ev.footer.above.inner.container" htmlTag="div" htmlClass="container">
                     <container name="ev.footer.above.inner" htmlTag="div" htmlId="ev-footer-above-inner">
-                        <block class="Magento\Cms\Block\Block" name="ev_footer_above_inner_content">
-                            <arguments>
-                                <argument name="block_id" xsi:type="string">ev-footer-above-inner-content</argument>
-                            </arguments>
-                        </block>
+                        <container name="ev.home.newsletter" htmlTag="div" htmlId="home-newsletter">
+                            <container name="ev.home.newsletter.container" htmlTag="div" htmlClass="container-ev">
+                                <container name="ev.home.newsletter.inner" htmlTag="div" htmlId="home-newsletter-inner">
+
+                                </container>
+                            </container>
+                        </container>
                     </container>
                 </container>
             </container>
@@ -115,7 +118,7 @@
         </referenceContainer>
 
 
-
+        <move element="form.subscribe" destination="ev.home.newsletter.inner" />
         <move element="minicart" destination="header.main.in.right.brow.right"/>
 
         <!-- Remove Junk -->

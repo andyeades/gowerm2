@@ -15,12 +15,13 @@
 @import 'components/sections/products/view/description';
 @import 'components/sections/products/view/keyfacts';
 @import 'components/sections/products/view/fullwidthproductimage';
+@import 'vendor/ahead_productquestion/_ahead-product-questions';
+@import 'components/sections/products/view/feefo';
 
 // Happybeds
 
 @import 'components/clientspecific/happybeds/products/view/morecollection';
 @import 'components/clientspecific/happybeds/products/view/whatmakesitgreat';
-@import 'components/clientspecific/happybeds/products/view/feefo';
 @import "components/clientspecific/happybeds/products/view/byob";
 @import "components/clientspecific/happybeds/products/view/product_view";
 
@@ -29,12 +30,18 @@
 
 // Posturite
 
+// Posturite
+
+@import 'components/clientspecific/posturite/temppvars';
+@import 'components/clientspecific/posturite/temp';
+
 @import 'components/clientspecific/posturite/sections/faq';
 @import 'components/clientspecific/posturite/sections/feefo';
 @import 'components/clientspecific/posturite/sections/product_page';
 @import 'components/clientspecific/posturite/sections/webforms';
 @import 'components/clientspecific/posturite/products/view/addtolinks';
 @import 'components/clientspecific/posturite/products/view/productattachments';
+@import 'components/clientspecific/posturite/products/view/product_view';
 @import 'vendor/elevate/trainingmenu/trainingmenu';
 
 @import 'vendor/elevate/general/sharethis';

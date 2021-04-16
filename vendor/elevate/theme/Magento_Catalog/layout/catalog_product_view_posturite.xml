@@ -28,17 +28,17 @@
         <move element="page.main.title" destination="product.info.media" before="-"/>
         <move element="bundle.options.container" destination="product.info.main" after="ev.stock.ordertimes"/>
 
-
-
-
-
+           <referenceContainer name="main">
+                <container name="ev.outer.container.mediaproddetails" htmlTag="div" htmlId="ev-mediaproddetails" htmlClass="container d-flex" before="-">
+                </container>
+            </referenceContainer>
 
         <referenceContainer name="product.info.main">
             <container name="ev.pp.stickybarouter" htmlTag="div" htmlId="ev-pp-stickybarouter" before="-">
                 <container name="ev.pp.stickybar" htmlTag="div" htmlClass="container" before="-">
                     <block class="Magento\Catalog\Block\Product\View" name="product.info.stickybarform" template="Magento_Catalog::product/view/client-specific/posturite/stickybarform.phtml">
 
-                    <block class="Magento\Catalog\Block\Product\View" name="ev.pp.stickybar.inner" template="Magento_Catalog::product/view/client-specific/posturite/stickybar.phtml" cacheable="false">
+                    <block class="Magento\Catalog\Block\Product\View" name="ev.pp.stickybar.inner" template="Magento_Catalog::product/view/client-specific/posturite/stickybar.phtml" >
                         <block class="Magento\Catalog\Pricing\Render" name="product.price.final.alt">
                             <arguments>
                                 <argument name="price_render" xsi:type="string">product.price.render.default</argument>
@@ -67,7 +67,7 @@
             <container name="ev.stock.ordertimes" htmlTag="div" htmlId="ev-pp-stockorder" after="ev.pp.shortdescription">
                 <block class="Magento\Catalog\Block\Product\View" name="ev.pp.ordertimes"  template="Magento_Catalog::product/view/ordertimes.phtml" before="-"/>
             </container>
-            <block class="Magento\Catalog\Block\Product\View" name="product.info.leadtime" template="Magento_Catalog::product/view/leadtime.phtml" after="-"/>
+      
             <block class="Magento\Catalog\Block\Product\View" name="product.info.bottlesize" template="Magento_Catalog::product/view/brand.phtml" before="-"/>
             <container name="ev.pp.keyfacts" htmlTag="div" htmlId="ev-prod-keyfacts-3" htmlClass="ev-prod-keyfacts ev-prod-keyfacts-3" after="product.info.main" before="product.info.details" >
                 <block class="Magento\Catalog\Block\Product\View"
@@ -79,38 +79,27 @@
 
 
         </referenceContainer>
-        <referenceContainer name="product.info.media" htmlClass="product media">
+      
 
-        </referenceContainer>
-
-        <referenceBlock name="product.info.media">
-            <container name="ev.product.info.extrahint" after="-">
-                <container name="ev.product.info.social" label="Product social links container" htmlTag="div" htmlClass="product-social-links">
-                    <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.addto.wishlist"
-                           template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
-
-                    <block class="Magento\Catalog\Block\Product\View\AddTo\Compare" name="view.addto.compare" after="view.addto.wishlist"
-                           template="Magento_Catalog::product/view/addto/compare.phtml" >
-                        <arguments>
-                            <argument name="addToCompareViewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\Checker\AddToCompareAvailability</argument>
-                        </arguments>
-                    </block>
-
-                    <block class="Magento\Catalog\Block\Product\View" name="ev.product.info.share" template="Magento_Catalog::product/view/addto/share.phtml" ifconfig="theme_options/productpage/enable_evproductmailto"/>
-                </container>
-            </container>
-        </referenceBlock>
-        <referenceContainer name="content">
-            <container name="ev.product.info.bottom.outer" htmlTag="div" htmlId="pinfo-btm-o" after="product.info.media">
-
+        
+        
+        <referenceContainer name="content"> 
+            <container name="ev.product.info.bottom.outer" htmlTag="div" htmlId="pinfo-btm-o" htmlClass="mx-auto" after="ev.outer.container.mediaproddetails">
+ 
                 <container name="ev.product.info.bottom.main" htmlTag="div" htmlId="pinfo-btm-m">
                     <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.info.psidebar" template="Magento_Catalog::product/view/bottom/p-sidebar-j.phtml" before="-" />
+                
+               
+
+
                 </container>
                 <container name="ev.product.info.bottom.side" htmlTag="div" htmlId="pinfo-btm-s">
                     <!-- Posturite -->
                     <block class="Magento\Catalog\Block\Product\View" name="product.info.delivery" template="Magento_Catalog::product/view/bottom/p-delivery.phtml" before="-" />
                     <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.info.psidebar" template="Magento_Catalog::product/view/bottom/p-sidebar.phtml" before="-" />
                 </container>
+                
+            <block  class="Magento\Catalog\Block\Product\View" name="elevate_slot_pp_bottom" template="Magento_Catalog::product/view/elevate_slot_pp_bottom.phtml" after="product.info.details" />
             </container>
         </referenceContainer>
 
@@ -121,7 +110,7 @@
                     <argument name="at_code" xsi:type="string">description</argument>
                     <argument name="css_class" xsi:type="string">description</argument>
                     <argument name="at_label" xsi:type="string">none</argument>
-                    <argument name="title" translate="true" xsi:type="string">Details</argument>
+                    <argument name="title" translate="true" xsi:type="string">Description</argument>
                     <argument name="sort_order" xsi:type="string">10</argument>
                 </arguments>
             </referenceBlock>
@@ -145,12 +134,14 @@
                         <argument name="sort_order" xsi:type="string">30</argument>
                     </arguments>
                 </block>
+                
+                
             <block class="FME\Productattachments\Block\Productattachments"
                    name="product-info-support"
                    template="Magento_Catalog::product/view/client-specific/posturite/support.phtml"
                    group="detailed_info" after="product.info.specifications">
                 <arguments>
-                    <argument name="title" translate="true" xsi:type="string">Support</argument>
+                    <argument name="title" translate="true" xsi:type="string">Documentation &amp; Videos</argument>
                     <argument name="sort_order" xsi:type="string">60</argument>
                 </arguments>
             </block>
@@ -160,7 +151,7 @@
                    template="Magento_Catalog::product/view/client-specific/posturite/faq.phtml"
                    group="detailed_info" after="product.info.faqs">
                 <arguments>
-                    <argument name="title" translate="true" xsi:type="string">Faq</argument>
+                    <argument name="title" translate="true" xsi:type="string">FAQs</argument>
                     <argument name="sort_order" xsi:type="string">70</argument>
                 </arguments>
             </block>
@@ -170,20 +161,23 @@
                         <argument name="sort_order" xsi:type="string">90</argument>
                     </arguments>
                 </block>
+                
         </referenceBlock>
 
         <!--<move element="product.info.media.magiczoomplus" destination="pinfo.media.sticky.container" after="-"/>
         <move element="product.info.media.video" destination="pinfo.media.sticky.container" after="product.info.media.magiczoomplus"/>-->
-
-        <move element="catalog.product.related" destination="ev.product.info.bottom.side" after="product.info.psidebar"/>
-        <move element="product.info.details" destination="ev.product.info.bottom.main"/>
+<move element="product.info.media" destination="ev.outer.container.mediaproddetails" before="-" />
+<move element="product.info.main" destination="ev.outer.container.mediaproddetails" after="product.info.media" />
+      <referenceBlock name="product.info.upsell" remove="true"/>
+        <move element="product.info.details" destination="ev.product.info.bottom.main" after=""/>
         <referenceBlock name="pattachments.tab" remove="true"/>
+           <referenceBlock name="catalog.product.related" remove="true"/>
         <referenceBlock name="elevate.pinfobtms.advert.space" remove="true"/>
         <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
         <referenceBlock name="skip_gallery_after.target" remove="true"/>
         <!-- Remove Original Containers -->
         <referenceContainer name="product.info.addto" remove="true"/>
         <referenceContainer name="product.info.social" remove="true"/>
-        <!--<referenceBlock name="product.attributes" remove="true"/>-->
+       <referenceBlock name="product.info.leadtime" remove="true"/>
     </body>
-</page>
+</page>  

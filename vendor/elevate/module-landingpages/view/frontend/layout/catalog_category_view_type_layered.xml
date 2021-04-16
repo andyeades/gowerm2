@@ -30,12 +30,12 @@
                 <argument name="template" xsi:type="string">Elevate_LandingPages::category/cms.phtml</argument>
             </action>
         </referenceBlock>
-        
-    
+
+
 
         <referenceContainer name="content">
             <block class="Magento\Framework\View\Element\Template" name="ev_ln_bottom_description" after="category.products"  template="Elevate_LandingPages::category/bottom_description.phtml" />
         </referenceContainer>
-        
+
     </body>
 </page>

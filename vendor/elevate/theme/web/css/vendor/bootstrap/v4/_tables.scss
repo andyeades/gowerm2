@@ -12,7 +12,7 @@ $bootstrap4-table-thead-th-border-bottom: (2 * $table-border-width) solid $table
 
   th,
   td {
-    padding: $table-cell-padding;
+    @include co(padding, $table-cell-padding);
     vertical-align: top;
     border-top: $table-border-width solid $table-border-color;
   }
@@ -35,7 +35,7 @@ $bootstrap4-table-thead-th-border-bottom: (2 * $table-border-width) solid $table
 .table-sm {
   th,
   td {
-    padding: $table-cell-padding-sm;
+    @include co(padding, $table-cell-padding-sm);
   }
 }
 

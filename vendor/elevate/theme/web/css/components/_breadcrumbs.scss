@@ -1,45 +1,45 @@
-$page_main_outer_margin_with_breadcrumbs: 0 !default;
+$page-main-outer-margin-with-breadcrumbs: 0 !default;
 
-$breadcrumbs_items_container_padding_on: 0 !default;
-$breadcrumbs_items_container_padding: 0.9375rem 0 !default;
+$breadcrumbs-items-container-padding-on: 0 !default;
+$breadcrumbs-items-container-padding: 0.9375rem 0 !default;
 
-$breadcrumbs_off_mobile: true !default;
+$breadcrumbs-off-mobile: true !default;
 
 
-$breadcrumbs_home_icon_on: 0 !default;
-$breadcrumbs_home_icon_url: '../images/breadcrumbs/home.svg' !default;
-$breadcrumbs_home_icon_height: 18px !default;
-$breadcrumbs_home_icon_width: 18px !default;
-$breadcrumbs_home_icon_color: rgba(66, 66, 66, 0.5) !default;
+$breadcrumbs-home-icon-on: 0 !default;
+$breadcrumbs-home-icon-url: '../images/breadcrumbs/home.svg' !default;
+$breadcrumbs-home-icon-height: 18px !default;
+$breadcrumbs-home-icon-width: 18px !default;
+$breadcrumbs-home-icon-color: rgba(66, 66, 66, 0.5) !default;
 
-$breadcrumbs_border_on: 0 !default;
-$breadcrumbs_border_thickness: 1px !default;
-$breadcrumbs_border_type: solid !default;
-$breadcrumbs_border_position: top-bottom !default;
-$breadcrumbs_border_color_type: linear-gradient !default;
-$breadcrumbs_border_color: linear-gradient(45deg, #DDDDDD, rgb(255, 255, 255)) !default;
+$breadcrumbs-border-on: 0 !default;
+$breadcrumbs-border-thickness: 1px !default;
+$breadcrumbs-border-type: solid !default;
+$breadcrumbs-border-position: top-bottom !default;
+$breadcrumbs-border-color-type: linear-gradient !default;
+$breadcrumbs-border-color: linear-gradient(45deg, #DDDDDD, rgb(255, 255, 255)) !default;
 
-$breadcrumbs_items_border_on: 0 !default;
+$breadcrumbs-items-border-on: 0 !default;
 
-$breadcrumbs__container-padding: false !default;
+$breadcrumbs-container-padding: false !default;
 
 .breadcrumbs {
-    @if $breadcrumbs_off_mobile == true {
+    @if $breadcrumbs-off-mobile == true {
         @include max-screen($mobile-max) {
 
                 display: none;
             }
     }
-    @if $breadcrumbs__container-padding != false {
-        padding: $breadcrumbs__container-padding;
+    @if $breadcrumbs-container-padding != false {
+        @include co(padding, $breadcrumbs-container-padding);
     }
 
-    @if $breadcrumbs_border_on == 1 {
-        @if ($breadcrumbs_border_color_type == linear-gradient) {
-            border-image-source: $breadcrumbs_border_color;
+    @if $breadcrumbs-border-on == 1 {
+        @if ($breadcrumbs-border-color-type == linear-gradient) {
+            border-image-source: $breadcrumbs-border-color;
             border-image-slice: 1;
         }
-        @include elevate-border(false, $breadcrumbs_border_thickness, $breadcrumbs_border_type, $breadcrumbs_border_position);
+        @include elevate-border(false, $breadcrumbs-border-thickness, $breadcrumbs-border-type, $breadcrumbs-border-position);
 
     }
 
@@ -48,32 +48,32 @@ $breadcrumbs__container-padding: false !default;
     @include lib-breadcrumbs();
 
     .items {
-        @if $breadcrumbs_items_container_padding_on == 1 {
-            padding: $breadcrumbs_items_container_padding;
+        @if $breadcrumbs-items-container-padding-on == 1 {
+            @include co(padding, $breadcrumbs-items-container-padding);
         }
-        @if $breadcrumbs_items_border_on == 1 {
-            @if ($breadcrumbs_border_color_type == linear-gradient) {
-                border-image-source: $breadcrumbs_border_color;
+        @if $breadcrumbs-items-border-on == 1 {
+            @if ($breadcrumbs-border-color-type == linear-gradient) {
+                border-image-source: $breadcrumbs-border-color;
                 border-image-slice: 1;
             }
-            @include elevate-border(false, $breadcrumbs_border_thickness, $breadcrumbs_border_type, $breadcrumbs_border_position);
+            @include elevate-border(false, $breadcrumbs-border-thickness, $breadcrumbs-border-type, $breadcrumbs-border-position);
         }
 
     }
-    font-weight: $breadcrumbs-font-weight;
-    @if $breadcrumbs_home_icon_on == 1 {
+    @include co(font-weight, $breadcrumbs-font-weight);
+    @if $breadcrumbs-home-icon-on == 1 {
         .home {
            > a {
                display: inline-block;
-               height: $breadcrumbs_home_icon_height;
-               width: $breadcrumbs_home_icon_width;
+               height: $breadcrumbs-home-icon-height;
+               @include co(width, $breadcrumbs-home-icon-width);
 
                 > svg {
-                    fill: $breadcrumbs_home_icon_color;
-                    height: $breadcrumbs_home_icon_height;
-                    width: $breadcrumbs_home_icon_width;
+                    fill: $breadcrumbs-home-icon-color;
+                    height: $breadcrumbs-home-icon-height;
+                    @include co(width, $breadcrumbs-home-icon-width);
                     > * {
-                        fill: $breadcrumbs_home_icon_color;
+                        fill: $breadcrumbs-home-icon-color;
                     }
                 }
 

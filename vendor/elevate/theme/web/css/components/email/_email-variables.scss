@@ -1,5 +1,5 @@
 //  Email variable overrides
-//  _____________________________________________
+//
 
 //  This file should be used to set theme-specific variables for emails.
 //  By default, emails will inherit variables from the Magento UI Library and the _theme.scss and _variables.scss files
@@ -13,25 +13,25 @@
 //  @email__background-color: @color-heathered-grey; // Change background to darker grey color
 
 //  Base URL path
-$baseUrl                        : "{{base_url_path}}/" !default;
+$baseUrl                        : "{{base-url-path}}/" !default;
 
 //  Structure
-$email-body__width              : 600px !default;
-$email-body__padding            : $indent__s !default;
+$email-body-width              : 600px !default;
+$email-body-padding            : $indent-s !default;
 
 //  Content
-$email-content__padding__base   : $indent__s !default;
-$email-content__padding__s      : $indent__xs !default;
-$email-content__padding__m      : $indent__base !default;
-$email-content__padding__l      : $indent__l !default;
-$email-content__padding__xl     : $indent__xl !default;
+$email-content-padding-base   : $indent-s !default;
+$email-content-padding-s      : $indent-xs !default;
+$email-content-padding-m      : $indent-base !default;
+$email-content-padding-l      : $indent-l !default;
+$email-content-padding-xl     : $indent-xl !default;
 
 //  Colors
-$email__background-color        : $color-white !default;
-$email-content__background-color: $color-white !default;
+$email-background-color        : $color-white !default;
+$email-content-background-color: $color-white !default;
 
 //  Messages
-$message-email__color           : $text__color !default;
-$message-email__background      : $message-info__background !default;
-$message-email__border-color    : $message__border-color !default;
-$message-email-link__color      : $message-info-link__color !default;
+$message-email-color           : $text-color !default;
+$message-email-background      : $message-info-background !default;
+$message-email-border-color    : $message-border-color !default;
+$message-email-link-color      : $message-info-link-color !default;

@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
+        <link src="css/styles-critical-core.css" />
+        <link src="css/styles-critical-elevate.css" />
+        <link src="css/styles-non-critical.css" />
         <link src="css/styles-s.css"/>
         <link src="Elevate_Framework::js/elevate.resizer.js" />
     </head>
@@ -81,7 +84,7 @@
         <referenceContainer name="advanced-search-link" remove="true"/>
 
         <referenceBlock name="wish-list-link" remove="true"/>
-        <referenceBlock name="form.subscribe" remove="true"/>
+        <!--<referenceBlock name="form.subscribe" remove="true"/> -->
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="navigation.sections" remove="true"/>
         <referenceBlock name="authorization-link-login" remove="true"/>

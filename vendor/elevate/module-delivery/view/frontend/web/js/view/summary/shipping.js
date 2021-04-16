@@ -52,18 +52,18 @@ define([
                 } else {
                     shippingAddress['extension_attributes'] = {};
 
-                    shippingAddress['extension_attributes']['ev_giftmessagemessage'] = 'your momma';
+                    //shippingAddress['extension_attributes']['ev_giftmessagemessage'] = 'Check One';
                     console.log('Summary Text Not Set?');
                     console.log(shippingAddress);
                 }
 
 
             }
-            console.log(quote);
-            console.log("Shipping Method = ");
-            console.log(shippingMethod);
+            //console.log(quote);
+            //console.log("Shipping Method = ");
+           //console.log(shippingMethod);
             if (!_.isArray(shippingMethod) && !_.isObject(shippingMethod)) {
-                console.log('why you here bro?');
+                //console.log('Error - Shipping Method');
                 return '';
             }
 

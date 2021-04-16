@@ -1,5 +1,5 @@
 $desktop-popup-width         : 380px !default;
-$desktop-popup-margin-left   : -(($desktop-popup-width + ($popup__padding * 2)) / 2) !default;
+$desktop-popup-margin-left   : -(($desktop-popup-width + ($popup-padding * 2)) / 2) !default;
 $desktop-popup-position-left : 50% !default;
 $desktop-popup-position-top  : 20% !default;
 
@@ -8,34 +8,34 @@ $desktop-popup-position-top  : 20% !default;
     &.split.button {
         .items .item:last-child {
             &:hover {
-                @include lib-css(background, $dropdown-list-item__hover);
+                @include lib-css(background, $dropdown-list-item-hover);
             }
         }
 
         .action.new {
             @include lib-icon-font(
-                $_icon-font-content        : $icon-expand,
-                $_icon-font-size           : 10px,
-                $_icon-font-line-height    : 10px,
-                $_icon-font-vertical-align : middle
+                $-icon-font-content        : $icon-expand,
+                $-icon-font-size           : 10px,
+                $-icon-font-line-height    : 10px,
+                $-icon-font-vertical-align : middle
             );
             &:before {
                 margin-left: -17px;
-                margin-right: $indent__xs;
+                margin-right: $indent-xs;
             }
         }
         @include lib-dropdown-split(
-            $_options-selector                          : '.items',
-            $_dropdown-split-button-border-radius-fix   : true,
-            $_dropdown-split-list-item-padding          : 5px 5px 5px 23px,
-            $_dropdown-split-toggle-icon-content        : $icon-down,
-            $_dropdown-split-toggle-active-icon-content : $icon-up,
-            $_dropdown-split-toggle-actions-padding     : false,
-            $_icon-font-size                            : 22px,
-            $_icon-font-color                           : $addto-color,
-            $_icon-font-color-hover                     : $addto-hover-color,
-            $_dropdown-split-list-pointer-position      : left,
-            $_dropdown-split-list-min-width             : 200px
+            $-options-selector                          : '.items',
+            $-dropdown-split-button-border-radius-fix   : true,
+            $-dropdown-split-list-item-padding          : 5px 5px 5px 23px,
+            $-dropdown-split-toggle-icon-content        : $icon-down,
+            $-dropdown-split-toggle-active-icon-content : $icon-up,
+            $-dropdown-split-toggle-actions-padding     : false,
+            $-icon-font-size                            : 22px,
+            $-icon-font-color                           : $addto-color,
+            $-icon-font-color-hover                     : $addto-hover-color,
+            $-dropdown-split-list-pointer-position      : left,
+            $-dropdown-split-list-min-width             : 200px
         );
         vertical-align: middle;
 
@@ -44,7 +44,7 @@ $desktop-popup-position-top  : 20% !default;
             .item {
                 &:last-child {
                     &:hover {
-                        @include lib-css(background, $dropdown-list-item__hover);
+                        @include lib-css(background, $dropdown-list-item-hover);
                     }
                 }
             }
@@ -56,16 +56,16 @@ $desktop-popup-position-top  : 20% !default;
                 @include abs-action-button-as-link();
                 &.split {
                       @include lib-icon-font(
-    $_icon-font-content        : '',
-    $_icon-font-size           : 1.813rem,
-    $_icon-font-color          : $addto-color,
-    $_icon-font-color-hover    : $addto-hover-color,
-    $_icon-font-text-hide      : true,
-    $_icon-font-vertical-align : middle,
-    $_icon-font-line-height    :  1.5rem
+    $-icon-font-content        : '',
+    $-icon-font-size           : 1.813rem,
+    $-icon-font-color          : $addto-color,
+    $-icon-font-color-hover    : $addto-hover-color,
+    $-icon-font-text-hide      : true,
+    $-icon-font-vertical-align : middle,
+    $-icon-font-line-height    :  1.5rem
   );
                     @include lib-icon-font-symbol(
-                        $_icon-font-content: $icon-wishlist-empty
+                        $-icon-font-content: $icon-wishlist-empty
                     );
                 }
 
@@ -103,11 +103,11 @@ $desktop-popup-position-top  : 20% !default;
         }
 
         .cart.table-wrapper & {
-            margin-bottom: $indent__s;
+            margin-bottom: $indent-s;
 
             > .action {
                 &.toggle {
-                    padding: 4px $indent__xs;
+                    padding: 4px $indent-xs;
                 }
             }
         }
@@ -131,27 +131,27 @@ $desktop-popup-position-top  : 20% !default;
 
     &-dropdown {
         @include lib-dropdown(
-            $_dropdown-list-item-padding : 5px 5px 5px 23px,
-            $_dropdown-list-min-width    : 200px,
-            $_icon-font-margin           : 0 0 0 5px,
-            $_icon-font-vertical-align   : middle
+            $-dropdown-list-item-padding : 5px 5px 5px 23px,
+            $-dropdown-list-min-width    : 200px,
+            $-icon-font-margin           : 0 0 0 5px,
+            $-icon-font-vertical-align   : middle
         );
         .items .item:last-child {
             &:hover {
-                @include lib-css(background, $dropdown-list-item__hover);
+                @include lib-css(background, $dropdown-list-item-hover);
             }
         }
 
         .action.new {
             @include lib-icon-font(
-                $_icon-font-content        : $icon-expand,
-                $_icon-font-size           : 10px,
-                $_icon-font-line-height    : 10px,
-                $_icon-font-vertical-align : middle
+                $-icon-font-content        : $icon-expand,
+                $-icon-font-size           : 10px,
+                $-icon-font-line-height    : 10px,
+                $-icon-font-vertical-align : middle
             );
             &:before {
                 margin-left: -17px;
-                margin-right: $indent__xs;
+                margin-right: $indent-xs;
             }
         }
     }
@@ -168,7 +168,7 @@ $desktop-popup-position-top  : 20% !default;
                     &:after {
                         content: ': ';
                     }
-                    font-weight: $font-weight__semibold;
+                    @include co(font-weight, $font-weight-semibold);
                 }
             }
 
@@ -179,18 +179,18 @@ $desktop-popup-position-top  : 20% !default;
 
         //  Wish list name
         &-title {
-            margin-bottom: $indent__s;
+            margin-bottom: $indent-s;
 
             strong {
-                font-weight: $font-weight__light;
-                margin-right: $indent__s;
+                @include co(font-weight, $font-weight-light);
+                margin-right: $indent-s;
             }
         }
 
         &-notice {
-            @include lib-css(color, $text__color__muted);
+            @include lib-css(color, $text-color-muted);
             display: inline-block;
-            margin-right: $indent__base;
+            margin-right: $indent-base;
         }
 
         //  Wish list toolbar
@@ -201,19 +201,19 @@ $desktop-popup-position-top  : 20% !default;
             }
 
             &-select {
-                margin-right: $indent__base;
+                margin-right: $indent-base;
             }
         }
         //  Wish list toolbar actions
         &-dropdown.move {
-            margin-right: $indent__base;
+            margin-right: $indent-base;
         }
     }
 }
 
 .block-wishlist-search-form {
     .form-wishlist-search {
-        @include lib-css(margin-bottom, $indent__l*2);
+        @include lib-css(margin-bottom, $indent-l*2);
         max-width: 500px;
 
         .fieldset {
@@ -244,10 +244,10 @@ $desktop-popup-position-top  : 20% !default;
 
 .block-wishlist-info-items {
     .block-title {
-        @include lib-css(margin-bottom, $indent__base);
+        @include lib-css(margin-bottom, $indent-base);
         @include lib-font-size(22);
         > strong {
-            font-weight: $font-weight__light;
+            @include co(font-weight, $font-weight-light);
         }
     }
 
@@ -256,7 +256,7 @@ $desktop-popup-position-top  : 20% !default;
     }
 
     .product-item-photo {
-        margin-left: $indent__base;
+        margin-left: $indent-base;
     }
 
     .product-item-info {
@@ -271,33 +271,33 @@ $desktop-popup-position-top  : 20% !default;
 
     .price-wrapper {
         display: block;
-        margin: 0 0 $indent__s;
+        margin: 0 0 $indent-s;
     }
 
     .split {
         clear: both;
-        padding: $indent__s 0;
+        @include co(padding, $indent-s 0);
     }
 
     .action {
         &.towishlist {
-            padding: $indent__s 0;
+            @include co(padding, $indent-s 0);
         }
     }
 
     .input-text {
         &.qty {
             @include abs-input-qty();
-            margin-right: $indent__s;
+            margin-right: $indent-s;
         }
     }
 }
 
 //
 //  Mobile
-//  _____________________________________________
+//
 
-@include max-screen($screen__m) {
+@include max-screen($screen-m) {
     .block-wishlist-management {
         clear: both;
         margin-top: -21px;
@@ -305,42 +305,42 @@ $desktop-popup-position-top  : 20% !default;
         .wishlist {
             //  Select wish list
             &-select {
-                margin: 0 (-$layout__width-xs-indent) 20px;
+                margin: 0 (-$layout-width-xs-indent) 20px;
 
                 .wishlist-name {
 
-                  border-bottom: $border-width__base solid $border-color__base;
-                  border-top: $border-width__base solid $border-color__base;
+                  border-bottom: $border-width-base solid $border-color-base;
+                  border-top: $border-width-base solid $border-color-base;
                   cursor: pointer;
                   margin-bottom: 0;
-                  padding: $indent__s $indent__xl $indent__s $layout__width-xs-indent;
+                  @include co(padding, $indent-s $indent-xl $indent-s $layout-width-xs-indent);
                   position: relative;
 
                   @include lib-icon-font(
-                    $_icon-font-content   : $icon-down,
-                    $_icon-font-size      : 28px,
-                    $_icon-font-text-hide : false,
-                    $_icon-font-position  : after,
-                    $_icon-font-display   : block
+                    $-icon-font-content   : $icon-down,
+                    $-icon-font-size      : 28px,
+                    $-icon-font-text-hide : false,
+                    $-icon-font-position  : after,
+                    $-icon-font-display   : block
                   );
 
                   &:after {
                     position: absolute;
-                    right: $indent__s;
+                    right: $indent-s;
                     top: 0;
                   }
 
                   &.active {
                     @include lib-icon-font-symbol(
-                      $_icon-font-content  : $icon-up,
-                      $_icon-font-position : after
+                      $-icon-font-content  : $icon-up,
+                      $-icon-font-position : after
                     );
                   }
 
                 }
 
                 &-items {
-                    border-bottom: $border-width__base solid $border-color__base;
+                    border-bottom: $border-width-base solid $border-color-base;
                     @include lib-css(background, $account-nav-background);
                     display: none;
                     padding: 15px 0;
@@ -362,7 +362,7 @@ $desktop-popup-position-top  : 20% !default;
 
                         a {
                             display: block;
-                            padding: $indent__xs 18px;
+                            @include co(padding, $indent-xs 18px);
                             text-decoration: none;
 
                             &:hover {
@@ -376,12 +376,12 @@ $desktop-popup-position-top  : 20% !default;
             &-add.item {
                 .add {
                     @include lib-icon-font(
-                        $_icon-font-content        : $icon-expand,
-                        $_icon-font-size           : 10px,
-                        $_icon-font-line-height    : 10px,
-                        $_icon-font-vertical-align : middle,
-                        $_icon-font-margin         : 0 5px 0 0,
-                        $_icon-font-display        : block
+                        $-icon-font-content        : $icon-expand,
+                        $-icon-font-size           : 10px,
+                        $-icon-font-line-height    : 10px,
+                        $-icon-font-vertical-align : middle,
+                        $-icon-font-margin         : 0 5px 0 0,
+                        $-icon-font-display        : block
                     );
                 }
             }
@@ -418,7 +418,7 @@ $desktop-popup-position-top  : 20% !default;
 
                 &-photo {
                     .page-multiple-wishlist & {
-                        margin-left: $indent__m;
+                        margin-left: $indent-m;
                     }
                 }
 
@@ -446,9 +446,9 @@ $desktop-popup-position-top  : 20% !default;
 
 //
 //  Desktop
-//  _____________________________________________
+//
 
-@include min-screen($screen__m) {
+@include min-screen($screen-m) {
     .wishlist {
         &.window.popup {
             bottom: auto;
@@ -459,27 +459,27 @@ $desktop-popup-position-top  : 20% !default;
             right: auto;
 
             .field {
-                @include lib-form-field-type-revert($_type: block);
+                @include lib-form-field-type-revert($-type: block);
             }
         }
     }
 
     .block-wishlist-management {
         @include abs-add-clearfix();
-        margin-bottom: $indent__base;
+        margin-bottom: $indent-base;
 
         .wishlist {
             //  Select wish list
             &-select {
-                border-bottom: 1px solid $secondary__color;
+                border-bottom: 1px solid $secondary-color;
                 display: table;
                 margin-bottom: 15px;
                 width: 100%;
 
                 .wishlist-name {
                     display: table-cell;
-                    margin-right: $indent__s;
-                    padding: $indent__xs $indent__s $indent__s;
+                    margin-right: $indent-s;
+                    @include co(padding, $indent-xs $indent-s $indent-s);
                     vertical-align: top;
                     white-space: nowrap;
                     width: 5%;
@@ -492,8 +492,8 @@ $desktop-popup-position-top  : 20% !default;
 
                     .item {
                         display: inline-block;
-                        margin-right: $indent__s;
-                        padding: $indent__xs $indent__s $indent__s;
+                        margin-right: $indent-s;
+                        @include co(padding, $indent-xs $indent-s $indent-s);
 
                         &:last-child {
                             margin-right: 0;
@@ -501,8 +501,8 @@ $desktop-popup-position-top  : 20% !default;
                     }
 
                     .current {
-                        border-bottom: 3px solid $active__color;
-                        font-weight: $font-weight__semibold;
+                        border-bottom: 3px solid $active-color;
+                        @include co(font-weight, $font-weight-semibold);
                     }
                 }
 
@@ -549,7 +549,7 @@ $desktop-popup-position-top  : 20% !default;
                     float: left;
 
                     + .product-item-name {
-                        margin-left: $indent__m;
+                        margin-left: $indent-m;
                     }
                 }
             }

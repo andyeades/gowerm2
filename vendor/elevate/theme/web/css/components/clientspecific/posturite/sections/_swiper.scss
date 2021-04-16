@@ -1,20 +1,38 @@
 @if $sitename == posturite {
+    //colors
+    $swiper-color-0: #000;
+    $swiper-color-1: #fff;
+    $swiper-color-2: #007aff;
+    $swiper-color-3: rgba(0, 0, 0, .25);
+    $swiper-color-4: rgba(255, 255, 255, .5);
+    $swiper-color-5: rgba(0, 0, 0, 0.5);
+    $swiper-color-6: rgba(0, 0, 0, .1);
+    $swiper-color-7: rgba(0, 0, 0, .5);
+
+    //urls
+    $swiper-url-0: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTAsMjJMMjIsMGwyLjEsMi4xTDQuMiwyMmwxOS45LDE5LjlMMjIsNDRMMCwyMkwwLDIyTDAsMjJ6JyBmaWxsPScjMDA3YWZmJy8+PC9zdmc+Cg==);
+    $swiper-url-1: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTAsMjJMMjIsMGwyLjEsMi4xTDQuMiwyMmwxOS45LDE5LjlMMjIsNDRMMCwyMkwwLDIyTDAsMjJ6JyBmaWxsPScjMDAwMDAwJy8+PC9zdmc+Cg==);
+    $swiper-url-2: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTAsMjJMMjIsMGwyLjEsMi4xTDQuMiwyMmwxOS45LDE5LjlMMjIsNDRMMCwyMkwwLDIyTDAsMjJ6JyBmaWxsPScjZmZmZmZmJy8+PC9zdmc+Cg==);
+    $swiper-url-3: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTI3LDIyTDI3LDIyTDUsNDRsLTIuMS0yLjFMMjIuOCwyMkwyLjksMi4xTDUsMEwyNywyMkwyNywyMnonIGZpbGw9JyMwMDdhZmYnLz48L3N2Zz4K);
+    $swiper-url-4: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTI3LDIyTDI3LDIyTDUsNDRsLTIuMS0yLjFMMjIuOCwyMkwyLjksMi4xTDUsMEwyNywyMkwyNywyMnonIGZpbGw9JyMwMDAwMDAnLz48L3N2Zz4K);
+    $swiper-url-5: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTI3LDIyTDI3LDIyTDUsNDRsLTIuMS0yLjFMMjIuOCwyMkwyLjksMi4xTDUsMEwyNywyMkwyNywyMnonIGZpbGw9JyNmZmZmZmYnLz48L3N2Zz4K);
+    $swiper-url-6: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2aWV3Qm94PScwIDAgMTIwIDEyMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayc+PGRlZnM+PGxpbmUgaWQ9J2wnIHgxPSc2MCcgeDI9JzYwJyB5MT0nNycgeTI9JzI3JyBzdHJva2U9JyM2YzZjNmMnIHN0cm9rZS13aWR0aD0nMTEnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPjwvZGVmcz48Zz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDMwIDYwLDYwKScvPjx1c2UgeGxpbms6aHJlZj0nI2wnIG9wYWNpdHk9Jy4yNycgdHJhbnNmb3JtPSdyb3RhdGUoNjAgNjAsNjApJy8+PHVzZSB4bGluazpocmVmPScjbCcgb3BhY2l0eT0nLjI3JyB0cmFuc2Zvcm09J3JvdGF0ZSg5MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDEyMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDE1MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMzcnIHRyYW5zZm9ybT0ncm90YXRlKDE4MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNDYnIHRyYW5zZm9ybT0ncm90YXRlKDIxMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNTYnIHRyYW5zZm9ybT0ncm90YXRlKDI0MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNjYnIHRyYW5zZm9ybT0ncm90YXRlKDI3MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNzUnIHRyYW5zZm9ybT0ncm90YXRlKDMwMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuODUnIHRyYW5zZm9ybT0ncm90YXRlKDMzMCA2MCw2MCknLz48L2c+PC9zdmc+Cg==);
+    $swiper-url-7: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2aWV3Qm94PScwIDAgMTIwIDEyMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayc+PGRlZnM+PGxpbmUgaWQ9J2wnIHgxPSc2MCcgeDI9JzYwJyB5MT0nNycgeTI9JzI3JyBzdHJva2U9JyNmZmYnIHN0cm9rZS13aWR0aD0nMTEnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPjwvZGVmcz48Zz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDMwIDYwLDYwKScvPjx1c2UgeGxpbms6aHJlZj0nI2wnIG9wYWNpdHk9Jy4yNycgdHJhbnNmb3JtPSdyb3RhdGUoNjAgNjAsNjApJy8+PHVzZSB4bGluazpocmVmPScjbCcgb3BhY2l0eT0nLjI3JyB0cmFuc2Zvcm09J3JvdGF0ZSg5MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDEyMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDE1MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMzcnIHRyYW5zZm9ybT0ncm90YXRlKDE4MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNDYnIHRyYW5zZm9ybT0ncm90YXRlKDIxMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNTYnIHRyYW5zZm9ybT0ncm90YXRlKDI0MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNjYnIHRyYW5zZm9ybT0ncm90YXRlKDI3MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNzUnIHRyYW5zZm9ybT0ncm90YXRlKDMwMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuODUnIHRyYW5zZm9ybT0ncm90YXRlKDMzMCA2MCw2MCknLz48L2c+PC9zdmc+Cg==);
+
     .swiper-container {
         margin-left: auto;
         margin-right: auto;
         position: relative;
         overflow: hidden;
-        z-index: 1
-    }
-    .swiper-container-no-flexbox .swiper-slide {
-        float: left
-    }
-    .swiper-container-vertical > .swiper-wrapper {
-        -webkit-box-orient: vertical;
-        -moz-box-orient: vertical;
-        -ms-flex-direction: column;
-        -webkit-flex-direction: column;
-        flex-direction: column
+        z-index: 1;
+        .swiper-notification {
+            position: absolute;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+            opacity: 0;
+            z-index: -1000;
+        }
     }
     .swiper-wrapper {
         position: relative;
@@ -30,32 +48,18 @@
         -moz-transition-property: -moz-transform;
         -o-transition-property: -o-transform;
         -ms-transition-property: -ms-transform;
+        //Instead of the line below you could use @include transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
         transition-property: transform;
         -webkit-box-sizing: content-box;
         -moz-box-sizing: content-box;
-        box-sizing: content-box
-    }
-    .swiper-container-android .swiper-slide, .swiper-wrapper {
-        -webkit-transform: translate3d(0px, 0, 0);
-        -moz-transform: translate3d(0px, 0, 0);
-        -o-transform: translate(0px, 0px);
-        -ms-transform: translate3d(0px, 0, 0);
-        transform: translate3d(0px, 0, 0)
-    }
-    .swiper-container-multirow > .swiper-wrapper {
-        -webkit-box-lines: multiple;
-        -moz-box-lines: multiple;
-        -ms-flex-wrap: wrap;
-        -webkit-flex-wrap: wrap;
-        flex-wrap: wrap
-    }
-    .swiper-container-free-mode > .swiper-wrapper {
-        -webkit-transition-timing-function: ease-out;
-        -moz-transition-timing-function: ease-out;
-        -ms-transition-timing-function: ease-out;
-        -o-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
-        margin: 0 auto
+        //Instead of the line below you could use @include box-sizing($bs)
+        box-sizing: content-box;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -o-transform: translate(0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: translate3d(0, 0, 0);
     }
     .swiper-slide {
         -webkit-flex-shrink: 0;
@@ -63,39 +67,35 @@
         flex-shrink: 0;
         width: 100%;
         height: 100%;
-        position: relative
+        position: relative;
     }
-    .swiper-container-autoheight, .swiper-container-autoheight .swiper-slide {
-        height: auto
-    }
-    .swiper-container-autoheight .swiper-wrapper {
-        -webkit-box-align: start;
-        -ms-flex-align: start;
-        -webkit-align-items: flex-start;
-        align-items: flex-start;
-        -webkit-transition-property: -webkit-transform, height;
-        -moz-transition-property: -moz-transform;
-        -o-transition-property: -o-transform;
-        -ms-transition-property: -ms-transform;
-        transition-property: transform, height
-    }
-    .swiper-container .swiper-notification {
-        position: absolute;
-        left: 0;
-        top: 0;
-        pointer-events: none;
-        opacity: 0;
-        z-index: -1000
+    .swiper-container-autoheight {
+        height: auto;
+        .swiper-slide {
+            height: auto;
+        }
+        .swiper-wrapper {
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            -webkit-align-items: flex-start;
+            align-items: flex-start;
+            -webkit-transition-property: -webkit-transform, height;
+            -moz-transition-property: -moz-transform;
+            -o-transition-property: -o-transform;
+            -ms-transition-property: -ms-transform;
+            //Instead of the line below you could use @include transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+            transition-property: transform, height;
+        }
     }
     .swiper-wp8-horizontal {
         -ms-touch-action: pan-y;
-        touch-action: pan-y
+        touch-action: pan-y;
     }
     .swiper-wp8-vertical {
         -ms-touch-action: pan-x;
-        touch-action: pan-x
+        touch-action: pan-x;
     }
-    .swiper-button-prev, .swiper-button-next {
+    .swiper-button-prev {
         position: absolute;
         top: 50%;
         width: 27px;
@@ -107,34 +107,81 @@
         -webkit-background-size: 27px 44px;
         background-size: 27px 44px;
         background-position: center;
-        background-repeat: no-repeat
-    }
-    .swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled {
-        opacity: .35;
-        cursor: auto;
-        pointer-events: none
-    }
-    .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
-        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTAsMjJMMjIsMGwyLjEsMi4xTDQuMiwyMmwxOS45LDE5LjlMMjIsNDRMMCwyMkwwLDIyTDAsMjJ6JyBmaWxsPScjMDA3YWZmJy8+PC9zdmc+Cg==);
+        background-repeat: no-repeat;
+        background-image: $swiper-url-0;
         left: 10px;
-        right: auto
+        right: auto;
+        &.swiper-button-disabled {
+            opacity: .35;
+            cursor: auto;
+            pointer-events: none;
+        }
+        &.swiper-button-black {
+            background-image: $swiper-url-1;
+        }
+        &.swiper-button-white {
+            background-image: $swiper-url-2;
+        }
     }
-    .swiper-button-prev.swiper-button-black, .swiper-container-rtl .swiper-button-next.swiper-button-black {
-        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTAsMjJMMjIsMGwyLjEsMi4xTDQuMiwyMmwxOS45LDE5LjlMMjIsNDRMMCwyMkwwLDIyTDAsMjJ6JyBmaWxsPScjMDAwMDAwJy8+PC9zdmc+Cg==)
-    }
-    .swiper-button-prev.swiper-button-white, .swiper-container-rtl .swiper-button-next.swiper-button-white {
-        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTAsMjJMMjIsMGwyLjEsMi4xTDQuMiwyMmwxOS45LDE5LjlMMjIsNDRMMCwyMkwwLDIyTDAsMjJ6JyBmaWxsPScjZmZmZmZmJy8+PC9zdmc+Cg==)
-    }
-    .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
-        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTI3LDIyTDI3LDIyTDUsNDRsLTIuMS0yLjFMMjIuOCwyMkwyLjksMi4xTDUsMEwyNywyMkwyNywyMnonIGZpbGw9JyMwMDdhZmYnLz48L3N2Zz4K);
+    .swiper-button-next {
+        position: absolute;
+        top: 50%;
+        width: 27px;
+        height: 44px;
+        margin-top: -22px;
+        z-index: 10;
+        cursor: pointer;
+        -moz-background-size: 27px 44px;
+        -webkit-background-size: 27px 44px;
+        background-size: 27px 44px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: $swiper-url-3;
         right: 10px;
-        left: auto
+        left: auto;
+        &.swiper-button-disabled {
+            opacity: .35;
+            cursor: auto;
+            pointer-events: none;
+        }
+        &.swiper-button-black {
+            background-image: $swiper-url-4;
+        }
+        &.swiper-button-white {
+            background-image: $swiper-url-5;
+        }
     }
-    .swiper-button-next.swiper-button-black, .swiper-container-rtl .swiper-button-prev.swiper-button-black {
-        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTI3LDIyTDI3LDIyTDUsNDRsLTIuMS0yLjFMMjIuOCwyMkwyLjksMi4xTDUsMEwyNywyMkwyNywyMnonIGZpbGw9JyMwMDAwMDAnLz48L3N2Zz4K)
-    }
-    .swiper-button-next.swiper-button-white, .swiper-container-rtl .swiper-button-prev.swiper-button-white {
-        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyNyA0NCc+PHBhdGggZD0nTTI3LDIyTDI3LDIyTDUsNDRsLTIuMS0yLjFMMjIuOCwyMkwyLjksMi4xTDUsMEwyNywyMkwyNywyMnonIGZpbGw9JyNmZmZmZmYnLz48L3N2Zz4K)
+    .swiper-container-rtl {
+        .swiper-button-next {
+            background-image: $swiper-url-0;
+            left: 10px;
+            right: auto;
+            &.swiper-button-black {
+                background-image: $swiper-url-1;
+            }
+            &.swiper-button-white {
+                background-image: $swiper-url-2;
+            }
+        }
+        .swiper-button-prev {
+            background-image: $swiper-url-3;
+            right: 10px;
+            left: auto;
+            &.swiper-button-black {
+                background-image: $swiper-url-4;
+            }
+            &.swiper-button-white {
+                background-image: $swiper-url-5;
+            }
+        }
+        .swiper-pagination-progress .swiper-pagination-progressbar {
+            -webkit-transform-origin: right top;
+            -moz-transform-origin: right top;
+            -ms-transform-origin: right top;
+            -o-transform-origin: right top;
+            //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
+            transform-origin: right top;
+        }
     }
     .swiper-pagination {
         position: absolute;
@@ -142,246 +189,361 @@
         -webkit-transition: 300ms;
         -moz-transition: 300ms;
         -o-transition: 300ms;
+        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
         transition: 300ms;
         -webkit-transform: translate3d(0, 0, 0);
         -ms-transform: translate3d(0, 0, 0);
         -o-transform: translate3d(0, 0, 0);
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
         transform: translate3d(0, 0, 0);
-        z-index: 10
+        z-index: 10;
+        &.swiper-pagination-hidden {
+            opacity: 0;
+        }
     }
-    .swiper-pagination.swiper-pagination-hidden {
-        opacity: 0
-    }
-    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+    .swiper-pagination-fraction {
         bottom: 10px;
         left: 0;
-        width: 100%
+        width: 100%;
+    }
+    .swiper-pagination-custom {
+        bottom: 10px;
+        left: 0;
+        width: 100%;
     }
     .swiper-pagination-bullet {
         width: 8px;
         height: 8px;
         display: inline-block;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
         border-radius: 100%;
-        background: #000;
-        opacity: .2
+        background: $swiper-color-0;
+        opacity: .2;
     }
-    button.swiper-pagination-bullet {
-        border: none;
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-        -moz-appearance: none;
-        -ms-appearance: none;
-        -webkit-appearance: none;
-        appearance: none
-    }
-    .swiper-pagination-clickable .swiper-pagination-bullet {
-        cursor: pointer
-    }
-    .swiper-pagination-white .swiper-pagination-bullet {
-        background: #fff
+    .swiper-pagination-white {
+        .swiper-pagination-bullet {
+            background: $swiper-color-1;
+        }
+        .swiper-pagination-bullet-active {
+            background: $swiper-color-1;
+        }
     }
     .swiper-pagination-bullet-active {
         opacity: 1;
-        background: #007aff
-    }
-    .swiper-pagination-white .swiper-pagination-bullet-active {
-        background: #fff
-    }
-    .swiper-pagination-black .swiper-pagination-bullet-active {
-        background: #000
-    }
-    .swiper-container-vertical > .swiper-pagination-bullets {
-        right: 10px;
-        top: 50%;
-        -webkit-transform: translate3d(0px, -50%, 0);
-        -moz-transform: translate3d(0px, -50%, 0);
-        -o-transform: translate(0px, -50%);
-        -ms-transform: translate3d(0px, -50%, 0);
-        transform: translate3d(0px, -50%, 0)
-    }
-    .swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
-        margin: 5px 0;
-        display: block
-    }
-    .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
-        margin: 0 5px
+        background: $swiper-color-2;
     }
     .swiper-pagination-progress {
-        background: rgba(0, 0, 0, .25);
-        position: absolute
-    }
-    .swiper-pagination-progress .swiper-pagination-progressbar {
-        background: #007aff;
+        background: $swiper-color-3;
         position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        -webkit-transform: scale(0);
-        -ms-transform: scale(0);
-        -o-transform: scale(0);
-        transform: scale(0);
-        -webkit-transform-origin: left top;
-        -moz-transform-origin: left top;
-        -ms-transform-origin: left top;
-        -o-transform-origin: left top;
-        transform-origin: left top
-    }
-    .swiper-container-rtl .swiper-pagination-progress .swiper-pagination-progressbar {
-        -webkit-transform-origin: right top;
-        -moz-transform-origin: right top;
-        -ms-transform-origin: right top;
-        -o-transform-origin: right top;
-        transform-origin: right top
-    }
-    .swiper-container-horizontal > .swiper-pagination-progress {
-        width: 100%;
-        height: 4px;
-        left: 0;
-        top: 0
-    }
-    .swiper-container-vertical > .swiper-pagination-progress {
-        width: 4px;
-        height: 100%;
-        left: 0;
-        top: 0
-    }
-    .swiper-pagination-progress.swiper-pagination-white {
-        background: rgba(255, 255, 255, .5)
-    }
-    .swiper-pagination-progress.swiper-pagination-white .swiper-pagination-progressbar {
-        background: #fff
-    }
-    .swiper-pagination-progress.swiper-pagination-black .swiper-pagination-progressbar {
-        background: #000
+        .swiper-pagination-progressbar {
+            background: $swiper-color-2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transform: scale(0);
+            -ms-transform: scale(0);
+            -o-transform: scale(0);
+            //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+            transform: scale(0);
+            -webkit-transform-origin: left top;
+            -moz-transform-origin: left top;
+            -ms-transform-origin: left top;
+            -o-transform-origin: left top;
+            //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
+            transform-origin: left top;
+        }
+        &.swiper-pagination-white {
+            background: $swiper-color-4;
+            .swiper-pagination-progressbar {
+                background: $swiper-color-1;
+            }
+        }
+        &.swiper-pagination-black .swiper-pagination-progressbar {
+            background: $swiper-color-0;
+        }
     }
     .swiper-container-3d {
         -webkit-perspective: 1200px;
         -moz-perspective: 1200px;
         -o-perspective: 1200px;
-        perspective: 1200px
+        //Instead of the line below you could use @include perspective($p)
+        perspective: 1200px;
+        .swiper-wrapper {
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            //Instead of the line below you could use @include transform-style($style)
+            transform-style: preserve-3d;
+        }
+        .swiper-slide {
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            //Instead of the line below you could use @include transform-style($style)
+            transform-style: preserve-3d;
+        }
+        .swiper-slide-shadow-left {
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            //Instead of the line below you could use @include transform-style($style)
+            transform-style: preserve-3d;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            background-image: -webkit-gradient(linear, left top, right top, from($swiper-color-5), to(rgba(0, 0, 0, 0)));
+            background-image: -webkit-linear-gradient(right, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(right, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: -o-linear-gradient(right, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: linear-gradient(to left, $swiper-color-5, rgba(0, 0, 0, 0));
+        }
+        .swiper-slide-shadow-right {
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            //Instead of the line below you could use @include transform-style($style)
+            transform-style: preserve-3d;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            background-image: -webkit-gradient(linear, right top, left top, from($swiper-color-5), to(rgba(0, 0, 0, 0)));
+            background-image: -webkit-linear-gradient(left, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(left, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: -o-linear-gradient(left, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: linear-gradient(to right, $swiper-color-5, rgba(0, 0, 0, 0));
+        }
+        .swiper-slide-shadow-top {
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            //Instead of the line below you could use @include transform-style($style)
+            transform-style: preserve-3d;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            background-image: -webkit-gradient(linear, left top, left bottom, from($swiper-color-5), to(rgba(0, 0, 0, 0)));
+            background-image: -webkit-linear-gradient(bottom, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(bottom, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: -o-linear-gradient(bottom, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: linear-gradient(to top, $swiper-color-5, rgba(0, 0, 0, 0));
+        }
+        .swiper-slide-shadow-bottom {
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            //Instead of the line below you could use @include transform-style($style)
+            transform-style: preserve-3d;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            background-image: -webkit-gradient(linear, left bottom, left top, from($swiper-color-5), to(rgba(0, 0, 0, 0)));
+            background-image: -webkit-linear-gradient(top, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(top, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: -o-linear-gradient(top, $swiper-color-5, rgba(0, 0, 0, 0));
+            background-image: linear-gradient(to bottom, $swiper-color-5, rgba(0, 0, 0, 0));
+        }
+        .swiper-cube-shadow {
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            //Instead of the line below you could use @include transform-style($style)
+            transform-style: preserve-3d;
+        }
     }
-    .swiper-container-3d .swiper-wrapper, .swiper-container-3d .swiper-slide, .swiper-container-3d .swiper-slide-shadow-left, .swiper-container-3d .swiper-slide-shadow-right, .swiper-container-3d .swiper-slide-shadow-top, .swiper-container-3d .swiper-slide-shadow-bottom, .swiper-container-3d .swiper-cube-shadow {
-        -webkit-transform-style: preserve-3d;
-        -moz-transform-style: preserve-3d;
-        -ms-transform-style: preserve-3d;
-        transform-style: preserve-3d
+    .swiper-container-flip {
+        overflow: visible;
+        .swiper-wrapper {
+            -ms-perspective: 1200px;
+        }
+        .swiper-slide {
+            pointer-events: none;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+            z-index: 1;
+            .swiper-slide {
+                pointer-events: none;
+            }
+        }
+        .swiper-slide-active {
+            pointer-events: auto;
+            .swiper-slide-active {
+                pointer-events: auto;
+            }
+        }
+        .swiper-slide-shadow-top {
+            z-index: 0;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+        }
+        .swiper-slide-shadow-bottom {
+            z-index: 0;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+        }
+        .swiper-slide-shadow-left {
+            z-index: 0;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+        }
+        .swiper-slide-shadow-right {
+            z-index: 0;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+        }
     }
-    .swiper-container-3d .swiper-slide-shadow-left, .swiper-container-3d .swiper-slide-shadow-right, .swiper-container-3d .swiper-slide-shadow-top, .swiper-container-3d .swiper-slide-shadow-bottom {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 10
+    .swiper-container-cube {
+        overflow: visible;
+        .swiper-slide {
+            pointer-events: none;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+            z-index: 1;
+            visibility: hidden;
+            -webkit-transform-origin: 0 0;
+            -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+            //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
+            transform-origin: 0 0;
+            width: 100%;
+            height: 100%;
+            .swiper-slide {
+                pointer-events: none;
+            }
+        }
+        .swiper-slide-active {
+            pointer-events: auto;
+            pointer-events: auto;
+            visibility: visible;
+            .swiper-slide-active {
+                pointer-events: auto;
+            }
+        }
+        .swiper-slide-shadow-top {
+            z-index: 0;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+        }
+        .swiper-slide-shadow-bottom {
+            z-index: 0;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+        }
+        .swiper-slide-shadow-left {
+            z-index: 0;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+        }
+        .swiper-slide-shadow-right {
+            z-index: 0;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+
+            backface-visibility: hidden;
+        }
+        .swiper-slide-next {
+            pointer-events: auto;
+            visibility: visible;
+            + .swiper-slide {
+                pointer-events: auto;
+                visibility: visible;
+            }
+        }
+        .swiper-slide-prev {
+            pointer-events: auto;
+            visibility: visible;
+        }
+        .swiper-cube-shadow {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: $swiper-color-0;
+            opacity: .6;
+            -webkit-filter: blur(50px);
+            filter: blur(50px);
+            z-index: 0;
+        }
+        &.swiper-container-rtl .swiper-slide {
+            -webkit-transform-origin: 100% 0;
+            -moz-transform-origin: 100% 0;
+            -ms-transform-origin: 100% 0;
+            //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
+            transform-origin: 100% 0;
+        }
     }
-    .swiper-container-3d .swiper-slide-shadow-left {
-        background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
-        background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0))
-    }
-    .swiper-container-3d .swiper-slide-shadow-right {
-        background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
-        background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0))
-    }
-    .swiper-container-3d .swiper-slide-shadow-top {
-        background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
-        background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0))
-    }
-    .swiper-container-3d .swiper-slide-shadow-bottom {
-        background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
-        background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0))
-    }
-    .swiper-container-coverflow .swiper-wrapper, .swiper-container-flip .swiper-wrapper {
-        -ms-perspective: 1200px
-    }
-    .swiper-container-cube, .swiper-container-flip {
-        overflow: visible
-    }
-    .swiper-container-cube .swiper-slide, .swiper-container-flip .swiper-slide {
-        pointer-events: none;
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -ms-backface-visibility: hidden;
-        backface-visibility: hidden;
-        z-index: 1
-    }
-    .swiper-container-cube .swiper-slide .swiper-slide, .swiper-container-flip .swiper-slide .swiper-slide {
-        pointer-events: none
-    }
-    .swiper-container-cube .swiper-slide-active, .swiper-container-flip .swiper-slide-active, .swiper-container-cube .swiper-slide-active .swiper-slide-active, .swiper-container-flip .swiper-slide-active .swiper-slide-active {
-        pointer-events: auto
-    }
-    .swiper-container-cube .swiper-slide-shadow-top, .swiper-container-flip .swiper-slide-shadow-top, .swiper-container-cube .swiper-slide-shadow-bottom, .swiper-container-flip .swiper-slide-shadow-bottom, .swiper-container-cube .swiper-slide-shadow-left, .swiper-container-flip .swiper-slide-shadow-left, .swiper-container-cube .swiper-slide-shadow-right, .swiper-container-flip .swiper-slide-shadow-right {
-        z-index: 0;
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -ms-backface-visibility: hidden;
-        backface-visibility: hidden
-    }
-    .swiper-container-cube .swiper-slide {
-        visibility: hidden;
-        -webkit-transform-origin: 0 0;
-        -moz-transform-origin: 0 0;
-        -ms-transform-origin: 0 0;
-        transform-origin: 0 0;
-        width: 100%;
-        height: 100%
-    }
-    .swiper-container-cube.swiper-container-rtl .swiper-slide {
-        -webkit-transform-origin: 100% 0;
-        -moz-transform-origin: 100% 0;
-        -ms-transform-origin: 100% 0;
-        transform-origin: 100% 0
-    }
-    .swiper-container-cube .swiper-slide-active, .swiper-container-cube .swiper-slide-next, .swiper-container-cube .swiper-slide-prev, .swiper-container-cube .swiper-slide-next + .swiper-slide {
-        pointer-events: auto;
-        visibility: visible
-    }
-    .swiper-container-cube .swiper-cube-shadow {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        opacity: .6;
-        -webkit-filter: blur(50px);
-        filter: blur(50px);
-        z-index: 0
-    }
-    .swiper-container-fade.swiper-container-free-mode .swiper-slide {
-        -webkit-transition-timing-function: ease-out;
-        -moz-transition-timing-function: ease-out;
-        -ms-transition-timing-function: ease-out;
-        -o-transition-timing-function: ease-out;
-        transition-timing-function: ease-out
-    }
-    .swiper-container-fade .swiper-slide {
-        pointer-events: none;
-        -webkit-transition-property: opacity;
-        -moz-transition-property: opacity;
-        -o-transition-property: opacity;
-        transition-property: opacity
-    }
-    .swiper-container-fade .swiper-slide .swiper-slide {
-        pointer-events: none
-    }
-    .swiper-container-fade .swiper-slide-active, .swiper-container-fade .swiper-slide-active .swiper-slide-active {
-        pointer-events: auto
+    .swiper-container-fade {
+        .swiper-slide {
+            pointer-events: none;
+            -webkit-transition-property: opacity;
+            -moz-transition-property: opacity;
+            -o-transition-property: opacity;
+            //Instead of the line below you could use @include transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+            transition-property: opacity;
+            .swiper-slide {
+                pointer-events: none;
+            }
+        }
+        .swiper-slide-active {
+            pointer-events: auto;
+            .swiper-slide-active {
+                pointer-events: auto;
+            }
+        }
+        &.swiper-container-free-mode .swiper-slide {
+            -webkit-transition-timing-function: ease-out;
+            -moz-transition-timing-function: ease-out;
+            -ms-transition-timing-function: ease-out;
+            -o-transition-timing-function: ease-out;
+            //Instead of the line below you could use @include transition-timing-function($function-1, $function-2, $function-3, $function-4, $function-5, $function-6, $function-7, $function-8, $function-9, $function-10)
+            transition-timing-function: ease-out;
+        }
     }
     .swiper-zoom-container {
         width: 100%;
@@ -401,46 +563,42 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
-        text-align: center
-    }
-    .swiper-zoom-container > img, .swiper-zoom-container > svg, .swiper-zoom-container > canvas {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain
+        text-align: center;
+        > img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        > svg {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        > canvas {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
     }
     .swiper-scrollbar {
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
         border-radius: 10px;
         position: relative;
         -ms-touch-action: none;
-        background: rgba(0, 0, 0, .1)
-    }
-    .swiper-container-horizontal > .swiper-scrollbar {
-        position: absolute;
-        left: 1%;
-        bottom: 3px;
-        z-index: 50;
-        height: 5px;
-        width: 98%
-    }
-    .swiper-container-vertical > .swiper-scrollbar {
-        position: absolute;
-        right: 3px;
-        top: 1%;
-        z-index: 50;
-        width: 5px;
-        height: 98%
+        background: $swiper-color-6;
     }
     .swiper-scrollbar-drag {
         height: 100%;
         width: 100%;
         position: relative;
-        background: rgba(0, 0, 0, .5);
+        background: $swiper-color-7;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
         border-radius: 10px;
         left: 0;
-        top: 0
+        top: 0;
     }
     .swiper-scrollbar-cursor-drag {
-        cursor: move
+        cursor: move;
     }
     .swiper-lazy-preloader {
         width: 42px;
@@ -453,34 +611,144 @@
         z-index: 10;
         -webkit-transform-origin: 50%;
         -moz-transform-origin: 50%;
+        //Instead of the line below you could use @include transform-origin($origin-x, $origin-y, $origin-z, $only3d)
         transform-origin: 50%;
         -webkit-animation: swiper-preloader-spin 1s steps(12, end) infinite;
         -moz-animation: swiper-preloader-spin 1s steps(12, end) infinite;
-        animation: swiper-preloader-spin 1s steps(12, end) infinite
-    }
-    .swiper-lazy-preloader:after {
-        display: block;
-        content: "";
-        width: 100%;
-        height: 100%;
-        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2aWV3Qm94PScwIDAgMTIwIDEyMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayc+PGRlZnM+PGxpbmUgaWQ9J2wnIHgxPSc2MCcgeDI9JzYwJyB5MT0nNycgeTI9JzI3JyBzdHJva2U9JyM2YzZjNmMnIHN0cm9rZS13aWR0aD0nMTEnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPjwvZGVmcz48Zz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDMwIDYwLDYwKScvPjx1c2UgeGxpbms6aHJlZj0nI2wnIG9wYWNpdHk9Jy4yNycgdHJhbnNmb3JtPSdyb3RhdGUoNjAgNjAsNjApJy8+PHVzZSB4bGluazpocmVmPScjbCcgb3BhY2l0eT0nLjI3JyB0cmFuc2Zvcm09J3JvdGF0ZSg5MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDEyMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDE1MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMzcnIHRyYW5zZm9ybT0ncm90YXRlKDE4MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNDYnIHRyYW5zZm9ybT0ncm90YXRlKDIxMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNTYnIHRyYW5zZm9ybT0ncm90YXRlKDI0MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNjYnIHRyYW5zZm9ybT0ncm90YXRlKDI3MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNzUnIHRyYW5zZm9ybT0ncm90YXRlKDMwMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuODUnIHRyYW5zZm9ybT0ncm90YXRlKDMzMCA2MCw2MCknLz48L2c+PC9zdmc+Cg==);
-        background-position: 50%;
-        -webkit-background-size: 100%;
-        background-size: 100%;
-        background-repeat: no-repeat
-    }
-    .swiper-lazy-preloader-white:after {
-        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2aWV3Qm94PScwIDAgMTIwIDEyMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayc+PGRlZnM+PGxpbmUgaWQ9J2wnIHgxPSc2MCcgeDI9JzYwJyB5MT0nNycgeTI9JzI3JyBzdHJva2U9JyNmZmYnIHN0cm9rZS13aWR0aD0nMTEnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPjwvZGVmcz48Zz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDMwIDYwLDYwKScvPjx1c2UgeGxpbms6aHJlZj0nI2wnIG9wYWNpdHk9Jy4yNycgdHJhbnNmb3JtPSdyb3RhdGUoNjAgNjAsNjApJy8+PHVzZSB4bGluazpocmVmPScjbCcgb3BhY2l0eT0nLjI3JyB0cmFuc2Zvcm09J3JvdGF0ZSg5MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDEyMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMjcnIHRyYW5zZm9ybT0ncm90YXRlKDE1MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuMzcnIHRyYW5zZm9ybT0ncm90YXRlKDE4MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNDYnIHRyYW5zZm9ybT0ncm90YXRlKDIxMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNTYnIHRyYW5zZm9ybT0ncm90YXRlKDI0MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNjYnIHRyYW5zZm9ybT0ncm90YXRlKDI3MCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuNzUnIHRyYW5zZm9ybT0ncm90YXRlKDMwMCA2MCw2MCknLz48dXNlIHhsaW5rOmhyZWY9JyNsJyBvcGFjaXR5PScuODUnIHRyYW5zZm9ybT0ncm90YXRlKDMzMCA2MCw2MCknLz48L2c+PC9zdmc+Cg==)
+        animation: swiper-preloader-spin 1s steps(12, end) infinite;
+        &:after {
+            display: block;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-image: $swiper-url-6;
+            background-position: 50%;
+            -webkit-background-size: 100%;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
     }
     @-webkit-keyframes swiper-preloader-spin {
         100% {
-            -webkit-transform: rotate(360deg)
+            -webkit-transform: rotate(360deg);
         }
     }
     @keyframes swiper-preloader-spin {
         100% {
-            transform: rotate(360deg)
+            //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+            transform: rotate(360deg);
         }
+    }
+    .swiper-container-no-flexbox .swiper-slide {
+        float: left;
+    }
+    .swiper-container-vertical > {
+        .swiper-wrapper {
+            -webkit-box-orient: vertical;
+            -moz-box-orient: vertical;
+            -ms-flex-direction: column;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
+        .swiper-pagination-bullets {
+            right: 10px;
+            top: 50%;
+            -webkit-transform: translate3d(0, -50%, 0);
+            -moz-transform: translate3d(0, -50%, 0);
+            -o-transform: translate(0, -50%);
+            -ms-transform: translate3d(0, -50%, 0);
+            //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+            transform: translate3d(0, -50%, 0);
+            .swiper-pagination-bullet {
+                margin: 5px 0;
+                display: block;
+            }
+        }
+        .swiper-pagination-progress {
+            width: 4px;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+        .swiper-scrollbar {
+            position: absolute;
+            right: 3px;
+            top: 1%;
+            z-index: 50;
+            width: 5px;
+            height: 98%;
+        }
+    }
+    .swiper-container-android .swiper-slide {
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -o-transform: translate(0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: translate3d(0, 0, 0);
+    }
+    .swiper-container-multirow > .swiper-wrapper {
+        -webkit-box-lines: multiple;
+        -moz-box-lines: multiple;
+        -ms-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    .swiper-container-free-mode > .swiper-wrapper {
+        -webkit-transition-timing-function: ease-out;
+        -moz-transition-timing-function: ease-out;
+        -ms-transition-timing-function: ease-out;
+        -o-transition-timing-function: ease-out;
+        //Instead of the line below you could use @include transition-timing-function($function-1, $function-2, $function-3, $function-4, $function-5, $function-6, $function-7, $function-8, $function-9, $function-10)
+        transition-timing-function: ease-out;
+        margin: 0 auto;
+    }
+    .swiper-container-horizontal > {
+        .swiper-pagination-bullets {
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            .swiper-pagination-bullet {
+                margin: 0 5px;
+            }
+        }
+        .swiper-pagination-progress {
+            width: 100%;
+            height: 4px;
+            left: 0;
+            top: 0;
+        }
+        .swiper-scrollbar {
+            position: absolute;
+            left: 1%;
+            bottom: 3px;
+            z-index: 50;
+            height: 5px;
+            width: 98%;
+        }
+    }
+    button.swiper-pagination-bullet {
+        border: none;
+        margin: 0;
+        padding: 0;
+        //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    .swiper-pagination-clickable .swiper-pagination-bullet {
+        cursor: pointer;
+    }
+    .swiper-pagination-black .swiper-pagination-bullet-active {
+        background: $swiper-color-0;
+    }
+    .swiper-container-coverflow .swiper-wrapper {
+        -ms-perspective: 1200px;
+    }
+    .swiper-lazy-preloader-white:after {
+        background-image: $swiper-url-7;
     }
 
 }

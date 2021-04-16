@@ -17,6 +17,12 @@ class Raw extends Iframe
 	{
 		$orderId = $this->getRequest()->getParam('orderId', null);
 		$order   = $this->orderFactory->create()->load($orderId);
+            if(!$order || !$order->getId()){
+            
+            $this->_redirect('checkout#payment');
+    
+  
+    }
 		$info    = $order->getPayment()->getAdditionalInformation('secure_trading_data');
 
 		return (array)$info;

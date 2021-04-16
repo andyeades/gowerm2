@@ -7,10 +7,7 @@ namespace Firebear\ConfigurableProducts\Plugin\Block\Pricing;
 
 use Firebear\ConfigurableProducts\Block\Product\Configurable\Pricing\Renderer;
 use Firebear\ConfigurableProducts\Helper\Data as CpiHelper;
-use Firebear\ConfigurableProducts\Plugin\Block\ConfigurableProduct\Product\View\Type\Configurable;
 use Magento\Catalog\Helper\Data;
-use Magento\Catalog\Model\Product\Type;
-use Magento\Catalog\Model\Product\Visibility;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable as ConfigurableProductObject;
 use Magento\Customer\Model\Session as CustomerSession;
@@ -94,9 +91,6 @@ class PriceBox
      */
     public function afterRenderAmount(\Magento\Framework\Pricing\Render\PriceBox $subject, $result)
     {
-        if (!$result) {
-            return $result;
-        }
         $registerKey = 'firebear_display_first_price';
         if ($this->registry->registry($registerKey)) {
             $oldValue = $this->registry->registry($registerKey);
@@ -112,33 +106,13 @@ class PriceBox
                     'current_product'
                 )) {
                 $productId = $subject->getRequest()->getParam('id');
-                if ('checkout_cart_configure' === $subject->getRequest()->getFullActionName()) {
-                    $productId = $subject->getRequest()->getParam('product_id');
-                }
                 if ($productId) {
                     $product = $this->productRepository->getById($productId);
-                    $productType = $product->getTypeId();
-                    if ($productType == Type::TYPE_VIRTUAL || $productType == Type::TYPE_SIMPLE) {
-                        $productVisibility = $product->getVisibility();
-                        $productIsVisible =
-                            $productVisibility == Visibility::VISIBILITY_IN_CATALOG ||
-                            $productVisibility == Visibility::VISIBILITY_BOTH;
-                        if ($productIsVisible) {
-                            return $result;
-                        }
-                    }
                     $parentIds = $this->configurableProductObject->getParentIdsByChild($productId);
                     $parentId = array_shift($parentIds);
                     $parentProduct = null;
                     if ($parentId) {
                         $parentProduct = $this->productRepository->getById($parentId);
-                        $parentProductVisibility = $parentProduct->getVisibility();
-                        $parentProductIsVisible =
-                            $parentProductVisibility == Visibility::VISIBILITY_IN_CATALOG ||
-                            $parentProductVisibility == Visibility::VISIBILITY_BOTH;
-                        if (!$parentProductIsVisible) {
-                            return $result;
-                        }
                     }
 
                     if ($product->getTypeId() == 'configurable'
@@ -163,8 +137,7 @@ class PriceBox
                                 }
                                 $productTierPrices = $child->getTierPrices();
                                 foreach ($productTierPrices as $tierPriceItem) {
-                                    if ($tierPriceItem->getCustomerGroupId() == $customerGroupId ||
-                                        $tierPriceItem->getCustomerGroupId() == Configurable::ALL_CUSTOMER_GROUPS) {
+                                    if ($tierPriceItem->getCustomerGroupId() == $customerGroupId) {
                                         $priceArray[] = round($tierPriceItem->getValue(), 2);
                                     }
                                 }

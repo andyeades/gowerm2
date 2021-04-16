@@ -1,6 +1,109 @@
 <?xml version="1.0" ?>
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    
+    
+    <fieldset name="elevate_landingpages_faq_container" component="Magento_Catalog/js/components/visible-on-option/fieldset" sortOrder="15">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="valuesForOptions" xsi:type="array">
+                    <item name="select" xsi:type="string">select</item>
+                </item>
+            </item>
+        </argument>
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Rich Snippet FAQ</label>
+        </settings>
+        <container name="elevate_landingpages_schema_faq">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/dynamic-rows/dynamic-rows</item>
+                    <item name="template" xsi:type="string">ui/dynamic-rows/templates/default</item>
+                    <item name="componentType" xsi:type="string">dynamicRows</item>
+                    <item name="recordTemplate" xsi:type="string">record</item>
+                    <item name="addButtonLabel" xsi:type="string">Add Row</item>
+                    <item name="deleteProperty" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
 
+                <field name="row_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="label" xsi:type="string" translate="true">Row Id</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                            <item name="formElement" xsi:type="string">hidden</item>
+                            <item name="dataScope" xsi:type="string">landingpage_faq_id</item>
+                        </item>
+                    </argument>
+                </field>
+        
+        <field name="row_question">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Question</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">category</item>
+                    <item name="dataScope" xsi:type="string">question</item>
+                    <item name="cols" xsi:type="number">200</item>
+                 
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        
+        <field name="row_answer">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Answer</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">category</item>
+                      
+                    <item name="dataScope" xsi:type="string">answer</item>
+                    <item name="cols" xsi:type="number">200</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+      <field name="position" formElement="hidden">
+     <argument name="data" xsi:type="array">
+             <item name="config" xsi:type="array">
+                  <item name="prefixName" xsi:type="string">option.order</item>
+                  <item name="prefixElementName" xsi:type="string">option_</item>
+              </item>
+     </argument>
+</field>          
+            <actionDelete>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="componentType" xsi:type="string">actionDelete</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="fit" xsi:type="boolean">false</item>
+                        <item name="label" xsi:type="string">Actions</item>
+                   
+                        <item name="additionalClasses" xsi:type="string">data-grid-actions-cell</item>
+                        <item name="template" xsi:type="string">Magento_Backend/dynamic-rows/cells/action-delete</item>
+                    </item>
+                </argument>
+            </actionDelete>
+
+            </container>
+        </container>
+    </fieldset>
     <fieldset name="landingpage">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -8,63 +111,7 @@
                 <item name="collapsible" xsi:type="boolean">true</item>
                 <item name="sortOrder" xsi:type="number">10</item>
             </item>
-        </argument> 
-        
-        
-        <field name="ev_landingpages_hide_leftnav">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="sortOrder" xsi:type="number">20</item>
-                    <item name="dataType" xsi:type="string">boolean</item>
-                    <item name="formElement" xsi:type="string">checkbox</item>
-                    <item name="source" xsi:type="string">category</item>
-                    <item name="prefer" xsi:type="string">toggle</item>
-                    <item name="valueMap" xsi:type="array">
-                        <item name="true" xsi:type="string">1</item>
-                        <item name="false" xsi:type="string">0</item>
-                    </item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">false</item>
-                    </item>
-                    <item name="default" xsi:type="string">0</item>
-                    <item name="label" xsi:type="string" translate="true">Hide Left Nav</item>
-                </item>
-            </argument>
-        </field>        
-         <field name="ev_landingpages_canonical">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="required" xsi:type="boolean">false</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">false</item>
-                    </item>
-                    <item name="sortOrder" xsi:type="number">50</item>
-                    <item name="dataType" xsi:type="string">string</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="label" translate="true" xsi:type="string">Canonical URL</item>
-                </item>
-            </argument>
-        </field>
-          <field name="ev_landingpages_noindex">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="sortOrder" xsi:type="number">20</item>
-                    <item name="dataType" xsi:type="string">boolean</item>
-                    <item name="formElement" xsi:type="string">checkbox</item>
-                    <item name="source" xsi:type="string">category</item>
-                    <item name="prefer" xsi:type="string">toggle</item>
-                    <item name="valueMap" xsi:type="array">
-                        <item name="true" xsi:type="string">1</item>
-                        <item name="false" xsi:type="string">0</item>
-                    </item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">false</item>
-                    </item>
-                    <item name="default" xsi:type="string">0</item>
-                    <item name="label" xsi:type="string" translate="true">No Index this page</item>
-                </item>
-            </argument>
-        </field>                          
+        </argument>                         
              <field name="ev_landingpages_hide_readmore">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

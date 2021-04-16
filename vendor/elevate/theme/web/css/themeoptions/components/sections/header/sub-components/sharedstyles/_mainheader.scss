@@ -31,7 +31,7 @@ $hdr-acc-dropdowncontent-left: 0 !default;
 $hdr-acc-dropdowncontent-color: #000 !default;
 $hdr-acc-dropdowncontent-background: #ffffff !default;
 $hdr-acc-dropdowncontent-padding: 0.875rem !default;
-$hdr-acc-dropdowncontent-transform: translate3d(0px, 0px, 0px) !default;
+$hdr-acc-dropdowncontent-transform: translate3d(0, 0, 0) !default;
 $hdr-acc-dropdowncontent-boxshadow: rgba(0, 0, 0, 0.13) 0 2px 4px 0 !default;
 $hdr-acc-dropdowncontent-zindex: 2 !default;
 $hdr-acc-dropdowncontent-border-bottom-left-radius: false !default;
@@ -158,7 +158,7 @@ $hdr-acc-ta-link-start-hover-text-decoration: underline !default;
     }
 
     @include min-screen($desktop-min) {
-        padding: $hdr-main-mid-desktop-padding;
+        @include co(padding, $hdr-main-mid-desktop-padding);
     }
 }
 

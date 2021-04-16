@@ -22,7 +22,7 @@
 
 
     .btn-outline {
-        color: $btn-outline-general-color;
+        @include co(color, $btn-outline-general-color);
         background-color: transparent;
         border-color: $btn-outline-general-color;
 
@@ -42,7 +42,7 @@
         border-radius: $border-radius;
 
         &:active, &:focus, &:hover {
-            color: $btn-outline-general-color;
+            @include co(color, $btn-outline-general-color);
             background-color: #FFF;
             border-color: #FFF;
             text-shadow: none;

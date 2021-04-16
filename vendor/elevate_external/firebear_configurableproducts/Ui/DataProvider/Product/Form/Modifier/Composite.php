@@ -56,6 +56,11 @@ class Composite extends \Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\Co
                     'position' => $option->getPosition(),
                     'option_id' => $option->getOptionId(),
                     'title' => $option->getTitle(),
+                    'min_qty' => $option->getMinQty(), //new field
+                    'max_qty' => $option->getMaxQty(), //new field
+                    'is_lease_machine' => $option->getIsLeaseMachine(), //new field
+                    'default_option_text' => $option->getDefaultOptionText(), //new field
+                    'option_tooltip' => $option->getOptionTooltip(), //new field
                     'default_title' => $option->getDefaultTitle(),
                     'type' => $option->getType(),
                     'required' => ($option->getRequired()) ? '1' : '0',

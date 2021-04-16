@@ -42,10 +42,7 @@ class ShipOrder extends \Magento\Backend\App\Action {
      */
     protected $scopeConfig;
 
-    /**
-     * @var \PrintNode\Credentials
-     */
-    protected $printNodeCredentials;
+
 
     /**
      * @var \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation
@@ -69,6 +66,11 @@ class ShipOrder extends \Magento\Backend\App\Action {
     protected $orderClass;
 
     /**
+     * @var \Magento\GiftMessage\Api\OrderRepositoryInterface
+     */
+    protected $giftMessageRepository;
+
+    /**
      * Index constructor.
      *
      * @param Context                                             $context
@@ -81,11 +83,11 @@ class ShipOrder extends \Magento\Backend\App\Action {
      * @param \Magento\Sales\Model\Order\AddressRepository               $orderAddressRepository
      * @param \Magento\Sales\Api\OrderAddressRepositoryInterface         $orderAddressRepo
      * @param \Magento\Sales\Model\Order                                 $orderModel
-     * @param \Magento\Sales\Model\Convert\Order                         $orderConvertModel;
-     * @param \Magento\Sales\Api\ShipmentRepositoryInterface      $shipmentRepository,
-     * @param \Magento\Sales\Model\Order\ShipmentFactory          $shipmentFactory,
+     * @param \Magento\Sales\Model\Convert\Order                         $orderConvertModel
+     * @param \Magento\Sales\Api\ShipmentRepositoryInterface      $shipmentRepository
+     * @param \Magento\Sales\Model\Order\ShipmentFactory          $shipmentFactory
      * @param \Magento\Framework\App\Config\ScopeConfigInterface  $scopeConfig
-     * @param \PrintNode\Credentials                              $printNodeCredentials
+     * @param \Magento\GiftMessage\Api\OrderRepositoryInterface   $giftMessageRepository
      * @param \Elevate\PrintLabels\Controller\Adminhtml\Orders\GetOrders $orderClass
      * @param \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation
      */
@@ -96,7 +98,6 @@ class ShipOrder extends \Magento\Backend\App\Action {
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \PrintNode\Credentials $printNodeCredentials,
         \Magento\Sales\Model\Order\AddressRepository $orderAddressRepository,
         \Magento\Sales\Model\Order $orderModel,
         \Magento\Sales\Model\Convert\Order                         $orderConvertModel,
@@ -107,7 +108,8 @@ class ShipOrder extends \Magento\Backend\App\Action {
         \Magento\Sales\Api\ShipmentRepositoryInterface $shipmentRepository,
         \Magento\Sales\Model\Order\ShipmentFactory $shipmentFactory,
         \Elevate\PrintLabels\Controller\Adminhtml\Edit\DPDAuthorisation $dpdAuthorisation,
-        \Elevate\PrintLabels\Controller\Adminhtml\Orders\GetOrders $orderClass
+        \Elevate\PrintLabels\Controller\Adminhtml\Orders\GetOrders $orderClass,
+        \Magento\GiftMessage\Api\OrderRepositoryInterface   $giftMessageRepository
     ) {
         parent::__construct($context);
 
@@ -117,7 +119,7 @@ class ShipOrder extends \Magento\Backend\App\Action {
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->accountManagement = $accountManagement;
         $this->scopeConfig = $scopeConfig;
-        $this->printNodeCredentials = $printNodeCredentials;
+
         $this->dpdAuthorisation = $dpdAuthorisation;
         $this->addressRepository = $addressRepository;
         $this->orderAddressRepository = $orderAddressRepository;
@@ -128,6 +130,8 @@ class ShipOrder extends \Magento\Backend\App\Action {
         $this->shipmentRepository = $shipmentRepository;
         $this->shipmentFactory = $shipmentFactory;
         $this->orderClass = $orderClass;
+
+
 
         $this->printNodeApiKey = $this->scopeConfig->getValue('elevate_printlabels/printnodedetails/printnodeapikey', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $this->printNodePrinterId = $this->scopeConfig->getValue('elevate_printlabels/printnodedetails/printnodeprinterid', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
@@ -361,8 +365,7 @@ class ShipOrder extends \Magento\Backend\App\Action {
 
             $dpdLabel = $this->dpdAuthorisation->getLabel($shipmentId, 'text/vnd.citizen-clp');
 
-            $credentials = $this->printNodeCredentials;
-            $credentials->setApiKey($this->printNodeApiKey);
+            $credentials = new \PrintNode\Credentials\ApiKey($this->printNodeApiKey);
 
             // Hint: Your API username is in the format description.integer, where description
             // is the name given to the API key when you created it, followed by a dot (.) and an integer.

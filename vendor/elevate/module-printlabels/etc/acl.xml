@@ -11,7 +11,9 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::content">
                     <resource id="Elevate_General::parent" title="Elevate" sortOrder="10">
-                        <resource id="Elevate_PrintLabels::index" title="Print Labels" sortOrder="10"/>
+                        <resource id="Elevate_PrintLabels::title" title="Print Labels Entire Menu" sortOrder="10"/>
+                        <resource id="Elevate_PrintLabels::index" title="Print Labels Main" sortOrder="10"/>
+                        <resource id="Elevate_PrintLabels::holidaydates" title="Print Labels Holiday Dates" sortOrder="10"/>
                     </resource>
                 </resource>
                 <resource id="Magento_Backend::stores">

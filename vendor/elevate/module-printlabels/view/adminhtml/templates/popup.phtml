@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @var $block
+ */
+
 $shippingObject = $this->getDpdAuthorisation();
 $helper = $this->getHelper();
 $order = $block->getOrder();
@@ -21,7 +25,7 @@ $shipping_country_code = $order->getShippingAddress()->getCountryId(); //2 lette
 $shipping_weight = $order->getWeight();
 // Init
 
-//lets check this is a valid package type we can use    
+//lets check this is a valid package type we can use
 
 // The shipmentType variable can be set to 1 or 2 if a collection on delivery or swap it service is required. The deliveryDirection flag should be set to 1 for outbound and 2 for inbound shipments.
 

@@ -20,13 +20,16 @@ class Bsales extends Command
 
 
 
-    protected $dateFromOverride = '2019-12-03 00:00:00';
-    protected $dateToOverride = '2020-05-11 23:59:59';
-
+    protected $dateFromOverride = '2021-01-01 00:00:00';
+    protected $dateToOverride = '2021-02-25 23:59:59';
+                                
     //protected $dateToOverride = '2019-12-03 23:59:59';
-    protected $genRun = false;
-    protected $salesRun = true;
 
+    protected $productRun = true;
+    protected $salesRun = true;
+    protected $_processData = true;    
+    protected $genRun = true;
+    protected $evenDistribution = true;
     /*end debug info*/
 
     protected $resourceConnection;
@@ -76,7 +79,9 @@ class Bsales extends Command
 
         $gen_run = $this->genRun;
         $sales_run = $this->salesRun;
-
+        $product_run = $this->productRun;
+        $even_distribution_run = $this->evenDistribution;
+        
         $categoryFactory = $this->objectManager->get('\Magento\Catalog\Model\CategoryFactory');
         $categoryId = 179;
         $category = $categoryFactory->create()->load($categoryId);
@@ -96,12 +101,51 @@ class Bsales extends Command
 
         $this->table = $connection->getTableName('elevate_bestseller_data');
 
+           if($product_run){
+           
+           
+               $truncate_q = "DELETE FROM  elevate_product_data;";
+            $connection->query($truncate_q);
+
+
+
+
+            echo date('c');
+
+            $initialMem = memory_get_usage();
+            //$outputFilename = Mage::getBaseDir('base') . '/' . $this->outputFile;
+
+
+            $productsCollection = $this->_getProductCollectionProduct();
+
+            $pages = $productsCollection->getLastPageNumber();
+            $currentPage = 1;
+            echo "\n Pages: " . $pages . "\n";
+
+
+
+                $rows = $this->_getRowsProduct($productsCollection);
+
+
+                echo date('c') . ': ' . "Page: " . $currentPage . "\n";
+          //      exit;
+
+                // do things
+                     
+         
+
+        }
+
+
+
+
+      
         //truncate existing rules
         if($sales_run){
-
-
-            $truncate_q = "DELETE FROM  ".$this->table.";";
+               $truncate_q = "DELETE FROM  elevate_order_data;";
             $connection->query($truncate_q);
+
+    
 
 
 
@@ -125,9 +169,10 @@ class Bsales extends Command
 
 
                 echo date('c') . ': ' . "Page: " . $currentPage . "\n";
+          //      exit;
 
                 // do things
-
+                     
                 $productsCollection->clear();
             }
 
@@ -135,7 +180,11 @@ class Bsales extends Command
 
 
 
-
+             if($this->_processData){
+                       $truncate_q = "DELETE FROM  ".$this->table.";";
+            $connection->query($truncate_q);
+           $this->processData();
+           }
         //assign the bestsellers
         if($gen_run){
             echo date('c');
@@ -151,8 +200,7 @@ class Bsales extends Command
             echo "\n Pages: " . $pages . "\n";
 
 
-            for ($currentPage = 1; $currentPage <= $pages; $currentPage++) {
-                $productsCollection2->setCurPage($currentPage);
+           
 
                 $rows2 = $this->_getRows2($productsCollection2);
 
@@ -161,13 +209,97 @@ class Bsales extends Command
 
                 // do things
 
-                $productsCollection2->clear();
-            }
-
+        
 
 
         }
 
+
+        
+        if($even_distribution_run){
+
+            echo date('c');
+
+           
+
+
+ $attribute_information_unique = "Select distinct(associated_product_id) FROM associated_configurable_link "; //check for the  custom attribute condition". WHERE id = " . $manufacture . ";";
+
+
+// fetchOne it return the one value
+$_associatedProductsUnique = $this->resourceConnection->getConnection()->fetchAll($attribute_information_unique);
+
+
+if (!empty($_associatedProductsUnique)) {
+    foreach ($_associatedProductsUnique as $_associatedProductUnique) {  
+    
+    
+    
+    
+    $attribute_information = "Select * FROM associated_configurable_link WHERE product_id = '".$_associatedProductUnique['associated_product_id']."'"; //check for the  custom attribute condition". WHERE id = " . $manufacture . ";";
+    $_associatedProducts = $this->resourceConnection->getConnection()->fetchAll($attribute_information);
+                
+      $bestseller = [];
+if (!empty($_associatedProducts)) {
+    foreach ($_associatedProducts as $_associatedProduct) {
+                                      
+        // echo $_associatedProduct['associated_product_id'];
+        // $swatch_info = $_product->getResource()->getAttributeRawValue($_associatedProduct['associated_product_id'],'swatch_colour', $storeID);
+
+
+        $_associatedProduct = $this->objectManager->create('Magento\Catalog\Model\Product')->load($_associatedProduct['associated_product_id']);
+      //  $swatch_info = $_associatedProduct->getAttributeText('swatch_colour');
+                
+           $bestseller[$_associatedProduct->getData('bestseller')]  = $_associatedProduct->getId();
+        
+        
+       //     echo "\nRANK:".$sd."\n";
+       //     $productIds = [$product->getId()];
+       //     $attributesData = ['bestseller' => $sd];
+       //     $storeId = 0;
+       //     $productMassAction = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Catalog\Model\Product\Action');
+       //     $productMassAction->updateAttributes($productIds, $attributesData, $storeId);
+        
+        }
+        $bestseller2 = [];
+          krsort($bestseller);
+                    $best_count = 0;
+          foreach($bestseller AS $bestkey => $bestval){
+                   if($best_count == 0){
+                    $bestseller2[$bestval] = $bestkey;
+                   }
+                   else{
+                    $bestseller2[$bestval] = ($bestkey / 1.1);
+                   }
+                   
+                   
+                   $best_count++;
+          
+          }
+          foreach($bestseller2 AS $key => $val){
+          
+                 echo "\nRANK:".$key."|".$val."\n";
+       $productIds = [$key];
+          $attributesData = ['bestseller' => $val];
+        $storeId = 0;
+       $productMassAction = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Catalog\Model\Product\Action');
+          $productMassAction->updateAttributes($productIds, $attributesData, $storeId);
+          }
+          print_r($bestseller2);
+                  
+        
+        }
+        
+            
+          //      exit;
+
+                // do things
+                      
+        
+          }
+          }
+                              
+        }
         echo "END NEXT";
         exit;
 
@@ -194,8 +326,54 @@ class Bsales extends Command
 
         $this->sendEmail($message);
     }
+       protected function _getProductCollectionProductEvenDist()
+    {
 
 
+        $limitCollectionSku = $this->limitCollectionSku;
+        $productCollection = $this->objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+        $productCollection->addAttributeToSelect('*');
+        //$productCollection->setStoreId(0);
+        //$productCollection->addAttributeToFilter('price', array('eq' => '0'));
+         $productCollection->addAttributeToFilter('sku', array('eq' => 'PHOENIX_WHITE_WOODEN_OTTOMAN_S.4217'));
+        if(!empty($limitCollectionSku)){
+
+            $productCollection->addAttributeToFilter('sku', array('eq' => $limitCollectionSku));
+
+
+        }
+
+        $productCollection->load();
+
+
+        $productCollection->setOrder('entity_id', 'DESC');
+        $productCollection->setPageSize($this->pageSize);
+        return $productCollection;
+    }
+       protected function _getProductCollectionProduct()
+    {
+
+
+        $limitCollectionSku = $this->limitCollectionSku;
+        $productCollection = $this->objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+        $productCollection->addAttributeToSelect('*');
+        //$productCollection->setStoreId(0);
+        //$productCollection->addAttributeToFilter('price', array('eq' => '0'));
+
+        if(!empty($limitCollectionSku)){
+
+            $productCollection->addAttributeToFilter('sku', array('eq' => $limitCollectionSku));
+
+
+        }
+
+        $productCollection->load();
+
+
+        $productCollection->setOrder('entity_id', 'DESC');
+        $productCollection->setPageSize($this->pageSize);
+        return $productCollection;
+    }
     protected function _getProductCollection2()
     {
 
@@ -232,7 +410,7 @@ class Bsales extends Command
     $dateToOverride =  $this->dateToOverride;
 
 
-        $ordershippeddays = 160; // number of days you want
+        $ordershippeddays = 30; // number of days you want
         $fromDate         = gmdate("Y-m-d H:i:s", gmmktime(0, 0, 0, gmdate("m"), gmdate("d") - $ordershippeddays, gmdate("Y")));
         //echo "<br/>";
         $toDate           = gmdate("Y-m-d H:i:s", gmmktime(23, 59, 59, gmdate("m"), gmdate("d"), gmdate("Y")));
@@ -262,14 +440,168 @@ class Bsales extends Command
 
 
 
-        $ordercollection->setPageSize($this->pageSize);
-        // $productCollection->setPageSize(10);
+       // $ordercollection->setPageSize($this->pageSize);
+     $ordercollection->setPageSize(500);
 
         return $ordercollection;
     }
+    
+ 
+
+       protected function _getRowsProduct($productCollection)
+    {
+    
+    
+        $cat_lookup[5] = 'mattress';
+        $cat_lookup[40] = 'mattress';
+        $cat_lookup[41] = 'mattress';
+        $cat_lookup[49] = 'mattress';
+        $cat_lookup[11] = 'mattress';
+        $cat_lookup[58] = 'mattress';
+        $cat_lookup[59] = 'mattress';
+        $cat_lookup[60] = 'mattress';
+        $cat_lookup[61] = 'mattress';
+        $cat_lookup[62] = 'mattress';
+        $cat_lookup[63] = 'mattress';
+        $cat_lookup[64] = 'mattress';
+
+        $cat_lookup[7] = 'bed';
+        $cat_lookup[69] = 'bed';
+        $cat_lookup[33] = 'bed';
+        $cat_lookup[83] = 'bed';
+        $cat_lookup[34] = 'bed';
+        $cat_lookup[47] = 'bed';
+        $cat_lookup[72] = 'bed';
+        $cat_lookup[29] = 'bed';
+        $cat_lookup[75] = 'bed';
+        $cat_lookup[28] = 'bed';
+        $cat_lookup[31] = 'bed';
+        $cat_lookup[30] = 'bed';
+        $cat_lookup[73] = 'bed';
+        $cat_lookup[36] = 'bed';
+        $cat_lookup[35] = 'bed';
+        $cat_lookup[74] = 'bed';
+        $cat_lookup[76] = 'bed';
+        $cat_lookup[81] = 'bed';
+        $cat_lookup[67] = 'bed';
+        $cat_lookup[66] = 'bed';
+        $cat_lookup[77] = 'bed';
+        $cat_lookup[68] = 'bed';
+        $cat_lookup[78] = 'bed';
+        $cat_lookup[79] = 'bed';
+        $cat_lookup[80] = 'bed';
+       // $resource = Mage::getResourceSingleton('catalog/product');
+        //            echo "ONE\n";
+        foreach($productCollection as $product) {
+        
+     
+     
+$current_type = '';   
+$item_cat = '';
+
+      $despatch_days = $product->getData('dispatch_days');
+
+
+                 
+                            $product_type = $product->getData('product_type');
+
+         
+             
+                       
+                                   if($product_type == 'simple'){
+             
+
+                    $parent_main = $this->objectManager->create('Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable')->getParentIdsByChild($simple_id);
 
 
 
+
+                    if(isset($parent_main[0])){
+
+
+                        $parent = $this->objectManager->create('Magento\Catalog\Model\Product')->load($parent_main[0]);
+
+
+
+                        //this is parent product id..
+                        $simple_id = $parent->getId();
+                           
+                        $cats = $parent->getCategoryIds();
+                        foreach ($cats as $category_id) {
+
+                           // $categoryFactory = $this->objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+
+                           // $_cat = $categoryFactory->create()->load($category_id);
+                            if(array_key_exists($category_id, $cat_lookup)){
+                                $item_cat = $cat_lookup[$category_id];
+                            }
+
+
+                        }
+                    }
+
+
+
+                }else{
+                     $cats = $product->getCategoryIds();
+                        foreach ($cats as $category_id) {
+
+                           // $categoryFactory = $this->objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+
+                           // $_cat = $categoryFactory->create()->load($category_id);
+                            if(array_key_exists($category_id, $cat_lookup)){
+                                $item_cat = $cat_lookup[$category_id];
+                            }
+
+
+                        }
+                }
+
+
+
+                   
+                if(empty($current_type)){
+                    if($item_cat == 'bed' || $item_cat == 'mattress'){
+                        $current_type = $item_cat;
+                    }
+                }
+                else{
+                    if($current_type == 'bed'){
+                        if($item_cat == 'mattress'){
+                            $current_type = 'both';
+                        }
+                    }
+                    if($current_type == 'mattress'){
+                        if($item_cat == 'bed'){
+                            $current_type = 'both';
+                        }
+                    }
+                }
+         
+        
+        
+                                  // 1288027
+                    $insert_query = "INSERT INTO  elevate_product_data (
+    `product_id` ,
+    `item_cat` ,
+    `despatch_days`
+    
+    )
+    VALUES (
+    '".$product->getId()."' ,  
+    '".$current_type."',
+    '".$despatch_days."'
+    );   
+  
+    ";
+        try{
+                        $write_subq = $this->resourceConnection->getConnection()->query($insert_query);
+                    }catch(Exception $e){
+                        print_r($e->getData());
+                    }
+        }
+
+    }
 
 
     protected function _getRows2($productCollection)
@@ -291,7 +623,7 @@ class Bsales extends Command
                 $cat = $result['cat'];
             }
 
-            $resultsmattress = $this->resourceConnection->getConnection()->fetchAll("select sales_decay from ".$this->table." WHERE cat='mattress' order by sales_decay desc LIMIT 0, 1");
+            $resultsmattress = $this->resourceConnection->getConnection()->fetchAll("select sales_decay, cat from ".$this->table." WHERE cat='mattress' order by sales_decay desc LIMIT 0, 1");
 
             foreach($resultsmattress as $result){
                 $before_decay = $result['sales_decay'];
@@ -424,19 +756,24 @@ class Bsales extends Command
 
         $order_loop_data = array();
 
-
+                $initialMem = "STAR COL MEM".memory_get_usage();
         foreach ($ordercollection as $orders) {
-
+          
+          
+          
+          
+          
+                                                            
             $eid = $orders->getEntityId();
             //   $eid = '29131';
-            $order           = $this->orderRepository->get($eid);
-            $customerorderid = $order->getIncrementId();
-            $customeremailid = $order->getCustomerEmail();
-            $customername    = $order->getCustomerFirstname();
+         //   $order           = $this->orderRepository->get($eid);
+            $customerorderid = $orders->getIncrementId();
+            $customeremailid = $orders->getCustomerEmail();
+            $customername    = $orders->getCustomerFirstname();
 
             unset($order_loop_data);
             $order_loop_data = [];
-            foreach ($order->getAllItems() as $item) {
+            foreach ($orders->getAllItems() as $item) {
 
                 $item_cat = '';
 
@@ -444,8 +781,9 @@ class Bsales extends Command
                 $product_type = $item->getData('product_type');
 
 
+
                 try{
-                    $simple_lookup = $this->objectManager->create('Magento\Catalog\Model\Product')->load($simple_id);
+            //   $simple_lookup = $this->objectManager->create('Magento\Catalog\Model\Product')->load($simple_id);
 
                 }
                 catch(Exception $e){
@@ -453,12 +791,13 @@ class Bsales extends Command
 
                 }
 
+             $despatch_days = '';
+          //  $despatch_days = $simple_lookup->getData('dispatch_days');
 
-                $despatch_days = $simple_lookup->getData('dispatch_days');
+                          
 
-
-                if($product_type == 'simple'){
-
+                if($product_type == 'simsple'){
+             
 
                     $parent_main = $this->objectManager->create('Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable')->getParentIdsByChild($simple_id);
 
@@ -474,15 +813,15 @@ class Bsales extends Command
 
                         //this is parent product id..
                         $simple_id = $parent->getId();
-
+                           
                         $cats = $parent->getCategoryIds();
                         foreach ($cats as $category_id) {
 
-                            $categoryFactory = $this->objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+                           // $categoryFactory = $this->objectManager->get('\Magento\Catalog\Model\CategoryFactory');
 
-                            $_cat = $categoryFactory->create()->load($category_id);
-                            if(array_key_exists($_cat->getId(), $cat_lookup)){
-                                $item_cat = $cat_lookup[$_cat->getId()];
+                           // $_cat = $categoryFactory->create()->load($category_id);
+                            if(array_key_exists($category_id, $cat_lookup)){
+                                $item_cat = $cat_lookup[$category_id];
                             }
 
 
@@ -492,13 +831,7 @@ class Bsales extends Command
 
 
                 }
-
-if(isset($order_loop_data[''.$customerorderid.''])){
-                $current_type = $order_loop_data[''.$customerorderid.'']['order_type'];
-}
-else{
-    $current_type = '';
-}
+$current_type = '';          
                 if(empty($current_type)){
                     if($item_cat == 'bed' || $item_cat == 'mattress'){
                         $current_type = $item_cat;
@@ -516,28 +849,70 @@ else{
                         }
                     }
                 }
+         
+
+               // $order_loop_data[''.$customerorderid.'']['order_type'] = $current_type;
+               // $order_loop_data[''.$customerorderid.'']['items'][] =
+              //      array(
+              // //         'product_id' => $simple_id,
+               //         'product_type' => $product_type,
+              //          'item_cat' => $item_cat,
+              //          'created_at' => $item->getData('created_at'),
+              //          'despatch_days' => $despatch_days
+              //      );
 
 
-                $order_loop_data[''.$customerorderid.'']['order_type'] = $current_type;
-                $order_loop_data[''.$customerorderid.'']['items'][] =
-                    array(
-                        'product_id' => $simple_id,
-                        'product_type' => $product_type,
-                        'item_cat' => $item_cat,
-                        'created_at' => $item->getData('created_at'),
-                        'despatch_days' => $despatch_days
-                    );
-
-
-
+                              // 1288027
+                    $insert_query = "INSERT INTO  elevate_order_data (
+    `item_id` ,
+    `order_type` ,
+    `product_id` ,
+    `product_type` ,
+    `item_cat`,
+    `created_at`,
+    `despatch_days`
+    
+    )
+    VALUES (
+    '',
+    '".$current_type."' , 
+    '".$simple_id."' , 
+    '".$product_type."', 
+    '".$item_cat."',
+    '".$item->getData('created_at')."', 
+    '".$despatch_days."'
+    );   
+  
+    ";
+                    //echo "\n";
+                    //echo $insert_query;
+                    // echo "\n-----"; echo "\n";
+                    try{
+                        $write_subq = $this->resourceConnection->getConnection()->query($insert_query);
+                    }catch(Exception $e){
+                        print_r($e->getData());
+                    }
             }
 
 
 
-            foreach ($order_loop_data as $order_loop_vals) {
+
+            //exit;
+        }
+  }
 
 
-                foreach ($order_loop_vals['items'] as $the_items) {
+    public function processData(){
+    
+                          
+            
+             $order_loop_data = $this->resourceConnection->getConnection()->fetchAll("select eod.created_at, eod.product_id, epd.item_cat, epd.despatch_days from elevate_order_data eod left join elevate_product_data epd on epd.product_id = eod.product_id");
+
+       
+        
+
+
+                foreach ($order_loop_data as $the_items) {
                     $despatch_days = $the_items['despatch_days'];
                     $now = time(); // or your date as well
                     $your_date = strtotime($the_items['created_at']);
@@ -548,10 +923,10 @@ else{
 
                     $rank_val = 0.5;
                     $amount = 1;
-                    if($order_loop_vals['order_type'] == 'both' && $the_items['item_cat'] == 'mattress'){
-                        $rank = 0.9;
-                        $amount = 0.1;
-                    }
+                   // if($order_loop_vals['order_type'] == 'both' && $the_items['item_cat'] == 'mattress'){
+                 //       $rank = 0.9;
+                //        $amount = 0.1;
+                //    }
 
                     if($despatch_days > 10){
                         $amount = 0.1;
@@ -565,13 +940,14 @@ else{
 
                     $time_interval = floor($days / 30 * 100);
                     //$rank = (pow($amount*($amount - 0.5), $time_interval/100));
-                    $rank = $amount * (pow((1-(80/100)), $time_interval/100));
+                    $rank = round($amount * (pow((1-(80/100)), $time_interval/100)), 5);
                     //echo "RANK:::".$rank."<br />";
 
 
 
                     // 1288027
                     $insert_query = "INSERT INTO  `".$this->table."` (
+                     `entity_id` ,
     `customer_id` ,
     `product_id` ,
     `impression` ,
@@ -582,6 +958,7 @@ else{
     `despatch_days`
     )
     VALUES (
+    99".$the_items['product_id']." ,  
     '99' , 
     '".$the_items['product_id']."' , 
     '', 
@@ -593,7 +970,8 @@ else{
     )
     ON DUPLICATE KEY UPDATE sales = sales + 1, sales_decay = sales_decay + $rank;   
     ;
-    ";
+    ";    
+    
                     //echo "\n";
                     //echo $insert_query;
                     // echo "\n-----"; echo "\n";
@@ -608,18 +986,11 @@ else{
                     //  }
 
 
-                }
+           
             }
-
-
-            //exit;
-        }
-
-
-
-
-
     }
+
+  
     private function sendEmail($message){
    //     mail("andy.eades@elevateweb.co.uk","Products With Price of Zero", $message);
    //     mail("andy.eades@elevateweb.co.uk","Products With Price of Zero", $message);

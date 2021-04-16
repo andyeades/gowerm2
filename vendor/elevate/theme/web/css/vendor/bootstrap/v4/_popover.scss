@@ -20,7 +20,7 @@
   .arrow {
     position: absolute;
     display: block;
-    width: $popover-arrow-width;
+    @include co(width, $popover-arrow-width);
     height: $popover-arrow-height;
     margin: 0 $popover-border-radius;
 
@@ -60,9 +60,9 @@
 
   > .arrow {
     left: subtract(-$popover-arrow-height, $popover-border-width);
-    width: $popover-arrow-height;
+    @include co(width, $popover-arrow-height);
     height: $popover-arrow-width;
-    margin: $popover-border-radius 0; // make sure the arrow does not touch the popover's rounded corners
+    @include co(margin, $popover-border-radius 0); // make sure the arrow does not touch the popover's rounded corners
 
     &::before {
       left: 0;
@@ -103,7 +103,7 @@
     top: 0;
     left: 50%;
     display: block;
-    width: $popover-arrow-width;
+    @include co(width, $popover-arrow-width);
     margin-left: -$popover-arrow-width / 2;
     content: "";
     border-bottom: $popover-border-width solid $popover-header-bg;
@@ -115,9 +115,9 @@
 
   > .arrow {
     right: subtract(-$popover-arrow-height, $popover-border-width);
-    width: $popover-arrow-height;
+    @include co(width, $popover-arrow-height);
     height: $popover-arrow-width;
-    margin: $popover-border-radius 0; // make sure the arrow does not touch the popover's rounded corners
+    @include co(margin, $popover-border-radius 0); // make sure the arrow does not touch the popover's rounded corners
 
     &::before {
       right: 0;
@@ -151,7 +151,7 @@
 
 // Offset the popover to account for the popover arrow
 .popover-header {
-  padding: $popover-header-padding-y $popover-header-padding-x;
+  @include co(padding, $popover-header-padding-y $popover-header-padding-x);
   margin-bottom: 0; // Reset the default from Reboot
   @include font-size($font-size-base);
   color: $popover-header-color;
@@ -165,6 +165,6 @@
 }
 
 .popover-body {
-  padding: $popover-body-padding-y $popover-body-padding-x;
+  @include co(padding, $popover-body-padding-y $popover-body-padding-x);
   color: $popover-body-color;
 }

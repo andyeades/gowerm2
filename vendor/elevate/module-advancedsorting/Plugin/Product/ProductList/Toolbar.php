@@ -35,6 +35,14 @@ class Toolbar
 			} elseif ($currentOrder == 'price_asc') {
 				$subject->getCollection()->setOrder('price', 'asc');
 			}
+           elseif ($currentOrder == 'position') {
+				$subject->getCollection()->setOrder('position', 'asc');
+			}elseif ($currentOrder == 'name') {
+				$subject->getCollection()->setOrder('name', 'asc');
+			}
+            elseif ($currentOrder == 'product_rating') {
+				$subject->getCollection()->setOrder('product_rating', 'desc');
+			}  
 		}     
           
 
@@ -45,8 +53,7 @@ class Toolbar
         public function setAvailableOrders($orders)
     {
     
-    echo "TEST";
-    exit;
+  
         $this->_availableOrder = $orders;
        
         	$this->_availableOrder['price_desc'] = __('Price : High to Low' );

@@ -170,31 +170,7 @@ define([
                             customBlock.html(data.value)
                         }
                         else if ($block.length > 0) {
-                            if (attributeCode === 'short_description') {
-                                $('#maincontent div.product.attribute.overview div').html('');
-                                if ($('span.short_description').length == 0) {
-                                    if (data.value) {
-                                        $block.append('<span class="short_description">' + data.value + '</span>');
-                                    }
-                                } else {
-                                    if (data.value) {
-                                        $('span.short_description').html(data.value);
-                                    }
-                                }
-                            } else if(attributeCode === 'description') {
-                                $('.product.info.detailed .product.attribute.description div').html('');
-                                if ($('span.description').length == 0) {
-                                    if (data.value) {
-                                        $block.append('<span class="description">' + data.value + '</span>');
-                                    }
-                                } else {
-                                    if (data.value) {
-                                        $('span.description').html(data.value);
-                                    }
-                                }
-                            } else {
-                                $block.html(data.value);
-                            }
+                            $block.html(data.value);
                         }
                     }
                 });
@@ -418,6 +394,9 @@ define([
                 if (updatePrice) {
                     $widget._UpdatePrice();
                 }
+                if ($widget.options.jsonConfig.attributes.length > 1) {
+                    $widget._updateMatrix(attributeId);
+                }
             }
 
             /**
@@ -432,7 +411,7 @@ define([
              * @see \Firebear\ConfigurableProducts\Plugin\Block\ConfigurableProduct\Product\View\Type::afterGetJsonConfig()
              */
             if (products.length && !this.options.jsonConfig.doNotReplaceData && numberOfSelectedOptions) {
-                if (!simpleProductId || !$.isNumeric(simpleProductId)) {
+                if (!simpleProductId) {
                     var simpleProductId = products[0];
                 }
                 $('.product-cpi-custom-options').remove();
@@ -474,9 +453,6 @@ define([
                 });
             } else {
                 $widget._ReplaceDataParent(this);
-            }
-            if ($widget.options.jsonConfig.attributes.length > 1) {
-                $widget._updateMatrix(attributeId);
             }
             $widget._loadMedia();
             $input.trigger('change');
@@ -669,10 +645,6 @@ define([
                 result;
             $widget.element.find('.' + $widget.options.classes.attributeClass + '[option-selected]').each(function () {
                 var attributeId = $(this).attr('attribute-id');
-                var element = $('.price-box');
-                    if (!element.data('magePriceBox')) {
-                        element.priceBox();
-                    }
 
                 options[attributeId] = $(this).attr('option-selected');
             });
@@ -767,12 +739,12 @@ define([
                                 if ($widget.options.jsonConfig.hidePrice) {
                                     tierValuerPrice = $widget.options.jsonConfig.priceText;
                                 } else if (!$widget.options.jsonConfig.tierPrice2[key]) {
-                                    tierValuerPrice = $translate('not set');
+                                    tierValuerPrice = 'not set';
                                 } else {
                                     if (!$widget.options.jsonConfig.tierPrice2[key].price[v]) {
-                                        tierValuerPrice = $translate('not set');
+                                        tierValuerPrice = 'not set';
                                     } else {
-                                        tierValuerPrice = $widget.getFormattedPrice($widget.options.jsonConfig.tierPrice2[key].price[v], $widget);
+                                        tierValuerPrice = $widget.options.jsonConfig.currencySymbol + $widget.options.jsonConfig.tierPrice2[key].price[v];
                                     }
                                 }
                                 $('.matrix_qty_val_from_' + v + '_' + selectedValue).html(tierValuerPrice);
@@ -845,33 +817,6 @@ define([
                     }
                 });
             });
-        },
-
-        _CalcProducts: function ($skipAttributeId) {
-            var $widget = this,
-                products = [];
-
-            // Generate intersection of products
-            $widget.element.find('.' + $widget.options.classes.attributeClass + '[option-selected]').each(function () {
-                var id = $(this).attr('attribute-id'),
-                    option = $(this).attr('option-selected');
-
-                if ($skipAttributeId !== undefined && $skipAttributeId === id) {
-                    return;
-                }
-
-                if (!$widget.optionsMap.hasOwnProperty(id) || !$widget.optionsMap[id].hasOwnProperty(option)) {
-                    return;
-                }
-
-                if (products.length === 0) {
-                    products = $widget.optionsMap[id][option].products;
-                } else {
-                    products = _.intersection(products, $widget.optionsMap[id][option].products);
-                }
-            });
-
-            return products;
         },
 
         _RenderFormInput: function (config, $widget) {
@@ -1479,7 +1424,7 @@ define([
                             tierPriceQtyArrayUnique.sort($widget.compareNumeric);
                             $.each(tierPriceQtyArrayUnique, function (key, from) {
                                 if (optionsMap[id].tierPrice && optionsMap[id].tierPrice.price[from]) {
-                                    html += '<td class="matrix_qty_val_from_' + from + '_' + id + ' tier_price_td">' + $widget.getFormattedPrice(optionsMap[id].tierPrice.price[from], $widget) + '</td>';
+                                    html += '<td class="matrix_qty_val_from_' + from + '_' + id + ' tier_price_td">' + currencySymbol + optionsMap[id].tierPrice.price[from].toFixed(2) + '</td>';
                                 } else {
                                     html += '<td class="matrix_qty_val_from_' + from + '_' + id + ' tier_price_td">' + $translate('not set') + '</td>';
                                 }
@@ -1557,7 +1502,7 @@ define([
                                 $.each(tierPriceQtyArrayUnique, function (key, from) {
                                     if (optionsMap[id].tierPrice && optionsMap[id].tierPrice.price[from]) {
                                         if (!$widget.options.jsonConfig.hidePrice) {
-                                            html += '<td class="matrix_qty_val_from_' + from + '_' + id + ' tier_price_td">' + $widget.getFormattedPrice(optionsMap[id].tierPrice.price[from], $widget) + '</td>';
+                                            html += '<td class="matrix_qty_val_from_' + from + '_' + id + ' tier_price_td">' + currencySymbol + optionsMap[id].tierPrice.price[from].toFixed(2) + '</td>';
                                         } else {
                                             html += '<td class="matrix_qty_val_from_' + from + '_' + id + ' tier_price_td">' + $translate($widget.options.jsonConfig.priceText) + '</td>';
                                         }

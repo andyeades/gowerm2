@@ -20,10 +20,10 @@ class Renderer
         } else {
             $allowLinkTag = false;
         }
-        if ((is_array($allowedTags) && !in_array('div', $allowedTags)) || $allowLinkTag) {
-            array_push($allowedTags, 'div');
+        if (is_array($allowedTags) && $allowLinkTag) {
             array_push($allowedTags, 'a');
-            array_push($allowedTags, 'i');
+        } elseif (is_array($allowedTags) && !in_array('div', $allowedTags)) {
+            array_push($allowedTags, 'div');
         }
         return [$data, $allowedTags];
     }

@@ -966,7 +966,7 @@ define(
                 }
                 if (typeof ($widget.customOptionsPrice) !== 'undefined') {
                     result.finalPrice.amount = result.finalPrice.amount + $widget.customOptionsPrice;
-                }
+                }              
                 $productPrice.trigger(
                     'updatePrice',
                     {

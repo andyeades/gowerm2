@@ -4,60 +4,21 @@ $sitewide_enable = $helper->getConfig('elevate_promotions/above_header/enable');
 
 if ($sitewide_enable == 1) {
     $sitewide_content = $helper->getConfig('elevate_promotions/above_header/top_bar_content');
-echo $sitewide_content;
+    echo $sitewide_content;
 
 }
-        $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-                    if (strpos($url,'posturite') !== false) {
+$elevate_promotion_promo_listing_font_colour = $helper->getConfig('elevate_promotions/general/megamenu_colour');
 
-
-
-      $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-      $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
-         if($category){
-      if($category->getData('ev_landingpages_hide_leftnav') == 1){ ?>
-
-     <style>
-    .ev_ln_filter {
-        display: none;
-    }
-
-    .category-description {
-        text-align: center !important;
-    }
-
-    .ev_ln_toolbar_btn {
-        display: none !important;
-    }
-
-    @media only screen and (max-width: 767.98px) {
-        .toolbar-products .sorter {
-
-            margin: 0 auto;
-        }
-    }
-
-     </style>
-
+?>
+<style>
 <?php
 
-}
-}
+if (!empty($elevate_promotion_promo_listing_font_colour)) {?>
+        .nav-11 {
+            background-color: <?php echo $elevate_promotion_promo_listing_font_colour; ?> !important;
+        }
+<?php } ?>
 
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-<?php }
-?>
+</style>
 <link rel="preload" href="/static/frontend/Elevate/theme/en_GB/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin>

@@ -1,9 +1,9 @@
-$select2_dropdown_border: none !default;
+$select2-dropdown-border: none !default;
 
 .select2-dropdown {
   background-color: white;
 
-  border: $select2_dropdown_border;
+  border: $select2-dropdown-border;
   border-radius: 4px;
     filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.5));
   box-sizing: border-box;
@@ -78,33 +78,33 @@ $select2_dropdown_border: none !default;
   }
 }
 
-$bp_select_pricesku_pricewrapper_after_fontsize: 0.75rem !default;
-$bp_select_pricesku_pricewrapper_after_fontweight: 600 !default;
-$bp_select_pricesku_pricewrapper_after_color: $body-color !default;
+$bp-select-pricesku-pricewrapper-after-fontsize: 0.75rem !default;
+$bp-select-pricesku-pricewrapper-after-fontweight: 600 !default;
+$bp-select-pricesku-pricewrapper-after-color: $body-color !default;
 
-$bp_select_pricesku_price_fontsize: 0.75rem !default;
-$bp_select_pricesku_price_fontweight: 600 !default;
+$bp-select-pricesku-price-fontsize: 0.75rem !default;
+$bp-select-pricesku-price-fontweight: 600 !default;
 
-$bp_select_pricesku_sku_fontsize: 0.75rem !default;
-$bp_select_pricesku_sku_fontweight: 400 !default;
-$bp_select_pricesku_sku_margin: 0 0 0 0.125rem !default;
+$bp-select-pricesku-sku-fontsize: 0.75rem !default;
+$bp-select-pricesku-sku-fontweight: 400 !default;
+$bp-select-pricesku-sku-margin: 0 0 0 0.125rem !default;
 
 .bp_select_pricesku {
     .price-wrapper {
         &:after {
-            font-size: $bp_select_pricesku_pricewrapper_after_fontsize;
-            font-weight: $bp_select_pricesku_pricewrapper_after_fontweight;
-            color: $bp_select_pricesku_pricewrapper_after_color;
+          @include co(font-size, $bp-select-pricesku-pricewrapper-after-fontsize);
+            @include co(font-weight, $bp-select-pricesku-pricewrapper-after-fontweight);
+            color: $bp-select-pricesku-pricewrapper-after-color;
         }
     }
     .price {
-        font-size: $bp_select_pricesku_price_fontsize;
-        font-weight: $bp_select_pricesku_price_fontweight;
+      @include co(font-size, $bp-select-pricesku-price-fontsize);
+        @include co(font-weight, $bp-select-pricesku-price-fontweight);
     }
     .bp_select_sku {
-        font-size: $bp_select_pricesku_sku_fontsize;
-        font-weight: $bp_select_pricesku_sku_fontweight;
-        @include co(margin, $bp_select_pricesku_sku_margin);
+      @include co(font-size, $bp-select-pricesku-sku-fontsize);
+        @include co(font-weight, $bp-select-pricesku-sku-fontweight);
+        @include co(margin, $bp-select-pricesku-sku-margin);
     }
 }
 

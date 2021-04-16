@@ -22,6 +22,11 @@ class Posts extends \Magento\Framework\App\Action\Action
         
         $limit      =   12;
         $curr_page  =   1;
+        $icon_overlay = '<i class="fa fa-plus-circle" aria-hidden="true"></i>'; //ovelay an icon on the image
+        $icon_overlay = '';      
+        $lightbox_endpoint = '/weltpixel_quickview/catalog_product/view/id/';//use this for welt pixel add to cart popup 
+        $lightbox_endpoint = '/customer-gallery/index/gallerypopup/id/';
+        
         
         if($this->getRequest()->getParam('p'))
         {
@@ -126,10 +131,10 @@ $results = $connection->fetchAll($sql); /****** Return Array with values******/
             <div class="col-md-12 image-outer">';        
     }         
 
-$htmlOutput .= '<div class="evlightbox" data-body="/weltpixel_quickview/catalog_product/view/id/'.$socialpost['product_id'].'/" data-body-type="iframe">
+$htmlOutput .= '<div class="evlightbox" data-body="'.$lightbox_endpoint.$socialpost['items_id'].'/product/'.$socialpost['product_id'].'" data-body-type="ajax">
 
 	<img data-id="'.$socialpost['items_id'].'" src="/media'.$socialpost['image'].'" />
-			<i class="fa fa-plus-circle" aria-hidden="true"></i>
+		'.$icon_overlay.'
 <div class="overlay">
                            <div class="user-handle-hidden">
 '.$uNameSymbol.' '.$socialpost['name'].'

@@ -112,10 +112,10 @@
 
         &.slider-vertical {
             height: $slider-vertical-height;
-            width: $slider-line-height;
+            @include co(width, $slider-line-height);
 
             .slider-track {
-                width: $slider-line-height / 2;
+                @include co(width, $slider-line-height / 2);
                 height: 100%;
                 left: 25%;
                 top: 0;
@@ -248,7 +248,7 @@
     .slider-handle {
         position: absolute;
         top: 0;
-        width: $slider-line-height;
+        @include co(width, $slider-line-height);
         height: $slider-line-height;
         //background-color: #337AB7;
 
