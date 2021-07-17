@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © MagePal LLC. All rights reserved.
+ * See COPYING.txt for license details.
+ * http://www.magepal.com | support@magepal.com
+ */
+
+/** @var $block \MagePal\EditOrderEmail\Block\Adminhtml\Email\Edit */
+?>
+
+<div id="mp_edit_order_email" style="display: none">
+    <p>Please enter the new email address</p>
+    <input type="email" data-validate='{"required":true, "validate-email":true}' name="email" />
+    <input type="hidden" name="order_id" value="<?php echo $block->getOrderId() ?>" />
+    <input type="hidden" name="old_email" value="<?php echo $block->getEmailAddress() ?>" />
+    <button id="mpSaveNewEmailFormPost">Save</button>
+</div>
+
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "magePalEditOrderEmail": {"postUrl":"<?php echo $block->getAdminPostUrl() ?>"}
+        }
+    }
+</script>

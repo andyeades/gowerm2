@@ -7,8 +7,7 @@
 
     $wmig-width: 100% !default;
     $wmig-width-desktopmd: 50% !default;
-    $wmig-border-radius-on: 1 !default;
-    $wmig-border-radius: 10px !default;
+    $wmig-border-radius: false !default;
 
     $wmig-inner-padding: 20px !default;
     $wmig-inner-padding-sm: 40px 20px !default;
@@ -23,15 +22,19 @@
     $firmness-wmig-outer-width: 100% !default;
     $firmness-wmig-outer-order: 3 !default;
 
-    $catalog-product-view-page-main-stretch-content-on-mobile: 1 !default;
-    $catalog-product-view-page-main-stretch-content-on-mobiletablet: 1 !default;
+    $catalog-product-view-page-main-stretch-content-on-mobile: 0 !default;
+    $catalog-product-view-page-main-stretch-content-on-mobiletablet: 0 !default;
+
+    $product-page-midpage-block-margintop: 0 !default;
+    $product-page-midpage-block-margintop-desktopmd: 15px !default;
 
     #product-page-midpage-block {
         background-color: #3d4557;
         margin-bottom: 21px;
-        margin-top: 15px;
-        @include min-screen($desktop-min) {
-            padding-bottom: 15px;
+        padding-bottom: 15px;
+        @include co(margin-top, $product-page-midpage-block-margintop);
+        @include min-screen($desktop-md-min) {
+            @include co(margin-top, $product-page-midpage-block-margintop-desktopmd, $product-page-midpage-block-margintop);
         }
     }
 
@@ -86,9 +89,7 @@
 
 
         #product-page-midpage-block & {
-            @if $wmig-border-radius-on == 1 {
-                border-radius: $wmig-border-radius;
-            }
+            @include co(border-radius, $wmig-border-radius);
             background-color: #fff;
             overflow: hidden;
 
@@ -168,6 +169,13 @@
             color: white;
         }
     }
+
+    .tab-content {
+       > .tab-pane {
+            font-size: 14px;
+       }
+    }
+
 }
 
 @import "tech-icons";

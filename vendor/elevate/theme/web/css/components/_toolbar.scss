@@ -36,29 +36,35 @@ $toolbar-amount-disabled: false !default;
 
 $toolbar-amount-margin: 0 !default;
 
+$toolbar-products-amount-height: false !default;
 $toolbar-products-amount-textalign: false !default;
 $toolbar-products-amount-width: false !default;
 $toolbar-products-amount-margin: false !default;
 $toolbar-products-amount-display: false !default;
 $toolbar-products-amount-alignitems: center !default;
-$toolbar-products-amount-order: center !default;
+$toolbar-products-amount-order: false !default;
 $toolbar-products-amount-flex: 0 1 auto !default;
 
+$toolbar-products-amount-height-desktop: false !default;
 $toolbar-products-amount-textalign-desktop: false !default;
 $toolbar-products-amount-width-desktop: false !default;
 $toolbar-products-amount-margin-desktop: false !default;
 $toolbar-products-amount-display-desktop: false !default;
 $toolbar-products-amount-alignitems-desktop: center !default;
-$toolbar-products-amount-order-desktop: center !default;
+$toolbar-products-amount-order-desktop: false !default;
 $toolbar-products-amount-flex-desktop: 0 1 auto !default;
 
+$toolbar-products-amount-justifycontent: false !default;
+$toolbar-products-amount-justifycontent-desktop: false !default;
+$toolbar-products-amount-justifycontent-desktopmd: false !default;
 
+$toolbar-products-amount-height-desktopmd: false !default;
 $toolbar-products-amount-textalign-desktopmd: false !default;
 $toolbar-products-amount-width-desktopmd: false !default;
 $toolbar-products-amount-margin-desktopmd: false !default;
 $toolbar-products-amount-display-desktopmd: false !default;
 $toolbar-products-amount-alignitems-desktopmd: center !default;
-$toolbar-products-amount-order-desktopmd: center !default;
+$toolbar-products-amount-order-desktopmd: false !default;
 $toolbar-products-amount-flex-desktopmd: 0 1 auto !default;
 
 
@@ -154,6 +160,8 @@ $toolbar-products-limiter-text-display: false !default;
 
 $toolbar-products-limiter-before-content: "" !default;
 $toolbar-products-limiter-before-display: block !default;
+$toolbar-products-limiter-before-display-desktop: block !default;
+$toolbar-products-limiter-before-display-desktopmd: block !default;
 $toolbar-products-limiter-before-margin: 0 9px !default;
 $toolbar-products-limiter-before-width: 2px !default;
 $toolbar-products-limiter-before-height: 13px !default;
@@ -164,12 +172,14 @@ $toolbar-products-limiter-before-border-left: 1px solid #f0386c !default;
 $toolbar-products-pager-order: 5 !default;
 
 $toolbar-products-pager-width: 100% !default;
+$toolbar-products-pager-width-mobiletablet-max: 100% !default;
+$toolbar-products-pager-width-desktopsm-max: false !default;
 $toolbar-products-pager-width-if-filter-enabled: auto !default;
 $toolbar-products-pager-margin-if-filter-enabled: 0 auto !default;
 
 $toolbar-products-pager-margin: 0 0 1rem 0 !default;
 $toolbar-products-pager-margin-desktopsm-max: false !default;
-$toolbar-products-pager-margin-mobiletablet-max: false !default;
+$toolbar-products-pager-margin-mobiletablet-max: 0 0 16px 0 !default;
 $toolbar-products-pager-margin-xs-sm: false !default;
 
 $toolbar-products-pager-fontfamily: false !default;
@@ -200,36 +210,7 @@ $sorter-icon-color: #0e1936 !default;
 $sorter-icon-color-hover: lighten(#0e1936, 15%) !default;
 
 
-$ev-ln-toolbar-btn-margin: 0 !default;
 
-
-
-$ev-ln-toolbar-btn-margin-sm-max: false !default;
-
-
-$ev-ln-toolbar-btn-margin-sm-minmax: 1rem 0 0 0 !default;
-
-$ev-ln-toolbar-btn-width: 50% !default;
-$ev-ln-toolbar-btn-order: 5 !default;
-$ev-ln-toolbar-btn-bg-color: $theme-brand-color-2 !default;
-
-$ev-ln-toolbar-btn-border-radius-on: 1 !default;
-$ev-ln-toolbar-btn-border-radius: 5px !default;
-
-$ev-ln-toolbar-btn-text-transform-on: 1 !default;
-$ev-ln-toolbar-btn-text-transform: uppercase !default;
-$ev-ln-toolbar-btn-icon-on: 1 !default;
-
-$ev-ln-toolbar-btn-border-color: #cdcdcd !default;
-$ev-ln-toolbar-btn-border-style: solid !default;
-$ev-ln-toolbar-btn-border-thickness: 1px !default;
-$ev-ln-toolbar-btn-font-size: 1.125rem !default;
-$ev-ln-toolbar-btn-font-weight: 700 !default;
-
-$ev-ln-toolbar-btn-color: #FFF !default;
-$ev-ln-toolbar-btn-color-hover: darken($ev-ln-toolbar-btn-color, 15%) !default;
-$ev-ln-toolbar-btn-padding: 0.75rem 0.9375rem !default;
-$ev-ln-toolbar-btn-lineheight: 1.4rem !default;
 
 $toolbar-products-bottom-toolbar-on: 1 !default;
 
@@ -261,48 +242,6 @@ $pages-item-next-margin: false !default;
 
 }
 
-.ev_ln_toolbar_btn {
-    @include co(width, $ev-ln-toolbar-btn-width);
-    flex: 0 1 auto;
-    @include co(order, $ev-ln-toolbar-btn-order);
-    cursor: pointer;
-    display: inline-block;
-    background: $ev-ln-toolbar-btn-bg-color;
-    border: $ev-ln-toolbar-btn-border-thickness $ev-ln-toolbar-btn-border-style $ev-ln-toolbar-btn-border-color;
-    @include co(color, $ev-ln-toolbar-btn-color);
-    @include co(margin, $ev-ln-toolbar-btn-margin);
-    @include co(padding, $ev-ln-toolbar-btn-padding);
-    @include co(font-size, $ev-ln-toolbar-btn-font-size);
-    @include co(font-weight, $ev-ln-toolbar-btn-font-weight);
-    line-height: $ev-ln-toolbar-btn-lineheight;
-    @if $ev-ln-toolbar-btn-border-radius-on == 1 {
-        border-radius: $ev-ln-toolbar-btn-border-radius;
-    }
-    @if $ev-ln-toolbar-btn-text-transform-on == 1 {
-        @include co(text-transform, $ev-ln-toolbar-btn-text-transform);
-    }
-    @if $ev-ln-toolbar-btn-icon-on != 1 {
-        > i {
-            display: none;
-        }
-    }
-
-    @include max-screen($desktop-sm-max) {
-        @include co(margin, $ev-ln-toolbar-btn-margin-sm-max);
-    }
-
-    @include screen($screen-sm-min, $screen-sm-max) {
-        @include co(margin, $ev-ln-toolbar-btn-margin-sm-minmax);
-    }
-
-    &:focus {
-        outline: none;
-    }
-
-    &:active {
-        box-shadow: unset;
-    }
-}
 
 
 .toolbar-products {
@@ -349,11 +288,6 @@ $pages-item-next-margin: false !default;
         }
     }
 
-    .modes, .limiter, .toolbar-amount {
-        @include max-screen($screen-xs-max) {
-            display: none;
-        }
-    }
 
     .limiter {
         @include co(order, $toolbar-products-limiter-order);
@@ -391,6 +325,12 @@ $pages-item-next-margin: false !default;
             @include co(height, $toolbar-products-limiter-before-height);
             @include co(width, $toolbar-products-limiter-before-width);
             @include co(border-left, $toolbar-products-limiter-before-border-left);
+            @include min-screen($desktop-min) {
+                @include co(display, $toolbar-products-limiter-before-display-desktop, $toolbar-products-limiter-before-display);
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(display, $toolbar-products-limiter-before-display-desktopmd, $toolbar-products-limiter-before-display-desktop, $toolbar-products-limiter-before-display);
+            }
         }
     }
 
@@ -405,28 +345,34 @@ $pages-item-next-margin: false !default;
     .toolbar-amount {
         @include co(display, $toolbar-products-amount-display);
         @include co(align-items, $toolbar-products-amount-alignitems);
+        @include co(justify-content, $toolbar-products-amount-justifycontent);
         @include co(order, $toolbar-products-amount-order);
         @include co(flex, $toolbar-products-amount-flex);
         @include co(margin, $toolbar-products-amount-margin);
         @include co(width, $toolbar-products-amount-width);
         @include co(text-align, $toolbar-products-amount-textalign);
+        @include co(height, $toolbar-products-amount-height);
 
         @include min-screen($desktop-min) {
+            @include co(justify-content, $toolbar-products-amount-justifycontent-desktop, $toolbar-products-amount-justifycontent);
             @include co(text-align, $toolbar-products-amount-textalign-desktop, $toolbar-products-amount-textalign);
             @include co(width, $toolbar-products-amount-width-desktop, $toolbar-products-amount-width);
             @include co(display, $toolbar-products-amount-display-desktop, $toolbar-products-amount-display);
             @include co(order, $toolbar-products-amount-order-desktop, $toolbar-products-amount-order);
             @include co(flex, $toolbar-products-amount-flex-desktop, $toolbar-products-amount-flex);
             @include co(margin, $toolbar-products-amount-margin-desktop, $toolbar-products-amount-margin);
+            @include co(height, $toolbar-products-amount-height-desktop, $toolbar-products-amount-height);
         }
 
         @include min-screen($desktop-md-min) {
+            @include co(justify-content, $toolbar-products-amount-justifycontent-desktopmd, $toolbar-products-amount-justifycontent-desktop, $toolbar-products-amount-justifycontent);
             @include co(text-align, $toolbar-products-amount-textalign-desktopmd, $toolbar-products-amount-textalign-desktop, $toolbar-products-amount-textalign);
             @include co(width, $toolbar-products-amount-width-desktopmd, $toolbar-products-amount-width-desktop, $toolbar-products-amount-width);
             @include co(display, $toolbar-products-amount-display-desktopmd, $toolbar-products-amount-display-desktop, $toolbar-products-amount-display);
             @include co(order, $toolbar-products-amount-order-desktopmd, $toolbar-products-amount-order-desktop, $toolbar-products-amount-order);
             @include co(flex, $toolbar-products-amount-flex-desktopmd, $toolbar-products-amount-flex-desktop, $toolbar-products-amount-flex);
             @include co(margin, $toolbar-products-amount-margin-desktopmd,  $toolbar-products-amount-margin-desktop, $toolbar-products-amount-margin);
+            @include co(height, $toolbar-products-amount-height-desktopmd, $toolbar-products-amount-height-desktop, $toolbar-products-amount-height);
         }
     }
 
@@ -527,31 +473,36 @@ $top-toolbar-pages-display: false !default;
     }
 
     @include max-screen($mobiletablet-max) {
+        @include co(width, $toolbar-products-pager-width-mobiletablet-max);
         @include co(margin, $toolbar-products-pager-margin-mobiletablet-max);
         @include co(display, $toolbar-products-pager-display-mobiletablet-max);
     }
 
     @include max-screen($desktop-sm-max) {
+        @include co(width, $toolbar-products-pager-width-desktopsm-max, $toolbar-products-pager-width-mobiletablet-max);
         @include co(margin, $toolbar-products-pager-margin-desktopsm-max);
         @include co(display, $toolbar-products-pager-display-desktopsm-max);
     }
 
 
-
-
-        .products.wrapper ~ .toolbar & {
-            @include co(display, $toolbar-products-pager-display);
-            @include co(width, $toolbar-products-pager-bottom-width);
-            @include co(margin, $toolbar-products-pager-bottom-margin);
-            @include max-screen($desktop-sm-max) {
-                @include co(width, $toolbar-products-pager-bottom-width-desktopsm-max);
-                @include co(margin, $toolbar-products-pager-bottom-margin-desktopsm-max);
-            }
-
+    .products.wrapper ~ .toolbar & {
+        @include co(display, $toolbar-products-pager-display);
+        @include co(width, $toolbar-products-pager-bottom-width);
+        @include co(margin, $toolbar-products-pager-bottom-margin);
+        @include max-screen($desktop-sm-max) {
+            @include co(width, $toolbar-products-pager-bottom-width-desktopsm-max);
+            @include co(margin, $toolbar-products-pager-bottom-margin-desktopsm-max);
         }
+
+    }
 
 }
 
+.products.wrapper ~ .toolbar .pages {
+
+
+
+}
 
 
 

@@ -7,9 +7,27 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Multishipping Checkout" design_abstraction="custom">
     <head>
+        <link src="css/styles-checkout.css"/>
         <link src="css/styles-multishippingcheckout.css"/>
     </head>
     <body>
+        <referenceContainer name="page.wrapper">
+            <container name="checkout.wrapper.container" as="checkout_wrapper_container" label="Checkout Wrapper Container" htmlTag="div" htmlClass="container-ev">
+                <container name="checkout.header.container" as="checkout_header_container" label="Checkout Page Header Container" htmlTag="header" htmlClass="page-header" before="main.content">
+                    <container name="checkout.header.wrapper" label="Checkout Page Header" as="checkout_header_wrapper" htmlTag="div" htmlClass="header content">
+                            <block class="Magento\Framework\View\Element\Template" name="checkout.header.right" template="Magento_Checkout::checkout/header/header-right.phtml" />
+
+                    </container>
+
+                </container>
+            </container>
+        </referenceContainer>
+        <move element="main.content" destination="checkout.wrapper.container"/>
+        <move element="logo" destination="checkout.header.wrapper"/>
+
+
         <attribute name="class" value="multi-checkout"/>
+        <referenceContainer name="ev.footer.above" remove="true"/>
     </body>
+
 </page>

@@ -28,8 +28,8 @@ if ($posts && $block->isEnabledBlog()) : ?>
         <div class="owl-carousel owl-theme">
             <?php foreach ($posts as $post) : ?>
                 <div class="item post-list-item col-mp post-item-list mp-4">
-                    <div class="post-item-wraper">
-                        <div class="post-info-wraper">
+                    <div class="post-item-wrapper">
+                        <div class="post-info-wrapper">
                             <a href="<?= $post->getUrl() ?>">
                                 <img class="img-responsive"
                                      src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"

@@ -18,7 +18,7 @@ $textarea-default-height: 8rem !default;
 
 textarea {
     @if $textarea-default-height-on == 1 {
-        height: $textarea-default-height;
+        @include co(height, $textarea-default-height);
     }
 }
 
@@ -33,43 +33,7 @@ textarea {
     }
 }
 
-.misc {
-    input.bundle.checkbox {
-        display: inline-block !important;
-        opacity: 1;
-        left: initial;
-        position: relative;
-        margin-top: 3px;
-        margin-right: 9px;
-    }
 
-    .aw-sbp__bundle-options-container .fieldset-bundle-options {
-        margin: 0 0 10px;
-    }
-
-    .aw-sbp__bundle-options-container .fieldset-bundle-options .legend {
-        display: none;
-    }
-
-    .aw-sbp__bundle-options-container .fieldset-bundle-options .legend + br {
-        display: none;
-    }
-
-    .aw-sbp__bundle-options-container .bundle-options-container .bundle-options-wrapper,
-    .aw-sbp__bundle-options-container .bundle-options-container .product-options-wrapper {
-        float: none;
-        width: auto;
-    }
-
-    .aw-sbp__bundle-options-container .bundle-options-container .product-options-wrapper .fieldset-bundle-options .field.choice .label {
-        margin-left: 0;
-    }
-
-    .aw-sbp__hidden-container {
-        display: none;
-    }
-
-}
 
 
 
@@ -309,7 +273,7 @@ $options-list-checked-bgcolor: #F65601 !default;
                     content: "";
                     left: $options-list-checkbox-label-after-left;
                     @include co(width, $options-list-checkbox-label-after-width);
-                    height: $options-list-checkbox-label-after-height;
+                    @include co(height, $options-list-checkbox-label-after-height);
                     top: $options-list-checkbox-label-after-top;
                     @include co(margin, $options-list-checkbox-label-after-margin);
                     background-repeat: no-repeat;
@@ -329,7 +293,7 @@ $options-list-checked-bgcolor: #F65601 !default;
               @include co(font-size, $options-list-checkbox-label-before-fontsize);
                 @include co(padding, $options-list-checkbox-label-before-padding);
                 @include co(width, $options-list-checkbox-label-before-width);
-                height: $options-list-checkbox-label-before-height;
+                @include co(height, $options-list-checkbox-label-before-height);
                 max-width: $options-list-checkbox-label-before-max-width;
                 flex: $options-list-checkbox-label-before-flex;
                 @include co(color, $options-list-checkbox-label-before-bgcolor);
@@ -489,3 +453,41 @@ select {
 //
 
 
+// Not Sure What or Where these are used for specifically
+.misc {
+    input.bundle.checkbox {
+        display: inline-block !important;
+        opacity: 1;
+        left: initial;
+        position: relative;
+        margin-top: 3px;
+        margin-right: 9px;
+    }
+
+    .aw-sbp__bundle-options-container .fieldset-bundle-options {
+        margin: 0 0 10px;
+    }
+
+    .aw-sbp__bundle-options-container .fieldset-bundle-options .legend {
+        display: none;
+    }
+
+    .aw-sbp__bundle-options-container .fieldset-bundle-options .legend + br {
+        display: none;
+    }
+
+    .aw-sbp__bundle-options-container .bundle-options-container .bundle-options-wrapper,
+    .aw-sbp__bundle-options-container .bundle-options-container .product-options-wrapper {
+        float: none;
+        width: auto;
+    }
+
+    .aw-sbp__bundle-options-container .bundle-options-container .product-options-wrapper .fieldset-bundle-options .field.choice .label {
+        margin-left: 0;
+    }
+
+    .aw-sbp__hidden-container {
+        display: none;
+    }
+
+}

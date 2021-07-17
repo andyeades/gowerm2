@@ -61,8 +61,8 @@ define([
         _ajaxSubmit: function () {
             var self = this,
                 id = "#mpinstagramfeed-photos-" + this.options.id,
-                captionHtml = this.options.show_caption === '1' ? '<div class="mpinstagramfeed-post-caption">{{caption}}</div>' : '',
-                photo_Template = '<div class="mpinstagramfeed-photo">' +
+                captionHtml = this.options.show_caption === '1' ? '<div class="mpinstagramfeed-post-caption"><div class="mpinstagramfeed-post-caption-inner">{{caption}}</div><div class="mpinstagramfeed-bottom"><i class="fa fa-instagram"></i> <span class="gcb-instalink">#gowercottagebrownies</span></div></div>' : '',
+                photo_Template = '<div class="mpinstagramfeed-photo mpinstagramfeed-photo-count-{{count}}">' +
                 '<a class="mpinstagramfeed-post-url " href="{{link}}" target="_blank">' +
                     captionHtml +
                 '<img class="mpinstagramfeed-image" src="{{imgSrc}}" alt="">' +
@@ -95,6 +95,7 @@ define([
                         }
 
                         var photo_Temp = photo_Template
+                            .replace("{{count}}", count)
                         .replace("{{link}}", item_Link)
                         .replace("{{caption}}", item.caption ? item.caption : '')
                         .replace("{{imgSrc}}", Image_url);

@@ -1,0 +1,966 @@
+@if $sitename == posturitealt {
+    // SORTING REQUIRED!
+
+
+
+    .bs-modal {
+        overflow-y: auto;
+    }
+    .product-social-icons {
+        display: none;
+    }
+
+
+
+    .mst-searchautocomplete__autocomplete {
+        display: none !important;
+    }
+    #tritemtotal .price-including-tax {
+        font-size: 1rem;
+        color: #235e4b;
+    }
+
+    #tritemtotal .price-excluding-tax {
+        font-size: 1rem;
+        color: #235e4b;
+    }
+
+    #stickyBar .price-including-tax:after {
+        margin-left: 5px;
+    }
+    #stickyBar .price-excluding-tax:after {
+        margin-left: 5px;
+    }
+    div#toprowtotals {
+        padding-top: 11px;
+    }
+    .prod-description h5, .prod-description > p > strong {
+        font-size: initial !important;
+        margin: initial !important;
+        display: initial !important;
+        width: initial !important;
+    }
+
+
+    .message.notice > *:first-child:before {
+
+        display: none !important;
+
+    }
+    .message.notice:before {
+        min-width: 1rem;
+        -webkit-font-smoothing: antialiased;
+        position: relative;
+        bottom: -1px;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 0.875rem;
+        color: #c07600;
+        content: '';
+        font-family: 'luma-icons';
+        margin: 0 0.5rem;
+        display: inline;
+        font-weight: normal;
+        overflow: hidden;
+        speak: none;
+        text-align: center;
+    }
+
+
+    //  align cart pricing
+    span.price.origprice {
+        margin-left: 10px;
+    }
+
+
+    #ev_international_link span {
+        color: #08c;
+    }
+    #ev_international_link span:hover {
+        color: #29617d;
+        text-decoration: underline !important;
+    }
+
+    // Now Pricing
+
+    @media (min-width: 1200px) {
+
+        .catalog-product-view .product-info-price .special-price .price-wrapper .price, .product-options-bottom .special-price .price-wrapper .price {
+            font-size: 1.5rem;
+        }
+        .catalog-category-view .product-info-price .special-price .price-wrapper .price, .product-options-bottom .special-price .price-wrapper .price {
+            font-size: 1rem;
+        }
+
+        .product-info-price .special-price .price-container > span,
+        .product-options-bottom .special-price .price-container > span {
+            font-weight: 400;
+            font-size: 0.9375rem;
+            color: #a7a8aa;
+            text-transform: initial;
+        }
+    }
+
+
+    // remove newsletter - needs doing via xml - customer acc
+    .account .box.box-newsletter {
+        display: none;
+    }
+
+
+    //  change the account button active colours
+    .account .column .btn.action.secondary:not(:disabled):not(.disabled):active {
+
+        color: #fff;
+        background-color: initial;
+        border-color: initial;
+    }
+
+    .account .column .action:not(:disabled):not(.disabled):active,
+    .account .column .action:not(:disabled):not(.disabled).active,
+    .account .column .show > .action.dropdown-toggle {
+        background-color: initial;
+        border-color: initial;
+    }
+
+    .account .column .customer-address-index .action:not(:disabled):not(.disabled):active,
+    .account .column .action:not(:disabled):not(.disabled).active,
+    .account .column .show > .action.dropdown-toggle {
+        background-color: initial;
+        border-color: initial;
+    }
+
+
+    .ev_cart_disable {
+        display: none;
+    }
+
+
+
+    .minisearch .search .ev-input-group-btn {
+        float: right;
+
+    }
+    .hdr-conta .hover svg, .hdr-r-trow > ul svg {
+        max-height: 40px;
+    }
+
+    // arrows on appointment page remove
+    .fieldset > .field .note::before,
+    .fieldset > .fields > .field .note::before {
+        //display: none;
+    }
+
+
+
+
+    @media only screen and (min-width: 992px) {
+        // changes with paul - need to SASS
+
+        //mega menu - ergo chairs - the li tags have no padding - but the ergo accessories do, this is to do with the column
+        //count - we should just implement margin against all LI
+        .e-pn .auto-columns > li {
+            margin: 0 10px;
+        }
+
+
+        //  menu drop shadow - change colour - add alpha transpareny
+        .e-pn > li > ul {
+            filter: drop-shadow(2px 4px 6px #49494947);
+        }
+
+        // Account page fix desktop width
+        .account .column.main {
+            width: 75% !important;
+            padding: 0 0 0 0;
+        }
+        // FR
+        .catalog-product-view .tmspslot .products-grid .product-item {
+            width: 24% !important;
+            margin-right: 1% !important;
+        }
+        // PP zoom fix for video
+        .MagicToolboxSelectorsContainer {
+            min-height: 600px !important;
+        }
+    }
+
+
+    .pp-icon-clock2 path, .backorder_color {
+        fill: #db2727;
+    }
+
+    // Backorder PP cols
+    .backorder_color {
+        color: #db2727;
+    }
+
+
+
+    .account .column.main a {
+        color: #08c;
+        background-color: initial;
+        border: none;
+        padding: 0;
+        font-size: 0.875rem;
+
+        font-weight: initial;
+        &:hover {
+            color: #29617d;
+            text-decoration: underline !important;
+            font-weight: initial;
+        }
+    }
+
+    .account .column .action:not(:disabled):not(.disabled):active, .action:not(:disabled):not(.disabled).active, .show > .action.dropdown-toggle {
+        color: #29617d;
+        background-color: initial;
+        border-color: initial;
+    }
+
+    .customer-address-index .block.block-addresses-list {
+        background-color: #f6f8fb;
+        padding: 50px;
+    }
+
+    .customer-address-index button.action.primary.add {
+        width: 300px;
+    }
+
+    .customer-address-index .column.main {
+        margin-bottom: 21px;
+    }
+
+    .block-collapsible-nav .item a:hover {
+        background: #777777;
+        color: #fff;
+    }
+    @media only screen and (min-width: 768px) {
+        .fieldset .legend {
+            margin-left: inherit;
+        }
+    }
+
+
+    // feefo and pricing side by side
+    .catalog-product-view .minimal-price .price {
+        font-size: 1.5rem;
+    }
+    div#product-info-price-main {
+        float: right;
+        width: 50%;
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+
+
+    #ev-pp-shortdescription {
+        clear: both;
+    }
+
+    div#feefoouterwrap {
+        float: left;
+        width: 50%;
+    }
+    .feefomainin {
+        display: flex;
+        width: 205px;
+    }
+
+    .ev_tocartSticky .spinner-fading-circle {
+        width: 20px;
+        height: 17.7px;
+        position: relative;
+        margin: 15px 0;
+    }
+
+
+    .ev-pp-stickybar .pp-order-info-outer {
+        display: flex;
+        align-content: flex-start;
+        padding: 1rem 0;
+        align-items: center;
+
+        max-width: 40%;
+    }
+    .ev-pp-stickybar .container > div.sticky-stock-status {
+        flex: 1 1 auto;
+
+        align-items: center;
+    }
+    .pp-icon {
+        display: block;
+        width: 22px;
+        height: 22px;
+    }
+    .pp-order-info-outer > i,
+    .pp-order-info-outer > div {
+        flex: 0 1 auto;
+    }
+    .pp-order-info-outer > div {
+        font-weight: 700;
+        margin-left: 0.5rem;
+        font-size: 0.8125rem;
+        display: flex;
+        flex-wrap: wrap;
+        > div {
+            flex: 0 1 auto;
+            width: 100%;
+            font-weight: 700;
+        }
+    }
+
+
+
+
+    .tmspslot .price {
+        font-size: 1rem !important;
+    }
+    //  Mega menu mobile logo - create new option in admin - logo width and logo height so customers can specify
+    .mobile-logo-inner img {
+        height: auto;
+        width: 100px;
+    }
+
+
+    // PP zoom fix for video
+
+    div.MagicToolboxMainContainer {
+        width: 100%;
+
+    }
+
+    .MagicScroll .mcs-item img {
+        pointer-events: none;
+        visibility: visible;
+        float: none !important;
+        display: block !important;
+
+        width: auto !important;
+    }
+
+
+    #page-main-outer div.MagicToolboxSelectorsContainer .MagicScroll a {
+        margin: 0;
+    }
+
+    .video-selector.active-selector img {
+        border: 2px solid #434343;
+    }
+    .video-selector img {
+        pointer-events: none;
+        visibility: visible;
+        float: none !important;
+        display: block !important;
+        //  height: 100%;
+        //  width: auto !important;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.3125rem;
+        border: 2px solid #fff;
+    }
+
+
+
+
+    .catalog-category-view .price-label {
+        display: block;
+    }
+
+
+    //  Fix PP zindex of review wording in tab, chrome
+    .ptab-additionalcontent > div {
+        z-index: 1;
+    }
+
+
+
+
+
+
+
+
+    // remove colon from the pricing
+    .product-info-price .old-price .price-label:after,
+    .product-info-price .special-price .price-label:after,
+    .product-options-bottom .old-price .price-label:after,
+    .product-options-bottom .special-price .price-label:after {
+        display: none;
+        content: '';
+
+    }
+    //  Product Page - re-align the radio checkbox
+
+    .nested.options-list .field.choice label.checkbox-selected:after {
+
+        left: 10px;
+
+        margin: -8px -7.5px 0 0;
+    }
+
+    @media only screen and (min-width: 992px) {
+        li.item.product.product-item:nth-child(3n+3) {
+            padding-right: 0;
+        }
+    }
+
+
+
+    @media only screen and (max-width: 991.98px) {
+
+        //  Fix for Fresh relevance pricing on from pricing being too large
+
+        .minimal-price .price {
+            font-size: initial;
+        }
+
+        #ev-pp-stockorder .row {
+            margin: 0;
+
+            .col-md-6 {
+                padding: 0;
+            }
+        }
+        #ev-pp-shortdescription {
+            clear: both;
+            margin-bottom: 30px;
+        }
+
+        div#product-info-price-main {
+            float: none;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            margin-bottom: 28px;
+        }
+        .MagicToolboxSelectorsContainer {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+
+        // FR
+        .catalog-product-view .tmspslot .products-grid .product-item {
+            width: 48% !important;
+            margin-right: 2% !important;
+        }
+
+        // Remove from code - dont use this CSS
+        #ev_international_link {
+            font-weight: initial !important;
+        }
+        #ev_international_link span {
+            text-decoration: initial !important;
+        }
+
+        // End - Remove from code - dont use this CSS
+
+
+        // Absolute the filter clear all button to top on mobile
+        .ev_ln_filter .ev_ln_filter_actions {
+            padding-right: 0;
+            position: absolute;
+            right: 0;
+            display: initial;
+            top: 0;
+            background-color: #f0f0f0;
+            padding: 8px;
+        }
+
+
+        // center burger icon??
+        .hdr-in-mobile-left .hdr-mobile-menu-icon {
+            margin-left: 0.1rem;
+        }
+
+        .MagicToolboxContainer {
+            min-height: 200px;
+        }
+
+
+        .product-info-container {
+
+            padding-bottom: 0 !important;
+
+        }
+
+
+        .product-options-bottom {
+            margin: 0 -15px;
+        }
+
+
+        #pinfo-btm-o {
+            padding: 0 0.5rem;
+        }
+
+
+        // Mobile title - more space
+        .catalog-product-view .page-title {
+
+            margin: 0.5rem 0 0.625rem 0;
+        }
+
+        .product-options-wrapper .fieldset > .field > .label {
+
+            margin: 0 0 0.5rem;
+        }
+        .product-options-wrapper .fieldset a {
+            color: #666;
+        }
+
+        // Styling for tooltip icon on PP
+        .tooltipstered {
+            font-size: 1em;
+            vertical-align: 0;
+        }
+
+        .pp_tooltip {
+            color: #666;
+        }
+
+
+        .products-grid .product-image-photo {
+            transition: opacity 0.7s ease-in-out;
+            width: 100%;
+        }
+        .dropdown-content {
+            z-index: 9;
+        }
+
+
+        // PP Desc Widths
+
+
+        // Link Consistency
+
+        // Checkout international shipping lightbox link
+        // + below all cart assignment related
+        .checkout-cart-index .itemrowlink {
+
+            color: initial;
+
+            text-decoration: initial;
+        }
+
+
+        // cart assignments - view more
+        .read-btn {
+            margin-top: 10px;
+            color: #08c;
+            text-decoration: initial !important;
+        }
+        .read-btn:hover {
+            color: #29617d;
+            text-decoration: underline !important;
+        }
+
+        .multicheckout {
+            color: #08c;
+            background: none;
+            border: none;
+            padding: 0;
+            font-weight: initial;
+            font-size: 0.85rem;
+            text-align: center;
+            display: block;
+
+        }
+        .multicheckout:active {
+
+            background: none;
+            border: none;
+
+
+        }
+
+        .multicheckout:hover {
+            color: #29617d;
+            background: none;
+            border: none;
+            text-decoration: underline !important;
+        }
+
+
+        .rmclink {
+            text-decoration: none !important;
+            font-weight: bold;
+        }
+
+        // product page side bar content
+        #pinfo-btm-o .additional-data-wrap a {
+            color: #08c;
+        }
+
+
+        #pinfo-btm-o .additional-data-wrap a:hover {
+            color: #29617d;
+            text-decoration: underline;
+        }
+        #pinfo-btm-o .additional-data-wrap {
+
+            color: #333;
+        }
+        // General
+        a:hover {
+            color: #29617d;
+            text-decoration: underline;
+        }
+        .old-price .price-wrapper:before, .old-price .price-wrapper:after {
+            color: #666;
+        }
+    }
+    #ev_international_link span, .evlightbox {
+        color: #08c !important;
+    }
+    #ev_international_link span:hover, .evlightbox:hover {
+        color: #29617d;
+        text-decoration: underline;
+    }
+
+
+    // mega menu no underline
+    @media only screen and (min-width: 992px) {
+        .e-pn > li > a:hover {
+            text-decoration: none;
+            color: #D9D9D9;
+        }
+    }
+
+    //  sticky header - lose this class completely so the link follows above style
+    .pp-order-info-outer > div > div:nth-child(2) > a {
+        text-decoration: initial;
+    }
+    //  this one isnt needed once you remove the above style
+    .pp-order-info-outer > div > div:nth-child(2) > a:hover {
+        text-decoration: underline;
+    }
+
+
+    // Product Page
+
+    //  Product page pricing
+    .product-info-price .main-price .price-wrapper .price,
+    .product-info-price .normal-price .price-wrapper .price,
+    .product-options-bottom .main-price .price-wrapper .price,
+    .product-options-bottom .normal-price .price-wrapper .price {
+
+        font-size: calc(1.1rem + 1.2vw);
+        font-size: 1.5rem;
+    }
+
+
+    // inline the sticky block now price and main price block
+
+    .sticky-price .price-label, .page-product-bundle .product-info-main .price-label {
+        display: inline-block;
+    }
+
+
+    @media only screen and (min-width: 768px) {
+        //  Stop the right block loading on left and popping right
+        .product-info-main {
+            margin-left: auto;
+        }
+        //  Stripe -
+        .box-tocart .action.tocart.payment-request-button {
+            padding: 0;
+            display: none;
+        }
+
+        // Magic zoom - spacing between the gallery images
+        .MagicScroll-vertical .mcs-item {
+            margin: 10px 0;
+        }
+    }
+
+
+
+
+    .bo-label-content .price-wrapper .price {
+        font-size: 0.85rem;
+    }
+    .nested.options-list .field.choice .price {
+        font-size: 0.85rem;
+
+    }
+
+    .nested.options-list .field.choice .price {
+        font-size: 0.85rem;
+    }
+    .nested.options-list .field.choice .price {
+        font-size: .75rem;
+
+    }
+    .bo-label-content .price-wrapper .price {
+        font-size: 0.85rem;
+    }
+
+    .product-options-wrapper .field .price-notice .price-including-tax + .price-excluding-tax {
+
+        font-size: 0.85rem;
+        line-height: initial;
+    }
+    .product-options-wrapper .field .price-notice .price-including-tax, .product-options-wrapper .field .price-notice .price-excluding-tax, .product-options-wrapper .field .price-notice .weee {
+        font-size: 0.85rem;
+        white-space: nowrap;
+        line-height: initial;
+    }
+    .nested.options-list .field.choice .price {
+        font-size: 0.85rem;
+        line-height: initial;
+    }
+
+
+
+    .product-options-wrapper .field .price-notice .price-including-tax + .price-excluding-tax:after {
+        content: attr(data-label);
+        font-size: 0.85rem;
+        color: #666;
+        font-weight: initial;
+    }
+
+    //  Remove the brackets from the checkbox / new styled radio price outputs
+    .product-options-wrapper .field .price-notice .price-including-tax + .price-excluding-tax:before {
+        content: '';
+    }
+    .product-options-wrapper .field .price-notice .price-including-tax + .price-excluding-tax:after {
+        content: attr(data-label);
+    }
+
+
+    .nested.options-list .field.choice .product-item-link, .nested.options-list .field.choice .product-name {
+        font-size: 0.875rem;
+        padding: 0;
+    }
+    .nested.options-list .field.choice .selection-sku {
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin: 0;
+    }
+    .nested.options-list .field.choice label {
+
+        padding: 0.425rem;
+    }
+
+
+    //
+
+    //  Product page - Delivery Sidebar
+
+    #pinfo-btm-o .additional-data-title {
+        margin: 0;
+    }
+
+    #pinfo-btm-o .additional-data-wrap h5 {
+        margin: 1.5rem 0 0.875rem 0;
+    }
+
+    #pinfo-btm-o .additional-data-wrap h6 {
+        margin: 1rem 0 0.5rem 0;
+        font-weight: 600;
+    }
+
+
+    //  CMS typography
+
+
+
+
+
+
+    // styles-cart update
+
+    .checkout-cart-index .item-options dd {
+        margin-left: 0 !important;
+        margin-top: 0;
+        margin-bottom: 8px;
+        padding-left: 0;
+        width: 100%;
+        display: block;
+        margin-bottom: 8px;
+        font-size: 12px;
+        margin-left: 8px;
+        float: left;
+    }
+
+
+
+
+    // Checkout totals - tidy
+
+    .cart-summary td, .cart-summary th {
+
+        padding: 0.75rem 0;
+    }
+    td.amount {
+        text-align: right;
+    }
+    .checkout-cart-index .cart-summary > .title {
+
+        margin: 0.75rem 0;
+    }
+
+
+    // sort basket width so flickering doesnt happen
+    .hdr-r-brow .hdr-r-brow-in-r {
+
+        width: 100%;
+    }
+
+    #shopping-cart-wrap > a {
+
+        justify-content: left;
+    }
+    .price-including-tax:after {
+        content: "inc VAT";
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #333;
+    }
+    .mcart-item-details .price-including-tax:after {
+
+        margin-left: 5px;
+    }
+    .price-excluding-tax:after {
+        content: "ex VAT";
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .mcart-item-details .price-excluding-tax:after {
+
+        margin-left: 5px;
+    }
+
+
+    .action.primary.checkout:not(:disabled):not(.disabled):active, .action.primary.checkout:not(:disabled):not(.disabled).active, .show > .action.primary.checkout.dropdown-toggle {
+
+        background-color: #e66100;
+        border-color: #e66100;
+    }
+    @media only screen and (max-width: 479.98px) {
+
+        .ptab-additionalcontent {
+            margin-left: 0;
+        }
+        .page-title-wrapper {
+            display: block !important;
+            padding: 13px !important;
+        }
+    }
+
+    @media screen and (max-width: 767.98px) {
+
+        //  being back remove item on mob
+        .checkout-cart-index .cart-remove-text span {
+            display: initial !important;
+        }
+        .checkout-cart-index .multibox {
+            margin: 0 0.625rem;
+            border-radius: 0.3125rem;
+            border: 1px solid #CFD1D2;
+        }
+        .multibox.addonwrap.prod_ {
+            padding: 2rem 1rem 1rem;
+        }
+        .multibox img {
+            padding: 0 10px 0 0;
+        }
+        .checkout-cart-index .itemrowlink {
+
+            font-size: initial;
+
+        }
+
+
+        .checkout-cart-index .itemrowlink {
+
+            font-size: 13px;
+
+        }
+        .checkout-cart-index .has_mat_wrap {
+
+            margin: 0;
+        }
+        .checkout-cart-index .lineItemContainerInner {
+            border: 0 solid #cccccc;
+            border-radius: 0;
+            border-top: 1px solid #ccc;
+        }
+        .replacewrap .action {
+            margin: 0 !important;
+            margin-top: 10px !important;
+        }
+        .checkout-cart-index #discount-coupon-form .actions-toolbar {
+            margin: 0;
+            width: 100%;
+        }
+        .checkout-cart-index .cart-discount .actions-toolbar .primary {
+            width: 100%;
+            margin: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0.3125rem;
+            border-bottom-right-radius: 0.3125rem;
+            border-bottom-left-radius: 0;
+        }
+        .checkout-cart-index .cart-discount .fieldset .field .control input {
+            height: 36px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+
+    @media screen and (min-width: 991.98px) {
+        // my account section - needs long term bootstrap - for now, match gutter on left to 30px
+        .page-layout-2columns-left .columns .single-sidebar {
+            padding: 0 30px 0 0;
+
+        }
+        // ensure gap at bottom of page
+        .page-layout-2columns-left .columns .column.main {
+
+            margin-bottom: 30px;
+
+        }
+
+        #page-main-outer {
+            margin: 0;
+        }
+        .account #page-main-outer .container {
+            max-width: 100% !important;
+            padding: 0 !important;
+        }
+        .account.page-layout-2columns-left .columns .column.main {
+
+            padding: 0 30px;
+        }
+        .account .page-title-wrapper {
+            padding: 0 !important;
+        }
+    }
+
+
+
+
+    .page-with-filter dl#narrow-by-list {
+        margin-top: 14px;
+        margin-bottom: 0;
+    }
+
+    .page-with-filter h1#page-title-heading {
+        text-align: center;
+    }
+
+    .page-with-filter .minimal-price .price {
+        font-size: 1rem;
+    }
+    .opc-payment-additional.discount-code {
+        display: none;
+    }
+
+}

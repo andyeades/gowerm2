@@ -1,6 +1,7 @@
 $pview-desc-justifycontent: false !default;
 $pview-desc-width: false !default;
 $pview-desc-color: false !default;
+$pview-desc-a-color: false !default;
 $pview-desc-textalign: false !default;
 $pview-desc-fontsize: false !default;
 $pview-desc-lineheight: false !default;
@@ -120,6 +121,9 @@ $pview-desc-header-quote-border-position: false !default;
     @include co(font-size, $pview-desc-fontsize);
     @include co(line-height, $pview-desc-lineheight);
     @include co(font-family, $pview-desc-fontfamily);
+    a {
+        @include co(color, $pview-desc-a-color);
+    }
 }
 
 .pview-description-header-quote {

@@ -24,8 +24,7 @@
 <?php $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 
-if (strpos($url,'posturite') !== false)
-{
+if (strpos($url,'posturite') !== false) {
 
 
 
@@ -59,7 +58,7 @@ if (strpos($url,'posturite') !== false)
       overflow: hidden;
       /* border-radius: 10px; */
     }
-    .post-item-wraper {
+    .post-item-wrapper {
       border: 1px solid #eee;
       padding: 0 !important;
       position: relative;
@@ -105,31 +104,21 @@ if (strpos($url,'posturite') !== false)
 <div class="post-list-content" id="mpblog-list-container">
     <?php $postCollection = $block->getPostCollection(); ?>
     <?php if ($postCollection && $postCollection->getSize()) : ?>
-        <div class="post-list-body">
+        <div class="post-list-body row">
             <?php $i = 1 ?>
             <?php /** @var \Mageplaza\Blog\Model\Post $post */
             foreach ($postCollection as $post) : ?>
-                <div class="post-list-item col-mp<?= $block->isGridView() ? ' post-item-grid mp-3 mp-xs-12' : ' post-item-list mp-12'; ?>">
-                    <div class="post-item-wraper">
+                <div class="post-list-item <?= $block->isGridView() ? ' post-item-grid mp-3 mp-xs-12' : ' post-item-list col-12'; ?>">
+                    <div class="post-item-wrapper">
                         <?php if ($post->getImage()) : ?>
                             <div class="post-image">
                                 <a href="<?= str_replace('/post', '', $post->getUrl()) ?>">
-                                    <img class="img-responsive"
-
-
-                                  <?php
-
-                                  $image = $post->getImage()
-                                  ?>
-
-
-                                        <? //$block->resizeImage($post->getImage(), '400x'); ?>
-                                         src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
-                                         alt="<?= $block->escapeHtml($post->getName()); ?>"/>
+                                    <?php $image = $post->getImage(); ?>
+                                    <img class="img-responsive" src="<?= $block->resizeImage($post->getImage(), '400x'); ?>" alt="<?= $block->escapeHtml($post->getName()); ?>"/>
                                 </a>
                             </div>
                         <?php endif; ?>
-                        <div class="post-info-wraper">
+                        <div class="post-info-wrapper">
                             <h2 class="mp-post-title">
                                 <a class="post-link-title" title="<?= $block->escapeHtml($post->getName()); ?>"
                                    href="<?= str_replace('/post', '', $post->getUrl()) ?>">
@@ -160,7 +149,13 @@ if (strpos($url,'posturite') !== false)
             <?php endforeach; ?>
             <div class="mp-clear"></div>
         </div>
-        <?= $block->getPagerHtml() ?>
+
+    <?= 'CURRENT URL: '. $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>
+    <?php // Using class below so don't duplicate styles ?>
+        <div class="toolbar-products">
+            <?= $block->getPagerHtml() ?>
+        </div>
+
     <?php else : ?>
         <?= __('There are no posts at this moment'); ?>
     <?php endif; ?>

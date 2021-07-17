@@ -40,10 +40,10 @@
         &.slider-horizontal {
             width: 100%;
 
-            height: $slider-line-height;
+            @include co(height, $slider-line-height);
 
             .slider-track {
-                height: $slider-line-height / 2;
+                @include co(height, $slider-line-height / 2);
                 width: 100%;
                 margin-top: -$slider-line-height / 4;
                 top: 50%;
@@ -111,7 +111,7 @@
         }
 
         &.slider-vertical {
-            height: $slider-vertical-height;
+            @include co(height, $slider-vertical-height);
             @include co(width, $slider-line-height);
 
             .slider-track {
@@ -249,7 +249,7 @@
         position: absolute;
         top: 0;
         @include co(width, $slider-line-height);
-        height: $slider-line-height;
+        @include co(height, $slider-line-height);
         //background-color: #337AB7;
 
         border: 0 solid transparent;

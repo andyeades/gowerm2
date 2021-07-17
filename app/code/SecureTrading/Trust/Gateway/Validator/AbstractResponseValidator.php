@@ -8,16 +8,27 @@ use SecureTrading\Trust\Helper\Logger\Logger;
 
 /**
  * Class AbstractResponseValidator
+ *
  * @package SecureTrading\Trust\Gateway\Validator
  */
 abstract class AbstractResponseValidator extends AbstractValidator
 {
-    protected $logger;
-    public function __construct(
-        ResultInterfaceFactory $resultFactory,
-        Logger $logger
-    ) {
-       $this->logger = $logger;
-        parent::__construct($resultFactory);
-    }
+	/**
+	 * @var Logger
+	 */
+	protected $logger;
+
+	/**
+	 * AbstractResponseValidator constructor.
+	 *
+	 * @param ResultInterfaceFactory $resultFactory
+	 * @param Logger $logger
+	 */
+	public function __construct(
+		ResultInterfaceFactory $resultFactory,
+		Logger $logger
+	) {
+		$this->logger = $logger;
+		parent::__construct($resultFactory);
+	}
 }

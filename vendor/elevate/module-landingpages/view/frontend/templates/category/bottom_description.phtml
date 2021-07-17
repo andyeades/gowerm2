@@ -85,6 +85,7 @@ $bottom_description =  $this->getLayout()
 $is_landing_page =$objectManager->get('Magento\Framework\Registry')->registry('elevate_landingpage');
 
 if($is_landing_page){
+$bottom_description = '';
  $landing_page_data =$objectManager->get('Magento\Framework\Registry')->registry('elevate_landingpage_data');
               
   $landing_page_btm_desc = $landing_page_data['page_bottom_description']; 
@@ -101,6 +102,132 @@ echo "<hr style=\"margin-bottom: 46px;\">";
 echo $filterProvider->getBlockFilter()
                     ->setStoreId($storeManager->getStore()->getId())
                     ->filter($bottom_description);
+                                        
+                  $faqCol =$objectManager->create('Elevate\LandingPages\Model\ResourceModel\LandingPageFaq\CollectionFactory');   
+           
 
+
+        $category_id = $category->getId();
+           
+           
+        $faqCollection = $faqCol->create()->addFieldToFilter('category_id', $category_id);
+                
+          
+     if($faqCollection){
+
+           echo '
+          <style> 
+.accordion {
+	
+}
+.accordion dt, .accordion dd {
+    padding: 20px;
+}
+ .accordion dt:last-of-type, .accordion dd:last-of-type {
+
+}
+ .accordion dt a, .accordion dd a {
+
+	 color: black;
+	 font-weight: bold;
+}
+
+
+.accordion dt a:hover{
+text-decoration:none;
+}
+.accordion dt a{
+display:flex;
+align-items: center;
+}
+ .accordion dd {
+	 border-top: 0;
+	 font-size: 12px;
+}
+ .accordion dd:last-of-type {
+	
+	 position: relative;
+	 top: -1px;
+}
+span.qa_bullet {
+    line-height: 2.1875rem;
+    font-size: 2.5em;
+    padding: 0.8rem 0rem 0.8rem 0;
+    font-weight: 200;
+    color: #00acb6;
+    margin-left: 0;
+    margin-left: auto;
+    order: 2;
+}
+span.qa_bullet:hover{
+text-decoration:none;
+}
+.acc_wrap {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 7px;
+}
+.acc_link{
+font-size: 1.125rem;
+    font-weight: 600;
+}
+  </style>
+           <dl class="accordion">';  
+                
+               foreach ($faqCollection as $faqItem) {
+               
+               
+            ?>
+            
+
+
+<div class="acc_wrap">
+<dt><a href=""><div class="acc_link"><?php echo $faqItem->getQuestion(); ?></div><span class="qa_bullet fa fa-plus" data-role="icons"></a></span></dt>
+<dd class="hide_acc_control hide_acc"><?php echo $faqItem->getAnswer(); ?></dd>
+</div>
+
+
+
+            <?
+               
+               
+                              
+            }
+            echo '</dl>'; 
+            
+            echo "<script>
+            
+            (function($) {
+    
+  var allPanels = $('.accordion  dd').hide();
+    
+    
+    $('.accordion  dt').addClass('panel_hidden');
+    
+  $('.accordion dt a').click(function() {
+  
+ if ( $( this ).parent().hasClass( 'panel_shown' ) ) {
+ 
+ }
+ else{
+   
+   
+     $('.accordion  dt').removeClass('panel_shown').addClass('panel_hidden');
+    allPanels.slideUp();
+    
+ $('.accordion .qa_bullet').removeClass('fa-minus').addClass('fa-plus');   
+    $(this).parent().removeClass('panel_hidden').addClass('panel_shown');
+    $(this).find('.qa_bullet').removeClass('fa-plus').addClass('fa-minus');
+    $(this).parent().next().slideDown();
+
+ }  return false;
+  });
+  
+})(jQuery);
+            
+            </script>";           
+    
+            }    
+  
 ?>
 </div>

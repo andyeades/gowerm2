@@ -1,0 +1,55 @@
+
+
+// Checkbox Label After (the Check/Tick)
+// Which is never shown with the EV Filters (pointless!!!)
+
+$ev-ln-filter-checkbox-label-after-left: 3px !default;
+$ev-ln-filter-checkbox-label-after-width: 13px !default;
+$ev-ln-filter-checkbox-label-after-height: 13px !default;
+$ev-ln-filter-checkbox-label-after-margin: -5.5px 0 0 0 !default;
+$ev-ln-filter-checkbox-label-after-top: 50% !default;
+$ev-ln-filter-checkbox-label-after-bg-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 64 512 512' width='150' height='150' class='icon icon-tick' fill='%23fff'%3E%3Cpath d='M170 427q-8 0-14-5L8 297q-7-5-8-14.5t5-16 15-7.5 16 5l132 112L475 70q6-6 15-6t15.5 6.5T512 86t-6 15L185 421q-6 6-15 6z'/%3E%3C/svg%3E") !default;
+
+// Checked
+
+$ev-ln-filter-checked-border-color: #0c509f !default;
+$ev-ln-filter-checked-bgcolor: #0c509f !default;
+
+// All Redund as we don't show the checked boxes anymore
+
+
+
+.checkbox__input {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+
+
+    &:checked + .checkbox__label {
+        &:before {
+            border-color: $ev-ln-filter-checked-border-color;
+            background-color: $ev-ln-filter-checked-bgcolor;
+        }
+
+        a {
+            @include co(color, $ev-ln-filter-checked-a-color, $link-color);
+
+            &:hover {
+                @include co(color, $ev-ln-filter-checked-a-hover-color, $link-hover-color);
+            }
+        }
+
+        &:after {
+            position: absolute;
+            content: "";
+            left: $ev-ln-filter-checkbox-label-after-left;
+            @include co(width, $ev-ln-filter-checkbox-label-after-width);
+            height: $ev-ln-filter-checkbox-label-after-height;
+            top: $ev-ln-filter-checkbox-label-after-top;
+            @include co(margin, $ev-ln-filter-checkbox-label-after-margin);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: $ev-ln-filter-checkbox-label-after-bg-image;
+        }
+    }
+}

@@ -23,6 +23,14 @@ define(
             var postcode_element = jQuery('input[name=postcode]');
             var postcode = jQuery(postcode_element).val();
 
+            if (iscustomerloggedin == true) {
+                if (typeof postcode == 'undefined') {
+                    country_id = jQuery('.shipping-address-items .selected-item .sel-countryid').text();
+                    postcode = jQuery('.shipping-address-items .selected-item .sel-postcode').text();
+                }
+
+            }
+
             console.log('internal options ' + postcode);
 
             // Ireland doesn't require Postcode, so we need to be clever!
@@ -248,7 +256,7 @@ define(
 
 
             jQuery('#delivery-description-store-inner .delivery-desc').hide();
-            var delivery_desc = '#delivery-desc-checkout-' + methodid;
+            var delivery_desc = '.delivery-desc-checkout-' + methodid;
             jQuery(delivery_desc).show();
         }
         function hasInit()
@@ -266,7 +274,7 @@ define(
             var months = {}
 
             // Page Items Active on screen
-            jQuery('#mobile-dates-container .tns-slide-active').each(function (index, element) {
+            jQuery('.mobile-dates-container .tns-slide-active').each(function (index, element) {
                 var data_month = jQuery(this).attr('data-month');
                 console.log(data_month);
 
@@ -292,19 +300,19 @@ define(
         }
         function sortObject(obj)
         {
-                var arr = [];
+            var arr = [];
             for (var prop in obj) {
                 if (obj.hasOwnProperty(prop)) {
                     arr.push({
                         'key': prop,
                         'value': obj[prop]
-                        });
+                    });
                 }
             }
-                arr.sort(function (a, b) {
-                    return b.value - a.value; });
-                //arr.sort(function(a, b) { a.value.toLowerCase().localeCompare(b.value.toLowerCase()); }); //use this to sort as strings
-                return arr; // returns array
+            arr.sort(function (a, b) {
+                return b.value - a.value; });
+            //arr.sort(function(a, b) { a.value.toLowerCase().localeCompare(b.value.toLowerCase()); }); //use this to sort as strings
+            return arr; // returns array
         }
         function ajaxOverlayPostcodeShow()
         {
@@ -322,10 +330,10 @@ define(
         function checkoutIncorrectPostcode()
         {
 
-                jQuery('#delivery-enter-postcode').html("Please check the entered postcode. If your postcode is valid, unfortunately we don't deliver to this postcode.");
-                jQuery('.deliveryoptions').hide();
-                jQuery('.delivery_desc').hide();
-                jQuery('#delivery-outer').addClass('delivery-outer-incorrect');
+            jQuery('#delivery-enter-postcode').html("Please check the entered postcode. If your postcode is valid, unfortunately we don't deliver to this postcode.");
+            jQuery('.deliveryoptions').hide();
+            jQuery('.delivery_desc').hide();
+            jQuery('#delivery-outer').addClass('delivery-outer-incorrect');
             if (jQuery('#delivery-mask-overlay').is(":hidden")) {
                 jQuery('#delivery-mask-overlay').show();
             }
@@ -335,15 +343,15 @@ define(
         }
         function addDeliveryDescriptions(data)
         {
-                var delivery_descriptions = data.delivery_descriptions;
-                var delivery_description_output = '';
+            var delivery_descriptions = data.delivery_descriptions;
+            var delivery_description_output = '';
             for (var key in delivery_descriptions) {
                 if (delivery_descriptions.hasOwnProperty(key)) {
                     delivery_description_output += '<div id="delivery_desc' + key + '" class="delivery_desc">' + delivery_descriptions[key] + '</div>';
                 }
             }
-                jQuery("#delivery-bottom-message-1").html(delivery_description_output);
-                jQuery('#delivery-bottom-message-1 .delivery_desc').hide();
+            jQuery("#delivery-bottom-message-1").html(delivery_description_output);
+            jQuery('#delivery-bottom-message-1 .delivery_desc').hide();
         }
         function addDeliveryDescriptionsCheckout(data)
         {

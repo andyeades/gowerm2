@@ -13,21 +13,33 @@ if ($_product) {
  if (!empty($icons)) {
         $icons_exp = array_map('trim', explode(',', $icons));
 
-        $output_array = $block->getIconsForProductAsArray($icons_exp);
+        $output_array = $block->getIconsForProductAsArray($icons);
 
         $icons_to_output = $output_array['icons'];
         $media_url = $output_array['media_url'];
 
+     $number_of_icons = count($icons_to_output);
+
+     if ($number_of_icons > 3) {
+         // Max 3 to output
+         $number_of_icons = 3;
+     }
+
+     $output_row_class = 'pview-keyfacts-icontitledesc-row-'.$number_of_icons;
+
         ?>
 
-      <div class="pview-keyfacts-icontitledesc-row">
+      <div class="pview-keyfacts-icontitledesc-row <?= $output_row_class; ?>">
       <?php
         $count = 1;
 
+
+
+
         foreach ($icons_to_output as $icon) {
             if ($count <= 3) { ?>
-          <div class="pview-keyfacts-icontitledesc-item">
-              <div class="<?=$icon['icon_blk_style']?>" style="background-image:url(<?=$media_url?>elevate/tmp/producticons/<?= $icon['icon_url']?>);"></div>
+          <div class="pview-keyfacts-icontitledesc-item pview-keyfacts-icontitledesc-item-<?=$number_of_icons;?>">
+              <div class="pview-keyfacts-icontitledesc-icon <?=$icon['icon_blk_style']?>" style="background-image:url(<?=$media_url?>elevate/tmp/producticons/<?= $icon['icon_url']?>);"></div>
               <div class="pview-keyfacts-icontitledesc-itemtitle"><?= $icon['icon_title'];?></div>
               <div class="pview-keyfacts-icontitledesc-itemdesc"><?= $icon['icon_blk_description'];?></div>
 

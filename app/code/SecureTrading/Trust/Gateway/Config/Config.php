@@ -22,26 +22,20 @@ class Config extends \Magento\Payment\Gateway\Config\Config
      */
     private $enc;
 
-	/**
-	 * Config constructor.
-	 *
-	 * @param ScopeConfigInterface $scopeConfig
-	 * @param \Magento\Framework\Module\FullModuleList $fullModuleList
-	 * @param EncryptorInterface $enc
-	 * @param null $methodCode
-	 * @param string $pathPattern
-	 */
+    protected $registry;
+
 	public function __construct(
 		ScopeConfigInterface $scopeConfig,
 		\Magento\Framework\Module\FullModuleList $fullModuleList,
 		EncryptorInterface $enc,
 		$methodCode = null,
-		$pathPattern = \Magento\Payment\Gateway\Config\Config::DEFAULT_PATH_PATTERN
-
+		$pathPattern = \Magento\Payment\Gateway\Config\Config::DEFAULT_PATH_PATTERN,
+		\Magento\Framework\Registry $registry
 	) {
 		parent::__construct($scopeConfig, $methodCode, $pathPattern);
 		$this->fullModuleList = $fullModuleList;
 		$this->enc = $enc;
+		$this->registry = $registry;
 	}
 
 	/**
@@ -51,14 +45,17 @@ class Config extends \Magento\Payment\Gateway\Config\Config
 		'site_reference',
 		'username',
 		'password',
-		'site_password'
+		'site_password',
+        'jwt_name',
+        'jwt_secret_key'
 	];
     /**
      * @var array
      */
 	private $_secureAttribute = [
         'site_password',
-        'password'
+        'password',
+        'jwt_secret_key'
     ];
 
 	/**
@@ -77,7 +74,6 @@ class Config extends \Magento\Payment\Gateway\Config\Config
 		'currencyiso3a',
 		'mainamount',
 		'orderreference',
-		'billingemail',
 		'settleduedate',
 		'settlestatus',
 		'accounttypedescription',
@@ -96,6 +92,9 @@ class Config extends \Magento\Payment\Gateway\Config\Config
         if (in_array($field, $this->_attribute)) {
             if ((bool)parent::getValue('is_test'))
                 return $this->_getValue($field, parent::getValue('test_' . $field));
+        }
+        if($this->registry->registry('is_subscription') && $field === 'payment_action' && $this->_getValue($field, parent::getValue($field)) === 'authorize_capture'){
+        	return 'authorize';
         }
         return $this->_getValue($field, parent::getValue($field));
     }

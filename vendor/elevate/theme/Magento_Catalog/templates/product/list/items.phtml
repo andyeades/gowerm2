@@ -155,6 +155,7 @@ switch ($type = $block->getType()) {
         $exist = null;
 }
 $_item = null;
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
 ?>
 
 <?php if ($exist):?>
@@ -212,7 +213,7 @@ $_item = null;
                                     </strong>
 
                                     <?= /* @noEscape */ $block->getProductPrice($_item) ?>
-
+                                    <div class="product-item-inner">
                                     <?php if ($templateType):?>
                                         <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
                                     <?php endif; ?>
@@ -226,9 +227,7 @@ $_item = null;
                                                     id="related-checkbox<?= $block->escapeHtmlAttr($_item->getId()) ?>"
                                                     name="related_products[]"
                                                     value="<?= $block->escapeHtmlAttr($_item->getId()) ?>" />
-                                                <label
-                                                    class="label"
-                                                    for="related-checkbox<?= $block->escapeHtmlAttr(
+                                                <label class="label" for="related-checkbox<?= $block->escapeHtmlAttr(
                                                         $_item->getId()
                                                     ) ?>"><span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
                                                 </label>
@@ -301,9 +300,11 @@ $_item = null;
                                         </div>
                                         <?php // phpcs:enable ?>
                                     <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                             </li>
+
                         <?php endforeach ?>
                     </ol>
                 </div>

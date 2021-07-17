@@ -48,13 +48,7 @@ class Items extends \Magento\Framework\App\Helper\AbstractHelper {
         $_product,
         $_item, $original_item_qty, $qty
     ) {
-      //  $_product = $_item->getProduct();
-        
-        
-        
-          
-        
-        
+        $_product = $_item->getProduct();
         if($qty < 1){
             $qty= $original_item_qty;
         }
@@ -80,14 +74,14 @@ class Items extends \Magento\Framework\App\Helper\AbstractHelper {
         $output .= '   </a>
     </h2>';
        // $cart = Mage::getModel('checkout/cart');
-        
+
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
 
         $cart = $objectManager->get('\Magento\Checkout\Model\Cart');
         $_pricingHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
 
-        $discountBreakdown = [];
+
        // $cart->init();
         $quote = $cart->getQuote();
         //add the new product into the standard basket
@@ -119,7 +113,7 @@ class Items extends \Magento\Framework\App\Helper\AbstractHelper {
        //     print_r($key);
        // }
 
-     
+
 
         if(isset($_GET['debug'])){
            if($_GET['debug'] == 1){
@@ -133,26 +127,22 @@ class Items extends \Magento\Framework\App\Helper\AbstractHelper {
            }
         }
 
-     
+
 
         $rules = $this->_ruleFactory->create()->getCollection()->addFieldToFilter('rule_id', array('in' => $appliedRuleIds));
         $discount_count = 0;
         $offer = '';
         $reduct = 0;
-        $rule_price = 0;
         foreach ($rules as $rule) {
 
             $rule_name = $rule->getData('name');
             $rule_id = $rule->getData('rule_id');
-            $rule_description = $rule->getData('code');
+            $rule_description = $rule->getData('description');
             $rule_simple_action = $rule->getData('simple_action'); //by_percent
             $rule_discount_amount = $rule->getData('discount_amount'); //10.0000
-       
-            //do something wzith $rule
-               if(isset($discountBreakdown[$rule_id])){
+            //do something wzith $rule      
+   
             $rule_price = $discountBreakdown[$rule_id];
-            
-            }
 
 
             $current_basket_amount = $this->_coreSession->getCABasketAmount();
@@ -186,18 +176,12 @@ class Items extends \Magento\Framework\App\Helper\AbstractHelper {
   </div>";
 
         }
-        $offer = '';
-       /*End Discount Rules*/ 
-        
-        
-        
-        
         $cp = $_product;
 
         if ($option = $_item->getOptionByCode('simple_product')) {
             $cp = $option->getProduct();
         }
-     
+
         if ($line_discounts_enabled == '1') {
 
 
@@ -206,36 +190,85 @@ class Items extends \Magento\Framework\App\Helper\AbstractHelper {
         } else {
             $output_price = $cp->getFinalPrice();
         }
-           
-              $output_price_ex_vat =  $output_price;
+
       //  $price_type = Mage::getStoreConfig('elevate_assignments/general/price_type');
         $settingsHelper = $objectManager->get('Elevate\CartAssignments\Helper\Settings');
         $price_type = $settingsHelper->getPriceType();
         if ($price_type == 'ex_vat') {
 
         } else {
-           
+
             $output_price = $_item->getData('price_incl_tax');
         }
-                      $output_price_inc_vat = $_item->getData('price_incl_tax');
+
         $extra_class = "";
+        if ($line_discounts_enabled == '1' && $reduct > 0) {
+            $extra_class = " intprice_extra";
+            $output .= '
+        <style>
+
+            .fullprice {
+                color:           rgba(255, 0, 0, 0.5);
+                text-decoration: none;
+                position:        relative;
+                color:           rgba(0, 0, 0, 0.6);
+                display:         inline-block;
+            }
+
+            .intprice_extra {
+                font-size:   19px;
+                font-weight: bold;
+                margin-top:  10px;
+                display:     inline-block;
+                color:       #db2727;
+                margin-left: 10px;
+            }
+
+            .fullprice:before {
+                content:    " ";
+                display:    block;
+                width:      100%;
+                border-top: 2px solid rgba(255, 0, 0, 0.8);
+                height:     12px;
+                position:   absolute;
+                bottom:     0;
+                left:       0;
+                transform:  rotate(-7deg);
+            }
+        </style>
+        <div style="font-size: 19px;font-weight: bold;margin-top: 10px;" class="fullprice">
+            <span class="amount"></span>';
+
+
+            if ($line_discounts_enabled == '1' && $_item->getDiscountAmount() > 0) {
+
+                $output .=  $_pricingHelper->currency($cp->getFinalPrice(),true,false);
+            } else {
+
+                $output .= $_pricingHelper->currency($cp->getSalePrice(),true,false);
+
+            }
+
+            $output .= '</div>';
+
+        }
+        $output .= '
+    <div style="    font-size: 19px;
+    font-weight: bold;
+    margin-top: 10px;" class="intprice' . $extra_class . '">';
 
         if ($line_discounts_enabled == '1' && $_item->getDiscountAmount() > 0) {
             if ($price_type == 'ex_vat') {
                 $output_price = $_item->getPrice() - ($_item->getDiscountAmount() / $_item->getQty());
-              
+
             } else {
                 $output_price = $_item->getData('price_incl_tax') - ($_item->getDiscountAmount() / $_item->getQty());
 
-            }           
-               $output_price_inc_vat = $_item->getData('price_incl_tax') - ($_item->getDiscountAmount() / $_item->getQty()); 
-              $output_price_ex_vat =  $_item->getPrice() - ($_item->getDiscountAmount() / $_item->getQty());
+
+            }
         }
-        
-        
-        $output .= '<div style="font-size: 19px;font-weight: bold;margin-top: 10px;" class="intprice' . $extra_class . '">';
-         $output .= '<div class="price-excluding-tax">'.$_pricingHelper->currency($output_price_ex_vat,true,false).'</div>';
-        $output .= '<div class="price-including-tax">'.$_pricingHelper->currency($output_price_inc_vat,true,false).'</div>';
+
+        $output .= $_pricingHelper->currency($output_price,true,false);
 
         $output .= '</div>';
 
@@ -258,13 +291,34 @@ class Items extends \Magento\Framework\App\Helper\AbstractHelper {
       //      endif;
       //  }
 
+        if ($line_discounts_enabled == '1' && $_item->getDiscountAmount() > 0) {
+          //  $output .= 'TEST '.$line_discounts_enabled."|".$_item->getDiscountAmount();
+            $output .= '
+        <div class="evca-linediscount-outer">
+          ';
+            if ($discount_count > 0) {
+                $offer_text = 'offer is';
+                if ($discount_count > 1) {
+                    $offer_text = 'offers are';
+                }
+                $output .= "<div class='evca-linediscount-inner' >
+  <div style=\" 
+  font-weight: initial;
 
-      
+\">The following $offer_text applied to this product</div>
+  $offer
+  </div>";
+            }
+
+            $output .= '</div>';
+
+        }
+
         $output .= '</div>';
 
         $response['output'] = $output;
         $response['reduct'] = $reduct;
-        return $response;  
+        return $response;
     }
 
 }

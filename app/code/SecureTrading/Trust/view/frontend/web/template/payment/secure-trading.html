@@ -4,7 +4,12 @@
                name="payment[method]"
                class="radio"
                data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
-        <label data-bind="attr: {'for': getCode()}" class="label"><span data-bind="text: getTitle()"></span></label>
+        <label data-bind="attr: {'for': getCode()}" class="label">
+            <!--ko if: getLogoUrl() -->
+                <img class="payment-icon" data-bind="attr: {'src': getLogoUrl()}" style="height: 30px; width: auto">
+            <!--/ko-->
+            <span data-bind="text: getTitle()"></span>
+        </label>
     </div>
     <div class="payment-method-content">
         <!-- ko foreach: getRegion('messages') -->
@@ -20,6 +25,27 @@
             <!-- ko template: getTemplate() --><!-- /ko -->
             <!--/ko-->
         </div>
+
+        <!-- ko if: checkIsSaveCardInfo()-->
+        <div class="field">
+            <div class="control">
+                <input name="payment[save_card_info]"
+                        class="checkbox"
+                        type="checkbox"
+                        data-bind="attr: {
+                            'id': 'save_card_info',
+                            title: $t('Save Card Information')
+                        },
+                        event: {change: onCheckedChange},
+                        value: CheckVal"
+
+                >
+                <label data-bind="attr: {'for': 'save_card_info'}" class="label">
+                    <span><!-- ko i18n: saveCardInfoTitle() --><!-- /ko --></span>
+                </label>
+            </div>
+        </div>
+        <!-- /ko -->
 
         <fieldset class="fieldset" data-bind='attr: {id: "payment_form_" + getCode()}'>
             <div class="payment-method-note">
@@ -37,7 +63,7 @@
                         enable: (getCode() == isChecked())
                         "
                         disabled>
-                    <span data-bind="i18n: 'Continue to Secure Payment'"></span>
+                    <span data-bind="i18n: 'Place Order'"></span>
                 </button>
             </div>
         </div>

@@ -11,6 +11,8 @@
                 <specificcountry></specificcountry>
                 <sort_order>100</sort_order>
                 <can_use_checkout>1</can_use_checkout>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_capture_partial>1</can_capture_partial>
                 <can_order>1</can_order>
                 <can_capture>1</can_capture>
                 <can_refund>1</can_refund>
@@ -24,7 +26,8 @@
                 <url_choice_page>process/payments/choice</url_choice_page>
                 <url_details_page>process/payments/details</url_details_page>
                 <order_place_redirect_url>1</order_place_redirect_url>
-                <paymentInfoKeys>errorcode,notificationreference,orderreference,paymenttypedescription,requestreference,settlestatus,sitereference,transactionreference,accounttypedescription,enrolled,status,maskedpan,authcode,securityresponsepostcode,securityresponseaddress,securityresponsesecuritycode</paymentInfoKeys>
+                <privateInfoKeys>notificationreference,requestreference,sitereference,accounttypedescription,enrolled,status,subscriptionid,transactionreference</privateInfoKeys>
+                <paymentInfoKeys>orderreference,paymenttypedescription,maskedpan,authcode,notificationreference,requestreference,sitereference,accounttypedescription,enrolled,status,parentorderid,parenttransactionid,walletid,walletsource,subscriptionid,subscriptiontype,subscriptionunit,subscriptionfrequency,subscriptionfinalnumber,subscriptionamount,paypalemail,paypalpayerid</paymentInfoKeys>
                 <payment_pages>
                     <payment_pages_optional>
                         <display_settings>
@@ -50,10 +53,59 @@
                             <settle_due_day>0</settle_due_day>
                             <ws_verify_ca>1</ws_verify_ca>
                             <ppg_cancel_60107>0</ppg_cancel_60107>
+                            <enable_payment_pages_logo>0</enable_payment_pages_logo>
                         </other_settings>
                     </payment_pages_optional>
                 </payment_pages>
             </secure_trading>
+            <vault_secure_trading>
+                <active>1</active>
+                <model>SecureTradingVaultFacade</model>
+                <title>Vault Secure Trading</title>
+                <payment_action>order</payment_action>
+            </vault_secure_trading>
+            <vault_api_secure_trading>
+                <active>1</active>
+                <model>SecureTradingApiVaultFacade</model>
+                <title>Vault Api Secure Trading</title>
+                <payment_action>order</payment_action>
+            </vault_api_secure_trading>
+            <api_secure_trading>
+                <active>0</active>
+                <model>SecureTradingApiFacade</model>
+                <title>Api Secure Trading</title>
+                <group>api_secure_trading_group</group>
+                <animated_card>1</animated_card>
+                <payment_action>order</payment_action>
+                <can_use_checkout>1</can_use_checkout>
+                <can_order>1</can_order>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_capture_partial>1</can_capture_partial>
+                <can_refund>1</can_refund>
+                <can_use_internal>1</can_use_internal>
+                <can_void>1</can_void>
+                <can_cancel>1</can_cancel>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <active_visa_checkout>0</active_visa_checkout>
+                <active_paypal_payment>0</active_paypal_payment>
+                <active_appple_pay>0</active_appple_pay>
+                <display_api>
+                            <user_iframe>1</user_iframe>
+                            <width_iframe>600px</width_iframe>
+                            <height_iframe>100%</height_iframe>
+                            <show_start_date>1</show_start_date>
+                            <show_issue_number>1</show_issue_number>
+                </display_api>
+                <api_tokenization_settings>
+                            <api_use_tokenization>0</api_use_tokenization>
+                            <api_save_cc_question>Save your card details?</api_save_cc_question>
+                </api_tokenization_settings>
+                <api_payment_action>authorize_capture</api_payment_action>
+                <api_settle_status>0</api_settle_status>
+                <api_settle_due_day>0</api_settle_due_day>
+                <api_specificcountry>0</api_specificcountry>
+            </api_secure_trading>
         </payment>
     </default>
 </config>

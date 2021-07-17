@@ -4,8 +4,7 @@ $stock-message-width: auto !default;
 $stock-message-maxwidth: 100% !default;
 $stock-message-margin: 1rem 0 !default;
 $stock-message-textalign: center !default;
-$stock-message-border-radius-on: 0 !default;
-$stock-message-border-radius: $border-color-base !default;
+$stock-message-border-radius: false !default;
 
 $stock-handlingtime-bg: #cce5ff !default;
 
@@ -18,9 +17,9 @@ $stock-dispatchmessage-padding: 1.125rem !default;
 
 $stock-dispatchmessage-icon-margin: 0 0.3125rem 0 0 !default;
 
-#stock_message {
 
-}
+
+
 
 .stock_message {
     @include co(background, $stock-message-bg);
@@ -29,14 +28,13 @@ $stock-dispatchmessage-icon-margin: 0 0.3125rem 0 0 !default;
     @include co(max-width, $stock-message-maxwidth);
     @include co(margin, $stock-message-margin);
     @include co(text-align, $stock-message-textalign);
-    @if $stock-message-border-radius-on == 1 {
     @include co(border-radius, $stock-message-border-radius);
-    }
+
 }
 
 #stock_handlingtime {
 
-    background: $stock-handlingtime-bg;
+    @include co(background, $stock-handlingtime-bg);
 
 
     strong {
@@ -50,7 +48,7 @@ $stock-dispatchmessage-icon-margin: 0 0.3125rem 0 0 !default;
 
 .stock_dispatchmessage {
     @include co(margin, $stock-dispatchmessage-margin);
-    background: $stock-dispatchmessage-bg;
+    @include co(background, $stock-dispatchmessage-bg);
     @include co(padding, $stock-dispatchmessage-padding);
 
     > i {

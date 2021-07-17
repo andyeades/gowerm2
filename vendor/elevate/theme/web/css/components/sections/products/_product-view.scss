@@ -24,7 +24,7 @@ $catalog-product-view-pagemainouter-margin-mobilemax: 0 !default;
     .column.main {
         display: flex;
         flex-wrap: wrap;
-
+        @include co(padding-bottom, $pview-column-main-padding-bottom);
         @include co(align-items, $pview-column-main-align-items);
 
         > div {
@@ -96,7 +96,7 @@ $catalog-product-view-pagemainouter-margin-mobilemax: 0 !default;
                 @if ($pview-block-rp-items-background-on == 1) {
                     @if ($pitems-item-bg-color-on == 1) or ($pitems-item-background-on == 1) {
                         @if ($pview-block-rp-items-background != $pitems-item-bg-color) or ($pview-block-rp-items-background != $pitems-item-background) {
-                            background: $pview-block-rp-items-background;
+                            @include co(background, $pview-block-rp-items-background);
                         }
                     }
                 } @else {
@@ -197,8 +197,6 @@ $catalog-product-view-pagemainouter-margin-mobilemax: 0 !default;
         @include co(margin, $pview-info-detailed-margin-desktop, $pview-info-detailed-margin);
         @include co(width, $pview-info-detailed-width-desktop, $pview-info-detailed-width-mobile);
         @include co-notzero(padding, $pview-info-detailed-padding-desktop);
-
-
     }
     @include min-screen($desktop-md-min) {
         @include co(padding, $pview-info-detailed-padding-desktopmd, $pview-info-detailed-padding-desktop);
@@ -226,14 +224,34 @@ $catalog-product-view-pagemainouter-margin-mobilemax: 0 !default;
         order: 0;
     }
 
-    .product.attribute.description {
-        h2 {
-            @include co(font-size, $pview-description-h2-fontsize);
-            @include co(margin, $pview-description-h2-margin);
+    .product.attribute {
+        &.overview {
+            @include co(display, $pview-pa-overview-display);
+            @include min-screen($desktop-min) {
+                @include co(display, $pview-pa-overview-display-desktop, $pview-pa-overview-display);
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(display, $pview-pa-overview-display-desktopmd, $pview-pa-overview-display-desktop, $pview-pa-overview-display);
+            }
         }
-
-
+        &.description {
+            h2 {
+                @include co(font-size, $pview-description-h2-fontsize);
+                @include co(margin, $pview-description-h2-margin);
+            }
+            p {
+                @include co(margin-bottom, $pview-description-p-marginbottom);
+                @include co(line-height, $pview-description-p-lineheight);
+                @include min-screen($desktop-min) {
+                    @include co(margin-bottom, $pview-description-p-marginbottom-desktop, $pview-description-p-marginbottom);
+                }
+                @include min-screen($desktop-md-min) {
+                    @include co(margin-bottom, $pview-description-p-marginbottom-desktopmd, $pview-description-p-marginbottom-desktop, $pview-description-p-marginbottom);
+                }
+            }
+        }
     }
+
 
     .additional-attributes {
         width: auto;
@@ -247,59 +265,7 @@ $catalog-product-view-pagemainouter-margin-mobilemax: 0 !default;
 }
 
 
-#ev-prod-keyfacts-3 {
-    @include co(order, $pview-keyfeatures-outer-order);
-    @include co(margin, $pview-keyfeatures-outer-margin);
-    width: $pview-info-detailed-width-mobile;
-    @include min-screen($desktop-min) {
-        width: $pview-info-detailed-width-desktop;
-    }
-}
 
-.prod-page-keyfeatures {
-
-    @include co(padding, $pview-keyfeatures-padding);
-    @include co(margin, $pview-keyfeatures-margin);
-    @include co(color, $pview-keyfeatures-color);
-    @include co(background, $pview-keyfeatures-bg-color);
-
-
-    @include max-screen($mobiletablet-max) {
-        @include co(padding, $pview-keyfeatures-mobilepadding);
-    }
-
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    li {
-        flex: 0 1 auto;
-        @include min-screen($desktop-min) {
-            width: 50%;
-        }
-        list-style-type: $pview-keyfeatures-li-style-type;
-        list-style-position: $pview-keyfeatures-li-style-position;
-        @include co(padding, $pview-keyfeatures-li-padding);
-        text-indent: $pview-keyfeatures-li-text-indent;
-
-        &:before {
-           @include co(content, $pview-keyfeatures-li-before-content);
-            @include co(color, $pview-keyfeatures-li-before-color);
-            @include co(margin, $pview-keyfeatures-li-before-margin);
-            @include co(font-weight, $pview-keyfeatures-li-before-fontweight);
-            @include co(font-size, $pview-keyfeatures-li-before-fontsize);
-        }
-    }
-
-    h4 {
-        @include co(text-transform, $pview-keyfeatures-h4-text-transform);
-        @include co(font-size, $pview-keyfeatures-h4-font-size);
-        @include co(font-weight, $pview-keyfeatures-h4-fontweight);
-        @include co(padding, $pview-keyfeatures-h4-padding);
-        @include co(margin, $pview-keyfeatures-h4-margin);
-    }
-}
 
 .product-info-main {
     @include co(width, $pview-info-main-width);
@@ -660,22 +626,21 @@ $pinfo-price-prodoptbottom-price-inc-ex-fontweight: $font-weight-bold !default;
     @include co(align-items, $pview-boxtocart-align-items);
     @include co(background, $pview-boxtocart-background);
     @include co(width, $pview-boxtocart-width);
-    @include co(border-radius, $pview-boxtocart-borderradius);
-    @include co(border-bottom-left-radius, $pview-boxtocart-borderradius-bottomleft);
-    @include co(border-bottom-right-radius, $pview-boxtocart-borderradius-bottomright);
+    @include ev-border-radius($pview-boxtocart-borderradius-type, $pview-boxtocart-borderradius);
     @include co(margin, $pview-boxtocart-margin);
     @include co(padding, $pview-boxtocart-padding);
     @include co(justify-content, $pview-boxtocart-justifycontent);
 
     @include min-screen($desktop-min) {
-        @include co(border-radius, $pview-boxtocart-borderradius-desktop, $pview-boxtocart-borderradius);
+        @include ev-border-radius($pview-boxtocart-borderradius-type-desktop, $pview-boxtocart-borderradius-desktop);
         @include co(margin, $pview-boxtocart-margin-desktop, $pview-boxtocart-margin);
         @include co(padding, $pview-boxtocart-padding-desktop, $pview-boxtocart-padding);
         @include co(justify-content, $pview-boxtocart-justifycontent-desktop, $pview-boxtocart-justifycontent);
     }
     @include min-screen($desktop-md-min) {
         @include co(margin, $pview-boxtocart-margin-desktopmd, $pview-boxtocart-margin-desktop, $pview-boxtocart-margin);
-        @include co(border-radius, $pview-boxtocart-borderradius-desktopmd, $pview-boxtocart-borderradius-desktop, $pview-boxtocart-borderradius);
+        @include ev-border-radius($pview-boxtocart-borderradius-type-desktopmd, $pview-boxtocart-borderradius-desktopmd);
+
         @include co(justify-content, $pview-boxtocart-justifycontent-desktopmd, $pview-boxtocart-justifycontent-desktop, $pview-boxtocart-justifycontent);
         @include co(padding, $pview-boxtocart-padding-desktopmd, $pview-boxtocart-padding-desktop, $pview-boxtocart-padding);
     }
@@ -822,10 +787,10 @@ $pinfo-price-prodoptbottom-price-inc-ex-fontweight: $font-weight-bold !default;
     }
 
     .qtySelect {
-        display: $pview-boxtocart-qty-select-display;
+        @include co(display, $pview-boxtocart-qty-select-display);
         vertical-align: $pview-boxtocart-qty-select-valign;
         width: $pview-boxtocart-qty-select-width;
-        height: $pview-boxtocart-qty-select-height;
+        @include co(height, $pview-boxtocart-qty-select-height);
         @include co(padding, $pview-boxtocart-qty-select-padding);
         @include co(font-weight, $pview-boxtocart-qty-select-fontweight);
         @include co(margin, $pview-boxtocart-qty-select-margin);
@@ -853,11 +818,11 @@ $pinfo-price-prodoptbottom-price-inc-ex-fontweight: $font-weight-bold !default;
 
         @include co(border, $pview-boxtocart-qty-border, $form-element-input-border);
         @if $pview-boxtocart-qty-arrangement == 'column' {
-            height: $pview-boxtocart-qty-column-height;
+            @include co(height, $pview-boxtocart-qty-column-height);
             width: $pview-boxtocart-qty-column-width;
         }
         @if $pview-boxtocart-qty-arrangement == 'row' {
-            height: $pview-boxtocart-qty-row-height;
+            @include co(height, $pview-boxtocart-qty-row-height);
             width: $pview-boxtocart-qty-row-width;
         }
         text-align: center;
@@ -935,8 +900,8 @@ $pinfo-price-prodoptbottom-price-inc-ex-fontweight: $font-weight-bold !default;
                         }
                     }
                     > i {
-                        background: $pview-addtocart-btn-icon-url;
-                        height: $pview-addtocart-btn-icon-height;
+                        @include co(background, $pview-addtocart-btn-icon-url);
+                        @include co(height, $pview-addtocart-btn-icon-height);
                         width: $pview-addtocart-btn-icon-width;
                         background-size: contain;
                         background-repeat: no-repeat;
@@ -994,7 +959,7 @@ $pinfo-price-prodoptbottom-price-inc-ex-fontweight: $font-weight-bold !default;
             @include co(align-items, $pview-insideqtycontainer-control-alignitems);
             display: flex;
 
-            background: $pview-insideqtycontainer-control-bgcolor;
+            @include co(background, $pview-insideqtycontainer-control-bgcolor);
             border: $pview-insideqtycontainer-control-border;
             border-color: $pview-insideqtycontainer-control-border-color;
             @if $pview-insideqtycontainer-control-border-radius-on == 1 {
@@ -1068,29 +1033,29 @@ $pinfo-price-prodoptbottom-price-inc-ex-fontweight: $font-weight-bold !default;
 .pp-icon {
     display: block;
     width: $pview-ppicon-width;
-    height: $pview-ppicon-height;
+    @include co(height, $pview-ppicon-height);
 
     > svg {
-        height: $pview-ppicon-height;
+        @include co(height, $pview-ppicon-height);
         width: $pview-ppicon-width;
     }
 
     &.pp-icon-clock {
         > svg {
-            fill: $pview-ppicon-iconclock-color;
+            @include co(fill, $pview-ppicon-iconclock-color);
 
             > * {
-                fill: $pview-ppicon-iconclock-color;
+                @include co(fill, $pview-ppicon-iconclock-color);
             }
         }
     }
 
     &.pp-icon-tick {
         > svg {
-            fill: $pview-ppicon-icontick-color;
+            @include co(fill, $pview-ppicon-icontick-color);
 
             > * {
-                fill: $pview-ppicon-icontick-color;
+                @include co(fill, $pview-ppicon-icontick-color);
             }
         }
     }
@@ -1111,6 +1076,10 @@ $pview-product-options-bottom-padding-desktopsm-max: false !default;
     }
 }
 
+$pview-page-title-lineheight: false !default;
+$pview-page-title-lineheight-desktop: false !default;
+$pview-page-title-lineheight-desktopmd: false !default;
+
 .catalog-product-view {
     .page-title {
 
@@ -1122,17 +1091,20 @@ $pview-product-options-bottom-padding-desktopsm-max: false !default;
         @include co(font-size, $pview-page-title-fontsize);
         @include co(margin, $pview-page-title-margin);
         @include co(font-weight, $pview-page-title-font-weight, $h1-font-weight);
+        @include co(line-height, $pview-page-title-lineheight);
 
         @include min-screen($desktop-min) {
 
             @include co(font-size, $pview-page-title-fontsize-desktop, $pview-page-title-fontsize);
             @include co(margin, $pview-page-title-margin-desktop, $pview-page-title-margin);
             @include co(text-align, $pview-page-title-text-align-desktop, $pview-page-title-text-align);
+        @include co(line-height, $pview-page-title-lineheight-desktop, $pview-page-title-lineheight);
         }
         @include min-screen($desktop-md-min) {
             @include co(font-size, $pview-page-title-fontsize-desktopmd,  $pview-page-title-fontsize-desktop, $pview-page-title-fontsize);
             @include co(margin, $pview-page-title-margin-desktopmd, $pview-page-title-margin-desktop, $pview-page-title-margin);
             @include co(text-align, $pview-page-title-text-align-desktopmd, $pview-page-title-text-align-desktop, $pview-page-title-text-align);
+            @include co(line-height, $pview-page-title-lineheight-desktopmd, $pview-page-title-lineheight-desktop, $pview-page-title-lineheight);
         }
     }
 }
@@ -1897,6 +1869,9 @@ $ev-mediaproddetails-flexwrap: wrap !default;
     @include co(border, $pview-addform-border);
     @include co(border-radius, $pview-addform-borderradius);
 
+    @include min-screen($desktop-min) {
+        @include abs-revert-field-type();
+    }
 
     @include min-screen($desktop-md-min) {
         @include abs-revert-field-type();
@@ -2048,6 +2023,8 @@ $ev-pp-stickybar-boxshadow: 0 3px 15px rgba(100, 100, 100, 0.49) !default;
     display: none;
 }
 
+$pinfo-btm-o-div-padding: false !default;
+$pinfo-btm-o-evprodinfobottomwrapper-padding: false !default;
 
 
 #pinfo-btm-o {
@@ -2062,15 +2039,19 @@ $ev-pp-stickybar-boxshadow: 0 3px 15px rgba(100, 100, 100, 0.49) !default;
 
     > div {
         flex: 0 1 auto;
+        @include co(padding, $pinfo-btm-o-div-padding);
+    }
+    .ev-prod-info-bottom-wrapper {
+        @include co(padding, $pinfo-btm-o-evprodinfobottomwrapper-padding);
     }
 
     #pinfo-btm-m {
         display: flex;
         flex-wrap: wrap;
-
         @include co(width, $pinfo-btm-m-width);
         @include co(padding, $pinfo-btm-m-padding);
         @include co(margin, $pinfo-btm-m-margin);
+        @include co(z-index, $pinfo-btm-m-zindex);
         @include min-screen($desktop-min) {
             @include co(width, $pinfo-btm-m-width-desktop, $pinfo-btm-m-width);
             @include co(margin, $pinfo-btm-m-margin-desktop, $pinfo-btm-m-margin);
@@ -2171,13 +2152,23 @@ ul.colour-swatches-container {
 
 }
 
+
+
 .product-view-colour-swatches {
-    @include co(padding, $pview-options-wrapper-padding);
+    @include co(padding, $pview-colourswatches-padding);
+    @include co(margin, $pview-colourswatches-margin);
+
     @include min-screen($desktop-min) {
-        @include co(padding, $pview-options-wrapper-padding-desktop, $pview-options-wrapper-padding);
+        @include co(padding, $pview-colourswatches-padding-desktop, $pview-colourswatches-padding);
+        @include co(margin, $pview-colourswatches-margin-desktop, $pview-colourswatches-margin);
+    }
+    @include min-screen($desktop-md-min) {
+        @include co(padding, $pview-options-wrapper-padding-desktopmd, $pview-options-wrapper-padding-desktop, $pview-options-wrapper-padding);
+        @include co(margin, $pview-options-wrapper-margin-desktopmd, $pview-options-wrapper-margin-desktop, $pview-options-wrapper-margin);
     }
 
     .colour-swatches-label {
+        @include co(width, $pview-color-swatches-lbl-width);
         @include co(padding, $pview-color-swatches-lbl-padding);
         @include ev-fontsize-output($pview-color-swatches-lbl-font-size);
         @if $pview-color-swatches-lbl-text-transform-on == 1 {
@@ -2189,12 +2180,15 @@ ul.colour-swatches-container {
 
 .product-options-wrapper {
     @include co(padding, $pview-options-wrapper-padding);
+    @include co(margin, $pview-options-wrapper-margin);
 
     @include min-screen($desktop-min) {
         @include co(padding, $pview-options-wrapper-padding-desktop, $pview-options-wrapper-padding);
+        @include co(margin, $pview-options-wrapper-margin-desktop, $pview-options-wrapper-margin);
     }
     @include min-screen($desktop-md-min) {
         @include co(padding, $pview-options-wrapper-padding-desktopmd, $pview-options-wrapper-padding-desktop, $pview-options-wrapper-padding);
+        @include co(margin, $pview-options-wrapper-margin-desktopmd, $pview-options-wrapper-margin-desktop, $pview-options-wrapper-margin);
     }
 
     .fieldset {
@@ -2319,10 +2313,15 @@ ul.colour-swatches-container {
 
     > div {
         flex: 0 1 auto;
-        @include max-screen($mobilemax) {
+        @include co(width, $ptab-flex-row-item-width);
 
-            width: $ptab-flex-row-item-width-mobile;
+        @include max-screen($mobilemax) {
+            @include co(width,$ptab-flex-row-item-width-mobile, $ptab-flex-row-item-width);
         }
+        @include min-screen($desktop-md-min) {
+            @include co(width, $ptab-flex-row-item-width-desktopmd, $ptab-flex-row-item-width);
+        }
+
     }
 }
 
@@ -2339,6 +2338,7 @@ ul.colour-swatches-container {
 
     }
 
+
     @include co-notzero(margin, $ptab-addtionalcontent-margin);
     @include co-notzero(padding, $ptab-addtionalcontent-padding);
     @if $ptab-addtionalcontent-texttransform-on == 1 {
@@ -2346,6 +2346,10 @@ ul.colour-swatches-container {
     }
     @include co(font-weight, $ptab-addtionalcontent-fontweight);
     @include co(font-size, $ptab-addtionalcontent-fontsize);
+
+    @include min-screen($desktop-md-min) {
+        @include co(margin, $ptab-addtionalcontent-margin-desktopmd,$ptab-addtionalcontent-margin);
+    }
 
     .star-rating {
         @include co(margin, $ptab-additionalcontent-sr-margin);
@@ -2437,33 +2441,76 @@ ul.colour-swatches-container {
 
 
 
+$pview-pdataitems-margin: 0 0 1.25rem !default;
+$pview-pdataitems-padding: 0 !default;
 
+
+
+
+$pview-pdi-ic-ul-lst: disc !default;
+$pview-pdi-ic-ul-margin: 0 0 2rem 1.5rem !default;
+$pview-pdi-ic-ul-li-margin: 0 0 1.25rem !default;
 
 .product.data.items {
-    margin-bottom: $indent-base;
+    @include co(margin, $pview-pdataitems-margin);
+    @include co(padding, $pview-pdataitems-padding);
+
+    > .item {
+        &.title {
+            float: none;
+            width: 100%;
+
+            > .switch {
+                display: block;
+            }
+        }
+        &.content {
+            @include lib-clearfix();
+            display: block;
+            float: none;
+            margin: 0;
+
+            &.active {
+                display: block;
+            }
+            ul {
+                @include co(list-style-type, $pview-pdi-ic-ul-lst);
+                @include co(margin, $pview-pdi-ic-ul-margin);
+                li {
+                    @include co(margin, $pview-pdi-ic-ul-li-margin);
+                }
+            }
+        }
+    }
+
+    $pview-pdi-it-tpid-display: false !default;
+    $prod-view-info-description-font-size: 0.925rem !default;
+
+
     @if $pview-producttabs-desktop == accordion {
 
-        @include lib-data-accordion-base();
         > .item {
             display: block;
 
             > a {
                 @include co(text-transform, $pview-data-items-accordion-control-text-transform);
-
             }
-
 
             &.active {
                 > .fa {
-                    @include co(color, $pview-desc-tab-title-accordion-icon-color-active);
+                    @include co(color, $pview-tab-title-accordion-icon-color-active);
                 }
-
                 > a {
                     border-bottom: unset;
                 }
             }
             &.title {
+                @include co(margin, $accordion-control-margin);
                 position: relative;
+
+                &.tab_product_info_description {
+                    @include co(display, $pview-pdi-it-tpid-display);
+                }
                 @if $pview-page-main-stretch-content-on-mobile == 1 {
                     @include max-screen($mobiletablet-max) {
                         > a {
@@ -2482,11 +2529,15 @@ ul.colour-swatches-container {
 
                 > .fa {
                     position: absolute;
-                    @include co(right, $pview-desc-tab-title-icon-right);
-                    @include co(line-height, $pview-desc-tab-title-lineheight);
-                    @include co(font-size, $pview-desc-tab-title-font-size);
-                    @include co(padding, $pview-desc-tab-title-padding-top 0 $pview-desc-tab-title-padding-bottom 0);
-                    @include co(color, $pview-desc-tab-title-accordion-icon-color);
+                    @include co(right, $pview-tab-title-icon-right);
+                    @include co(line-height, $pview-tab-title-lineheight);
+                    @include co(font-size, $pview-tab-title-font-size);
+                    @include co(padding, $pview-tab-title-padding-top 0 $pview-tab-title-padding-bottom 0);
+                    @include co(color, $pview-tab-title-accordion-icon-color);
+
+                    @include max-screen($mobiletablet-max) {
+                        @include co(right, $pview-tab-title-icon-right-mobiletabletmax, $pview-tab-title-icon-right);
+                    }
                     @if $pview-page-main-stretch-content-on-mobile == 1 {
                         @include max-screen($mobiletablet-max) {
                             right: 15px;
@@ -2498,10 +2549,10 @@ ul.colour-swatches-container {
                         }
                     }
                 }
-                @include co(margin-bottom, $accordion-control-margin-bottom);
+                //@include co(margin-bottom, $accordion-control-margin-bottom);
 
                 > .switch {
-                    @include co(text-transform, $pview-desc-tab-title-text-transform);
+                    @include co(text-transform, $pview-tab-title-text-transform);
                     @include co(background, $accordion-control-background-color);
                     @include co(border-bottom, $accordion-control-border-bottom);
                     @include co(border-left, $accordion-control-border-left);
@@ -2517,6 +2568,9 @@ ul.colour-swatches-container {
                     @include co(line-height, $accordion-control-line-height);
                     @include lib-css(text-decoration, $accordion-control-text-decoration);
 
+                    @include max-screen($mobiletablet-max) {
+                        @include co(padding, $pview-tab-title-padding-mobiletabletmax, $accordion-control-padding);
+                    }
                     &:visited {
                         @include lib-css(color, $accordion-control-color);
                         @include lib-css(text-decoration, $accordion-control-text-decoration);
@@ -2554,6 +2608,15 @@ ul.colour-swatches-container {
                 @include co(margin, $accordion-content-margin);
                 @include co(padding, $pview-proddataitems-item-content-padding);
 
+                @include max-screen($mobiletablet-max) {
+                    @include co(padding, $pview-proddataitems-item-content-padding-mobiletabletmax,$pview-proddataitems-item-content-padding);
+                }
+
+                // This class might not be on all templates (check after integration of all themes)
+                &.product-info-description {
+                    @include co(font-size, $prod-view-info-description-font-size);
+                }
+
                 @include min-screen($desktop-min) {
                     @include co(padding, $pview-proddataitems-item-content-padding-desktop, $pview-proddataitems-item-content-padding);
                 }
@@ -2566,23 +2629,16 @@ ul.colour-swatches-container {
 
 
     } @else {
-        margin-bottom: $indent-base;
 
         @include max-screen($mobiletablet-max) {
 
-            @include lib-data-accordion-base();
-            @if $accordion-control-margin-bottom == 0 {
-                > .item.title {
-                    @include co(margin, 0);
-                }
-            } @else {
-                > .item.title {
-                    @include co(margin, 0 0 $accordion-control-margin-bottom);
-                }
-            }
+
+
+
+
 
             > .item.title {
-
+                //@include co(margin, $accordion-control-margin-bottom);
 
                 > .switch {
                     @include co(background, $accordion-control-background-color);
@@ -2723,7 +2779,6 @@ ul.colour-swatches-container {
                 @include co(margin, 0 $tab-control-margin-right 0 0);
 
                 > .switch {
-                    @include co(color, $tab-control-color);
                     @include co(font-family, $tab-control-font-family);
                     @include co(font-style, $tab-control-font-style);
                     @include co(font-weight, $tab-control-font-weight);
@@ -2827,7 +2882,7 @@ ul.colour-swatches-container {
         }
 
         > .switch {
-            @include co(text-transform, $pview-desc-tab-title-text-transform);
+            @include co(text-transform, $pview-tab-title-text-transform);
         }
     }
 }

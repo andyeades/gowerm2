@@ -73,9 +73,14 @@ class Listpost extends \Mageplaza\Blog\Block\Listpost
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
+        $category = $this->getBlogObject();
+        $this->pageConfig->addRemotePageAsset(
+                $category->getUrl(),
+                'canonical',
+                ['attributes' => ['rel' => 'canonical']]
+            );
 
         if ($breadcrumbs = $this->getLayout()->getBlock('breadcrumbs')) {
-            $category = $this->getBlogObject();
             if ($category) {
                 $breadcrumbs->addCrumb($category->getUrlKey(), [
                     'label' => $this->getBlogTitle(),

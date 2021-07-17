@@ -170,7 +170,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .e-pn {
     -webkit-font-smoothing: antialiased;
-    font-family: $e-pn-font-family;
+    @include co(font-family, $e-pn-font-family);
 
     @include min-screen($mobile-menu-notvisible) {
         @include co(flex-wrap, $e-pn-flex-wrap-mobilemenu-notvisible);
@@ -185,13 +185,13 @@ input[type="search"]::-webkit-search-results-decoration {
         height: auto;
         width: auto;
         overflow: visible;
-        background: $e-pn-desktop-bg-color;
+        @include co(background, $e-pn-desktop-bg-color);
     }
     @include max-screen($mobile-menu-visible-max) {
         height: 100%;
         position: absolute;
         top: 0;
-        background: $e-pn-mobile-bg-color;
+        @include co(background, $e-pn-mobile-bg-color);
         @include co(font-size, $e-pn-fontsize-mobile);
         @include co(width, $ev-mm-nav-width-mobile);
         left: -$ev-mm-nav-width-mobile;
@@ -217,7 +217,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
     ul {
         @include max-screen($mobile-menu-visible-max) {
-            background: $e-pn-mobile-bg-color;
+            @include co(background, $e-pn-mobile-bg-color);
             height: 100%;
             position: absolute;
             @include co(width, $ev-mm-nav-width-mobile);
@@ -327,7 +327,7 @@ input[type="search"]::-webkit-search-results-decoration {
             @include min-screen($mobile-menu-notvisible) {
                 // Desktop
                 @if $e-pn-a-desktop-letter-spacing-on == 1 {
-                    letter-spacing: $e-pn-a-desktop-letter-spacing;
+                    @include co(letter-spacing, $e-pn-a-desktop-letter-spacing);
                 }
                 @if $e-pn-li-a-desktop-text-transform-on == 1 {
                     @include co(text-transform, $e-pn-li-a-desktop-text-transform);
@@ -335,7 +335,7 @@ input[type="search"]::-webkit-search-results-decoration {
                 @include co(font-weight, $e-pn-li-a-fontweight-desktop);
               @include co(font-size, $e-pn-li-a-fontsize-desktop);
                 color: $e-pn-li-a-desktop-color;
-                display: $e-pn-li-a-displaytype;
+                @include co(display, $e-pn-li-a-displaytype);
                 height: $e-pn-a-height-desktop;
 
                 @if $e-pn-li-a-displaytype == flex {

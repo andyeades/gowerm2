@@ -27,7 +27,7 @@ $numberofchars = $block->getNumberOfChars();
 if ($_attributeLabel && $_attributeLabel == 'default') {
     $_attributeLabel = $_product->getResource()->getAttribute($_code)->getFrontendLabel();
 } else if ($_attributeLabel && $_attributeLabel == 'product_title') {
-  $_attributeLabel = $_product->getName();
+    $_attributeLabel = $_product->getName();
 }
 if ($_attributeType && $_attributeType == 'text') {
     $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code)) ? $_product->getAttributeText($_code) : '';
@@ -37,7 +37,13 @@ if ($_attributeType && $_attributeType == 'text') {
 
 $stripped_value = strip_tags($_attributeValue);
 $short_value = '';
-$short_value = strlen($stripped_value) > 130 ? substr($stripped_value,0,130)."..." : $short_value;
+
+if (strlen($stripped_value) > 130) {
+    $short_value = substr($stripped_value,0,130)."...".'<a href="#product.info.description" class="shortreadmorelink">read more</a>';
+} else {
+  $short_value = $stripped_value;
+}
+
 
 
 ?>
@@ -47,8 +53,8 @@ $short_value = strlen($stripped_value) > 130 ? substr($stripped_value,0,130)."..
 
 
 <?php if ($_attributeValue): ?>
-<div class="product attribute <?php /* @escapeNotVerified */ echo $_className?>">
-    <?php if ($_attributeLabel != 'none'): ?><strong class="type"><?php /* @escapeNotVerified */ echo $_attributeLabel?></strong><?php endif; ?>
+  <div class="product attribute <?php /* @escapeNotVerified */ echo $_className?>">
+      <?php if ($_attributeLabel != 'none'): ?><strong class="type"><?php /* @escapeNotVerified */ echo $_attributeLabel?></strong><?php endif; ?>
     <div class="value" <?php /* @escapeNotVerified */ echo $_attributeAddAttribute;?>><?php /* @escapeNotVerified */ echo $short_value; ?></div>
-</div>
+  </div>
 <?php endif; ?>

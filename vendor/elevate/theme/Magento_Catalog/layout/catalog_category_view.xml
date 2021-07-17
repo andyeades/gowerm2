@@ -2,6 +2,7 @@
     <head>
         <link src="css/styles-product-shared.css"/>
         <link src="css/styles-product-gridlist.css"/>
+        <remove src="Magento_Theme::mage/calendar.js" />
     </head>
     <body>
         <move element="columns.top" destination="content" before="-"/>

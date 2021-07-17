@@ -27,7 +27,7 @@ class OrderCommand
         $amount,
         OrderInterface $order
     ) {
-        if ($payment->getMethod() == ConfigProvider::CODE) {
+        if ($payment->getMethod() == ConfigProvider::CODE || $payment->getMethod() == ConfigProvider::API_CODE) {
             $message = 'Ordered amount of %1';
 
             return __($message, $order->getBaseCurrency()->formatTxt($amount));

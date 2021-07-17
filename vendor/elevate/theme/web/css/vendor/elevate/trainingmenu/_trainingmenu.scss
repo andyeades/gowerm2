@@ -16,7 +16,7 @@
         display: flex;
         align-items: center;
 
-        background: $trainingmenu-bgcolor;
+        @include co(background, $trainingmenu-bgcolor);
         .see-all {
             display: none;
         }
@@ -49,10 +49,10 @@
             position: relative;
             ul {
                 @include max-screen($mobile-menu-visible-max) {
-                    background: $trainingmenu-bgcolor;
+                    @include co(background, $trainingmenu-bgcolor);
                 }
             }
-            background: $trainingmenu-bgcolor;
+            @include co(background, $trainingmenu-bgcolor);
             > li {
                 > ul {
                     @include min-screen($mobile-menu-notvisible) {
@@ -81,7 +81,7 @@
                         &:before, &:after {
 
                             @include max-screen($mobile-menu-visible-max) {
-                                background: $trainingmenu-li-a-border-color;
+                                @include co(background, $trainingmenu-li-a-border-color);
                             }
                         }
                     }
@@ -106,7 +106,7 @@
                 @include max-screen($mobile-menu-visible-max) {
                     @include co(padding, $trainingmenu-goback-padding !important);
                     &:before, &:after {
-                        background: $trainingmenu-li-a-border-color;
+                        @include co(background, $trainingmenu-li-a-border-color);
                     }
 
                 }

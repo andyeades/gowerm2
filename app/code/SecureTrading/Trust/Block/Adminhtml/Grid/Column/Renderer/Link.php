@@ -2,6 +2,11 @@
 
 namespace SecureTrading\Trust\Block\Adminhtml\Grid\Column\Renderer;
 
+/**
+ * Class Link
+ *
+ * @package SecureTrading\Trust\Block\Adminhtml\Grid\Column\Renderer
+ */
 class Link extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\Text
 {
 	/**

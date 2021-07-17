@@ -1,0 +1,5 @@
+@if $sitename == happybeds {
+    .btn-hbred {
+        @include button-variant($action-primary-bg-color, $action-primary-border-color);
+    }
+}

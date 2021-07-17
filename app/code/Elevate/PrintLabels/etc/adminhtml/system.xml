@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="elevate" sortOrder="400" translate="label">
+            <label>Elevate</label>
+        </tab>
+        <section id="elevate_printlabels" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="5" translate="label">
+            <label>Print Labels</label>
+            <tab>elevate</tab>
+            <resource>Elevate_PrintLabels::elevate_printlabels</resource>
+            <group id="about" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Elevate Print Labels</label>
+                <field id="module_version" translate="label" type="label" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Version</label>
+                    <frontend_model>Elevate\PrintLabels\Block\Adminhtml\System\Config\Form\Module\Version</frontend_model>
+                </field>
+                <field id="composer_version" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Composer Version</label>
+                    <frontend_model>Elevate\PrintLabels\Block\Adminhtml\System\Config\Form\Composer\Version</frontend_model>
+                </field>
+            </group>
+            <group id="details" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Api Details</label>
+                <field id="api_url" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API URL</label>
+                    <comment>API URL</comment>
+                </field>
+                <field id="api_username" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API Username</label>
+                    <comment>API Username</comment>
+                </field>
+                <field id="api_password" translate="label" type="obscure" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API Password</label>
+                    <comment>API Password</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="api_accountnumber" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API Account Number</label>
+                    <comment>API Account Number</comment>
+                </field>
+            </group>
+            <group id="printoptions" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <label>Print Options</label>
+                <field id="print_giftmessage" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Gift Message</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Toggles Printing Gift Message On/Off</comment>
+                </field>
+                <field id="print_packinglist" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Packing List</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Toggles Printing Packing List On/Off</comment>
+                </field>
+                <field id="print_invoice" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Invoice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Toggles Printing Invoice On/Off</comment>
+                </field>
+            </group>
+
+            <group id="printnodedetails" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Print Node Api Details</label>
+                <field id="printnodeapikey" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API Key</label>
+                    <comment>Print Node Api Key</comment>
+                </field>
+                <field id="printnodeprinterid" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Node Label Printer ID</label>
+                    <comment>Label Printer Id</comment>
+                </field>
+                <field id="printnodeinvoiceprinterid" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Node Invoice Printer ID</label>
+                    <comment>Invoice Printer ID</comment>
+                </field>
+                <field id="printnodepackinglistprinterid" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Node Packing List Printer ID</label>
+                    <comment>Packing List Printer ID</comment>
+                </field>
+                <field id="printnodegiftmessageprinterid" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Gift Message Printer ID</label>
+                    <comment>Gift Message Printer ID</comment>
+                </field>
+            </group>
+            <group id="contactdetails" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Contact Details</label>
+                <field id="contact_name" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Contact Name</label>
+                    <comment>Contact Name</comment>
+                </field>
+                <field id="contact_telephone" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Contact Telephone</label>
+                    <comment>Contact Telephone</comment>
+                </field>
+                <field id="organisation_name" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Organisation Name</label>
+                    <comment>Company Name</comment>
+                </field>
+                <field id="organisation_street" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Street</label>
+                    <comment>Default</comment>
+                </field>
+                <field id="organisation_locality" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Street 2</label>
+                    <comment>Default</comment>
+                </field>
+                <field id="organisation_towncity" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Town/City</label>
+                    <comment>Default</comment>
+                </field>
+                <field id="organisation_county" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>County</label>
+                    <comment>Default</comment>
+                </field>
+                <field id="organisation_postcode" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Postcode</label>
+                    <comment>Default</comment>
+                </field>
+                <field id="organisation_countrycode" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Country Code</label>
+                    <source_model>Elevate\PrintLabels\Model\Config\Source\CountryCode</source_model>
+                    <comment>Country Origin Code</comment>
+                </field>
+            </group>
+            <group id="carriervalidation" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+
+            </group>
+            <group id="addressvalidation" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Address Validation Options</label>
+                <field id="address_split_line" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Split Address onto 2 Lines</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Split Address onto 2 Lines if Greater than Carrier Maximum for Address 1 Field</comment>
+                </field>
+
+                <field id="address_trim" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Trim Address 1</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Trim Address 1 to Carrier Maximum</comment>
+                </field>
+
+                <field id="address_trim_2" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Trim Address 2</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Trim Address 2 to Carrier Maximum</comment>
+                </field>
+
+                <field id="name_trim" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Trim Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Trim Name to Carrier Maximum</comment>
+                </field>
+
+                <field id="company_trim" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Trim Company</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Trim Company to Carrier Maximum</comment>
+                </field>
+
+                <field id="town_trim" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Trim Town</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Trim Town to Carrier Maximum</comment>
+                </field>
+                <field id="county_trim" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Trim County</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Trim County to Carrier Maximum</comment>
+                </field>
+                <field id="tele_trim" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Trim Telephone</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Trim Telephone to Carrier Maximum</comment>
+                </field>
+            </group>
+            <group id="giftmessage" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">0</attribute>
+                <label>Gift Message</label>
+                <field id="giftmessagepdfcssstyles" translate="label" type="textarea" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Gift Label PDF Printout CSS Styles</label>
+                    <comment></comment>
+                </field>
+                <field id="printgiftmessagelabelperitem" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Gift Message Label Per Item</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Prints a gift messsage label for each ITEM on the order.</comment>
+                </field>
+            </group>
+            <group id="collection" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Collection Info</label>
+                <field id="collection_time" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Collection Time</label>
+                    <comment>Collection Time</comment>
+                </field>
+                <field id="collection_cutofftime" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cut Off Time For Same Day Collection</label>
+                    <comment>Any orders printed after this time will be printed with labels showing the collection date as the next working day. Allowing you to continue to print labels ready for the next day.</comment>
+                </field>
+
+                <field id="collection_days" translate="label" type="multiselect" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Days Of Collection</label>
+                    <source_model>Elevate\PrintLabels\Model\Config\Source\DaysOfWeek</source_model>
+                    <comment>Select Days of Week Collections Occur On</comment>
+                </field>
+            </group>
+            <group id="packagedetails" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Package Details</label>
+                <field id="packageweightlimit" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Package Weight Limit (kg)</label>
+                    <comment>Weight Value only (do not include kg/etc)</comment>
+                </field>
+            </group>
+            <group id="postcodes" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Postcodes</label>
+                <field id="standardukpostcodes" translate="label" type="textarea" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Standard Postcodes</label>
+                    <comment>Postcode ranges which are not delivered by the main delivery method, and are delivered via Royal Mail (or similar) - Format: AB31-38; AB41-56; FK17-21; G83; GY9; HS1-9; IM1-99; IV1-IV99; KA27-28; KW0-17; PA20-78; PH15-99; ZE1-3;</comment>
+                </field>
+                <field id="alternativedeloption_postcodes" translate="label" type="textarea" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Alternative Delivery Option Postcodes</label>
+                    <comment>Postcode ranges which are not delivered by the main delivery method, and are delivered via Royal Mail (or similar) - Format: AB31-38; AB41-56; FK17-21; G83; GY9; HS1-9; IM1-99; IV1-IV99; KA27-28; KW0-17; PA20-78; PH15-99; ZE1-3;</comment>
+                </field>
+
+
+            </group>
+        </section>
+    </system>
+</config>

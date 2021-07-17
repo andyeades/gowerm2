@@ -1,0 +1,23 @@
+<?php
+$data = $block->getOrderData();
+?>
+<div id="block-form-cc"
+    <?= isset($secureRenderer) ? '' : 'style= "display: block;"' ?>
+     class="block-form-cc" data-bind="scope:'block-form-cc'">
+	<!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#block-form-cc": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "block-form-cc": {
+                        "component": "SecureTrading_Trust/js/view/payment/method-renderer/api-secure-trading",
+                        "orderData": <?php echo $block->jsonDecode($data) ?>
+                    }
+                }
+            }
+        }
+    }
+</script>
+<?= isset($secureRenderer) ? $secureRenderer->renderStyleAsTag("display: block;", 'block-form-cc') : '' ?>

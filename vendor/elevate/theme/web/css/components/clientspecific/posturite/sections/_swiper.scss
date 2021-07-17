@@ -217,26 +217,26 @@
         display: inline-block;
         //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
         border-radius: 100%;
-        background: $swiper-color-0;
+        @include co(background, $swiper-color-0);
         opacity: .2;
     }
     .swiper-pagination-white {
         .swiper-pagination-bullet {
-            background: $swiper-color-1;
+            @include co(background, $swiper-color-1);
         }
         .swiper-pagination-bullet-active {
-            background: $swiper-color-1;
+            @include co(background, $swiper-color-1);
         }
     }
     .swiper-pagination-bullet-active {
         opacity: 1;
-        background: $swiper-color-2;
+        @include co(background, $swiper-color-2);
     }
     .swiper-pagination-progress {
-        background: $swiper-color-3;
+        @include co(background, $swiper-color-3);
         position: absolute;
         .swiper-pagination-progressbar {
-            background: $swiper-color-2;
+            @include co(background, $swiper-color-2);
             position: absolute;
             left: 0;
             top: 0;
@@ -255,13 +255,13 @@
             transform-origin: left top;
         }
         &.swiper-pagination-white {
-            background: $swiper-color-4;
+            @include co(background, $swiper-color-4);
             .swiper-pagination-progressbar {
-                background: $swiper-color-1;
+                @include co(background, $swiper-color-1);
             }
         }
         &.swiper-pagination-black .swiper-pagination-progressbar {
-            background: $swiper-color-0;
+            @include co(background, $swiper-color-0);
         }
     }
     .swiper-container-3d {
@@ -504,7 +504,7 @@
             bottom: 0;
             width: 100%;
             height: 100%;
-            background: $swiper-color-0;
+            @include co(background, $swiper-color-0);
             opacity: .6;
             -webkit-filter: blur(50px);
             filter: blur(50px);
@@ -585,13 +585,13 @@
         border-radius: 10px;
         position: relative;
         -ms-touch-action: none;
-        background: $swiper-color-6;
+        @include co(background, $swiper-color-6);
     }
     .swiper-scrollbar-drag {
         height: 100%;
         width: 100%;
         position: relative;
-        background: $swiper-color-7;
+        @include co(background, $swiper-color-7);
         //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
         border-radius: 10px;
         left: 0;
@@ -742,7 +742,7 @@
         cursor: pointer;
     }
     .swiper-pagination-black .swiper-pagination-bullet-active {
-        background: $swiper-color-0;
+        @include co(background, $swiper-color-0);
     }
     .swiper-container-coverflow .swiper-wrapper {
         -ms-perspective: 1200px;

@@ -1,12 +1,14 @@
+
 // Product Stars
 
 
 $star-rating-bg-width: 109px !default;
 $star-rating-bg-height: 20px !default;
+$star-rating-srclear-height: 20px !default;
 
 .sr-clear {
 
-    height: $star-rating-bg-height;
+    @include co(height, $star-rating-srclear-height);
     width: 100%;
     margin-bottom: 10px;
 
@@ -32,7 +34,7 @@ $star-rating-bg-height: 20px !default;
         bottom: 0;
         content: "";
         display: block;
-        height: $star-rating-bg-height;
+        @include co(height, $star-rating-bg-height);
         left: 0;
         position: absolute;
         right: 0;
@@ -44,7 +46,7 @@ $star-rating-bg-height: 20px !default;
         display: block;
         text-indent: -10000px;
         width: $star-rating-bg-width;
-        height: $star-rating-bg-height;
+        @include co(height, $star-rating-bg-height);
         position: absolute;
         overflow: hidden;
 
@@ -56,7 +58,7 @@ $star-rating-bg-height: 20px !default;
             bottom: 0;
             content: "";
             display: block;
-            height: $star-rating-bg-height;
+            @include co(height, $star-rating-bg-height);
             left: 0;
             position: absolute;
             right: 0;

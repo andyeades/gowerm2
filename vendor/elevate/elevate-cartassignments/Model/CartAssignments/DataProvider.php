@@ -62,6 +62,9 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $data = $this->dataPersistor->get('elevate_cartassignments_cartassignments');
         
         if (!empty($data)) {
+        
+          $data['category_ids'] = $data['assigned_categories'];
+          
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();

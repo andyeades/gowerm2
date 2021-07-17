@@ -50,26 +50,5 @@
 }
 
 @mixin lib-data-accordion-base() {
-    margin: 0;
-    padding: 0;
 
-    > .item.title {
-        float: none;
-        width: 100%;
-
-        > .switch {
-            display: block;
-        }
-    }
-
-    > .item.content {
-        @include lib-clearfix();
-        display: block;
-        float: none;
-        margin: 0;
-
-        &.active {
-            display: block;
-        }
-    }
 }

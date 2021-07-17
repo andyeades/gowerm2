@@ -12,8 +12,8 @@ h1 {
     }
 }
 
-.items {
-    @include lib-list-reset-styles();
+ol, ul {
+    &.items {
+        @include lib-list-reset-styles();
+    }
 }
-
-@include lib-typography-code();

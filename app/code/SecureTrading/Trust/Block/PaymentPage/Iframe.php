@@ -6,6 +6,11 @@ use Magento\Framework\View\Element\Template;
 use Magento\Payment\Gateway\ConfigInterface;
 use SecureTrading\Trust\Helper\Data;
 
+/**
+ * Class Iframe
+ *
+ * @package SecureTrading\Trust\Block\PaymentPage
+ */
 class Iframe extends Template
 {
 	/**
@@ -13,6 +18,9 @@ class Iframe extends Template
 	 */
 	protected $config;
 
+	/**
+	 * @var \Magento\Sales\Model\OrderFactory
+	 */
 	protected $orderFactory;
 
 	/**
@@ -33,16 +41,27 @@ class Iframe extends Template
 		$this->config       = $config;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function gePaymentUrl()
 	{
-		return $this->getUrl('securetrading/paymentpage/raw', ['orderId' => $this->getRequest()->getParam('orderId')]);
+		return $this->getUrl('securetrading/paymentpage/raw',
+			['orderId'       => $this->getRequest()->getParam('orderId'),
+			 'multishipping' => $this->getRequest()->getParam('multishipping')]);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getWidth()
 	{
 		return $this->config->getValue(DATA::IFRAME_WIDTH);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getHeight()
 	{
 		return $this->config->getValue(DATA::IFRAME_HEIGHT);

@@ -71,7 +71,7 @@
         }
 
         svg {
-            fill: $hdr-search-icon-color;
+            @include co(fill, $hdr-search-icon-color);
         }
 
         .hdr-mobile-menu-icon {

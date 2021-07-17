@@ -49,9 +49,11 @@ use Mageplaza\Seo\Model\Config\Source\PriceValidUntil;
 
 /**
  * Class SeoRender
+ *
  * @package Mageplaza\Seo\Plugin
  */
-class SeoRender {
+class SeoRender
+{
     const GOOLE_SITE_VERIFICATION = 'google-site-verification';
     const MSVALIDATE_01 = 'msvalidate.01';
     const P_DOMAIN_VERIFY = 'p:domain_verify';
@@ -146,6 +148,7 @@ class SeoRender {
      * @var ModuleManager
      */
     protected $_moduleManager;
+    protected $_landingPageFaqCollectionFactory;
 
     /**
      * SeoRender constructor.
@@ -169,7 +172,7 @@ class SeoRender {
      * @param ReviewCollection       $reviewCollection
      * @param ModuleManager          $moduleManager
      */
-    function __construct(
+    public function __construct(
         PageConfig $pageConfig,
         Http $request,
         HelperData $helpData,
@@ -187,7 +190,8 @@ class SeoRender {
         DateTime $dateTime,
         TimezoneInterface $timeZoneInterface,
         ReviewCollection $reviewCollection,
-        ModuleManager $moduleManager
+        ModuleManager $moduleManager,
+        \Elevate\LandingPages\Model\ResourceModel\LandingPageFaq\CollectionFactory $landingPageFaqCollectionFactory
     ) {
         $this->pageConfig = $pageConfig;
         $this->request = $request;
@@ -207,12 +211,14 @@ class SeoRender {
         $this->_timeZoneInterface = $timeZoneInterface;
         $this->_reviewCollection = $reviewCollection;
         $this->_moduleManager = $moduleManager;
+        $this->_landingPageFaqCollectionFactory = $landingPageFaqCollectionFactory;
     }
 
     /**
      * @param Renderer $subject
      */
-    public function beforeRenderMetadata(Renderer $subject) {
+    public function beforeRenderMetadata(Renderer $subject)
+    {
         if ($this->helperData->isEnabled()) {
             $this->showVerifications();
 
@@ -221,42 +227,39 @@ class SeoRender {
                 'cms_noroute_index',
                 'catalogsearch_advanced_result'
             ];
-            
-             $currentFullAction = $this->request->getFullActionName();
-             
-             
-$cmspages = array('cms_index_index','cms_page_view');
-if(in_array($currentFullAction, $cmspages)){
 
-      
-         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$cms = $objectManager->get('\Magento\Cms\Model\Page');
+            $currentFullAction = $this->request->getFullActionName();
 
+            $cmspages = [
+                'cms_index_index',
+                'cms_page_view'
+            ];
+            if (in_array($currentFullAction, $cmspages)) {
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $cms = $objectManager->get('\Magento\Cms\Model\Page');
 
-      
-       if($cms){
-      $no_index_status = $cms->getData('ev_landingpages_noindex');
-              
-               if($no_index_status == 1){
-                $this->pageConfig->setMetadata('robots', 'NOINDEX,NOFOLLOW');
+                if ($cms) {
+                    $no_index_status = $cms->getData('ev_landingpages_noindex');
+
+                    if ($no_index_status == 1) {
+                        $this->pageConfig->setMetadata('robots', 'NOINDEX,NOFOLLOW');
+                    }
                 }
-                }
-}
-
+            }
 
             $category = $this->registry->registry('current_category');
-            
-               if($category){
-               //no index if selected in the category 
-               $no_index_status = $category->getData('ev_landingpages_noindex');
-              
-               if($no_index_status == 1){
-                $this->pageConfig->setMetadata('robots', 'NOINDEX,NOFOLLOW');
+
+            if ($category) {
+                //no index if selected in the category
+                $no_index_status = $category->getData('ev_landingpages_noindex');
+
+                if ($no_index_status == 1) {
+                    $this->pageConfig->setMetadata('robots', 'NOINDEX,NOFOLLOW');
                 }
-              }  
-            
+            }
+
             if (in_array($this->getFullActionName(), $pages)) {
-               $this->pageConfig->setMetadata('robots', 'NOINDEX,NOFOLLOW');
+                $this->pageConfig->setMetadata('robots', 'NOINDEX,NOFOLLOW');
             }
         }
     }
@@ -266,7 +269,8 @@ $cms = $objectManager->get('\Magento\Cms\Model\Page');
      *
      * @return string
      */
-    public function getElevateCanonical() {
+    public function getElevateCanonical()
+    {
         $can_link = '';
         $product_page = false;
         $canonical_landing = '';
@@ -284,96 +288,86 @@ $cms = $objectManager->get('\Magento\Cms\Model\Page');
 
         if ($this->request->getModuleName() == 'catalog' && $this->request->getControllerName() == 'product') {
             $product_page = true;
-
         }
 
-
         if (empty($canonical_landing)) {
-           // $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            // $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
             if ($product_page) {
-
                 $product = $this->registry->registry('current_product');
 
                 $can_link = $product->getUrlModel()->getUrl($product, ['_ignore_category' => true]);
-                   $can_link = str_replace('.html', '', $can_link);
+                $can_link = str_replace('.html', '', $can_link);
                 $can_link = '<link rel="canonical" href="' . strtolower($can_link) . '" />';
+            } elseif ($category = $this->registry->registry('current_category') && !$product_page) {
+                $category = $this->registry->registry('current_category');
 
+                //get category canonical
 
-            } else if ($category = $this->registry->registry('current_category') && !$product_page) {     
-                         $category = $this->registry->registry('current_category');
-                      
-            //get category canonical
-               
-               $category_canonical = $category->getData('ev_landingpages_canonical');
-               if(!empty($category_canonical)){
-              $can_link = '<link rel="canonical" href="' . strtolower($category_canonical) . '" />';
-              return $can_link;
+                $category_canonical = $category->getData('ev_landingpages_canonical');
+                if (!empty($category_canonical)) {
+                    $can_link = '<link rel="canonical" href="' . strtolower($category_canonical) . '" />';
+
+                    return $can_link;
                 }
-                
-                
-             //else default to the current category URL   
-            $currentUrl = $this->_storeManager->getStore()->getCurrentUrl();
-            $url = parse_url($currentUrl);
-            $path = $url['path'];
-              $query = '';
-            
-   if(isset($url['query'])){
-                $query = $url['query'];
-                }
-            
-            if (isset($query) && $query != '') {
-                $path .= '?' . $query;
 
-            } else {
-                $has_meta = true;
-            }
-
-            $path = trim($path, '/');
-
-            $can_arr = explode('?', $path);
-
-            $can_url = $this->_urlBuilder->getBaseUrl() . "" . ltrim($can_arr[0], '/');
-            $can_url = str_replace('index.php/', '', $can_url);
-            $can_url = str_replace('blog/post/', 'blog/', $can_url);
-
-            $can_link = '<link rel="canonical" href="' . strtolower($can_url) . '" />';
-        }
-            else if ($this->request->getModuleName() == 'cms') {
-                     $currentFullAction = $this->request->getFullActionName();
-             
-             
-$cmspages = array('cms_index_index','cms_page_view');
-if(in_array($currentFullAction, $cmspages)){
-
-      
-         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$cms = $objectManager->get('\Magento\Cms\Model\Page');
-
-
-      
-       if($cms){
-      $cms_canonical = $cms->getData('ev_landingpages_canonical');
-              
-               if(!empty($cms_canonical)){
-                  $can_link = '<link rel="canonical" href="' . strtolower($cms_canonical) . '" />';
-                  return $can_link;
-                }
-                }
-}
-
-
+                //else default to the current category URL
                 $currentUrl = $this->_storeManager->getStore()->getCurrentUrl();
-                
-                   $query = '';
                 $url = parse_url($currentUrl);
                 $path = $url['path'];
-                if(isset($url['query'])){
-                $query = $url['query'];
+                $query = '';
+
+                if (isset($url['query'])) {
+                    $query = $url['query'];
+                }
+
+                if (isset($query) && $query != '') {
+                    $path .= '?' . $query;
+                } else {
+                    $has_meta = true;
+                }
+
+                $path = trim($path, '/');
+
+                $can_arr = explode('?', $path);
+
+                $can_url = $this->_urlBuilder->getBaseUrl() . "" . ltrim($can_arr[0], '/');
+                $can_url = str_replace('index.php/', '', $can_url);
+                $can_url = str_replace('blog/post/', 'blog/', $can_url);
+
+                $can_link = '<link rel="canonical" href="' . strtolower($can_url) . '" />';
+            } elseif ($this->request->getModuleName() == 'cms') {
+                $currentFullAction = $this->request->getFullActionName();
+
+                $cmspages = [
+                    'cms_index_index',
+                    'cms_page_view'
+                ];
+                if (in_array($currentFullAction, $cmspages)) {
+                    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                    $cms = $objectManager->get('\Magento\Cms\Model\Page');
+
+                    if ($cms) {
+                        $cms_canonical = $cms->getData('ev_landingpages_canonical');
+
+                        if (!empty($cms_canonical)) {
+                            $can_link = '<link rel="canonical" href="' . strtolower($cms_canonical) . '" />';
+
+                            return $can_link;
+                        }
+                    }
+                }
+
+                $currentUrl = $this->_storeManager->getStore()->getCurrentUrl();
+
+                $query = '';
+                $url = parse_url($currentUrl);
+                $path = $url['path'];
+                if (isset($url['query'])) {
+                    $query = $url['query'];
                 }
                 if (isset($query) && $query != '') {
                     $path .= '?' . $query;
-
                 } else {
                     $has_meta = true;
                 }
@@ -387,162 +381,167 @@ $cms = $objectManager->get('\Magento\Cms\Model\Page');
                 $can_url = trim($can_url, '/');
                 $can_url = str_replace('blog/post/', 'blog/', $can_url);
                 $can_link = '<link rel="canonical" href="' . strtolower($can_url) . '" />';
-
             }
-
         }
 
-//        echo $can_link;
+        //        echo $can_link;
         return $can_link;
     }
 
-    public function html2txt($document){
-
+    public function html2txt($document)
+    {
         $str = preg_replace('#\R+#', '</p><p>', $document);
+
         return $str;
     }
-        /**
+
+    /**
      * get Business Structured Data
      *
      * @return string
      */
-    public function getElevateSnippets() {
-
+    public function getElevateSnippets()
+    {
         $schema = '';
 
-
-$base_url = $this->_urlBuilder->getBaseUrl();
+        $base_url = $this->_urlBuilder->getBaseUrl();
         $base_url = str_replace('m2.', 'www.', $base_url);
 
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-      
+
         $fullActionname = $this->getFullActionName();
 
-        if($fullActionname == 'catalog_product_view'){
-            
-          $product = $this->getProduct();
-          $product_desc = $this->html2txt(substr(strip_tags($product->getDescription()), 0, 300));
-          $imagewidth = 500;
-          $imageheight = 500;
-          $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
-          $product_image = $imageHelper->init($product, 'product_thumbnail_image')->setImageFile($product->getFile())->resize($imagewidth, $imageheight)->getUrl();
-          
-          $schema .= '<meta property="og:title" content="'.$product->getName().'"/>';
-          $schema .= '<meta property="og:type" content="product"/>';
-          $schema .= '<meta property="og:image" content="'.$product_image.'"/>';
-          $schema .= '<meta property="og:url" content="'.$product->getProductUrl().'"/>';
-          $schema .= '<meta property="og:price:amount" content="'.$product->getFinalPrice().'"/>';
-          $schema .= '<meta property="og:price:currency" content="'.$this->_storeManager->getStore()->getCurrentCurrencyCode().'"/>';
-          $schema .= '<meta property="og:description" content="'.$product_desc.'"/>';
-          $schema .= '<meta property="og:site_name" content="'.$this->_storeManager->getStore()->getName().'"/>';
-          $schema .= '<meta name="twitter:card" content="summary"/>';
-          $schema .= '<meta name="twitter:title" content="'.$product->getName().'"/>';
-          $schema .= '<meta name="twitter:description" content="'.$product_desc.'"/>';
-          $schema .= '<meta name="twitter:image" content="'.$product_image.'"/>';
-          $schema .= '<meta name="twitter:url" content="'.$product->getProductUrl().'"/>';
+        if ($fullActionname == 'catalog_product_view') {
+            $product = $this->getProduct();
+            $product_desc = $this->html2txt(substr(strip_tags($product->getDescription()), 0, 300));
+            $imagewidth = 500;
+            $imageheight = 500;
+            $imageHelper = $objectManager->get('\Magento\Catalog\Helper\Image');
+            $product_image = $imageHelper->init($product, 'product_thumbnail_image')->setImageFile($product->getFile())->resize($imagewidth, $imageheight)->getUrl();
 
-        }
-        else if($fullActionname == 'catalog_category_view' || $fullActionname == 'elevate_landingpages_index_index'){
-
-       
+            $schema .= '<meta property="og:title" content="' . $product->getName() . '"/>';
+            $schema .= '<meta property="og:type" content="product"/>';
+            $schema .= '<meta property="og:image" content="' . $product_image . '"/>';
+            $schema .= '<meta property="og:url" content="' . $product->getProductUrl() . '"/>';
+            $schema .= '<meta property="og:price:amount" content="' . $product->getFinalPrice() . '"/>';
+            $schema .= '<meta property="og:price:currency" content="' . $this->_storeManager->getStore()->getCurrentCurrencyCode() . '"/>';
+            $schema .= '<meta property="og:description" content="' . $product_desc . '"/>';
+            $schema .= '<meta property="og:site_name" content="' . $this->_storeManager->getStore()->getName() . '"/>';
+            $schema .= '<meta name="twitter:card" content="summary"/>';
+            $schema .= '<meta name="twitter:title" content="' . $product->getName() . '"/>';
+            $schema .= '<meta name="twitter:description" content="' . $product_desc . '"/>';
+            $schema .= '<meta name="twitter:image" content="' . $product_image . '"/>';
+            $schema .= '<meta name="twitter:url" content="' . $product->getProductUrl() . '"/>';
+        } elseif ($fullActionname == 'catalog_category_view' || $fullActionname == 'elevate_landingpages_index_index') {
             $category = $this->registry->registry('current_category');
-            
+
             $cat_img = $category->getImageUrl();
             if ($cat_img) {
-                  $categoryImageUrl = $base_url . 'media/catalog/category/' . $category->getImageUrl();
-                  $schema .= '<meta property="og:image" content="'.$categoryImageUrl.'"/>';
-                  $schema .= '<meta name="twitter:image" content="'.$categoryImageUrl.'"/>';
-                 } else {
-                   $schema .= '<meta property="og:image" content="'.$base_url.'media/meta-images/opengraph-homepage.png"/>';
-                   $schema .= '<meta name="twitter:image" content="'.$base_url.'media/meta-images/twitter-homepage.png"/>';
-                 }
+                $categoryImageUrl = $base_url . 'media/catalog/category/' . $category->getImageUrl();
+                $schema .= '<meta property="og:image" content="' . $categoryImageUrl . '"/>';
+                $schema .= '<meta name="twitter:image" content="' . $categoryImageUrl . '"/>';
+            } else {
+                $schema .= '<meta property="og:image" content="' . $base_url . 'media/meta-images/opengraph-homepage.png"/>';
+                $schema .= '<meta name="twitter:image" content="' . $base_url . 'media/meta-images/twitter-homepage.png"/>';
+            }
+
+            $_page_config = $objectManager->get('Magento\Framework\View\Page\Config');
+
+            $title = strip_tags($_page_config->getTitle()->getShort());
+            $description = $this->html2txt(strip_tags($_page_config->getDescription()));
+            // $_meta_keywords = strip_tags($_page_config->getKeywords());
+
+            // $title = $objectManager->get('Magento\Framework\View\Page\Title')->getShort();
+            //$description = $objectManager->get('Magento\Framework\View\Page\Description')->getShort();
+            $schema .= '<meta property="og:title" content="' . $title . '"/>';
+            $schema .= '<meta property="og:type" content="product.group"/>';
+            $schema .= '<meta property="og:url" content="' . $this->_storeManager->getStore()->getCurrentUrl() . '"/>';
+            $schema .= '<meta property="og:description" content="' . ($description) . '"/>';
+            $schema .= '<meta property="og:site_name" content="' . $this->_storeManager->getStore()->getName() . '"/>';
+            $schema .= '<meta name="twitter:card" content="summary"/>';
+            $schema .= '<meta name="twitter:title" content="' . $title . '"/>';
+            $schema .= '<meta name="twitter:description" content="' . ($description) . '"/>';
+            $schema .= '<meta name="twitter:url" content="' . $this->_storeManager->getStore()->getCurrentUrl() . '"/>';
+
+        } else if ($fullActionname == 'mpblog_post_view') {
+            // Fix Blog issues
+            // Blog Already outputs several fields
+
+            $schema .= '<meta property="og:site_name" content="' . $this->_storeManager->getStore()->getName() . '"/>';
+
+        } else {
 
 
             $_page_config = $objectManager->get('Magento\Framework\View\Page\Config');
 
-
             $title = strip_tags($_page_config->getTitle()->getShort());
             $description = $this->html2txt(strip_tags($_page_config->getDescription()));
-           // $_meta_keywords = strip_tags($_page_config->getKeywords());
+            $schema .= '<meta property="og:title" content="' . $title . '"/>';
+            $schema .= '<meta property="og:type" content="article"/>';
+            $schema .= '<meta property="og:url" content="' . $this->_storeManager->getStore()->getCurrentUrl() . '"/>';
+            $schema .= '<meta property="og:description" content="' . strip_tags($description) . '"/>';
+            $schema .= '<meta property="og:image" content="' . $base_url . 'media/meta-images/opengraph-homepage.png"/>';
+            $schema .= '<meta property="og:site_name" content="' . $this->_storeManager->getStore()->getName() . '"/>';
+            $schema .= '<meta name="twitter:card" content="summary"/>';
+            $schema .= '<meta name="twitter:title" content="' . $title . '"/>';
+            $schema .= '<meta name="twitter:description" content="' . ($description) . '"/>';
+            $schema .= '<meta name="twitter:image" content="' . $base_url . 'media/meta-images/twitter-homepage.png"/>';
+            $schema .= '<meta name="twitter:url" content="' . $this->_storeManager->getStore()->getCurrentUrl() . '"/>';
+        }
 
-           // $title = $objectManager->get('Magento\Framework\View\Page\Title')->getShort();
-            //$description = $objectManager->get('Magento\Framework\View\Page\Description')->getShort();
-              $schema .= '<meta property="og:title" content="'.$title.'"/>';
-              $schema .= '<meta property="og:type" content="product.group"/>';
-              $schema .= '<meta property="og:url" content="'.$this->_storeManager->getStore()->getCurrentUrl().'"/>';
-              $schema .= '<meta property="og:description" content="'.($description).'"/>';
-              $schema .= '<meta property="og:site_name" content="'.$this->_storeManager->getStore()->getName().'"/>';
-              $schema .= '<meta name="twitter:card" content="summary"/>';
-              $schema .= '<meta name="twitter:title" content="'.$title.'"/>';
-              $schema .= '<meta name="twitter:description" content="'.($description).'"/>';
-              $schema .= '<meta name="twitter:url" content="'.$this->_storeManager->getStore()->getCurrentUrl().'"/>';
-  }
-
+        return $schema;
 
         /*
-else if ((Mage::getSingleton('cms/page')->getIdentifier() == 'home' && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms')) {
-  $schema .= '<meta property="og:title" content="'.$this->getTitle().'"/>';
-  $schema .= '<meta property="og:type" content="website"/>';
-  $schema .= '<meta property="og:url" content="'.$this->_storeManager->getStore()->getCurrentUrl().'"/>';
-  $schema .= '<meta property="og:image" content="'.$this->_urlBuilder->getBaseUrl().'media/meta-images/opengraph-homepage.png"/>';
-  $schema .= '<meta property="og:description" content="'.strip_tags($this->getDescription()).'"/>';
-  $schema .= '<meta property="og:site_name" content="'.Mage::app()->getStore()->getName().'"/>';
-  $schema .= '<meta name="twitter:card" content="summary"/>';
-  $schema .= '<meta name="twitter:image" content="'.$this->_urlBuilder->getBaseUrl().'media/meta-images/twitter-homepage.png"/>';
-  $schema .= '<meta name="twitter:title" content="'.$this->getTitle().'"/>';
-  $schema .= '<meta name="twitter:description" content="'.strip_tags($this->getDescription()).'"/>';
-  $schema .= '<meta name="twitter:url" content="'.$this->_storeManager->getStore()->getCurrentUrl().'"/>';
- 
+      else if ((Mage::getSingleton('cms/page')->getIdentifier() == 'home' && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms')) {
+        $schema .= '<meta property="og:title" content="'.$this->getTitle().'"/>';
+        $schema .= '<meta property="og:type" content="website"/>';
+        $schema .= '<meta property="og:url" content="'.$this->_storeManager->getStore()->getCurrentUrl().'"/>';
+        $schema .= '<meta property="og:image" content="'.$this->_urlBuilder->getBaseUrl().'media/meta-images/opengraph-homepage.png"/>';
+        $schema .= '<meta property="og:description" content="'.strip_tags($this->getDescription()).'"/>';
+        $schema .= '<meta property="og:site_name" content="'.Mage::app()->getStore()->getName().'"/>';
+        $schema .= '<meta name="twitter:card" content="summary"/>';
+        $schema .= '<meta name="twitter:image" content="'.$this->_urlBuilder->getBaseUrl().'media/meta-images/twitter-homepage.png"/>';
+        $schema .= '<meta name="twitter:title" content="'.$this->getTitle().'"/>';
+        $schema .= '<meta name="twitter:description" content="'.strip_tags($this->getDescription()).'"/>';
+        $schema .= '<meta name="twitter:url" content="'.$this->_storeManager->getStore()->getCurrentUrl().'"/>';
 
- 
- //end current product
- }
-*/
-else {
 
-    $_page_config = $objectManager->get('Magento\Framework\View\Page\Config');
+      */
+        //end current product
+    }
 
-    $title = strip_tags($_page_config->getTitle()->getShort());
-    $description = $this->html2txt(strip_tags($_page_config->getDescription()));
-     $schema .= '<meta property="og:title" content="'.$title.'"/>';
-     $schema .= '<meta property="og:type" content="article"/>';
-     $schema .= '<meta property="og:url" content="'.$this->_storeManager->getStore()->getCurrentUrl().'"/>';
-     $schema .= '<meta property="og:description" content="'.strip_tags($description).'"/>';
-     $schema .= '<meta property="og:image" content="'.$base_url.'media/meta-images/opengraph-homepage.png"/>';
-     $schema .= '<meta property="og:site_name" content="'.$this->_storeManager->getStore()->getName().'"/>';
-     $schema .= '<meta name="twitter:card" content="summary"/>';
-     $schema .= '<meta name="twitter:title" content="'.$title.'"/>';
-     $schema .= '<meta name="twitter:description" content="'.($description).'"/>';
-     $schema .= '<meta name="twitter:image" content="'.$base_url.'media/meta-images/twitter-homepage.png"/>';
-     $schema .= '<meta name="twitter:url" content="'.$this->_storeManager->getStore()->getCurrentUrl().'"/>';
- }
-return $schema;
-}
     /**
      * @param Renderer $subject
-     * @param $result
+     * @param          $result
      *
      * @return string
      */
-    public function afterRenderHeadContent(Renderer $subject, $result)
-    {
+    public function afterRenderHeadContent(
+        Renderer $subject,
+        $result
+    ) {
 
         //possibly should move this after
-        $result.= $this->getElevateCanonical();
+        $result .= $this->getElevateCanonical();
 
-        $result.= $this->getElevateSnippets();
+        $result .= $this->getElevateSnippets();
 
-
-        return $result;
+        /*rich snippets*/
 
         if ($this->helperData->isEnabled()) {
             $fullActionname = $this->getFullActionName();
             switch ($fullActionname) {
                 case 'catalog_product_view':
-                    if ($this->helperData->getRichsnippetsConfig('enable_product')) {
-                        $productStructuredData = $this->showProductStructuredData();
-                        $result                .= $productStructuredData;
-                    }
+                    //  if ($this->helperData->getRichsnippetsConfig('enable_product')) {
+                    $productStructuredData = $this->showProductStructuredData();
+                    $result .= $productStructuredData;
+                    // }
+                    break;
+                case 'catalog_category_view':
+                    //  if ($this->helperData->getRichsnippetsConfig('enable_product')) {
+                    $faqStructuredData = $this->showFaqSchema();
+                    $result .= $faqStructuredData;
+                    // }
                     break;
                 case 'cms_index_index':
                     if ($this->helperData->getInfoConfig('enable')) {
@@ -574,6 +573,7 @@ return $schema;
 
     /**
      * Get full action name
+     *
      * @return string
      */
     public function getFullActionName()
@@ -583,6 +583,7 @@ return $schema;
 
     /**
      * Get current product
+     *
      * @return mixed
      */
     public function getProduct()
@@ -594,12 +595,14 @@ return $schema;
      * Get Url
      *
      * @param string $route
-     * @param array $params
+     * @param array  $params
      *
      * @return string
      */
-    public function getUrl($route = '', $params = [])
-    {
+    public function getUrl(
+        $route = '',
+        $params = []
+    ) {
         return $this->_urlBuilder->getUrl($route, $params);
     }
 
@@ -651,8 +654,50 @@ return $schema;
         $this->reviewFactory->create()->getEntitySummary($product, $this->_storeManager->getStore()->getId());
     }
 
+    public function showFaqSchema()
+    {
+        $faqData = [];
+        $faqCount = 0;
+
+        $category = $this->registry->registry('current_category');
+
+        $category_id = $category->getId();
+
+        $faqCollection = $this->_landingPageFaqCollectionFactory->create()->addFieldToFilter('category_id', $category_id);
+
+        if ($faqCollection) {
+            foreach ($faqCollection as $faqItem) {
+                $faqCount++;
+                $faqData[] = [
+                    '@type'          => 'Question',
+                    'name'           => $faqItem->getQuestion(),
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => $faqItem->getAnswer()
+                    ]
+                ];
+            }
+
+            if ($faqCount > 0) {
+                $faqStructuredData = [
+                    '@context'   => 'http://schema.org/',
+                    '@type'      => 'FAQPage',
+                    'mainEntity' => $faqData
+                ];
+
+                return $this->helperData->createStructuredData(
+                    $faqStructuredData,
+                    ''
+                );
+            }
+        }
+
+        return '';
+    }
+
     /**
      * Show product structured data
+     *
      * @return string
      *
      * Learn more: https://developers.google.com/structured-data/rich-snippets/products#single_product_page
@@ -663,17 +708,17 @@ return $schema;
             try {
                 $productId = $currentProduct->getId() ?: $this->request->getParam('id');
 
-                $product         = $this->productFactory->create()->load($productId);
-                $availability    = $product->isAvailable() ? 'InStock' : 'OutOfStock';
-                $stockItem       = $this->stockState->getStockItem(
+                $product = $this->productFactory->create()->load($productId);
+                $availability = $product->isAvailable() ? 'InStock' : 'OutOfStock';
+                $stockItem = $this->stockState->getStockItem(
                     $product->getId(),
                     $product->getStore()->getWebsiteId()
                 );
                 $priceValidUntil = $currentProduct->getSpecialToDate();
-                $modelValue      = $product->getResource()
-                    ->getAttribute($this->helperData->getRichsnippetsConfig('model_value'))
-                    ->getFrontend()->getValue($product);
-                $modelName       = $this->helperData->getRichsnippetsConfig('model_name');
+                //  $modelValue      = $product->getResource()
+                //      ->getAttribute($this->helperData->getRichsnippetsConfig('model_value'))
+                //      ->getFrontend()->getValue($product);
+                //   $modelName       = $this->helperData->getRichsnippetsConfig('model_name');
 
                 $productStructuredData = [
                     '@context'    => 'http://schema.org/',
@@ -691,7 +736,7 @@ return $schema;
                         'availability'  => 'http://schema.org/' . $availability,
                         'url'           => $currentProduct->getProductUrl()
                     ],
-                    $modelName    => $modelValue ?: $modelName
+                    // $modelName    => $modelValue ?: $modelName
                 ];
                 $productStructuredData = $this->addProductStructuredDataByType(
                     $currentProduct->getTypeId(),
@@ -704,72 +749,68 @@ return $schema;
                     $productStructuredData['offers']['priceValidUntil'] = $priceValidUntil;
                 } elseif ($priceValidType !== 'none') {
                     $time = $this->_dateTime->gmtTimestamp();
+                    $time += 2592000;
+                    // switch ($priceValidType) {
+                    //      case PriceValidUntil::PLUS_7:
+                    //          $time += 604800;
+                    //           break;
+                    //       case PriceValidUntil::PLUS_30:
+                    //          $time += 2592000;
+                    //          break;
+                    //      case PriceValidUntil::PLUS_60:
+                    //          $time += 5184000;
+                    //          break;
+                    //     case PriceValidUntil::PLUS_1_YEAR:
+                    //         $time += 31536000;
+                    //         break;
+                    //     default:
+                    //       $time = $this->helperData->getRichsnippetsConfig('price_valid_until_custom');
+                    //       break;
+                    //}
 
-                    switch ($priceValidType) {
-                        case PriceValidUntil::PLUS_7:
-                            $time += 604800;
-                            break;
-                        case PriceValidUntil::PLUS_30:
-                            $time += 2592000;
-                            break;
-                        case PriceValidUntil::PLUS_60:
-                            $time += 5184000;
-                            break;
-                        case PriceValidUntil::PLUS_1_YEAR:
-                            $time += 31536000;
-                            break;
-                        default:
-                            $time = $this->helperData->getRichsnippetsConfig('price_valid_until_custom');
-                            break;
-                    }
-
-                    $productStructuredData['offers']['priceValidUntil'] = $priceValidType === 'custom'
-                        ? $time
-                        : date('Y-m-d', $time);
+                    $productStructuredData['offers']['priceValidUntil'] = $priceValidType === 'custom' ? $time : date('Y-m-d', $time);
                 }
 
-                if (!$this->_moduleManager->isEnabled('Mageplaza_Shopbybrand')) {
-                    $brandValue = $product->getResource()
-                        ->getAttribute($this->helperData->getRichsnippetsConfig('brand'))
-                        ->getFrontend()->getValue($product);
+                //     if (!$this->_moduleManager->isEnabled('Mageplaza_Shopbybrand')) {
+                //       $brandValue = $product->getResource()
+                //           ->getAttribute($this->helperData->getRichsnippetsConfig('brand'))
+                //            ->getFrontend()->getValue($product);
 
-                    $productStructuredData['brand']['@type'] = 'Thing';
-                    $productStructuredData['brand']['name']  = $brandValue ?: 'Brand';
-                }
+                //        $productStructuredData['brand']['@type'] = 'Thing';
+                //        $productStructuredData['brand']['name']  = $brandValue ?: 'Brand';
+                //    }
+                /*
+                 $collection = $this->_reviewCollection->create()
+                     ->addStatusFilter(
+                         Review::STATUS_APPROVED
+                     )->addEntityFilter(
+                         'product',
+                         $product->getId()
+                     )->setDateOrder();
+                 if ($collection->getData()) {
+                     foreach ($collection->getData() as $review) {
+                         $productStructuredData['review'][] = [
+                             '@type'  => 'Review',
+                             'author' => $review['nickname']
+                         ];
+                     }
+                 } elseif ($this->helperData->getRichsnippetsConfig('aggregate_rating') === '1') {
+                     $productStructuredData['review'][] = [
+                         '@type'  => 'Review',
+                         'author' => $this->helperData->getRichsnippetsConfig('review_author')
+                     ];
+                 }
 
-                $collection = $this->_reviewCollection->create()
-                    ->addStatusFilter(
-                        Review::STATUS_APPROVED
-                    )->addEntityFilter(
-                        'product',
-                        $product->getId()
-                    )->setDateOrder();
-                if ($collection->getData()) {
-                    foreach ($collection->getData() as $review) {
-                        $productStructuredData['review'][] = [
-                            '@type'  => 'Review',
-                            'author' => $review['nickname']
-                        ];
-                    }
-                } elseif ($this->helperData->getRichsnippetsConfig('aggregate_rating') === '1') {
-                    $productStructuredData['review'][] = [
-                        '@type'  => 'Review',
-                        'author' => $this->helperData->getRichsnippetsConfig('review_author')
-                    ];
-                }
+                      */
+                $review_rating = $currentProduct->getData('product_rating');
+                $review_count = $currentProduct->getData('rating_count');
 
-                if ($this->getReviewCount()) {
-                    $productStructuredData['aggregateRating']['@type']       = 'AggregateRating';
-                    $productStructuredData['aggregateRating']['bestRating']  = 100;
+                if ($review_count > 0) {
+                    $productStructuredData['aggregateRating']['@type'] = 'AggregateRating';
+                    $productStructuredData['aggregateRating']['bestRating'] = 5;
                     $productStructuredData['aggregateRating']['worstRating'] = 0;
-                    $productStructuredData['aggregateRating']['ratingValue'] = $this->getRatingSummary();
-                    $productStructuredData['aggregateRating']['reviewCount'] = $this->getReviewCount();
-                } elseif ($this->helperData->getRichsnippetsConfig('aggregate_rating')) {
-                    $productStructuredData['aggregateRating']['@type']       = 'AggregateRating';
-                    $productStructuredData['aggregateRating']['bestRating']  = 100;
-                    $productStructuredData['aggregateRating']['worstRating'] = 0;
-                    $productStructuredData['aggregateRating']['ratingValue'] = $this->helperData->getRichsnippetsConfig('rating_value');
-                    $productStructuredData['aggregateRating']['reviewCount'] = $this->helperData->getRichsnippetsConfig('review_count');
+                    $productStructuredData['aggregateRating']['ratingValue'] = $review_rating;
+                    $productStructuredData['aggregateRating']['reviewCount'] = $review_count;
                 }
 
                 $objectStructuredData = new DataObject(['mpdata' => $productStructuredData]);
@@ -809,10 +850,7 @@ return $schema;
         }
 
         // get customer service info
-        if ($this->helperData->getInfoConfig('customer_service_phone')
-            || $this->helperData->getInfoConfig('customer_service_contact_option')
-            || $this->helperData->getInfoConfig('customer_service_area_serve')
-        ) {
+        if ($this->helperData->getInfoConfig('customer_service_phone') || $this->helperData->getInfoConfig('customer_service_contact_option') || $this->helperData->getInfoConfig('customer_service_area_serve')) {
             $businessStructuredData['contactPoint'][] = [
                 '@type'         => 'ContactPoint',
                 'telephone'     => $this->helperData->getInfoConfig('customer_service_phone'),
@@ -822,10 +860,7 @@ return $schema;
             ];
         }
         // get technical support info
-        if ($this->helperData->getInfoConfig('technical_support_phone')
-            || $this->helperData->getInfoConfig('technical_support_contact_option')
-            || $this->helperData->getInfoConfig('technical_support_area_serve')
-        ) {
+        if ($this->helperData->getInfoConfig('technical_support_phone') || $this->helperData->getInfoConfig('technical_support_contact_option') || $this->helperData->getInfoConfig('technical_support_area_serve')) {
             $businessStructuredData['contactPoint'][] = [
                 '@type'         => 'ContactPoint',
                 'telephone'     => $this->helperData->getInfoConfig('technical_support_phone'),
@@ -835,10 +870,7 @@ return $schema;
             ];
         }
         // get sales info
-        if ($this->helperData->getInfoConfig('sales_phone')
-            || $this->helperData->getInfoConfig('sales_contact_option')
-            || $this->helperData->getInfoConfig('sales_area_serve')
-        ) {
+        if ($this->helperData->getInfoConfig('sales_phone') || $this->helperData->getInfoConfig('sales_contact_option') || $this->helperData->getInfoConfig('sales_area_serve')) {
             $businessStructuredData['contactPoint'][] = [
                 '@type'         => 'ContactPoint',
                 'telephone'     => $this->helperData->getInfoConfig('sales_phone'),
@@ -862,7 +894,7 @@ return $schema;
 
     public function getSocialProfiles()
     {
-        $lines         = [];
+        $lines = [];
         $socialNetwork = [
             'facebook',
             'twitter',
@@ -917,29 +949,30 @@ return $schema;
      * @return mixed
      * @throws NoSuchEntityException
      */
-    public function getGroupedProductStructuredData($currentProduct, $productStructuredData)
-    {
+    public function getGroupedProductStructuredData(
+        $currentProduct,
+        $productStructuredData
+    ) {
         $productStructuredData['offers']['@type'] = 'AggregateOffer';
-        $childrenPrice                            = [];
-        $offerData                                = [];
-        $typeInstance                             = $currentProduct->getTypeInstance();
-        $childProductCollection                   = $typeInstance->getAssociatedProducts($currentProduct);
+        $childrenPrice = [];
+        $offerData = [];
+        $typeInstance = $currentProduct->getTypeInstance();
+        $childProductCollection = $typeInstance->getAssociatedProducts($currentProduct);
         foreach ($childProductCollection as $child) {
-            $imageUrl = $this->_storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA)
-                . 'catalog/product' . $child->getImage();
+            $imageUrl = $this->_storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $child->getImage();
 
-            $offerData[]     = [
+            $offerData[] = [
                 '@type' => 'Offer',
                 'name'  => $child->getName(),
-                'price' => $this->_priceHelper->currency($child->getPrice(), false),
+                'price' => $this->_priceHelper->currency($child->getFinalPrice(), false),
                 'sku'   => $child->getSku(),
                 'image' => $imageUrl
             ];
-            $childrenPrice[] = $this->_priceHelper->currency($child->getPrice(), false);
+            $childrenPrice[] = $this->_priceHelper->currency($child->getFinalPrice(), false);
         }
 
         $productStructuredData['offers']['highPrice'] = array_sum($childrenPrice);
-        $productStructuredData['offers']['lowPrice']  = min($childrenPrice);
+        $productStructuredData['offers']['lowPrice'] = min($childrenPrice);
         unset($productStructuredData['offers']['price']);
 
         if (!empty($offerData)) {
@@ -957,15 +990,17 @@ return $schema;
      *
      * @return mixed
      */
-    public function getDownloadableProductStructuredData($currentProduct, $productStructuredData)
-    {
+    public function getDownloadableProductStructuredData(
+        $currentProduct,
+        $productStructuredData
+    ) {
         $productStructuredData['offers']['@type'] = 'AggregateOffer';
 
-        $typeInstance           = $currentProduct->getTypeInstance();
+        $typeInstance = $currentProduct->getTypeInstance();
         $childProductCollection = $typeInstance->getLinks($currentProduct);
-        $childrenPrice          = [];
+        $childrenPrice = [];
         foreach ($childProductCollection as $child) {
-            $offerData[]     = [
+            $offerData[] = [
                 '@type' => 'Offer',
                 'name'  => $child->getTitle(),
                 'price' => $this->_priceHelper->currency($child->getPrice(), false)
@@ -973,7 +1008,7 @@ return $schema;
             $childrenPrice[] = $this->_priceHelper->currency($child->getPrice(), false);
         }
         $productStructuredData['offers']['highPrice'] = array_sum($childrenPrice);
-        $productStructuredData['offers']['lowPrice']  = min($childrenPrice);
+        $productStructuredData['offers']['lowPrice'] = min($childrenPrice);
 
         if (!empty($offerData)) {
             $productStructuredData['offers']['offers'] = $offerData;
@@ -991,26 +1026,32 @@ return $schema;
      * @return mixed
      * @throws NoSuchEntityException
      */
-    public function getConfigurableProductStructuredData($currentProduct, $productStructuredData)
-    {
-        $productStructuredData['offers']['@type']     = 'AggregateOffer';
-        $productStructuredData['offers']['highPrice'] = $currentProduct->getPriceInfo()->getPrice('regular_price')->getMaxRegularAmount()->getValue();
-        $productStructuredData['offers']['lowPrice']  = $currentProduct->getPriceInfo()->getPrice('regular_price')->getMinRegularAmount()->getValue();
-        $offerData                                    = [];
-        $typeInstance                                 = $currentProduct->getTypeInstance();
-        $childProductCollection                       = $typeInstance->getUsedProductCollection($currentProduct)->addAttributeToSelect('*');
+    public function getConfigurableProductStructuredData(
+        $currentProduct,
+        $productStructuredData
+    ) {
+        $productStructuredData['offers']['@type'] = 'AggregateOffer';
+        //   $productStructuredData['offers']['highPrice'] = $currentProduct->getPriceInfo()->getPrice('regular_price')->getMaxRegularAmount()->getValue();
+        //  $productStructuredData['offers']['lowPrice']  = $currentProduct->getPriceInfo()->getPrice('regular_price')->getMinRegularAmount()->getValue();
+        $offerData = [];
+        $typeInstance = $currentProduct->getTypeInstance();
+        $childProductCollection = $typeInstance->getUsedProductCollection($currentProduct)->addAttributeToSelect('*');
         foreach ($childProductCollection as $child) {
-            $imageUrl = $this->_storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA)
-                . 'catalog/product' . $child->getImage();
+            $imageUrl = $this->_storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $currentProduct->getImage();
 
             $offerData[] = [
                 '@type' => 'Offer',
                 'name'  => $child->getName(),
-                'price' => $this->_priceHelper->currency($child->getPrice(), false),
+                'price' => $this->_priceHelper->currency($child->getFinalPrice(), false),
                 'sku'   => $child->getSku(),
                 'image' => $imageUrl
             ];
+            $childrenPrice[] = $this->_priceHelper->currency($child->getFinalPrice(), false);
         }
+
+        $productStructuredData['offers']['highPrice'] = max($childrenPrice);
+        $productStructuredData['offers']['lowPrice'] = min($childrenPrice);
+
         if (!empty($offerData)) {
             $productStructuredData['offers']['offers'] = $offerData;
         }
@@ -1027,21 +1068,22 @@ return $schema;
      * @return mixed
      * @throws NoSuchEntityException
      */
-    public function getBundleProductStructuredData($currentProduct, $productStructuredData)
-    {
-        $productStructuredData['offers']['@type']     = 'AggregateOffer';
+    public function getBundleProductStructuredData(
+        $currentProduct,
+        $productStructuredData
+    ) {
+        $productStructuredData['offers']['@type'] = 'AggregateOffer';
         $productStructuredData['offers']['highPrice'] = $currentProduct->getPriceInfo()->getPrice('regular_price')->getMaximalPrice()->getValue();
-        $productStructuredData['offers']['lowPrice']  = $currentProduct->getPriceInfo()->getPrice('regular_price')->getMinimalPrice()->getValue();
+        $productStructuredData['offers']['lowPrice'] = $currentProduct->getPriceInfo()->getPrice('regular_price')->getMinimalPrice()->getValue();
         unset($productStructuredData['offers']['price']);
-        $offerData              = [];
-        $typeInstance           = $currentProduct->getTypeInstance();
+        $offerData = [];
+        $typeInstance = $currentProduct->getTypeInstance();
         $childProductCollection = $typeInstance->getSelectionsCollection(
             $typeInstance->getOptionsIds($currentProduct),
             $currentProduct
         );
         foreach ($childProductCollection as $child) {
-            $imageUrl = $this->_storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA)
-                . 'catalog/product' . $child->getImage();
+            $imageUrl = $this->_storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $currentProduct->getImage();
 
             $offerData[] = [
                 '@type' => 'Offer',
@@ -1066,8 +1108,11 @@ return $schema;
      * @return mixed
      * @throws NoSuchEntityException
      */
-    public function addProductStructuredDataByType($productType, $currentProduct, $productStructuredData)
-    {
+    public function addProductStructuredDataByType(
+        $productType,
+        $currentProduct,
+        $productStructuredData
+    ) {
         switch ($productType) {
             case 'grouped':
                 $productStructuredData = $this->getGroupedProductStructuredData(

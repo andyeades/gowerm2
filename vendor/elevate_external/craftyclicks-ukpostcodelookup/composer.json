@@ -1,0 +1,24 @@
+{
+    "name": "elevate_external/craftyclicks-ukpostcodelookup",
+    "description": "Apply postcode lookup to Magento 2.",
+    "type": "magento2-module",
+    "authors": [
+        {
+            "name": "Gabor Peter Suranyi",
+            "homepage": "https://craftyclicks.co.uk/",
+            "role": "Developer"
+        },
+        {
+            "name": "Gregory Toth",
+            "homepage": "https://craftyclicks.co.uk/",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+          "Craftyclicks\\Ukpostcodelookup\\": ""
+        }
+    },
+    "license": "MIT"
+}

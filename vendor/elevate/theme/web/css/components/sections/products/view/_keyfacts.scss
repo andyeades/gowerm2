@@ -1,263 +1,441 @@
 
-$pview-keyfacts-icontitledesc-title-justifycontent: false !default;
-$pview-keyfacts-icontitledesc-title-width: false !default;
-$pview-keyfacts-icontitledesc-title-color: false !default;
-$pview-keyfacts-icontitledesc-title-textalign: false !default;
-$pview-keyfacts-icontitledesc-title-fontsize: false !default;
-$pview-keyfacts-icontitledesc-title-padding: false !default;
-$pview-keyfacts-icontitledesc-title-fontfamily: false !default;
 
-$pview-keyfacts-icontitledesc-outer-fontfamily: false !default;
-$pview-keyfacts-icontitledesc-outer-background: false !default;
-$pview-keyfacts-icontitledesc-outer-padding: false !default;
-$pview-keyfacts-icontitledesc-outer-padding-desktop: false !default;
-$pview-keyfacts-icontitledesc-outer-display: false !default;
-$pview-keyfacts-icontitledesc-outer-textalign: false !default;
-$pview-keyfacts-icontitledesc-outer-flexwrap: false !default;
-$pview-keyfacts-icontitledesc-outer-divs-flex: false !default;
-$pview-keyfacts-icontitledesc-outer-divs-width: false !default;
-
-$pview-keyfacts-icontitledesc-outer-width: false !default;
-$pview-keyfacts-icontitledesc-outer-width-desktop: false !default;
-
-$pview-keyfacts-icontitledesc-outer-justifycontent: false !default;
-$pview-keyfacts-icontitledesc-outer-margin: false !default;
-$pview-keyfacts-icontitledesc-outer-margin-desktop: false !default;
+$pview-keyfacts-include: true !default;
 
 
-$pview-keyfacts-icontitledesc-item-display: false !default;
-$pview-keyfacts-icontitledesc-item-flexwrap: false !default;
-$pview-keyfacts-icontitledesc-item-justifycontent: false !default;
-$pview-keyfacts-icontitledesc-item-width: false !default;
-$pview-keyfacts-icontitledesc-item-textalign: false !default;
-$pview-keyfacts-icontitledesc-item-fontsize: false !default;
+@if $pview-keyfacts-include == true {
+
+    $pview-keyfeatures-outer-margin: 0 0 1.875rem 0 !default;
+    $pview-keyfeatures-outer-order: 1 !default;
+
+    $pview-keyfeatures-h4-width: 100% !default;
+    $pview-keyfeatures-h4-text-transform: false !default;
+    $pview-keyfeatures-h4-font-size: 1.375rem !default;
+    $pview-keyfeatures-h4-padding: 0 0 4px 17px !default;
+    $pview-keyfeatures-h4-margin: 1.875rem 0 !default;
+    $pview-keyfeatures-h4-fontweight: 600 !default;
+
+    $pview-keyfeatures-h4-padding-desktopmd: 0 0 4px 10px !default;
+
+    $pview-keyfeatures-bg-color: #FFF !default;
+    $pview-keyfeatures-color: $body-color !default;
+
+    $pview-keyfeatures-display: flex !default;
+    $pview-keyfeatures-flexwrap: wrap !default;
+    $pview-keyfeatures-padding: 0 !default;
+    $pview-keyfeatures-margin: 0 !default;
+    $pview-keyfeatures-mobilepadding: 0 !default;
+    $pview-keyfeatures-li-style-type: none !default;
+    $pview-keyfeatures-li-style-position: inside !default;
+    $pview-keyfeatures-li-padding: 14px 0 2px 30px !default;
+    $pview-keyfeatures-li-text-indent: -22px !default;
+
+    $pview-keyfeatures-li-before-content: '✓' !default;
+    $pview-keyfeatures-li-before-color: #00acb6 !default;
+    $pview-keyfeatures-li-before-margin: 0 0.6875rem 0 0 !default;
+    $pview-keyfeatures-li-before-fontweight: 600 !default;
+    $pview-keyfeatures-li-before-fontsize: 1.125rem !default;
+
+
+    $pview-keyfacts-icontitledesc-title-justifycontent: false !default;
+    $pview-keyfacts-icontitledesc-title-width: false !default;
+    $pview-keyfacts-icontitledesc-title-color: false !default;
+    $pview-keyfacts-icontitledesc-title-textalign: false !default;
+    $pview-keyfacts-icontitledesc-title-fontsize: false !default;
+    $pview-keyfacts-icontitledesc-title-padding: false !default;
+    $pview-keyfacts-icontitledesc-title-fontfamily: false !default;
+
+    $pview-keyfacts-icontitledesc-outer-fontfamily: false !default;
+    $pview-keyfacts-icontitledesc-outer-background: false !default;
+    $pview-keyfacts-icontitledesc-outer-padding: false !default;
+    $pview-keyfacts-icontitledesc-outer-padding-desktop: false !default;
+    $pview-keyfacts-icontitledesc-outer-display: false !default;
+    $pview-keyfacts-icontitledesc-outer-textalign: false !default;
+    $pview-keyfacts-icontitledesc-outer-flexwrap: false !default;
+    $pview-keyfacts-icontitledesc-outer-divs-flex: false !default;
+    $pview-keyfacts-icontitledesc-outer-divs-width: false !default;
+
+    $pview-keyfacts-icontitledesc-outer-width: false !default;
+    $pview-keyfacts-icontitledesc-outer-width-desktop: false !default;
+
+    $pview-keyfacts-icontitledesc-outer-justifycontent: false !default;
+    $pview-keyfacts-icontitledesc-outer-margin: false !default;
+    $pview-keyfacts-icontitledesc-outer-margin-desktop: false !default;
+
+
+    $pview-keyfacts-icontitledesc-item-display: false !default;
+    $pview-keyfacts-icontitledesc-item-flexwrap: false !default;
+    $pview-keyfacts-icontitledesc-item-justifycontent: false !default;
+    $pview-keyfacts-icontitledesc-item-width: false !default;
+    $pview-keyfacts-icontitledesc-item-textalign: false !default;
+    $pview-keyfacts-icontitledesc-item-fontsize: false !default;
 
 
 
 
-$pview-keyfacts-icontitledesc-item-color: false !default;
-$pview-keyfacts-icontitledesc-item-padding: false !default;
-$pview-keyfacts-icontitledesc-item-margin: false !default;
 
-$pview-keyfacts-icontitledesc-row-justifycontent: false !default;
-$pview-keyfacts-icontitledesc-row-width: false !default;
-$pview-keyfacts-icontitledesc-row-width-desktop: false !default;
-$pview-keyfacts-icontitledesc-row-textalign: false !default;
-$pview-keyfacts-icontitledesc-row-fontsize: false !default;
-$pview-keyfacts-icontitledesc-row-display: false !default;
-$pview-keyfacts-icontitledesc-row-color: false !default;
-$pview-keyfacts-icontitledesc-row-padding: false !default;
-$pview-keyfacts-icontitledesc-row-margin: false !default;
-$pview-keyfacts-icontitledesc-row-fontfamily: false !default;
-$pview-keyfacts-icontitledesc-row-border: false !default;
-$pview-keyfacts-icontitledesc-row-border-position: false !default;
-$pview-keyfacts-icontitledesc-row-flexwrap: false !default;
-$pview-keyfacts-icontitledesc-row-divs-flex: false !default;
-$pview-keyfacts-icontitledesc-row-divs-width: false !default;
+    $pview-keyfacts-icontitledesc-item-color: false !default;
+    $pview-keyfacts-icontitledesc-item-padding: false !default;
+    $pview-keyfacts-icontitledesc-item-margin: false !default;
 
+    $pview-keyfacts-icontitledesc-row-justifycontent: false !default;
+    $pview-keyfacts-icontitledesc-row-width: false !default;
+    $pview-keyfacts-icontitledesc-row-width-desktop: false !default;
+    $pview-keyfacts-icontitledesc-row-textalign: false !default;
+    $pview-keyfacts-icontitledesc-row-fontsize: false !default;
+    $pview-keyfacts-icontitledesc-row-display: false !default;
+    $pview-keyfacts-icontitledesc-row-color: false !default;
+    $pview-keyfacts-icontitledesc-row-padding: false !default;
+    $pview-keyfacts-icontitledesc-row-margin: false !default;
+    $pview-keyfacts-icontitledesc-row-fontfamily: false !default;
+    $pview-keyfacts-icontitledesc-row-border: false !default;
+    $pview-keyfacts-icontitledesc-row-border-position: false !default;
+    $pview-keyfacts-icontitledesc-row-flexwrap: false !default;
+    $pview-keyfacts-icontitledesc-row-divs-flex: false !default;
+    $pview-keyfacts-icontitledesc-row-divs-width: false !default;
 
+    $pview-keyfacts-icontitledesc-row-flexwrap-mobiletabletmax: false !default;
+    $pview-keyfacts-icontitledesc-row-divs-width-mobiletabletmax: false !default;
+    $pview-keyfacts-icontitledesc-row-divs-margin-mobiletabletmax: false !default;
 
-$pview-keyfacts-icontitledesc-icon-justifycontent: false !default;
-$pview-keyfacts-icontitledesc-icon-width: false !default;
-$pview-keyfacts-icontitledesc-icon-textalign: false !default;
-$pview-keyfacts-icontitledesc-icon-fontsize: false !default;
-$pview-keyfacts-icontitledesc-icon-color: false !default;
-$pview-keyfacts-icontitledesc-icon-padding: false !default;
-$pview-keyfacts-icontitledesc-icon-margin: false !default;
-$pview-keyfacts-icontitledesc-icon-backgroundimage: false !default;
-$pview-keyfacts-icontitledesc-icon-backgroundsize: false !default;
-$pview-keyfacts-icontitledesc-icon-backgroundposition: false !default;
-$pview-keyfacts-icontitledesc-icon-backgroundrepeat: false !default;
+    $pview-keyfacts-icontitledesc-row1-item-flex: false !default;
+    $pview-keyfacts-icontitledesc-row1-item-width: false !default;
 
-$pview-keyfacts-icontitledesc-icon-height: false !default;
-$pview-keyfacts-icontitledesc-icon-width: false !default;
-
-$pview-keyfacts-icontitledesc-icon2-backgroundimage: false !default;
-$pview-keyfacts-icontitledesc-icon2-backgroundsize: false !default;
-$pview-keyfacts-icontitledesc-icon2-backgroundposition: false !default;
-$pview-keyfacts-icontitledesc-icon2-backgroundrepeat: false !default;
-$pview-keyfacts-icontitledesc-icon2-height: false !default;
-$pview-keyfacts-icontitledesc-icon2-width: false !default;
-
-$pview-keyfacts-icontitledesc-icon3-backgroundimage: false !default;
-$pview-keyfacts-icontitledesc-icon3-backgroundsize: false !default;
-$pview-keyfacts-icontitledesc-icon3-backgroundposition: false !default;
-$pview-keyfacts-icontitledesc-icon3-backgroundrepeat: false !default;
-$pview-keyfacts-icontitledesc-icon3-height: false !default;
-$pview-keyfacts-icontitledesc-icon3-width: false !default;
-
-$pview-keyfacts-icontitledesc-itemtitle-justifycontent: false !default;
-$pview-keyfacts-icontitledesc-itemtitle-width: false !default;
-$pview-keyfacts-icontitledesc-itemtitle-textalign: false !default;
-$pview-keyfacts-icontitledesc-itemtitle-fontsize: false !default;
-$pview-keyfacts-icontitledesc-itemtitle-fontweight: false !default;
-$pview-keyfacts-icontitledesc-itemtitle-color: false !default;
-$pview-keyfacts-icontitledesc-itemtitle-padding: false !default;
-$pview-keyfacts-icontitledesc-itemtitle-margin: false !default;
-
-$pview-keyfacts-icontitledesc-itemdesc-justifycontent: false !default;
-$pview-keyfacts-icontitledesc-itemdesc-width: false !default;
-$pview-keyfacts-icontitledesc-itemdesc-width-desktop: false !default;
-$pview-keyfacts-icontitledesc-itemdesc-textalign: false !default;
-$pview-keyfacts-icontitledesc-itemdesc-fontsize: false !default;
-$pview-keyfacts-icontitledesc-itemdesc-lineheight: false !default;
-$pview-keyfacts-icontitledesc-itemdesc-color: false !default;
-
-$pview-keyfacts-icontitledesc-item-even-desc-color: false !default;
-$pview-keyfacts-icontitledesc-item-odd-desc-color: false !default;
-
-$pview-keyfacts-icontitledesc-itemdesc-padding: false !default;
-$pview-keyfacts-icontitledesc-itemdesc-margin: false !default;
+    $pview-keyfacts-icontitledesc-row2-item-flex: false !default;
+    $pview-keyfacts-icontitledesc-row2-item-width: false !default;
 
 
-.pview-keyfacts-icontitledesc-outer {
-    @include co(font-family, $pview-keyfacts-icontitledesc-outer-fontfamily);
-    @include co(background, $pview-keyfacts-icontitledesc-outer-background);
-    @include co(text-align, $pview-keyfacts-icontitledesc-outer-textalign);
-    @include co(width, $pview-keyfacts-icontitledesc-outer-width);
-    @include co(display, $pview-keyfacts-icontitledesc-outer-display);
-    @include co(flex-wrap, $pview-keyfacts-icontitledesc-outer-flexwrap);
-    @include co(justify-content, $pview-keyfacts-icontitledesc-outer-justifycontent);
-    @include co(margin, $pview-keyfacts-icontitledesc-outer-margin);
-    @include co(padding, $pview-keyfacts-icontitledesc-outer-padding);
-    > div {
-        @include co(flex, $pview-keyfacts-icontitledesc-outer-divs-flex);
-        @include co(width, $pview-keyfacts-icontitledesc-outer-divs-width);
+
+    $pview-keyfacts-icontitledesc-icon-justifycontent: false !default;
+    $pview-keyfacts-icontitledesc-icon-width: false !default;
+    $pview-keyfacts-icontitledesc-icon-textalign: false !default;
+    $pview-keyfacts-icontitledesc-icon-fontsize: false !default;
+    $pview-keyfacts-icontitledesc-icon-color: false !default;
+    $pview-keyfacts-icontitledesc-icon-padding: false !default;
+    $pview-keyfacts-icontitledesc-icon-margin: false !default;
+    $pview-keyfacts-icontitledesc-icon-backgroundimage: false !default;
+    $pview-keyfacts-icontitledesc-icon-backgroundsize: false !default;
+    $pview-keyfacts-icontitledesc-icon-backgroundposition: false !default;
+    $pview-keyfacts-icontitledesc-icon-backgroundrepeat: false !default;
+
+    $pview-keyfacts-icontitledesc-icon-height: false !default;
+    $pview-keyfacts-icontitledesc-icon-width: false !default;
+
+    $pview-keyfacts-icontitledesc-icon2-backgroundimage: false !default;
+    $pview-keyfacts-icontitledesc-icon2-backgroundsize: false !default;
+    $pview-keyfacts-icontitledesc-icon2-backgroundposition: false !default;
+    $pview-keyfacts-icontitledesc-icon2-backgroundrepeat: false !default;
+    $pview-keyfacts-icontitledesc-icon2-height: false !default;
+    $pview-keyfacts-icontitledesc-icon2-width: false !default;
+
+    $pview-keyfacts-icontitledesc-icon3-backgroundimage: false !default;
+    $pview-keyfacts-icontitledesc-icon3-backgroundsize: false !default;
+    $pview-keyfacts-icontitledesc-icon3-backgroundposition: false !default;
+    $pview-keyfacts-icontitledesc-icon3-backgroundrepeat: false !default;
+    $pview-keyfacts-icontitledesc-icon3-height: false !default;
+    $pview-keyfacts-icontitledesc-icon3-width: false !default;
+
+    $pview-keyfacts-icontitledesc-itemtitle-justifycontent: false !default;
+    $pview-keyfacts-icontitledesc-itemtitle-width: false !default;
+    $pview-keyfacts-icontitledesc-itemtitle-textalign: false !default;
+    $pview-keyfacts-icontitledesc-itemtitle-fontsize: false !default;
+    $pview-keyfacts-icontitledesc-itemtitle-fontweight: false !default;
+    $pview-keyfacts-icontitledesc-itemtitle-color: false !default;
+    $pview-keyfacts-icontitledesc-itemtitle-padding: false !default;
+    $pview-keyfacts-icontitledesc-itemtitle-margin: false !default;
+
+    $pview-keyfacts-icontitledesc-itemdesc-justifycontent: false !default;
+    $pview-keyfacts-icontitledesc-itemdesc-width: false !default;
+    $pview-keyfacts-icontitledesc-itemdesc-width-desktop: false !default;
+    $pview-keyfacts-icontitledesc-itemdesc-textalign: false !default;
+    $pview-keyfacts-icontitledesc-itemdesc-fontsize: false !default;
+    $pview-keyfacts-icontitledesc-itemdesc-lineheight: false !default;
+    $pview-keyfacts-icontitledesc-itemdesc-color: false !default;
+
+    $pview-keyfacts-icontitledesc-item-even-desc-color: false !default;
+    $pview-keyfacts-icontitledesc-item-odd-desc-color: false !default;
+
+    $pview-keyfacts-icontitledesc-itemdesc-padding: false !default;
+    $pview-keyfacts-icontitledesc-itemdesc-margin: false !default;
+
+    $pview-keyfeatures-span-fontsize: false !default;
+    $pview-keyfeatures-span-fontsize-desktopsm-max: 0.875 !important !default;
+
+    #ev-prod-keyfacts-3 {
+        @include co(order, $pview-keyfeatures-outer-order);
+        @include co(margin, $pview-keyfeatures-outer-margin);
+        width: $pview-info-detailed-width-mobile;
+        @include min-screen($desktop-min) {
+            width: $pview-info-detailed-width-desktop;
+        }
     }
-    @include min-screen($desktop-min) {
-        @include co(margin, $pview-keyfacts-icontitledesc-outer-margin-desktop, $pview-keyfacts-icontitledesc-outer-margin);
-        @include co(width, $pview-keyfacts-icontitledesc-outer-width-desktop, $pview-keyfacts-icontitledesc-outer-width);
-        @include co(padding, $pview-keyfacts-icontitledesc-outer-padding-desktop, $pview-keyfacts-icontitledesc-outer-padding);
-    }
-}
+
+    .prod-page-keyfeatures {
+
+        @include co(display, $pview-keyfeatures-display);
+        @include co(flex-wrap, $pview-keyfeatures-flexwrap);
+        @include co(padding, $pview-keyfeatures-padding);
+        @include co(margin, $pview-keyfeatures-margin);
+        @include co(color, $pview-keyfeatures-color);
+        @include co(background, $pview-keyfeatures-bg-color);
 
 
-.pview-keyfacts-icontitledesc-title {
-    @include co(color, $pview-keyfacts-icontitledesc-title-color);
-    @include co(text-align, $pview-keyfacts-icontitledesc-title-textalign);
-    @include co(width, $pview-keyfacts-icontitledesc-title-width);
-    @include co(justify-content, $pview-keyfacts-icontitledesc-title-justifycontent);
-    @include co(font-size, $pview-keyfacts-icontitledesc-title-fontsize);
-    @include co(padding, $pview-keyfacts-icontitledesc-title-padding);
-    @include co(font-family, $pview-keyfacts-icontitledesc-title-fontfamily);
-}
+        @include max-screen($mobiletablet-max) {
+            @include co(padding, $pview-keyfeatures-mobilepadding);
+        }
 
-.pview-keyfacts-icontitledesc-row {
-    @include co(display, $pview-keyfacts-icontitledesc-row-display);
-    @include co(color, $pview-keyfacts-icontitledesc-row-color);
-    @include co(text-align, $pview-keyfacts-icontitledesc-row-textalign);
-    @include co(width, $pview-keyfacts-icontitledesc-row-width);
-    @include co(font-size, $pview-keyfacts-icontitledesc-row-fontsize);
-    @include co(justify-content, $pview-keyfacts-icontitledesc-row-justifycontent);
-    @include co(padding, $pview-keyfacts-icontitledesc-row-padding);
-    @include co(margin, $pview-keyfacts-icontitledesc-row-margin);
-    @include co(font-family, $pview-keyfacts-icontitledesc-row-fontfamily);
-    @include co(flex-wrap, $pview-keyfacts-icontitledesc-row-flexwrap);
-    > div {
-        @include co(flex, $pview-keyfacts-icontitledesc-row-divs-flex);
-        @include co(width, $pview-keyfacts-icontitledesc-row-divs-width);
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        span {
+            @include co(font-size, $pview-keyfeatures-span-fontsize);
+            @include max-screen($desktop-sm-max) {
+                @include co(font-size, $pview-keyfeatures-span-fontsize-desktopsm-max, $pview-keyfeatures-span-fontsize);
+            }
+        }
+
+
+
+        $pview-keyfeatures-li-width: 50% !default;
+        $pview-keyfeatures-li-width-desktop: 50% !default;
+        $pview-keyfeatures-li-width-desktopmd: 50% !default;
+        $pview-keyfeatures-li-flex: 0 1 auto !default;
+        $pview-keyfeatures-li-padding: 20px 0 12px 30px !default;
+
+        li {
+            @include co(width, $pview-keyfeatures-li-width);
+            @include co(flex, $pview-keyfeatures-li-flex);
+            @include co(padding, $pview-keyfeatures-li-padding);
+            list-style-type: $pview-keyfeatures-li-style-type;
+            list-style-position: $pview-keyfeatures-li-style-position;
+            text-indent: $pview-keyfeatures-li-text-indent;
+            @include min-screen($desktop-min) {
+                @include co(width, $pview-keyfeatures-li-width-desktop, $pview-keyfeatures-li-width);
+            }
+            @include min-screen($desktop-md-min) {
+                @include co(width, $pview-keyfeatures-li-width-desktopmd, $pview-keyfeatures-li-width-desktop, $pview-keyfeatures-li-width);
+            }
+            &:before {
+                @include co(content, $pview-keyfeatures-li-before-content);
+                @include co(color, $pview-keyfeatures-li-before-color);
+                @include co(margin, $pview-keyfeatures-li-before-margin);
+                @include co(font-weight, $pview-keyfeatures-li-before-fontweight);
+                @include co(font-size, $pview-keyfeatures-li-before-fontsize);
+            }
+        }
+
+        h4 {
+            @include co(text-transform, $pview-keyfeatures-h4-text-transform);
+            @include co(font-size, $pview-keyfeatures-h4-font-size);
+            @include co(font-weight, $pview-keyfeatures-h4-fontweight);
+            @include co(padding, $pview-keyfeatures-h4-padding);
+            @include co(width, $pview-keyfeatures-h4-width);
+            @include co(margin, $pview-keyfeatures-h4-margin);
+            @include min-screen($desktop-md-min) {
+                @include co(padding, $pview-keyfeatures-h4-padding-desktopmd, $pview-keyfeatures-h4-padding);
+            }
+        }
     }
 
-    @if $pview-keyfacts-icontitledesc-row-border-position == bottom {
-        @include co(border-bottom, $pview-keyfacts-icontitledesc-row-border);
-    }
-    @if $pview-keyfacts-icontitledesc-row-border-position == top {
-        @include co(border-top, $pview-keyfacts-icontitledesc-row-border);
+    .pview-keyfacts-icontitledesc-outer {
+        @include co(font-family, $pview-keyfacts-icontitledesc-outer-fontfamily);
+        @include co(background, $pview-keyfacts-icontitledesc-outer-background);
+        @include co(text-align, $pview-keyfacts-icontitledesc-outer-textalign);
+        @include co(width, $pview-keyfacts-icontitledesc-outer-width);
+        @include co(display, $pview-keyfacts-icontitledesc-outer-display);
+        @include co(flex-wrap, $pview-keyfacts-icontitledesc-outer-flexwrap);
+        @include co(justify-content, $pview-keyfacts-icontitledesc-outer-justifycontent);
+        @include co(margin, $pview-keyfacts-icontitledesc-outer-margin);
+        @include co(padding, $pview-keyfacts-icontitledesc-outer-padding);
+        > div {
+            @include co(flex, $pview-keyfacts-icontitledesc-outer-divs-flex);
+            @include co(width, $pview-keyfacts-icontitledesc-outer-divs-width);
+        }
+        @include min-screen($desktop-min) {
+            @include co(margin, $pview-keyfacts-icontitledesc-outer-margin-desktop, $pview-keyfacts-icontitledesc-outer-margin);
+            @include co(width, $pview-keyfacts-icontitledesc-outer-width-desktop, $pview-keyfacts-icontitledesc-outer-width);
+            @include co(padding, $pview-keyfacts-icontitledesc-outer-padding-desktop, $pview-keyfacts-icontitledesc-outer-padding);
+        }
     }
 
-    @if $pview-keyfacts-icontitledesc-row-border-position == all {
-        @include co(border, $pview-keyfacts-icontitledesc-row-border);
+
+    .pview-keyfacts-icontitledesc-title {
+        @include co(color, $pview-keyfacts-icontitledesc-title-color);
+        @include co(text-align, $pview-keyfacts-icontitledesc-title-textalign);
+        @include co(width, $pview-keyfacts-icontitledesc-title-width);
+        @include co(justify-content, $pview-keyfacts-icontitledesc-title-justifycontent);
+        @include co(font-size, $pview-keyfacts-icontitledesc-title-fontsize);
+        @include co(padding, $pview-keyfacts-icontitledesc-title-padding);
+        @include co(font-family, $pview-keyfacts-icontitledesc-title-fontfamily);
     }
 
-    @include min-screen($desktop-min) {
-        @include co(width, $pview-keyfacts-icontitledesc-row-width-desktop, $pview-keyfacts-icontitledesc-row-width);
+    .pview-keyfacts-icontitledesc-row {
+        @include co(display, $pview-keyfacts-icontitledesc-row-display);
+        @include co(color, $pview-keyfacts-icontitledesc-row-color);
+        @include co(text-align, $pview-keyfacts-icontitledesc-row-textalign);
+        @include co(width, $pview-keyfacts-icontitledesc-row-width);
+        @include co(font-size, $pview-keyfacts-icontitledesc-row-fontsize);
+        @include co(justify-content, $pview-keyfacts-icontitledesc-row-justifycontent);
+        @include co(padding, $pview-keyfacts-icontitledesc-row-padding);
+        @include co(margin, $pview-keyfacts-icontitledesc-row-margin);
+        @include co(font-family, $pview-keyfacts-icontitledesc-row-fontfamily);
+        @include co(flex-wrap, $pview-keyfacts-icontitledesc-row-flexwrap);
+
+
+
+        .pview-keyfacts-icontitledesc-item {
+            @include co(flex, $pview-keyfacts-icontitledesc-row-divs-flex);
+            @include co(width, $pview-keyfacts-icontitledesc-row-divs-width);
+            @include max-screen($mobiletablet-max) {
+                @include co(width, $pview-keyfacts-icontitledesc-row-divs-width-mobiletabletmax);
+            }
+        }
+
+        @if $pview-keyfacts-icontitledesc-row-border-position == bottom {
+            @include co(border-bottom, $pview-keyfacts-icontitledesc-row-border);
+        }
+        @if $pview-keyfacts-icontitledesc-row-border-position == top {
+            @include co(border-top, $pview-keyfacts-icontitledesc-row-border);
+        }
+
+        @if $pview-keyfacts-icontitledesc-row-border-position == all {
+            @include co(border, $pview-keyfacts-icontitledesc-row-border);
+        }
+
+        @include max-screen($mobiletablet-max) {
+            @include co(flex-wrap, $pview-keyfacts-icontitledesc-row-flexwrap-mobiletabletmax);
+        }
+
+        @include min-screen($desktop-min) {
+            @include co(width, $pview-keyfacts-icontitledesc-row-width-desktop, $pview-keyfacts-icontitledesc-row-width);
+        }
+        .pview-keyfacts-icontitledesc-item {
+            &:nth-child(even) {
+                .pview-keyfacts-icontitledesc-itemdesc {
+                    @include co(color, $pview-keyfacts-icontitledesc-item-even-desc-color);
+                }
+
+            }
+            &:nth-child(odd) {
+                .pview-keyfacts-icontitledesc-itemdesc {
+                    @include co(color, $pview-keyfacts-icontitledesc-item-odd-desc-color);
+                }
+            }
+        }
     }
+
+    .pview-keyfacts-icontitledesc-row-1 {
+        @include co(display, $pview-keyfacts-icontitledesc-row-display);
+        @include co(color, $pview-keyfacts-icontitledesc-row-color);
+        @include co(text-align, $pview-keyfacts-icontitledesc-row-textalign);
+        @include co(width, $pview-keyfacts-icontitledesc-row-width);
+        @include co(font-size, $pview-keyfacts-icontitledesc-row-fontsize);
+        @include co(justify-content, $pview-keyfacts-icontitledesc-row-justifycontent);
+        @include co(padding, $pview-keyfacts-icontitledesc-row-padding);
+        @include co(margin, $pview-keyfacts-icontitledesc-row-margin);
+        @include co(font-family, $pview-keyfacts-icontitledesc-row-fontfamily);
+        @include co(flex-wrap, $pview-keyfacts-icontitledesc-row-flexwrap);
+
+        .pview-keyfacts-icontitledesc-item {
+            @include co(flex, $pview-keyfacts-icontitledesc-row1-item-flex);
+            @include co(width, $pview-keyfacts-icontitledesc-row1-item-width);
+        }
+    }
+
+    .pview-keyfacts-icontitledesc-row-2 {
+        @include co(display, $pview-keyfacts-icontitledesc-row-display);
+        @include co(color, $pview-keyfacts-icontitledesc-row-color);
+        @include co(text-align, $pview-keyfacts-icontitledesc-row-textalign);
+        @include co(width, $pview-keyfacts-icontitledesc-row-width);
+        @include co(font-size, $pview-keyfacts-icontitledesc-row-fontsize);
+        @include co(justify-content, $pview-keyfacts-icontitledesc-row-justifycontent);
+        @include co(padding, $pview-keyfacts-icontitledesc-row-padding);
+        @include co(margin, $pview-keyfacts-icontitledesc-row-margin);
+        @include co(font-family, $pview-keyfacts-icontitledesc-row-fontfamily);
+        @include co(flex-wrap, $pview-keyfacts-icontitledesc-row-flexwrap);
+
+        .pview-keyfacts-icontitledesc-item {
+            @include co(flex, $pview-keyfacts-icontitledesc-row2-item-flex);
+            @include co(width, $pview-keyfacts-icontitledesc-row2-item-width);
+        }
+    }
+
     .pview-keyfacts-icontitledesc-item {
-        &:nth-child(even) {
-            .pview-keyfacts-icontitledesc-itemdesc {
-                @include co(color, $pview-keyfacts-icontitledesc-item-even-desc-color);
-            }
+        @include co(color, $pview-keyfacts-icontitledesc-item-color);
+        @include co(text-align, $pview-keyfacts-icontitledesc-item-textalign);
+        @include co(width, $pview-keyfacts-icontitledesc-item-width);
+        @include co(font-size, $pview-keyfacts-icontitledesc-item-fontsize);
+        @include co(justify-content, $pview-keyfacts-icontitledesc-item-justifycontent);
+        @include co(flex-wrap, $pview-keyfacts-icontitledesc-item-flexwrap);
+        @include co(display, $pview-keyfacts-icontitledesc-item-display);
+        @include co(padding, $pview-keyfacts-icontitledesc-item-padding);
+        @include co(margin, $pview-keyfacts-icontitledesc-item-margin);
+    }
 
-        }
-        &:nth-child(odd) {
-            .pview-keyfacts-icontitledesc-itemdesc {
-                @include co(color, $pview-keyfacts-icontitledesc-item-odd-desc-color);
-            }
+
+
+    .pview-keyfacts-icontitledesc-icon {
+        @include co(color, $pview-keyfacts-icontitledesc-icon-color);
+        @include co(text-align, $pview-keyfacts-icontitledesc-icon-textalign);
+        @include co(width, $pview-keyfacts-icontitledesc-icon-width);
+        @include co(font-size, $pview-keyfacts-icontitledesc-icon-fontsize);
+        @include co(justify-content, $pview-keyfacts-icontitledesc-icon-justifycontent);
+        @include co(padding, $pview-keyfacts-icontitledesc-icon-padding);
+        @include co(margin, $pview-keyfacts-icontitledesc-icon-margin);
+        @include co(background-image, $pview-keyfacts-icontitledesc-icon-backgroundimage);
+        @include co(background-size, $pview-keyfacts-icontitledesc-icon-backgroundsize);
+        @include co(background-repeat, $pview-keyfacts-icontitledesc-icon-backgroundrepeat);
+        @include co(background-position, $pview-keyfacts-icontitledesc-icon-backgroundposition);
+        @include co(height, $pview-keyfacts-icontitledesc-icon-height);
+        @include co(width, $pview-keyfacts-icontitledesc-icon-width);
+    }
+
+    .pview-keyfacts-icontitledesc-icon2 {
+        @include co(background-image, $pview-keyfacts-icontitledesc-icon2-backgroundimage);
+        @include co(background-size, $pview-keyfacts-icontitledesc-icon2-backgroundsize);
+        @include co(background-repeat, $pview-keyfacts-icontitledesc-icon2-backgroundrepeat);
+        @include co(background-position, $pview-keyfacts-icontitledesc-icon2-backgroundposition);
+        @include co(height, $pview-keyfacts-icontitledesc-icon2-height);
+        @include co(width, $pview-keyfacts-icontitledesc-icon2-width);
+    }
+
+    .pview-keyfacts-icontitledesc-icon3 {
+        @include co(background-image, $pview-keyfacts-icontitledesc-icon3-backgroundimage);
+        @include co(background-size, $pview-keyfacts-icontitledesc-icon3-backgroundsize);
+        @include co(background-repeat, $pview-keyfacts-icontitledesc-icon3-backgroundrepeat);
+        @include co(background-position, $pview-keyfacts-icontitledesc-icon3-backgroundposition);
+        @include co(height, $pview-keyfacts-icontitledesc-icon3-height);
+        @include co(width, $pview-keyfacts-icontitledesc-icon3-width);
+    }
+
+
+    .pview-keyfacts-icontitledesc-itemtitle {
+        @include co(color, $pview-keyfacts-icontitledesc-itemtitle-color);
+        @include co(text-align, $pview-keyfacts-icontitledesc-itemtitle-textalign);
+        @include co(width, $pview-keyfacts-icontitledesc-itemtitle-width);
+        @include co(font-size, $pview-keyfacts-icontitledesc-itemtitle-fontsize);
+        @include co(font-weight, $pview-keyfacts-icontitledesc-itemtitle-fontweight);
+        @include co(justify-content, $pview-keyfacts-icontitledesc-itemtitle-justifycontent);
+        @include co(padding, $pview-keyfacts-icontitledesc-itemtitle-padding);
+        @include co(margin, $pview-keyfacts-icontitledesc-itemtitle-margin);
+    }
+
+
+
+    .pview-keyfacts-icontitledesc-itemdesc {
+        @include co(color, $pview-keyfacts-icontitledesc-itemdesc-color);
+        @include co(text-align, $pview-keyfacts-icontitledesc-itemdesc-textalign);
+        @include co(width, $pview-keyfacts-icontitledesc-itemdesc-width);
+        @include co(font-size, $pview-keyfacts-icontitledesc-itemdesc-fontsize);
+        @include co(line-height, $pview-keyfacts-icontitledesc-itemdesc-lineheight);
+        @include co(justify-content, $pview-keyfacts-icontitledesc-itemdesc-justifycontent);
+        @include co(padding, $pview-keyfacts-icontitledesc-itemdesc-padding);
+        @include co(margin, $pview-keyfacts-icontitledesc-itemdesc-margin);
+        @include min-screen($desktop-min) {
+            @include co(width, $pview-keyfacts-icontitledesc-itemdesc-width-desktop, $pview-keyfacts-icontitledesc-itemdesc-width);
         }
     }
-}
 
-
-.pview-keyfacts-icontitledesc-item {
-    @include co(color, $pview-keyfacts-icontitledesc-item-color);
-    @include co(text-align, $pview-keyfacts-icontitledesc-item-textalign);
-    @include co(width, $pview-keyfacts-icontitledesc-item-width);
-    @include co(font-size, $pview-keyfacts-icontitledesc-item-fontsize);
-    @include co(justify-content, $pview-keyfacts-icontitledesc-item-justifycontent);
-    @include co(flex-wrap, $pview-keyfacts-icontitledesc-item-flexwrap);
-    @include co(display, $pview-keyfacts-icontitledesc-item-display);
-    @include co(padding, $pview-keyfacts-icontitledesc-item-padding);
-    @include co(margin, $pview-keyfacts-icontitledesc-item-margin);
-}
-
-.pview-keyfacts-icontitledesc-icon {
-    @include co(color, $pview-keyfacts-icontitledesc-icon-color);
-    @include co(text-align, $pview-keyfacts-icontitledesc-icon-textalign);
-    @include co(width, $pview-keyfacts-icontitledesc-icon-width);
-    @include co(font-size, $pview-keyfacts-icontitledesc-icon-fontsize);
-    @include co(justify-content, $pview-keyfacts-icontitledesc-icon-justifycontent);
-    @include co(padding, $pview-keyfacts-icontitledesc-icon-padding);
-    @include co(margin, $pview-keyfacts-icontitledesc-icon-margin);
-    @include co(background-image, $pview-keyfacts-icontitledesc-icon-backgroundimage);
-    @include co(background-size, $pview-keyfacts-icontitledesc-icon-backgroundsize);
-    @include co(background-repeat, $pview-keyfacts-icontitledesc-icon-backgroundrepeat);
-    @include co(background-position, $pview-keyfacts-icontitledesc-icon-backgroundposition);
-    @include co(height, $pview-keyfacts-icontitledesc-icon-height);
-    @include co(width, $pview-keyfacts-icontitledesc-icon-width);
-}
-
-.pview-keyfacts-icontitledesc-icon2 {
-    @include co(background-image, $pview-keyfacts-icontitledesc-icon2-backgroundimage);
-    @include co(background-size, $pview-keyfacts-icontitledesc-icon2-backgroundsize);
-    @include co(background-repeat, $pview-keyfacts-icontitledesc-icon2-backgroundrepeat);
-    @include co(background-position, $pview-keyfacts-icontitledesc-icon2-backgroundposition);
-    @include co(height, $pview-keyfacts-icontitledesc-icon2-height);
-    @include co(width, $pview-keyfacts-icontitledesc-icon2-width);
-}
-
-.pview-keyfacts-icontitledesc-icon3 {
-    @include co(background-image, $pview-keyfacts-icontitledesc-icon3-backgroundimage);
-    @include co(background-size, $pview-keyfacts-icontitledesc-icon3-backgroundsize);
-    @include co(background-repeat, $pview-keyfacts-icontitledesc-icon3-backgroundrepeat);
-    @include co(background-position, $pview-keyfacts-icontitledesc-icon3-backgroundposition);
-    @include co(height, $pview-keyfacts-icontitledesc-icon3-height);
-    @include co(width, $pview-keyfacts-icontitledesc-icon3-width);
-}
-
-
-.pview-keyfacts-icontitledesc-itemtitle {
-    @include co(color, $pview-keyfacts-icontitledesc-itemtitle-color);
-    @include co(text-align, $pview-keyfacts-icontitledesc-itemtitle-textalign);
-    @include co(width, $pview-keyfacts-icontitledesc-itemtitle-width);
-    @include co(font-size, $pview-keyfacts-icontitledesc-itemtitle-fontsize);
-    @include co(font-weight, $pview-keyfacts-icontitledesc-itemtitle-fontweight);
-    @include co(justify-content, $pview-keyfacts-icontitledesc-itemtitle-justifycontent);
-    @include co(padding, $pview-keyfacts-icontitledesc-itemtitle-padding);
-    @include co(margin, $pview-keyfacts-icontitledesc-itemtitle-margin);
-}
-
-
-
-.pview-keyfacts-icontitledesc-itemdesc {
-    @include co(color, $pview-keyfacts-icontitledesc-itemdesc-color);
-    @include co(text-align, $pview-keyfacts-icontitledesc-itemdesc-textalign);
-    @include co(width, $pview-keyfacts-icontitledesc-itemdesc-width);
-    @include co(font-size, $pview-keyfacts-icontitledesc-itemdesc-fontsize);
-    @include co(line-height, $pview-keyfacts-icontitledesc-itemdesc-lineheight);
-    @include co(justify-content, $pview-keyfacts-icontitledesc-itemdesc-justifycontent);
-    @include co(padding, $pview-keyfacts-icontitledesc-itemdesc-padding);
-    @include co(margin, $pview-keyfacts-icontitledesc-itemdesc-margin);
-    @include min-screen($desktop-min) {
-        @include co(width, $pview-keyfacts-icontitledesc-itemdesc-width-desktop, $pview-keyfacts-icontitledesc-itemdesc-width);
-    }
 }

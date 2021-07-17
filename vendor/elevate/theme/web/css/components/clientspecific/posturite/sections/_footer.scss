@@ -74,7 +74,7 @@
             background-image: $ftr-blk-4-sib-inb-top-logo-url;
             background-repeat: no-repeat;
             background-size: $ftr-blk-4-sib-inb-top-logo-backgroundsize;
-            height: $ftr-blk-4-sib-inb-top-logo-height;
+            @include co(height, $ftr-blk-4-sib-inb-top-logo-height);
             @include co(width, $ftr-blk-4-sib-inb-top-logo-width);
             background-position: center;
             @include co(margin, $ftr-blk-4-sib-inb-top-logo-margin);
@@ -82,7 +82,7 @@
         }
 
         .ftr-sib-inb-top-address {
-            display: $ftr-blk-4-sib-inb-top-address-display;
+            @include co(display, $ftr-blk-4-sib-inb-top-address-display);
             flex-wrap: wrap;
             @include co(margin, $ftr-blk-4-sib-inb-top-address-margin);
 

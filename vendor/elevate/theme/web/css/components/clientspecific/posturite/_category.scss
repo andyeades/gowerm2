@@ -317,7 +317,7 @@
         .content-righ-bottom {
             height: auto;
             background-position: 50% 50% !important;
-            background: $posturite-cat-color-5 !important;
+            @include co(background, $posturite-cat-color-5 !important);
             background-repeat: no-repeat !important;
             background-size: cover !important;
             padding-bottom: 55.5%;
@@ -372,7 +372,7 @@
         }
 
         .content-righ-bottom2 {
-            background: $posturite-cat-color-5 !important;
+            @include co(background, $posturite-cat-color-5 !important);
             background-repeat: no-repeat !important;
             background-size: cover !important;
             padding-bottom: 75%;
@@ -405,7 +405,7 @@
         }
 
         .bottom-row-left {
-            background: $posturite-cat-color-8;
+            @include co(background, $posturite-cat-color-8);
             background-position: 50% 50% !important;
             background-repeat: no-repeat !important;
             background-size: cover !important;
@@ -418,7 +418,7 @@
         }
 
         .bottom-row-middle {
-            background: $posturite-cat-color-9;
+            @include co(background, $posturite-cat-color-9);
             background-position: 50% 50% !important;
             background-repeat: no-repeat !important;
             background-size: cover !important;
@@ -431,7 +431,7 @@
         }
 
         .bottom-row-right {
-            background: $posturite-cat-color-10;
+            @include co(background, $posturite-cat-color-10);
             background-position: 50% 50% !important;
             background-repeat: no-repeat !important;
             background-size: cover !important;
@@ -449,7 +449,7 @@
         }
 
         .cat-main-description {
-            background: $posturite-cat-color-8;
+            @include co(background, $posturite-cat-color-8);
             padding: 30px;
             background-image: $posturite-cat-url-6 !important;
             background-position: right 0 bottom;
@@ -505,7 +505,7 @@
         }
 
         .shop-by-button {
-            background: $posturite-cat-color-11;
+            @include co(background, $posturite-cat-color-11);
             padding: 20px;
             text-align: center;
             @include co(color, $posturite-cat-color-7);
@@ -515,7 +515,7 @@
 
             &:hover {
                 cursor: pointer;
-                background: $posturite-cat-color-14;
+                @include co(background, $posturite-cat-color-14);
             }
         }
 
@@ -570,7 +570,7 @@
 
         .home-services {
             .button {
-                background: $posturite-cat-color-12;
+                @include co(background, $posturite-cat-color-12);
                 padding: 15px;
                 @include co(color, $posturite-cat-color-13);
                 margin-top: 30px;
@@ -578,7 +578,7 @@
                 font-size: 15px;
 
                 &:hover {
-                    background: $posturite-cat-color-14;
+                    @include co(background, $posturite-cat-color-14);
                 }
             }
 
@@ -776,7 +776,7 @@
             }
 
             .cat-main-description-inner {
-                background: $posturite-cat-color-0;
+                @include co(background, $posturite-cat-color-0);
                 padding: 30px;
             }
 
@@ -796,7 +796,7 @@
     @media screen and(max-width: 1470px) {
         .elevate-custom-cat {
             .cat-main-description-inner {
-                background: $posturite-cat-color-0;
+                @include co(background, $posturite-cat-color-0);
                 padding: 30px;
             }
 

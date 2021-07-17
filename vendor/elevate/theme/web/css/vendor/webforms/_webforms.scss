@@ -136,7 +136,7 @@ div {
 .please-wait {
     padding-top: 0.5rem;
     .loading-indicator {
-        background: $webforms-color-2 $webforms-url-2 no-repeat;
+        @include co(background, $webforms-color-2 $webforms-url-2 no-repeat);
         background-size: 1.8rem;
         display: inline-block;
         width: 1.8rem;
@@ -165,7 +165,7 @@ div {
     padding: 2rem;
 }
 .webforms-customer-account-message {
-    background: $webforms-color-6;
+    @include co(background, $webforms-color-6);
     padding: 3rem;
 }
 .webforms-results-block {
@@ -203,13 +203,13 @@ div {
     padding: 0 !important;
     height: 16px;
     position: relative;
-    background: $webforms-url-3 top left repeat-x;
+    @include co(background, $webforms-url-3 top left repeat-x);
     li {
         padding: 0;
         margin: 0;
         float: left;
         &.stars-value {
-            background: $webforms-url-3 left bottom;
+            @include co(background, $webforms-url-3 left bottom);
             position: absolute;
             height: 16px;
             display: block;
@@ -225,7 +225,7 @@ div {
     cursor: default;
     border: 1px solid $webforms-color-8;
     border-top: 0;
-    background: $webforms-color-2;
+    @include co(background, $webforms-color-2);
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
     box-shadow: -1px 1px 3px $webforms-color-9;
     position: absolute;
@@ -251,7 +251,7 @@ div {
         color: $webforms-color-11;
     }
     &.selected {
-        background: $webforms-color-12;
+        @include co(background, $webforms-color-12);
     }
 }
 .file-preview {
@@ -339,7 +339,7 @@ div {
                 line-height: 23px;
                 color: $webforms-color-15;
                 content: '\e612';
-                font-family: $icons-font-name;
+                @include co(font-family, $icons-font-name);
                 vertical-align: middle;
                 display: inline-block;
                 font-weight: normal;
@@ -404,7 +404,7 @@ div {
 }
 .icon-paperclip {
     color: $webforms-color-17 !important;
-    fill: $webforms-color-17 !important;
+    @include co(fill, $webforms-color-17 !important);
     svg {
         //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
         transform: rotate(45deg) scaleX(-1);
@@ -414,7 +414,7 @@ div {
     text-align: center !important;
 }
 .drop-zone-preview {
-    background: $webforms-color-18;
+    @include co(background, $webforms-color-18);
     border: .09167rem solid $webforms-color-19;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 0.33333rem;
@@ -473,7 +473,7 @@ div {
     cursor: pointer !important;
     float: right !important;
     svg {
-        fill: $webforms-color-13;
+        @include co(fill, $webforms-color-13);
     }
 }
 .drop-zone-progress {
@@ -513,7 +513,7 @@ div {
 }
 .webforms-popup {
     position: relative;
-    background: $webforms-color-2;
+    @include co(background, $webforms-color-2);
     padding: 2rem;
     margin: 2rem auto;
     //Instead of the line below you could use @include box-sizing($bs)
@@ -538,7 +538,7 @@ div {
 }
 .webforms-result-action {
     display: block;
-    background: $webforms-color-16;
+    @include co(background, $webforms-color-16);
     text-align: center;
     padding: 0.3rem 0.1rem;
     margin: 0.5rem 0.1rem;
@@ -548,13 +548,13 @@ div {
     &:hover {
         text-decoration: none;
         color: $webforms-color-22;
-        background: $webforms-color-23;
+        @include co(background, $webforms-color-23);
     }
 }
 .result-action-delete {
     border-color: $webforms-color-20;
     &:hover {
-        background: $webforms-color-20;
+        @include co(background, $webforms-color-20);
     }
 }
 .webforms-file-pool {
@@ -604,13 +604,13 @@ div {
     height: auto;
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
     box-shadow: 0 0 3px $webforms-color-24;
-    background: $webforms-color-16;
+    @include co(background, $webforms-color-16);
     max-width: 200px;
     padding: 5px 10px;
     &:hover {
         //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
         box-shadow: 0 0 7px $webforms-color-24;
-        background: $webforms-color-22;
+        @include co(background, $webforms-color-22);
         color: $webforms-color-1;
     }
     figure {
@@ -618,7 +618,7 @@ div {
             margin: 10px 0 5px;
         }
         img {
-            background: $webforms-color-22;
+            @include co(background, $webforms-color-22);
         }
     }
 }

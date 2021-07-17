@@ -172,6 +172,9 @@
                 <item name="elevate_delivery_deliveryrulesfunctions_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesFunctions\Grid\Collection</item>
                 <item name="elevate_delivery_holidaydates_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Holidaydates\Grid\Collection</item>
             </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="sales_order_grid_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Order\Grid\Collection</item>
+            </argument>
         </arguments>
     </type>
 

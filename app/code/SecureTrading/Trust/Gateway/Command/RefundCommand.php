@@ -3,6 +3,8 @@
 namespace SecureTrading\Trust\Gateway\Command;
 
 use Magento\Framework\App\ObjectManager;
+use Magento\Framework\Registry;
+use Magento\Payment\Gateway\Command\CommandException;
 use Magento\Payment\Gateway\Command\CommandPoolInterface;
 use Magento\Payment\Gateway\ConfigInterface;
 use Magento\Payment\Gateway\ErrorMapper\ErrorMessageMapperInterface;
@@ -25,6 +27,8 @@ class RefundCommand extends AbstractCommand
 
     /**
      * CaptureCommand constructor.
+	 *
+	 * @param Registry $coreRegistry
      * @param BuilderInterface $requestBuilder
      * @param TransferFactoryInterface $transferFactory
      * @param Logger $logger
@@ -35,6 +39,7 @@ class RefundCommand extends AbstractCommand
      * @param CommandPoolInterface $commandPool
      */
     public function __construct(
+    	Registry $coreRegistry,
         BuilderInterface $requestBuilder,
         TransferFactoryInterface $transferFactory,
         Logger $logger,
@@ -44,10 +49,16 @@ class RefundCommand extends AbstractCommand
         ValidatorInterface $validator = null,
         ErrorMessageMapperInterface $errorMessageMapper = null
     ) {
-        parent::__construct($requestBuilder,$transferFactory,$logger,$config,$handler,$validator,$errorMessageMapper);
+        parent::__construct($coreRegistry,$requestBuilder,$transferFactory,$logger,$config,$handler,$validator,$errorMessageMapper);
         $this->commandPool = $commandPool;
     }
 
+    /**
+     * @param array $commandSubject
+     * @return \Magento\Payment\Gateway\Command\ResultInterface|void|null
+     * @throws CommandException
+     * @throws \Magento\Framework\Exception\NotFoundException
+     */
     public function execute(array $commandSubject)
     {
         $data =  $this->requestBuilder->build($commandSubject);
@@ -55,28 +66,24 @@ class RefundCommand extends AbstractCommand
         $transactionDetail = $this->transferFactory->create($data['detail']);
         $transactionDetailData = $transactionDetail->getSingle('responses')->getSingle(0)->getSingle('records')->getSingle(0)->getAll();
         $this->logger->debug('--- RESPONSE TRANSACTION DETAIL :', array($transactionDetailData));
-        $this->logger->debug('--- RESPONSE SETTLE STATUS : '.$transactionDetailData['settlestatus'].' ---');
-        if(isset($transactionDetailData['settlestatus']) && $transactionDetailData['settlestatus'] == 100){
-            $response = $this->transferFactory->create($data['refund']);
-            //Validate error code
-            if ($this->validator !== null) {
-                $result = $this->validator->validate(
-                    array_merge($commandSubject, ['response' => $response])
-                );
-                if (!$result->isValid()) {
-                    $this->processErrors($result);
+        if(isset($transactionDetailData['settlestatus'])) {
+            $this->logger->debug('--- RESPONSE SETTLE STATUS : ' . $transactionDetailData['settlestatus'] . ' ---');
+            if ($transactionDetailData['settlestatus'] == 100) {
+                $response = $this->transferFactory->create($data['refund']);
+				$this->coreRegistry->register('is_settled',true);
+                if ($this->coreRegistry->registry('refund_securetrading') != true)
+                {
+                    $this->acceptRefund($commandSubject,$response);
+                    $this->coreRegistry->register('refund_securetrading',true);
                 }
-            }
+                else
+                    $this->handlerRefund($commandSubject,$response);
 
-            if ($this->handler) {
-                $this->handler->handle(
-                    $commandSubject,
-                    ['data' => $response['responses'][0]]
-                );
+            } elseif (in_array($transactionDetailData['settlestatus'], [0, 1, 10])) {
+		            $this->updateTransaction($commandSubject);
             }
-        }
-        elseif(isset($transactionDetailData['settlestatus']) && in_array($transactionDetailData['settlestatus'],[0,1,10])){
-              $this->voidTransaction($commandSubject);
+        } else {
+            throw new CommandException(__('Can\'t refund this order.'));
         }
     }
 
@@ -98,4 +105,52 @@ class RefundCommand extends AbstractCommand
         $order->save();
 
     }
+
+	protected function updateTransaction($commandSubject){
+		$paymentPO = $commandSubject['payment'];
+		$payment = $paymentPO->getPayment();
+		$order   = $payment->getOrder();
+
+		$this->commandPool->get('update_amount')->execute($commandSubject);
+		$order->addStatusHistoryComment(__('We have update the amount of transaction because it has not settled yet.'));
+
+		$order->save();
+
+	}
+
+    /**
+     * @param $commandSubject
+     * @param $response
+     * @throws CommandException
+     */
+    protected function acceptRefund($commandSubject, $response)
+    {
+
+        //Validate error code
+        if ($this->validator !== null) {
+            $result = $this->validator->validate(
+                array_merge($commandSubject, ['response' => $response])
+            );
+            if (!$result->isValid()) {
+                $this->processErrors($result);
+            }
+        }
+
+        $this->handlerRefund($commandSubject,$response);
+    }
+
+    /**
+     * @param $commandSubject
+     * @param $response
+     */
+    protected function handlerRefund($commandSubject, $response)
+    {
+        if ($this->handler) {
+            $this->handler->handle(
+                $commandSubject,
+                ['data' => $response['responses'][0]]
+            );
+        }
+    }
+
 }

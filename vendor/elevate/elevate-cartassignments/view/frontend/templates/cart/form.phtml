@@ -9,9 +9,7 @@
 /**  @var $block \Magento\Checkout\Block\Cart\Grid */
 ?>
 <style>
-.addon-change-qty-outer {
-justify-content: left !important;
-}
+
 </style>
 <?php $mergedCells = ($this->helper(Magento\Tax\Helper\Data::class)->displayCartBothPrices() ? 2: 1); ?>
 <?= $block->getChildHtml('form_before') ?>
@@ -32,11 +30,11 @@ justify-content: left !important;
         $settingsHelper = $objectManager->get('Elevate\CartAssignments\Helper\Settings');
         $price_type = $settingsHelper->getPriceType();
 
-        
+        $output_price_label = '';
         if ($price_type == 'ex_vat') {
             $output_price_label = ' (Ex VAT)';
         }
-$output_price_label = '';
+
         ?>
         <div class="cart_header_row row">
                 <div class="col-4 cart_row_heading_outer">
@@ -63,11 +61,11 @@ $output_price_label = '';
             <a class="action continue" href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>" title="<?= $block->escapeHtmlAttr(__('Continue Shopping')) ?>">
                 <span><?= $block->escapeHtml(__('Continue Shopping')) ?></span> </a>
         <?php endif; ?>
-        <button type="button" name="update_cart_action" data-cart-empty="" value="empty_cart" title="<?= $block->escapeHtmlAttr(__('Clear Basket')) ?>" class="action clear" id="empty_cart_button">
-            <span><?= $block->escapeHtml(__('Clear Basket')) ?></span>
+        <button type="button" name="update_cart_action" data-cart-empty="" value="empty_cart" title="<?= $block->escapeHtmlAttr(__('Clear Shopping Cart')) ?>" class="action clear" id="empty_cart_button">
+            <span><?= $block->escapeHtml(__('Clear Shopping Cart')) ?></span>
         </button>
-        <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="<?= $block->escapeHtmlAttr(__('Update Basket')) ?>" class="action update">
-            <span><?= $block->escapeHtml(__('Update Basket')) ?></span>
+        <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="<?= $block->escapeHtmlAttr(__('Update Shopping Cart')) ?>" class="action update">
+            <span><?= $block->escapeHtml(__('Update Shopping Cart')) ?></span>
         </button>
         <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update=""/>
     </div>

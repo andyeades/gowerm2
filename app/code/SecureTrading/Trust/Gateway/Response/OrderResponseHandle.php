@@ -25,15 +25,22 @@ class OrderResponseHandle implements HandlerInterface
 
 		/** @var Payment $payment */
 		$payment = $paymentDO->getPayment();
-		$order   = $payment->getOrder();
+		$order = $payment->getOrder();
 
 		if (!empty($response)) {
 			$payment->setAdditionalInformation('secure_trading_endpoint', $response['url']);
 			unset($response['url']);
 			$payment->setAdditionalInformation('secure_trading_data', $response);
-			$payment->setAdditionalInformation('payment_action', $response['settlestatus'] == 2 ? 'authorize' : 'authorize_capture');
+			if (!empty($response['issubscription'])) {
+				$payment->setAdditionalInformation('payment_action', 'authorize_capture');
+			} else {
+				//set action authorize_capture for subscription
+				$payment->setAdditionalInformation('payment_action', $response['settlestatus'] == 2 ? 'authorize' : 'authorize_capture');
+			}
 		}
 		$order->setState(Order::STATE_NEW);
 		$order->setStatus('pending_secure_trading_payment');
+		$order->setCanSendNewEmailFlag(false);
+		$order->save();
 	}
 }

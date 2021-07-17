@@ -6,11 +6,24 @@
             margin-bottom: 1rem;
         }
         &:after {
-            background: $theme-brand-color-2;
+            @include co(background, $theme-brand-color-2);
             padding: 1rem;
             content: "Please use the address search provided as any errors in entering the address manually will not be the reponsibility of Gower Cottage Brownies." !important;
             display: block !important;
         }
     }
+    $cc-hide-fields-action-svg-fill: #FFF !default;
+    $cc-hide-fields-action-svg-width: 1rem !important !default;
+    $cc-hide-fields-action-label-marginbottom: 0 !important !default;
 
+    .field.cc_hide_fields_action {
+
+        label {
+            @include co(margin-bottom, $cc-hide-fields-action-label-marginbottom);
+        }
+        svg {
+            @include co(width,$cc-hide-fields-action-svg-width);
+            @include co(fill, $cc-hide-fields-action-svg-fill);
+        }
+    }
 }

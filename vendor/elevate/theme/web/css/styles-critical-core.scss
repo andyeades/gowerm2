@@ -1,0 +1,79 @@
+// Vars & Mixins
+
+@import "core-var-mixins";
+
+// utility Mixins - Have to be included AFTER Variables
+
+@import "mixins/vendor/bootstrapmixins/utilities/align";
+@import "mixins/vendor/bootstrapmixins/utilities/background";
+@import "mixins/vendor/bootstrapmixins/utilities/borders";
+
+@import "mixins/vendor/bootstrapmixins/utilities/clearfix";
+@import "mixins/vendor/bootstrapmixins/utilities/display";
+@import "mixins/vendor/bootstrapmixins/utilities/embed";
+@import "mixins/vendor/bootstrapmixins/utilities/flex";
+@import "mixins/vendor/bootstrapmixins/utilities/float";
+
+@import "mixins/vendor/bootstrapmixins/utilities/position";
+@import "mixins/vendor/bootstrapmixins/utilities/screenreaders";
+@import "mixins/vendor/bootstrapmixins/utilities/shadows";
+@import "mixins/vendor/bootstrapmixins/utilities/sizing";
+@import "mixins/vendor/bootstrapmixins/utilities/spacing";
+@import "mixins/vendor/bootstrapmixins/utilities/text";
+@import "mixins/vendor/bootstrapmixins/utilities/visibility";
+
+@import 'components/utility_classes';
+
+
+// Font Awesome
+@import 'vendor/fontawesome/font-awesome';
+
+// BS 4
+@import "vendor/bootstrap/v4/root";
+@import "vendor/bootstrap/v4/reboot";
+@import "vendor/bootstrap/v4/type";
+@import "vendor/bootstrap/v4/images";
+@import "vendor/bootstrap/v4/code";
+@import "vendor/bootstrap/v4/grid";
+@import "vendor/bootstrap/v4/tables";
+@import "vendor/bootstrap/v4/forms";
+@import "vendor/bootstrap/v4/buttons";
+@import "vendor/bootstrap/v4/transitions";
+//@import "vendor/bootstrap/v4/dropdown";
+//@import "vendor/bootstrap/v4/button-group";
+//@import "vendor/bootstrap/v4/input-group";
+@import "vendor/bootstrap/v4/custom-forms";
+
+@import "vendor/bootstrap/v4/nav";
+@import "vendor/bootstrap/v4/navbar";
+//@import "vendor/bootstrap/v4/card";
+//@import "vendor/bootstrap/v4/breadcrumb";
+//@import "vendor/bootstrap/v4/pagination";
+@import "vendor/bootstrap/v4/badge";
+//@import "vendor/bootstrap/v4/jumbotron";
+@import "vendor/bootstrap/v4/alert";
+//@import "vendor/bootstrap/v4/progress";
+@import "vendor/bootstrap/v4/media";
+//@import "vendor/bootstrap/v4/list-group";
+@import "vendor/bootstrap/v4/close";
+//@import "vendor/bootstrap/v4/toasts";
+@import "vendor/bootstrap/v4/modal";
+//@import "vendor/bootstrap/v4/tooltip";
+//@import "vendor/bootstrap/v4/popover";
+//@import "vendor/bootstrap/v4/carousel";
+@import "vendor/bootstrap/v4/spinners";
+@import "vendor/bootstrap/v4/print";
+
+// Reset default styles with magento-reset
+//@import 'components/reset';
+
+// Core
+
+@import "components/core";
+
+//
+// Components styles (modal/sliding panel)
+@import 'components/modals/modals';
+// from lib
+@import 'components/modals/modals_extend';
+// local

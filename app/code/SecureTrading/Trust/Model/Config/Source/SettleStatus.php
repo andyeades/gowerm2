@@ -1,11 +1,12 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
 
 namespace SecureTrading\Trust\Model\Config\Source;
 
+/**
+ * Class SettleStatus
+ *
+ * @package SecureTrading\Trust\Model\Config\Source
+ */
 class SettleStatus implements \Magento\Framework\Option\ArrayInterface
 {
 	/**
@@ -21,6 +22,10 @@ class SettleStatus implements \Magento\Framework\Option\ArrayInterface
 		];
 	}
 
+	/**
+	 * @param $code
+	 * @return mixed
+	 */
 	public static function getSettleStatusByCode($code)
 	{
 		$array = array(

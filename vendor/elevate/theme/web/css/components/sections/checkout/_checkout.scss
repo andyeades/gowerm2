@@ -247,6 +247,61 @@ $chkout-fieldset-legend-span-margin: 0 0 1rem 0 !default;
     }
 }
 
+$chkout-default-border-on: 1 !default;
+$chkout-default-border-position: bottom !default;
+$chkout-default-border-color: #eeebe8 !default;
+$chkout-default-border-style: solid !default;
+$chkout-default-border-thickness: 1px !default;
+
+$chkout-default-border-on-desktop: 1 !default;
+
+$chkout-default-border-radius-on: 1 !default;
+$chkout-default-border-radius: 5px !default;
+
+
+$checkout-step-title-border-on: $chkout-default-border-on !default;
+$checkout-step-title-border-position: $chkout-default-border-position !default;
+$checkout-step-title-border-color: $chkout-default-border-color !default;
+$checkout-step-title-border-style: $chkout-default-border-style !default;
+$checkout-step-title-border-thickness: $chkout-default-border-thickness !default;
+
+$checkout-step-title-border-on-desktop: $chkout-default-border-on-desktop !default;
+
+$checkout-step-title-border-radius-on: $chkout-default-border-radius-on !default;
+$checkout-step-title-border-radius: $chkout-default-border-radius !default;
+
+
+
+$checkout-step-title-font-size: 1.625rem !default;
+$checkout-step-title-font-weight: 700 !default;
+$checkout-step-title-padding: 0 0 $indent-s 0 !default;
+
+$checkout-step-title-mobile-font-size: 1.125rem !default;
+
+
+.checkout-title {
+    @include co(padding, $checkout-step-title-padding);
+    @include co(font-weight, $checkout-step-title-font-weight);
+    @include rfs($checkout-step-title-font-size);
+
+    @if $checkout-step-title-border-on == 1 {
+        @include elevate-border($checkout-step-title-border-color, $checkout-step-title-border-thickness, $checkout-step-title-border-style, $checkout-step-title-border-position);
+        @if $checkout-step-title-border-radius-on == 1 {
+            border-radius: $checkout-step-title-border-radius;
+        }
+    }
+    @include min-screen($desktop-min) {
+        @if $checkout-step-title-border-on-desktop == 1 {
+            @if $checkout-step-title-border-on != 1 {
+                @include elevate-border($checkout-step-title-border-color, $checkout-step-title-border-thickness, $checkout-step-title-border-style, $checkout-step-title-border-position);
+                @if $checkout-step-title-border-radius-on == 1 {
+                    border-radius: $checkout-step-title-border-radius;
+                }
+            }
+        }
+    }
+}
+
 .checkout-fieldset-legend {
     span {
         @include abs-checkout-title();
@@ -307,9 +362,9 @@ $checkout-agreement-before-height: auto !default;
             @include co(padding, $checkout-agreement-before-padding !important);
             @include co(width, $checkout-agreement-before-width !important);
             float: $checkout-agreement-before-float !important;
-            height: $checkout-agreement-before-height !important;
+            @include co(height, $checkout-agreement-before-height !important);
         }
-        display: $checkout-agreement-before-display !important;
+        @include co(display, $checkout-agreement-before-display !important);
     }
 
     input {
@@ -365,7 +420,7 @@ $checkout-agreement-before-height: auto !default;
 .order-comments-sub {
     font-style: $order-comments-sub-font-style;
   @include co(font-size, $order-comments-sub-font-size);
-    line-height: $order-comments-sub-line-height;
+    @include co(line-height, $order-comments-sub-line-height);
     text-align: $order-comments-sub-text-align;
     margin-bottom: $order-comments-sub-margin-bottom;
 }

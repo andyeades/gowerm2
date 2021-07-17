@@ -11,7 +11,7 @@
     <text args="address().city "/>, <span text="address().region"></span><br/>
 
     <span class="sel-postcode" text="address().postcode"></span><br/>
-    <span style="display:none;" class="sel-countryid" text="address().countryID"></span>
+    <span style="display:none;" class="sel-countryid" text="address().countryId"></span>
     <span class="sel-country" text="getCountryName(address().countryId)"></span><br/>
 
     <a if="address().telephone" attr="'href': 'tel:' + address().telephone" text="address().telephone"></a><br/>

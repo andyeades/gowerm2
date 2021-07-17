@@ -195,4 +195,7 @@ class Producticons extends \Magento\Framework\Model\AbstractModel implements \El
     $this->setData(self::ICON_BLK_STYLE, $icon_blk_style);
   }
 
+    public function getAllData() {
+        return $this->_data;
+    }
 }

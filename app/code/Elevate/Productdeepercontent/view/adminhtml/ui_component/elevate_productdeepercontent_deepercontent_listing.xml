@@ -73,19 +73,18 @@
 				<label translate="true">ID</label>
 			</settings>
 		</column>
-
-        <column name="deepercontent_image">
-            <settings>
-                <filter>text</filter>
-                <label translate="true">Image</label>
-                <editor>
-                    <editorType>text</editorType>
-                    <validation>
-                        <rule name="required-entry" xsi:type="boolean">false</rule>
-                    </validation>
-                </editor>
-            </settings>
-        </column>
+<column name="deepercontent_image" class="Elevate\Productdeepercontent\Ui\Component\Listing\Column\Thumbnail">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+            <item name="sortable" xsi:type="boolean">false</item>
+            <item name="altField" xsi:type="string">title</item>
+            <item name="has_preview" xsi:type="string">1</item>
+            <item name="label" xsi:type="string" translate="true">Thumbnail</item>
+        </item>
+    </argument>
+</column>
+     
 
         <column name="deepercontent_title">
             <settings>

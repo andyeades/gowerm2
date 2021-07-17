@@ -1,11 +1,18 @@
+$ev-mm-menuimage-a-height: 100% !default;
+$ev-mm-menuimage-img-max-width: 100% !default;
+$ev-mm-menuimage-img-height: 100% !default;
+$ev-mm-menuimage-img-padding: 0 0 10px 0 !default;
+
 .menu-image {
     margin-right: 0 !important;
     padding-top: 0 !important;
-
+    > a {
+        @include co(height, $ev-mm-menuimage-a-height);
+    }
     > img {
-        max-width: 100%;
-        height: 100%;
-        padding-bottom: 10px;
+        @include co(max-width, $ev-mm-menuimage-img-max-width);
+        @include co(height, $ev-mm-menuimage-img-height);
+        @include co(padding, $ev-mm-menuimage-img-padding);
     }
 }
 
@@ -78,7 +85,7 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
                     @if $m3-desktop-border-on == 1 {
                         border: $m3-desktop-border;
                     }
-                    background: $m3-desktop-bg-color;
+                    @include co(background, $m3-desktop-bg-color);
                     @include co(flex-wrap, $m3-desktop-flexwrap);
                 }
 
@@ -297,7 +304,7 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
                         font-weight: bold;
                         text-align: center;
                         line-height: 80px;
-                        background: $desktop-see-all-bg;
+                        @include co(background, $desktop-see-all-bg);
                         border-top: 1px solid $destkop-see-all-border-col;
                         color: $desktop-see-all-col;
                         // reset some inherited style
@@ -362,7 +369,7 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
 
                     &.flyout {
                         height: 500px;
-                        background: $flyout-background-color;
+                        @include co(background, $flyout-background-color);
                         @include rj-transform(translateX(100%));
                         border: $flyout-border;
                         border-radius: $flyout-border-radius;
@@ -440,7 +447,7 @@ $e-sn-dropshadow: drop-shadow(2px 4px 6px black) !default;
 
         &:hover {
             &:before, &:after {
-                background: $arrow-bg-color-mobile;
+                @include co(background, $arrow-bg-color-mobile);
             }
         }
     }

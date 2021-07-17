@@ -22,196 +22,99 @@
 /** @var \Mageplaza\Blog\Block\Widget\Posts $block */
 
 $posts = $block->getCollection();
-?>
- <style>
-       .grid-item {
-    box-shadow: none !important;
-    border-bottom: 0px solid gray;
-    margin-bottom: 25px;
-    border: 0px solid #ccc !important;
-    align-items: stretch;
-    flex-grow: 1;
-    width: 25.0%;
-}
-    .mp-post-info {
-      font-size: 12px;
-      color: #979797;
-    }
-     #page-main-outer h2 {
-      margin-top: 20px;
-      font-size: 15px;
-    }
-    .post-image img.img-responsive {
-      max-height: 100%;
-      height: 100%;
-      width: 100%;
-      max-width: initial;
-      right: 0;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      margin: auto;
-      border: none;
-    }
-    .post-image {
-      min-height: 150px;
-      position: relative;
-      max-height: 150px;
-      overflow: hidden;
-      /* border-radius: 10px; */
-    }
-    .post-item-wraper {
-      border: 1px solid #eee;
-      padding: 0 !important;
-      position: relative;
-      height: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .post-list-item {
-      box-shadow: none !important;
-      border-bottom: 0px solid gray;
-      margin-bottom: 25px;
-      border: 0px solid #ccc !important;
-      align-items: stretch;
-      flex-grow: 1;
-      height:100%;
-      margin: 0px 13px 13px 13px;
-    }
-    .post-list-body {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    pager {
-      display: flex;
-      text-align: center;
-      align-items: center;
-      justify-content: center;
-    }
-    .pages {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: auto;
-      order: 1;
-      margin-left: auto;
-      margin: 0 0 1rem 0;
-    }
-    .limiter {
-      order: 4;
-      margin-left: auto;
-    }
-    .post-title {
-    color: black;
-}
-.mp-post-meta-info.mp-alignright a {
-    color: black;
-}
-a.post-link-title {
-    color: black;
-    font-weight: bold;
-    margin-top: 9px;
-    display: block;
-    margin-bottom: 19px;
-}
-.post-info-wraper {
-    padding: 2px 20px 14px 20px;
-}
-#homepage-blog h2 {
 
-    width:100%;
-    position: relative;
-    display: initial;
-    color: #306f45;
-    font-size: 24px;
-    display: block;
-    margin: 0px 0px 30px 0px;
-    text-align: left !important;
-    font-weight: normal;
+$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-}
+$title_prefix = '';
+
+if (strpos($url, 'posturite') !== false) {
+    $title_prefix = 'Posturite ';
+    ?>
+    <div id="homepage-blog" class="homepage-block">
+        <div class="container">
+            <div class="section-title-outer">
+                <div class="section-title"><a href="<?= $block->getBlogUrl(''); ?>"><h2><?= $title_prefix;?>Blog</h2></a></div>
+            </div>
+            <div class="articles-row row">
+                <?php foreach ($posts as  $post) : ?>
+                    <div class="grid-item">
+                        <div class="post-list-item col-mp post-item-grid mp-3 mp-xs-12">
+                            <div class="post-item-wrapper">
+                                <?php if ($post->getImage()) : ?>
+                                    <div class="post-image">
+                                        <a href="<?= str_replace('/post', '', $post->getUrl()) ?>">
+                                            <img class="img-responsive"
 
 
-@media only screen and (max-width: 992px) {
+                                                <?php
 
-.grid-item {
+                                                $image = $post->getImage()
+                                                ?>
 
-    width: 50%;
-}
-.post-image {
-    min-height: 110px;
+                                                <? //$block->resizeImage($post->getImage(), '400x'); ?>
+                                                 src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
+                                                 alt="<?= $block->escapeHtml($post->getName()); ?>"/>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="post-info-wrapper">
+                                    <div class="mp-post-title">
+                                        <a class="post-link-title" title="<?= $block->escapeHtml($post->getName()); ?>"
+                                           href="<?= str_replace('/post', '', $post->getUrl()) ?>">
+                                            <?= $post->getName(); ?>
+                                        </a>
+                                    </div>
 
-    max-height: 110px;
-
-}
-}
-
-@media (max-width: 480px) {
-  .col-xs-6 {
-    width: 50% !important;
-  }
-}
-  </style>
-
-<div id="homepage-blog" class="homepage-block">
-<div class="container" style="margin-top: 30px;">
-  <div class="section-title-outer">
-    <div class="section-title"><a href="<?= $block->getBlogUrl(''); ?>"><h2>Posturite Blog</h2>
-    
-                                            
-    
-    </a></div>
-  </div>
-  <div class="articles-row row">
-      <?php foreach ($posts as  $post) : ?>
-      
- 
-            <div class="grid-item">
-     <div class="post-list-item col-mp post-item-grid mp-3 mp-xs-12">
-                    <div class="post-item-wraper">
-                        <?php if ($post->getImage()) : ?>
-                            <div class="post-image">
-                                <a href="<?= str_replace('/post', '', $post->getUrl()) ?>">
-                                    <img class="img-responsive"
-
-
-                                  <?php
-
-                                  $image = $post->getImage()
-                                  ?>
-
-
-                                        <? //$block->resizeImage($post->getImage(), '400x'); ?>
-                                         src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
-                                         alt="<?= $block->escapeHtml($post->getName()); ?>"/>
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                        <div class="post-info-wraper">
-                            <div class="mp-post-title">
-                                <a class="post-link-title" title="<?= $block->escapeHtml($post->getName()); ?>"
-                                   href="<?= str_replace('/post', '', $post->getUrl()) ?>">
-                                    <?= $post->getName(); ?>
-                                </a>
-                            </div>
-                           
-                            <div class="mp-clearfix"></div>
-                            <div class="mp-post-meta-info mp-alignright">
-                                <div class="actions">
-                                    <a class="mp-read-more" href="<?= $post->getUrl(); ?>"
-                                       title="<?= __('Read More'); ?>">
-                                        <?= __('Read More'); ?>
-                                    </a>
+                                    <div class="mp-clearfix"></div>
+                                    <div class="mp-post-meta-info mp-alignright">
+                                        <div class="actions">
+                                            <a class="mp-read-more" href="<?= $post->getUrl(); ?>"
+                                               title="<?= __('Read More'); ?>">
+                                                <?= __('Read More'); ?>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                </div>
-              
-                 </div>
-               
+
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+    </div>
+
+<?php } else { ?>
+
+<div id="homepage-blog" class="homepage-block">
+<div class="container">
+  <div class="section-title-outer">
+    <div class="section-title"><a href="<?= $block->getBlogUrl(''); ?>">Blog</a></div>
+    <div class="read-all-link"><a href="<?= $block->getBlogUrl(''); ?>">Read all articles</a></div>
+  </div>
+  <div class="articles-row row">
+      <?php foreach ($posts as  $post) : ?>
+    <div class="article col-md-4 col-xs-12">
+      <a class="post-image" href="<?= str_replace('blog/post', 'blog', str_replace('.html', '', $post->getUrl())); ?>">
+        <div class="article-img-outer">
+          <img class="article-img lazyload" src="/media/loader.png" data-src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
+               data-src="<?= $block->resizeImage($post->getImage(), '400x'); ?>"
+               alt="<?= $block->escapeHtml($post->getName()); ?>" >
+        </div>
+        <div class="article-title">
+            <?= $block->escapeHtml($post->getName()); ?> </div>
+        <div class="article-button button"><?= __('Read more'); ?>
+        </div>
+      </a>
+    </div>
       <?php endforeach; ?>
   </div>
 </div>
 
 </div>
+
+<?php }  ?>
+
+

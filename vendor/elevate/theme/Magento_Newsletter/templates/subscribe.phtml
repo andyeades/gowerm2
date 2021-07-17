@@ -1,0 +1,61 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$scopeconfig = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface');
+
+$placeholdertext = $scopeconfig->getValue('theme_options/newsletter/input_placeholder');
+$buttontext = $scopeconfig->getValue('theme_options/newsletter/button_text');
+
+
+                $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+     if (strpos($url,'posturite') !== false) { ?>
+     <form method="post" id="newsletter-validate-detail"
+      novalidate
+      action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+      method="post"
+      data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+      id="newsletter-validate-detail">
+    <div id="home-news">
+        <div class="home-newsletter-text">
+            <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('elevate-footer-newsletter-text')->toHtml();?>
+        </div>
+    
+    </div>
+</form>
+     
+     <?php
+     }
+     else{
+?>
+<form method="post" id="newsletter-validate-detail"
+      novalidate
+      action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+      method="post"
+      data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+      id="newsletter-validate-detail">
+    <div id="home-news">
+        <div class="home-newsletter-text">
+            <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('elevate-footer-newsletter-text')->toHtml();?>
+        </div>
+        <div class="home-newsletter-input-container">
+            <div class="home-newsletter-input">
+                <input name="email" type="email" id="newsletter"
+                       class="form-control required-entry validate-email"
+                       placeholder="<?= $placeholdertext ?>"
+                       data-mage-init='{"mage/trim-input":{}}'
+                       data-validate="{required:true, 'validate-email':true}"
+                       title="Sign up for our newsletter"
+                />
+                <button class="btn btn-newsletter action primary" title="Subscribe" type="submit"><?= $buttontext ?></button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<?php } ?>

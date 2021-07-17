@@ -49,7 +49,7 @@ $text-color: #333;
     }
 
     .mst-searchautocomplete__empty-result {
-        background: $header-bg;
+        @include co(background, $header-bg);
         text-align: center;
         padding: 8px 10px;
         color: $mute-color;
@@ -58,7 +58,7 @@ $text-color: #333;
     }
 
     .mst-searchautocomplete__show-all {
-        background: $header-bg;
+        @include co(background, $header-bg);
         text-align: center;
 
         a {
@@ -70,7 +70,7 @@ $text-color: #333;
     }
 
     .mst-searchautocomplete__index-title {
-        background: $header-bg;
+        @include co(background, $header-bg);
         padding: 8px 10px;
         text-align: left;
         font-size: 1.2rem;

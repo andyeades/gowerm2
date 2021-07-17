@@ -6,7 +6,7 @@ $color-cornflower-blue-approx: #6394f8;
 $color-mercury-approx: #e8e8e8;
 $color-east-bay-approx: #515783;
 
-$hdr-minicart-main-text-color: $body-color;
+$hdr-minicart-main-text-color: $body-color !default;
 
 //Dropdown Container
 
@@ -169,7 +169,7 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
 
 .shopping-cart {
     position: relative;
-    background: $hdr-minicart-dropdown-container-bg-color;
+    @include co(background, $hdr-minicart-dropdown-container-bg-color);
     @include co(margin, $hdr-minicart-dropdown-container-margin);
     @include co(width, $hdr-minicart-dropdown-container-width);
 
@@ -259,9 +259,7 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
     }
 }
 
-
 #shopping-cart-wrap {
-
     position: relative;
     @include co(filter, $hdr-minicart-shoppingcartwrap-filter);
 
@@ -385,7 +383,7 @@ $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow: drop-shadow(0 1px 5px rgba
             filter: $hdr-minicart-shoppingcartinner-arrowbox-drop-shadow;
         }
         position: relative;
-        background: $hdr-minicart-dropdown-container-bg-color;
+        @include co(background, $hdr-minicart-dropdown-container-bg-color);
 
         &:after {
             content: "";

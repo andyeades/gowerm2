@@ -14,16 +14,17 @@ $twocol-column-main-padding-desktopmd: 0 $grid-gutter-width / 2 !default;
 $twocol-right-column-main-width: 100vw !default;
 
 $twocol-right-column-main-width-desktopmd: 70% !default;
-$twocol-right-column-main-padding-desktopmd: 0 $grid-gutter-width / 2 !default;
+$twocol-right-column-main-padding-desktopmd: 0 $grid-gutter-width / 2 2.5rem 0 !default;
 
-$twocol-left-column-main-padding-desktopmd: 0 0 0 0;
-$twocol-right-column-main-padding-desktopmd: 0 $grid-gutter-width / 2 0 0 !default;
+$twocol-left-column-main-padding-desktopmd: 0 0 2.5rem 0;
+
 
 $twocol-left-column-main-maxwidth-desktopmd: false !default;
 
 
 $twocol-singlesidebar-width: 100% !default;
 $twocol-singlesidebar-width-desktopmd: 25% !default;
+
 $twocol-right-singlesidebar-width: 100% !default;
 $twocol-right-singlesidebar-width-desktopmd: 30% !default;
 
@@ -40,7 +41,7 @@ $twocol-right-singlesidebar-padding-desktopmd: 0 0 0 $grid-gutter-width / 2 !def
 
 // Sod this, Magento's mixins for layout are terrible and confusing, Richard is writing his own!
 
-// Magento's are too fucking abstracted to make any fucking sense
+// Magento's are too abstracted to make any fucking sense
 
 $main-maincontent-order: false !default;
 $main-maincontent-width: false !default;
@@ -79,11 +80,22 @@ $twocol-left-pagewithfilter-column-main-width: $twocol-column-main-width !defaul
 $twocol-left-pagewithfilter-column-main-width-desktopmd: 78% !default;
 $twocol-left-pagewithfilter-column-main-padding-desktopmd: 0 0 0 $grid-gutter-width / 2 !default;
 
+$twocol-left-pagewithfilter-column-main-margin-desktopmd: 0 0 0 auto !default;
+
 $twocol-left-pagewithfilter-singlesidebar-width: $twocol-singlesidebar-width !default;
 $twocol-left-pagewithfilter-singlesidebar-padding-desktopmd: 0 $grid-gutter-width 0 0 !default;
 $twocol-left-pagewithfilter-singlesidebar-width-desktopmd: 22% !default;
 
 $twocol-left-pagewithfilter-background: false !default;
+
+
+$twocol-left-columns-cmain-order: 3 !default;
+$twocol-left-columns-ssidebar-order: 2 !default;
+$twocol-left-columns-ssidebar-width: 100vw !default;
+$twocol-left-columns-ssidebar-width-desktopmd: 100% !default;
+
+$twocol-left-columns-sidebaradd-width: 100% !default;
+
 
 .page-layout-2columns-left {
     &.page-with-filter {
@@ -91,11 +103,13 @@ $twocol-left-pagewithfilter-background: false !default;
         @include co(background, $twocol-left-pagewithfilter-background);
 
         .columns {
+
             .column.main {
                 @include co(width, $twocol-left-pagewithfilter-column-main-width, $twocol-column-main-width);
                 @include min-screen($screen-md-min) {
                     @include co(width, $twocol-left-pagewithfilter-column-main-width-desktopmd);
                     @include co(padding, $twocol-left-pagewithfilter-column-main-padding-desktopmd);
+                    @include co(margin, $twocol-left-pagewithfilter-column-main-margin-desktopmd);
                 }
             }
 
@@ -114,7 +128,7 @@ $twocol-left-pagewithfilter-background: false !default;
 
     .columns {
         .column.main {
-            order: 3;
+            order: $twocol-left-columns-cmain-order;
             @include co(width, $twocol-column-main-width);
             @include co(max-width, $twocol-column-main-maxwidth);
             @include min-screen($screen-md-min) {
@@ -126,7 +140,7 @@ $twocol-left-pagewithfilter-background: false !default;
         }
 
         .single-sidebar {
-            order: 2;
+            order: $twocol-left-columns-ssidebar-order;
             flex: 0 1 auto;
             flex-wrap: wrap;
             @include co(width, $twocol-singlesidebar-width);
@@ -139,19 +153,17 @@ $twocol-left-pagewithfilter-background: false !default;
             display: flex;
 
             .sidebar-main {
-                width: 100vw;
+                @include co(width, $twocol-left-columns-ssidebar-width);
                 position: relative;
                 flex: 0 1 auto;
                 @include min-screen($screen-md-min) {
-
-                    width: 100%;
+                    @include co(width, $twocol-left-columns-ssidebar-width-desktopmd, $twocol-left-columns-ssidebar-width);
 
                 }
             }
 
             .sidebar-additional {
-
-                width: 100%;
+                @include co(width, $twocol-left-columns-sidebaradd-width);
                 flex: 0 1 auto;
             }
         }
@@ -210,6 +222,7 @@ $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktop: false !d
 $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktopmd: false !default;
 
 .page-layout-full_width_nobreadcrumbs_nomargintop_notitle {
+
     h1 {
         @include co(font-size, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize);
         @include max-screen($mobile-max) {
@@ -226,10 +239,6 @@ $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktopmd: false 
             @include co(font-size, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktopmd, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktop, $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize);
         }
     }
-}
-
-.page-layout-2columnleft-withfullwidthtop-nomargintop-nobreadcrumbs {
-
 }
 
 //
@@ -259,6 +268,7 @@ $page-layout-fullwidth-nobread-nomargintop-notitle-h1-fontsize-desktopmd: false 
 
 .page-layout-full_width_nomargintop,
 .page-layout-full_width_nobreadcrumbs_nomargintop,
+.page-layout-full_width_nobreadcrumbs_nomargintop_notitle,
 .page-layout-2cl-fwt-nmt-nb
 {
     #page-main-outer {

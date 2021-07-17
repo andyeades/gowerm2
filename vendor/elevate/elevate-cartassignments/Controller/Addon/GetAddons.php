@@ -1074,8 +1074,11 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
     if($item_product_sku == 'BORN-FREE-DONATION'){
     return false;
     }
-      
-
+       if (is_object($product)) {
+    if (!$product->isSaleable()) {
+       return false;
+    }
+    }
         /*
          * contained in data
          *  [addon_id] => 1
@@ -1127,6 +1130,10 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
         if (is_object($parent_product)) {
             //       echo "PRODUCT";
             $parent_product = $objectManager->create('Magento\Catalog\Model\Product')->load($parent_product->getId());
+            
+                 if (!$parent_product->isSaleable()) {
+       return false;
+    }
         }
 
         if ($data->getData()) {
@@ -1151,7 +1158,7 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
                 }
             }
             //EADES
-
+        
             //additions needed - validate if product is purchasable
             //if match quantity - validate there is enough stock left to match
 
@@ -2082,7 +2089,7 @@ class Getaddons extends \Magento\Framework\App\Action\Action {
         $productOutput .=         '<div class="addon-light-inner col-md-2 col-xs-3 col-3">';
 
 
-        $productOutput .= '<span class="evlightbox "  data-size="modal-lg" data-title="Quick View" data-footer-type="div" data-body-type="url" data-body="/assignments/addon/cartassignments/id/' . $product->getId() . '" style="cursor:pointer !important; ' . $link_style . '">';
+        $productOutput .= '<span class="evlightbox "  data-size="modal-lg" data-title="Quick View" data-footer-type="div" data-body-type="url" data-body="/ev_cartassignments/show/popup/id/' . $product->getId() . '" style="cursor:pointer !important; ' . $link_style . '">';
         $productOutput .= '     <img style="max-width:100%; cursor:pointer;" src="' . $addon_image . '" ></div></span>';
 
         if (is_numeric($qty) && $match_enabled == '1') {

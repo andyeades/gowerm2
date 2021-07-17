@@ -1,0 +1,35 @@
+<?php
+
+$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+if (strpos($url, 'gowercottage') !== false) {
+    $link_1_class = '';
+    $link_2_class = '';
+    $link_3_class = '';
+
+    if (strpos($url, 'best-sellers') == true) {
+        $link_1_class = 'active';
+    }
+
+    if (strpos($url, 'brownies') == true) {
+        $link_2_class = 'active';
+    }
+
+    if (strpos($url, 'gifts') == true) {
+        $link_3_class = 'active';
+    }
+
+
+
+
+    ?>
+
+    <div class="category-toolbar-links">
+        <a href="/best-sellers" class="ct-link <?= $link_1_class ?>">Best Sellers</a>
+
+        <a href="/brownies" class="ct-link <?= $link_2_class ?>">Brownies</a>
+
+        <a href="/gifts" class="ct-link <?= $link_3_class ?>">Gifts</a>
+    </div>
+
+<?php } ?>

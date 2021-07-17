@@ -1,0 +1,27 @@
+@if $sitename == happybeds {
+
+    // These May Not Be Necessary in All Themes
+
+    $ftr-feefo-footer-margin-mobile: 1rem 0 0 0 !default;
+
+
+    #feefo-footer {
+        display: block;
+        @include max-screen($desktop-sm-max) {
+            margin: 0 auto;
+        }
+
+        img {
+
+            @include img-responsive();
+            margin: 0 auto;
+        }
+    }
+    #footer-block-3 {
+        .footer-block-internal-1 {
+            @include max-screen($screen-xs-max) {
+                padding-top: 0.625rem;
+            }
+        }
+    }
+}

@@ -77,7 +77,7 @@ $ftr-nwsltr-box-shadow: none !default;
             @include co(width, $ftr-nwsltr-button-width);
             height: $ftr-nwsltr-button-height;
 
-            background: $ftr-nwsltr-button-bg-color;
+            @include co(background, $ftr-nwsltr-button-bg-color);
             @include co(padding, $ftr-nwsltr-button-padding);
             position: relative;
             margin-bottom: 0;
@@ -96,7 +96,7 @@ $ftr-nwsltr-box-shadow: none !default;
         }
 
         svg {
-            fill: $hdr-search-icon-color;
+            @include co(fill, $hdr-search-icon-color);
             @include co(width, $hdr-search-icon-width);
             height: $hdr-search-icon-height;
         }

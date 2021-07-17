@@ -345,3 +345,13 @@
 
 
 <?php endif; ?>
+
+<div style="order:2;">
+<?php
+echo $this->getLayout()
+->createBlock('Magento\Cms\Block\Block')
+->setBlockId('elevate_slot_product_aftertabs')
+->toHtml();
+
+?>
+</div>

@@ -108,6 +108,9 @@
                 width: 100%;
             }
         }
+        ul {
+
+        }
     }
 
 
@@ -172,7 +175,7 @@
             @include co(margin, $pinfo-tab-features-title-margin);
         }
         > ul {
-            list-style-type: $pinfo-tab-features-ul-listtype;
+            @include co(list-style-type, $pinfo-tab-features-ul-listtype);
             @include co(margin, $pinfo-tab-features-ul-margin);
             > li {
                 @include co(margin, $pinfo-tab-features-ul-li-margin);
@@ -180,7 +183,10 @@
         }
     }
 
+
+
     #pinfo-btm-o {
+
         .additional-data-wrap {
             background-color: $pview-add-d-wrap-bg-color;
             @include co(padding, $pview-add-d-wrap-padding);
@@ -223,7 +229,7 @@
                 @include co(font-weight, $pview-add-d-blocklink-fontweight);
                 text-decoration: $pview-add-d-blocklink-textdecoration;
               @include co(font-size, $pview-add-d-blocklink-font-size);
-                display: $pview-add-d-blocklink-display;
+                @include co(display, $pview-add-d-blocklink-display);
             }
 
             @if $pview-add-d-icons-on != 1 {

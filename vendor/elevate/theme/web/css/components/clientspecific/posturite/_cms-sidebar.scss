@@ -80,7 +80,7 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
                 }
             }
             .navbar-toggler-icon {
-                height: $navbar-posturite-navbartoggler-icon-height;
+                @include co(height, $navbar-posturite-navbartoggler-icon-height);
                 @include co(width, $navbar-posturite-navbartoggler-icon-width);
                 background-image: $navbar-posturite-navbartoggler-icon-expanded-bgimage;
             }
@@ -199,7 +199,7 @@ $navbar-posturite-navbartitle-off-belowcollapse: 1 !default;
             }
             .items {
                 li {
-                    line-height: $sidebar-nav-filter-item-lineheight;
+                    @include co(line-height, $sidebar-nav-filter-item-lineheight);
                     @include co(margin, $sidebar-nav-filter-item-margin);
                     .count {
                         @if $sidebar-nav-filter-count-on != 1 {

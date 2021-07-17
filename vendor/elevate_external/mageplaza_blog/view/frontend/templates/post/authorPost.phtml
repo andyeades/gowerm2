@@ -41,7 +41,7 @@
             foreach ($postCollection as $post) : ?>
                 <div data-post-id="<?= $block->escapeHtml($post->getId()); ?>"
                      class="post-list-item col-mp post-item-list mp-12">
-                    <div class="post-item-wraper">
+                    <div class="post-item-wrapper">
                         <?= /* @noEscape */ $block->getStatusHtmlById($post->getEnabled()) ?>
                         <?php if ($post->getImage()) : ?>
                             <div class="post-image">
@@ -52,7 +52,7 @@
                                 </a>
                             </div>
                         <?php endif; ?>
-                        <div class="post-info-wraper">
+                        <div class="post-info-wrapper">
                             <h2 class="mp-post-title">
                                 <a class="post-link-title" title="<?= $block->escapeHtml($post->getName()); ?>"
                                    href="<?= $post->getUrl() ?>">

@@ -136,7 +136,6 @@ class Tree extends \Magento\Catalog\Block\Adminhtml\Category\Tree
     public function getTree($parentNodeCategory = null, $store = null)
     {
         $this->_blogStore = $store;
-
         return parent::getTree($parentNodeCategory);
     }
 

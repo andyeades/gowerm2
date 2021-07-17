@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <body>
+       <referenceContainer name="left">
+           <referenceBlock name="sales_order_tabs">
+               <action method="addTab">
+                   <argument name="name" xsi:type="string">delivery_tab</argument>
+                   <argument name="block" xsi:type="string">Elevate\Delivery\Block\Adminhtml\Order\View\Tab\DeliveryTab</argument>
+               </action>
+           </referenceBlock>
+       </referenceContainer>
+       
+        <referenceBlock name="order_additional_info">
+            <block class="Elevate\Delivery\Block\Adminhtml\Order\View\DeliveryInfo" name="ev_delivery_info_block" template="Elevate_Delivery::order/view/delivery_info_view.phtml"/>
+        </referenceBlock>
+   </body>
+</page>

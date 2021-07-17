@@ -213,7 +213,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
 
         }
         $output = '';
-         /*
+    
         if (!empty($rating_label_class)) {
             $output .= '<div class="sr-clear">';
             $output .= '<div class="star-rating" style="width: ' . $rating_style . '"><span style="width: 100%;"></span></div>';
@@ -225,7 +225,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
             $output .= '';
             $output .= '</div>';
         }
-         */
+     
         return $output;
     }
 }

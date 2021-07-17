@@ -1,5 +1,3 @@
-
-
 button {
     // Resets Safari Button Issues'
     -webkit-appearance: none;
@@ -35,7 +33,6 @@ $link-action-text-decoration: false !default;
 
 .action {
     &:not(.link-action) {
-
         @extend .btn;
         // Resets Safari Button Issues'
         -webkit-appearance: none;
@@ -55,15 +52,13 @@ $link-action-text-decoration: false !default;
     }
     @include co(font-weight, $btn-big-fontweight);
     @include co(padding, $btn-big-padding);
-  @include co(font-size, $btn-big-fontsize);
+    @include co(font-size, $btn-big-fontsize);
     @if $btn-big-texttransform-on == 1 {
         @include co(text-transform, $btn-big-textransform);
     }
 }
 
-.btn-hbred {
-  @include button-variant($action-primary-bg-color, $action-primary-border-color);
-}
+
 
 .action.primary.tocart {
   @include button-variant($action-tocart-bg-color, $action-tocart-border-color);
@@ -123,30 +118,21 @@ $link-action-text-decoration: false !default;
     }
 }
 
+//a.action.secondary,
+//.btn.action.secondary,
 
-.btn.action.secondary,
-.secondary .action ,
-a.action.secondary,
+.secondary .action,
 .action.secondary {
     &:not(.link-action) {
-
         @include button-variant($action-secondary-bg-color, $action-secondary-border-color);
     }
 }
 
-
-.btn.action.tertiary,
 .tertiary .action,
-a.action.tertiary,
 .action.tertiary {
     &:not(.link-action) {
-
         @include button-variant($action-tertiary-bg-color, $action-tertiary-border-color);
     }
-}
-
-.btn-50-wide {
-    width: 50%;
 }
 
 $btn-outline-bg-color: white !default;

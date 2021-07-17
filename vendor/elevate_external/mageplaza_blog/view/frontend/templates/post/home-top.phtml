@@ -2,66 +2,7 @@
 
 $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-if (strpos($url,'happybeds') !== false) {
-?>
-<style>
-  .cat-menu img.cat-icon {
-        text-align: center;
-        width: 90px;
-        height: auto;
-        margin-bottom: 20px;
-        filter: brightness(100%)!important;
-        -webkit-filter: brightness(100%)!important;
-        -moz-filter: brightness(100%)!important;
-        -o-filter: brightness(100%)!important;
-        -ms-filter: brightness(100%)!important;
-    }
-    .cat-menu li a {
-        display: block;
-        color: #5c5c66;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 15px;
-    }
-   .cat-menu li {
-        flex: 1 1 auto;
-    }
-
-   .cat-menu {
-        width: 100%;
-        margin: 0 auto;
-        padding-bottom: 30px;
-        padding-top: 30px;
-    }
-  .cat-menu ul {
-        padding: 0;
-        overflow: hidden;
-        margin: auto;
-        display: flex;
-    }
-    @media screen and (min-width: 768px){
-        .evblog .cat-menu {
-            display: block!important;
-        }
-    }
-    @media screen and (max-width: 767.98px){
-       .cat-menu ul {
-            flex-wrap: wrap;
-        }
-        .cat-menu li {
-            flex: 1 1 50%;
-        }
-         .cat-menu img.cat-icon {
-            width: 40px;
-            margin-bottom: 0;
-        }
-        .cat-menu li a {
-            padding: 5px 0;
-            font-size: 12px;
-        }
-    }
-</style>
+if ((strpos($url,'happybeds') !== false)) { ?>
 <img src="https://www.happybeds.co.uk/skin/frontend/happybeds/default/images/comfort-zone-blog-banner.jpg" width="100%" >
 <div class="cat-menu">
     <ul>
@@ -75,7 +16,7 @@ if (strpos($url,'happybeds') !== false) {
 <?php }
 
 
-  
+
 if (strpos($url,'posturite') !== false) {
 ?>
 <style>
@@ -115,7 +56,7 @@ if (strpos($url,'posturite') !== false) {
 </div>
 
  <?php
- 
+
  }
 
  ?>

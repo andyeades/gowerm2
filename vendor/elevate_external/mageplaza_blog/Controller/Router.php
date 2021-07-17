@@ -75,6 +75,7 @@ class Router implements RouterInterface
         if (strpos($url,'blog') !== false) {
 
         } else {
+        
             return null;
         }
 
@@ -105,7 +106,7 @@ class Router implements RouterInterface
         $controller = array_shift($routePath);
 
         $url_lookup = str_replace('blog/', '', $identifier);
-        $url_lookup = str_replace('blog', '', $identifier);
+      //  $url_lookup = str_replace('blog', '', $identifier);
         $url_lookup = ltrim( $url_lookup, '/');
 
         //load home

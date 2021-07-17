@@ -1,4 +1,9 @@
-<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
-<script type="text/javascript">
-    window.top.location.href = '<?= $block->escapeJs($this->getUrl(urldecode($this->getRequest()->getParam('redirect_path')))) ?>';
-</script>
+<?php
+    /** @var \Magento\Framework\View\Element\Template $block */
+?>
+<?php $scriptString = <<<script
+    window.top.location.href = '{$block->escapeJs($this->getUrl(urldecode($this->getRequest()->getParam('redirect_path'))))}';
+script;
+?>
+
+<?=  isset($secureRenderer) ? $secureRenderer->renderTag('script', [], $scriptString, false) : '<script>'.$scriptString.'</script>' ?>

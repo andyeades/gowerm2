@@ -1,0 +1,155 @@
+@if $sitename == posturite {
+
+// I think these are posturite styles for the blog
+
+    .ev_hero_image_texteitherside_bkg {
+        h2 {
+            margin-top: 20px;
+            font-size: 15px;
+        }
+    }
+
+    #homepage-blog {
+        margin-top: 30px;
+
+        .grid-item {
+            box-shadow: none !important;
+            border-bottom: 0px solid gray;
+            margin-bottom: 25px;
+            border: 0px solid #ccc !important;
+            align-items: stretch;
+            flex-grow: 1;
+            width: 25.0%;
+        }
+
+        .mp-post-info {
+            font-size: 12px;
+            color: #979797;
+        }
+
+        .post-image {
+            min-height: 150px;
+            position: relative;
+            max-height: 150px;
+            overflow: hidden;
+            img {
+                max-height: 100%;
+                height: 100%;
+                width: 100%;
+                max-width: initial;
+                right: 0;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                margin: auto;
+                border: none;
+            }
+        }
+
+        .post-item-wrapper {
+            border: 1px solid #eee;
+            padding: 0 !important;
+            position: relative;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .post-list-item {
+            box-shadow: none !important;
+            border-bottom: 0px solid gray;
+            margin-bottom: 25px;
+            border: 0px solid #ccc !important;
+            align-items: stretch;
+            flex-grow: 1;
+            height: 100%;
+            margin: 0px 13px 13px 13px;
+        }
+
+        .post-list-body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+
+        .post-title {
+            color: black;
+        }
+
+        .mp-post-meta-info.mp-alignright a {
+            color: black;
+        }
+
+        a.post-link-title {
+            color: black;
+            font-weight: bold;
+            margin-top: 9px;
+            display: block;
+            margin-bottom: 19px;
+        }
+
+        .post-info-wrapper {
+            padding: 2px 20px 14px 20px;
+        }
+
+        h2 {
+
+            width: 100%;
+            position: relative;
+            display: initial;
+            color: #306f45;
+            font-size: 24px;
+            display: block;
+            margin: 0px 0px 30px 0px;
+            text-align: left !important;
+            font-weight: normal;
+
+        }
+
+
+        @media only screen and (max-width: 992px) {
+
+            .grid-item {
+
+                width: 50%;
+            }
+            .post-image {
+                min-height: 110px;
+
+                max-height: 110px;
+
+            }
+        }
+
+        @media (max-width: 480px) {
+            .col-xs-6 {
+                width: 50% !important;
+            }
+        }
+
+        // These must be redundant as they can't affect anything?
+
+
+        pager {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pages {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            order: 1;
+            margin-left: auto;
+            margin: 0 0 1rem 0;
+        }
+
+        .limiter {
+            order: 4;
+            margin-left: auto;
+        }
+    }
+}

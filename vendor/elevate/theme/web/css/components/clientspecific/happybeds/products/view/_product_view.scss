@@ -1,9 +1,28 @@
-$prod-view-info-description-font-size: 0.875rem !default;
+
 
 @if $sitename == happybeds {
 
+
+    // These are mostly hacks purely for fixing issues with the data in HB Descriptions
+
     .product-info-description {
-        @include co(font-size, $prod-view-info-description-font-size);
+        // Removes HR From descriptions (Hack instead of editing all data)
+        hr {
+            display: none;
+        }
+
+        // Causing Problems with contents spilling out
+        .row {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        .col-md-7 {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1em;
+            align-self: center !important;
+        }
     }
     .product-info-dimensions {
         .pull-right {
@@ -14,9 +33,10 @@ $prod-view-info-description-font-size: 0.875rem !default;
         }
      }
 
+    // Brand Advert on View Page?
     .ev-pp-brand-adv {
-
-
+        display:block;
     }
+
 }
 

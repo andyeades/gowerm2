@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Elevate_LandingPages::landingpages_top" sortOrder="10" title="Landing Pages">
+                    <resource id="Elevate_LandingPages::landingpages" sortOrder="10" title="Landing Pages">
+                    </resource>
+                    <resource id="Elevate_LandingPages::landingpages_manage" sortOrder="10" title="Landing Pages">
+                    </resource>
+                </resource>
+
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Elevate_LandingPages::config_landingpages" title="Landing Pages Options"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

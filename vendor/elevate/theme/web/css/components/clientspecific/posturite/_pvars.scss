@@ -382,7 +382,6 @@
     $ftr-m-ti-padding-desktop: 0 !global;
     $ftr-m-padding: 0 !global;
     $ftr-m-hdr-margin: 0 0 1.875rem 0 !global;
-    $ftr-m-li-a-padding-mobile: 0 0 1rem 0 !global;
     $ftr-m-li-a-padding: 0 0 1rem 0 !global;
     $ftr-copyright-border-on: 0 !global;
 
@@ -440,7 +439,7 @@
     $p-line-height: 1.75em !global;
 
     p {
-        line-height: $p-line-height;
+        @include co(line-height, $p-line-height);
     }
 
     // Buttons
@@ -519,6 +518,7 @@
     $sorter-options-fontsize-desktopsm-max: 1rem !global;
 
 
+    $toolbar-products-limiter-before-border-left: 1px solid #255f4c !global;
     $toolbar-products-limiter-display: none !global;
     $toolbar-products-limiter-display-desktopmd: flex !global;
     $toolbar-products-limiter-width: 16% !global;
@@ -544,15 +544,18 @@
     $toolbar-products-amount-margin-desktopmd: 0 !global;
 
 
+    $ev-ln-toolbar-btn-bg-color: #235e4b !global;
+    $ev-ln-toolbar-btn-border-color: #235e4b !global;
     $ev-ln-toolbar-btn-margin-sm-minmax: false !default;
 
+    $toolbar-products-pager-margin-mobiletablet-max: 0 0 20px 0 !global;
+    $toolbar-products-pager-margin-desktopsm-max: 0 0 20px 0 !global;
     $toolbar-products-pager-bottom-width-desktopsm-max: 100% !global;
     $toolbar-products-pager-bottom-margin-desktopsm-max: 0 0 20px 0 !global;
+    $toolbar-products-pager-margin-if-filter-enabled: 0 0 20px 0 !global;
 
-    // Hide The old Header?
-    .category-description h6 {
-        display: none;
-    }
+
+    $category-description-h6-display: none !global;
 
     // Filter
 
@@ -739,6 +742,7 @@
 
     $pitems-old-price-order: 1 !global;
     $pitems-old-price-opacity: 0.8 !global;
+    $normal-price-font-size: 1.5rem !global;
     $pitems-old-price-font-size: 1rem !global;
     $pitems-minimal-price-font-size: 1.5rem !global;
     $pitems-main-price-font-size: 1.5rem !global;
@@ -785,6 +789,7 @@
     // Feefo
 
     $feefoouter-border: false !global;
+    $feefoouter-border-desktopmd: false !global;
     $feefoouter-borderradius: false !global;
     $feefoouter-width-mobilemax: false !global;
     $feefoouter-width-mobiletabletmax: false !global;
@@ -864,8 +869,7 @@
 
 
 
-    $pview-boxtocart-borderradius-bottomleft: 0.625rem !global;
-    $pview-boxtocart-borderradius-bottomright: 0.625rem !global;
+    $pview-boxtocart-borderradius: 0.625rem !global;
 
 
 
@@ -905,15 +909,17 @@
     $pview-info-detailed-width-desktop: 100%;
     $pview-info-detailed-width-mobile: 100%;
 
-    $pview-desc-tab-title-icon-right: 0.5rem !global;
+    $prod-view-info-description-font-size: false !global;
 
-    $pview-desc-tab-title-padding-top: 1rem !global;
-    $pview-desc-tab-title-padding-bottom: 1rem !global;
-    $pview-desc-tab-title-padding-left: 0.5rem !global;
-    $pview-desc-tab-title-padding-right: 0.5rem !global;
+    $pview-tab-title-icon-right: 0.5rem !global;
+
+    $pview-tab-title-padding-top: 1rem !global;
+    $pview-tab-title-padding-bottom: 1rem !global;
+    $pview-tab-title-padding-left: 0.5rem !global;
+    $pview-tab-title-padding-right: 0.5rem !global;
 
 
-    $pview-desc-tab-title-text-transform-on: 0;
+    $pview-tab-title-text-transform-on: 0;
 
     $tab-control-color: #0A604D;
     $tab-control-font-size: 1.125rem;
@@ -1018,6 +1024,38 @@
 
     $checkout-agreement-label-button-margin: false !global;
 
+    $checkout-payment-method-title-stripepayments-display-mobiletabletmax: false !global;
+    $checkout-payment-method-title-display: false !global;
+    $checkout-payment-method-title-display-desktop: false !global;
+
+    $checkout-payment-method-title-margin-desktop: false !global;
+    $checkout-payment-method-title-margin: false !global;
+
+
+    $checkout-paymenth-method-title-display: false !global;
+    $checkout-paymenth-method-title-display-desktop: false !global;
+
+    $checkout-paymenth-method-title-margin-desktop: false !global;
+    $checkout-paymenth-method-title-margin: false !global;
+
+    $checkout-stripepayments-span-lc-order: false !global;
+    $checkout-stripepayments-span-lc-display: false !global;
+    $checkout-stripepayments-span-lc-width: false !global;
+
+    $checkout-stripepayments-span-lc-order-desktop: false !global;
+    $checkout-stripepayments-span-lc-display-desktop: false !global;
+    $checkout-stripepayments-span-lc-width-desktop: false !global;
+
+    $checkout-stripepayments-span-fc-order: false !global;
+    $checkout-stripepayments-span-fc-marginleft: false !global;
+    $checkout-stripepayments-span-fc-float: false !global;
+    $checkout-stripepayments-span-fc-position: false !global;
+
+    $checkout-stripepayments-span-fc-order-desktop: false !global;
+    $checkout-stripepayments-span-fc-marginleft-desktop: false !global;
+    $checkout-stripepayments-span-fc-float-desktop: false !global;
+    $checkout-stripepayments-span-fc-position-desktop: false !global;
+
     //Mini cart
 
     $minicart-custom-minicart-icon-url: '/media/theme_assets/header/basket.svg';
@@ -1079,17 +1117,17 @@
     $ftr-soc-i-a-margin-desktoplg: false !global;
     $ftr-soc-i-a-margin-desktopxl: false !global;
 
-    $ftr-soc-i-a-margin-right-lastoftype-on: false !global;
-    $ftr-soc-i-a-margin-right-lastoftype-sm-on: false !global;
-    $ftr-soc-i-a-margin-right-lastoftype-md-on: false !global;
-    $ftr-soc-i-a-margin-right-lastoftype-lg-on: false !global;
-    $ftr-soc-i-a-margin-right-lastoftype-xl-on: false !global;
+    $ftr-soc-i-a-margin-right-lastoftype: false !global;
+    $ftr-soc-i-a-margin-right-lastoftype-sm: false !global;
+    $ftr-soc-i-a-margin-right-lastoftype-md: false !global;
+    $ftr-soc-i-a-margin-right-lastoftype-lg: false !global;
+    $ftr-soc-i-a-margin-right-lastoftype-xl: false !global;
 
-    $ftr-soc-i-a-margin-left-firstoftype-on: false !global;
-    $ftr-soc-i-a-margin-left-firstoftype-sm-on: false !global;
-    $ftr-soc-i-a-margin-left-firstoftype-md-on: false !global;
-    $ftr-soc-i-a-margin-left-firstoftype-lg-on: false !global;
-    $ftr-soc-i-a-margin-left-firstoftype-xl-on: false !global;
+    $ftr-soc-i-a-margin-left-firstoftype: false !global;
+    $ftr-soc-i-a-margin-left-firstoftype-sm: false !global;
+    $ftr-soc-i-a-margin-left-firstoftype-md: false !global;
+    $ftr-soc-i-a-margin-left-firstoftype-lg: false !global;
+    $ftr-soc-i-a-margin-left-firstoftype-xl: false !global;
 
 
 
@@ -1098,19 +1136,22 @@
     $ftr-soc-i-a-padding-desktopmd: 0 0.4rem 1rem !global;
     $ftr-soc-i-a-padding-desktoplg: 0 0.4rem 1rem !global;
     $ftr-soc-i-a-padding-desktopxl: 0 0.4rem 1rem !global;
-    $ftr-soc-i-a-padding-right-lastoftype-on: 0 !global;
-    $ftr-soc-i-a-padding-right-lastoftype-sm-on: 1 !default;
-    $ftr-soc-i-a-padding-right-lastoftype-md-on: 0 !global;
-    $ftr-soc-i-a-padding-right-lastoftype-lg-on: 1 !default;
-    $ftr-soc-i-a-padding-right-lastoftype-xl-on: 1 !default;
+    $ftr-soc-i-a-padding-right-lastoftype: false !global;
+    $ftr-soc-i-a-padding-right-lastoftype-sm: true !global;
+    $ftr-soc-i-a-padding-right-lastoftype-md: 0 !global;
+    $ftr-soc-i-a-padding-right-lastoftype-lg: true !global;
+    $ftr-soc-i-a-padding-right-lastoftype-xl: true !global;
 
 
 
     $ftr-soc-i-margin-desktop: 0 !global;
 
+    $ftr-soc-i-i-bg-color: #FFFFFF !global;
     $ftr-soc-i-i-height-desktop: 2.875rem !global;
     $ftr-soc-i-i-width-desktop: 2.875rem !global;
     $ftr-soc-i-i-line-height-desktop: 2.875rem !global;
+    $ftr-soc-i-i-font-size-desktop: 1.5rem !global;
+
     $ftr-soc-i-border-on: 0 !global;
     $ftr-soc-i-border: none !global;
     $ftr-soc-i-margin-desktop: 0 !global;
@@ -1118,7 +1159,11 @@
 
     $ftr-copy-lr-width-desktop: 100% !global;
 
-
+    //$ftr-mid-left-il-margin: 0 !global;
+    $ftr-mid-left-il-i-url: url(/media/theme_assets/footer/certificationlogos.svg) !global;
+    $ftr-mid-left-il-i-bgsize: 107px !global;
+    $ftr-mid-left-il-i-height: 70.5px !global;
+    $ftr-mid-left-il-i-width: 107px !global;
 
 }
 

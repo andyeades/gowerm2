@@ -1,0 +1,67 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<?php $_helper = $this->helper(Magento\Catalog\Helper\Output::class); ?>
+<?php $_product = $block->getProduct(); ?>
+<?php
+$output_class = "";
+    /*
+if ($_product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+    $stockitem = $_product->getExtensionAttributes()->getStockItem()->getData();
+    //echo '<pre>';
+    //print_r($stockitem);
+    $childProducts = $_product->getTypeInstance()->getUsedProducts($_product);
+    if (count($childProducts) == 0) {
+        $output_class = 'product-add-form-empty';
+    }
+    if ($stockitem['is_in_stock'] == 0) {
+        $output_class = 'product-add-form-empty';
+    }
+} else if ($_product->getTypeId() == 'simple') {
+    $stockitem = $_product->getExtensionAttributes()->getStockItem()->getData();
+    if ($stockitem['is_in_stock'] == 0) {
+        $output_class = 'product-add-form-empty';
+    }
+}
+*/
+?>
+
+
+<div class="product-add-form-sticky <?= $output_class?> ">
+    <form data-product-sku="<?= $block->escapeHtmlAttr($_product->getSku()) ?>"
+          action="<?= $block->escapeUrl($block->getSubmitUrl($_product)) ?>" method="post"
+          id="product_addtocart_form_sticky"<?php if ($_product->getOptions()) :?> enctype="multipart/form-data"<?php endif; ?>>
+        <input type="hidden" name="product" value="<?= (int)$_product->getId() ?>" />
+        <input type="hidden" name="selected_configurable_option" value="" />
+        <input type="hidden" name="related_product" id="related-products-field" value="" />
+        <input type="hidden" name="item"  value="<?= (int)$block->getRequest()->getParam('id') ?>" />
+        <?= $block->getBlockHtml('formkey') ?>
+
+        <?= $block->getChildHtml('ev.pp.stickybar.inner'); ?>
+
+
+
+
+    </form>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=priceBox][data-price-box=product-id-<?= $block->escapeHtml($_product->getId()) ?>]": {
+            "priceBox": {
+                "priceConfig":  <?= /* @noEscape */ $block->getJsonConfig() ?>
+            }
+        }
+    }
+</script>

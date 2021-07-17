@@ -6,7 +6,6 @@ use Magento\Payment\Gateway\Helper\SubjectReader;
 use Magento\Payment\Gateway\Response\HandlerInterface;
 use Magento\Sales\Model\Order\Payment;
 
-
 /**
  * Class RefundResponseHandle
  * @package SecureTrading\Trust\Gateway\Response

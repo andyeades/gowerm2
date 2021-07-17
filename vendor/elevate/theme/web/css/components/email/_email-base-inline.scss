@@ -58,14 +58,14 @@ table {
 @include lib-typography-all();
 
 body {
-    font-family: $font-family-base;
+    @include co(font-family, $font-family-base);
     font-weight: normal;
     text-align: left;
 }
 
 th,
 td {
-    font-family: $font-family-base;
+    @include co(font-family, $font-family-base);
 }
 
 a {

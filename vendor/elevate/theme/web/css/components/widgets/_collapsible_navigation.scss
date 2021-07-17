@@ -16,7 +16,7 @@
         @include co(padding, $collapsible-nav-title-padding);
         @include max-screen($collapsible-nav-maxscreen) {
             @if $collapsible-nav-title-background-on == 1 {
-                background: $collapsible-nav-title-background;
+                @include co(background, $collapsible-nav-title-background);
             }
             margin-bottom: 0;
             @if $collapsible-nav-title-border-on == 1 {
@@ -56,7 +56,7 @@
                     content: '';
                     background-image: $collapsible-nav-icon-closed-bgimage;
                     background-size: contain;
-                    height: $collapsible-nav-icon-height;
+                    @include co(height, $collapsible-nav-icon-height);
                     width: $collapsible-nav-icon-width;
                 }
                 &.active {

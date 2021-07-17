@@ -1,4 +1,4 @@
-<?php 
+<?php
 $_product = $this->getProduct();
 
 $collectionCode = '';
@@ -8,110 +8,99 @@ $product_id = $_product->getId();
 ?>
 
 
-        <style>
-        .more-from-collection div.price-final_price {                  
-    padding: 0 0.25rem;
-}
-.more-from-collection div.price-final_price {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    order: 10;
-}
+<style>
+    .swiper-outer-container {
+        width: 100%;
+    }
 
-            .swiper-outer-container {
-                width: 100%;
-            }
+    .swiper-more-collection-container {
+        width: 100%;
+    }
 
-            .swiper-more-collection-container {
-                width: 100%;
-            }
+    .more-from-collection {
+        order: 5;
+    }
 
-            .more-from-collection {
-                order: 5;
-            }
+    .more-from-collection .products-grid {
+        background: #f7f8fb;
+    }
 
-            .more-from-collection .products-grid {
-                background: #f7f8fb;
-            }
+    .more-from-collection-inner {
 
-            .more-from-collection-inner {
+    }
 
-            }
+    .more-from-collection .prod-item-inner {
+        background-color: #fff;
+        height:           100%;
+        margin:           0 10px;
+        text-align:       center;
+    }
 
-            .more-from-collection .prod-item-inner {
-                background-color: #fff;
-                height:           100%;
-                margin:           0 10px;
-                text-align:       center;
-            }
+    .more-from-collection .price-box {
+        min-height: 50px;
+    }
 
-            .more-from-collection .price-box {
-                min-height: 50px;
-            }
+    .more-from-collection .products-grid .prod-img {
+        overflow: initial;
+        position  initial;
+    }
 
-            .more-from-collection .products-grid .prod-img {
-                overflow: initial;
-                position  initial;
-            }
+    /* Example wrapper */
+    .wrap {
+        position: relative;
+        margin:   3em 0;
+    }
 
-            /* Example wrapper */
-            .wrap {
-                position: relative;
-                margin:   3em 0;
-            }
-
-            .more-from-collection .product-icons {
-                display: none;
-            }
+    .more-from-collection .product-icons {
+        display: none;
+    }
 
 
-            .more-from-collection .swiper-slide {
-                border:     none;
-                background: none;
-            }
+    .more-from-collection .swiper-slide {
+        border:     none;
+        background: none;
+    }
 
-            .more-from-collectiom .swiper-slide {
-                background: none;
-            }
+    .more-from-collectiom .swiper-slide {
+        background: none;
+    }
 
-            .more-from-collection .products-grid .product-name {
-                min-height: 102px;
-            }
+    .more-from-collection .products-grid .product-name {
+        min-height: 102px;
+    }
 
-            @media screen and (min-width: 768px) {
-                .more-from-collection .products-grid .price-box > div {
-                    text-align: center;
-                }
-            }
+    @media screen and (min-width: 768px) {
+        .more-from-collection .products-grid .price-box > div {
+            text-align: center;
+        }
+    }
 
 
-            .hide_morefrom{
-            display:none;
-            }
-        </style>
-     
-      <div id="more-from-block" class="more-from-collection show_ev_furniture_block hide_morefrom"> 
-      <div class="more-from-collection-inner">
-      <div class="section-title">More from this collection</div>
-      
-<div id="more_from_collection_container">
-    
+    .hide_morefrom {
+        display: none;
+    }
+</style>
+
+<div id="more-from-block" class="more-from-collection show_ev_furniture_block hide_morefrom">
+    <div class="more-from-collection-inner">
+        <div class="section-title">More from this collection</div>
+
+        <div id="more_from_collection_container">
+
+        </div>
+    </div>
 </div>
-                 </div>
-                 </div>
-                 <?php
-     $helper = $this->helper('Elevate\Promotions\Helper\Data');
+<?php
+$helper = $this->helper('Elevate\Promotions\Helper\Data');
 
-
- $countdown_time = $helper->getConfig('elevate_promotions/countdown/countdown_time');
-       ?>
+$countdown_time = $helper->getConfig('elevate_promotions/countdown/countdown_time');
+?>
 
 <script>
 
 
     function moreFromCollection(collection_code, product_id) {
-       
+
         try {
             jQuery('#more_from_collection_container').html("Loading Collection ...");
             //   var mattress_sku = getUrlParameter('mattress');
@@ -123,17 +112,17 @@ $product_id = $_product->getId();
 
                 success: function (data) {
                     jQuery('#more_from_collection_container').html(data.html);
-                             
-                       
-                    if(!data.hide){                                                                    
-                    
+
+
+                    if (!data.hide) {
+
                         jQuery('#more-from-block').removeClass('hide_morefrom');
                     }
-                    
+
                     // console.log(data.list);
                     //re-initiate quickview on new list
-                  ELEVATE.Promotions.init("<?php echo $countdown_time; ?>", "#more_from_collection_container"); 
-                }                                
+                    ELEVATE.Promotions.init("<?php echo $countdown_time; ?>", "#more_from_collection_container");
+                }
             });
         } catch (e) {
             console.log(e);
@@ -141,15 +130,15 @@ $product_id = $_product->getId();
 
 
     }
+
     moreFromCollection('<?php echo $collectionCode; ?>', '<?php echo $product_id; ?>');
 
- 
+
 </script>
-     <?
-    $output_js = false;
+<?
+$output_js = false;
 
-    if ($output_js == true) { ?>
-
+if ($output_js == true) { ?>
 
 
     <script>
@@ -183,7 +172,7 @@ $product_id = $_product->getId();
 
     </script>
 
-      <?php  }
- ?>
+<?php }
+?>
 
 

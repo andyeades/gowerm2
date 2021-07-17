@@ -1,23 +1,15 @@
 * {
-  box-sizing: border-box;
     &:focus {
         outline: none;
     }
 }
 
-::before,
-::after {
-  box-sizing: border-box;
-}
-
-
-
 ul, ol {
-  @if $sitewide-list-style-type == 'none' {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
+    @if $sitewide-list-style-type == 'none' {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
 
 }
 

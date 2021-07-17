@@ -131,7 +131,7 @@ $hdr-search-transition: 0.5s width ease-in-out !default;
         }
 
         svg {
-            fill: $hdr-search-icon-color;
+            @include co(fill, $hdr-search-icon-color);
             @include co(width, $hdr-search-icon-width);
             height: $hdr-search-icon-height;
         }
@@ -177,7 +177,7 @@ $hdr-search-transition: 0.5s width ease-in-out !default;
             @include co(padding, $hdr-search-input-padding);
             @include co(order, $hdr-search-input-order);
 
-            background: $hdr-search-input-bg-color;
+            @include co(background, $hdr-search-input-bg-color);
             color: $hdr-search-text-color;
             height: $hdr-search-input-height;
             border: $hdr-search-border;

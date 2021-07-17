@@ -1,55 +1,14 @@
 @if $sitename == happybeds {
-    $feefoouter-width-mobilemax: auto !default;
-    $feefoouter-width-mobiletabletmax: max-content !default;
+
     $feefo-image-width: 160px !default;
     $feefo-image-width-desktop: 181px !default;
 
 
 
-    .feefo-image {
-        order: 3;
-        flex: 0 0 auto;
 
-        img {
-          @include co(width, $feefo-image-width);
-            @include min-screen($desktop-min) {
-               @include co(width, $feefo-image-width-desktop);
-            }
-        }
-
-        @include screen($screen-sm-min, $screen-sm-max) {
-            text-align: center;
-        }
-        @include max-screen($mobilemax) {
-            margin-top: 1rem;
-        }
-        @include max-screen($screen-sm-max) {
-
-            //margin-top: 1rem;
-            //width: 100%;
-        }
-    }
 
 
     #feefoouter {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-
-
-        @include max-screen($mobiletablet-max) {
-            justify-content: center;
-        }
-        @include screen($mobiletablet-min, $mobiletablet-max) {
-
-            @include co(width, $feefoouter-width-mobiletabletmax);
-        }
-        @include min-screen($desktop-min) {
-            width: 70%;
-        }
-        @include max-screen($mobilemax) {
-            width: 270px;
-        }
 
         > div {
             flex: 0 1 auto;

@@ -16,7 +16,7 @@
 <?php $_product = $block->getProduct(); ?>
 <?php
 $output_class = "";
-
+    /*
 if ($_product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
 
     $stockitem = $_product->getExtensionAttributes()->getStockItem()->getData();
@@ -40,7 +40,9 @@ if ($_product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Co
         $output_class = 'product-add-form-empty';
     }
 
-}?>
+}
+*/
+?>
 
 
 <div class="product-add-form-sticky <?= $output_class?> ">

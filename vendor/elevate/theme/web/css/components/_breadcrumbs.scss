@@ -26,7 +26,6 @@ $breadcrumbs-container-padding: false !default;
 .breadcrumbs {
     @if $breadcrumbs-off-mobile == true {
         @include max-screen($mobile-max) {
-
                 display: none;
             }
     }
@@ -42,8 +41,6 @@ $breadcrumbs-container-padding: false !default;
         @include elevate-border(false, $breadcrumbs-border-thickness, $breadcrumbs-border-type, $breadcrumbs-border-position);
 
     }
-
-
 
     @include lib-breadcrumbs();
 
@@ -65,15 +62,15 @@ $breadcrumbs-container-padding: false !default;
         .home {
            > a {
                display: inline-block;
-               height: $breadcrumbs-home-icon-height;
+               @include co(height, $breadcrumbs-home-icon-height);
                @include co(width, $breadcrumbs-home-icon-width);
 
                 > svg {
-                    fill: $breadcrumbs-home-icon-color;
-                    height: $breadcrumbs-home-icon-height;
+                    @include co(fill, $breadcrumbs-home-icon-color);
+                    @include co(height, $breadcrumbs-home-icon-height);
                     @include co(width, $breadcrumbs-home-icon-width);
                     > * {
-                        fill: $breadcrumbs-home-icon-color;
+                        @include co(fill, $breadcrumbs-home-icon-color);
                     }
                 }
 

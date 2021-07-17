@@ -1,0 +1,229 @@
+<?php
+
+/**
+ * @var $block \Elevate\Delivery\Block\Adminhtml\Order\View\DeliveryInfo
+ */
+
+$order = $block->getDeliveryDateSelected();
+
+$deliveryteamnumberfieldclass = '';
+
+  $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+  if (strpos($url,'gowercottage') !== false) {
+      $deliveryteamnumberfieldclass = 'hideme';
+  }
+?>
+<div id="delivery-info-message">
+
+</div>
+<form id="delivery-info-form" class="form-inline">
+    <fieldset class="admin__fieldset">
+        <legend class="admin__legend"><span>Delivery Options</span></legend>
+        <br>
+        <input id="order_id" name="order_id" type="hidden" value="<?= $block->getOrderId(); ?>">
+        <div class="admin__field">
+            <label class="admin__field-label"><span>Delivery Date Selected (YYYY-MM-DD):</span></label>
+            <div class="admin__field-control">
+            <input class="admin__control-text" id="delivery_date_selected" name="delivery_date_selected" value="<?= $block->getDeliveryDateSelected(); ?>">
+            </div>
+        </div>
+        <div class="admin__field">
+            <div class="detailed-del-info-dates"></div>
+            <label class="admin__field-label"><span>Detailed Delivery Info Dates:</span></label>
+            <div class="admin__field-control">
+                <input class="admin__control-text" id="detailed_delivery_info_dates" name="detailed_delivery_info_dates" value="<?= $block->getDetailedDeliveryInfoDates(); ?>">
+            <p>Format: "Friday 26th March 2021"</p>
+            </div>
+        </div>
+
+        <div class="admin__field <?= $deliveryteamnumberfieldclass; ?>">
+            <label class="admin__field-label"><span>Detailed Delivery Team Number:</span></label>
+            <div class="admin__field-control">
+                <input class="admin__control-text" id="detailed_delivery_teamnumber" name="detailed_delivery_teamnumber" value="<?= $block->getDetailedDeliveryTeamnumber(); ?>">
+            </div>
+        </div>
+    </fieldset>
+
+    <div id="change-delivery-info" class="action-button">Change Delivery Info</div>
+</form>
+
+
+
+<div id="ajaxResponse"></div>
+
+<div id="loading-overlay" class="loading">
+    <div class="loader"></div>
+    <div class="loader-message">Attempting to Save Delivery Options...</div>
+</div>
+
+<script type="text/javascript">
+    require(["jquery","jquery/ui"],function($) {
+
+        jQuery('#delivery_date_selected').datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+
+        jQuery('#delivery_date_selected').change(function(){
+            var arrayOfWeekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            var arrayOfMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var datetimestamp = Date.parse(jQuery('#delivery_date_selected').val());
+
+            var date = new Date(datetimestamp);
+            var datenumber = date.getDay();
+            var datemonths = date.getMonth();
+
+
+
+            var datestring = arrayOfWeekdays[datenumber] + ' ' + date.getDate() + ' ' + arrayOfMonths[datemonths] + ' ' + date.getFullYear();
+
+            jQuery('#detailed_delivery_info_dates').val(datestring);
+                                                          });
+
+    jQuery('#change-delivery-info').on('click touchend', (function () {
+
+        var ajaxRequest;
+
+
+        var arraydata = jQuery('#delivery-info-form').serializeArray();
+
+        ajaxRequest = jQuery.ajax({
+            url: "<?php echo $this->getUrl('deliveryoptions/changedeliveryoptions/modifydeliveryinfo'); ?>?isAjax=true",
+            type: 'POST',
+            data: {
+                form_key: window.FORM_KEY,
+                formdata: arraydata,
+               // data_to_send: data_to_send_json,
+              //  datasend: data_to_send
+            },
+            dataType: 'json',
+            beforeSend: function () {
+                jQuery('.loading').show();
+            },
+            success: function (response) {
+
+
+                if (response.success === false) {
+                    jQuery('#delivery-info-message').append('<div class="message message-error error" >Error Could not save Delivery Information</div>');
+
+                } else {
+                    jQuery('#delivery-info-message').append('<div class="message message-success success" >Saved Delivery Information</div>');
+
+                }
+                jQuery('.loading').hide();
+            },
+            error: function (xhr, status, errorThrown) {
+                jQuery('.loading').hide();
+                console.log(status);
+                console.log(xhr);
+                console.log(errorThrown);
+            }
+        });
+    }));
+        });
+</script>
+
+<style type="text/css">
+
+    .loader {
+        border:        16px solid #f3f3f3; /* Light grey */
+        border-top:    16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width:         120px;
+        height:        120px;
+        animation:     spin 2s linear infinite;
+        margin:        0 auto;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .loading {
+        position: fixed;
+        z-index:  999;
+        height:   2em;
+        width:    100%;
+        overflow: visible;
+        margin:   auto;
+        top:      0;
+        left:     0;
+        bottom:   0;
+        right:    0;
+        display:  none;
+    }
+
+    .loading:before {
+        content:          '';
+        display:          block;
+        position:         fixed;
+        top:              0;
+        left:             0;
+        width:            100%;
+        height:           100%;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .loader-message {
+
+        margin-top: 20px;
+        color:      #f3f3f3;
+        width:      100%;
+        margin:     0 auto;
+        text-align: center;
+        /* z-index: 99999990; */
+        font-size:  30px;
+        /* background: white; */
+        z-index:    1;
+        position:   relative;
+    }
+
+    .action-button {
+        background-color: #eb5202;
+        border-color:     #eb5202;
+        color:            #ffffff;
+        text-shadow:      1px 1px 0 rgba(0, 0, 0, 0.25);
+        border:           1px solid;
+        border-radius:    0;
+        display:          inline-block;
+        font-family:      'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size:        1.4rem;
+        font-weight:      600;
+        line-height:      1.36;
+        padding:          0.6rem 1em 0.6rem;
+        text-align:       center;
+        vertical-align:   baseline;
+        cursor:           pointer;
+    }
+
+    .action-button:hover {
+        background-color: #ba4000;
+        border-color:     #b84002;
+        box-shadow:       0 0 0 1px #007bdb;
+        color:            #ffffff;
+        text-decoration:  none;
+    }
+
+    .actions-toolbar {
+        padding-top: 20px;
+    }
+
+    .actions-toolbar > row {
+        align-items: center;
+    }
+
+    .success-message {
+        background-color: #79a22e;
+    }
+
+    .error-message {
+        background-color: #ee7d7d;
+    }
+    .hideme {
+        display: none;
+    }
+</style>

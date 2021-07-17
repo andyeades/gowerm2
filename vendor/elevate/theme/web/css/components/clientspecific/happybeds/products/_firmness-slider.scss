@@ -83,6 +83,10 @@
     $slider-vertical-height: 210px !default;
 
 
+    .firm_hidden {
+        display: none;
+    }
+
     .firmness_rating_slide .slider {
         display: inline-block;
         vertical-align: middle;
@@ -91,10 +95,10 @@
         &.slider-horizontal {
             width: 100%;
 
-            height: $slider-line-height;
+            @include co(height, $slider-line-height);
 
             .slider-track {
-                height: $slider-line-height / 2;
+                @include co(height, $slider-line-height / 2);
                 width: 100%;
                 margin-top: -$slider-line-height / 4;
                 top: 50%;
@@ -162,7 +166,7 @@
         }
 
         &.slider-vertical {
-            height: $slider-vertical-height;
+            @include co(height, $slider-vertical-height);
             @include co(width, $slider-line-height);
 
             .slider-track {
@@ -300,7 +304,7 @@
         position: absolute;
         top: 0;
         @include co(width, $slider-line-height);
-        height: $slider-line-height;
+        @include co(height, $slider-line-height);
         //background-color: #337AB7;
 
         border: 0 solid transparent;
@@ -418,19 +422,28 @@
             }
         }
     }
-    .firm_hidden {
-        display: none;
-    }
-    #bodyweight_select {
-        .page-with-filter & {
-            margin-right: 25px;
-        }
+
+    //
+
+
+
+    .firmness-rating-outer {
+        position: relative;
     }
 
-    #bodyweight_select, #bodyweight_select2 {
-        -webkit-appearance: menulist-button;
-        padding: 6px 12px;
+
+
+
+
+    #bwhowmany label.btn.btn-continue {
+        background-color: #0e1936;
+        border-color:     #091022;
+        width:            100% !important;
     }
+
+    //
+
+
 
     .firmness_wrap {
         #firmness-selectedweight, #firmness-selectedweight2 {
@@ -753,23 +766,7 @@
     div#rating_text {
         margin-bottom: 21px;
     }
-    #bodyweight_filter {
-        padding: 20px;
-        background: 0 0;
-        background-color: #1b2642;
-        margin-bottom: 20px;
-        color: #fff;
 
-        select {
-            width: 72%;
-            display: inline-block;
-            color: #000;
-            height: 31px;
-            font-size: 11px;
-            margin-left: 10px;
-            min-width: 165px;
-        }
-    }
     #firmness_label {
         color: #fff;
         width: 100%;
@@ -782,6 +779,14 @@
     }
     .bwselwrap {
 
+    }
+    .bwselwrap2 {
+        &.hide_filter {
+            display: none;
+        }
+        &.hide_filter.flex {
+            display: flex !important;
+        }
     }
     .bwselwrap, .bwselwrap2 {
         padding: 0 10px;
@@ -835,7 +840,7 @@
     }
 
     .firmness-rating-outer {
-        background: $happybeds-13;
+        @include co(background, $happybeds-13);
         padding: 15px;
         width: 100%;
 
@@ -851,18 +856,62 @@
         }
     }
 
+    $firmness-not-suited-color: #000 !default;
 
     .firmness_not_suited {
         position: absolute;
-        @include co(color, $happybeds-9);
+        background-color: #ffffffd6;
+        @include co(color, $firmness-not-suited-color);
         width: 100%;
         top: 35%;
-        font-size: 12px;
+        font-size: 13px;
         text-align: center;
         margin: 0 0 0 -15px;
         font-weight: 700;
         padding: 0 5px;
+        top:              0;
+        height:           100%;
+        z-index:          99;
+        align-items:      center;
+        display:          flex;
+        justify-content:  center;
+        &.firm_hidden {
+            display: none;
+        }
     }
 
 
+    $page-with-filter-bodyweight-select-marginright: false !default;
+
+    // Layered Nav Pages Only
+    .page-with-filter {
+        #bodyweight_select {
+            @include co(margin-right, $page-with-filter-bodyweight-select-marginright);
+        }
+    }
+
+    $bodyweight-filter-select-width: 72% !default;
+    $bodyweight-filter-select-minwidth: 165px !default;
+
+    #bodyweight_filter {
+        padding: 20px;
+        background: 0 0;
+        background-color: #1b2642;
+        margin-bottom: 20px;
+        color: #fff;
+
+        select {
+            @include co(width, $bodyweight-filter-select-width);
+            @include co(min-width, $bodyweight-filter-select-minwidth);
+            -webkit-appearance: menulist-button;
+            padding: 6px 12px;
+            display: inline-block;
+            color: #000;
+            height: 31px;
+            font-size: 11px;
+            margin-left: 10px;
+        }
+    }
 }
+
+

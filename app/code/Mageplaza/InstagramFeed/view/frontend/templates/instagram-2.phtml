@@ -1,0 +1,53 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_InstagramFeed
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var Mageplaza\InstagramFeed\Block\Widget $block */
+if ($block->isEnable()):
+    $widgetId = uniqid('-', false);
+    $options = $block->getAllOptions();
+    $total = 4;
+    $calcWidth = $block->calcWidth();
+    $width = $block->getNumberRow($options['layout']) ? $calcWidth . '%' : $calcWidth . 'px';
+    $sizeIcon = ($calcWidth < 10) ? '10px' : '14px';
+    ?>
+    <div class="mpinstagramfeed-container mpinstagramfeed-container-2">
+        <div id="mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId ?>" class="instagram-row"></div>
+    </div>
+    <?php
+
+// Removed for Gower Style Block
+
+?>
+    <script type="text/x-magento-init">
+    {
+        "#mpinstagramfeed-photos-<?= /** @noEscape */ $widgetId ?>": {
+            "mageplaza/instagram": {
+                "id": "<?= /** @noEscape */ $widgetId ?>",
+                "token": "<?= /** @noEscape */ $block->getAccessToken() ?>",
+                "count": "<?= /** @noEscape */ $total ?>",
+                "layout": "<?= /** @noEscape */ $options['layout'] ?>",
+                "show_caption": "<?= /** @noEscape */ $options['show_caption'] ?>",
+                "show_popup": "<?= /** @noEscape */ $options['show_popup'] ?>"
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

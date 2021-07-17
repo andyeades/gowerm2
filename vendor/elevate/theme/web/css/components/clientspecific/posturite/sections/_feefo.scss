@@ -52,7 +52,7 @@
         border: 1px solid $ps-color-convert-0;
         padding: 10px 60px;
         text-decoration: none;
-        background: $ps-color-convert-2;
+        @include co(background, $ps-color-convert-2);
         display: inline-block;
         margin: 0 auto;
         @include co(color, $ps-color-convert-89);
@@ -67,7 +67,7 @@
         border: 1px solid $ps-color-convert-0;
         padding: 10px 60px;
         text-decoration: none;
-        background: $ps-color-convert-2;
+        @include co(background, $ps-color-convert-2);
         display: inline-block;
         margin: 0 auto;
         @include co(color, $ps-color-convert-89);
@@ -86,7 +86,7 @@
             height: 16px;
             font-size: 0;
             line-height: 0;
-            background: $ps-url-convert-37 0 0 repeat-x;
+            @include co(background, $ps-url-convert-37 0 0 repeat-x);
             text-indent: -999em;
             overflow: hidden;
             margin: 0 auto 4px;
@@ -94,7 +94,7 @@
             .rating {
                 float: left;
                 height: 16px;
-                background: $ps-url-convert-37 0 100% repeat-x;
+                @include co(background, $ps-url-convert-37 0 100% repeat-x);
             }
         }
 

@@ -1,4 +1,4 @@
-@if sitename == happybeds {
+@if $sitename == happybeds {
 
 
     .sub-hdr-hdr-feefo {
@@ -78,14 +78,17 @@
         }
 
 
+
     }
 
     // custom
+
 
     .hdr-byob-icon {
         background: url(/media/theme_assets/byob.png);
         background-size: 50px;
         height: 34px;
+
         width: 50px;
     }
     .hdr-byob-link {

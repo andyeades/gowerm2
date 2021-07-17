@@ -211,7 +211,28 @@ define(
             _ReplaceDataParent: function ($widget) {
                 if ($widget.options.jsonConfig.parentProductName) {
                     var parentProductName = $widget.options.jsonConfig.parentProductName;
+             
+                    
+               require(['jqueryHistory'], function () {
+                if (typeof config.urls !== 'undefined' && typeof config.urls[productId] !== 'undefined') {
+                    var url = config.urls[productId];
+                    var title = null;
+                    if (typeof config.customAttributes[productId].name !== 'undefined'
+                        && typeof config.customAttributes[productId].name.value !== 'undefined'
+                    ) {
+                        title = config.customAttributes[productId].name.value;
+                    }
+                  
+                    const queryString = window.location.search;
+                 var currentUrl = location.protocol + '//' + location.host + location.pathname;
+                 
+                 //
+               
+                   if(currentUrl != url){
                     History.replaceState(null, parentProductName, $widget.options.jsonConfig.urls['parent']);
+                    }
+                }
+            });   
                 }
                 if (typeof $widget.options.jsonConfig.customAttributes.parent !== 'undefined') {
                     $.each($widget.options.jsonConfig.customAttributes.parent, function (attributeCode, data) {
@@ -447,7 +468,29 @@ define(
                                     title = config.customAttributes[simpleProductId].name.value;
                                 }
                             }
-                            History.replaceState(null, title, url);
+                            
+                                            
+               require(['jqueryHistory'], function () {
+                if (typeof config.urls !== 'undefined' && typeof config.urls[productId] !== 'undefined') {
+                    var url = config.urls[productId];
+                    var title = null;
+                    if (typeof config.customAttributes[productId].name !== 'undefined'
+                        && typeof config.customAttributes[productId].name.value !== 'undefined'
+                    ) {
+                        title = config.customAttributes[productId].name.value;
+                    }
+                  
+                    const queryString = window.location.search;
+                 var currentUrl = location.protocol + '//' + location.host + location.pathname;
+                 
+                 //
+               
+                   if(currentUrl != url){
+                    History.replaceState(null, title, url);
+                    }
+                }
+            });  
+                           
                         }
                     }
                 } else {
@@ -561,7 +604,29 @@ define(
                                     title = config.customAttributes[simpleProductId].name.value;
                                 }
                             }
-                            History.replaceState(null, title, url);
+                            
+                                        require(['jqueryHistory'], function () {
+                if (typeof config.urls !== 'undefined' && typeof config.urls[productId] !== 'undefined') {
+                    var url = config.urls[productId];
+                    var title = null;
+                    if (typeof config.customAttributes[productId].name !== 'undefined'
+                        && typeof config.customAttributes[productId].name.value !== 'undefined'
+                    ) {
+                        title = config.customAttributes[productId].name.value;
+                    }
+                  
+                    const queryString = window.location.search;
+                 var currentUrl = location.protocol + '//' + location.host + location.pathname;
+                 
+                 //
+               
+                   if(currentUrl != url){
+                    History.replaceState(null, title, url);
+                    }
+                }
+            });  
+            
+                            
                         }
                     }
                 } else {

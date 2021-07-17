@@ -24,15 +24,19 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
         @include co(margin, $category-page-title-margin);
 
         @include min-screen($desktop-min) {
-            @include co(font-size, $category-page-title-font-size-desktop, $category-page-title-font-size, $h1-font-size);
-            @include co(font-weight, $category-page-title-font-weight-desktop, $category-page-title-font-weight, $headings-font-weight);
-            @include co(text-align, $category-page-title-text-align-desktop, $category-page-title-text-align, $body-text-align);
+            @include co(font-size, $category-page-title-font-size-desktop, $category-page-title-font-size);
+            @include co(font-weight, $category-page-title-font-weight-desktop, $category-page-title-font-weight);
+            @include co(text-align, $category-page-title-text-align-desktop, $category-page-title-text-align);
             @include co(margin, $category-page-title-margin-desktop, $category-page-title-margin);
+        }
+        @include min-screen($desktop-md-min) {
+            @include co(font-size, $category-page-title-font-size-desktop-md, $category-page-title-font-size-desktop, $category-page-title-font-size);
+            @include co(font-weight, $category-page-title-font-weight-desktop-md, $category-page-title-font-weight-desktop, $category-page-title-font-weight);
+            @include co(text-align, $category-page-title-text-align-desktop-md, $category-page-title-text-align-desktop, $category-page-title-text-align);
+            @include co(margin, $category-page-title-margin-desktop-md, $category-page-title-margin-desktop, $category-page-title-margin);
         }
     }
 }
-
-
 
 
 .category-header-outer {
@@ -40,15 +44,16 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
     @include co(border-radius, $category-header-outer-border-radius);
     @include co(margin, $category-header-outer-margin);
     @include min-screen($mobile-menu-notvisible) {
-        @include co(margin, $category-header-outer-margin-mobilemenunotvisible,$category-header-outer-margin);
-        @include co(border-radius, $category-header-outer-border-radius-mobilemenunotvisible,$category-header-outer-border-radius);
+        @include co(margin, $category-header-outer-margin-mobilemenunotvisible, $category-header-outer-margin);
+        @include co(border-radius, $category-header-outer-border-radius-mobilemenunotvisible, $category-header-outer-border-radius);
     }
+
     .category-header-inner {
         @include co(padding, $category-header-inner-padding);
         @include co(margin, $category-header-inner-margin);
         @include min-screen($mobile-menu-notvisible) {
             @include co(padding, $category-header-inner-padding-mobilemenunotvisible, $category-header-inner-padding);
-            @include co(margin, $category-header-inner-margin-mobilemenunotvisible,$category-header-inner-margin);
+            @include co(margin, $category-header-inner-margin-mobilemenunotvisible, $category-header-inner-margin);
         }
     }
 }
@@ -73,13 +78,15 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
 
 
     h2 {
-      @include co(font-size, $category-description-h2-font-size);
+        @include co(font-size, $category-description-h2-font-size);
         @include co(font-weight, $category-description-h2-font-weight);
         @include co(margin, $category-description-h2-margin);
     }
+
+    h6 {
+        @include co(display, $category-description-h6-display);
+    }
 }
-
-
 
 
 .product-item-name {
@@ -94,10 +101,12 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
     &:hover {
         @include co(color, $pitemname-hover-color);
     }
+
     @include min-screen($desktop-min) {
         @include co(min-height, $pitemname-min-height-desktop, $pitemname-min-height);
     }
 }
+
 .product-item-inner {
     .actions-primary {
         .action.primary.tocart {
@@ -115,8 +124,8 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
                     @include co(margin, $pitems-action-primary-i-margin);
                     position: relative;
                     display: inline-block;
-                    background: $pitems-action-primary-i-background;
-                    height: $pitems-action-primary-i-height;
+                    @include co(background, $pitems-action-primary-i-background);
+                    @include co(height, $pitems-action-primary-i-height);
                     @include co(width, $pitems-action-primary-i-width);
                     background-size: contain;
                     background-repeat: no-repeat;
@@ -134,6 +143,7 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
         }
     }
 }
+
 .products {
     @include co(margin, $products-grid-list-margin);
 }
@@ -147,13 +157,13 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
             @if $product-item-actions-secondary-show != 0 {
                 & > .action {
                     @include lib-icon-font(
-                        $-icon-font-content        : '',
-                        $-icon-font-size           : 1.813rem,
-                        $-icon-font-color          : $addto-color,
-                        $-icon-font-color-hover    : $addto-hover-color,
-                        $-icon-font-text-hide      : true,
-                        $-icon-font-vertical-align : middle,
-                        $-icon-font-line-height    :  1.5rem
+                        $-icon-font-content: '',
+                        $-icon-font-size: 1.813rem,
+                        $-icon-font-color: $addto-color,
+                        $-icon-font-color-hover: $addto-hover-color,
+                        $-icon-font-text-hide: true,
+                        $-icon-font-vertical-align: middle,
+                        $-icon-font-line-height: 1.5rem
                     );
 
                     &:before {
@@ -193,7 +203,6 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
         }
 
 
-
         .product-item-bottom {
             width: 100%;
         }
@@ -202,9 +211,9 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
 
     .product-image-photo {
         @include co(width, $pitems-pimagephoto-width);
-      @if $pitems-product-image-photo-border-radius-on == 1 {
-          border-radius: $pitems-product-image-photo-border-radius;
-      }
+        @if $pitems-product-image-photo-border-radius-on == 1 {
+            border-radius: $pitems-product-image-photo-border-radius;
+        }
     }
 
     .product-item-name {
@@ -223,11 +232,11 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
 
         // Solid Color
         @if $pitems-item-bg-color-on == 1 {
-            background: $pitems-item-bg-color;
+            @include co(background, $pitems-item-bg-color);
         }
         // Gradient
         @if $pitems-item-background-on == 1 {
-            background: $pitems-item-background;
+            @include co(background, $pitems-item-background);
         }
         @if $pitems-item-border-radius-on == 1 {
             border-radius: $pitems-item-border-radius;
@@ -244,8 +253,8 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
             @include co(margin, $pitems-product-reviews-summary-margin);
             @include co(justify-content, $pitems-product-reviews-summary-justifycontent);
         } @else {
-        display: none;
-    }
+            display: none;
+        }
 
 
     }
@@ -300,10 +309,12 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
             flex: $pgrid-item-pitemdetails-child-flex;
             @include co(width, $pgrid-item-pitemdetails-child-width);
         }
+
         .sr-clear {
             @include co(order, $pitems-item-pitemetails-sr-clear-order);
         }
 
+        >.price-final_price,
         .price-box {
             @include co(min-height, $pgrid-price-box-min-height);
             display: flex;
@@ -325,7 +336,7 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
                 flex: 0 1 auto;
                 @include co(width, $pgrid-price-box-prices-width);
                 @include min-screen($desktop-min) {
-                    @include co(width, $pgrid-price-box-prices-width-desktop,$pgrid-price-box-prices-width);
+                    @include co(width, $pgrid-price-box-prices-width-desktop, $pgrid-price-box-prices-width);
                 }
             }
 
@@ -337,6 +348,7 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
 
 
         }
+
         .product-item-inner {
             @include co(align-items, $pgrid-product-item-inner-align-items);
             @if $pgrid-addcart-pricebox-sidebyside == 1 {
@@ -349,7 +361,6 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
             flex-direction: column;
 
 
-
             .product-item-actions {
 
             }
@@ -360,7 +371,6 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
     $pgrid-addcart-pricebox-sidebyside: 1 !global;
 
     $pgrid-addcart-pricebox-sbs-addcart-order: 2 !default;
-
 
 
     @if $pgrid-addcart-action-on == 1 {
@@ -376,10 +386,10 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
         @if $pitems-icons-enabled != 1 {
             @if $pgrid-price-box-was-now-prices-display-mode == side-by-side {
 
-                    .special-price, .old-price {
-                        width: 50%;
-                        flex: 1 1 auto;
-                    }
+                .special-price, .old-price {
+                    width: 50%;
+                    flex: 1 1 auto;
+                }
 
 
             }
@@ -485,7 +495,6 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
         }
 
 
-
         @include min-screen($desktop-min) {
             @include co(padding, $pgrid-item-info-padding-desktop, $pgrid-item-info-padding);
         }
@@ -496,26 +505,37 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
         position: relative;
 
     }
+
+    $pgrid-item-photo-transition: opacity 0.7s ease-in-out !default;
+    $pgrid-item-photo-width: 100% !default;
+    $pgrid-item-photo-minheight: 150px !default;
+
     .product-image-photo {
-        transition: opacity 0.7s ease-in-out;
+        @include co(transition, $pgrid-item-photo-transition);
+        @include co(width, $pgrid-item-photo-width);
+        @include max-screen($desktop-sm-max) {
+            @include co(min-height, $pgrid-item-photo-minheight);
+        }
     }
+
     .product-image-hover-enable {
+        @include co(transition, $pgrid-item-photo-transition);
         background-size: contain;
-        transition: opacity 0.7s ease-in-out;
         background-repeat: no-repeat;
         overflow: hidden;
+
         &:hover {
-            transition: opacity 0.7s ease-in-out;
+            @include co(transition, $pgrid-item-photo-transition);
             background-repeat: no-repeat;
             overflow: hidden;
+
             img {
                 opacity: 0;
-                transition: opacity 0.7s ease-in-out;
+                @include co(transition, $pgrid-item-photo-transition);
             }
         }
 
     }
-
 
 
     .product-item-description {
@@ -523,7 +543,6 @@ $cat-imgdesc-margin-bottom: $indent-base !default;
         padding: 0 1rem;
         display: none;
     }
-
 
 
     .product-item-actions {
@@ -583,9 +602,11 @@ $plist-pricebox-font-size: 1.5rem !default;
                 border-radius: $plist-pimagephoto-border-radius;
             }
         }
+
         .sr-clear {
             @include co(order, $plist-sr-clear-order);
             flex: 0 1 auto;
+
             .star-rating {
                 @include co(margin, $plist-srclear-starrating-margin);
             }
@@ -644,12 +665,15 @@ $plist-pricebox-font-size: 1.5rem !default;
         .old-price {
 
         }
+
         .normal-price {
 
         }
+
         .price-label {
-          @include co(font-size, $plist-price-label-fontsize);
+            @include co(font-size, $plist-price-label-fontsize);
         }
+
         .price-box {
             @include co(order, $plist-pricebox-order);
             @include co(margin, $plist-pricebox-margin);
@@ -658,9 +682,10 @@ $plist-pricebox-font-size: 1.5rem !default;
             .special-price,
             .price-final_price {
                 .price {
-                  @include co(font-size, $plist-pricebox-font-size);
+                    @include co(font-size, $plist-pricebox-font-size);
                 }
             }
+
             .price {
 
 
@@ -668,7 +693,6 @@ $plist-pricebox-font-size: 1.5rem !default;
 
 
         }
-
 
 
         .prices-tier {
@@ -719,13 +743,22 @@ $ctl-order-desktopmd: 0 !default;
 
 $ctl-width: 100% !default;
 $ctl-width-desktopmd: auto !default;
-
+$ctl-margin: 0 0 1rem 0 !default;
+$ctl-margin-desktopmd: 0 !default;
+$ctl-flexwrap: wrap !default;
+$ctl-flexwrap-desktopmd: nowrap !default;
 
 $ctl-ctlink-fontfamily: $theme-sans-serif-font-family !default;
 $ctl-ctlink-fontweight: 600 !default;
 $ctl-ctlink-borderradius: $border-radius !default;
 $ctl-ctlink-padding: 10px 20px !default;
-$ctl-ctlink-margin: 0 0.5rem 0 0 !default;
+$ctl-ctlink-margin: 0 0.5rem 0.5rem 0 !default;
+$ctl-ctlink-lot-margin: 0 0 0.5rem 0 !default;
+
+$ctl-ctlink-margin-desktopmd: 0 0.5rem 0 0 !default;
+$ctl-ctlink-lot-margin-desktopmd: 0 !default;
+
+
 $ctl-ctlink-color: #928665 !default;
 
 $ctl-ctlink-transition: $alternate-transition !default;
@@ -744,8 +777,12 @@ $ctl-ctlink-hover-textdecoration: none !default;
     @include co(order, $ctl-order);
     @include co(width, $ctl-width);
     @include co(justify-content, $ctl-justifycontent);
+    @include co(margin, $ctl-margin);
+    @include co(flex-wrap, $ctl-flexwrap);
 
     @include min-screen($desktop-md-min) {
+        @include co(flex-wrap, $ctl-flexwrap-desktopmd, $ctl-flexwrap);
+        @include co(margin, $ctl-margin-desktopmd, $ctl-margin);
         @include co(order, $ctl-order-desktopmd, $ctl-order);
         @include co(width, $ctl-width-desktopmd, $ctl-width);
         @include co(justify-content, $ctl-justifycontent-desktopmd, $ctl-justifycontent);
@@ -760,12 +797,24 @@ $ctl-ctlink-hover-textdecoration: none !default;
         @include co(padding, $ctl-ctlink-padding);
         @include co(margin, $ctl-ctlink-margin);
         @include co(color, $ctl-ctlink-color);
+        @include min-screen($desktop-md-min) {
+            @include co(margin, $ctl-ctlink-margin-desktopmd, $ctl-ctlink-margin);
+        }
+
         &:hover {
             @include co(background, $ctl-ctlink-hover-background);
             @include co(color, $ctl-ctlink-hover-color);
             @include co(text-decoration, $ctl-ctlink-hover-textdecoration);
 
         }
+
+        &:last-of-type {
+            @include co(margin, $ctl-ctlink-lot-margin, $ctl-ctlink-margin);
+            @include min-screen($desktop-md-min) {
+                @include co(margin, $ctl-ctlink-lot-margin-desktopmd, $ctl-ctlink-margin-desktopmd);
+            }
+        }
+
         &.active {
             @include co(color, $ctl-ctlink-active-color);
             @include co(background, $ctl-ctlink-active-background);

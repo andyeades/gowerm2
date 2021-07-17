@@ -5,7 +5,7 @@ $pview-addform-borderradius-on: 1 !default;
 $pview-addform-borderradius-on-desktop: 1 !default;
 $pview-addform-boxshadow-on: 1 !default;
 
-
+$pview-column-main-padding-bottom: 0 !default;
 $pview-column-main-align-items: flex-start !default;
 
 // SKU
@@ -109,7 +109,7 @@ $pview-price-old-order: 1 !default;
 $pview-price-old-linethrough: false !default;
 $pview-price-lineheight: 1 !default;
 $pview-price-text-align: center !default;
-$pview-price-text-align-desktop: right !default;
+$pview-price-text-align-desktop: center !default;
 $pview-price-text-align-desktopmd: right !default;
 $pview-price-box-margin: false !default;
 $pview-price-box-margin-desktop: false !default;
@@ -235,6 +235,7 @@ $pview-boxtocart-actions-justifycontent-desktop: flex-end !default;
 
 $pview-boxtocart-actions-flexwrap: wrap !default;
 $pview-boxtocart-actions-btn-fontweight: 700 !default;
+
 $pview-boxtocart-actions-width: 100% !default;
 $pview-boxtocart-actions-textalign: center !default;
 $pview-boxtocart-actions-width-desktop: 50% !default;
@@ -361,8 +362,10 @@ $pview-boxtocart-background: linear-gradient(#f8f8f8, #ffffff) !default;
 $pview-boxtocart-borderradius: false !default;
 $pview-boxtocart-borderradius-desktop: false !default;
 $pview-boxtocart-borderradius-desktopmd: false !default;
-$pview-boxtocart-borderradius-bottomleft: false !default;
-$pview-boxtocart-borderradius-bottomright: false !default;
+$pview-boxtocart-borderradius-type: 'bottom only' !default;
+$pview-boxtocart-borderradius-type-desktop: 'bottom only' !default;
+$pview-boxtocart-borderradius-type-desktopmd: 'bottom only' !default;
+
 $pview-boxtocart-width: false !default;
 
 $pview-actions-secondary-bgcolor: #434343 !default;
@@ -377,14 +380,29 @@ $pview-options-wrapper-fieldset-field-label-fontweight: 700 !default;
 $pview-options-wrapper-fieldset-field-label-margin: 0 0 $indent-xs !default;
 
 
+
+
+$pview-options-wrapper-margin: false !default;
+$pview-options-wrapper-margin-desktop: false !default;
+$pview-options-wrapper-margin-desktopmd: false !default;
+
 $pview-options-wrapper-padding: 0 0.3125rem !default;
-$pview-options-wrapper-padding-desktopmd: false !default;
 $pview-options-wrapper-padding-desktop: 0 1.25rem !default;
+$pview-options-wrapper-padding-desktopmd: false !default;
+
+$pview-colourswatches-padding: $pview-options-wrapper-padding !default;
+$pview-colourswatches-padding-desktop: $pview-options-wrapper-padding-desktop !default;
+$pview-colourswatches-padding-desktopmd: $pview-options-wrapper-padding-desktopmd !default;
+
+$pview-colourswatches-margin: $pview-options-wrapper-margin !default;
+$pview-colourswatches-margin-desktop: $pview-options-wrapper-margin-desktop !default;
+$pview-colourswatches-margin-desktopmd: $pview-options-wrapper-margin-desktopmd !default;
 
 $pview-producttabs-desktop: accordion !default;
 
 $pview-data-items-accordion-control-text-transform: false !default;
 
+$pview-proddataitems-item-content-padding-mobiletabletmax: false !default;
 $pview-proddataitems-item-content-padding: 0 !default;
 $pview-proddataitems-item-content-padding-desktop: 0 0.625rem !default;
 
@@ -535,37 +553,47 @@ $pview-media-thumb-border-radius: $border-radius !default;
 $pview-media-thumb-vertical-align: false !default;
 $pview-media-thumb-vertical-align-desktop: false !default;
 
+$pview-pa-overview-display: false !default;
+$pview-pa-overview-display-desktop: false !default;
+$pview-pa-overview-display-desktopmd: false !default;
+
 $pview-description-h2-fontsize: 1.125rem !default;
 $pview-description-h2-margin: 1.25rem 0 !default;
+
+$pview-description-p-marginbottom: false !default;
+$pview-description-p-marginbottom-desktop: false !default;
+$pview-description-p-marginbottom-desktopmd: false !default;
+$pview-description-p-lineheight: false !default;
 
 $pview-desc-itemtitle-switch-textalign-desktopmd: false !default;
 $pview-desc-itemtitle-switch-textalign-desktop: false !default;
 $pview-desc-itemtitle-switch-textalign: false !default;
 
+$pview-tab-title-text-transform: false !default;
+$pview-tab-title-font-size: 1.375rem !default;
+$pview-tab-title-lineheight: 2.1875rem !default;
+$pview-tab-title-fontweight: 600 !default;
+$pview-tab-title-padding-top: 1rem !default;
+$pview-tab-title-padding-bottom: 1rem !default;
+$pview-tab-title-padding-left: 0 !default;
+$pview-tab-title-padding-right: 0 !default;
+
+@if $tab-control-background-color != false {
+    $pview-tab-control-background-active: lighten($tab-control-background-color, 15%) !default;
+} @else {
+    $pview-tab-control-background-active: false;
+}
+$pview-tab-title-icon-right-mobiletabletmax: 0 !default;
+$pview-tab-title-icon-right: 0 !default;
+
+$pview-tab-title-accordion-icon-color: #00acb6 !default;
+
+$pview-tab-title-accordion-icon-color-active: #00acb6 !default;
 
 
-$pview-desc-tab-title-text-transform: false !default;
-$pview-desc-tab-title-font-size: 1.375rem !default;
-$pview-desc-tab-title-lineheight: 2.1875rem !default;
-$pview-desc-tab-title-fontweight: 600 !default;
-$pview-desc-tab-title-padding-top: 1rem !default;
-$pview-desc-tab-title-padding-bottom: 1rem !default;
-$pview-desc-tab-title-padding-left: 0 !default;
-$pview-desc-tab-title-padding-right: 0 !default;
-
-$pview-desc-tab-control-background-active: ev-false-check($tab-control-background-color, lighten, 15%) !default;
 
 
-$pview-desc-tab-title-icon-right: 0 !default;
-
-$pview-desc-tab-title-accordion-icon-color: #00acb6 !default;
-
-$pview-desc-tab-title-accordion-icon-color-active: #00acb6 !default;
-
-
-
-
-$pview-desc-tab-title-margin: 0 !default;
+$pview-tab-title-margin: 0 !default;
 
 
 //
@@ -625,10 +653,10 @@ $tab-content-padding-left                   : $tab-content-padding-right !defaul
 //
 
 $accordion-control-font-family: $tab-control-font-family !default;
-$accordion-control-font-size: $pview-desc-tab-title-font-size !default;
-$accordion-control-font-weight: $pview-desc-tab-title-fontweight !default;
+$accordion-control-font-size: $pview-tab-title-font-size !default;
+$accordion-control-font-weight: $pview-tab-title-fontweight !default;
 $accordion-control-font-style: $tab-control-font-style !default;
-$accordion-control-line-height: $pview-desc-tab-title-lineheight !default;
+$accordion-control-line-height: $pview-tab-title-lineheight !default;
 $accordion-control-height: false !default;
 
 $accordion-control-border-top: $tab-control-border-width solid $tab-control-border-color !default;
@@ -637,22 +665,37 @@ $accordion-control-border-bottom: false !default;
 $accordion-control-border-left: false !default;
 
 $accordion-control-background-color: $tab-control-background-color !default;
-$accordion-control-background-color-hover: ev-false-check($tab-control-background-color, lighten, 5%) !default;
+
+$accordion-content-background-color: false !default;
+$accordion-control-background-color-active: false !default;
+$accordion-control-background-color-hover: false !default;
+$tab-control-background-color-hover: false !default;
+
+@if $tab-control-background-color != false {
+    $accordion-content-background-color: lighten($tab-control-background-color, 15%) !default;
+    $accordion-control-background-color-active: lighten($tab-control-background-color, 15%) !default;
+    $tab-control-background-color-hover: lighten($tab-control-background-color, 5%) !default;
+    $accordion-control-background-color-hover: lighten($tab-control-background-color, 5%) !default;
+}
+
 $accordion-control-color-hover: $tab-control-color !default;
 $accordion-control-text-decoration-hover: $tab-control-text-decoration !default;
-$accordion-control-background-color-active: ev-false-check($tab-control-background-color, lighten, 15%) !default;
+
+
 $accordion-control-color-active: $text-color !default;
 $accordion-control-text-decoration-active: $tab-control-text-decoration !default;
 
-$accordion-control-margin-bottom: false !default;
-$accordion-control-padding-top: $pview-desc-tab-title-padding-top !default;
-$accordion-control-padding-right: $pview-desc-tab-title-padding-right !default;
-$accordion-control-padding-bottom: $pview-desc-tab-title-padding-bottom !default;
-$accordion-control-padding-left: $pview-desc-tab-title-padding-left !default;
+//$accordion-control-margin-bottom: false !default;
+
+$accordion-control-margin: false !default;
+
+$accordion-control-padding-top: $pview-tab-title-padding-top !default;
+$accordion-control-padding-right: $pview-tab-title-padding-right !default;
+$accordion-control-padding-bottom: $pview-tab-title-padding-bottom !default;
+$accordion-control-padding-left: $pview-tab-title-padding-left !default;
+$pview-tab-title-padding-mobiletabletmax: false !default;
 $accordion-control-padding: $accordion-control-padding-top $accordion-control-padding-right  $accordion-control-padding-bottom $accordion-control-padding-left !default;
 
-
-$accordion-content-background-color: ev-false-check($tab-control-background-color, lighten, 15%) !default;
 $accordion-content-border: $tab-content-border !default;
 $accordion-content-margin: 0 0 $indent-xs !default;
 $accordion-content-padding: $tab-content-padding-top $tab-content-padding-right $tab-content-padding-bottom $tab-content-padding-left !default;
@@ -661,7 +704,7 @@ $accordion-control-color: $tab-control-color !default;
 $accordion-control-text-decoration: $tab-control-text-decoration !default;
 $accordion-control-color-visited: $tab-control-color !default;
 $accordion-control-text-decoration-visited: $tab-control-text-decoration !default;
-$accordion-control-background-color-hover: ev-false-check($tab-control-background-color, lighten, 5%) !default;
+
 $accordion-control-color-hover: $tab-control-color !default;
 
 $accordion-control-visited-color           : $accordion-control-color !default;
@@ -678,32 +721,9 @@ $accordion-control-active-text-decoration  : $tab-control-active-text-decoration
 
 
 
-$pview-keyfeatures-outer-margin: 0 0 1.875rem 0 !default;
-$pview-keyfeatures-outer-order: 1 !default;
 
 
-$pview-keyfeatures-h4-text-transform: uppercase !default;
-$pview-keyfeatures-h4-font-size: 1.375rem !default;
-$pview-keyfeatures-h4-padding: 0 0 16px !default;
-$pview-keyfeatures-h4-margin: 0 !default;
-$pview-keyfeatures-h4-fontweight: 700 !default;
-$pview-keyfeatures-bg-color: #FFF !default;
-$pview-keyfeatures-color: $body-color !default;
-$pview-keyfeatures-padding: 0 !default;
-$pview-keyfeatures-margin: 0 !default;
-$pview-keyfeatures-mobilepadding: 0 !default;
-$pview-keyfeatures-li-style-type: none !default;
-$pview-keyfeatures-li-style-position: inside !default;
-$pview-keyfeatures-li-padding: 14px 0 2px 30px !default;
-$pview-keyfeatures-li-text-indent: -22px !default;
-
-$pview-keyfeatures-li-before-content: '✓' !default;
-$pview-keyfeatures-li-before-color: #00acb6 !default;
-$pview-keyfeatures-li-before-margin: 0 0.6875rem 0 0 !default;
-$pview-keyfeatures-li-before-fontweight: 600 !default;
-$pview-keyfeatures-li-before-fontsize: 0.875rem !default;
-
-$pview-stock-available-color: greeen !default;
+$pview-stock-available-color: green !default;
 $pview-stock-unavailable-color: #dc3545 !default;
 $pview-stock-text-transform-on: 1 !default;
 $pview-stock-text-transform: uppercase !default;
@@ -732,6 +752,7 @@ $pinfo-btm-o-order: 5 !default;
 $pinfo-btm-o-background: false !default;
 $pinfo-btm-o-margin: false !default;
 
+$pinfo-btm-m-zindex: 1 !default;
 $pinfo-btm-m-width: 100% !default;
 $pinfo-btm-m-width-desktop: 76% !default;
 $pinfo-btm-m-margin: false !default;
@@ -746,7 +767,7 @@ $pinfo-btm-s-width-desktop: 24% !default;
 $pinfo-btm-s-related-display: false !default;
 $pinfo-btm-s-related-display-desktopsm-max: false !default;
 
-
+$pview-color-swatches-lbl-width: 100% !default;
 $pview-color-swatches-lbl-padding: 0 !default;
 $pview-color-swatches-lbl-font-size: 0.8125rem !default;
 $pview-color-swatches-lbl-text-transform-on: 0 !default;
@@ -765,7 +786,9 @@ $ev-tab-content-border-thickness: 3px !default;
 $ev-tab-content-border-color: #F0F6F5 !default;
 
 // Tab
-$ptab-addtionalcontent-margin: 0 0 0 1.5rem !default;
+$ptab-addtionalcontent-margin: false !default;
+$ptab-addtionalcontent-margin-desktopmd: 0 0 0 0.75rem !default;
+
 $ptab-addtionalcontent-padding: 0 !default;
 $ptab-addtionalcontent-texttransform-on: 1 !default;
 $ptab-addtionalcontent-texttransform: uppercase !default;
@@ -776,7 +799,8 @@ $ptab-addtionalcontent-fontsize: 0.9375rem !default;
 $ptab-additionalcontent-sr-margin: 0 !default;
 
 
-
+$ptab-flex-row-item-width: 100% !default;
+$ptab-flex-row-item-width-desktopmd: auto !default;
 $ptab-flex-row-item-width-mobile: 100% !default;
 
 

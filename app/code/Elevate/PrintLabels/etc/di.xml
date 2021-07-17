@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Sales\Model\Order\Pdf\Shipment" type="Elevate\PrintLabels\Model\Order\Pdf\Shipment" />
+
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Elevate\PrintLabels\Model\Order\Pdf\Invoice" />
+
+    <virtualType name="Elevate\PrintLabels\Logger\Custom" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers"  xsi:type="array">
+                <item name="info" xsi:type="object">Elevate\PrintLabels\Logger\Handler\Custom</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Elevate\PrintLabels\Controller\Adminhtml\Test\Test">
+        <arguments>
+            <argument name="logger" xsi:type="object">Elevate\PrintLabels\Logger\Custom</argument>
+        </arguments>
+    </type>
+
+    <preference for="Elevate\PrintLabels\Api\HolidaydatesRepositoryInterface" type="Elevate\PrintLabels\Model\HolidaydatesRepository"/>
+
+    <preference for="Elevate\PrintLabels\Api\Data\HolidaydatesInterface" type="Elevate\PrintLabels\Model\Data\Holidaydates"/>
+    <preference for="Elevate\PrintLabels\Api\Data\HolidaydatesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Elevate\PrintLabels\Model\ResourceModel\Holidaydates\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_printlabels_holidaydates</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\PrintLabels\Model\ResourceModel\Holidaydates\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Elevate\PrintLabels\Model\Holidaydates\DataProvider">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_printlabels_holidaydates_form_data_source" xsi:type="string">Elevate\PrintLabels\Model\ResourceModel\Holidaydates\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elevate_printlabels_holidaydates_listing_data_source" xsi:type="string">Elevate\PrintLabels\Model\ResourceModel\Holidaydates\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="evprintlabelsholidaydatesMetadata" type="Elevate\PrintLabels\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Elevate\PrintLabels\Model\ResourceModel\Holidaydates</argument>
+            <argument name="modelClassName" xsi:type="string">Elevate\PrintLabels\Model\Holidaydates</argument>
+        </arguments>
+    </virtualType>
+    <type name="Elevate\PrintLabels\Model\HolidaydatesRepository">
+        <arguments>
+            <argument name="evprintlabelsholidaydatesMetadata" xsi:type="object">evprintlabelsholidaydatesMetadata</argument>
+        </arguments>
+    </type>
+
+
+    <preference for="Elevate\PrintLabels\Api\PrintlabelsApiRepositoryInterface" type="Elevate\PrintLabels\Model\PrintlabelsApiRepository"/>
+
+    <preference for="Elevate\PrintLabels\Api\Data\PrintlabelsApiInterface" type="Elevate\PrintLabels\Model\PrintlabelsApi"/>
+
+
+    <preference for="Elevate\PrintLabels\Api\Data\PrintlabelsApiSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+</config>

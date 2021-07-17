@@ -1,11 +1,12 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
+
 namespace SecureTrading\Trust\Model\Config\Source;
 
-
+/**
+ * Class PaymentAction
+ *
+ * @package SecureTrading\Trust\Model\Config\Source
+ */
 class PaymentAction implements \Magento\Framework\Option\ArrayInterface
 {
     /**

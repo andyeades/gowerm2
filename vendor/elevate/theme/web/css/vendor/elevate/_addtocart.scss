@@ -65,7 +65,7 @@ $ev-addtocart-modal-button-margin-desktop: 0 0.25rem !default;
         @include ev-fontsize-output($ev-addtocart-modal-button-fontsize);
         @include co(width, $ev-addtocart-modal-button-width-mobile);
         @if $ev-addtocart-modal-button-bg-color-on == 1 {
-            background: $ev-addtocart-modal-button-bg-color;
+            @include co(background, $ev-addtocart-modal-button-bg-color);
         }
         @if $ev-addtocart-modal-button-border-radius-on == 1 {
             border-radius: $ev-addtocart-modal-button-border-radius;

@@ -1,0 +1,22 @@
+{
+    "name": "solwin/instagram",
+    "description": "Instagram Widget is a free Magento 2 extension. It will allow store owner to present Instagram images of products on their store with specific hash tag. The best part is, it can be inserted anywhere on website.",
+    "type": "magento2-module",
+    "version": "1.0.5",
+    "authors": [
+        {
+            "name": "Solwin",
+            "email": "stdabhoya@yahoo.com",
+            "homepage": "https://www.solwininfotech.com/",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Solwin\\Instagram\\": ""
+        }
+    }
+}

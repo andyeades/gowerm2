@@ -65,4 +65,11 @@
 
     <preference for="Elevate\PrintLabels\Api\Data\PrintlabelsApiSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 
+    <virtualType name="Elevate\PrintLabels\Model\ResourceModel\PrintlabelsApi\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elevate_printlabels_api</argument>
+            <argument name="resourceModel" xsi:type="string">Elevate\Printlabels\Model\ResourceModel\PrintlabelsApi\Collection</argument>
+        </arguments>
+    </virtualType>
+
 </config>

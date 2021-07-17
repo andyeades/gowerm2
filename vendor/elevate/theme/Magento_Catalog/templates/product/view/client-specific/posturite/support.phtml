@@ -36,6 +36,13 @@ if ($categoriesCollection->getSize() != 0) {
 
 
        if (count($hasData) > 0) { ?>
+       
+    <style>
+            .content-wrap b {
+    color: black;
+    font-weight: normal;
+}
+    </style>
            <h6 class="fme-prod-attachments-categorytitle"><?php /** @noEscape */ echo trim($category->getCategoryName()) ?></h6>
                 <div class="row fme-prod-attachment-row">
 
@@ -58,11 +65,16 @@ if ($categoriesCollection->getSize() != 0) {
 
 
                                 <?php
+                                                                             
+    
+//https://www.posturite.co.uk/js/productattachments/icons/pdf.svg
 
-                                $file_icon = str_replace("https://www.posturite.co.uk/js/productattachmennts/icons/", '/media/theme_assets/icons/pattachments/' ,$item['file_icon']);
+                            //  $file_icon = str_replace("https://www.posturite.co.uk/js/productattachmennts/icons/", '/media/theme_assets/icons/pattachments/' ,$item['file_icon']);
                                 $file_icon = str_replace('.gif', '.svg', $item['file_icon']);
-                                $file_icon = str_replace('src="','class="pattach-icon lazyload" src="/media/loader.jpg" data-src="', $file_icon);
-
+                           // $file_icon = str_replace('src="','class="pattach-icon lazyload" src="/media/loader.jpg" data-src="', $file_icon);
+                             $file_icon = str_replace('src="','style="width:20px;" src="', $file_icon);
+                                $file_icon = str_replace('&nbsp;','', $file_icon);
+                                $file_icon = '<div style="width:20px;"><img src="https://www.posturite.co.uk/js/productattachments/icons/pdf.svg" /></div>';
                                 // check if file is attached
                                 if ($item['file_size'] > 0) {?>
                                     <div class="col-12">
@@ -70,13 +82,13 @@ if ($categoriesCollection->getSize() != 0) {
                                     //check download limit
                                     if ($item['limit_downloads'] != "" && $item['limit_downloads'] != 0) {
                                         if ($item['downloads'] == $item['limit_downloads']) {
-                                            echo '<a class="downloadlink" href="javascript:;" onclick="alert(\'You can not download because this attachment excceds the number of download\');"><div class="content-wrap">' . $file_icon . '&nbsp;<b>' . $item['title'] . '</b> <span class="prod-attach-size">Size: (' . $item['file_size'] . ')</span></div></a> ';
+                                            echo '<a target="_blank" class="downloadlink" href="javascript:;" onclick="alert(\'You can not download because this attachment excceds the number of download\');"><div class="content-wrap">' . $file_icon . '<b style="margin-left:5px;">' . $item['title'] . '</b> <span class="prod-attach-size">Size: (' . $item['file_size'] . ')</span></div></a> ';
                                         }
                                         else {
                                             if(($ext == 'pdf' || $ext == 'PDF') && $_helper->ispro_pdflink()){
-                                                echo '<a class="downloadlink" id="'.$item['productattachments_id'].'" counter="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/counter?id=' . $item['productattachments_id'] . '" href="' . $item['download_link'] . '">' . $item['file_icon'] . '&nbsp;<b>' . $item['title'] . '</b></a>  Size: (' . $item['file_size'] . ')';
+                                                echo '<a target="_blank" class="downloadlink" id="'.$item['productattachments_id'].'" counter="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/counter?id=' . $item['productattachments_id'] . '" href="' . $item['download_link'] . '">' . $item['file_icon'] . '<b style="margin-left:5px;">' . $item['title'] . '</b></a>  Size: (' . $item['file_size'] . ')';
                                             }else{
-                                                echo '<a class="downloadlink" id="'.$item['productattachments_id'].'" counter="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/counter?id=' . $item['productattachments_id'] . '" href="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/download?id=' . $item['productattachments_id'] . '"><div class="content-wrap">' . $file_icon . '&nbsp;<b>' . $item['title'] . '</b>  <span class="prod-attach-size">Size: (' . $item['file_size'] . ')</span></div></a>';
+                                                echo '<a target="_blank" class="downloadlink" id="'.$item['productattachments_id'].'" counter="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/counter?id=' . $item['productattachments_id'] . '" href="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/download?id=' . $item['productattachments_id'] . '"><div class="content-wrap">' . $file_icon . '&nbsp;<b>' . $item['title'] . '</b>  <span class="prod-attach-size">Size: (' . $item['file_size'] . ')</span></div></a>';
                                             }
                                         }
                                     }
@@ -85,18 +97,18 @@ if ($categoriesCollection->getSize() != 0) {
 
                                             $count_text = 'counter="' . $_helper->getStoreManager()->getStore()->getUrl('productattachments') . 'index/counter?id=' . $item['productattachments_id'] . '"';
                                             $size_text = '<span class="prod-attach-size">Size: (' . $item['file_size'] . ')</span>';
-                                            echo '<a class="downloadlink" id="'.$item['productattachments_id'].'" href="' . $item['download_link'] . '"><div class="content-wrap">' . $file_icon . '&nbsp;<b>' . $item['title'] . '</b> </div></a>';
+                                            echo '<a target="_blank" class="downloadlink" id="'.$item['productattachments_id'].'" href="' . $item['download_link'] . '"><div class="content-wrap">' . $file_icon . '<b style="margin-left:5px;">' . $item['title'] . '</b> </div></a>';
                                         }else{
                                             $url = $_helper->getStoreManager()->getStore()->getUrl('productattachments').'index/download?id='.$item['productattachments_id'];
                                             $id = $item['productattachments_id'];
-                                            echo '<a class="downloadlink" id="'.$id.'" href="'.$url.'">';
-                                            echo '<div class="content-wrap">' . $file_icon . '&nbsp;<b>' . $item['title'] . '</b></div>';
+                                            echo '<a target="_blank" class="downloadlink" id="'.$id.'" href="'.$url.'">';
+                                            echo '<div class="content-wrap">' . $file_icon . '<b style="margin-left:5px;">' . $item['title'] . '</b></div>';
                                             echo '</a>';
                                         }
                                     }
 
                                     if ($_helper->getScopeConfig()->getValue('productattachments/general/show_counter')) {
-                                        /** @noEscape */ echo '&nbsp;&nbsp;' . __('Downloads: ' . '<span id="item_counter_'.$item['productattachments_id'].'">'. $item['downloads'].'</span>');
+                                     //   /** @noEscape */ echo '&nbsp;&nbsp;' . __('Downloads: ' . '<span id="item_counter_'.$item['productattachments_id'].'">'. $item['downloads'].'</span>');
                                     }
                                     ?>
                                    </div>
@@ -119,16 +131,12 @@ if ($categoriesCollection->getSize() != 0) {
                                     $linkTitle = trim($item->getLinkTitle());
                                 }
                                 ?>
-                    <div class="col-12">
-                                    <a href="<?php /** @noEscape */  echo $item->getLinkUrl() ?>">
-                                        <img src="<?php /** @noEscape */  echo $this->getViewFileUrl('FME_Productattachments::images/link.jpg') ?>" width="18"/>&nbsp;<?php echo __($linkTitle) ?>
-                                    </a>
-                                </div>
+                
                             <?php } ?>
 
                             <?php if ($item->getEmbedVideo() != '') { ?>
                                 <?php $vidTitle = trim($item->getVideoTitle()); ?>
-                                <div class="col-12">
+                                <div class="col-md-6 col-12">
                                         <style>.embed-container {
                                                 position:       relative;
                                                 padding-bottom: 56.25%;

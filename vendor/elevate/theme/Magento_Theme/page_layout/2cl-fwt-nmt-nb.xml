@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="2columns-left"/>
+
+
+    <container name="ev.page.wrapper" htmlTag="div" htmlClass="ev-pl-2cl-fwt-nmt-nb page-layout-2columns-left" after="after.body.start">
+
+    </container>
+    <move element="page.wrapper" destination="ev.page.wrapper"/>
+
+    <referenceContainer name="page-main-outer">
+        <container name="ev.fwt.bm" htmlTag="div" htmlClass="ev-fwt-bm" after="pmo-i-vt-container">
+
+        </container>
+    </referenceContainer>
+
+    <referenceContainer name="main">
+        <referenceBlock name="breadcrumbs" remove="true"/>
+    </referenceContainer>
+
+</layout>

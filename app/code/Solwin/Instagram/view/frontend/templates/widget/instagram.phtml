@@ -1,0 +1,67 @@
+<?php
+/**
+ * Solwin Infotech
+ * Solwin Instagram Extension
+ *
+ * @category   Solwin
+ * @package    Solwin_Instagram
+ * @copyright  Copyright © 2006-2020 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+$helper = $this->helper('\Solwin\Instagram\Helper\Data');
+$enable = $helper->getConfig('instagramsection/instagramgroup/active');
+$userId = $helper->getConfig('instagramsection/instagramgroup/userid');
+$accessToken = $helper->getConfig('instagramsection/instagramgroup/accesstoken');
+$imageNumber = $block->getData('numberimage');
+$imageResolution = $block->getData('resolution');
+
+$imagesize = '100';
+if ($imageResolution == 'thumbnail') {
+    $imagesize = '150';
+} elseif ($imageResolution == 'low_resolution') {
+    $imagesize = '320';
+} elseif ($imageResolution == 'standard_resolution') {
+    $imagesize = '640';
+}
+
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+$moduleManager = $objectManager->get('\Magento\Framework\Module\Manager');
+$moduleEnabled = $moduleManager->isEnabled('Solwin_Instagram');
+
+?>
+<?php
+if ($enable && $moduleEnabled) {
+    ?>
+<div class="block-title-main">
+    <h2><?= $block->escapeHtml($block->getData('title')) ?></h2>
+    <div class="title-border"></div>
+</div>
+<div id="cpcolumninstagram" class="cp-fcontent hidden-xs">
+    <?php
+    $result = $helper->rudrInstagramApiCurlConnect('https://graph.instagram.com/' . $userId . '/media?fields=id,media_type,media_url,permalink,thumbnail_url,username,timestamp,caption&access_token=' .
+    $accessToken . '&limit=' . $imageNumber);
+    if (!empty($result->data)) {
+        foreach ($result->data as $post) {
+            if ($post->media_type == 'IMAGE' || $post->media_type == 'CAROUSEL_ALBUM') {
+                $caption_text = 'Instagram';
+                if (property_exists($post, "caption")) {
+                    $caption_text = $post->caption;
+                }
+                echo '<div class="instangram-feed">
+                      <a href ="'./* @escapeNotVerified */ $post->permalink.'" target="_blank">
+                          <img src="'./* @escapeNotVerified */ $post->media_url.'"
+                          title="'.$block->escapeHtml($caption_text).'"
+                          alt="'.$block->escapeHtml($caption_text).'"
+                          height="'.$imagesize.'" width="'.$imagesize.'"/>
+                      </a>
+                  </div>';
+
+            }
+        }
+    } else { ?>
+        <?= $block->escapeHtml(__('Error:'.$result->error->code." ".$result->error->type." - ".$result->error->message)); ?>
+    <?php }
+    ?>
+</div>
+<div class="clear gap-30"></div>
+<?php } ?>

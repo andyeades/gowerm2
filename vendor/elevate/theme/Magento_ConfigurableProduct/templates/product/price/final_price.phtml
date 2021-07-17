@@ -14,7 +14,7 @@ $schema = ($block->getZone() == 'item_view') ? true: false;
 
 $_product = $block->getPriceType('final_price')->getProduct();
 $was_price = number_format((float)$_product->getWasPrice(), 2, '.', '');
-  
+
 echo ' <div style="display:none;">was_price_is_'.$_product->getSku()."|".$was_price.'</div>    ';
 
 // TODO - Translations file surely makes more sense?
@@ -50,7 +50,9 @@ $currencySymbol = $currency->getCurrencySymbol();
 
 ?>
 
- <div style="display:none;">theme_config_price</div>    
+<?php
+// <div style="display:none;">theme_config_price</div>
+?>
 <?php if ($block->hasSpecialPrice() || $_product->getWasPrice() > 0) : ?>
     <span class="old-price sly-old-price">
         <?= /* @noEscape */
@@ -76,7 +78,7 @@ $outputWas = true;
 $haswasClass = '';
 if ($was_price > 0 && $_product->getIsChild() == 1) {
   //  $haswasClass = 'hide_was';
-  //  $outputWas = false;   
+  //  $outputWas = false;
 }
 if ($was_price < 0.01) {
     $haswasClass = 'hide_was';

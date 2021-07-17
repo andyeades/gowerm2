@@ -538,7 +538,7 @@ $del-desc-store-notice-padding: 1.25rem !default;
 
 .mobile-month {
     @include co(width, $del-month-width);
-    display: $del-month-display;
+    @include co(display, $del-month-display);
     @include ev-color-output($del-month-color);
     text-align: $del-month-textalign;
   @include co(font-size, $del-month-font-size);
@@ -563,7 +563,7 @@ $del-desc-store-notice-padding: 1.25rem !default;
 .mobile-date-inner {
     cursor: pointer;
     @include co(width, $del-date-width);
-    display: $del-date-display;
+    @include co(display, $del-date-display);
     @if $del-date-display == "flex" {
         @include co(justify-content, $del-date-justifycontent);
         flex-wrap: $del-date-flexwrap;
@@ -778,6 +778,7 @@ $del-desc-store-notice-padding: 1.25rem !default;
     }
 }
 
+// Other Options for Dates
 .delivery-date-other-options {
     display: none;
 }
@@ -787,10 +788,14 @@ $delivery-radio-selector-label-span-display: block !default;
 
 $del-option-fauxradio-pos-top: 10px !default;
 $del-option-fauxradio-pos-right: 10px !default;
+$del-option-fauxradio-pos-left: false !default;
+$del-option-fauxradio-pos-bottom: false !default;
 $del-option-fauxradio-width: 24px !default;
 
 $del-option-fauxradio-pos-top-desktop: 24px !default;
 $del-option-fauxradio-pos-right-desktop: 24px !default;
+$del-option-fauxradio-pos-left-desktop: false !default;
+$del-option-fauxradio-pos-bottom-desktop: false !default;
 $del-option-fauxradio-width-desktop: 24px !default;
 
 $del-date-sel-opts-margin: 0.75rem 0 1.25rem !default;
@@ -900,6 +905,7 @@ $del-method-teamnumber-ico-fontsize: 3rem !default;
 $del-method-teamnumber-order: 4 !default;
 $del-method-teamnumber-align-items: center !default;
 $del-method-teamnumber-alignself: flex-start !default;
+$del-method-teamnumber-height: false !default;
 
 $del-method-teamnumber-display: false !default;
 $del-method-teamnumber-lineheight: 1 !default;
@@ -978,6 +984,12 @@ $del-sel-btn-borderradius-on: 1 !default;
 $del-sel-btn-borderradius: $border-radius !default;
 $del-sel-btn-padding: 1rem 1.5rem !default;
 
+
+
+
+
+
+
 .delivery-date-selected-options {
     @include co(margin, $del-date-sel-opts-margin);
 
@@ -988,7 +1000,7 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
         @include co(justify-content, $del-day-options-justify-content);
 
         > li {
-            display: $del-day-options-display;
+            @include co(display, $del-day-options-display);
             cursor: pointer;
             flex: $del-day-options-li-flex;
             @include co(width, $del-day-options-li-width);
@@ -1007,19 +1019,21 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
 }
 
 
+
+
 .delivery-radio-selector {
     align-items: stretch;
     position: relative;
     background-color: $del-radio-selector-bgcolor;
     cursor: pointer;
-    display: $del-radio-selector-display;
+    @include co(display, $del-radio-selector-display);
     @include ev-color-output($del-radio-selector-color);
     @include co(padding, $del-radio-selector-padding);
     text-align: $del-radio-selector-textalign;
   @include co(font-size, $del-radio-selector-font-size);
 
     @include co(margin, $del-radio-selector-margin);
-
+    @include co(width, $del-radio-selector-width);
     @if $del-radio-selector-text-transform-on == 1 {
         @include co(text-transform, $del-radio-selector-text-transform);
     }
@@ -1097,21 +1111,23 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
 
 
     > .radio {
-        display: flex;
+        $del-radio-selector-radio-display: flex !default;
+        @include co(display, $del-radio-selector-radio-display);
 
         > input, label {
             flex: 0 1 auto;
         }
     }
-
-
+    $del-radio-selector-label-spandiv-width: 100% !default;
+    $del-radio-selector-label-flexwrap: false !default;
     label {
         display: flex;
-        flex-wrap: wrap;
+        @include co(flex-wrap, $del-radio-selector-label-flexwrap);
+        //flex-wrap: wrap;
 
         > span, > div {
             flex: 0 1 auto;
-            width: 100%;
+            @include co(width, $del-radio-selector-label-spandiv-width);
         }
 
         > span {
@@ -1130,12 +1146,14 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
         display: none;
         position: absolute;
         cursor: pointer;
-        top: $del-option-fauxradio-pos-top;
-        right: $del-option-fauxradio-pos-right;
+        @include co(top, $del-option-fauxradio-pos-top);
+        @include co(right, $del-option-fauxradio-pos-right);
         @include co(width, $del-option-fauxradio-width);
         @include min-screen($desktop-min) {
-            top: $del-option-fauxradio-pos-top-desktop;
-            right: $del-option-fauxradio-pos-right-desktop;
+            @include co(top, $del-option-fauxradio-pos-top-desktop, $del-option-fauxradio-pos-top);
+            @include co(right, $del-option-fauxradio-pos-right-desktop, $del-option-fauxradio-pos-right);
+            @include co(bottom, $del-option-fauxradio-pos-bottom-desktop, $del-option-fauxradio-pos-bottom);
+            @include co(left, $del-option-fauxradio-pos-left-desktop, $del-option-fauxradio-pos-left);
             @include co(width, $del-option-fauxradio-width-desktop);
         }
         > i {
@@ -1184,11 +1202,12 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
         flex-wrap: wrap;
         @include ev-color-output($del-method-teamnumber-color);
         @include co(padding, $del-method-teamnumber-padding);
-      @include co(font-size, $del-method-teamnumber-fontsize);
+        @include co(font-size, $del-method-teamnumber-fontsize);
         @include co(font-weight, $del-method-teamnumber-fontweight);
         @include co(margin, $del-method-teamnumber-margin);
         @include co(order, $del-method-teamnumber-order);
         @include co(align-items, $del-method-teamnumber-align-items);
+        @include co(height, $del-method-teamnumber-height);
         align-self: $del-method-teamnumber-alignself;
         @if $del-method-teamnumber-text-transform-on == 1 {
             @include co(text-transform, $del-method-teamnumber-text-transform);
@@ -1292,6 +1311,8 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
     @include co(text-transform, $del-delivery-starttext-text-transform);
 }
 
+// Morning (Before 12pm) etc
+
 .method-time-time {
     @include co(display, $del-method-time-display);
     @include ev-color-output($del-method-time-color);
@@ -1304,8 +1325,38 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
 }
 
 
+.del-rad-outer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    > div, > span {
+        flex: 0 1 auto;
+    }
+    > div {
+        //width: 100%;
+    }
+    .method-details-outer {
+        width: auto;
+        display: flex;
+        flex-wrap: wrap;
+        > span {
+            flex: 0 1 auto;
+        }
+    }
+    // Debug mode
+    > p {
+        //display: none;
+        position: absolute;
+        top: -20px;
+        width: 100%;
+    }
+}
 
+
+// Inner Bottom Container of selectable option
 .del-rad-sel-b {
+    // TEMP
+    flex: 1 1 auto !important;
     background-color: $del-rad-sel-b-bgcolor;
     display: flex;
     @include co(align-items, $del-rad-sel-b-alignitems);
@@ -1319,6 +1370,8 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
 
     }
 }
+
+// Buttons
 
 .del-sel-btn-o {
     @include co(order, $del-sel-btn-o-order);
@@ -1340,6 +1393,26 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
     @if $del-sel-btn-borderradius-on == 1 {
         border-radius: $del-sel-btn-borderradius;
     }
+}
+
+
+
+
+
+// Redund?
+
+.delivery-type-right {
+    float: right;
+    text-align: right;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+    @include min-screen($screen-lg-min) {
+        width: 30%;
+        display: block;
+    }
+
 }
 
 

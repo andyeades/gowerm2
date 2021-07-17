@@ -3,6 +3,7 @@
 namespace SecureTrading\Trust\Gateway\Command;
 
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Registry;
 use Magento\Payment\Gateway\Command\CommandException;
 use Magento\Payment\Gateway\Command\CommandPoolInterface;
 use Magento\Payment\Gateway\ConfigInterface;
@@ -23,7 +24,7 @@ use SecureTrading\Trust\Helper\Logger\Logger;
  */
 abstract class AbstractCommand implements CommandInterface
 {
-    /**
+    /**==
      * @var BuilderInterface
      */
     protected $requestBuilder;
@@ -62,8 +63,14 @@ abstract class AbstractCommand implements CommandInterface
      */
     protected $commandPool;
 
+	/**
+	 * @var Registry
+	 */
+	protected $coreRegistry;
+
     /**
      * CaptureCommand constructor.
+	 * @param Registry $coreRegistry
      * @param BuilderInterface $requestBuilder
      * @param TransferFactoryInterface $transferFactory
      * @param Logger $logger
@@ -74,6 +81,7 @@ abstract class AbstractCommand implements CommandInterface
      * @param CommandPoolInterface $commandPool
      */
     public function __construct(
+		Registry $coreRegistry,
         BuilderInterface $requestBuilder,
         TransferFactoryInterface $transferFactory,
         Logger $logger,
@@ -89,6 +97,7 @@ abstract class AbstractCommand implements CommandInterface
         $this->logger = $logger;
         $this->errorMessageMapper = $errorMessageMapper;
         $this->config = $config;
+        $this->coreRegistry = $coreRegistry;
     }
     /**
      * Tries to map error messages from validation result and logs processed message.

@@ -1,0 +1,176 @@
+@if $feefo-productview-include == true {
+
+
+    $feefoouter-margin: 0 auto !default;
+    $feefoouter-padding: false !default;
+    $feefoouter-height: auto !default;
+    $feefoouter-height-desktopmd: 48px !default;
+
+    $feefoouter-border: false !default;
+    $feefoouter-border-desktopmd: 1px solid #f0f0f0 !default;
+    $feefoouter-borderradius: 5px !default;
+
+    $feefoouter-justifycontent: center !default;
+    $feefoouter-justifycontent-desktopmd: initial !default;
+
+    $feefoouter-width: max-content !default;
+    $feefoouter-width-desktopmd: 70% !default;
+    $feefoouter-width-mobilemax: false !default;
+
+    $feefoouter-width-mobilemax: false !default;
+    $feefoouter-width-mobiletabletmax: false !default;
+
+
+
+    $feefo-image-display: none !default;
+    $feefo-image-display-desktopmd: block !default;
+
+    $feefo-image-width: false !default;
+    $feefo-image-width-desktopmd: false !default;
+
+    $feefo-image-img-width: 160px !default;
+    $feefo-image-img-width-desktopmd: 181px !default;
+    $feefo-image-img-width-desktoplg: 181px !default;
+
+    $feefoouter-count-fontweight: 800 !default;
+    $feefoouter-count-fontsize: 15px !default;
+    $feefoouter-count-texttransform: uppercase !default;
+
+
+    .feefo-image {
+        order: 3;
+        flex: 0 0 auto;
+
+        @include co(display, $feefo-image-display);
+        @include co(width, $feefo-image-width);
+        @include min-screen($desktop-md-min) {
+            @include co(width, $feefo-image-width-desktopmd, $feefo-image-width);
+            @include co(display,$feefo-image-display-desktopmd, $feefo-image-display);
+        }
+
+        @include screen($screen-sm-min, $screen-sm-max) {
+            text-align: center;
+        }
+        @include max-screen($mobilemax) {
+            margin-top: 1rem;
+        }
+
+        img {
+            @include co(width, $feefo-image-img-width);
+            @include min-screen($desktop-md-min) {
+                @include co(width, $feefo-image-img-width-desktopmd, $feefo-image-img-width);
+            }
+            @include min-screen($desktop-lg-min) {
+                @include co(width, $feefo-image-img-width-desktoplg, $feefo-image-img-width-desktopmd, $feefo-image-img-width);
+            }
+        }
+
+
+    }
+
+
+
+    .feefomainin {
+        @include max-screen($desktop-sm-max) {
+        align-items: center;
+        margin: 0 auto;
+        }
+    }
+
+    #feefoouter {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+
+        @include co(height, $feefoouter-height);
+        @include co(width, $feefoouter-width);
+        @include co(margin, $feefoouter-margin);
+        @include co(border, $feefoouter-border);
+        @include co(border-radius, $feefoouter-borderradius);
+        @include co(padding, $feefoouter-padding);
+        @include co(justify-content, $feefoouter-justifycontent);
+
+        @include min-screen($desktop-md-min) {
+            @include co(width, $feefoouter-width-desktopmd, $feefoouter-width);
+            @include co(height, $feefoouter-height-desktopmd, $feefoouter-height);
+            @include co(border, $feefoouter-border-desktopmd, $feefoouter-border);
+        }
+
+
+
+        @include max-screen($mobiletablet-max) {
+            @include co(width, $feefoouter-width-mobiletabletmax, $feefoouter-width);
+        }
+        @include max-screen($mobilemax) {
+            @include co(width, $feefoouter-width-mobilemax, $feefoouter-width);
+        }
+
+        > div {
+            flex: 0 1 auto;
+        }
+
+        > .sr-clear,
+        > .feefo-count {
+            @include max-screen($screen-sm-max) {
+            }
+        }
+
+        > .sr-clear {
+            flex: 0 0 auto;
+            width: auto;
+            margin-bottom: 0;
+        }
+
+        > .feefo-count {
+
+            @include co(text-transform, $feefoouter-count-texttransform);
+            @include co(font-weight, $feefoouter-count-fontweight);
+            @include co(font-size, $feefoouter-count-fontsize);
+
+
+
+            order: 2;
+            font-weight: 800;
+            font-size: 15px;
+            margin: 0 0.875rem;
+            flex: 1 1 auto;
+            text-align: right;
+            @include max-screen($mobiletablet-max) {
+                flex: 0 1 auto;
+                position: relative;
+                top: 3px;
+            }
+            @include min-screen($desktop-medium-min) {
+                text-align: center;
+            }
+        }
+    }
+
+    #feefoouterwrap {
+        @include max-screen($desktop-sm-max) {
+            float: none;
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+    }
+
+
+    .feefowidget__global {
+        padding: 0 !important;
+    }
+
+    .feefowidget-global-container-body-content-controls, .feefowidget-accordion-trigger {
+        display: none;
+    }
+
+    .feefowidget-global-container:first-child .feefowidget-global-container-header:first-child {
+        display: none;
+    }
+    .feefowidget-header-information-title {
+        display: none !important;
+    }
+}

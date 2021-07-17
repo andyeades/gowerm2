@@ -6,8 +6,8 @@ $multishipping-checkout-logo-display: block !default;
 $multishipping-checkout-logo-width: 70% !default;
 $multishipping-checkout-logo-width-desktop: 50% !default;
 
-$multishipping-checkout-logo-margin: 2rem auto 4rem auto !default;
-$multishipping-checkout-logo-margin-desktop: 2rem auto 4rem auto !default;
+$multishipping-checkout-logo-margin: 0 auto 0 auto !default;
+$multishipping-checkout-logo-margin-desktop: 0 auto 0 auto !default;
 
 $multishipping-checkout-actionstoolbar-back-border: false !default;
 
@@ -247,6 +247,52 @@ $multishipping-order-options-field-label-width: false !default;
 
 $multishipping-order-options-field-label-margin-desktop: false !default;
 $multishipping-order-options-field-label-width-desktop: 12% !default;
+
+
+// Gower Cottage Gift Message Cart Block
+$gift-message-multiship-include: true !default;
+
+$gift-message-multiship-width-mobiletabletmax: 100% !default;
+
+$gift-message-multiship-width: 50% !default;
+$gift-message-multiship-border-radius: $border-radius !default;
+$gift-message-multiship-color: $theme-brand-color-2 !default;
+$gift-message-multiship-background: $theme-brand-color-3 !default;
+$gift-message-multiship-border: 1px solid $border-color !default;
+$gift-message-multiship-padding: 0.75rem !default;
+
+$gift-message-multiship-margin: 0 1rem 0 0 !default;
+$gift-message-multiship-margin-mobiletabletmax: 0 !default;
+
+$gift-message-multiship-textalign: false !default;
+$gift-message-multiship-textalign-mobilemax: center !default;
+
+$gift-message-multiship-title-margin: 0 0 1rem 0 !default;
+$gift-message-multiship-h2-margin: 0 !default;
+
+$gift-message-multiship-title-justifycontent: false !default;
+$gift-message-multiship-title-justifycontent-mobilemax: center !default;
+
+
+
+// Delivery Day Message Cart Block
+$deliveryday-multiship-include: true !default;
+
+$deliveryday-multiship-width-mobiletabletmax: 100% !default;
+
+$deliveryday-multiship-width: 50% !default;
+$deliveryday-multiship-border-radius: $border-radius !default;
+$deliveryday-multiship-color: $theme-brand-color-2 !default;
+$deliveryday-multiship-background: $theme-brand-color-3 !default;
+$deliveryday-multiship-border: 1px solid $border-color !default;
+$deliveryday-multiship-padding: false !default;
+$deliveryday-multiship-margin: 0 0 0 1rem !default;
+
+$deliveryday-multiship-margin-mobiletabletmax: 1rem 0 0 0 !default;
+
+
+$deliveryday-multiship-title-justifycontent: center !default;
+$deliveryday-multiship-title-justifycontent-mobilemax: center !default;
 
 
 // Checkout Address Page
@@ -742,6 +788,67 @@ $multishipping-checkout-success-orderslist-li-margin: 0 0 1.5rem 0 !default;
             > li {
                 @include co(margin, $multishipping-checkout-success-orderslist-li-margin);
             }
+        }
+    }
+
+    .multi-ship-info-block {
+        display: flex;
+        > div {
+            flex: 0 1 auto;
+        }
+    }
+
+    @if $gift-message-multiship-include != false {
+        .gift-message-cart {
+
+            @include co(color, $gift-message-multiship-color);
+            @include co(width, $gift-message-multiship-width);
+            @include co(border-radius, $gift-message-multiship-border-radius);
+
+            @include co(background, $gift-message-multiship-background);
+            @include co(border, $gift-message-multiship-border);
+            @include co(padding, $gift-message-multiship-padding);
+            @include co(margin, $gift-message-multiship-margin);
+            @include co(text-align, $gift-message-multiship-textalign);
+            @include max-screen($mobilemax) {
+
+                @include co(text-align, $gift-message-multiship-textalign-mobilemax, $gift-message-multiship-textalign);
+            }
+            @include max-screen($mobiletablet-max) {
+                @include co(margin, $gift-message-multiship-margin-mobiletabletmax);
+                @include co(width, $gift-message-multiship-width-mobiletabletmax);
+            }
+            > p {
+
+            }
+
+        }
+
+        .cart-title {
+            h2 {
+                @include co(margin, $gift-message-multiship-h2-margin);
+            }
+            display: flex;
+            align-items: center;
+            @include co(justify-content, $gift-message-multiship-title-justifycontent);
+            @include max-screen($mobilemax) {
+                @include co(justify-content, $gift-message-multiship-title-justifycontent-mobilemax, $gift-message-multiship-title-justifycontent);
+            }
+            > i {
+                padding-left: 0.75rem;
+            }
+
+            @include co(margin, $gift-message-multiship-title-margin);
+        }
+
+    }
+    @if $deliveryday-multiship-include != false {
+        .deliveryday-cart {
+            @include max-screen($mobiletablet-max) {
+                @include co(margin, $deliveryday-multiship-margin-mobiletabletmax);
+            }
+            @include co(margin, $deliveryday-multiship-margin);
+            @include co(padding, $deliveryday-multiship-padding);
         }
     }
 }

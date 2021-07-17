@@ -443,8 +443,59 @@ if ($_gpsku == '') {
                         <?php }
                         //end divan image
 
+
+$is_new_divan = false;
+
+if(
+            $_product->getId() == '1294099'
+            || $_product->getId() == '1294076'
+            || $_product->getId() == '1294053'
+            || $_product->getId() == '1294030'
+            || $_product->getId() == '1294007'
+            
+               
+     || $_product->getId() == '1294170'
+     || $_product->getId() == '1294171'
+     || $_product->getId() == '1294172'
+     || $_product->getId() == '1294173'
+     || $_product->getId() == '1294174'
+     || $_product->getId() == '1294175'
+     || $_product->getId() == '1294176'
+     || $_product->getId() == '1294177'
+     || $_product->getId() == '1294178'
+     || $_product->getId() == '1294179'
+     || $_product->getId() == '1294180'
+     || $_product->getId() == '1294181'
+     || $_product->getId() == '1294182'
+     || $_product->getId() == '1294183'
+     || $_product->getId() == '1294184'
+     || $_product->getId() == '1294185'
+     || $_product->getId() == '1294186'
+     || $_product->getId() == '1294187'
+     || $_product->getId() == '1294188'
+     || $_product->getId() == '1294189'
+     || $_product->getId() == '1294190'
+     || $_product->getId() == '1294191'
+     || $_product->getId() == '1294192'
+     || $_product->getId() == '1294193'
+     || $_product->getId() == '1294194'
+     || $_product->getId() == '1294195'
+     || $_product->getId() == '1294196'
+     || $_product->getId() == '1294197'
+     || $_product->getId() == '1294198'
+     || $_product->getId() == '1294199'
+     || $_product->getId() == '1294200'
+     || $_product->getId() == '1294201'
+     || $_product->getId() == '1294202'
+     || $_product->getId() == '1294203'
+     || $_product->getId() == '1294204'){
+     
+     $is_new_divan = true;
+     
+     }
+
                         //start bespoke image
-                        if ($attributeSetId == '9' && $_product->getSku() != 'BESPOKE_SWATCH') {
+                        if ($attributeSetId == '9' && $_product->getSku() != 'BESPOKE_SWATCH' && !$is_new_divan) {
                             //end
                             if ($styles_output != 1) {
                                 echo $_firmnessHelper->getBespokeListCss();

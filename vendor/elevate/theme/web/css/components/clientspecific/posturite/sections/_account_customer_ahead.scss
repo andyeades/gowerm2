@@ -2355,7 +2355,7 @@ $aw-ca-jstree-checkbox-active-color: $color-blue1;
                         width: 14px;
                         height: 14px;
                         border: 1px solid $aw-ca-jstree-checkbox-default-border-color;
-                        background: $aw-ca-jstree-checkbox-default-background-color;
+                        @include co(background, $aw-ca-jstree-checkbox-default-background-color);
                         left: 4px;
                         top: 4px;
                     }
@@ -2373,7 +2373,7 @@ $aw-ca-jstree-checkbox-active-color: $color-blue1;
                             position: absolute;
                             left: 8px;
                             top: 8px;
-                            background: $aw-ca-jstree-checkbox-active-color;
+                            @include co(background, $aw-ca-jstree-checkbox-active-color);
                         }
                     }
                 }
@@ -2387,7 +2387,7 @@ $aw-ca-jstree-checkbox-active-color: $color-blue1;
                 .jstree-clicked {
                     > .jstree-checkbox {
                         &::before {
-                            background: $aw-ca-jstree-checkbox-active-color;
+                            @include co(background, $aw-ca-jstree-checkbox-active-color);
                             border: 1px solid $aw-ca-jstree-checkbox-active-color;
                         }
 

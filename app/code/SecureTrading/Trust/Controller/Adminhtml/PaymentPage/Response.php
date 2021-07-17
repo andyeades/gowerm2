@@ -8,6 +8,7 @@ use Magento\Payment\Gateway\Command\CommandPoolInterface;
 use Magento\Payment\Gateway\ConfigInterface;
 use Magento\Sales\Model\Order;
 use SecureTrading\Trust\Helper\Logger\Logger;
+use Magento\Framework\Message\ManagerInterface;
 
 class Response extends \Magento\Backend\App\Action
 {
@@ -34,29 +35,24 @@ class Response extends \Magento\Backend\App\Action
      * @var Logger
      */
     protected $logger;
-    /**
-     * Response constructor.
-     *
-     * @param Context $context
-     * @param ConfigInterface $config
-     * @param \Magento\Sales\Model\OrderFactory $orderFactory
-     * @param Session $checkoutSession
-     * @param CommandPoolInterface $commandPool
-     * @param Logger $logger
-     */
+
+	protected $messageManager;
+
     public function __construct(
         Context $context,
         ConfigInterface $config,
         \Magento\Sales\Model\OrderFactory $orderFactory,
         Session $checkoutSession,
         CommandPoolInterface $commandPool,
-        Logger $logger
+        Logger $logger,
+		ManagerInterface $messageManager
     ) {
         $this->checkoutSession = $checkoutSession;
         $this->orderFactory    = $orderFactory;
         $this->config          = $config;
         $this->commandPool     = $commandPool;
         $this->logger          = $logger;
+        $this->messageManager  = $messageManager;
         parent::__construct($context);
     }
 
@@ -78,40 +74,42 @@ class Response extends \Magento\Backend\App\Action
 
                 if (empty($order->getId())) {
                     $this->messageManager->addError(__("Something went wrong. Please try again later."));
-                    return $this->redirect($isUsedIframe);                }
+                    return $this->redirect($isUsedIframe, false, null);
+                }
                 /** @var Order\Payment $payment */
                 $payment = $order->getPayment();
                 foreach ($responseParams as $key => $param) {
                     $payment->setAdditionalInformation($key, $param);
                 }
                 if ($this->getRequest()->getParam('errorcode', null) === "0") {
-
-                        return $this->redirect($isUsedIframe);
+                        return $this->redirect($isUsedIframe, true, $order->getId());
 
                 } else {
                     $order->cancel();
                     $order->save();
                     $this->messageManager->addError(__("Order has been cancelled"));
-                    return $this->redirect($isUsedIframe);
+                    return $this->redirect($isUsedIframe, false, null);
                 }
             }
         } catch (\Exception $exception) {
             $this->messageManager->addError(__($exception->getMessage()));
-            return $this->redirect($isUsedIframe);
+            return $this->redirect($isUsedIframe, false, null);
         }
-        return $this->redirect($isUsedIframe);
+        return $this->redirect($isUsedIframe, false, null);
     }
 
     /**
      * @param $isUsedIframe
      * @return \Magento\Framework\Controller\Result\Redirect
      */
-    private function redirect($isUsedIframe){
-        if($isUsedIframe == 1){
-            return $this->resultRedirectFactory->create()->setPath('securetrading/paymentpage/adminredirect', ['redirect_path' => urlencode('sales/order/index')]);
-        }
-        else {
-            return $this->resultRedirectFactory->create()->setPath('sales/order/index');
-        }
+    private function redirect($isUsedIframe, $status, $orderId){
+    	if(!$status){
+		    return $this->resultRedirectFactory->create()->setPath('sales/order/index');
+	    } else if ($isUsedIframe == 1) {
+		    return $this->resultRedirectFactory->create()->setPath('securetrading/paymentpage/adminredirect?redirect_path='.urlencode('sales/order/view/order_id/'.$orderId));
+	    } else {
+		    $this->messageManager->addSuccessMessage(__('You created the order.'));
+		    return $this->resultRedirectFactory->create()->setPath('sales/order/view',['order_id' => $orderId]);
+	    }
     }
 }

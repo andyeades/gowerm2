@@ -1,0 +1,988 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+
+$prod_sku = $_product->getSku();
+$feefo_sku = $_product->getData('feefo_sku');
+
+if (!empty($feefo_sku)) {
+    $feefo_image = $feefo_sku;
+} else {
+    $feefo_image = $prod_sku;
+}
+
+$rating_label_number = $_product->getData('product_rating') . "<br />";
+$rating_label_class = '';
+     
+           $rating_label_number = 5;
+$_product->setData('rating_count', 66);
+$rating_label_class = '';
+
+switch($rating_label_number) {
+    case 5:
+        $rating_label_style = '100%;';
+        $rating_style = '109px';
+        break;
+    case 4.9:
+        $rating_label_style = '98%;';
+        $rating_style = '106.82px';
+        break;
+    case 4.8:
+        $rating_label_style = '96%;';
+        $rating_style = '104.64px';
+        break;
+    case 4.7:
+        $rating_label_style = '94%;';
+        $rating_style = '102.46px';
+        break;
+    case 4.6:
+        $rating_label_style = '92%;';
+        $rating_style = '100.28px';
+        break;
+    case 4.5:
+        $rating_label_style = '90%;';
+        $rating_style = '98.1px';
+        break;
+    case 4.4:
+        $rating_label_style = '88%;';
+        $rating_style = '95.92px';
+        break;
+    case 4.3:
+        $rating_label_style = '86%;';
+        $rating_style = '93.74px';
+        break;
+    case 4.2:
+        $rating_label_style = '84%;';
+        $rating_style = '91.56px';
+        break;
+    case 4.1:
+        $rating_label_style = '82%;';
+        $rating_style = '89.38px';
+        break;
+    case 4:
+        $rating_label_style = '80%;';
+        $rating_style = '87.2px';
+        break;
+    case 3.9:
+        $rating_label_style = '78%;';
+        $rating_style = '85.02px';
+        break;
+    case 3.8:
+        $rating_label_style = '76%;';
+        $rating_style = '82.84px';
+        break;
+    case 3.7:
+        $rating_label_style = '74%;';
+        $rating_style = '80.66px';
+        break;
+    case 3.6:
+        $rating_label_style = '72%;';
+        $rating_style = '78.48px';
+        break;
+    case 3.5:
+        $rating_label_style = '70%;';
+        $rating_style = '76.3px';
+        break;
+    case 3.4:
+        $rating_label_style = '68%;';
+        $rating_style = '74.12px';
+        break;
+    case 3.3:
+        $rating_label_style = '66%;';
+        $rating_style = '71.94px';
+        break;
+    case 3.2:
+        $rating_label_style = '64%;';
+        $rating_style = '69.76px';
+        break;
+    case 3.1:
+        $rating_label_style = '62%;';
+        $rating_style = '67.58px';
+        break;
+    case 3:
+        $rating_label_style = '60%;';
+        $rating_style = '65.4px';
+        break;
+    case 2.9:
+        $rating_label_style = '58%;';
+        $rating_style = '63.22px';
+        break;
+    case 2.8:
+        $rating_label_style = '56%;';
+        $rating_style = '61.04px';
+        break;
+    case 2.7:
+        $rating_label_style = '54%;';
+        $rating_style = '58.86px';
+        break;
+    case 2.6:
+        $rating_label_style = '52%;';
+        $rating_style = '56.68px';
+        break;
+    case 2.5:
+        $rating_label_style = '50%;';
+        $rating_style = '54.5px';
+        break;
+    case 2.4:
+        $rating_label_style = '48%;';
+        $rating_style = '52.32px';
+        break;
+    case 2.3:
+        $rating_label_style = '46%;';
+        $rating_style = '50.14px';
+        break;
+    case 2.2:
+        $rating_label_style = '44%;';
+        $rating_style = '47.96px';
+        break;
+    case 2.1:
+        $rating_label_style = '42%;';
+        $rating_style = '45.78px';
+        break;
+    case 2:
+        $rating_label_style = '40%;';
+        $rating_style = '43.6px';
+        break;
+    case 1.9:
+        $rating_label_style = '38%;';
+        $rating_style = '41.42px';
+        break;
+    case 1.8:
+        $rating_label_style = '36%;';
+        $rating_style = '39.24px';
+        break;
+    case 1.7:
+        $rating_label_style = '34%;';
+        $rating_style = '37.06px';
+        break;
+    case 1.6:
+        $rating_label_style = '32%;';
+        $rating_style = '34.88px';
+        break;
+    case 1.5:
+        $rating_label_style = '30%;';
+        $rating_style = '32.77px';
+        break;
+    case 1.4:
+        $rating_label_style = '28%;';
+        $rating_style = '30.52px';
+        break;
+    case 1.3:
+        $rating_label_style = '26%;';
+        $rating_style = '28.34px';
+        break;
+    case 1.2:
+        $rating_label_style = '24%;';
+        $rating_style = '26.16px';
+        break;
+    case 1.1:
+        $rating_label_style = '22%;';
+        $rating_style = '23.98px';
+        break;
+    case 1:
+        $rating_label_style = '20%;';
+        $rating_style = '21.8px';
+        break;
+    case 0.9:
+        $rating_label_style = '18%;';
+        $rating_style = '19.62px';
+        break;
+    case 0.8:
+        $rating_label_style = '16%;';
+        $rating_style = '17.44px';
+        break;
+    case 0.7:
+        $rating_label_style = '14%;';
+        $rating_style = '15.26px';
+        break;
+    case 0.6:
+        $rating_label_style = '12%;';
+        $rating_style = '13.08px';
+        break;
+    case 0.5:
+        $rating_label_style = '10%;';
+        $rating_style = '10.9px';
+        break;
+    case 0.4:
+        $rating_label_style = '8%;';
+        $rating_style = '8.72px';
+        break;
+    case 0.3:
+        $rating_label_style = '6%;';
+        $rating_style = '6.54px';
+        break;
+    case 0.2:
+        $rating_label_style = '4%;';
+        $rating_style = '4.36px';
+        break;
+    case 0.1:
+        $rating_label_style = '2%;';
+        $rating_style = '2.18px';
+        break;
+    case 0:
+        $rating_label_style = '0%;';
+        $rating_style = '0';
+        break;
+    default:
+        $rating_label_style = '0%;';
+        $rating_style = '0';
+}
+
+if ($rating_label_number >= 4.7) {
+    $rating_label_class = "prod-rating-5";
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+} else if ($rating_label_number >= 4.4) {
+    $rating_label_class = "prod-rating-4-4";
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star-half "></div>';
+} else if ($rating_label_number >= 4) {
+    $rating_label_class = "prod-rating-4";
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+
+} else if ($rating_label_number >= 3) {
+    $rating_label_class = "prod-rating-3";
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+    //  echo '<div class="fa fa-star starchecked"></div>';
+
+} else if ($rating_label_number >= 2) {
+    $rating_label_class = "prod-rating-2";
+    //echo '<div class="fa fa-star starchecked"></div>';
+    //echo '<div class="fa fa-star starchecked"></div>';
+
+} else if ($rating_label_number >= 1) {
+    $rating_label_class = "prod-rating-1";
+    //echo '<div class="fa fa-star starchecked"></div>';
+
+} ?>
+
+
+ <style>
+    .ev-pp-stickybar.sticky-show .container {
+    display: flex;
+    align-items: center;
+}
+ .sticky-box-tocart.box-tocart.inside_qty_container {
+    background: none;
+    padding: 0;
+}
+ 
+  .sticky-box-tocart.box-tocart.inside_qty_container label.label {
+    display: none;
+}
+.ev-pp-stickybar {
+    position: fixed;
+    z-index: 9999999;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    height: 100px;
+    background-color: #e9eeef;
+}
+ 
+ 
+  .ev-pp-stickybar {
+    z-index: 9;
+}
+
+.ev-pp-stickybar.sticky-show {
+    display: flex;
+    top: 0;
+    box-shadow: 0 3px 15px rgb(100 100 100 / 49%);
+}
+.ev-pp-stickybar {
+    z-index: 9;
+    }
+
+
+   .ev-pp-stickybar .container>div.sticky-stock-status {
+   width: 30%;
+    padding: 0 1rem;
+    flex: 1 1 auto;
+    align-items: center;
+}
+ 
+ 
+ 
+@media only screen and (min-width: 768px) {
+.catalog-product-view .page-title {
+    font-size: 1.75rem;
+    text-align: center;
+    line-height: 39px;
+    }
+} 
+       div#ev-mediaproddetails {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding-bottom: 2.5rem;
+    flex: 0 1 auto;
+    order: 2;
+    width: 100%;
+}
+ 
+         .product.media.stickyimage .page-title-wrapper, .product.media.notstickyimage .page-title-wrapper {
+   display:block !important;
+}
+.product.media{
+
+    position: sticky;
+    top: 101px !important;
+
+}
+   .product-info-container{
+ display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding-bottom: 2.5rem;
+    flex: 0 1 auto;
+    order: 2;
+    width: 100%;
+ }
+.product.media.notstickyimage {
+           position: initial;
+    top: initial;
+}
+.ev-pp-stickybar {
+    z-index: 9;
+    }
+    .pp-order-info-outer.col-md-12.pp-icon-clock2 {                               
+    max-width: initial;
+}
+.pp_backorder_message i.fa.fa-exclamation-circle {
+    height: auto !important;
+    width: auto !important;
+}
+.ev-pp-stickybar .container>div.sticky-stock-status {
+    flex: 1 1 auto;
+    align-items: center;
+}
+.swatch-option.image {
+    width: 100% !important;
+    height: 100px !important;
+     max-width: 100% !important;
+}
+.divan_storage .swatch-attribute-options {
+    padding: 0px 10px;
+}
+.sticky-box-tocart .control {
+    background: none !important;
+    border: none !important;
+}
+.sticky-box-tocart .actions {
+    width: 100%;
+    margin-left: 10px;
+}
+.pp-order-info-outer>i, .pp-order-info-outer>div {
+    flex: 0 1 auto;
+}
+.pp-order-info-outer>div {
+    font-weight: 700;
+    margin-left: 0.5rem;
+    font-size: 0.8125rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.pp-order-info-outer>div>div {
+    flex: 0 1 auto;
+    width: 100%;
+    font-weight: 700;
+}
+.pp-order-info-outer>div>div:nth-child(2) {
+    font-weight: 500;
+}
+
+.page-wrapper {
+    width: 100%;
+   
+     transform: initial;
+     transform: initial;
+     -webkit-backface-visibility: initial;
+     backface-visibility: initial;
+     
+     
+     }
+     
+  @media only screen and (max-width: 991.97px){   
+     .sticky-stock-status.row {
+    display: none !important;
+}
+.ev-pp-stickybar .container > div {
+    flex: 0 1 auto;
+    background: #e9eeef;
+}
+.ev-pp-stickybar.sticky-show .container {
+    display: flex;
+    align-items: center;
+    background-color: #e9eeef;
+    padding: 0;
+}
+
+
+
+
+}
+
+ </style>
+
+<div class="ev-pp-stickybar make-it-fast">
+  <div id="dynamic_product_images_sticky" class="dynamic_product_images">
+                            <img class=" dynamic_image_items dynamic_shadow" id="dynamic_shadow" src="/media/new_configurator/FFFFFF-0.png"/>
+                            <img alt="Bed Legs"  class=" dynamic_image_items dynamic_legs" id="dynamic_legs" src="/media/new_configurator/FFFFFF-0.png"/>
+                            <img alt="Bed Headboard" class=" dynamic_image_items dynamic_headboard" id="dynamic_headboard" src="/media/new_configurator/FFFFFF-0.png"/>
+                            <img alt="Bed Storage Back"  class=" dynamic_image_items dynamic_storage_back" id="dynamic_storage_back" src="/media/new_configurator/FFFFFF-0.png"/>
+                            <img alt="Bed Base"  class=" dynamic_image_items dynamic_base" id="dynamic_base" src="/media/new_configurator/FFFFFF-0.png"/>
+                            <!--<img alt="" loading="lazy" class="lazyload dynamic_image_items" id="dynamic_mattress" src="/media/loader.jpg" data-src="/media/new_configurator/FFFFFF-0.png"/> -->
+                            <img alt="Bed Storage 1"  class=" dynamic_image_items dynamic_storage_2" id="dynamic_storage_2"src="/media/new_configurator/FFFFFF-0.png"/>
+                            <img alt="Bed Storage 2"  class=" dynamic_image_items dynamic_storage_3" id="dynamic_storage_3" src="/media/new_configurator/FFFFFF-0.png"/>
+                            <img alt="Bed Storage 3" class=" dynamic_image_items dynamic_storage_1" id="dynamic_storage_1" src="/media/new_configurator/FFFFFF-0.png"/>
+                            <img alt="Bed Storage 4" class=" dynamic_image_items dynamic_imagemap" id="dynamic_imagemap" style="display:none;" src="/media/new_configurator/overlay.png" usemap="#bespokemap"/>
+                            <div style="display:none;">
+                                <div class="toggle_label">LABELS</div>
+                                <div id="open_close_toggle">
+                                    <label class="switch-light label-light switch-candy"> <input id="label_checkbox" type="checkbox">
+                                        <span class="large-4 columns float-left">
+                                    <span>Off</span><span>On</span><a></a>
+                                  </span> </label>
+                                </div>
+                            </div>
+                     
+                        </div>
+                        
+      <div class="container sickypricecontainer">
+    <div class="sticky-stock-status row">
+    <div class="pp-order-info-outer col-md-4">
+           <?php 
+           
+           
+           $rating_label_number = 5;
+$_product->setData('rating_count', 66);
+$rating_label_class = '';
+
+
+           if($_product->getData('rating_count') > 0){ ?>
+
+
+           <div id="feefoouterwrap" class="title_stars" onclick="runme();" style="cursor:pointer;">  <img src="/media/Feefo_logo_greyyellow-1.png" style="
+    width: 96px;
+    margin-left: 4px;
+    margin-top: 11px;
+"><div id="feefoouter" style="
+    padding-top: 0px;
+    padding-left: 0;
+    padding-bottom: 0px;
+">
+            <div class="sr-clear">
+                              
+ 
+                    <?php if ($rating_label_number <= 3.3) { ?>
+
+                    <?php } ?>
+
+                    <div class="star-rating" style="width: <?php echo $rating_style; ?>"><span style="width: 100%;"></span></div>
+
+                    <?php if ($rating_label_number <= 3.3) { ?>
+
+                    <?php } ?>
+                          
+
+                                                </div>
+            <div class="feefo-count" style="
+    margin-left: 13px;
+    text-align: left;
+    padding-top: 6px;
+    text-transform: initial;
+">
+                 <?php echo $_product->getData('rating_count'); ?> Reviews
+            </div>
+            <div class="feefo-image">
+                
+            </div>
+        </div></div>
+
+
+
+
+<?php } ?>
+        </div>
+<div class="col-md-7">
+
+            <i class="pp-icon pp-icon-clock" style="
+    float: left;
+    padding-top: 5px;
+"><svg viewBox="0 0 36 36" version="1.1" fill="#434343" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+                    <title>Group</title>
+                    <desc>Created with Sketch.</desc>
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="Group">
+                            <path d="M18,36 C8.059,36 0,27.94 0,17.999 C0,8.059 8.059,0 18,0 C27.941,0 36,8.059 36,17.999 C36,27.94 27.941,36 18,36 Z M25.235,22.62 L19.565,16.951 L19.565,10.956 C19.565,9.659 18.514,8.609 17.217,8.609 C15.921,8.609 14.87,9.659 14.87,10.956 L14.87,17.999 C14.87,18.825 15.296,19.392 15.939,19.965 L21.914,25.941 C22.831,26.858 24.318,26.858 25.235,25.941 C26.151,25.024 26.151,23.537 25.235,22.62 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </svg></i>
+            <div class="pp-order-info" style="
+    margin-left: 31px;
+">
+                <div class="leadtimeReplace line" style="
+    font-weight: bold;
+">Next Day Delivery</div>
+                <div class="line">UK Mainland</div>
+            </div>
+  
+</div>
+
+    </div>
+    <div class="sticky-price col-6 col-md-3">
+   <div class="product-info-price">
+ <div class="price-box price-final_price" data-role="priceBox" data-product-id="1284062" data-price-box="product-id-1284062">
+
+   
+        
+
+   <span class="old-price s2">
+        
+
+<span>
+     <span class="price-label" style="
+    font-weight: 700;
+">Was</span>
+        <span style="
+    font-weight: 700;
+    font-size: 1rem;
+">&pound;<span class="c_total_amount" style="
+    order: 1;
+    flex-wrap: wrap;
+    padding: 1.25rem 0;
+    width: 100%;
+    line-height: 1;
+    text-align: right;
+    margin: 0 0 0.3125rem 0;
+    font-weight: 700;
+"></span></span>
+        </span>
+    </span>
+    
+    
+    <span class="price-container" style="
+    font-size: 2rem;
+    order: 2;
+">
+    <span class="price-label" style="
+    font-size: 2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #f0386c;
+">Now:</span>
+     <span class="price_dv" style="
+    font-weight: 700;
+    color: #f0386c;
+">&pound;<span class="c_total_price" style="
+    font-weight: 700;
+"></span></span>
+             
+    </span>
+  
+  
+
+</div>      </div>
+                                     
+    </div>
+    <div class=" col-6 col-md-2">
+<div  title="Add To Basket" class="ev-bespoke-cart-btn btn-50-wide btn-big btn btn-action-primary btn-cart action" style="
+    width: auto;
+    font-weight: 700;
+
+    font-size: 0.875rem;
+    line-height: 2.875rem;
+    border-radius: 0;
+    border-radius: 3px;
+    text-transform: uppercase;
+    width: 100%;
+">Add To Basket</div>
+       <script>
+       jQuery(".ev-bespoke-cart-btn").click(function(){
+    jQuery(".first_click_button").click(); 
+    return false;
+});
+                   
+       </script>
+    </div>
+    </div>
+    
+    
+    
+              
+    
+        
+</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+
+        var pinfo_main_height = jQuery('.product-info-main').outerHeight();
+
+
+
+        jQuery('#qtySelectSticky').change(function() {
+            var val = jQuery('#qtySelectSticky').val();
+           jQuery('#qtySelect').val(val);
+        });
+
+        jQuery('#product-addtocart-button-sticky').click(function() {
+           jQuery('#product-addtocart-button').click();
+        });
+
+
+
+        var prod_add_form_height = jQuery('.product-add-form').outerHeight();
+        var prod_media_init_height = jQuery('.product.media').outerHeight();  
+            var prod_media_init_start = jQuery('.product.media').offset().top
+        
+             
+                                                          
+        var stop_position_init = prod_media_init_start+prod_media_init_height;
+
+        var prodinfo_main = jQuery('.product-info-main').outerHeight();
+
+        var tabs_pos = jQuery('#pinfo-btm-o').offset().top;
+
+        var resizeTimeout;
+
+        var scrollPos = 0;
+        
+        var scrollInitialized = false;
+        
+        jQuery(window).on('resize', function () {
+            if (resizeTimeout) {
+                // clear the timeout, if one is pending
+                clearTimeout(resizeTimeout);
+                resizeTimeout = null;
+            }
+            resizeTimeout = setTimeout(resizeHandler, 50);
+
+        });
+
+        resizeHandler = function () {
+          
+            //var prod_media_height = jQuery('.product.media').outerHeight();
+            //var stop_position = prod_media_height + 00;
+            var price_pos = jQuery('#stickyfixprice').offset().top;      //top of the price
+            
+            var sticky_start_div_mobile = jQuery('#dynamic_product_images').offset().top;      //top of the price
+            
+            var price_height = jQuery('#stickyfixprice').outerHeight();   //height of the price
+             ELEVATE.Resizer.ev_checkWindowWidth();
+   
+
+
+
+     var top_of_title = jQuery('.column.main').offset().top;    
+     var title_height = jQuery('.page-title-wrapper').outerHeight();    
+     
+       var sticky_bar_height = jQuery('.ev-pp-stickybar').outerHeight();    
+             
+            
+                                   
+            
+            var top_of_image = top_of_title + title_height;      //top of the price
+                                                        
+            
+            var combined_priceposheight = price_pos + price_height;     //bottom of the price
+    
+            //console.log(price_pos);
+            //console.log(price_height);
+            //console.log(combined_priceposheight);
+             scrollpos = jQuery(document).scrollTop();       //top of windows position
+              
+             
+              var scollPosClone = scrollpos;       //top of windows position
+           
+            var screensize = ELEVATE.Resizer.getIsDesktop();    
+               //  alert(screensize);
+            // Greater than Small Desktop *768
+            if (screensize == true) {
+                                 console.log("DESK");
+     
+                //console.log('bigger than small desktop');
+                //console.log("tabs_pos: " + tabs_pos);
+                //console.log("stop pos init: " + stop_position_init);
+                //console.log("scroll pos: " + scrollpos);
+
+                //handle the sticky bay - needs to come in over the current price with a fade effect to look smooth
+                
+                //if window position over the top of the price (offset to niceness)
+                  if (scrollpos > price_pos - 40) {
+                                     console.log("DESK-1");
+                    jQuery('.ev-pp-stickybar').addClass('sticky-show');
+   
+                  }
+                  else{
+                   console.log("DESK-2");
+                  jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                  
+
+            
+                  }
+                
+                              
+        
+            
+                var scrollandstick = scrollpos + sticky_bar_height;
+                if (scrollandstick > top_of_image) {
+                            
+               //   scrollpos = jQuery(document).scrollTop();       //top of windows position
+              
+          if ( sticky_bar_height > (jQuery(window).scrollTop() + jQuery(window).height() - 20) ) {
+          
+     
+  
+             //       if (scrollandstick > stop_position_init) {
+                    
+                            
+                        jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
+                    } else {
+                        
+                        jQuery('.product.media').removeClass('notstickyimage').addClass('stickyimage');
+                       }
+                 
+                } else {
+                
+                 
+                //    jQuery('.product.media').removeClass('notstickyimage');
+
+                //    if (jQuery('.ev-pp-stickybar').hasClass('sticky-show')) {
+                //        jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                //        jQuery('body').removeClass('ev-pp-stickybar-show');
+                //    }
+                //    jQuery('.product.media').removeClass('stickyimage');
+                }
+
+
+
+
+            } else {
+            
+            
+            
+                        //mobile
+                           
+                     jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
+                 
+                //console.log('bigger than small desktop');
+                //console.log("tabs_pos: " + tabs_pos);
+                //console.log("stop pos init: " + stop_position_init);
+                //console.log("scroll pos: " + scrollpos);
+
+                //handle the sticky bay - needs to come in over the current price with a fade effect to look smooth
+                  var sticky_start_div_mobile = jQuery('#dynamic_product_images').offset().top;      //top of the price
+                   
+                   var top_of_accordian = jQuery('.byob-accordian').offset().top;      
+                   var accordian_height = jQuery('.byob-accordian').outerHeight();   
+                   var bottom_of_accordian = top_of_accordian + accordian_height;
+                   
+                //if window position over the top of the price (offset to niceness)
+                  if (scrollpos > sticky_start_div_mobile - 1) {
+                             jQuery('.ev-pp-stickybar').css({ visibility: 'initial' });     
+                       //we should slide up thr image at the bottom of the accorian
+                       
+                         if(scrollpos > bottom_of_accordian){   
+                                 jQuery('#dynamic_product_images_sticky').slideUp();                
+                             jQuery('.ev-pp-stickybar').addClass('sticky-show');
+                         }else{             
+                    jQuery('.ev-pp-stickybar').addClass('sticky-show');
+                    jQuery('#dynamic_product_images_sticky').slideDown();
+                    }
+                  } 
+                  else{
+                              console.log("STOPPER");
+                                  jQuery('.ev-pp-stickybar').css({ visibility: 'hidden' });   
+                          // jQuery('.ev-pp-stickybar').css({ top: (jQuery('#dynamic_product_images').offset().top - jQuery(window).scrollTop())+'px' });
+                 // jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                  }
+                
+                            
+            
+                var scrollandstick = scrollpos + sticky_bar_height;
+         
+
+
+            }
+        };
+
+
+
+
+        jQuery(window).scroll(function () {
+            //var prod_media_height = jQuery('.product.media').outerHeight();
+            //var stop_position = prod_media_height + 00;
+         //   var price_pos = jQuery('#dynamic_product_images').offset().top;      //top of the price
+            
+                 var price_pos = jQuery('#stickyfixprice').offset().top;      //top of the price
+            
+            var sticky_start_div_mobile = jQuery('#dynamic_product_images').offset().top;      //top of the price
+            
+            
+            var price_height = jQuery('#dynamic_product_images').outerHeight();   //height of the price
+           
+             ELEVATE.Resizer.ev_checkWindowWidth();
+
+            
+           
+
+
+     var top_of_title = jQuery('.column.main').offset().top;    
+     var title_height = jQuery('.page-title-wrapper').outerHeight();    
+     var sticky_bar_height = jQuery('.ev-pp-stickybar').outerHeight();    
+     var top_of_image = top_of_title + title_height;      //top of the price
+   var combined_priceposheight = price_pos + price_height;     //bottom of the price
+            
+             
+    scrollpos = jQuery(document).scrollTop();       //top of windows position
+     var scollPosClone = scrollpos;       //top of windows position
+
+              
+    var screensize = ELEVATE.Resizer.getIsDesktop();
+               //  alert(screensize);
+            // Greater than Small Desktop *768
+            if (screensize == true) {
+         
+                //console.log('bigger than small desktop');
+                //console.log("tabs_pos: " + tabs_pos);
+                //console.log("stop pos init: " + stop_position_init);
+                //console.log("scroll pos: " + scrollpos);
+
+                //handle the sticky bay - needs to come in over the current price with a fade effect to look smooth
+                
+                //if window position over the top of the price (offset to niceness)
+                  if (scrollpos > price_pos - 40) {
+                  
+                    jQuery('.ev-pp-stickybar').addClass('sticky-show');
+                  }
+                  else{
+                  jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                  }
+                
+            
+                var scrollandstick = scrollpos + sticky_bar_height;
+                if (scrollandstick > top_of_image) {
+                                  console.log("ABD1");
+               //   scrollpos = jQuery(document).scrollTop();       //top of windows position
+             
+                   var top_of_accordian = jQuery('.byob-accordian').offset().top;      
+                   var accordian_height = jQuery('.byob-accordian').outerHeight();   
+                   var bottom_of_accordian = top_of_accordian + accordian_height;
+                   
+       
+          if ( sticky_bar_height > (jQuery(window).scrollTop() + jQuery(window).height() - 20) ) {
+                       //    jQuery('#dynamic_product_images_sticky').slideUDown();
+                              console.log("ABD2");
+  
+             //       if (scrollandstick > stop_position_init) {
+                    
+                    
+            
+                            
+                        jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
+                    }
+                    
+                     else {
+                               console.log("ABD3");
+                        jQuery('.product.media').removeClass('notstickyimage').addClass('stickyimage');
+                       }
+                 
+                } else {
+                    console.log("ABD4");
+                           //if(bottom_of_accordian )  
+                //    jQuery('#dynamic_product_images_sticky').slideUp();
+                //    jQuery('.product.media').removeClass('notstickyimage');
+
+                //    if (jQuery('.ev-pp-stickybar').hasClass('sticky-show')) {
+                //        jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                //        jQuery('body').removeClass('ev-pp-stickybar-show');
+                //    }
+                //    jQuery('.product.media').removeClass('stickyimage');
+                }
+
+
+
+
+            } else {
+                        //mobile
+                               
+                     jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
+                 
+                //console.log('bigger than small desktop');
+                //console.log("tabs_pos: " + tabs_pos);
+                //console.log("stop pos init: " + stop_position_init);
+                //console.log("scroll pos: " + scrollpos);
+
+                //handle the sticky bay - needs to come in over the current price with a fade effect to look smooth
+                  var sticky_start_div_mobile = jQuery('#dynamic_product_images').offset().top;      //top of the price
+                   
+                   var top_of_accordian = jQuery('.byob-accordian').offset().top;      
+                   var accordian_height = jQuery('.byob-accordian').outerHeight();   
+                   var bottom_of_accordian = top_of_accordian + accordian_height;
+                   
+                
+                   
+                   
+                //if window position over the top of the price (offset to niceness)
+                  if (scrollpos > sticky_start_div_mobile - 1) {
+                             jQuery('.ev-pp-stickybar').css({ visibility: 'initial' });     
+                       //we should slide up thr image at the bottom of the accorian
+                       
+                         if(scrollpos > bottom_of_accordian){   
+                                 jQuery('#dynamic_product_images_sticky').slideUp();                
+                             jQuery('.ev-pp-stickybar').addClass('sticky-show');
+                         }else{          
+                            if(!scrollInitialized){
+                   scrollInitialized = true;  
+                   jQuery('#dynamic_product_images_sticky').show();                   
+                   }
+                   else{
+                    jQuery('#dynamic_product_images_sticky').slideDown();
+                   }
+                            
+                    jQuery('.ev-pp-stickybar').addClass('sticky-show');
+                    
+                    }
+                  } 
+                  else{
+                              console.log("STOPPER");
+                                  jQuery('.ev-pp-stickybar').css({ visibility: 'hidden' });   
+                          // jQuery('.ev-pp-stickybar').css({ top: (jQuery('#dynamic_product_images').offset().top - jQuery(window).scrollTop())+'px' });
+                 // jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                  }
+                
+                            
+            
+                var scrollandstick = scrollpos + sticky_bar_height;
+         
+
+            
+            ///    jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
+            }
+        });
+
+
+
+
+    });
+
+</script>

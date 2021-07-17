@@ -1,5 +1,9 @@
 @if $sitename == happybeds {
 
+    #home-newsletter {
+        display: none;
+    }
+
     #homepage-aboutus {
         display: flex;
         height: auto;
@@ -53,6 +57,7 @@
 
         }
         #homepage-welcometitle {
+            line-height: unset;
             font-size:      18px;
             margin-top:     0;
             margin-bottom:  10px;
@@ -69,6 +74,7 @@
             }
         }
         #homepage-subtitle {
+            line-height: unset;
             font-size:      16px;
             margin-top:     20px;
             margin-bottom:  10px;
@@ -292,7 +298,11 @@
 
         }
         .articles-row {
-            margin: 0 -15px;
+            //margin: 0 -15px;
+
+            @include min-screen($desktop-md-min) {
+
+            }
             .article {
                 @include media-breakpoint-up(sm) {
                     @include make-col(4);

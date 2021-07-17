@@ -1,0 +1,140 @@
+@if $sitename == happybeds {
+
+    .at4-count-container {
+        display: none !important;
+    }
+    // Homepage Widget
+
+    .icon-bed {
+        background: url(../images/bed.svg);
+        height: 28px;
+        width: 37px;
+    }
+
+    .icon-bed-alt {
+        background: url(../images/bed.svg);
+    }
+
+    .icon-big-mattress {
+        background: url(../images/bed.svg);
+    }
+
+    .icon-bureau {
+        background: url(../images/bed.svg);
+    }
+
+    .icon-headboard {
+        background: url(../images/bed.svg);
+    }
+
+    // Homepage widget
+
+
+    .category-clearance .firmness-rating-outer {
+        display: none;
+    }
+
+    .category-clearance .product-icons {
+        display: none !important;
+    }
+
+    .category-clearance .price-box.price-final_price {
+        width: 100% !important;
+    }
+
+    .more-from-collection2 {
+        margin: 0 auto;
+        margin-bottom: 20px;
+
+        &.show_ev_furniture_block {
+            @include max-screen($mobiletablet-max) {
+                background-color: #f0f0f0;
+                padding: 18px 0 3px;
+                margin: 0 0 30px 0;
+            }
+        }
+    }
+
+
+    //colors
+    $hb-csstoscss-color-0: #fff;
+    $hb-csstoscss-color-1: #000;
+    $hb-csstoscss-color-2: #f0f0f0;
+
+    $hb-csstoscss-color-4: #cce5ff;
+    $hb-csstoscss-color-5: #006b7f;
+    $hb-csstoscss-color-6: white;
+
+    //fonts
+    $hb-csstoscss-font-0: FontAwesome;
+
+    .xmas_message {
+        @include co(background, $hb-csstoscss-color-4);
+        padding: 0.875rem;
+        width: auto;
+        max-width: 100%;
+        margin: 1rem 0;
+        text-align: center;
+        margin-bottom: 0;
+        @include min-screen($desktop-xl-min) {
+            margin-bottom: 10px;
+        }
+    }
+    .xmas_message2 {
+        @include co(background, $hb-csstoscss-color-5);
+        @include co(color, $hb-csstoscss-color-6);
+        position: relative;
+        font-size: 15px;
+
+        &:before {
+            content: "\f1bb";
+            @include co(font-family, $hb-csstoscss-font-0);
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            @include co(color, $hb-csstoscss-color-0);
+            padding-right: 0.5em;
+        }
+
+        &:after {
+            content: "\f1bb";
+            @include co(font-family, $hb-csstoscss-font-0);
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            @include co(color, $hb-csstoscss-color-0);
+            padding-left: 0.5em;
+        }
+    }
+
+
+
+
+    // Don't Want the excluding Price Showing on HB?
+
+    .price-excluding-tax {
+        display: none !important;
+    }
+
+    // Unsure?
+
+    #options-309-list img {
+        width: auto;
+    }
+
+    @media only screen and (min-width: 992px) {
+        // This is for changing the Width of elements on the product description I believe
+        // Left in Globally as Pull's have been removed from BS 4 and slowly data should be
+        // moved away anyway from using these classes.
+
+        .col-md-5.pull-right, .col-md-5.pull-left {
+            flex: 0 0 33.3333333333%;
+            max-width: 33.3333333333%;
+        }
+
+        .col-md-7.pull-right, .col-md-7.pull-left {
+            flex: 0 0 66.6666666667%;
+            max-width: 66.6666666667%;
+        }
+    }
+}

@@ -14,6 +14,15 @@ use SecureTrading\Trust\Helper\Data;
  */
 class CancelPendingOrder
 {
+    /**
+     *
+     */
+    const DEFAULT_INTERVAL_CANCEL_ORDER   = '3';
+    /**
+     *
+     */
+    const TIME_INTERVAL_CANCEL_ORDER_PATH = 'payment/secure_trading/configurable_cron/time_interval_run_cron';
+
 	/**
 	 * @var \Magento\Sales\Model\ResourceModel\Order\Payment\CollectionFactory
 	 */
@@ -29,17 +38,25 @@ class CancelPendingOrder
 	 */
 	protected $logger;
 
-	/**
-	 * CancelPendingOrder constructor.
-	 *
-	 * @param \Magento\Sales\Model\ResourceModel\Order\Payment\CollectionFactory $paymentCollectionFactory
-	 * @param \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory
-	 * @param Logger $logger
-	 */
-	public function __construct(\Magento\Sales\Model\ResourceModel\Order\Payment\CollectionFactory $paymentCollectionFactory,
-								   \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory,
-								   Logger $logger)
-	{
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $config;
+
+    /**
+     * CancelPendingOrder constructor.
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $config
+     * @param \Magento\Sales\Model\ResourceModel\Order\Payment\CollectionFactory $paymentCollectionFactory
+     * @param \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory
+     * @param \SecureTrading\Trust\Helper\Logger\Logger $logger
+     */
+    public function __construct(
+        \Magento\Framework\App\Config\ScopeConfigInterface $config,
+	    \Magento\Sales\Model\ResourceModel\Order\Payment\CollectionFactory $paymentCollectionFactory,
+        \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory,
+        Logger $logger
+    ) {
+        $this->config                   = $config;
 		$this->paymentCollectionFactory = $paymentCollectionFactory;
 		$this->orderCollectionFactory   = $orderCollectionFactory;
 		$this->logger                   = $logger;
@@ -51,15 +68,21 @@ class CancelPendingOrder
 	public function execute()
 	{
 		//Checkout Sessions expire 3 hours after creation
-		$interval = '3';
+        $timeIntervalConfig = $this->config->getValue(self::TIME_INTERVAL_CANCEL_ORDER_PATH);
 		$date     = new \DateTime('now');
-		$date->sub(new \DateInterval('PT' . $interval . 'H'));
+        preg_match('#(?<hour>\d{2}),(?<min>\d{2}),(?<sec>\d{2})#', $timeIntervalConfig, $timeArray);
+		if ($timeIntervalConfig && ($timeArray['hour'] != '00' || $timeArray['min'] != '00')) {
+            $date->add(new \DateInterval('PT' . $timeArray['hour'] . 'H'));
+            $date->add(new \DateInterval('PT' . $timeArray['min'] . 'M'));
+        } else {
+            $date->add(new \DateInterval('PT' . self::DEFAULT_INTERVAL_CANCEL_ORDER . 'H'));
+        }
 		$time = $date->format('Y-m-d H:i:s');
 		$this->logger->debug($time);
 
 		/** @var \Magento\Sales\Model\ResourceModel\Order\Payment\Collection $paymentCollection */
 		$paymentCollection = $this->paymentCollectionFactory->create();
-		$paymentCollection->addFieldToFilter('method', ConfigProvider::CODE);
+		$paymentCollection->addFieldToFilter('method', array('in' => array(ConfigProvider::CODE, ConfigProvider::API_CODE)));
 		$orderIds = $paymentCollection->getColumnValues('parent_id');
 
 		/** @var \Magento\Sales\Model\ResourceModel\Order\Collection $orderCollection */

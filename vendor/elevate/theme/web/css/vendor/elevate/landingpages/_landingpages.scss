@@ -187,11 +187,9 @@ $ev-ln-filter-expand-fontfamily: false !default;
 }
 
 
-
 $ev-ln-filter-price-fontsize: false !default;
 
 $ev-ln-filter-price-fontfamily: false !default;
-
 
 
 $ev-ln-filter-background: $ev-landingpages-color-0 !default;
@@ -266,10 +264,6 @@ $ev-ln-filter-checkbox-label-before-margin: 0 0.625rem 0 0 !default;
 $ev-ln-filter-checkbox-label-after-margin: 0 0 0 0.625rem !default;
 
 
-
-
-
-
 $ev-ln-filter-checkbox-label-psuedo-color: #FFFFFF !default;
 $ev-ln-filter-checkbox-label-psuedo-bgcolor: #FFFFFF !default;
 $ev-ln-filter-checkbox-label-psuedo-border-color: #CCC !default; //ccc
@@ -277,12 +271,10 @@ $ev-ln-filter-checkbox-label-psuedo-border-thickness: 1px !default;
 $ev-ln-filter-checkbox-label-psuedo-border-style: solid !default;
 
 
-
 // Checked Link Tag inside
 
 $ev-ln-filter-checked-a-color: $link-color !default;
 $ev-ln-filter-checked-a-hover-color: $link-hover-color !default;
-
 
 
 $ev-ln-filter-state-ev-ln-items-border-color: #0c509f !default;
@@ -293,7 +285,7 @@ $ev-ln-filter-state-ev-ln-items-border-radius: 3px !default;
 
 $ev-ln-filter-state-border-bottom: 1px solid #e4e4e4 !default;
 
-/* Filter Options Title */
+// Filter Options Title
 
 $ev-ln-filter-options-title-border-on: 1 !default;
 $ev-ln-filter-options-title-border-color: #e4e4e4 !default;
@@ -314,13 +306,13 @@ $ev-ln-count-display: false !default;
     @include co(margin, $ev-ln-filter-margin);
 
 
-
     @include min-screen($desktop-min) {
         @include co(margin, $ev-ln-filter-margin-desktop, $ev-ln-filter-margin);
         @include co(background, $ev-ln-filter-background-desktop, $ev-ln-filter-background);
         @include co(padding, $ev-ln-filter-padding-desktop, $ev-ln-filter-padding)
     }
     @include max-screen($ev-landingpages-filter-mobile-visible-until) {
+
         background-color: $ev-ln-filter-background;
         z-index: 90;
 
@@ -384,7 +376,7 @@ $ev-ln-count-display: false !default;
             background-image: none;
             white-space: nowrap;
             @if $ev-ln-filter-btn-letter-spacing > 0 {
-                letter-spacing: $ev-ln-filter-btn-letter-spacing;
+                @include co(letter-spacing, $ev-ln-filter-btn-letter-spacing);
             }
 
             outline: unset;
@@ -421,8 +413,6 @@ $ev-ln-count-display: false !default;
     }
 
 
-
-
     .checkbox__label {
         @include co(width, $ev-ln-filter-checkbox-label-width);
         @include co(padding, $ev-ln-filter-checkbox-label-padding);
@@ -430,7 +420,7 @@ $ev-ln-count-display: false !default;
             border-radius: $ev-ln-filter-checkbox-label-border-radius;
         }
         @if $ev-ln-filter-checkbox-label-background-on == 1 {
-            background: $ev-ln-filter-checkbox-label-background;
+            @include co(background, $ev-ln-filter-checkbox-label-background);
 
         }
         cursor: pointer;
@@ -489,6 +479,7 @@ $ev-ln-count-display: false !default;
 
             }
         }
+
         a {
             @include co(font-size, $ev-ln-checkbox-label-a-fontsize);
             @include co(padding, $ev-ln-checkbox-label-a-padding);
@@ -526,67 +517,8 @@ $ev-ln-count-display: false !default;
 
 
 
-
-
-
-
-
-
-
-
-
-
-    .ev_ln_filter-current-subtitle {
-        @include co(font-family, $ev-ln-filter-current-subtitle-fontfamily);
-        padding-bottom: 15px;
-        display: block;
-    }
-
-
-
-
- .ev_ln_filter-label {
-            order: 2;
-        }
-
-        &.ev_ln_filter-value {
-            order: 3;
-        }
-
-
-
-
-
-    .ev_ln_filter-subtitle {
-        display: none;
-    }
-
-
-
-    .ev_ln_filter_close {
-        display: none;
-        background-color: $ev-landingpages-color-6;
-        padding: 16px;
-        margin-left: auto;
-    }
-
-    .ev_ln_toolbar_btn {
-        background-image: none;
-        background: $ev-landingpages-color-8;
-        border: 1px solid $ev-landingpages-color-9;
-        color: $ev-landingpages-color-10;
-        cursor: pointer;
-        display: inline-block;
-        font-weight: 700;
-        margin: 0;
-        padding: 12px 15px;
-        font-size: 21px;
-        line-height: 1.4rem;
-        width: 100%;
-        vertical-align: middle;
-        border-radius: 7px;
-
-
+    &.ev_ln_filter-value {
+        order: 3;
     }
 
 
@@ -601,24 +533,10 @@ $ev-ln-count-display: false !default;
         color: $ev-landingpages-color-0;
     }
 
-    .ev_ln_items {
-        list-style: none;
-        padding: 0;
-        margin-top: 0;
-        margin-bottom: 0;
-        li.item {
-            display: flex;
-            align-items: center;
-            @include co(border-bottom, $ev-ln-items-li-border-bottom);
 
-            margin: 0 10px;
-            padding: 10px 0;
 
-            &:last-child {
-                border-bottom: 0;
-            }
-        }
-    }
+
+
 
 
 
@@ -627,19 +545,155 @@ $ev-ln-count-display: false !default;
     }
 
 
-
-
-
     .price {
         @include co(font-size, $ev-ln-filter-price-fontsize);
         @include co(font-family, $ev-ln-filter-price-fontfamily);
     }
 }
+.ev_ln_filter-current-subtitle {
+    @include co(font-family, $ev-ln-filter-current-subtitle-fontfamily);
+    padding-bottom: 15px;
+    display: block;
+}
 
+
+.ev_ln_filter-label {
+    order: 2;
+}
+
+.ev_ln_filter-subtitle {
+    display: none;
+}
+
+
+
+
+$ev-ln-filter-close-display: inline-block !default;
+$ev-ln-filter-close-display-mobile-notvisible: none !default;
+$ev-ln-filter-close-bgcolor: false !default;
+$ev-ln-filter-close-padding: 0 15px 0 0 !default;
+$ev-ln-filter-close-marginleft: auto !default;
+
+$ev-ln-filter-close-svgwrap-display: flex !default;
+
+.ev_ln_filter_close {
+    @include co(display, $ev-ln-filter-close-display);
+    @include co(padding, $ev-ln-filter-close-padding);
+    @include co(background-color, $ev-ln-filter-close-bgcolor);
+    @include co(margin-left, $ev-ln-filter-close-marginleft);
+    @include min-screen($ev-landingpages-filter-mobile-notvisible) {
+        @include co(display, $ev-ln-filter-close-display-mobile-notvisible);
+    }
+}
+.ev-ln-filter-close-svgwrap {
+    @include co(display, $ev-ln-filter-close-svgwrap-display);
+}
+
+$ev-ln-toolbar-btn-margin: 0 !default;
+
+
+
+$ev-ln-toolbar-btn-margin-sm-max: false !default;
+
+
+$ev-ln-toolbar-btn-margin-sm-minmax: 1rem 0 0 0 !default;
+
+$ev-ln-toolbar-btn-width: 50% !default;
+$ev-ln-toolbar-btn-order: 5 !default;
+$ev-ln-toolbar-btn-bg-color: #db2727 !default;
+
+$ev-ln-toolbar-btn-border-radius: 7px !default;
+
+$ev-ln-toolbar-btn-text-transform: uppercase !default;
+$ev-ln-toolbar-btn-icon-on: 1 !default;
+
+
+$ev-ln-toolbar-btn-border-color: #db2727 !default;
+$ev-ln-toolbar-btn-border-style: solid !default;
+$ev-ln-toolbar-btn-border-thickness: 1px !default;
+$ev-ln-toolbar-btn-font-size: 1.125rem !default;
+$ev-ln-toolbar-btn-font-weight: 700 !default;
+
+$ev-ln-toolbar-btn-color: #FFF !default;
+$ev-ln-toolbar-btn-color-hover: darken($ev-ln-toolbar-btn-color, 15%) !default;
+$ev-ln-toolbar-btn-padding: 0.75rem 0.9375rem !default;
+$ev-ln-toolbar-btn-lineheight: 1.4rem !default;
+$ev-ln-toolbar-btn-verticalalign: middle !default;
+
+
+
+.ev_ln_toolbar_btn {
+    @include co(width, $ev-ln-toolbar-btn-width);
+    flex: 0 1 auto;
+    @include co(order, $ev-ln-toolbar-btn-order);
+    cursor: pointer;
+    display: inline-block;
+    @include co(background, $ev-ln-toolbar-btn-bg-color);
+    border: $ev-ln-toolbar-btn-border-thickness $ev-ln-toolbar-btn-border-style $ev-ln-toolbar-btn-border-color;
+    @include co(color, $ev-ln-toolbar-btn-color);
+    @include co(margin, $ev-ln-toolbar-btn-margin);
+    @include co(padding, $ev-ln-toolbar-btn-padding);
+    @include co(font-size, $ev-ln-toolbar-btn-font-size);
+    @include co(font-weight, $ev-ln-toolbar-btn-font-weight);
+    @include co(line-height, $ev-ln-toolbar-btn-lineheight);
+    @include co(border-radius, $ev-ln-toolbar-btn-border-radius);
+    @include co(vertical-align, $ev-ln-toolbar-btn-verticalalign);
+    @include co(text-transform, $ev-ln-toolbar-btn-text-transform);
+    @if $ev-ln-toolbar-btn-icon-on != 1 {
+        > i {
+            display: none;
+        }
+    }
+
+    @include max-screen($desktop-sm-max) {
+        @include co(margin, $ev-ln-toolbar-btn-margin-sm-max);
+    }
+
+    @include screen($screen-sm-min, $screen-sm-max) {
+        @include co(margin, $ev-ln-toolbar-btn-margin-sm-minmax);
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active {
+        box-shadow: unset;
+    }
+}
+
+
+.ev_ln_items {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    li.item {
+        display: flex;
+        align-items: center;
+        @include co(border-bottom, $ev-ln-items-li-border-bottom);
+
+        margin: 0 10px;
+        padding: 10px 0;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}
+
+$ev-ln-filter-state-padding-bottom: 15px !default;
+$ev-ln-filter-state-paddingleft-mobilevisibleuntil: 15px !default;
+$ev-ln-filter-state-paddingright-mobilevisibleuntil: 15px !default;
 
 .ev_ln_filter_state {
     @include co(border-bottom, $ev-ln-filter-state-border-bottom);
-    padding-bottom: 15px;
+    @include co(padding-bottom, $ev-ln-filter-state-padding-bottom);
+    @include max-screen($ev-landingpages-filter-mobile-visible-until) {
+        @include co(padding-left, $ev-ln-filter-state-paddingleft-mobilevisibleuntil);
+        @include co(padding-right, $ev-ln-filter-state-paddingright-mobilevisibleuntil);
+    }
 
     .ev_ln_items {
         @include co(border, $ev-ln-filter-state-ev-ln-items-border);
@@ -667,43 +721,33 @@ $evlp-filter-openclose-i-height: 20px !default;
 $evlp-filter-openclose-i-display: block !default;
 $evlp-filter-openclose-i-transition: $evlp-filter-openclose-transition !default;
 
-$evlp-filter-openclose-open-chevron-transform: rotate(180deg) !default;
-$evlp-filter-openclose-closed-chevron-transform: rotate(0deg) !default;
-
+$evlpf-open-chevron-transform: rotate(180deg) !default;
+$evlpf-closed-chevron-transform: rotate(0deg) !default;
 
 .evlp-filter-openclose {
     @include co(margin-left, $evlp-filter-openclose-marginleft);
     @include co(transition, $evlp-filter-openclose-transition);
     @include co(text-align, $evlp-filter-openclose-textalign);
     @include co(transform-origin, $evlp-filter-openclose-transformorigin);
+
     i {
         @include co(width, $evlp-filter-openclose-i-width);
         @include co(height, $evlp-filter-openclose-i-height);
         @include co(display, $evlp-filter-openclose-i-display);
         @include co(transition, $evlp-filter-openclose-i-transition);
+
         &.evlp-filter-chevron-down {
-            @include co(transform, $evlp-filter-openclose-open-chevron-transform);
+            @include co(transform, $evlpf-open-chevron-transform);
         }
     }
 
 }
-
-
-.evlp-filter-openclose-closed {
+.evlpf-closed {
     i {
         &.evlp-filter-chevron-down {
-            @include co(transform, $evlp-filter-openclose-closed-chevron-transform);
+            @include co(transform, $evlpf-closed-chevron-transform);
         }
     }
-}
-
-
-
-
-
-
-.ac-accordion__expand-chevronbutton.ev_ln_filter_close {
-    margin-left: auto;
 }
 
 $evlp-item-a-color: false !default;
@@ -713,9 +757,11 @@ $evlp-item-a-color: #000 !global;
 .ev_ln_item {
     position: relative;
     @include co(font-family, $ev-ln-item-font-family);
+
     &:last-child {
         margin-bottom: 0;
     }
+
     a {
         @include co(color, $evlp-item-a-color);
     }
@@ -734,8 +780,6 @@ $evlp-ln-action-remove-color: false !default;
 $evlp-filter-actions-color: false !default;
 
 
-
-
 .ev_ln_filter_actions {
     @include co(font-family, $ev-ln-filter-actions-fontfamily);
     @include co(background, $ev-ln-filter-actions-background);
@@ -747,18 +791,22 @@ $evlp-filter-actions-color: false !default;
 
 }
 
-
-
+$evlp-filter-title-display: block !default;
+$evlp-filter-title-alignitems: center !default;
 $evlp-filter-title-padding: 0 0 0.9375rem 0 !default;
+
+
+$evlp-filter-title-display-mobilevisibleuntil: flex !default;
 $evlp-filter-title-padding-mobilevisible-until: 0.9375rem 0 !default;
 
 .ev_ln_filter_title {
-    display: block;
-    align-items: center;
+    @include co(display, $evlp-filter-title-display);
+    @include co(align-items, $evlp-filter-title-alignitems);
     @include co(padding, $evlp-filter-title-padding);
     @include co(font-family, $ev-landingpages-filter-title-fontfamily);
 
     @include max-screen($ev-landingpages-filter-mobile-visible-until) {
+        @include co(display, $evlp-filter-title-display-mobilevisibleuntil, $evlp-filter-title-display);
         @include co(padding, $evlp-filter-title-padding-mobilevisible-until, $evlp-filter-title-padding);
     }
 
@@ -779,17 +827,28 @@ $evlp-filter-title-padding-mobilevisible-until: 0.9375rem 0 !default;
 // star rating - no hover underline //
 
 .ev_ln_filter_rating {
-    display:     flex;
+    display: flex;
     align-items: center;
+
     &:hover {
         text-decoration: none !important;
     }
 }
 
 
+$ev-ln-filter-options-margin: 0 !default;
+
+// DL
+
+
+.ev_ln_filter_options {
+   @include co(margin, $ev-ln-filter-options-margin);
+}
+
 $evlp-filter-options-title-padding: 15px !default;
 $evlp-filter-options-title-padding-desktop: 15px 0 !default;
 $evlp-filter-options-title-margin: false !default;
+$evlp-filter-options-title-letterspacing: 0.5px !default;
 
 .ev_ln_filter_options_title {
     @if $ev-ln-filter-options-title-border-on == 1 {
@@ -803,7 +862,7 @@ $evlp-filter-options-title-margin: false !default;
     @include min-screen($ev-landingpages-filter-mobile-notvisible) {
         @include co(padding, $evlp-filter-options-title-padding-desktop, $evlp-filter-options-title-padding);
     }
-    letter-spacing: 0.5px;
+    @include co(letter-spacing, $evlp-filter-options-title-letterspacing);
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -821,11 +880,7 @@ $evlp-filter-options-content-margin: 0 !default;
         @include co(padding, $evlp-filter-options-content-padding-desktop, $evlp-filter-options-content-padding);
     }
 
-
-
 }
-
-
 
 // Refine Category title
 
@@ -845,7 +900,6 @@ $evlp-r-ct-display-desktopmd: block !default;
         @include co(display, $evlp-r-ct-display-desktopmd, $evlp-r-ct-display);
     }
 }
-
 
 
 $evlp-count-color: false !default;
@@ -881,30 +935,14 @@ $evlp-count-padding: false !default;
     margin-bottom: 15px;
     text-decoration: underline;
     font-weight: bold;
+    text-align: center;
     @include min-screen($ev-landingpages-filter-mobile-notvisible) {
         text-align: center;
     }
 }
 
-@media(max-width: 991px) {
-    .ev_ln_filter {
-
-
-        .ev_ln_filter_state {
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-
-        .ev_ln_filter_close {
-            display: block !important;
-        }
-
-
-
-
-    }
-
-    .ev_ln_overlay {
+.ev_ln_overlay {
+    @include max-screen($ev-landingpages-filter-mobile-notvisible) {
         top: 0;
         left: 0;
         width: 100%;
@@ -915,26 +953,27 @@ $evlp-count-padding: false !default;
         opacity: 0;
         visibility: hidden;
         will-change: opacity;
-
         transition: all 0.25s;
     }
-    .ev_ln_overlay_open {
-        opacity: 1;
-        pointer-events: auto;
-        visibility: visible;
-    }
+}
 
+.ev_ln_overlay_open {
+    @include max-screen($ev-landingpages-filter-mobile-notvisible) {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    }
 }
 
 
 
-// Need Eliminating
+// Need Eliminating (once Removed from code for bootstrap alternatives)
 
-.ev_accordian_closed {
+.ev-accordian-closed {
     display: none;
 }
 
-.ev_accordian_open {
+.ev-accordian-open {
     display: block;
 }
 

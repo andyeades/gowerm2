@@ -1,0 +1,1615 @@
+#search_autocomplete {
+    display: none !important;
+
+}
+
+.category-description p {
+    text-align: center;
+}
+
+.account .box-shipping-address .box-actions {
+    display: none !important;
+}
+
+.account .box-address-shipping .box-actions {
+    display: none !important;
+}
+
+.mst-searchautocomplete__autocomplete {
+    display: none !important;
+}
+
+#tritemtotal .price-including-tax {
+    font-size: 1rem;
+    color: #235e4b;
+}
+
+#tritemtotal .price-excluding-tax {
+    font-size: 1rem;
+    color: #235e4b;
+}
+
+#stickyBar .price-including-tax:after {
+    margin-left: 5px;
+}
+
+#stickyBar .price-excluding-tax:after {
+    margin-left: 5px;
+}
+
+div#toprowtotals {
+    padding-top: 11px;
+}
+
+.prod-description h5,
+.prod-description>p>strong {
+    font-size: initial !important;
+    margin: initial !important;
+    display: initial !important;
+    width: initial !important;
+}
+
+/*star rating - no hover underline*/
+
+a#ev_ln_filter_rating:hover {
+    text-decoration: none !important;
+}
+
+.message.notice>*:first-child:before {
+
+    display: none !important;
+
+}
+
+.message.notice:before {
+    min-width: 1rem;
+
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    bottom: -1px;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 0.875rem;
+    color: #c07600;
+    content: '?';
+    font-family: 'luma-icons';
+    margin: 0 0.5rem;
+    display: inline;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+
+/*Sortoption alignment - https://m2.posturite.co.uk/forms/demo-homeworker-products-order-form*/
+.full-width-form .field .choice input {
+    margin: 0;
+}
+
+.full-width-form .field.choice {
+    display: flex;
+    align-items: center;
+}
+
+.full-width-form .field .choice label {
+    font-size: 0.9375rem;
+    margin: 0 0 0 8px;
+}
+
+/*
+align cart pricing
+*/
+span.price.origprice {
+    margin-left: 10px;
+}
+
+
+#ev_international_link span {
+    color: #08c;
+}
+
+#ev_international_link span:hover {
+    color: #29617d;
+    text-decoration: underline !important;
+}
+
+/*Now Pricing*/
+.p-img-icon {
+
+    display: none;
+}
+
+@media (min-width: 1200px) {
+
+    .catalog-product-view .product-info-price .special-price .price-wrapper .price,
+    .product-options-bottom .special-price .price-wrapper .price {
+        font-size: 1.5rem;
+    }
+
+    .catalog-category-view .product-info-price .special-price .price-wrapper .price,
+    .product-options-bottom .special-price .price-wrapper .price {
+        font-size: 1rem;
+    }
+
+    .product-info-price .special-price .price-container>span,
+    .product-options-bottom .special-price .price-container>span {
+        font-weight: 400;
+        font-size: 0.9375rem;
+        color: #a7a8aa;
+        text-transform: initial;
+    }
+}
+
+
+.aw-pq-list__question-expand {
+    position: relative
+}
+
+.aw-pq-list__question-expand_arrow_down {
+    background: none;
+}
+
+.aw-pq-list__question-expand_arrow_right {
+    background: none;
+}
+
+.aw-pq-list__question-expand_arrow_right:before {
+    content: "\f067";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    /*--adjust as necessary--*/
+    color: #000;
+    font-size: 18px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    color: #255f4c;
+}
+
+.aw-pq-list__question-expand_arrow_down:before {
+    content: "\f068";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    /*--adjust as necessary--*/
+    color: #000;
+    font-size: 18px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    color: #255f4c;
+}
+
+button.button.aw-pq-list__add-question-button.aw-pq-list__button_position_right {
+    display: inline-block;
+    font-weight: 400;
+    color: #333;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border-radius: 0.3125rem;
+    font-weight: 500;
+
+    color: #fff;
+    background-color: #255f4c;
+    border-color: #255f4c;
+}
+
+.aw-pq-list__question-item {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.aw-pq-list__question-date {
+    color: #999;
+    font-size: 10px;
+    margin-left: 0;
+}
+
+.aw-pq-list__answer-list {
+    margin-left: 26px;
+}
+
+.aw-pq-list__question-content {
+    color: #255f4c;
+}
+
+.aw-pq-list__button_position_right {
+    float: none;
+    width: 300px;
+}
+
+/*remove newsletter - needs doing via xml - customer acc */
+.account .box.box-newsletter {
+    display: none;
+}
+
+.aw-pq-list__question-content {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.aw-pq-list__answer-item {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.aw-pq-list__question-date,
+.aw-pq-list__answer-date {
+
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+{
+
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* change the account button active colours*/
+.account .column .btn.action.secondary:not(:disabled):not(.disabled):active {
+
+    color: #fff;
+    background-color: initial;
+    border-color: initial;
+}
+
+.account .column .action:not(:disabled):not(.disabled):active,
+.account .column .action:not(:disabled):not(.disabled).active,
+.account .column .show>.action.dropdown-toggle {
+    background-color: initial;
+    border-color: initial;
+}
+
+.account .column .customer-address-index .action:not(:disabled):not(.disabled):active,
+.account .column .action:not(:disabled):not(.disabled).active,
+.account .column .show>.action.dropdown-toggle {
+    background-color: initial;
+    border-color: initial;
+}
+
+
+.ev_cart_disable {
+    display: none;
+}
+
+.box-tocart.inside_qty_container {
+    margin: 0px;
+}
+
+@media only screen and (min-width: 768px) {
+    .product-options-wrapper {
+        padding: 0 1.25rem 1.5rem 1.25rem;
+    }
+
+}
+
+.minisearch .search .ev-input-group-btn {
+    float: right;
+
+}
+
+.hdr-conta .hover svg,
+.hdr-r-trow>ul svg {
+    max-height: 40px;
+}
+
+/*arrows on appointment page remove*/
+.fieldset>.field .note::before,
+.fieldset>.fields>.field .note::before {
+    display: none;
+}
+
+.toolbar-products .limiter,
+.toolbar-products .toolbar-amount,
+.toolbar-products .sorter,
+.toolbar-products .modes {
+    border: 0px;
+}
+
+.product-reviews-summary .action {
+    background: none;
+    border: none;
+}
+
+/*FR*/
+@media only screen and (max-width: 991.98px) {
+    .catalog-product-view .tmspslot .products-grid .product-item {
+        width: 48% !important;
+        margin-right: 2% !important;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .catalog-product-view .tmspslot .products-grid .product-item {
+        width: 24% !important;
+        margin-right: 1% !important;
+    }
+}
+
+/*
+ .product-add-form .fieldset>.field, .product-add-form .fieldset .fields>.field {
+    margin: 0 0 1.25rem;
+    border-bottom: 1px solid #6666661c;
+    padding-bottom: 16px;
+}
+ */
+.pp-icon-clock2 path,
+.backorder_color {
+    fill: #db2727;
+}
+
+/*Backorder PP cols*/
+.backorder_color {
+    color: #db2727;
+}
+
+/*Account page fix desktop width*/
+@media only screen and (min-width: 992px) {
+    .account .column.main {
+        width: 75% !important;
+        padding: 0 0 0 0;
+    }
+}
+
+.account .column.main a {
+    color: #08c;
+    background-color: initial;
+    border: none;
+    padding: 0px;
+    font-size: 0.875rem;
+
+    font-weight: initial;
+}
+
+.account .column.main a:hover {
+    color: #29617d;
+    text-decoration: underline !important;
+    font-weight: initial;
+}
+
+.account .column .action:not(:disabled):not(.disabled):active,
+.action:not(:disabled):not(.disabled).active,
+.show>.action.dropdown-toggle {
+    color: #29617d;
+    background-color: initial;
+    border-color: initial;
+}
+
+.customer-address-index .block.block-addresses-list {
+    background-color: #f6f8fb;
+    padding: 50px;
+}
+
+.customer-address-index button.action.primary.add {
+    width: 300px;
+}
+
+.customer-address-index .column.main {
+    margin-bottom: 21px;
+}
+
+.block-collapsible-nav .item a:hover {
+    background: #777777;
+    color: #fff;
+}
+
+@media only screen and (min-width: 768px) {
+    .fieldset .legend {
+        margin-left: inherit;
+    }
+}
+
+/*feefo and pricing side by side*/
+.catalog-product-view .minimal-price .price {
+    font-size: 1.5rem;
+}
+
+div#product-info-price-main {
+    float: right;
+    width: 50%;
+}
+
+div#feefoouterwrap {
+    float: left;
+    width: 50%;
+}
+
+div#product-info-price-main:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#ev-pp-shortdescription {
+    clear: both;
+}
+
+.feefomainin {
+    display: flex;
+    width: 205px;
+}
+
+.ev_tocartSticky .spinner-fading-circle {
+    width: 20px;
+    height: 17.7px;
+    position: relative;
+    margin: 15px 0px;
+}
+
+@media only screen and (max-width: 991.98px) {
+
+    .feefomainin {
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    #ev-pp-stockorder .row {
+        margin: 0px;
+    }
+
+    #ev-pp-shortdescription {
+        clear: both;
+        margin-bottom: 30px;
+    }
+
+    #ev-pp-stockorder .row .col-md-6 {
+        padding: 0px;
+    }
+
+    div#product-info-price-main {
+        float: none;
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 28px;
+    }
+
+    .MagicToolboxSelectorsContainer {
+        margin-bottom: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    div#feefoouterwrap {
+        float: none;
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+
+}
+
+.ev-pp-stickybar .pp-order-info-outer {
+    display: flex;
+    align-content: flex-start;
+    padding: 1rem 0;
+    align-items: center;
+    max-width: 40%;
+}
+
+.ev-pp-stickybar .container>div.sticky-stock-status {
+    flex: 1 1 auto;
+    align-items: center;
+}
+
+.pp-icon {
+    display: block;
+    width: 22px;
+    height: 22px;
+}
+
+.pp-order-info-outer>i,
+.pp-order-info-outer>div {
+    flex: 0 1 auto;
+}
+
+.pp-order-info-outer>div {
+    font-weight: 700;
+    margin-left: 0.5rem;
+    font-size: 0.8125rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pp-order-info-outer>div>div {
+    flex: 0 1 auto;
+    width: 100%;
+    font-weight: 700;
+}
+
+/*changes with paul - need to SASS
+                                                                                                                                                         pp-icon-clock2
+
+ //mega menu - ergo chairs - the li tags have no padding - but the ergo accessories do, this is to do with the column
+ //count - we should just implement margin against all LI
+
+ RICHARD REMOVED - There is a reason - we can rectifylater
+ */
+@media only screen and (min-width: 992px) {
+    .e-pn .auto-columns>li {
+        /*margin: 0 10px;*/
+    }
+}
+
+/* menu drop shadow - change colour - add alpha transpareny*/
+@media only screen and (min-width: 992px) {
+    .e-pn>li>ul {
+        filter: drop-shadow(2px 4px 6px #49494947);
+    }
+}
+
+.tmspslot .price {
+    font-size: 1rem !important;
+}
+
+/* Mega menu mobile logo - create new option in admin - logo width and logo height so customers can specify */
+.mobile-logo-inner img {
+    height: auto;
+    width: 100px;
+}
+
+/* h2 margin top reduction on mobile*/
+@media only screen and (max-width: 991.98px) {
+    .cms-posturite_home h2 {
+        /*margin-top: 20px !important;  */
+    }
+
+    /* Fix for Fresh relevance pricing on from pricing being too large*/
+
+    .minimal-price .price {
+        font-size: initial;
+    }
+}
+
+/*checkout button colours*/
+.action.primary.checkout {
+    color: #fff;
+    background-color: #e66100;
+    border-color: #e66100;
+    text-transform: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action.primary.checkout:focus,
+.action.primary.checkout.focus {
+    color: #fff;
+    background-color: #b34b00;
+    border-color: #a64600;
+}
+
+.action.primary.checkout.disabled,
+.action.primary.checkout:disabled {
+    color: #fff;
+    background-color: #b34b00;
+    border-color: #a64600;
+}
+
+.action.primary.checkout:hover {
+
+    color: #fff;
+    background-color: #b34b00;
+    border-color: #a64600;
+}
+
+.action.primary.checkout:not(:disabled):not(.disabled):active,
+.action.primary.checkout:not(:disabled):not(.disabled).active,
+.show>.action.primary.checkout.dropdown-toggle {
+    color: #fff;
+    background-color: #b34b00;
+    border-color: #a64600;
+}
+
+/*PP zoom fix for video*/
+
+div.MagicToolboxMainContainer {
+    width: 100%;
+
+}
+
+@media only screen and (min-width: 992px) {
+    .MagicToolboxSelectorsContainer {
+        min-height: 600px !important;
+    }
+
+
+}
+
+.trainingmenu .e-pn {
+
+    position: relative;
+}
+
+.MagicScroll .mcs-item img {
+    pointer-events: none;
+    visibility: visible;
+    float: none !important;
+    display: block !important;
+
+    width: auto !important;
+}
+
+
+#page-main-outer div.MagicToolboxSelectorsContainer .MagicScroll a {
+    margin: 0;
+}
+
+.video-selector.active-selector img {
+    border: 2px solid #434343;
+}
+
+.video-selector img {
+    pointer-events: none;
+    visibility: visible;
+    float: none !important;
+    display: block !important;
+    /* height: 100%; */
+    /* width: auto !important; */
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.3125rem;
+    border: 2px solid #fff;
+}
+
+/* inc vat and ex vat throughout side should be this grey*/
+.price-wrapper:before,
+.price-wrapper:after {
+    color: #666666;
+    font-weight: initial;
+}
+
+/* price throughout the site should be this green*/
+.price {
+    color: #255f4c;
+    font-weight: bold;
+}
+
+.catalog-category-view .price-label {
+
+    display: block;
+}
+
+
+/* make options header closer to selects */
+.product-options-wrapper .fieldset>.field>.label {
+    margin: 0 0 0.5rem;
+}
+
+/* make tooltip icons grey and smaller */
+i.fa.fa-info-circle.fa-lg.tooltipstered {
+    color: #555;
+    font-size: 17px;
+}
+
+/* Fix PP zindex of review wording in tab, chrome*/
+.ptab-additionalcontent>div {
+    z-index: 1;
+}
+
+/* Category pages pagination and the item counts - 1 line & 33% (2+16% on right)*/
+
+.toolbar-products {
+    margin: 1rem 0 1rem 0;
+}
+
+.pages {
+    display: flex;
+    width: auto;
+    margin: auto;
+    width: 33%;
+    order: 3;
+}
+
+.toolbar-products .toolbar-amount {
+    align-items: center;
+    order: 2;
+    width: 33%;
+    flex: 0 1 auto;
+}
+
+.toolbar-products .limiter {
+    order: 3;
+    margin: 0 0 0 auto;
+    width: 16%;
+}
+
+.toolbar-products .sorter {
+    order: 4;
+    margin: 0 0 0 10px;
+    width: 16%;
+}
+
+/* mobile toolbar stylings */
+
+@media only screen and (max-width: 991.98px) {
+    .pages {
+        display: flex;
+        width: auto;
+        margin: auto;
+        width: 100%;
+        order: 3;
+        margin-bottom: 20px;
+    }
+
+    .toolbar-products .toolbar-amount {
+        align-items: center;
+        order: 6;
+        width: 100%;
+        flex: 0 1 auto;
+        margin-top: 17px;
+        margin-bottom: 0px;
+        margin-left: 0;
+        height: 23px;
+        display: block;
+        text-align: center !important;
+    }
+
+    .toolbar-products .limiter {
+        order: 3;
+        margin: 0 0 0 auto;
+        width: 16%;
+    }
+
+    .toolbar-products .sorter {
+        order: 4;
+        margin: 0;
+        width: 50%;
+    }
+
+    .products.wrapper~.toolbar .pages {
+        display: flex;
+
+        width: 100% !important;
+        margin-bottom: 20px !important;
+        width: auto;
+        margin: auto;
+    }
+
+    .toolbar-products .limiter {
+        display: none;
+    }
+
+    .sorter-options {
+        width: 100%;
+        height: 48px;
+        margin: 0 0.5rem 0 0;
+        border: 2px solid #333;
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+
+    .ev_ln_toolbar_btn {
+        margin: 0;
+    }
+
+    /**/
+
+    /*need to flex wrap reviews so the ratings are under the stars on mobile*/
+    .product-reviews-summary {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* remove limiter text */
+.limiter-text {
+    display: none;
+}
+
+/*remove margins from sort by*/
+.toolbar-products .sorter {
+
+    margin: 0;
+
+}
+
+/* Align category pricing to bottom*/
+.products-grid .product-item-details {
+
+    height: 100%;
+}
+
+/*remove padding from listing title*/
+
+.product-items .product-item-name {
+    padding: 0;
+
+
+}
+
+/* listing special price should not be uppercased*/
+.special-price .price-label,
+.special-price .label {
+    text-transform: initial;
+}
+
+/* remove the magento margin 0 on default */
+.product-items .price-box>span:last-of-type {
+    margin: 0 0 .5rem;
+}
+
+/*Add to landing page module - safari fix for bunching of the header titles*/
+.ev_ln_filter .ev_ln_filter_title {
+
+    display: block;
+}
+
+/*Absolute the filter clear all button to top on mobile*/
+@media only screen and (max-width: 991.98px) {
+    .ev_ln_filter .ev_ln_filter_actions {
+        padding-right: 0;
+        position: absolute;
+        right: 0;
+        display: initial;
+        top: 0;
+        background-color: #f0f0f0;
+        padding: 8px;
+    }
+}
+
+/*remove colon from the pricing*/
+.product-info-price .old-price .price-label:after,
+.product-info-price .special-price .price-label:after,
+.product-options-bottom .old-price .price-label:after,
+.product-options-bottom .special-price .price-label:after {
+    display: none;
+    content: '';
+
+}
+
+/* Product Page - re-align the radio checkbox*/
+
+.nested.options-list .field.choice label.checkbox-selected:after {
+
+    left: 10px;
+
+    margin: -8px -7.5px 0 0;
+}
+
+
+/* add to cart label - PP*/
+@media only screen and (max-width: 991.98px) {
+    .box-tocart {
+        padding: 0.4rem;
+    }
+
+    /*Header - account - needs to not have padding - ruins the header alignment*/
+    .hdr-r-trow>ul>li:first-of-type {
+        padding: 0;
+    }
+
+    /*center burger icon??*/
+    .hdr-in-mobile-left .hdr-mobile-menu-icon {
+        margin-left: 0.1rem;
+    }
+
+    .MagicToolboxContainer {
+        min-height: 200px;
+    }
+
+    .box-tocart.inside_qty_container .field.qty>div {
+        width: 100%;
+    }
+
+    .box-tocart .field.qty {
+        margin: 0 0;
+    }
+
+    .box-tocart .qtySelect {
+
+        margin: 0 1rem 0 0.5rem;
+    }
+
+    .product-info-container {
+
+        padding-bottom: 0 !important;
+
+    }
+
+    .product-add-form {
+        margin: 0 -7.5px 2rem;
+        padding: 15px 15px 0 15px;
+        border-radius: 0;
+        margin-top: 19px;
+
+    }
+
+    .product-options-bottom {
+        margin: 0px -15px;
+    }
+
+    .select2-selection,
+    .select2-container--default .select2-selection--single {
+        padding-right: 35px;
+    }
+
+    .box-tocart.inside_qty_container .field.qty>div {
+        width: 100%;
+        padding: 0;
+    }
+
+    #pinfo-btm-o {
+        padding: 0px .5rem;
+    }
+
+    /*Inset tabs*/
+    .product.data.items>.item.title>.switch {
+
+        padding: 1rem .5rem;
+    }
+
+    .product.data.items>.item.content {
+        padding: 0rem .5rem;
+    }
+
+    .product.data.items .data.item.title>.fa {
+
+        right: .5rem;
+    }
+
+    /*Mobile title - more space*/
+    .catalog-product-view .page-title {
+
+        margin: .5rem 0 .625rem 0;
+    }
+
+    .product-options-wrapper .fieldset>.field>.label {
+
+        margin: 0 0 .5rem;
+    }
+
+
+    /*Styling for tooltip icon on PP*/
+    .tooltipstered {
+        font-size: 1em;
+        vertical-align: 0%;
+    }
+
+    pp_tooltip {
+        color #666;
+    }
+
+    .product-options-wrapper .fieldset a {
+        color: #666;
+    }
+
+
+    /*Add Tippy Styles https://github.com/atomiks/tippyjs/tree/master/src/scss*/
+
+    .tippy-touch {
+        cursor: pointer !important
+    }
+
+    .tippy-notransition {
+        transition: none !important
+    }
+
+    .tippy-popper {
+        max-width: 350px;
+        -webkit-perspective: 700px;
+        perspective: 700px;
+        z-index: 9999;
+        outline: 0;
+        transition-timing-function: cubic-bezier(.165, .84, .44, 1);
+        pointer-events: none;
+        line-height: 1.4
+    }
+
+    .tippy-popper[data-html] {
+        max-width: 96%;
+        max-width: calc(100% - 20px)
+    }
+
+    .tippy-popper[x-placement^=top] .tippy-backdrop {
+        border-radius: 40% 40% 0 0
+    }
+
+    .tippy-popper[x-placement^=top] .tippy-roundarrow {
+        bottom: -8px;
+        -webkit-transform-origin: 50% 0;
+        transform-origin: 50% 0
+    }
+
+    .tippy-popper[x-placement^=top] .tippy-roundarrow svg {
+        position: absolute;
+        left: 0;
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg)
+    }
+
+    .tippy-popper[x-placement^=top] .tippy-arrow {
+        border-top: 7px solid #333;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        bottom: -7px;
+        margin: 0 6px;
+        -webkit-transform-origin: 50% 0;
+        transform-origin: 50% 0
+    }
+
+    .tippy-popper[x-placement^=top] .tippy-backdrop {
+        -webkit-transform-origin: 0 90%;
+        transform-origin: 0 90%
+    }
+
+    .tippy-popper[x-placement^=top] .tippy-backdrop[data-state=visible] {
+        -webkit-transform: scale(6) translate(-50%, 25%);
+        transform: scale(6) translate(-50%, 25%);
+        opacity: 1
+    }
+
+    .tippy-popper[x-placement^=top] .tippy-backdrop[data-state=hidden] {
+        -webkit-transform: scale(1) translate(-50%, 25%);
+        transform: scale(1) translate(-50%, 25%);
+        opacity: 0
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=shift-toward][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px)
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=shift-toward][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px)
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=perspective] {
+        -webkit-transform-origin: bottom;
+        transform-origin: bottom
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=perspective][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(-10px) rotateX(0);
+        transform: translateY(-10px) rotateX(0)
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=perspective][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(0) rotateX(90deg);
+        transform: translateY(0) rotateX(90deg)
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=fade][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px)
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=fade][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px)
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=shift-away][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px)
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=shift-away][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=scale][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(-10px) scale(1);
+        transform: translateY(-10px) scale(1)
+    }
+
+    .tippy-popper[x-placement^=top] [data-animation=scale][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(0) scale(0);
+        transform: translateY(0) scale(0)
+    }
+
+    .tippy-popper[x-placement^=bottom] .tippy-backdrop {
+        border-radius: 0 0 30% 30%
+    }
+
+    .tippy-popper[x-placement^=bottom] .tippy-roundarrow {
+        top: -8px;
+        -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%
+    }
+
+    .tippy-popper[x-placement^=bottom] .tippy-roundarrow svg {
+        position: absolute;
+        left: 0;
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+
+    .tippy-popper[x-placement^=bottom] .tippy-arrow {
+        border-bottom: 7px solid #333;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -7px;
+        margin: 0 6px;
+        -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%
+    }
+
+    .tippy-popper[x-placement^=bottom] .tippy-backdrop {
+        -webkit-transform-origin: 0 -90%;
+        transform-origin: 0 -90%
+    }
+
+    .tippy-popper[x-placement^=bottom] .tippy-backdrop[data-state=visible] {
+        -webkit-transform: scale(6) translate(-50%, -125%);
+        transform: scale(6) translate(-50%, -125%);
+        opacity: 1
+    }
+
+    .tippy-popper[x-placement^=bottom] .tippy-backdrop[data-state=hidden] {
+        -webkit-transform: scale(1) translate(-50%, -125%);
+        transform: scale(1) translate(-50%, -125%);
+        opacity: 0
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=shift-toward][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=shift-toward][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(20px);
+        transform: translateY(20px)
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=perspective] {
+        -webkit-transform-origin: top;
+        transform-origin: top
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=perspective][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(10px) rotateX(0);
+        transform: translateY(10px) rotateX(0)
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=perspective][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(0) rotateX(-90deg);
+        transform: translateY(0) rotateX(-90deg)
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=fade][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=fade][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=shift-away][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=shift-away][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=scale][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateY(10px) scale(1);
+        transform: translateY(10px) scale(1)
+    }
+
+    .tippy-popper[x-placement^=bottom] [data-animation=scale][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateY(0) scale(0);
+        transform: translateY(0) scale(0)
+    }
+
+    .tippy-popper[x-placement^=left] .tippy-backdrop {
+        border-radius: 50% 0 0 50%
+    }
+
+    .tippy-popper[x-placement^=left] .tippy-roundarrow {
+        right: -16px;
+        -webkit-transform-origin: 33.33333333% 50%;
+        transform-origin: 33.33333333% 50%
+    }
+
+    .tippy-popper[x-placement^=left] .tippy-roundarrow svg {
+        position: absolute;
+        left: 0;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg)
+    }
+
+    .tippy-popper[x-placement^=left] .tippy-arrow {
+        border-left: 7px solid #333;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        right: -7px;
+        margin: 3px 0;
+        -webkit-transform-origin: 0 50%;
+        transform-origin: 0 50%
+    }
+
+    .tippy-popper[x-placement^=left] .tippy-backdrop {
+        -webkit-transform-origin: 100% 0;
+        transform-origin: 100% 0
+    }
+
+    .tippy-popper[x-placement^=left] .tippy-backdrop[data-state=visible] {
+        -webkit-transform: scale(6) translate(40%, -50%);
+        transform: scale(6) translate(40%, -50%);
+        opacity: 1
+    }
+
+    .tippy-popper[x-placement^=left] .tippy-backdrop[data-state=hidden] {
+        -webkit-transform: scale(1.5) translate(40%, -50%);
+        transform: scale(1.5) translate(40%, -50%);
+        opacity: 0
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=shift-toward][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px)
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=shift-toward][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(-20px);
+        transform: translateX(-20px)
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=perspective] {
+        -webkit-transform-origin: right;
+        transform-origin: right
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=perspective][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(-10px) rotateY(0);
+        transform: translateX(-10px) rotateY(0)
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=perspective][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(0) rotateY(-90deg);
+        transform: translateX(0) rotateY(-90deg)
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=fade][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px)
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=fade][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px)
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=shift-away][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px)
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=shift-away][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(0);
+        transform: translateX(0)
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=scale][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(-10px) scale(1);
+        transform: translateX(-10px) scale(1)
+    }
+
+    .tippy-popper[x-placement^=left] [data-animation=scale][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(0) scale(0);
+        transform: translateX(0) scale(0)
+    }
+
+    .tippy-popper[x-placement^=right] .tippy-backdrop {
+        border-radius: 0 50% 50% 0
+    }
+
+    .tippy-popper[x-placement^=right] .tippy-roundarrow {
+        left: -16px;
+        -webkit-transform-origin: 66.66666666% 50%;
+        transform-origin: 66.66666666% 50%
+    }
+
+    .tippy-popper[x-placement^=right] .tippy-roundarrow svg {
+        position: absolute;
+        left: 0;
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(-90deg)
+    }
+
+    .tippy-popper[x-placement^=right] .tippy-arrow {
+        border-right: 7px solid #333;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        left: -7px;
+        margin: 3px 0;
+        -webkit-transform-origin: 100% 50%;
+        transform-origin: 100% 50%
+    }
+
+    .tippy-popper[x-placement^=right] .tippy-backdrop {
+        -webkit-transform-origin: -100% 0;
+        transform-origin: -100% 0
+    }
+
+    .tippy-popper[x-placement^=right] .tippy-backdrop[data-state=visible] {
+        -webkit-transform: scale(6) translate(-140%, -50%);
+        transform: scale(6) translate(-140%, -50%);
+        opacity: 1
+    }
+
+    .tippy-popper[x-placement^=right] .tippy-backdrop[data-state=hidden] {
+        -webkit-transform: scale(1.5) translate(-140%, -50%);
+        transform: scale(1.5) translate(-140%, -50%);
+        opacity: 0
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=shift-toward][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(10px);
+        transform: translateX(10px)
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=shift-toward][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(20px);
+        transform: translateX(20px)
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=perspective] {
+        -webkit-transform-origin: left;
+        transform-origin: left
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=perspective][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(10px) rotateY(0);
+        transform: translateX(10px) rotateY(0)
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=perspective][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(0) rotateY(90deg);
+        transform: translateX(0) rotateY(90deg)
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=fade][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(10px);
+        transform: translateX(10px)
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=fade][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(10px);
+        transform: translateX(10px)
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=shift-away][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(10px);
+        transform: translateX(10px)
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=shift-away][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(0);
+        transform: translateX(0)
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=scale][data-state=visible] {
+        opacity: 1;
+        -webkit-transform: translateX(10px) scale(1);
+        transform: translateX(10px) scale(1)
+    }
+
+    .tippy-popper[x-placement^=right] [data-animation=scale][data-state=hidden] {
+        opacity: 0;
+        -webkit-transform: translateX(0) scale(0);
+        transform: translateX(0) scale(0)
+    }
+
+    .tippy-tooltip {
+        position: relative;
+        color: #fff;
+        border-radius: 4px;
+        font-size: .9rem;
+        padding: .3rem .6rem;
+        text-align: center;
+        will-change: transform;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #333
+    }
+
+    .tippy-tooltip[data-size=small] {
+        padding: .2rem .4rem;
+        font-size: .75rem
+    }
+
+    .tippy-tooltip[data-size=large] {
+        padding: .4rem .8rem;
+        font-size: 1rem
+    }
+
+    .tippy-tooltip[data-animatefill] {
+        overflow: hidden;
+        background-color: transparent
+    }
+
+    .tippy-tooltip[data-animatefill] .tippy-content {
+        transition: -webkit-clip-path cubic-bezier(.46, .1, .52, .98);
+        transition: clip-path cubic-bezier(.46, .1, .52, .98);
+        transition: clip-path cubic-bezier(.46, .1, .52, .98), -webkit-clip-path cubic-bezier(.46, .1, .52, .98)
+    }
+
+    .tippy-tooltip[data-interactive],
+    .tippy-tooltip[data-interactive] path {
+        pointer-events: auto
+    }
+
+    .tippy-tooltip[data-inertia][data-state=visible] {
+        transition-timing-function: cubic-bezier(.53, 2, .36, .85)
+    }
+
+    .tippy-tooltip[data-inertia][data-state=hidden] {
+        transition-timing-function: ease
+    }
+
+    .tippy-arrow,
+    .tippy-roundarrow {
+        position: absolute;
+        width: 0;
+        height: 0
+    }
+
+    .tippy-roundarrow {
+        width: 24px;
+        height: 8px;
+        fill: #333;
+        pointer-events: none
+    }
+
+    .tippy-backdrop {
+        position: absolute;
+        will-change: transform;
+        background-color: #333;
+        border-radius: 50%;
+        width: 26%;
+        left: 50%;
+        top: 50%;
+        z-index: -1;
+        transition: all cubic-bezier(.46, .1, .52, .98);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden
+    }
+
+    .tippy-backdrop:after {
+        content: "";
+        float: left;
+        padding-top: 100%
+    }
+
+    body:not(.tippy-touch) .tippy-tooltip[data-animatefill][data-state=visible] .tippy-content {
+        -webkit-clip-path: ellipse(100% 100% at 50% 50%);
+        clip-path: ellipse(100% 100% at 50% 50%)
+    }
+
+    body:not(.tippy-touch) .tippy-tooltip[data-animatefill][data-state=hidden] .tippy-content {
+        -webkit-clip-path: ellipse(5% 50% at 50% 50%);
+        clip-path: ellipse(5% 50% at 50% 50%)
+    }
+
+    body:not(.tippy-touch) .tippy-popper[x-placement=right] .tippy-tooltip[data-animatefill][data-state=visible] .tippy-content {
+        -webkit-clip-path: ellipse(135% 100% at 0 50%);
+        clip-path: ellipse(135% 100% at 0 50%)
+    }
+
+    body:not(.tippy-touch) .tippy-popper[x-placement=right] .tippy-tooltip[data-animatefill][data-state=hidden] .tippy-content {
+        -webkit-clip-path: ellipse(40% 100% at 0 50%);
+        clip-path: ellipse(40% 100% at 0 50%)
+    }
+
+    body:not(.tippy-touch) .tippy-popper[x-placement=left] .tippy-tooltip[data-animatefill][data-state=visible] .tippy-content {
+        -webkit-clip-path: ellipse(135% 100% at 100% 50%);
+        clip-path: ellipse(135% 100% at 100% 50%)
+    }
+
+    body:not(.tippy-touch) .tippy-popper[x-placement=left] .tippy-tooltip[data-animatefill][data-state=hidden] .tippy-content {
+        -webkit-clip-path: ellipse(40% 100% at 100% 50%);
+        clip-path: ellipse(40% 100% at 100% 50%)
+    }
+
+    @media (max-width:360px) {
+        .tippy-popper {
+            max-width: 96%;
+            max-width: calc(100% - 20px)
+        }
+    }
+
+    .tippy-popper[x-placement^=top] .tippy-tooltip.light-theme .tippy-arrow {
+        border-top: 7px solid #fff;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent
+    }
+
+    .tippy-popper[x-placement^=bottom] .tippy-tooltip.light-theme .tippy-arrow {
+        border-bottom: 7px solid #fff;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent
+    }
+
+    .tippy-popper[x-placement^=left] .tippy-tooltip.light-theme .tippy-arrow {
+        border-left: 7px solid #fff;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent
+    }
+
+    .tippy-popper[x-placement^=right] .tippy-tooltip.light-theme .tippy-arrow {
+        border-right: 7px solid #fff;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent
+    }
+
+    .tippy-tooltip.light-theme {
+        color: #26323d;
+        box-shadow: 0 0 20px 4px rgba(154, 161, 177, .15), 0 4px 80px -8px rgba(36, 40, 47, .25), 0 4px 4px -2px rgba(91, 94, 105, .15);
+        background-color: #fff
+    }
+
+    .tippy-tooltip.light-theme .tippy-backdrop {
+        background-color: #fff
+    }
+
+    .tippy-tooltip.light-theme .tippy-roundarrow {
+        fill: #fff
+    }
+
+    .tippy-tooltip.light-theme[data-animatefill] {
+        background-color: transparent
+    }

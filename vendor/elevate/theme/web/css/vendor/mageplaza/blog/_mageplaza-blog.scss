@@ -301,10 +301,14 @@ $twocol-right-mpblog-post-view-singlesidebar-width-desktopmd: 25% !default;
 
 }
 
-.post-item-wraper {
+$blog-post-item-wrapper-borderradius: 10px !default;
+
+.post-item-wrapper {
     border: 1px solid $blog-color-3;
     padding: 0 !important;
     position: relative;
+    overflow: hidden;
+    @include co(border-radius, $blog-post-item-wrapper-borderradius);
 
     &:hover {
         border: 1px solid $blog-color-4;
@@ -312,7 +316,7 @@ $twocol-right-mpblog-post-view-singlesidebar-width-desktopmd: 25% !default;
     }
 }
 
-.post-info-wraper {
+.post-info-wrapper {
     padding: 20px 15px 10px;
     display: table-cell;
     vertical-align: top;
@@ -351,7 +355,7 @@ $twocol-right-mpblog-post-view-singlesidebar-width-desktopmd: 25% !default;
     line-height: 1.58;
     letter-spacing: -0.003em;
 
-    font-family: $blog-postcontent-fontfamily;
+    @include co(font-family, $blog-postcontent-fontfamily);
 
     p {
         font-weight: 400;
@@ -381,13 +385,14 @@ $twocol-right-mpblog-post-view-singlesidebar-width-desktopmd: 25% !default;
 $blog-author-name-date-margin: 0 0 0.5rem 0 !default;
 $blog-author-fontsize: 1rem !default;
 
+$blog-pmo-h1-margin: 20px 0 !default;
+
 .evblog {
+
     #page-main-outer {
         h1 {
-            margin-top: 20px;
-
+            @include co(margin, $blog-pmo-h1-margin);
             &.page-title {
-                padding-left: 15px;
             }
         }
 
@@ -401,7 +406,7 @@ $blog-author-fontsize: 1rem !default;
 
         a {
             &.mp-relate-link {
-                background: $blog-color-6;
+                @include co(background, $blog-color-6);
                 color: $blog-color-7;
 
                 img.img-responsive {
@@ -428,7 +433,7 @@ $blog-author-fontsize: 1rem !default;
             }
 
             &.label.label-default.tags-list {
-                background: $blog-color-9;
+                @include co(background, $blog-color-9);
                 border: 1px solid $blog-color-10;
                 color: inherit;
                 font-weight: normal;
@@ -440,16 +445,20 @@ $blog-author-fontsize: 1rem !default;
                 margin-right: 5px;
 
                 &:hover {
-                    background: $blog-color;
+                    @include co(background, $blog-color);
                     color: $blog-color-9 !important;
                 }
 
                 &:focus {
-                    background: $blog-color;
+                    @include co(background, $blog-color);
                     color: $blog-color-9 !important;
                 }
             }
         }
+        $evblog-pagemainouter-ol-liststyletype: decimal !default;
+        $evblog-pagemainouter-ul-liststyletype: disc !default;
+        $evblog-pagemainouter-ulol-padding: 0 0 0 40px !default;
+        $evblog-pagemainouter-ulol-margin: 0 0 1rem !default;
 
         ul {
             &.menu-categories {
@@ -483,8 +492,18 @@ $blog-author-fontsize: 1rem !default;
             &.default-cmt__content__cmt-content {
                 list-style: none !important;
             }
+            @include co(list-style-type, $evblog-pagemainouter-ul-liststyletype);
         }
+        ul, ol {
 
+
+
+            @include co(padding, $evblog-pagemainouter-ulol-padding);
+            @include co(margin, $evblog-pagemainouter-ulol-margin);
+        }
+        ol {
+            @include co(list-style-type, $evblog-pagemainouter-ol-liststyletype);
+        }
 
     }
 
@@ -578,7 +597,7 @@ $blog-author-fontsize: 1rem !default;
 
     .post-list-item {
         box-shadow: none !important;
-        border-bottom: 1px solid $blog-color-new-4;
+        //border-bottom: 1px solid $blog-color-new-4;
         margin-bottom: 25px;
     }
 
@@ -678,7 +697,7 @@ $blog-sharing-row-padding: 0 0 20px 0 !default;
 
     h1, h2, h3, h4, h5 {
 
-        font-family: $blog-postcontent-headings-fontfamily;
+        @include co(font-family, $blog-postcontent-headings-fontfamily);
     }
 
 }
@@ -732,7 +751,7 @@ $blog-sharing-row-padding: 0 0 20px 0 !default;
     //Instead of the line below you could use @include box-sizing($bs)
     box-sizing: border-box;
     border: 1px solid $blog-color-8;
-    background: $blog-color-9;
+    @include co(background, $blog-color-9);
     cursor: default;
     overflow: auto;
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
@@ -789,7 +808,7 @@ $blog-sharing-row-padding: 0 0 20px 0 !default;
 }
 
 .autocomplete-selected {
-    background: $blog-color-13;
+    @include co(background, $blog-color-13);
 }
 
 .autocomplete-group {
@@ -895,7 +914,7 @@ $blog-sharing-row-padding: 0 0 20px 0 !default;
             display: table-cell;
         }
 
-        .post-info-wraper {
+        .post-info-wrapper {
             display: table-cell;
             vertical-align: top;
         }
@@ -1052,7 +1071,7 @@ $blog-sharing-row-padding: 0 0 20px 0 !default;
 }
 
 .hb-blog-btm-inner-text-container {
-    font-family: $blog-font-11;
+    @include co(font-family, $blog-font-11);
     margin: 0 auto;
 }
 
@@ -1063,7 +1082,7 @@ $blog-sharing-row-padding: 0 0 20px 0 !default;
     .btn {
         font-weight: 700;
         text-decoration: none;
-        font-family: $blog-font-11;
+        @include co(font-family, $blog-font-11);
         margin-top: 15px;
         margin-left: 10px;
         margin-right: 10px;
@@ -1262,7 +1281,7 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {
 }
 
 button.default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit {
-    background: $blog-color !important;
+    @include co(background, $blog-color !important);
     color: $blog-color-9;
     border-color: $blog-color-16 !important;
 }

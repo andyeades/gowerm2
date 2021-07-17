@@ -42,7 +42,11 @@ class ModuleVersion extends Field
         $this->fullModuleList = $fullModuleList;
     }
 
-    public function render(AbstractElement $element)
+	/**
+	 * @param AbstractElement $element
+	 * @return string
+	 */
+	public function render(AbstractElement $element)
     {
         $moduleVersion = $this->fullModuleList->getOne('SecureTrading_Trust');
         $text = "<b>Module Version: </b>".$moduleVersion['setup_version']."</br><p>Please choose from the following payment methods and ensure your website is PCI compliant.</p>";

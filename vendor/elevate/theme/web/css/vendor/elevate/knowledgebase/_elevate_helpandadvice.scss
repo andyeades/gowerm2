@@ -334,7 +334,7 @@ $kb-ev-ruler-before-backgroundsize: 35px !default;
     }
 
     .share-ico-facebook {
-        background: $social-facebook;
+        @include co(background, $social-facebook);
 
         &:hover {
             background-color: darken($social-facebook, 10%);
@@ -342,7 +342,7 @@ $kb-ev-ruler-before-backgroundsize: 35px !default;
     }
 
     .share-ico-twitter {
-        background: $social-twitter-alt;
+        @include co(background, $social-twitter-alt);
 
         &:hover {
             background-color: darken($social-twitter-alt, 10%);
@@ -680,13 +680,13 @@ $kb-checkbox-single-outer-container-font-family: $kb-alternate-fontfamily !defau
 }
 
 .kb-why-banner {
-    background: $happybeds-1;
+    @include co(background, $happybeds-1);
     color: #FFF;
 }
 
 .kb-lightblue-bg {
     @include co(font-family, $kb-alternate-fontfamily);
-    background: $happybeds-4;
+    @include co(background, $happybeds-4);
     color: #333;
 }
 
@@ -702,7 +702,7 @@ $kb-checkbox-single-outer-container-font-family: $kb-alternate-fontfamily !defau
 }
 
 .kb-hb-green {
-    background: $happybeds-3-5;
+    @include co(background, $happybeds-3-5);
     color: #FFF;
 }
 
@@ -873,7 +873,7 @@ $kb-checkbox-single-outer-container-font-family: $kb-alternate-fontfamily !defau
     h3,
     h4,
     h5 {
-        font-family: $kb-article-wrapper-headers-font-family;
+        @include co(font-family, $kb-article-wrapper-headers-font-family);
         @include co(font-weight, $kb-article-wrapper-headers-font-weight);
         line-height: 1.25;
         letter-spacing: 0;

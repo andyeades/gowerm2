@@ -198,6 +198,10 @@ $evca-intprice-margin-desktopsm-max: 0 !default;
 $evca-cart-discount-background: #ffffff !default;
 
 $evca-cart-discount-display: false !default;
+
+$evca-cart-discount-flexwrap: false !default;
+$evca-cart-discount-flexwrap-desktop: false !default;
+
 $evca-cart-discount-width: 100% !default;
 $evca-cart-discount-width-desktopmd: 44% !default;
 $evca-cart-discount-order: 3 !default;
@@ -222,7 +226,7 @@ $evca-cart-discount-actionstoolbar-margin: 1rem 0 0 0 !default;
 $evca-cart-discount-actionstoolbar-margin-desktopmd: 0 0 0 1rem !default;
 
 $evca-cart-discount-field-width: 100% !default;
-$evca-cart-discount-field-width-desktopmd: 66%;
+$evca-cart-discount-field-width-desktopmd: 66% !default;
 
 
 $evca-cart-discount-primary-width: 100% !default;
@@ -410,6 +414,9 @@ $gift-message-cart-padding: 0.75rem !default;
 $gift-message-cart-textalign: false !default;
 $gift-message-cart-textalign-mobilemax: center !default;
 
+$gift-message-cart-margin-desktop: false !default;
+$gift-message-cart-margin: false !default;
+
 $gift-message-cart-title-margin: 0 0 1rem 0 !default;
 $gift-message-cart-h2-margin: 0 !default;
 
@@ -429,6 +436,7 @@ $deliveryday-cart-background: $theme-brand-color-3 !default;
 $deliveryday-cart-border: 1px solid $border-color !default;
 $deliveryday-cart-padding: false !default;
 $deliveryday-cart-margin: 1rem 0 0 0 !default;
+$deliveryday-cart-margin-desktop: 1rem 0 0 0 !default;
 
 
 $deliveryday-cart-title-justifycontent: center !default;
@@ -569,11 +577,14 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             @include co(color, $gift-message-cart-color);
             @include co(width, $gift-message-cart-width);
             @include co(border-radius, $gift-message-cart-border-radius);
-
+            @include co(margin, $gift-message-cart-margin);
             @include co(background, $gift-message-cart-background);
             @include co(border, $gift-message-cart-border);
             @include co(padding, $gift-message-cart-padding);
             @include co(text-align, $gift-message-cart-textalign);
+            @include min-screen($desktop-min) {
+                @include co(margin, $gift-message-cart-margin-desktop, $gift-message-cart-margin);
+            }
             @include max-screen($mobilemax) {
                 @include co(text-align, $gift-message-cart-textalign-mobilemax, $gift-message-cart-textalign);
             }
@@ -605,6 +616,9 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         .deliveryday-cart {
             @include co(margin, $deliveryday-cart-margin);
             @include co(padding, $deliveryday-cart-padding);
+            @include min-screen($desktop-min) {
+                @include co(margin, $deliveryday-cart-margin-desktop, $deliveryday-cart-margin);
+            }
         }
     }
 
@@ -622,6 +636,11 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         @include co(padding, $evca-cart-discount-padding);
         @include co(margin, $evca-cart-discount-margin);
         @include co(min-height, $evca-cart-discount-minheight);
+        @include co(flex-wrap, $evca-cart-discount-flexwrap);
+
+        @include min-screen($desktop-min) {
+            @include co(flex-wrap, $evca-cart-discount-flexwrap-desktop, $evca-cart-discount-flexwrap);
+        }
 
         @include min-screen($desktop-medium-min) {
             @include co(width, $evca-cart-discount-width-desktopmd);
@@ -883,7 +902,41 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             }
         }
     }
+    .cart.main.actions {
+        /* not sure if this is needed */
+        .price-box {
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
 
+        .prod-price-now {
+            text-transform: uppercase;
+            font-weight: 200 !important;
+
+            .price {
+                letter-spacing: 0.5px;
+                text-decoration: line-through;
+            }
+        }
+
+        .prod-price-old {
+            text-transform: uppercase;
+            font-weight: 200 !important;
+        }
+
+        @media screen and(min-width: 768px) {
+            .price-box > div {
+                width: 100%;
+                text-align: right;
+                text-align: left;
+            }
+        }
+        .product-image-photo {
+            @if $evca-product-image-photo-border-radius-on == 1 {
+                border-radius: $evca-product-image-photo-border-radius;
+            }
+        }
+    }
 
     .cart_row_heading_outer {
         @include co(font-family, $evca-cart-row-heading-outer-font-family);
@@ -940,11 +993,8 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         }
 
     }
-    .product-image-photo {
-        @if $evca-product-image-photo-border-radius-on == 1 {
-            border-radius: $evca-product-image-photo-border-radius;
-        }
-    }
+
+
     .cart-p-remove {
         cursor: pointer;
         @include co(flex, $evca-cart-p-remove-flex);
@@ -971,7 +1021,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
 
         text-align: $evca-incrementdecrement-text-align;
         color: $evca-incrementdecrement-color;
-        display: $evca-incrementdecrement-display;
+        @include co(display, $evca-incrementdecrement-display);
         @include co(align-items, $evca-incrementdecrement-alignitems);
         @include co(justify-content, $evca-incrementdecrement-justifycontent);
         border-radius: $evca-incrementdecrement-border-radius;
@@ -1373,7 +1423,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             padding: 10px;
             width: 50%;
             text-align: center;
-            background: $ev-cartassignments-color-13;
+            @include co(background, $ev-cartassignments-color-13);
             color: $ev-cartassignments-color-14;
             position: relative;
 
@@ -1423,7 +1473,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             display: none;
 
             &:checked + label {
-                background: $ev-cartassignments-color-12;
+                @include co(background, $ev-cartassignments-color-12);
             }
         }
 
@@ -1433,7 +1483,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             width: 100%;
             position: absolute;
             display: block;
-            background: $ev-cartassignments-color-1;
+            @include co(background, $ev-cartassignments-color-1);
             bottom: 0;
             opacity: 0;
             left: 0;
@@ -1443,7 +1493,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
 
         .line {
             height: 2px;
-            background: $ev-cartassignments-color-15;
+            @include co(background, $ev-cartassignments-color-15);
             width: 50%;
             top: 54px;
             left: 0;
@@ -1453,7 +1503,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         }
 
         .content-container {
-            background: $ev-cartassignments-color-5;
+            @include co(background, $ev-cartassignments-color-5);
             position: relative;
             font-size: 16px;
 
@@ -1973,7 +2023,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         }
 
         ul li:before {
-            font-family: $ev-cartassignments-font-0;
+            @include co(font-family, $ev-cartassignments-font-0);
             content: '\f00c';
             margin: 0 10px 0 -24px;
             color: $ev-cartassignments-color-27;
@@ -2153,7 +2203,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             width: 300px;
 
             &.btn-checkout span {
-                background: $ev-cartassignments-color-30;
+                @include co(background, $ev-cartassignments-color-30);
                 padding: 0;
                 font: bold 15px/40px;
                 color: $ev-cartassignments-color-5;
@@ -2753,6 +2803,14 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     }
 
     .config-bed {
+        .colour-swatches-label {
+            flex: 1 1 30%;
+            margin-bottom: 10px;
+            padding-top: 8px;
+            text-align: right;
+            padding-right: 25px;
+        }
+
         .tab-pane {
             display: flex;
             flex-wrap: wrap;
@@ -2770,13 +2828,6 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
                 padding-right: 25px;
             }
 
-            .colour-swatches-label {
-                flex: 1 1 30%;
-                margin-bottom: 10px;
-                padding-top: 8px;
-                text-align: right;
-                padding-right: 25px;
-            }
 
             select {
                 flex: 1 1 70%;
@@ -2815,13 +2866,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
                 padding-right: 25px;
             }
 
-            .colour-swatches-label {
-                flex: 1 1 30%;
-                margin-bottom: 10px;
-                padding-top: 8px;
-                text-align: right;
-                padding-right: 25px;
-            }
+
 
             select {
                 flex: 1 1 70%;
@@ -2860,13 +2905,6 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
                 padding-right: 25px;
             }
 
-            .colour-swatches-label {
-                flex: 1 1 30%;
-                margin-bottom: 10px;
-                padding-top: 8px;
-                text-align: right;
-                padding-right: 25px;
-            }
 
             select {
                 flex: 1 1 70%;
@@ -2898,14 +2936,6 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             flex-wrap: wrap;
 
             label {
-                flex: 1 1 30%;
-                margin-bottom: 10px;
-                padding-top: 8px;
-                text-align: right;
-                padding-right: 25px;
-            }
-
-            .colour-swatches-label {
                 flex: 1 1 30%;
                 margin-bottom: 10px;
                 padding-top: 8px;
@@ -3051,7 +3081,13 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     #productOptions {
         margin-bottom: 0;
         padding-top: 10px;
+        @include max-screen($mobiletablet-max) {
+            margin: 0;
+            padding: 0;
+        }
     }
+
+
 
     .disabled {
         color: $evca-color-batchtwo-40;
@@ -3127,7 +3163,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
                 margin-top: 18px !important;
                 margin: 0;
                 width: 100%;
-                background: $evca-color-batchtwo-3;
+                @include co(background, $evca-color-batchtwo-3);
                 border: 0 solid $evca-color-batchtwo-4;
                 padding: 20px;
 
@@ -3224,6 +3260,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             width: 147px !important;
             background-position-y: 2px !important;
         }
+
         h1 {
             float: none !important;
             text-align: center;
@@ -3490,7 +3527,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         padding: 19px;
         margin-top: 33px;
         margin-bottom: 20px;
-        background: $evca-color-batchtwo-9;
+        @include co(background, $evca-color-batchtwo-9);
         border-top: 1px solid $evca-color-batchtwo-44;
 
         box-shadow: 3px 7px 40px -13px $evca-color-batchtwo-45;
@@ -3503,7 +3540,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         padding: 19px;
         margin-top: 33px;
         margin-bottom: 20px;
-        background: $evca-color-batchtwo-9;
+        @include co(background, $evca-color-batchtwo-9);
         border-top: 1px solid $evca-color-batchtwo-44;
 
         box-shadow: 3px 7px 40px -13px $evca-color-batchtwo-45;
@@ -3516,7 +3553,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         padding: 19px;
         margin-top: 33px;
         margin-bottom: 20px;
-        background: $evca-color-batchtwo-9;
+        @include co(background, $evca-color-batchtwo-9);
         border-top: 1px solid $evca-color-batchtwo-44;
         box-shadow: 3px 7px 40px -13px $evca-color-batchtwo-45;
         border-radius: 10px;
@@ -3527,7 +3564,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         padding: 19px;
         margin-top: 33px;
         margin-bottom: 20px;
-        background: $evca-color-batchtwo-9;
+        @include co(background, $evca-color-batchtwo-9);
         border-top: 1px solid $evca-color-batchtwo-44;
         box-shadow: 3px 7px 40px -13px $evca-color-batchtwo-45;
         border-radius: 10px;
@@ -3538,7 +3575,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         padding: 19px;
         margin-top: 33px;
         margin-bottom: 20px;
-        background: $evca-color-batchtwo-9;
+        @include co(background, $evca-color-batchtwo-9);
         border-top: 1px solid $evca-color-batchtwo-44;
 
         box-shadow: 3px 7px 40px -13px $evca-color-batchtwo-45;
@@ -3705,10 +3742,22 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             margin-top: 35px;
         }
     }
+        .products-grid {
+            .item {
+            @media screen and(min-width: 1170px) {
+                width: 50%;
+            }
+            @media screen and(max-width: 767.98px) {
+                width: 100%;
+            }
+        }
+    }
+
+
     @media screen and(max-width: 767.98px) {
         .products-grid {
             .item {
-                width: 100%;
+
             }
 
             .prod-img .product-image img {
@@ -3729,21 +3778,10 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             width: 100%;
         }
     }
-    @media screen and(min-width: 1170px) {
-        .products-grid .item {
-            width: 50%;
-        }
-    }
+
+
 
     @media only screen and(max-width: 480px) {
-        .dtext {
-            font-size: 8px;
-        }
-    }
-    @media only screen and(max-width: 480px) {
-        .dtext {
-            font-size: 8px;
-        }
         .slider-wrap {
             position: relative;
 
@@ -3756,8 +3794,8 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             }
         }
         .count-dwn-btn {
-            background: $evca-color-batchtwo-5;
-            background: $evca-color-batchtwo-11;
+            @include co(background, $evca-color-batchtwo-5);
+            @include co(background, $evca-color-batchtwo-11);
             display: block;
             width: 100%;
             text-align: center;
@@ -3857,7 +3895,7 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
             text-align: center;
             font-size: 32px;
             display: inline-block;
-            background: $evca-color-batchtwo-10;
+            @include co(background, $evca-color-batchtwo-10);
             width: 70px;
             height: 70px;
             margin-left: 20px;
@@ -3964,18 +4002,14 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
     }
 
     .dtext {
-    }
-
-    @media screen and(min-width: 1170px) {
-        .products-grid .item {
-            width: 50%;
+        @media only screen and(max-width: 480px) {
+                font-size: 8px;
         }
     }
 
-    .price-box {
-        text-transform: uppercase;
-        margin-bottom: 0;
-    }
+
+
+
 
     .prod-price-offer {
         text-transform: uppercase;
@@ -3983,28 +4017,6 @@ $deliveryday-cart-title-justifycontent-mobilemax: center !default;
         font-size: 14px;
     }
 
-    .prod-price-now {
-        text-transform: uppercase;
-        font-weight: 200 !important;
-
-        .price {
-            letter-spacing: 0.5px;
-            text-decoration: line-through;
-        }
-    }
-
-    .prod-price-old {
-        text-transform: uppercase;
-        font-weight: 200 !important;
-    }
-
-    @media screen and(min-width: 768px) {
-        .price-box > div {
-            width: 100%;
-            text-align: right;
-            text-align: left;
-        }
-    }
 
     #shopping-cart-totals-table {
         tbody td {

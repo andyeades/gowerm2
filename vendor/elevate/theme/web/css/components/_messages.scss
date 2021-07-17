@@ -5,7 +5,10 @@ $elevate-message-info-link-color-hover : $elevate-message-info-color !default;
 $elevate-message-info-link-color-active: $elevate-message-info-color !default;
 $elevate-message-info-border-color: darken(adjust-hue($elevate-message-info-color, -10), 7%) !default;
 
+$message-white-space: pre-wrap !default;
+
 .message {
+    @include co(white-space, $message-white-space);
  > span {
      display: flex;
  }

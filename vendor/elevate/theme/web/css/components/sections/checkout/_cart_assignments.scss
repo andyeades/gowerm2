@@ -32,7 +32,7 @@ $stickybar-height: false !default;
 #stickyBar {
     position: fixed;
     top: 0;
-    background: $stickybar-bg-color;
+    @include co(background, $stickybar-bg-color);
     border-bottom: 2px solid $stickybar-border-color;
     display: block;
     width: 100%;
@@ -60,7 +60,7 @@ $stickybar-height: false !default;
 
 
 .stickybar-logo {
-    height: $stickybar-logo-height;
+    @include co(height, $stickybar-logo-height);
     @include co(margin, $stickybar-logo-margin);
 }
 

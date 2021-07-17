@@ -23,12 +23,7 @@ echo $helper->getResultUrl() ?>" method="get">
 
     <label class="label" for="search" data-role="minisearch-label"><span><?php /* @escapeNotVerified */
             echo __('Search'); ?></span></label>
-    <input id="search" data-mage-init='{"quickSearch":{
-                                "formSelector":"#search_mini_form",
-                                "url":"<?php /* @escapeNotVerified */
-    echo $block->getUrl('search/ajax/suggest', ['_secure' => $block->getRequest()->isSecure()]); ?>",
-                                "destinationSelector":"#search_autocomplete"}
-                           }' type="text" name="<?php /* @escapeNotVerified */
+    <input id="search"  type="text" name="<?php /* @escapeNotVerified */
     echo $helper->getQueryParamName() ?>" value="<?php /* @escapeNotVerified */
     echo $helper->getEscapedQueryText() ?>" placeholder="<?php /* @escapeNotVerified */
     echo __('Search entire store here...'); ?>" class="input-text" maxlength="<?php /* @escapeNotVerified */

@@ -46,8 +46,18 @@ class Save extends \Magento\Backend\App\Action
                 return $resultRedirect->setPath('*/*/');
             }
         
-            $model->setData($data);
-        
+         
+  if(!empty($data['store_ids'])) {
+   $store_view = implode(',',$data['store_ids']);
+   $data['store_ids'] = $store_view;
+}    
+         
+  if(!empty($data['category_ids'])) {
+   $store_view = implode(',',$data['category_ids']);
+   $data['assigned_categories'] = $store_view;
+}    
+
+     $model->setData($data);
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the Cartassignments.'));

@@ -76,6 +76,9 @@
 
 
     // Pview
+    $pview-keyfacts-include: false !global;
+
+
     $tab-content-padding-top: 0 !global;
     $tab-content-padding-right: 0 !global;
     $tab-content-padding-bottom: 0 !global;
@@ -90,16 +93,16 @@
 
 
     $-accordion-content-padding: false !global;
-    $pview-desc-tab-title-font-size: 1.25rem !global;
-    $pview-desc-tab-title-fontweight: 300 !global;
-    $pview-desc-tab-title-text-transform: false !global;
+    $pview-tab-title-font-size: 1.25rem !global;
+    $pview-tab-title-fontweight: 300 !global;
+    $pview-tab-title-text-transform: false !global;
     $pview-proddataitems-item-content-padding: 0 0.5rem !global;
     $pview-proddataitems-item-content-padding-desktop: 0 0.625rem !global;
 
     $accordion-control-color: #0A604D !global;
     $pview-data-items-accordion-control-text-transform: false !global;
-    $pview-desc-tab-title-accordion-icon-color: #0A604D !global;
-    $pview-desc-tab-title-accordion-icon-color-active: #0A604D !global;
+    $pview-tab-title-accordion-icon-color: #0A604D !global;
+    $pview-tab-title-accordion-icon-color-active: #0A604D !global;
     $pview-producttabs-desktop: accordion !global;
 
 

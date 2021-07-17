@@ -18,6 +18,13 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     protected $loadedData;
     protected $dataPersistor;
 
+   /**
+    * Store manager
+    *
+    * @var \Magento\Store\Model\StoreManagerInterface
+    */
+    protected $storeManager;
+
 
     /**
      * Constructor
@@ -27,6 +34,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param string $requestFieldName
      * @param CollectionFactory $collectionFactory
      * @param DataPersistorInterface $dataPersistor
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param array $meta
      * @param array $data
      */
@@ -36,11 +44,13 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $requestFieldName,
         CollectionFactory $collectionFactory,
         DataPersistorInterface $dataPersistor,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         array $meta = [],
         array $data = []
     ) {
         $this->collection = $collectionFactory->create();
         $this->dataPersistor = $dataPersistor;
+        $this->storeManager = $storeManager;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
@@ -56,18 +66,38 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         }
         $items = $this->collection->getItems();
         foreach ($items as $model) {
-            $this->loadedData[$model->getId()] = $model->getData();
+            $itemData = $model->getData();
+
+            if (isset($itemData['deepercontent_image'])) {
+                $imageName = explode('/', $itemData['deepercontent_image']);
+                $itemData['deepercontent_image'] = [
+                    [
+                        'name' => $imageName[0],
+                        'previewType' => 'image',
+                        'url' => $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'elevate/proddeepecontent/image/' . $itemData['deepercontent_image'],
+                    ],
+                ];
+            } else {
+                $itemData['deepercontent_image'] = null;
+            }
+
+            $this->loadedData[$model->getId()] = $itemData;
+
         }
         $data = $this->dataPersistor->get('elevate_productdeepercontent_deepercontent');
-        
+
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
             $this->dataPersistor->clear('elevate_productdeepercontent_deepercontent');
         }
-        
+
+
+
         return $this->loadedData;
     }
+
+
 }
 

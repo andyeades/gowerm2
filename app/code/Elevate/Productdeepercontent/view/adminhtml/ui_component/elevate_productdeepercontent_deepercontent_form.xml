@@ -73,20 +73,37 @@
                 </imageUploader>
             </formElements>
         </field>
-        <field formElement="textarea" name="deepercontent" sortOrder="30">
+        
+
+        
+        <field name="deepercontent" sortOrder="50" formElement="wysiwyg" template="ui/form/field">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">Deepercontent</item>
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
+                        <item name="toggle_button" xsi:type="boolean">true</item>
+                        <item name="height" xsi:type="string">200px</item>
+                        <item name="add_variables" xsi:type="boolean">true</item>
+                        <item name="add_widgets" xsi:type="boolean">true</item>
+                        <item name="add_images" xsi:type="boolean">true</item>
+                        <item name="add_directives" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
             <settings>
-                <dataType>text</dataType>
-                <label translate="true">Content</label>
+                <label translate="true">Contents</label>
                 <dataScope>deepercontent</dataScope>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">false</rule>
-                </validation>
             </settings>
-        </field>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <rows>5</rows>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>   
+     
 	</fieldset>
 </form>

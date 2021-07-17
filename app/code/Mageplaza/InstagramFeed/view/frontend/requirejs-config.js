@@ -20,6 +20,7 @@
 
 var config = {
     paths: {
-        'mageplaza/instagram': 'Mageplaza_InstagramFeed/js/instagram'
+        'mageplaza/instagram': 'Mageplaza_InstagramFeed/js/instagram',
+        'mageplaza/instagramalt': 'Mageplaza_InstagramFeed/js/instagramalt'
     }
 };

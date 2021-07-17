@@ -210,7 +210,7 @@ $ms-arrow-height: 12px !default;
             &.MagicScroll-arrows-outside {
                 overflow: visible !important;
                 .mcs-button-arrow {
-                    background: $magicscroll-color-17;
+                    @include co(background, $magicscroll-color-17);
                     opacity: 1;
                     box-shadow: 0 0 1px $magicscroll-color-5;
                 }
@@ -307,7 +307,7 @@ $ms-arrow-height: 12px !default;
 
 
             @if $ms-buttons-bg-on == 1 {
-                background: $magicscroll-color-4;
+                @include co(background, $magicscroll-color-4);
             }
             border-radius: 3px;
             @if $ms-boxshadow-on == 1 {
@@ -324,7 +324,7 @@ $ms-arrow-height: 12px !default;
         }
 
         &.mcs-border .mcs-item {
-            background: $magicscroll-color-9;
+            @include co(background, $magicscroll-color-9);
             border: 1px solid $magicscroll-color-17;
         }
     }
@@ -755,7 +755,7 @@ $ms-arrow-height: 12px !default;
     }
 
     .MagicScroll[data-mode="carousel"] {
-        background: $magicscroll-color-14;
+        @include co(background, $magicscroll-color-14);
 
         .mcs-items-container {
             //Instead of the line below you could use @include perspective($p)
@@ -792,7 +792,7 @@ $ms-arrow-height: 12px !default;
     }
 
     .MagicScroll[data-mode="cover-flow"] {
-        background: $magicscroll-color-14;
+        @include co(background, $magicscroll-color-14);
 
         .mcs-items-container {
             //Instead of the line below you could use @include perspective($p)

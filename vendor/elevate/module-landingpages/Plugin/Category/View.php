@@ -150,6 +150,7 @@ class View
                     //get landing page description - need to check how this is populating on the non ajax version
                     $landing_page_data = $this->_coreRegistry->registry('elevate_landingpage_data');
                     $categoryDescription = $landing_page_data['page_top_description'];
+                         $bottom_description = $landing_page_data['page_bottom_description'];
                     $title = $landing_page_data['page_title'];
                     // print_r($landing_page_data);
                 }

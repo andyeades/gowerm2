@@ -10,7 +10,7 @@
     $font-display: optional
 ) {
     @font-face {
-        font-family: $family-name;
+        @include co(font-family, $family-name);
         src: url('#{$font-path}.eot');
         src: url('#{$font-path}.eot?#iefix') format('embedded-opentype'),
         url('#{$font-path}.woff2') format('woff2'),

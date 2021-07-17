@@ -478,8 +478,7 @@ class Data extends CoreHelper
     public function getCategoryCollection($array)
     {
         try {
-            $collection = $this->getObjectList(self::TYPE_CATEGORY)
-                ->addFieldToFilter('category_id', ['in' => $array]);
+            $collection = $this->getObjectList(self::TYPE_CATEGORY)->addFieldToFilter('category_id', ['in' => $array]);
 
             return $collection;
         } catch (Exception $exception) {
@@ -629,12 +628,12 @@ class Data extends CoreHelper
      */
     public function generateUrlKey($resource, $object, $name)
     {
-     
-        
+
+
       $urlKey = $this->translitUrl->filter($name);
-      
-      
-      
+
+
+
         return $urlKey;
     }
 
@@ -647,9 +646,9 @@ class Data extends CoreHelper
      */
     public function checkUrlKey($resource, $object, $urlKey)
     {
-    
-    
-    
+
+
+
 
         $adapter = $resource->getConnection();
         $select  = $adapter->select()
@@ -662,7 +661,7 @@ class Data extends CoreHelper
             $select->where($resource->getIdFieldName() . ' != :object_id');
             $binds['object_id'] = (int) $id;
         }
-        
+
         $data = $adapter->fetchOne($select, $binds);
            if(count($data) > 1){
            return $true;

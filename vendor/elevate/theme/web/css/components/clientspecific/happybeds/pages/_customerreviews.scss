@@ -195,7 +195,7 @@ $feefo-rating-stars-alt:         #ffc200;
 
     .feefo-c-review-inner {
         padding:    15px;
-        background: $feefo-color7;
+        @include co(background, $feefo-color7);
         .feefo-c-r-title-row {
             border-bottom: 1px solid $feefo-color24;
 

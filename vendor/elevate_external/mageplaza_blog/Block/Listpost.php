@@ -49,6 +49,7 @@ class Listpost extends Frontend
             $perPageValues = explode(',', $perPageValues);
             $perPageValues = array_combine($perPageValues, $perPageValues);
 
+            $pager->setUseContainer(false);
             $pager->setAvailableLimit($perPageValues)
                 ->setCollection($collection);
 

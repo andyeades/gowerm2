@@ -51,20 +51,6 @@
     transition: initial;
 }
 
-// If Passed Variable is False, then output false, else output string
-
-@function ev-false-check($var, $functionname, $value) {
-
-    @if $var == false {
-        @return false;
-    } @else {
-        @return #{$functionname}($var, $value);
-    }
-}
-
-
-
-//
 @mixin ev-color-output($color) {
     @if $color != false {
         @if $ev-reduce-coloroverides == 1 {
@@ -253,7 +239,9 @@
 }
 
 
-@mixin ev-border-radius($border-position: all, $border-radius: 5px) {
+@mixin ev-border-radius($border-position: 'all', $border-radius: 5px) {
+
+
     @if $border-position == 'all' {
         border-radius: $border-radius;
     }

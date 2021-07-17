@@ -5,7 +5,20 @@
  * See COPYING.txt for license details.
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="customer_account_login"/>
-    <body/>
+    <head>
+        <link src="css/styles-checkout.css"/>
+    </head>
+    <body>
+        <referenceContainer name="columns.top">
+            <block class="Magento\Framework\View\Element\Template" name="page.main.title.multiship.login" template="Magento_Multishipping::title.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="checkout.header.wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="checkout.header.right" template="Magento_Checkout::checkout/header/header-right.phtml" />
+        </referenceContainer>
+        <referenceContainer name="page.main.title" remove="true" />
+    </body>
+
 </page>

@@ -69,12 +69,7 @@
             </container>
       
             <block class="Magento\Catalog\Block\Product\View" name="product.info.bottlesize" template="Magento_Catalog::product/view/brand.phtml" before="-"/>
-            <container name="ev.pp.keyfacts" htmlTag="div" htmlId="ev-prod-keyfacts-3" htmlClass="ev-prod-keyfacts ev-prod-keyfacts-3" after="product.info.main" before="product.info.details" >
-                <block class="Magento\Catalog\Block\Product\View"
-                       name="product.info.keyfeatures"
-                       template="Magento_Catalog::product/view/keyfeatures.phtml"
-                       ifconfig="evkeyfacts/general/pp_block_3"/>
-            </container>
+       
 
 
 

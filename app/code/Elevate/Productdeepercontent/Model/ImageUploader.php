@@ -211,19 +211,24 @@ class ImageUploader
         );
         $baseTmpImagePath = $this->getFilePath($baseTmpPath, $imageName);
 
+
+
         try {
             $this->coreFileStorageDatabase->copyFile(
                 $baseTmpImagePath,
                 $baseImagePath
             );
+            
+       
+            
             $this->mediaDirectory->renameFile(
                 $baseTmpImagePath,
                 $baseImagePath
             );
         } catch (\Exception $e) {
-            throw new \Magento\Framework\Exception\LocalizedException(
-                __('Something went wrong while saving the file(s).')
-            );
+         //   throw new \Magento\Framework\Exception\LocalizedException(
+         //       __('Something went wrong while saving the file(s).')
+         //   );
         }
 
         return $returnRelativePath ? $baseImagePath : $imageName;

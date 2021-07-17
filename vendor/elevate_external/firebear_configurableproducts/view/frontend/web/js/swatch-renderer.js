@@ -90,7 +90,7 @@ define([
                 container.append(
                     '<div class="' + classes.attributeClass + ' ' + item.code +
                     '" attribute-code="' + item.code +
-                    '" attribute-id="' + item.id + '">' +
+                    '"'+ $widget.options.jsonConfig.attribute_prefix + 'attribute-id="' + item.id + '">' +
                     label +
                     '<div class="' + classes.attributeOptionsWrapper + ' clearfix">' +
                     options + select +
@@ -104,7 +104,7 @@ define([
                 $.each(item.options, function () {
                     if (this.products.length > 0) {
                         $widget.optionsMap[item.id][this.id] = {
-                            price   : parseFloat(
+                            price: parseFloat(
                                 $widget.options.jsonConfig.optionPrices[this.products[0]].finalPrice.amount,
                                 10
                             ),
@@ -147,7 +147,7 @@ define([
                 /*some websites use attribute-id instead of attribute-code*/
                 if (el.length == 0)
                     el = this.element.find('.' + this.options.classes.attributeClass +
-                        '[attribute-id="' + attributeCode + '"] [option-id="' + optionId + '"]');
+                        '['+ $widget.options.jsonConfig.attribute_prefix +'attribute-id="' + attributeCode + '"] [option-id="' + optionId + '"]');
 
                 if (el.hasClass('selected')) {
                     if (attributeNumber == countSelectedAttributes) {
@@ -207,8 +207,7 @@ define([
                             } else {
                                 $('.left_in_stock').html('<p class="left_in_stock"> Left in stock: ' + data.value + '</p>');
                             }
-                        }
-                        else if ($block.length > 0) {
+                        } else if ($block.length > 0) {
                             $block.html(data.value);
                         }
                     }
@@ -230,8 +229,7 @@ define([
                 if ($widget.options.jsonConfig.deliveryDate[simpleProductId]) {
                     if (!$widget.options.jsonConfig.deliveryDate[simpleProductId].startdate) {
                         var startdateT = todatString;
-                    }
-                    else {
+                    } else {
                         var startdateT = $widget.options.jsonConfig.deliveryDate[simpleProductId].startdate;
                     }
                     if ($widget.options.jsonConfig.deliveryDate[simpleProductId].enddate) {
@@ -242,13 +240,11 @@ define([
                             $(deliveryDateBlock).html('<br><span>' + $widget.options.jsonConfig.deliveryDate[simpleProductId].text + '</span>');
                         }
                     }
-                }
-                else {
+                } else {
                     if ($widget.options.jsonConfig.deliveryDate.parent) {
                         if (!$widget.options.jsonConfig.deliveryDate.parent.startdate) {
                             var startdateT = todatString;
-                        }
-                        else {
+                        } else {
                             var startdateT = $widget.options.jsonConfig.deliveryDate.parent.startdate;
                         }
                         var startdate = new Date(startdateT.replace(/(\d+)-(\d+)-(\d+)/, '$2/$3/$1')).valueOf(),
@@ -260,8 +256,7 @@ define([
 
                             }
                         }
-                    }
-                    else {
+                    } else {
                         if ($(deliveryDateBlock).length != 0) {
                             $(deliveryDateBlock).remove();
                         }
@@ -273,7 +268,32 @@ define([
         _ReplaceDataParent: function ($widget) {
             if ($widget.options.jsonConfig.parentProductName) {
                 var parentProductName = $widget.options.jsonConfig.parentProductName;
-                History.replaceState(null, parentProductName, $widget.options.jsonConfig.urls['parent']);
+         
+                                                         
+            /**
+             * Change browser history URL
+             */
+            require(['jqueryHistory'], function () {
+                if (typeof config.urls !== 'undefined' && typeof config.urls[productId] !== 'undefined') {
+                    var url = config.urls[productId];
+                    var title = null;
+                    if (typeof config.customAttributes[productId].name !== 'undefined'
+                        && typeof config.customAttributes[productId].name.value !== 'undefined'
+                    ) {
+                        title = config.customAttributes[productId].name.value;
+                    }
+                  
+                    const queryString = window.location.search;
+                 var currentUrl = location.protocol + '//' + location.host + location.pathname;
+                 
+                 //
+               
+                   if(currentUrl != url){
+                    History.replaceState(null, parentProductName, $widget.options.jsonConfig.urls['parent']);
+                    }
+                }
+            });   
+                       
             }
             if (typeof $widget.options.jsonConfig.customAttributes.parent !== 'undefined') {
                 $.each($widget.options.jsonConfig.customAttributes.parent, function (attributeCode, data) {
@@ -296,15 +316,14 @@ define([
                             }
                             var customBlock = $('.custom_block_' + attributeCode);
                             customBlock.html(data.value)
-                        }
-                        else if ($block.length > 0) {
+                        } else if ($block.length > 0) {
                             $block.html(data.value);
                         }
                     }
                 });
             }
         },
-        updateBaseImage : function (images, context, isInProductView) {
+        updateBaseImage: function (images, context, isInProductView) {
             var justAnImage = images[0],
                 initialImages = this.options.mediaGalleryInitial,
                 imagesToUpdate,
@@ -324,7 +343,7 @@ define([
                             $(imageObj.options.mediaGallerySelector).AddFotoramaVideoEvents();
                         } else {
                             $(imageObj.options.mediaGallerySelector).AddFotoramaVideoEvents({
-                                selectedOption   : imageObj.getProduct(),
+                                selectedOption: imageObj.getProduct(),
                                 dataMergeStrategy: imageObj.options.gallerySwitchStrategy
                             });
                         }
@@ -343,12 +362,12 @@ define([
          * @param $widget
          * @private
          */
-        _OnClick          : function ($this, $widget) {
+        _OnClick: function ($this, $widget) {
             /* Fix issue cannot add product to cart */
             var $parent = $this.parents('.' + $widget.options.classes.attributeClass),
                 $wrapper = $this.parents('.' + $widget.options.classes.attributeOptionsWrapper),
                 $label = $parent.find('.' + $widget.options.classes.attributeSelectedOptionLabelClass),
-                attributeId = $parent.attr('attribute-id'),
+                attributeId = $parent.attr($widget.options.jsonConfig.attribute_prefix + 'attribute-id'),
                 updatePrice = true,
                 $input = $parent.find('.' + $widget.options.classes.attributeInput);
             if ($widget.inProductList) {
@@ -361,21 +380,21 @@ define([
                 return;
             }
 
-            if (typeof($widget.update_price) !== 'undefined') {
+            if (typeof ($widget.update_price) !== 'undefined') {
                 updatePrice = $widget.update_price;
             }
 
             if ($this.hasClass('selected')) {
-                if(typeof $widget.options.jsonConfig.allow_deselect_swatch == 'undefined')
+                if (typeof $widget.options.jsonConfig.allow_deselect_swatch == 'undefined')
                     return;
-                $parent.removeAttr('option-selected').find('.selected').removeClass('selected');
+                $parent.removeAttr($widget.options.jsonConfig.attribute_prefix + 'option-selected').find('.selected').removeClass('selected');
                 $input.val('');
                 $label.text('');
                 $this.attr('aria-checked', false);
             } else {
-                $parent.attr('option-selected', $this.attr('option-id')).find('.selected').removeClass('selected');
+                $parent.attr($widget.options.jsonConfig.attribute_prefix + 'option-selected', $this.attr($widget.options.jsonConfig.attribute_prefix + 'option-id')).find('.selected').removeClass('selected');
                 $label.text($this.attr('option-label'));
-                $input.val($this.attr('option-id'));
+                $input.val($this.attr($widget.options.jsonConfig.attribute_prefix + 'option-id'));
                 $input.attr('data-attr-name', this._getAttributeCodeById(attributeId));
                 $this.addClass('selected');
                 if (typeof $widget._toggleCheckedAttributes !== "undefined") {
@@ -408,18 +427,18 @@ define([
                                 if (simpleProductId === childProductId) {
                                     selectedOptionId = optionObj.id;
                                     selectedLabel = optionObj.label;
-                                    var select = $('div[attribute-id="' + item.id + '"]').find('select');
+                                    var select = $('div[' + $widget.options.jsonConfig.attribute_prefix + 'attribute-id="' + item.id + '"]').find('select');
                                     if (select.find('option').length > 0) {
                                         select.val(selectedOptionId).trigger('change');
                                     } else {
-                                        var parent = $('div[attribute-id="' + item.id + '"]'),
+                                        var parent = $('div[' + $widget.options.jsonConfig.attribute_prefix + 'attribute-id="' + item.id + '"]'),
                                             label = parent.find('.' + $widget.options.classes.attributeSelectedOptionLabelClass),
                                             input = parent.find('.' + $widget.options.classes.attributeInput);
-                                        parent.removeAttr('option-selected').find('.selected').removeClass('selected');
-                                        parent.attr('option-selected', selectedOptionId);
+                                        parent.removeAttr($widget.options.jsonConfig.attribute_prefix + 'option-selected').find('.selected').removeClass('selected');
+                                        parent.attr($widget.options.jsonConfig.attribute_prefix + 'option-selected', selectedOptionId);
                                         label.text(selectedLabel);
                                         $('input[name="super_attribute[' + item.id + ']"]').val(selectedOptionId);
-                                        $('.swatch-option[option-id=' + selectedOptionId + ']').addClass('selected');
+                                        $('.swatch-option[' + $widget.options.jsonConfig.attribute_prefix + 'option-id=' + selectedOptionId + ']').addClass('selected');
                                     }
                                 }
                             }
@@ -429,7 +448,7 @@ define([
             }
 
             $widget._Rebuild();
-            if (typeof($widget.customOptionsPrice) !== 'undefined' ) {
+            if (typeof ($widget.customOptionsPrice) !== 'undefined') {
                 delete $widget.customOptionsPrice;
             }
 
@@ -439,8 +458,7 @@ define([
                 if (updatePrice) {
                     $widget._UpdatePrice();
                 }
-            }
-            else {
+            } else {
                 if ($widget.inProductList) {
                     $widget._UpdatePriceCategory();
                     $widget._updateLink();
@@ -455,24 +473,28 @@ define([
             var products = $widget._CalcProducts();
             if (products.length == 0) {
                 var options = {};
-                $widget.element.find('.' + $widget.options.classes.attributeClass + '[option-selected]').each(function () {
-                    var attributeId = $(this).attr('attribute-id');
-                    options[attributeId] = $(this).attr('option-selected');
+                $widget.element.find('.' + $widget.options.classes.attributeClass + '[' + $widget.options.jsonConfig.attribute_prefix + 'option-selected]').each(function () {
+                    var attributeId = $(this).attr($widget.options.jsonConfig.attribute_prefix + 'attribute-id');
+                    options[attributeId] = $(this).attr($widget.options.jsonConfig.attribute_prefix + 'option-selected');
                 });
                 var result = _.findKey($widget.options.jsonConfig.index, options);
                 products = [result];
             }
             this._ChangeFromToPrice(attributeId, $this.val(), $widget);
-            var numberOfSelectedOptions = $widget.element.find('.' + $widget.options.classes.attributeClass + '[option-selected]').length;
+            var numberOfSelectedOptions = $widget.element.find('.' + $widget.options.classes.attributeClass + '[' + $widget.options.jsonConfig.attribute_prefix + 'option-selected]').length;
             /**
              * Do not replace data on category view page.
              * @see \Firebear\ConfigurableProducts\Plugin\Block\ConfigurableProduct\Product\View\Type::afterGetJsonConfig()
              */
             if (products.length == 1 && !this.options.jsonConfig.doNotReplaceData && numberOfSelectedOptions) {
-                if (!simpleProductId) {
+                if (!simpleProductId || !$.isNumeric(simpleProductId)) {
                     var simpleProductId = products[0];
                 }
-                this._setOpenGraph(simpleProductId, $widget);
+                try {
+                    this._setOpenGraph(simpleProductId, $widget);
+                } catch (e) {
+                    console.exception(e);
+                }
                 if ($.isNumeric(simpleProductId) && $widget.options.jsonConfig.useCustomOptionsForVariations == 1) {
                     this._RenderCustomOptionsBySimpleProduct(simpleProductId, $widget);
                 }
@@ -482,33 +504,60 @@ define([
                 $widget._ReplaceData(simpleProductId, this);
                 /* Update input type hidden - fix base image doesn't change when choose option */
                 // if (simpleProductId && document.getElementsByName('product').length) {
-                    // document.getElementsByName('product')[0].value = simpleProductId;
+                // document.getElementsByName('product')[0].value = simpleProductId;
                 // }
                 /**/
                 var config = this.options.jsonConfig;
-                require(['jqueryHistory'], function () {
-
-                    if (typeof config.urls !== 'undefined' && typeof config.urls[simpleProductId] !== 'undefined') {
-                        var url = config.urls[simpleProductId];
-                        var title = $(document).find('title').text();
-                        if (url) {
-                            if (typeof config.customAttributes[simpleProductId].name == 'undefined') {
-                                if ((config.customAttributes[simpleProductId]['.breadcrumbs .items .product'])) {
-                                    title = config.customAttributes[simpleProductId]['.breadcrumbs .items .product'].value;
-                                }
+                if (typeof config.urls !== 'undefined' && typeof config.urls[simpleProductId] !== 'undefined') {
+                    var url = config.urls[simpleProductId];
+                    var title = $(document).find('title').text();
+                    if (url) {
+                        if (typeof config.customAttributes[simpleProductId].name == 'undefined') {
+                            if ((config.customAttributes[simpleProductId]['.breadcrumbs .items .product'])) {
+                                title = config.customAttributes[simpleProductId]['.breadcrumbs .items .product'].value;
                             }
-                            else {
-                                if (config.customAttributes[simpleProductId].name.value !== 'undefined') {
-                                    title = config.customAttributes[simpleProductId].name.value;
-                                }
+                        } else {
+                            if (config.customAttributes[simpleProductId].name.value !== 'undefined') {
+                                title = config.customAttributes[simpleProductId].name.value;
                             }
-                            History.replaceState(null, title, url);
                         }
+                        
+                        
+                        
+                        
+                     
+            /**
+             * Change browser history URL
+             */
+            require(['jqueryHistory'], function () {
+                if (typeof config.urls !== 'undefined' && typeof config.urls[productId] !== 'undefined') {
+                    var url = config.urls[productId];
+                    var title = null;
+                    if (typeof config.customAttributes[productId].name !== 'undefined'
+                        && typeof config.customAttributes[productId].name.value !== 'undefined'
+                    ) {
+                        title = config.customAttributes[productId].name.value;
                     }
-                });
+                  
+                    const queryString = window.location.search;
+                 var currentUrl = location.protocol + '//' + location.host + location.pathname;
+                 
+                 //
+               
+                   if(currentUrl != url){
+                    History.replaceState(null, title, url);
+                    }
+                }
+            });   
+                        
+                        
+                        
+                       
+                    }
+                }
             } else {
                 var configurableProductId = this.options.jsonConfig.productId;
-                if(configurableProductId) {
+                if (configurableProductId) {
                     this._setOpenGraph(configurableProductId, $widget);
                 }
                 if ($widget.element.parents($widget.options.selectorProduct)
@@ -534,7 +583,7 @@ define([
         _OnChange: function ($this, $widget) {
             /* Fix issue cannot add product to cart */
             var $parent = $this.parents('.' + $widget.options.classes.attributeClass),
-                attributeId = $parent.attr('attribute-id'),
+                attributeId = $parent.attr($widget.options.jsonConfig.attribute_prefix + 'attribute-id'),
                 updatePrice = true,
                 $input = $parent.find('.' + $widget.options.classes.attributeInput);
             if ($widget.productForm.length > 0) {
@@ -544,17 +593,17 @@ define([
             }
             /**/
 
-            if (typeof($widget.update_price) !== 'undefined') {
+            if (typeof ($widget.update_price) !== 'undefined') {
                 updatePrice = $widget.update_price;
             }
             if ($this.val() > 0) {
-                $parent.attr('option-selected', $this.val());
+                $parent.attr($widget.options.jsonConfig.attribute_prefix + 'option-selected', $this.val());
                 $input.val($this.val());
             } else {
-                $parent.removeAttr('option-selected');
+                $parent.removeAttr($widget.options.jsonConfig.attribute_prefix + 'option-selected');
                 $input.val('');
             }
-            if (typeof($widget.customOptionsPrice) !== 'undefined' ) {
+            if (typeof ($widget.customOptionsPrice) !== 'undefined') {
                 delete $widget.customOptionsPrice;
             }
 
@@ -570,10 +619,10 @@ define([
             var products = $widget._CalcProducts();
             var options = {};
             if (products.length == 0) {
-                $widget.element.find('.' + $widget.options.classes.attributeClass + '[option-selected]').each(function () {
-                    var attributeId = $(this).attr('attribute-id');
+                $widget.element.find('.' + $widget.options.classes.attributeClass + '[' + $widget.options.jsonConfig.attribute_prefix + 'option-selected]').each(function () {
+                    var attributeId = $(this).attr('data-attribute-id');
 
-                    options[attributeId] = $(this).attr('option-selected');
+                    options[attributeId] = $(this).attr($widget.options.jsonConfig.attribute_prefix + 'option-selected');
                 });
 
                 var result = _.findKey($widget.options.jsonConfig.index, options);
@@ -583,7 +632,7 @@ define([
              * Change From Price for normal swatch
              */
             this._ChangeFromToPrice(attributeId, $this.val(), $widget);
-            var numberOfSelectedOptions = $widget.element.find('.' + $widget.options.classes.attributeClass + '[option-selected]').length;
+            var numberOfSelectedOptions = $widget.element.find('.' + $widget.options.classes.attributeClass + '[' + $widget.options.jsonConfig.attribute_prefix + 'option-selected]').length;
             /**
              * Do not replace data on category view page.
              * @see \Firebear\ConfigurableProducts\Plugin\Block\ConfigurableProduct\Product\View\Type::afterGetJsonConfig()
@@ -600,32 +649,56 @@ define([
                 /**
                  * Update input type hidden - fix base image doesn't change when choose option
                  */
-                // if (simpleProductId && document.getElementsByName('product').length) {
+                    // if (simpleProductId && document.getElementsByName('product').length) {
                     // document.getElementsByName('product')[0].value = simpleProductId;
-                // }
+                    // }
                 var config = this.options.jsonConfig;
-                require(['jqueryHistory'], function () {
-                    if (typeof config.urls !== 'undefined' && typeof config.urls[simpleProductId] !== 'undefined') {
-                        var url = config.urls[simpleProductId];
-                        var title = $(document).find('title').text();
-                        if (url) {
-                            if (typeof config.customAttributes[simpleProductId].name == 'undefined') {
-                                if (config.customAttributes[simpleProductId]['.breadcrumbs .items .product']) {
-                                    title = config.customAttributes[simpleProductId]['.breadcrumbs .items .product'].value;
-                                }
+                if (typeof config.urls !== 'undefined' && typeof config.urls[simpleProductId] !== 'undefined') {
+                    var url = config.urls[simpleProductId];
+                    var title = $(document).find('title').text();
+                    if (url) {
+                        if (typeof config.customAttributes[simpleProductId].name == 'undefined') {
+                            if (config.customAttributes[simpleProductId]['.breadcrumbs .items .product']) {
+                                title = config.customAttributes[simpleProductId]['.breadcrumbs .items .product'].value;
                             }
-                            else {
-                                if (config.customAttributes[simpleProductId].name.value !== 'undefined') {
-                                    title = config.customAttributes[simpleProductId].name.value;
-                                }
+                        } else {
+                            if (config.customAttributes[simpleProductId].name.value !== 'undefined') {
+                                title = config.customAttributes[simpleProductId].name.value;
                             }
-                            History.replaceState(null, title, url);
                         }
+                     
+                        
+                                         
+            /**
+             * Change browser history URL
+             */
+            require(['jqueryHistory'], function () {
+                if (typeof config.urls !== 'undefined' && typeof config.urls[productId] !== 'undefined') {
+                    var url = config.urls[productId];
+                    var title = null;
+                    if (typeof config.customAttributes[productId].name !== 'undefined'
+                        && typeof config.customAttributes[productId].name.value !== 'undefined'
+                    ) {
+                        title = config.customAttributes[productId].name.value;
                     }
-                });
+                  
+                    const queryString = window.location.search;
+                 var currentUrl = location.protocol + '//' + location.host + location.pathname;
+                 
+                 //
+               
+                   if(currentUrl != url){
+                      History.replaceState(null, title, url);
+                    }
+                }
+            });   
+                       
+                       
+                    }
+                }
             } else {
                 var configurableProductId = this.options.jsonConfig.productId;
-                if(configurableProductId) {
+                if (configurableProductId) {
                     this._setOpenGraph(configurableProductId, $widget);
                 }
                 if (!$widget.element.parents($widget.options.selectorProduct)
@@ -676,31 +749,22 @@ define([
 
             result = $widget.options.jsonConfig.optionPrices[_.findKey($widget.options.jsonConfig.index, options)];
             if (result) {
-                formatedPrice = priceUtils.formatPrice(result.finalPrice.amount, {
-                    "pattern"          : $widget.options.jsonConfig.currencyFormat,
-                    "precision"        : 2,
-                    "requiredPrecision": 2,
-                    "decimalSymbol"    : ".",
-                    "groupSymbol"      : ",",
-                    "groupLength"      : 3,
-                    "integerRequired"  : 1
-                });
+                formatedPrice = priceUtils.formatPrice(result.finalPrice.amount, $widget.options.jsonConfig.priceFormat, false);
                 if ($widget.options.jsonConfig.defaultPriceWithRange && $widget.options.jsonConfig.priceRange) {
                     if (typeof $($product.find('.price-range')).html() !== 'undefined') {
                         if (-1 < $($product.find('.price-range')).html().indexOf('From')) {
                             if ($widget.options.jsonConfig.disaplyingFromToPrice) {
-                                $($product.find('.price')[2]).html(formatedPrice);
-                            }
-                            else {
+                                $($product.find('.price').last()).html(formatedPrice);
+                            } else {
                                 $($product.find('.price')[1]).html(formatedPrice);
                             }
+                        } else {
+                            $($product.find('.price').first()).html(formatedPrice);
                         }
-                        else {
-                            $($product.find('.price')[0]).html(formatedPrice);
-                        }
+                    } else {
+                        $($product.find('.price').first()).html(formatedPrice);
                     }
-                }
-                else {
+                } else {
                     if (!$widget.options.jsonConfig.priceRange) {
                         $productPrice.html('<span class="price">' + formatedPrice + '</span>');
                     }
@@ -733,7 +797,7 @@ define([
             $widget.element.find('.' + $widget.options.classes.attributeClass + '[option-selected]').each(function () {
                 var attributeId = $(this).attr('attribute-id');
                 options[attributeId] = $(this).attr('option-selected');
-                if($(this).attr('option-selected'))
+                if ($(this).attr('option-selected'))
                     deselectAll = false;
             });
             var linkSelectedOption = $widget.options.jsonConfig.urls[_.findKey($widget.options.jsonConfig.index, options)];
@@ -742,14 +806,13 @@ define([
                     if (typeof $widget.options.jsonConfig.customAttributes[_.findKey($widget.options.jsonConfig.index, options)].name == 'undefined') {
                         $product.find('.product-item-link').attr('href', linkSelectedOption).html($widget.options.jsonConfig.customAttributes[_.findKey($widget.options.jsonConfig.index, options)]['.breadcrumbs .items .product'].value);
                         $imageBlock.find('.product-item-photo').attr('href', linkSelectedOption);
-                    }
-                    else {
+                    } else {
                         $product.find('.product-item-link').attr('href', linkSelectedOption).html($widget.options.jsonConfig.customAttributes[_.findKey($widget.options.jsonConfig.index, options)].name.value);
                         $imageBlock.find('.product-item-photo').attr('href', linkSelectedOption);
                     }
                 }
             }
-            if(deselectAll){
+            if (deselectAll) {
                 linkSelectedOption = $widget.options.jsonConfig.customAttributes.parent.parent_link;
                 $product.find('.product-item-link').attr('href', linkSelectedOption).html($widget.options.jsonConfig.customAttributes.parent.name.value);
                 $imageBlock.find('.product-item-photo').attr('href', linkSelectedOption);
@@ -772,13 +835,13 @@ define([
                 return;
             }
             $.each($widget.options.jsonConfig.attributes, function ($key, $item) {
-                if ($('.'+$item.code+' option:selected').val() != 0 && $item.id != attributeId && $item.type == 'select') {
+                if ($('.' + $item.code + ' option:selected').val() != 0 && $item.id != attributeId && $item.type == 'select') {
                     selectedAttributesForProducts[$item.id] = parseInt($('.' + $item.code + ' option:selected').val());
                 } else if (typeof ($('.' + $item.code).attr('option-selected')) !== 'undefined') {
                     selectedAttributesForProducts[$item.id] = parseInt($('.' + $item.code).attr('option-selected'));
                 }
             });
-            if(typeof $widget.options.jsonSwatchConfig !== 'undefined'){
+            if (typeof $widget.options.jsonSwatchConfig !== 'undefined') {
                 $.each($widget.options.jsonConfig.mappedAttributes[attributeId].options, function ($key, $item) {
                     if (optionId == 0) {
                         productOptions = 1;
@@ -814,7 +877,7 @@ define([
                         }
                         if (typeof ($widget.options.jsonConfig.considerTierPricesInFromToPrice) !== "undefined" &&
                             $widget.options.jsonConfig.considerTierPricesInFromToPrice == '1') {
-                            $.each($widget.options.jsonConfig.optionPrices[$val].tierPrices, function() {
+                            $.each($widget.options.jsonConfig.optionPrices[$val].tierPrices, function () {
                                 allSelectedOptionPrices[iteratorForCheckMinPrice] = this.price;
                                 iteratorForCheckMinPrice++;
                             });
@@ -828,18 +891,18 @@ define([
                 if (minPrice == maxPrice) {
                     if ($widget.inProductList) {
                         $('.firebear_range_price, .firebear_range_price_' + $widget.options.jsonConfig.productId).html(
-                            '<span class="price">From '+ $widget.getFormattedPrice(minPrice, $widget) + '</span>'
+                            '<span class="price">From ' + $widget.getFormattedPrice(minPrice, $widget) + '</span>'
                         );
                     } else {
                         $('.firebear_range_price, .firebear_range_price_' + $widget.options.jsonConfig.productId).html(
-                            'From '+ $widget.getFormattedPrice(minPrice, $widget)
+                            'From ' + $widget.getFormattedPrice(minPrice, $widget)
                         );
                     }
                 } else {
                     if ($widget.inProductList) {
                         $('.firebear_range_price, .firebear_range_price_' + $widget.options.jsonConfig.productId).html(
-                            '<span class="price">From '+ $widget.getFormattedPrice(minPrice, $widget) +
-                            ' - ' + $widget.getFormattedPrice(maxPrice, $widget)  + '</span>');
+                            '<span class="price">From ' + $widget.getFormattedPrice(minPrice, $widget) +
+                            ' - ' + $widget.getFormattedPrice(maxPrice, $widget) + '</span>');
                     } else {
                         $('.firebear_range_price, .firebear_range_price_' + $widget.options.jsonConfig.productId).html(
                             'From ' + $widget.getFormattedPrice(minPrice, $widget) +
@@ -859,32 +922,32 @@ define([
 
         _RenderCustomOptionsBySimpleProduct: function (productId, $widget) {
             $.ajax({
-                url       : $widget.options.jsonConfig.loadOptionsUrl,
-                type      : 'POST',
-                dataType  : 'json',
+                url: $widget.options.jsonConfig.loadOptionsUrl,
+                type: 'POST',
+                dataType: 'json',
                 showLoader: true,
-                data      : {
+                data: {
                     productId: productId
                 },
-                success   : function (response, widget) {
+                success: function (response, widget) {
 
                     if (!$('.product-options-wrapper .product-cpi-custom-options').html()) {
                         $('.product-options-wrapper').append('<div class="product-cpi-custom-options"></div>');
-                        $('.product-cpi-custom-options').html('<div class="fieldset" tabindex="0">'+response.optionsHtml+'</div>');
+                        $('.product-cpi-custom-options').html('<div class="fieldset" tabindex="0">' + response.optionsHtml + '</div>');
+                    } else {
+                        $('.product-cpi-custom-options').html('<div class="fieldset" tabindex="0">' + response.optionsHtml + '</div>');
                     }
-                    else {
-                        $('.product-cpi-custom-options').html('<div class="fieldset" tabindex="0">'+response.optionsHtml+'</div>');
-                    }
-                    $('.product-custom-option').on('change', function() {
+                    $('.product-custom-option').on('change', function () {
                         var customOptionsPrice = [];
+
                         function getSum(total, num) {
                             return total + num;
                         }
 
-                        $('.product-custom-option').each(function(key, el) {
+                        $('.product-custom-option').each(function (key, el) {
                             var elementType = el.nodeName;
                             var elementId = parseInt(/[0-9]+/.exec(el.id));
-                            switch(elementType) {
+                            switch (elementType) {
                                 case "INPUT":
                                     var inputType = $(el).attr('type');
                                     if (inputType == 'radio' || inputType == 'checkbox') {
@@ -905,13 +968,13 @@ define([
                                     break;
                                 case "SELECT":
                                     if (el.multiple) {
-                                        $(el).find(":selected").each(function(index, selected) {
+                                        $(el).find(":selected").each(function (index, selected) {
                                             customOptionsPrice.push(parseFloat($(selected).attr('price')));
                                         });
                                         break;
                                     } else {
                                         var singleSelectPrice = $(el).find(":selected").attr('price');
-                                        if (typeof(singleSelectPrice) !== 'undefined') {
+                                        if (typeof (singleSelectPrice) !== 'undefined') {
                                             customOptionsPrice.push(parseFloat(singleSelectPrice));
                                         }
                                         break;
@@ -924,13 +987,13 @@ define([
                                     }
                             }
                         });
-                        $('.field.date').each(function() {
+                        $('.field.date').each(function () {
                             var allDateValues = [];
-                            $(this).find("select").each(function(key, el) {
+                            $(this).find("select").each(function (key, el) {
                                 allDateValues.push(el.value);
                             });
                             var elementId = parseInt(/[0-9]+/.exec($(this).find("select")[0]['id']));
-                            var checkOptionValues = allDateValues.every(function(element, index, array){
+                            var checkOptionValues = allDateValues.every(function (element, index, array) {
                                 return element !== "";
                             });
                             if (!checkOptionValues) {
@@ -949,17 +1012,17 @@ define([
         },
         _setOpenGraph: function (productId, $widget) {
             $.ajax({
-                url       : $widget.options.jsonConfig.setOpenGraphUrl,
-                type      : 'POST',
-                dataType  : 'json',
-                data      : {
+                url: $widget.options.jsonConfig.setOpenGraphUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: {
                     productId: productId,
                 },
-                success   : function (response) {
+                success: function (response) {
                     var property;
-                    $.each($(response.openGraphHtml), function(){
+                    $.each($(response.openGraphHtml), function () {
                         property = $(this).attr('property');
-                        if(property) {
+                        if (property) {
                             $('meta[property="' + property + '"]').remove();
                         }
 
@@ -991,7 +1054,7 @@ define([
             result = $widget.options.jsonConfig.optionPrices[_.findKey($widget.options.jsonConfig.index, options)];
 
             if (result) {
-                if (typeof($widget['resultBefore_' + _.findKey($widget.options.jsonConfig.index, options)]) == 'undefined') {
+                if (typeof ($widget['resultBefore_' + _.findKey($widget.options.jsonConfig.index, options)]) == 'undefined') {
                     $widget['resultBefore_' + _.findKey($widget.options.jsonConfig.index, options)] = JSON.parse(JSON.stringify(result));
                 } else {
                     result = null;

@@ -35,26 +35,11 @@
     @if $pitems-icons-enabled == 1 {
 
         .product-item {
-            &.no-picons {
-                .price-box {
-
-                }
-
-            }
-
-            &.has-picons {
-                .price-box {
-
-                }
-
-            }
-
-
             .product-item-details {
                 .product-icons {
-                    display: $pitems-picons-display;
+                    @include co(display, $pitems-picons-display);
                     @include co(width, $pitems-picons-width);
-                    height: $pitems-picons-height;
+                    @include co(height, $pitems-picons-height);
                     @include co(margin, $pitems-picons-margin);
                     @include co(padding, $pitems-picons-padding);
                     text-align: $pitems-picons-textalign;
@@ -86,7 +71,7 @@
                     .product-icons {
 
                         @include co(width, $plist-picons-width);
-                        height: $plist-picons-height;
+                        @include co(height, $plist-picons-height);
                         @include co(margin, $plist-picons-margin);
                         @include co(padding, $plist-picons-padding);
                         text-align: $plist-picons-textalign;
@@ -104,7 +89,7 @@
 
                         > img {
                             flex: 0 1 auto;
-                            height: $plist-picons-img-height;
+                            @include co(height, $plist-picons-img-height);
                             @include co(width, $plist-picons-img-width);
                             @include co(padding, $plist-picons-img-padding);
                             @include co(margin, $plist-picons-img-margin);
@@ -118,9 +103,8 @@
         .products-grid {
             .product-item {
                 &.no-picons {
+                    .price-final_price,
                     .price-box {
-
-
                         @include co(padding, $pgrid-noicons-price-box-padding);
                     }
 
@@ -133,17 +117,21 @@
                         }
 
 
+
                     }
 
                 }
 
                 &.has-picons {
+                    .price-final_price,
                     .price-box {
                         justify-content: center;
                         width: 100%;
+
                         @include min-screen($desktop-min) {
                             width: 46%;
                             padding-right: 0.5rem;
+                            margin-top: .75rem;
                         }
                         @include min-screen($screen-md-min) {
                             //width: 50%;

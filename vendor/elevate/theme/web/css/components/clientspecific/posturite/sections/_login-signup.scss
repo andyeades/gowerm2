@@ -1,0 +1,15 @@
+@if $sitename == posturite {
+
+    $cac-registeras-order: 1 !default;
+    $cac-registeras-padding: 27px !default;
+    $cac-registeras-textalign: center !default;
+
+    .customer-account-create {
+        #registeras {
+            @include co(text-align, $cac-registeras-textalign);
+            @include co(padding, $cac-registeras-padding);
+            @include co(order, $cac-registeras-order);
+        }
+    }
+}
+

@@ -7,17 +7,48 @@
 /**
  * @var \Magento\Theme\Block\Html\Header\Logo $block
  */
-$storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt()
+$storeName = $block->getThemeName() ? $block->getThemeName(): $block->getLogoAlt()
 ?>
-<a
-    class="logo"
-    href="<?= $block->escapeUrl($block->getUrl('')) ?>"
-    title="<?= $block->escapeHtmlAttr($storeName) ?>"
-    aria-label="store logo">
-    <img src="<?= $block->escapeUrl($block->getLogoSrc()) ?>"
-         title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
-         alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
-            <?= $block->getLogoWidth() ? 'width="' . $block->escapeHtmlAttr($block->getLogoWidth()) . '"' : '' ?>
-            <?= $block->getLogoHeight() ? 'height="' . $block->escapeHtmlAttr($block->getLogoHeight()) . '"' : '' ?>
-    />
-</a>
+
+
+<?php
+$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+// Fix for Posturite needing a different colored logo on white backgrounds... need a better solution
+
+if (strpos($url, 'checkout') !== false) {
+
+    if (strpos($url, 'posturite') !== false) {
+        if ((strpos($url, 'cart') == true) || (strpos($url, 'success') == true)) { ?>
+
+            <?php // default ?>
+          <a class="logo" href="<?= $block->escapeUrl($block->getUrl('')) ?>" title="<?= $block->escapeHtmlAttr($storeName) ?>" aria-label="store logo">
+            <img src="<?= $block->escapeUrl($block->getLogoSrc()) ?>" title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>" alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
+                <?= $block->getLogoWidth() ? 'width="' . $block->escapeHtmlAttr($block->getLogoWidth()) . '"': '' ?>
+                <?= $block->getLogoHeight() ? 'height="' . $block->escapeHtmlAttr($block->getLogoHeight()) . '"': '' ?>
+            /> </a>
+        <?php } else { ?><?php // posturite coloured logo ?>
+          <a class="logo" href="<?= $block->escapeUrl($block->getUrl('')) ?>" title="<?= $block->escapeHtmlAttr($storeName) ?>" aria-label="store logo">
+            <img src="/media/Posturite-Logo.svg" title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>" alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
+                <?= $block->getLogoWidth() ? 'width="' . $block->escapeHtmlAttr($block->getLogoWidth()) . '"': '' ?>
+                <?= $block->getLogoHeight() ? 'height="' . $block->escapeHtmlAttr($block->getLogoHeight()) . '"': '' ?>
+            /> </a>
+            <?php
+        }
+    } else { ?>
+      <a class="logo" href="<?= $block->escapeUrl($block->getUrl('')) ?>" title="<?= $block->escapeHtmlAttr($storeName) ?>" aria-label="store logo">
+        <img src="<?= $block->escapeUrl($block->getLogoSrc()) ?>" title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>" alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
+            <?= $block->getLogoWidth() ? 'width="' . $block->escapeHtmlAttr($block->getLogoWidth()) . '"': '' ?>
+            <?= $block->getLogoHeight() ? 'height="' . $block->escapeHtmlAttr($block->getLogoHeight()) . '"': '' ?>
+        /> </a>
+        <?php
+    }
+} else { ?>
+
+  <a class="logo" href="<?= $block->escapeUrl($block->getUrl('')) ?>" title="<?= $block->escapeHtmlAttr($storeName) ?>" aria-label="store logo">
+    <img src="<?= $block->escapeUrl($block->getLogoSrc()) ?>" title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>" alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
+        <?= $block->getLogoWidth() ? 'width="' . $block->escapeHtmlAttr($block->getLogoWidth()) . '"': '' ?>
+        <?= $block->getLogoHeight() ? 'height="' . $block->escapeHtmlAttr($block->getLogoHeight()) . '"': '' ?>
+    /> </a>
+
+<?php } ?>

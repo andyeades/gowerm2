@@ -92,6 +92,9 @@ require(['jquery','tinyslider','evDelivery','Magento_Checkout/js/model/quote', '
             if (!deliveryLaunched) {
                 // Initial Handling
                 var postcodefieldval = jQuery('#shipping-new-address-form [name="postcode"]').val();
+                if (typeof postcodefieldval === 'undefined') {
+                    postcodefieldval = postcode;
+                }
                 if (postcodefieldval) {
                     if (postcodefieldval.length > 2) {
                         evDelivery.getDeliveryOptions();
@@ -113,7 +116,7 @@ require(['jquery','tinyslider','evDelivery','Magento_Checkout/js/model/quote', '
                     }
 
 
-                   //evDelivery.getDeliveryOptions();
+                    //evDelivery.getDeliveryOptions();
                     ///roperty "EvGiftmessagemessage" does not have accessor method "getEvGiftmessagemessage" in class "Magento\Quote\Api\Data\AddressExtensionInterface"."
 
                 }, 1000));
@@ -242,7 +245,7 @@ require(['jquery','tinyslider','evDelivery','Magento_Checkout/js/model/quote', '
                 // null fix for m2_1.1.16
                 if (c2a_config.autocomplete.texts.search_label == null) c2a_config.autocomplete.texts.search_label = '';
 
-                var tmp_html = '<div class="field"' + custom_id + '><label class="label">' +
+                var tmp_html = '<div class="field required"' + custom_id + '><label class="label">' +
                     c2a_config.autocomplete.texts.search_label + '</label>' +
                     '<div class="control"><input class="cc_search_input" type="text"/></div></div>';
                 if (c2a_config.autocomplete.advanced.hide_fields) {
@@ -250,7 +253,7 @@ require(['jquery','tinyslider','evDelivery','Magento_Checkout/js/model/quote', '
                         '<rect x="-22.85" y="66.4" width="226.32" height="47.53" rx="17.33" ry="17.33" transform="translate(89.52 -37.99) rotate(45)"/>' +
                         '<rect x="103.58" y="66.4" width="226.32" height="47.53" rx="17.33" ry="17.33" transform="translate(433.06 0.12) rotate(135)"/>' +
                         '</svg>';
-                    tmp_html += '<div class="field cc_hide_fields_action"><label>' + c2a_config.autocomplete.texts.manual_entry_toggle + '</label>' + svg + '</div>';
+                    tmp_html += '<div class="field action secondary cc_hide_fields_action"><label>' + c2a_config.autocomplete.texts.manual_entry_toggle + '</label>' + svg + '</div>';
                 }
                 if (!c2a_config.autocomplete.advanced.use_first_line || c2a_config.autocomplete.advanced.hide_fields) {
                     form.find('[name="street[0]"]').closest('fieldset').before(tmp_html);
@@ -509,177 +512,180 @@ require(['jquery','tinyslider','evDelivery','Magento_Checkout/js/model/quote', '
     }
 
     jQuery(document).ready(function () {
-        if (!c2a_config.main.enable_extension) {
-            return;
-        }
-        if (c2a_config.autocomplete.enabled && c2a_config.main.key != null) {
-            var config = {
-                accessToken: c2a_config.main.key,
-                onSetCounty: function (c2a, elements, county) {
-                    return;
-                },
-                domMode: 'object',
-                gfxMode: c2a_config.autocomplete.gfx_mode,
-                style: {
-                    ambient: c2a_config.autocomplete.gfx_ambient,
-                    accent: c2a_config.autocomplete.gfx_accent
-                },
-                showLogo: false,
-                texts: c2a_config.autocomplete.texts,
-                onResultSelected: function (c2a, elements, address) {
-                    switch (address.country_name) {
-                        case 'Jersey':
-                            jQuery(elements.country).val('JE')
-                            break;
-                        case 'Guernsey':
-                            jQuery(elements.country).val('GG')
-                            break;
-                        case 'Isle of Man':
-                            jQuery(elements.country).val('IM')
-                            break;
-                        default:
-                            if (jQuery(elements.country).val() == address.country.iso_3166_1_alpha_2) {
-                                console.log("don't trigger change you idiots");
+        if(typeof c2a_config !== 'undefined') {
+            if (!c2a_config.main.enable_extension) {
+                return;
+            }
+            if (c2a_config.autocomplete.enabled && c2a_config.main.key != null) {
+                var config = {
+                    accessToken: c2a_config.main.key,
+                    onSetCounty: function (c2a, elements, county) {
+                        return;
+                    },
+                    domMode: 'object',
+                    gfxMode: c2a_config.autocomplete.gfx_mode,
+                    style: {
+                        ambient: c2a_config.autocomplete.gfx_ambient,
+                        accent: c2a_config.autocomplete.gfx_accent
+                    },
+                    showLogo: false,
+                    texts: c2a_config.autocomplete.texts,
+                    onResultSelected: function (c2a, elements, address) {
+                        switch (address.country_name) {
+                            case 'Jersey':
+                                jQuery(elements.country).val('JE')
+                                break;
+                            case 'Guernsey':
+                                jQuery(elements.country).val('GG')
+                                break;
+                            case 'Isle of Man':
+                                jQuery(elements.country).val('IM')
+                                break;
+                            default:
+                                if (jQuery(elements.country).val() == address.country.iso_3166_1_alpha_2) {
+                                    console.log("don't trigger change you idiots");
+                                } else {
+                                    jQuery(elements.country).val(address.country.iso_3166_1_alpha_2);
+                                }
+
+                        }
+                        // var event = new Event('change')
+                        if (typeof elements.country != 'undefined') {
+                            if  (jQuery(elements.country).val() == address.country.iso_3166_1_alpha_2) {
+                                // Stop Triggering a change when the country doesn't actually change?
+                                console.log('no more change triggering please');
                             } else {
-                                jQuery(elements.country).val(address.country.iso_3166_1_alpha_2);
+                                console.log('trigger event change contry');
+                                triggerEvent('change', elements.country);
+                                evDelivery.getDeliveryOptions();
                             }
 
-                    }
-                    // var event = new Event('change')
-                    if (typeof elements.country != 'undefined') {
-                        if  (jQuery(elements.country).val() == address.country.iso_3166_1_alpha_2) {
-                            // Stop Triggering a change when the country doesn't actually change?
-                            console.log('no more change triggering please');
-                        } else {
-                            console.log('trigger event change contry');
-                            triggerEvent('change', elements.country);
-                            evDelivery.getDeliveryOptions();
+
                         }
 
+                        var county = {
+                            preferred: address.province,
+                            code: address.province_code,
+                            name: address.province_name
+                        };
 
-                    }
+                        if (elements.county.list.length == 1) {
+                            c2a.setCounty(elements.county.list[0], county);
+                        }
+                        if (elements.county.input.length == 1) {
+                            c2a.setCounty(elements.county.input[0], county);
+                        }
 
-                    var county = {
-                        preferred: address.province,
-                        code: address.province_code,
-                        name: address.province_name
-                    };
+                        if (typeof elements.county.input[0] != 'undefined') {
+                            triggerEvent('change', elements.county.input[0])
+                        }
+                        if (typeof elements.county.list[0] != 'undefined') {
+                            triggerEvent('change', elements.county.list[0])
+                        }
+                        if (typeof elements.company != 'undefined') {
+                            triggerEvent('change', elements.company)
+                        }
+                        if (typeof elements.line_1 != 'undefined') {
+                            triggerEvent('change', elements.line_1)
+                        }
+                        if (typeof elements.line_2 != 'undefined') {
+                            triggerEvent('change', elements.line_2)
+                        }
+                        if (typeof elements.postcode != 'undefined') {
+                            triggerEvent('change', elements.postcode);
+                            console.log('Postcode Not Undefined, trigger Change');
+                            // Only want it to trigger if the postcode is different though!!!
+                            evDelivery.getDeliveryOptions();
+                        }
+                        if (typeof elements.town != 'undefined') {
+                            triggerEvent('change', elements.town)
+                        }
 
-                    if (elements.county.list.length == 1) {
-                        c2a.setCounty(elements.county.list[0], county);
-                    }
-                    if (elements.county.input.length == 1) {
-                        c2a.setCounty(elements.county.input[0], county);
-                    }
-
-                    if (typeof elements.county.input[0] != 'undefined') {
-                        triggerEvent('change', elements.county.input[0])
-                    }
-                    if (typeof elements.county.list[0] != 'undefined') {
-                        triggerEvent('change', elements.county.list[0])
-                    }
-                    if (typeof elements.company != 'undefined') {
-                        triggerEvent('change', elements.company)
-                    }
-                    if (typeof elements.line_1 != 'undefined') {
-                        triggerEvent('change', elements.line_1)
-                    }
-                    if (typeof elements.line_2 != 'undefined') {
-                        triggerEvent('change', elements.line_2)
-                    }
-                    if (typeof elements.postcode != 'undefined') {
-                        triggerEvent('change', elements.postcode);
-                        console.log('Postcode Not Undefined, trigger Change');
-                        // Only want it to trigger if the postcode is different though!!!
-                        evDelivery.getDeliveryOptions();
-                    }
-                    if (typeof elements.town != 'undefined') {
-                        triggerEvent('change', elements.town)
-                    }
-
-                    cc_hide_fields(elements, 'show');
-                },
-                onError: function () {
-                    if (typeof this.activeDom.postcode !== 'undefined') {
-                        cc_hide_fields(this.activeDom, 'show');
-                    } else {
-                        c2a_config.autocomplete.advanced.hide_fields = false;
-                    }
-                },
-                transliterate: c2a_config.autocomplete.advanced.transliterate,
-                debug: c2a_config.autocomplete.advanced.debug,
-                cssPath: false,
-                tag: 'Magento 2'
-            };
-            if (typeof c2a_config.autocomplete.enabled_countries !== 'undefined') {
-                config.countryMatchWith = 'iso_2';
-                config.enabledCountries = c2a_config.autocomplete.enabled_countries;
-            }
-            if (c2a_config.autocomplete.advanced.lock_country_to_dropdown) {
-                config.countrySelector = false;
-                config.onSearchFocus = function (c2a, dom) {
-                    var currentCountry = dom.country.options[dom.country.selectedIndex].value;
-                    if (currentCountry !== '') {
-                        console.log("Current COuntry My 3393");
-                        var countryCode = getCountryCode(c2a, currentCountry, 'iso_2');
-                        c2a.selectCountry(countryCode);
-                    }
+                        cc_hide_fields(elements, 'show');
+                    },
+                    onError: function () {
+                        if (typeof this.activeDom.postcode !== 'undefined') {
+                            cc_hide_fields(this.activeDom, 'show');
+                        } else {
+                            c2a_config.autocomplete.advanced.hide_fields = false;
+                        }
+                    },
+                    transliterate: c2a_config.autocomplete.advanced.transliterate,
+                    debug: c2a_config.autocomplete.advanced.debug,
+                    cssPath: false,
+                    tag: 'Magento 2'
                 };
+                if (typeof c2a_config.autocomplete.enabled_countries !== 'undefined') {
+                    config.countryMatchWith = 'iso_2';
+                    config.enabledCountries = c2a_config.autocomplete.enabled_countries;
+                }
+                if (c2a_config.autocomplete.advanced.lock_country_to_dropdown) {
+                    config.countrySelector = false;
+                    config.onSearchFocus = function (c2a, dom) {
+                        var currentCountry = dom.country.options[dom.country.selectedIndex].value;
+                        if (currentCountry !== '') {
+                            console.log("Current COuntry My 3393");
+                            var countryCode = getCountryCode(c2a, currentCountry, 'iso_2');
+                            c2a.selectCountry(countryCode);
+                        }
+                    };
+                }
+
+                window.cc_holder = new clickToAddress(config);
+                setInterval(cc_m2_c2a, 200);
             }
 
-            window.cc_holder = new clickToAddress(config);
-            setInterval(cc_m2_c2a, 200);
-        }
-
-        if (c2a_config.autocomplete.enabled && c2a_config.main.key == null) {
-            console.warn('ClickToAddress: Incorrect token format supplied');
-        }
-
-        if (c2a_config.postcodelookup.enabled) {
-            setInterval(activate_cc_m2_uk, 200);
-        }
-
-
-        if (c2a_config.emailvalidation.enabled && c2a_config.main.key != null) {
-            if (window.cc_holder == null) {
-                window.cc_holder = new clickToAddress({
-                    accessToken: c2a_config.main.key,
-                })
+            if (c2a_config.autocomplete.enabled && c2a_config.main.key == null) {
+                console.warn('ClickToAddress: Incorrect token format supplied');
             }
-            setInterval(function () {
-                var email_elements = jQuery('input#customer-email');
-                email_elements.each(function (index) {
-                    var email_element = email_elements.eq(index);
-                    if (email_element.data('cc') != '1') {
-                        email_element.data('cc', '1');
-                        window.cc_holder.addEmailVerify({
-                            email: email_element[0]
-                        })
-                    }
-                });
-            }, 200);
-        }
-        if (c2a_config.phonevalidation.enabled && c2a_config.main.key != null) {
-            if (window.cc_holder == null) {
-                window.cc_holder = new clickToAddress({
-                    accessToken: c2a_config.main.key,
-                })
+
+            if (c2a_config.postcodelookup.enabled) {
+                setInterval(activate_cc_m2_uk, 200);
             }
-            setInterval(function () {
-                var phone_elements = jQuery('input[name="telephone"]');
-                phone_elements.each(function (index) {
-                    var phone_element = phone_elements.eq(index);
-                    if (phone_element.data('cc') != '1') {
-                        phone_element.data('cc', '1');
-                        var country = phone_element.closest('form').find('select[name="country_id"]')
-                        window.cc_holder.addPhoneVerify({
-                            phone: phone_element[0],
-                            country: country[0]
-                        })
-                    }
-                });
-            }, 200);
+
+
+            if (c2a_config.emailvalidation.enabled && c2a_config.main.key != null) {
+                if (window.cc_holder == null) {
+                    window.cc_holder = new clickToAddress({
+                        accessToken: c2a_config.main.key,
+                    })
+                }
+                setInterval(function () {
+                    var email_elements = jQuery('input#customer-email');
+                    email_elements.each(function (index) {
+                        var email_element = email_elements.eq(index);
+                        if (email_element.data('cc') != '1') {
+                            email_element.data('cc', '1');
+                            window.cc_holder.addEmailVerify({
+                                email: email_element[0]
+                            })
+                        }
+                    });
+                }, 200);
+            }
+            if (c2a_config.phonevalidation.enabled && c2a_config.main.key != null) {
+                if (window.cc_holder == null) {
+                    window.cc_holder = new clickToAddress({
+                        accessToken: c2a_config.main.key,
+                    })
+                }
+                setInterval(function () {
+                    var phone_elements = jQuery('input[name="telephone"]');
+                    phone_elements.each(function (index) {
+                        var phone_element = phone_elements.eq(index);
+                        if (phone_element.data('cc') != '1') {
+                            phone_element.data('cc', '1');
+                            var country = phone_element.closest('form').find('select[name="country_id"]')
+                            window.cc_holder.addPhoneVerify({
+                                phone: phone_element[0],
+                                country: country[0]
+                            })
+                        }
+                    });
+                }, 200);
+            }
         }
+
 
 
     });

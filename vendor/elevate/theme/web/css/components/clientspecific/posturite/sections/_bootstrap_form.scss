@@ -35,8 +35,8 @@
 
 
             .input-box input.input-text , select {
-                height: $input-height-lg;
-                line-height: $input-line-height-lg;
+                @include co(height, $input-height-lg);
+                @include co(line-height, $input-line-height-lg);
                 @include border-radius($input-border-radius-lg);
             }
             select {

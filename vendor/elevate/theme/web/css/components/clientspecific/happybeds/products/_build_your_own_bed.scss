@@ -60,6 +60,11 @@
 
     $mytab-pane-text-color: #2c2c2c !default;
 
+
+
+
+
+
     .ev-divans-outer,
     .ev-bespokebeds-outer,
     .ev-headboards-outer,
@@ -461,6 +466,47 @@
         }
     }
 
+
+
+    @media only screen and (min-width: 992px) {
+        .product-build-your-own-bed .product-info-main {
+            order: 2;
+            width: 45%;
+            margin-left: auto;
+        }
+
+        .product-build-your-own-bed .columns {
+
+            width: 100%;
+        }
+    }
+
+    .product-build-your-own-bed #feefoouterwrap {
+        display: none;
+    }
+
+    .category-divan-beds #feefoouterwrap {
+        display: none;
+    }
+
+    @media only screen and (min-width: 992px) {
+        .category-divan-beds .product-info-main {
+            order: 2;
+            width: 45%;
+            margin-left: auto;
+        }
+
+        .category-divan-beds .columns {
+
+            width: 100%;
+        }
+    }
+
+
+    .product-build-your-own-bed #ppslidewrap {
+        display: none !important;
+    }
+
     .byobed-outer {
         width: 100%;
         background-color: #cbcbcd;
@@ -655,13 +701,12 @@
 
         label {
             display: inline-block;
+            img {
+                width: 100%;
+                pointer-events: none;
+                margin: 0 auto;
+            }
         }
-
-        label img {
-            pointer-events: none;
-            margin: 0 auto;
-        }
-
 
         #change_button {
             width: 100%;
@@ -735,9 +780,6 @@
 
         }
 
-
-    }
-    .byobed-outer {
         .sml-t-txt {
             @include max-screen($mobilemax) {
                 width: 100%;

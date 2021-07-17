@@ -4,7 +4,6 @@ namespace SecureTrading\Trust\Gateway\Validator;
 
 use Magento\Payment\Gateway\Validator\ResultInterface;
 
-
 /**
  * Class TransactionUpdateResponseValidator
  * @package SecureTrading\Trust\Gateway\Validator
@@ -38,7 +37,12 @@ class TransactionUpdateResponseValidator extends AbstractResponseValidator
             );
         }
     }
-    public function getErrorCode($response){
+
+	/**
+	 * @param $response
+	 * @return bool
+	 */
+	public function getErrorCode($response){
         $this->logger->debug('--- Error Code: '.$response['responses'][0]['errorcode'].' ---');
         if(isset($response['responses'][0]['errorcode'])){
             if($response['responses'][0]['errorcode'] == 0){
@@ -49,7 +53,11 @@ class TransactionUpdateResponseValidator extends AbstractResponseValidator
         return false;
     }
 
-    public function getErrorMessage($response){
+	/**
+	 * @param $response
+	 * @return string
+	 */
+	public function getErrorMessage($response){
         $this->logger->debug('--- Error Message: '.$response['responses'][0]['errormessage'].' ---');
         if(!empty($response['responses'][0]['errormessage'])) {
                 return $response['responses'][0]['errormessage'];

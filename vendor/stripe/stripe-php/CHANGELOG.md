@@ -1,5 +1,21 @@
 # Changelog
 
+## 7.79.0 - 2021-05-19
+* [#1126](https://github.com/stripe/stripe-php/pull/1126) API Updates
+  * Added support for new resource `Identity.VerificationReport`
+  * Added support for new resource `Identity.VerificationSession`
+  * `File#list.purpose` and `File.purpose` added new enum members: `identity_document_downloadable` and `selfie`.
+
+## 7.78.0 - 2021-05-05
+* [#1120](https://github.com/stripe/stripe-php/pull/1120) Update PHPDocs
+  * Add support for `Radar.EarlyFraudWarning.payment_intent`
+
+## 7.77.0 - 2021-04-12
+* [#1110](https://github.com/stripe/stripe-php/pull/1110) Update PHPDocs
+  * Add support for `acss_debit` on `PaymentMethod`
+  * Add support for `payment_method_options` on `Checkout\Session`
+* [#1107](https://github.com/stripe/stripe-php/pull/1107) Remove duplicate object phpdoc
+
 ## 7.76.0 - 2021-03-22
 * [#1100](https://github.com/stripe/stripe-php/pull/1100) Update PHPDocs
   * Added support for `amount_shipping` on `Checkout.Session.total_details`
@@ -17,7 +33,7 @@
   * Add support for `afterpay_clearpay` on `PaymentMethod`.
 
 ## 7.72.0 - 2021-02-08
-* [#1089](https://github.com/stripe/stripe-php/pull/1089) API Updates
+* [#1089](https://github.com/stripe/stripe-php/pull/1089) Update PHPDocs
   * Add support for `afterpay_clearpay_payments` on `Account.capabilities`
   * Add support for `payment_settings` on `Invoice`
 

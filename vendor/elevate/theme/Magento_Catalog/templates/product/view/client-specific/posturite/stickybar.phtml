@@ -21,16 +21,100 @@ $maxValueInDaysValue = (floor($leadtime / 5)+1) . ' Weeks ';
 }
 }
 
+ $is_backorder = false;
+    $back_order_message = '';
+ if($_product->getTypeId() == 'simple'){
+   
+      
+        $obj = \Magento\Framework\App\ObjectManager::getInstance();  
+$stockRegistry = $obj->get('Magento\CatalogInventory\Api\StockRegistryInterface');
+$stockitem = $stockRegistry->getStockItem($_product->getId(),$_product->getStore()->getWebsiteId());
+
+$backorder_status = $stockitem->getBackorders();
+$in_stock_status = $stockitem->getIsInStock();
+$qty_in_stock = $stockitem->getQty();
+       
+       if($backorder_status == 2 && $in_stock_status == 1 && $qty_in_stock < 1){
+       
+        $is_backorder = true;
+       }
+                 $back_order_message = '';   
+      if($is_backorder || !$_product->isSaleable()){ 
+                $back_order_message = '<div class=" col-md-12 pp-icon-clock2" style="color:#db2727;display:flex;justify-content:center; align-items:center; "> <i class="fa fa-exclamation-circle" style="
+ 
+    font-size: 26px;
+"></i><div class="pp-order-info"><div class=" line">This product is not in stock, but available on backorder</div></div></div>';
+                }
+                
+ 
+ 
+ }else{
+           
+           if(!$_product->isSaleable()){
+                          $back_order_message = '<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;"><i class="fa fa-exclamation-circle" style="
+    height: 22px;
+    width: 22px;
+    font-size: 26px;
+"></i><div class="pp-order-info"><div class=" line">
+                This product is not in stock
+                </div></div></div>';
+           
+           }
+           }
+  
+if($is_backorder || !$_product->isSaleable()){
+  $maxValueInDaysValue = 'Available on request';
+ }
 ?>
+ <style>
+ div#ev-mediaproddetails {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
 
+         .product.media.stickyimage .page-title-wrapper, .product.media.notstickyimage .page-title-wrapper {
+   display:block !important;
+}
+.product.media{
 
+    position: sticky;
+    top: 25px;
 
+}
+   .product-info-container{
+ display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding-bottom: 2.5rem;
+    flex: 0 1 auto;
+    order: 2;
+    width: 100%;
+ }
+.product.media.notstickyimage {
+           position: initial;
+    top: initial;
+}
+.ev-pp-stickybar {
+    z-index: 9;
+    }
+    .pp-order-info-outer.col-md-12.pp-icon-clock2 {
+    max-width: initial;
+}
+.pp_backorder_message i.fa.fa-exclamation-circle {
+    height: auto !important;
+    width: auto !important;
+}
+.ev-pp-stickybar .container>div.sticky-stock-status {
+    flex: 1 1 auto;
+    align-items: center;
+}
+ </style>
 
 <div class="ev-pp-stickybar">
     <div class="container">
-
-
-    <div class="sticky-stock-status"><div class="pp-order-info-outer">
+    <div class="sticky-stock-status row">
+    <div class="pp-order-info-outer col-md-5">
             <i class="pp-icon pp-icon-clock"><svg viewBox="0 0 36 36" version="1.1" fill="#434343" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
                     <title>Group</title>
@@ -42,10 +126,14 @@ $maxValueInDaysValue = (floor($leadtime / 5)+1) . ' Weeks ';
                     </g>
                 </svg></i>
             <div class="pp-order-info">
-                <div class="line">Lead Time: <?= $maxValueInDaysValue; ?></div>
+                <div class="leadtimeReplace line">Lead Time: <?= $maxValueInDaysValue; ?></div>
                 <div class="line">Delivery and returns - <a href="#pinfo-delreturns">find out more</a></div>
             </div>
         </div>
+        <div class="col-md-7">
+     <div id="pp_backorder_message" class="pp_backorder_message "><?php echo $back_order_message; ?></div>
+</div>
+
     </div>
     <div class="sticky-price">
         <div class="product-info-price">
@@ -61,9 +149,9 @@ $maxValueInDaysValue = (floor($leadtime / 5)+1) . ' Weeks ';
 
                 <select id="qtySelectSticky" name="qty" class="qtySelect form-control"><option selected="selected" value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option><option value="100">100</option></select>
                 <div class="actions">
-                    <button type="submit" title="Add to Basket" class="action primary ev_tocartSticky" id="product-addtocart-button-sticky">
+                    <div  class="action primary ev_tocartSticky" id="product-addtocart-button-sticky">
                         <span>Add to Basket</span><i class="ion ion-bag"></i>
-                    </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,6 +159,32 @@ $maxValueInDaysValue = (floor($leadtime / 5)+1) . ' Weeks ';
 
     </div>
     </div>
+</div>
+
+<div id="sticky_debug" style="display:none;width:400px;position:fixed; width: 400px;
+    position: fixed;
+    bottom: 20px;
+    left: 0px;
+    background: #fbfbfb;
+    padding: 20px;
+    border: 2px solid black;
+    z-index: 99;">
+ <table>
+        <tr><td id="debug_1"></td><td id="debug_1v"></td></tr>
+        <tr><td id="debug_2"></td><td id="debug_2v"></td></tr>
+        <tr><td id="debug_3"></td><td id="debug_3v"></td></tr>
+        <tr><td id="debug_4"></td><td id="debug_4v"></td></tr>
+        <tr><td id="debug_5"></td><td id="debug_5v"></td></tr>
+        <tr><td id="debug_6"></td><td id="debug_6v"></td></tr>
+        <tr><td id="debug_7"></td><td id="debug_7v"></td></tr>
+        <tr><td id="debug_8"></td><td id="debug_8v"></td></tr>
+        <tr><td id="debug_9"></td><td id="debug_9v"></td></tr>
+        <tr><td id="debug_10"></td><td id="debug_10v"></td></tr>
+        <tr><td id="debug_11"></td><td id="debug_11v"></td></tr>
+        <tr><td id="debug_12"></td><td id="debug_12v"></td></tr>
+        <tr><td id="debug_13"></td><td id="debug_13v"></td></tr>
+   <tr><td id="debug_14"></td><td id="debug_14v"></td></tr>
+ </table>
 </div>
 
 <script type="text/javascript">
@@ -92,8 +206,12 @@ $maxValueInDaysValue = (floor($leadtime / 5)+1) . ' Weeks ';
 
 
         var prod_add_form_height = jQuery('.product-add-form').outerHeight();
-        var prod_media_init_height = jQuery('.product.media').outerHeight();
-        var stop_position_init = prod_media_init_height + 150;
+        var prod_media_init_height = jQuery('.product.media').outerHeight();  
+            var prod_media_init_start = jQuery('.product.media').offset().top
+        
+             
+                                                          
+        var stop_position_init = prod_media_init_start+prod_media_init_height;
 
         var prodinfo_main = jQuery('.product-info-main').outerHeight();
 
@@ -101,6 +219,8 @@ $maxValueInDaysValue = (floor($leadtime / 5)+1) . ' Weeks ';
 
         var resizeTimeout;
 
+        var scrollPos = 0;
+        
         jQuery(window).on('resize', function () {
             if (resizeTimeout) {
                 // clear the timeout, if one is pending
@@ -112,48 +232,137 @@ $maxValueInDaysValue = (floor($leadtime / 5)+1) . ' Weeks ';
         });
 
         resizeHandler = function () {
-            var screensize = ELEVATE.Resizer.getIsSmallDesktop();
-            var price_pos = jQuery('#product-info-price-main').offset().top;
-            var price_height = jQuery('#product-info-price-main').outerHeight();
+          
+            //var prod_media_height = jQuery('.product.media').outerHeight();
+            //var stop_position = prod_media_height + 00;
+            var price_pos = jQuery('#product-info-price-main').offset().top;      //top of the price
+            var price_height = jQuery('#product-info-price-main').outerHeight();   //height of the price
+             ELEVATE.Resizer.ev_checkWindowWidth();
+           jQuery('#debug_1').html('top of price');
+            jQuery('#debug_1v').html(price_pos);
 
-            var combined_priceposheight = price_pos + price_height;
+            jQuery('#debug_2').html('height of price');
+            jQuery('#debug_2v').html(price_height);     
+            
+
+
+
+     var top_of_title = jQuery('.column.main').offset().top;    
+     var title_height = jQuery('.page-title-wrapper').outerHeight();    
+     
+       var sticky_bar_height = jQuery('.ev-pp-stickybar').outerHeight();    
+                 jQuery('#debug_9').html('top_of_title|title_height');
+            jQuery('#debug_9v').html(top_of_title+"|"+title_height); 
+            
+                jQuery('#debug_10').html('sticky bar height');
+            jQuery('#debug_10v').html(sticky_bar_height); 
+            
+                                   
+            
+            var top_of_image = top_of_title + title_height;      //top of the price
+                                                        
+            
+            var combined_priceposheight = price_pos + price_height;     //bottom of the price
+            
+               jQuery('#debug_3').html('combined_priceposheight');
+            jQuery('#debug_3v').html(combined_priceposheight);  
             //console.log(price_pos);
             //console.log(price_height);
             //console.log(combined_priceposheight);
-            var scrollpos = jQuery(document).scrollTop();
-
-
+             scrollpos = jQuery(document).scrollTop();       //top of windows position
+              
+             
+              var scollPosClone = scrollpos;       //top of windows position
+            
+            
+               jQuery('#debug_4').html('scrollpos ROOT');
+            jQuery('#debug_4v').html(scollPosClone);  
+              
+            var screensize = ELEVATE.Resizer.getIsSmallDesktop();
+               //  alert(screensize);
+            // Greater than Small Desktop *768
             if (screensize == true) {
-                if (scrollpos > combined_priceposheight) {
+            
+                 jQuery('#debug_6').html('SCREENSIZE');
+            jQuery('#debug_6v').html('TRUE');
+                //console.log('bigger than small desktop');
+                //console.log("tabs_pos: " + tabs_pos);
+                //console.log("stop pos init: " + stop_position_init);
+                //console.log("scroll pos: " + scrollpos);
 
-                    if (jQuery('.ev-pp-stickybar').hasClass('sticky-show')) {
-                        // Nope
-                    } else {
-                        //console.log('stickyshow');
-                        jQuery('.ev-pp-stickybar').addClass('sticky-show');
-                        jQuery('body').addClass('ev-pp-stickybar-show');
-                    }
-
-                    if ((tabs_pos - stop_position_init) < scrollpos) {
+                //handle the sticky bay - needs to come in over the current price with a fade effect to look smooth
+                
+                //if window position over the top of the price (offset to niceness)
+                  if (scrollpos > price_pos - 40) {
+                  
+                    jQuery('.ev-pp-stickybar').addClass('sticky-show');
+                  }
+                  else{
+                  jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                  }
+                
+                                jQuery('#debug_7').html('TOP OF IMAGE');
+            jQuery('#debug_7v').html(top_of_image);
+                     jQuery('#debug_8').html('scrollpos + sticky_bar_height');
+            jQuery('#debug_8v').html(scrollpos + sticky_bar_height);
+                             
+            
+                var scrollandstick = scrollpos + sticky_bar_height;
+                if (scrollandstick > top_of_image) {
+                            
+               //   scrollpos = jQuery(document).scrollTop();       //top of windows position
+                       
+                      jQuery('#debug_12').html('scrollandstick');
+            jQuery('#debug_12v').html(scrollandstick);               
+                                    
+            jQuery('#debug_11').html('stop_position_init');
+            jQuery('#debug_11v').html(stop_position_init);  
+                            
+                     jQuery('#debug_5').html('WHICH CODE');
+            jQuery('#debug_5v').html('IF');  
+            
+              jQuery('#debug_14').html('WINDOW');
+            jQuery('#debug_14v').html((jQuery(window).scrollTop() + jQuery(window).height() - 20));  
+            
+          if ( sticky_bar_height > (jQuery(window).scrollTop() + jQuery(window).height() - 20) ) {
+          
+     
+  
+             //       if (scrollandstick > stop_position_init) {
+                    
+                                jQuery('#debug_13').html('INNER CODE RUN');
+            jQuery('#debug_13v').html("HERE");  
+            
+                            
                         jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
                     } else {
-                        jQuery('.product.media').addClass('stickyimage').removeClass('notstickyimage');
-                    }
+                           jQuery('#debug_13').html('INNER CODE RUN');
+            jQuery('#debug_13v').html("THERE");  
+                        jQuery('.product.media').removeClass('notstickyimage').addClass('stickyimage');
+                       }
+                 
                 } else {
-                    jQuery('.product.media').removeClass('notstickyimage');
+                
+                   jQuery('#debug_5').html('WHICH CODE');
+            jQuery('#debug_5v').html('ELSE');  
+                //    jQuery('.product.media').removeClass('notstickyimage');
 
-                    if (jQuery('.ev-pp-stickybar').hasClass('sticky-show')) {
-                        jQuery('.ev-pp-stickybar').removeClass('sticky-show');
-                        jQuery('body').removeClass('ev-pp-stickybar-show');
-                    }
-                    jQuery('.product.media').removeClass('stickyimage');
+                //    if (jQuery('.ev-pp-stickybar').hasClass('sticky-show')) {
+                //        jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                //        jQuery('body').removeClass('ev-pp-stickybar-show');
+                //    }
+                //    jQuery('.product.media').removeClass('stickyimage');
                 }
 
 
 
 
             } else {
-                jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
+            
+                jQuery('#debug_6').html('SCREENSIZE');
+            jQuery('#debug_6v').html('FALSE');  
+            
+              jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
             }
         };
 
@@ -163,53 +372,111 @@ $maxValueInDaysValue = (floor($leadtime / 5)+1) . ' Weeks ';
         jQuery(window).scroll(function () {
             //var prod_media_height = jQuery('.product.media').outerHeight();
             //var stop_position = prod_media_height + 00;
-            var price_pos = jQuery('#product-info-price-main').offset().top;
-            var price_height = jQuery('#product-info-price-main').outerHeight();
+            var price_pos = jQuery('#product-info-price-main').offset().top;      //top of the price
+            var price_height = jQuery('#product-info-price-main').outerHeight();   //height of the price
+             ELEVATE.Resizer.ev_checkWindowWidth();
+         
 
-            var combined_priceposheight = price_pos + price_height;
+
+
+     var top_of_title = jQuery('.column.main').offset().top;    
+     var title_height = jQuery('.page-title-wrapper').outerHeight();    
+     
+       var sticky_bar_height = jQuery('.ev-pp-stickybar').outerHeight();    
+                 jQuery('#debug_9').html('top_of_title|title_height');
+            jQuery('#debug_9v').html(top_of_title+"|"+title_height); 
+            
+                jQuery('#debug_10').html('sticky bar height');
+            jQuery('#debug_10v').html(sticky_bar_height); 
+            
+                                   
+            
+            var top_of_image = top_of_title + title_height;      //top of the price
+                                                        
+            
+            var combined_priceposheight = price_pos + price_height;     //bottom of the price
+            
+               jQuery('#debug_3').html('combined_priceposheight');
+            jQuery('#debug_3v').html(combined_priceposheight);  
             //console.log(price_pos);
             //console.log(price_height);
             //console.log(combined_priceposheight);
-            var scrollpos = jQuery(document).scrollTop();
-            var screensize = ELEVATE.Resizer.getIsSmallDesktop();
-
+             scrollpos = jQuery(document).scrollTop();       //top of windows position
+              
+             
+              var scollPosClone = scrollpos;       //top of windows position
+            
+            
+               jQuery('#debug_4').html('scrollpos ROOT');
+            jQuery('#debug_4v').html(scollPosClone);  
+              
+            var screensize = ELEVATE.Resizer.getIsDesktop();
+               //  alert(screensize);
             // Greater than Small Desktop *768
             if (screensize == true) {
+            console.log("DESKTOP");
+                 jQuery('#debug_6').html('SCREENSIZE');
+            jQuery('#debug_6v').html('TRUE');
                 //console.log('bigger than small desktop');
                 //console.log("tabs_pos: " + tabs_pos);
                 //console.log("stop pos init: " + stop_position_init);
                 //console.log("scroll pos: " + scrollpos);
 
-                if (scrollpos > combined_priceposheight) {
-
-                    if (jQuery('.ev-pp-stickybar').hasClass('sticky-show')) {
-                        // Nope
-                    } else {
-                        //console.log('stickyshow');
-                        jQuery('.ev-pp-stickybar').addClass('sticky-show');
-                        jQuery('body').addClass('ev-pp-stickybar-show');
-                    }
-
-                    if ((tabs_pos - stop_position_init) < scrollpos) {
+                //handle the sticky bay - needs to come in over the current price with a fade effect to look smooth
+                
+                //if window position over the top of the price (offset to niceness)
+                  if (scrollpos > price_pos - 40) {
+                  
+                    jQuery('.ev-pp-stickybar').addClass('sticky-show');
+                  }
+                  else{
+                  jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                  }
+                
+       
+            
+                var scrollandstick = scrollpos + sticky_bar_height;
+                if (scrollandstick > top_of_image) {
+                            
+               //   scrollpos = jQuery(document).scrollTop();       //top of windows position
+                  
+            
+        var sticky_bar_height = jQuery('.product-info-main').offset().top;
+          if ( sticky_bar_height > (jQuery(window).scrollTop() + jQuery(window).height() - 20) ) {
+          
+     console.log("YES");
+  
+             //       if (scrollandstick > stop_position_init) {
+                    
+                            
                         jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
                     } else {
-                        jQuery('.product.media').addClass('stickyimage').removeClass('notstickyimage');
-                    }
+                        console.log("NO");
+                        jQuery('.product.media').removeClass('notstickyimage').addClass('stickyimage');
+                       }
+                 
                 } else {
-                    jQuery('.product.media').removeClass('notstickyimage');
+                
+                   jQuery('#debug_5').html('WHICH CODE');
+            jQuery('#debug_5v').html('ELSE');  
+                //    jQuery('.product.media').removeClass('notstickyimage');
 
-                    if (jQuery('.ev-pp-stickybar').hasClass('sticky-show')) {
-                        jQuery('.ev-pp-stickybar').removeClass('sticky-show');
-                        jQuery('body').removeClass('ev-pp-stickybar-show');
-                    }
-                    jQuery('.product.media').removeClass('stickyimage');
+                //    if (jQuery('.ev-pp-stickybar').hasClass('sticky-show')) {
+                //        jQuery('.ev-pp-stickybar').removeClass('sticky-show');
+                //        jQuery('body').removeClass('ev-pp-stickybar-show');
+                //    }
+                //    jQuery('.product.media').removeClass('stickyimage');
                 }
 
 
 
 
             } else {
-                jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
+              console.log("MOBY");
+                jQuery('#debug_6').html('SCREENSIZE');
+            jQuery('#debug_6v').html('FALSE');  
+                     jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
+            ///    jQuery('.product.media').removeClass('stickyimage').addClass('notstickyimage');
             }
         });
 

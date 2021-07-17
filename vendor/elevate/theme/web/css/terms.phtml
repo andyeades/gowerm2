@@ -1,0 +1,533 @@
+<style>
+
+    #page-main-outer {
+        margin-top: 0;
+    }
+    .breadcrumbs {
+        display: none;
+    }
+    .form-list label {
+        color: #006b7e;
+    }
+
+    .form-list label {
+        margin-top: 3px;
+        padding-left: 5px;
+    }
+
+    .bs-modal-open .bs-modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+
+
+    .main-promo-banner {
+
+    }
+    .main-promo-banner-top {
+        margin-bottom: 30px;
+    }
+    .main-promo-banner-top img {
+        width: 100%;
+        height:auto;
+        max-width:100%;
+    }
+    .promo-banner-link {
+
+    }
+    .main-promo-text-content {
+        font-size: 110%;
+        margin-bottom:30px;
+    }
+    .main-promo-text-content a {
+        color: #47a8a2;
+    }
+    .main-promo-text-content a:hover {
+        color: #006b7f;
+
+    }
+    .main-promo-social-post-links {
+
+    }
+    .main-promo-social-post-links ul {
+        text-align: center;
+    }
+    .main-promo-social-post-links ul li {
+        display: inline-block;
+    }
+    .promo-social-post {
+
+    }
+    .promo-social-post-link {
+
+    }
+
+    .promo-social-link-outer {
+        background-image: url(/media/form/sleep-survey/win-a-bed-social-background.jpg);
+        background: #ceecf7;
+        margin-bottom: 30px;
+    }
+    .promo-social-link-outer:hover {
+        text-decoration: none;
+        transition: all .5s ease-in;
+    }
+    .promo-social-link-outer .btn {
+        text-decoration: none;
+        transition: all .5s ease-in;
+        font-weight: 600;
+        border-radius: 0;
+        background: #006b7e;
+        border-color:#006b7e;
+        color: #ffffff;
+        white-space: initial;
+        width: 100%;
+
+    }
+    .promo-social-link-outer .btn:hover {
+        text-decoration: none;
+        transition: all .5s ease-in;
+        background: #51535F;
+        border-color:#51535F;
+        color: #fff;
+    }
+    .promo-social-link-outer a {
+        display:block;
+        text-decoration: none;
+        transition: all .5s ease-in;
+        padding:40px;
+        text-transform: uppercase;
+        font-weight: 600;
+        border-radius: 0;
+        cursor: pointer;
+    }
+    .promo-social-link-outer a:hover {
+        text-decoration: none;
+        transition: all .5s ease-in;
+    }
+
+    .promo-social-post-link  {
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        height: 78px;
+        width: 78px;
+        line-height: 78px;
+        margin-bottom:25px;
+        font-size: 55px;
+        color: #006b7e;
+        transition: all .5s ease-in;
+        border-radius:78px;
+        background-clip: padding-box;
+    }
+
+    .promo-social-post-link i {
+        position: relative;
+        vertical-align: middle;
+        line-height: 78px;
+    }
+
+    .promo-banner-link img {
+        width: 100%;
+        height:auto;
+        max-width:100%;
+    }
+    .main-promo-banner-bottom {
+
+        background-color: #0e1936;
+        min-height: 150px;
+        padding:  25px;
+        text-align: center;
+    }
+    .main-promo-banner-bottom h3 {
+        font-size: 24px;
+        color: white !important;
+        margin-bottom:24px;
+    }
+    .main-promo-banner-bottom .btn {
+        margin-bottom: 24px;
+        text-transform: uppercase;
+        font-weight: 600;
+        border-radius: 0;
+        width: 50%;
+        height: 50px;
+        font-size: 20px;
+        line-height: 38px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .promo-desktop {
+            display: none;
+        }
+        .promo-mobile {
+            display:block;
+        }
+
+        .main-promo-banner-bottom {
+
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .promo-mobile {
+            display: none;
+        }
+
+        .promo-desktop {
+            display: block;
+        }
+
+        .main-promo-banner-bottom {
+
+        }
+    }
+    @media only screen and (max-width: 991px) and (min-width: 768px) {
+        .promo-social-link-outer a {
+            padding: 40px 0;
+        }
+        .promo-social-link-outer .btn {
+            font-size:11px;
+        }
+    }
+    -->
+
+    .validation-advice {
+        color: #ffffff;
+    }
+    p.required{
+        color: #006b7e;
+
+    }
+    .buttons-set{
+        margin: 0 !important;
+    }
+
+    .webforms-success-text {
+        border: 1px solid #ceecf7;
+        padding: 1rem 1.5rem;
+        background: #ceecf7;
+        border-radius: 5px;
+        color: #006b7e;
+        font-size: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+    .myimin {
+        background-color: white;
+        padding: 9px 5px;
+        border: 1px solid #e9e4e4;
+    }
+    .col-md-4.myim3 {
+        padding: 0px 4px;
+    }
+    div#field_tpn1qb14 label {
+        margin-left: 10px;
+    }
+    .form-list .field {
+        float: left;
+        width: 100%;
+        clear: both;
+        padding-right: 0;
+        padding-left: 0;
+        margin-top: 22px;
+    }
+
+    .buttons-set button.button {
+        float: right;
+        margin-left: 5px;
+        width: 100%;
+        height: 51px;
+        font-size: 25px;
+        font-weight: bold;
+        background: #ba6d7b;
+        border-color: #ba6d7b;
+        color:#ffffff;
+    }
+    .buttons-set button.button:hover {
+        text-decoration: none;
+        transition: all .5s ease-in;
+        background: #51535F;
+        border-color:#51535F;
+        font-size: 25px;
+        font-weight: bold;
+        color: #fff;
+    }
+    ..list-select{
+        padding:0px !important;
+    }
+    .list-select li {
+        float: left;
+        width: 48%;
+        min-height: 252px;
+        margin: 1%;
+        border: 1px solid #ccc;
+        background: #f0f0fc;
+        text-align: center;
+        padding: 2px;
+    }
+    .list-select img {
+        max-width:100%;
+    }
+    .page{
+        /* background-color: #f0f0f0;*/
+    }
+    #sswrap{
+        padding: 40px;
+        background-color: #f0f0f0;
+    }
+    .menu-bg, .breadcrumbs-outer{
+        display:none;
+    }
+    .page-content-wrap-ev {
+        padding: 20px;
+    }
+    #mc-embedded-subscribe {
+        background-color: #ef386c !important;
+        text-transform: none;
+        font-weight: bold !important;
+        width: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+        height: 50px !important;
+        margin-top: 20px !important;
+        font-size: 19px !important;
+    }
+    .page-content-wrap-ev {
+        padding: 20px;
+        background: #ffffff;
+        /* margin-top: 20px; */
+    }
+
+    .signup-form #footer-social ul {
+        border: 0px;
+    }
+    .page-content-wrap-ev p, .page-content-wrap-ev li {
+        font-size: 15px;
+        padding-top: 15px;
+    }
+
+    .ev-wraper .fa-1-5x {
+        font-size:40px;
+    }
+
+    .ev-wraper td {
+        border: none!important;
+    }
+
+    .ev-wraper .share-this-title, .ev-wraper i.fa{
+        color: #006b7e;
+    }
+
+    #mc_embed_signup .mc-field-group input {
+        color: #006b7e;
+    }
+
+    div#mc_embed_signup a {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+    #mc_embed_signup #mce-success-response {
+        color: #ffffff;
+    }
+
+    #homepage-slider {
+        height: auto;
+        background: none;
+        background-size: cover;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    @media only screen and (max-width: 991.98px){
+
+        .bs-modal-open .page-wrapper {
+            transform: unset !important;
+        }
+        .signup-form {
+            margin-top: 20px !important;
+        }
+
+        .contents-wrapper-ev{
+            display:flex;
+            flex-direction: row-reverse;
+            flex-flow: wrap;
+        }
+
+
+
+
+</style>
+<div id="homepage-slider">
+    <img class="desktop-banner d-none d-sm-block" style="width: 100%;" src="{{media url=&quot;wysiwyg/makeover-banner.png&quot;}}">
+    <img class="mobile-banner d-block d-sm-none" style="width: 100%;" src="{{media url=&quot;wysiwyg/makeover-banner.png&quot;}}"></div>
+
+
+
+<div class="container ev-wraper">
+    <div class="row">
+        <div class="col-12">
+            <h1 style="font-size: 45px; text-align: center;">Win A Bedroom Makeover!</h1>
+
+            <p style="font-size: 20px; text-align: center;">Transform your bedroom this summer with the chance to win a beautiful bedroom furniture set, worth up to £2,500!</p>
+            <p style="font-size: 20px; text-align: center;">Enter our bedroom makeover giveaway to be in with a chance to win a Radley furniture set in the colour of your choice and a fully customised bed, using our Build Your Own Bed tool.</p>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-xs-12 col-md-8 order-1 order-sm-2 order-md-2" style="background-color: #ffffff; background: #fff; border-radius: 15px;">
+            <div class="page-content-wrap-ev">
+
+                <h2>How Do I Enter?</h2>
+                <p>It's simple; all you need to do is fill in our survey, provide us with your name and email address so we can contact you if you are the lucky winner and you're done!</p>
+                <p>Just to reiterate, the prizes for this giveaway are as follows:</p>
+
+                {{widget type="Elevate\Widgets\Block\Widget\ProductShowcase" image_1="2D-SGrey-Cornell-Plain.jpg" header_1="1 x Fully Customised Build Your Own Bed" header_colour_1="#006b7e" image_2="Radley_1Drawer_Bedside_Anthracite_1.jpg" header_2="2 x Radley Bedside Tables" header_colour_2="#006b7e" image_3="Radley_Combi_Wardrobe_Anthracite_2.jpg" header_3="1 x Radley Wardrobe" header_colour_3="#006b7e" image_4="Radley_4Drawer_Chest_Anthracite_1.jpg" header_4="1 x Radley Chest" header_colour_4="#006b7e"}}
+                <p>You can pick whichever colour will match your room best with our Radley furniture and you also get a choice of bedroom chest size. Check out our full terms and conditions below to get more in-depth information.</p>
+                <p>So what are you waiting for? Enter now for the chance to win!</p>
+                <div class="main-promo-social-post-links">
+                    <ul class="row">
+                        <li class="col-xs-12 col-sm-4">
+                            <div class="promo-social-link-outer">
+                                <a href="https://www.facebook.com/happybedsuk">
+                                    <div class="promo-social-post">
+                                        <div class="promo-social-post-link soc-ico-fb" href="#">
+                                            <i class="fa fa-facebook"></i>
+                                        </div>
+                                    </div>
+                                    <div class="btn btn-lg btn-hbred">Share Now</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-sm-4">
+                            <div class="promo-social-link-outer">
+                                <a href="https://twitter.com/happybeds">
+                                    <div class="promo-social-post">
+                                        <div class="promo-social-post-link soc-ico-twit">
+                                            <i class="fa fa-twitter"></i>
+                                        </div>
+                                    </div>
+                                    <div class="btn btn-lg btn-hbred">Share Now</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-sm-4">
+                            <div class="promo-social-link-outer">
+                                <a href="https://www.instagram.com/happybeds">
+                                    <div class="promo-social-post">
+                                        <div class="promo-social-post-link soc-ico-inst">
+                                            <i class="fa fa-instagram"></i>
+                                        </div>
+                                    </div>
+                                    <div class="btn btn-lg btn-hbred">Share Now</div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="terms" class="terms">
+                    <p><a class="bs-open-modal" data-toggle="bs-modal" data-target="#termsmodal" style="text-decoration: underline; color: #006b80; cursor: pointer;">Click here</a> to see Terms &amp; Conditions</p>
+
+                    <div class="bs-modal fade" id="termsmodal"  tabindex="-1">
+                        <div class="bs-modal-dialog bs-modal-lg">
+                            <div class="bs-modal-content">
+                                <div class="bs-modal-header">
+                                    <h5 class="bs-modal-title">Competition Terms & Conditions</h5>
+                                    <button type="button" class="close" data-dismiss="bs-modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="bs-modal-body">
+                                    <ol>
+                                        <li>
+                                            The promoter is: Happy Beds operated by Happy Beds Ltd. Company number 10884409. Registered in England and Wales.
+                                        </li>
+                                        <li>
+                                            The competition is open to residents of the United Kingdom aged 18 years or over except employees of Happy Beds and their close relatives and anyone otherwise connected with the organisation or competition.
+                                        </li>
+                                        <li>
+                                            There is no entry fee and no purchase necessary to enter this competition.
+                                        </li>
+                                        <li>
+                                            By entering this competition, an entrant is indicating their agreement to be bound by these terms and conditions.
+                                        </li>
+                                        <li>
+                                            Route to entry for the competition and details of how to enter are on the Facebook, Twitter, and Instagram accounts belonging to Happy Beds.
+                                        </li>
+                                        <li>
+                                            Closing date for entry will be midnight 15th June 2021. After this date the no further entries to the competition will be permitted.
+                                        </li>
+                                        <li>
+                                            No responsibility can be accepted for entries not received for whatever reason.
+                                        </li>
+                                        <li>
+                                            Happy Beds is not responsible for inaccurate prize details supplied to any entrant by any third party connected with this competition.
+                                        </li>
+                                        <li>
+                                            <p>The prize is as follows:</p>
+                                            <ul>
+                                                <li>1 x Fully customisable Build Your Own Bed</li>
+                                                <li>1 x Radley Chest (4 or 6 Drawer) in a choice of White, Grey or Pine</li>
+                                                <li>1 x Radley Wardrobe in a choice of White, Grey or Pine</li>
+                                                <li>2 x Radley Bedside Tables in a choice of White, Grey or Pine</li>
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <br>
+                                            The prize is as stated and no cash or other alternatives will be offered. The prizes are not transferable. Prizes are subject to availability and we reserve the right to substitute any prize with another of equivalent value without giving notice. Please note: This competition prize does not include a mattress.
+                                        </li>
+                                        <li>
+                                            The winner will be chosen at random, from all entries received and verified by Happy Beds and or its agents.
+                                        </li>
+                                        <li>
+                                            The winner will be notified by email within 28 days of the closing date. If the winner cannot be contacted or does not claim the prize within 14 days of notification, we reserve the right to withdraw the prize from the winner and pick a replacement winner.
+                                        </li>
+                                        <li>
+                                            Happy Beds will notify the winner when the prize will be delivered.
+                                        </li>
+                                        <li>
+                                            Happy Beds’ decision in respect of all matters to do with the competition will be final and no correspondence will be entered into.
+                                        </li>
+                                        <li>
+                                            By entering this competition you will be automatically subscribed to the Happy Beds email newsletter.
+                                        </li>
+                                        <li>
+                                            The competition and these terms and conditions will be governed by English law and any disputes will be subject to the exclusive jurisdiction of the courts of England.
+                                        </li>
+                                        <li>
+                                            The winner agrees to the use of their name and image in any publicity material, as well as their entry. Any personal data relating to the winner or any other entrants will be used solely in accordance with current UK data protection legislation and will not be disclosed to a third party without the entrant’s prior consent.
+                                        </li>
+                                        <li>
+                                            Entry into the competition will be deemed as acceptance of these terms and conditions.
+                                        </li>
+                                        <li>
+                                            This promotion is in no way sponsored, endorsed or administered by, or associated with, Facebook, Twitter, Instagram, or any other Social Network. You are providing your information to Happy Beds and not to any other party. The information provided will be used in conjunction with the following Privacy Policy found at <a href="https://www.happybeds.co.uk/help-and-advice/privacy-gdpr-policy">https://www.happybeds.co.uk/help-and-advice/privacy-gdpr-policy</a>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 order-2 order-sm-1 order-md-1">
+            <div class="signup-form" style="background: #ceecf7; color: #006b7e; border-radius: 15px; /* margin-top: -50px; */ padding: 0 15px; -moz-box-shadow: 0px 0px 70px -8px rgba(0,0,0,0.08); box-shadow: 0px 0px 70px -8px rgba(0,0,0,0.08);">
+                <div style="padding-bottom: 15px;" align="center"><br>
+                    <table style="width: 100%;" border="0">
+                        <tbody>
+                        <tr>
+                            <td colspan="3">
+                                <h2 style="text-align: center;">Fill out the survey below!</h2>
+                                <p><br>{{widget type="VladimirPopov\WebForms\Block\Widget\Form" webform_id="63" template="webforms/form/default.phtml" after_submission_form="0" scroll_to="1" async_load="0"}}</p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

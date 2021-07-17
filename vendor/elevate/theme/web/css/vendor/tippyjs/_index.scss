@@ -1,0 +1,90 @@
+@import './_vars.scss';
+@import './animations/_fade.scss';
+
+$tippyjs-color: #333;
+
+[data-#{$tippyjs-namespace-prefix}-root] {
+  max-width: calc(100vw - 10px);
+}
+
+.#{$tippyjs-namespace-prefix}-box {
+  position: relative;
+  background-color: $tippyjs-color;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+  outline: 0;
+  transition-property: transform, visibility, opacity;
+
+  &[data-placement^='top'] > .#{$tippyjs-namespace-prefix}-arrow {
+    bottom: 0;
+
+    &::before {
+      bottom: -7px;
+      left: 0;
+      border-width: 8px 8px 0;
+      border-top-color: initial;
+      transform-origin: center top;
+    }
+  }
+
+  &[data-placement^='bottom'] > .#{$tippyjs-namespace-prefix}-arrow {
+    top: 0;
+
+    &::before {
+      top: -7px;
+      left: 0;
+      border-width: 0 8px 8px;
+      border-bottom-color: initial;
+      transform-origin: center bottom;
+    }
+  }
+
+  &[data-placement^='left'] > .#{$tippyjs-namespace-prefix}-arrow {
+    right: 0;
+
+    &::before {
+      border-width: 8px 0 8px 8px;
+      border-left-color: initial;
+      right: -7px;
+      transform-origin: center left;
+    }
+  }
+
+  &[data-placement^='right'] > .#{$tippyjs-namespace-prefix}-arrow {
+    left: 0;
+
+    &::before {
+      left: -7px;
+      border-width: 8px 8px 8px 0;
+      border-right-color: initial;
+      transform-origin: center right;
+    }
+  }
+
+  &[data-inertia][data-state='visible'] {
+    transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
+  }
+}
+
+.#{$tippyjs-namespace-prefix}-arrow {
+  & {
+    @include co(width, $tippyjs-arrow-size);
+    height: $tippyjs-arrow-size;
+    color: $tippyjs-color;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+  }
+}
+
+.#{$tippyjs-namespace-prefix}-content {
+  position: relative;
+  padding: 5px 9px;
+  z-index: 1;
+}

@@ -1,0 +1,327 @@
+//
+//  Variables
+//
+
+
+$chkout-paymeth-title-border-on: $chkout-default-border-on !default;
+$chkout-paymeth-title-border-position: $chkout-default-border-position !default;
+$chkout-paymeth-title-border-color: $chkout-default-border-color !default;
+$chkout-paymeth-title-border-style: $chkout-default-border-style !default;
+$chkout-paymeth-title-border-thickness: $chkout-default-border-thickness !default;
+
+$chkout-paymeth-title-border-on-desktop: $chkout-default-border-on-desktop !default;
+
+$chkout-paymeth-title-border-radius-on: $chkout-default-border-radius-on !default;
+$chkout-paymeth-title-border-radius: $chkout-default-border-radius !default;
+
+
+$checkout-payment-method-title-padding        : $checkout-shipping-method-padding !default;
+$checkout-payment-method-title-mobile-padding : 15px !default;
+
+$checkout-payment-method-content-padding-xl  : 22px !default;
+
+$checkout-billing-address-details-line-height : 27px !default;
+$checkout-billing-address-details-padding     : 0 0 0 23px !default;
+$checkout-billing-address-form-max-width      : $checkout-shipping-address-max-width !default;
+
+//
+//  Commonf
+//f
+
+.checkout-payment-method {
+    .step-title {
+        border-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .payment-methods {
+        @include max-screen($mobiletablet-max) {
+            //@include lib-css(margin, 0 -($checkout-payment-method-title-mobile-padding));
+        }
+
+    }
+
+    .payment-method {
+        &:first-child {
+            .payment-method-title {
+                border-top: 0;
+            }
+        }
+
+        &._active {
+            .payment-method-content {
+                display: block;
+            }
+        }
+
+        & + .payment-method {
+            .payment-method-title {
+                @if $chkout-paymeth-title-border-on == 1 {
+                    @include elevate-border($chkout-paymeth-title-border-color, $chkout-paymeth-title-border-thickness, $chkout-paymeth-title-border-style, $chkout-paymeth-title-border-position);
+                    @if $chkout-paymeth-title-border-radius-on == 1 {
+                        border-radius: $chkout-paymeth-title-border-radius;
+                    }
+
+                }
+
+
+            }
+        }
+    }
+
+    .payment-method-content {
+        @include max-screen($mobiletablet-max) {
+            @include lib-css(padding, 0 $checkout-payment-method-title-mobile-padding $indent-base);
+        }
+        > .actions-toolbar {
+            > .primary {
+                .action {
+                    &.primary {
+                        @include lib-button-l();
+                    }
+                }
+            }
+        }
+    }
+
+    $checkout-paymenth-method-title-display: flex !default;
+    $checkout-paymenth-method-title-display-desktop: flex !default;
+
+    $checkout-paymenth-method-title-margin-desktop: 0 !default;
+    $checkout-paymenth-method-title-margin: 0 !default;
+
+    $checkout-payment-method-title-stripepayments-display-mobiletabletmax: flex !default;
+
+    .payment-method-title {
+
+        &.stripe-payments {
+            @include max-screen($mobiletablet-max) {
+                @include co(display, $checkout-payment-method-title-stripepayments-display-mobiletabletmax);
+            }
+        }
+        @include min-screen($desktop-min) {
+            @include lib-css(padding, $checkout-payment-method-title-padding 0);
+            @include co(margin, $checkout-paymenth-method-title-margin-desktop, $checkout-paymenth-method-title-margin);
+            @include co(display, $checkout-paymenth-method-title-display-desktop, $checkout-paymenth-method-title-display);
+        }
+        @include co(padding, $checkout-payment-method-title-mobile-padding);
+        @include co(margin, $checkout-paymenth-method-title-margin-desktop, $checkout-paymenth-method-title-margin);
+        @include co(display, $checkout-paymenth-method-title-display);
+
+        .payment-icon {
+            display: inline-block;
+            margin-right: $indent-xs;
+            vertical-align: middle;
+        }
+
+        .action-help {
+            display: inline-block;
+            margin-left: $indent-xs;
+            &.paypal-actionhelp {
+                display: none;
+            }
+        }
+        label {
+
+
+            $checkout-payment-method-title-label-display: flex !default;
+            $checkout-payment-method-title-label-display-desktop: block !default;
+
+            $checkout-payment-method-title-label-flex-wrap-desktop: initial !default;
+            $checkout-payment-method-title-label-flex-wrap: wrap !default;
+
+
+            @include min-screen($desktop-min) {
+                @include co(flex-wrap, $checkout-payment-method-title-label-flex-wrap-desktop, $checkout-payment-method-title-label-flex-wrap);
+                @include co(display, $checkout-payment-method-title-label-display-desktop, $checkout-payment-method-title-label-display);
+            }
+            @include co(flex-wrap, $checkout-payment-method-title-label-flex-wrap);
+            @include co(display, $checkout-payment-method-title-label-display);
+        }
+
+        $checkout-stripepayments-span-fc-order: 2 !default;
+        $checkout-stripepayments-span-fc-marginleft: 0 !default;
+        $checkout-stripepayments-span-fc-float: none !default;
+        $checkout-stripepayments-span-fc-position: static !default;
+
+        $checkout-stripepayments-span-fc-order-desktop: 0 !default;
+        $checkout-stripepayments-span-fc-marginleft-desktop: 0 !default;
+        $checkout-stripepayments-span-fc-float-desktop: right !default;
+        $checkout-stripepayments-span-fc-position-desktop: relative !default;
+
+        label[for="stripe_payments"] {
+            > span:first-child {
+                @include co(order, $checkout-stripepayments-span-fc-order);
+                @include co(margin-left, $checkout-stripepayments-span-fc-marginleft);
+                @include co(float, $checkout-stripepayments-span-fc-float);
+                @include co(position,  $checkout-stripepayments-span-fc-position);
+                @include min-screen($desktop-min) {
+                    @include co(order, $checkout-stripepayments-span-fc-order-desktop, $checkout-stripepayments-span-fc-order);
+                    @include co(margin-left, $checkout-stripepayments-span-fc-marginleft-desktop, $checkout-stripepayments-span-fc-marginleft);
+                    @include co(float, $checkout-stripepayments-span-fc-float-desktop, $checkout-stripepayments-span-fc-float);
+                    @include co(position, $checkout-stripepayments-span-fc-position-desktop, $checkout-stripepayments-span-fc-position);
+                }
+
+            }
+
+            $checkout-stripepayments-span-lc-order: 1 !default;
+            $checkout-stripepayments-span-lc-display: block !default;
+            $checkout-stripepayments-span-lc-width: 100% !default;
+
+            $checkout-stripepayments-span-lc-order-desktop: 0 !default;
+            $checkout-stripepayments-span-lc-display-desktop: initial !default;
+            $checkout-stripepayments-span-lc-width-desktop: auto !default;
+
+            > span:last-child {
+
+                @include co(order, $checkout-stripepayments-span-lc-order);
+                @include co(display, $checkout-stripepayments-span-lc-display);
+                @include co(width,  $checkout-stripepayments-span-lc-width);
+                @include min-screen($desktop-min) {
+                    @include co(order, $checkout-stripepayments-span-lc-order-desktop, $checkout-stripepayments-span-lc-order);
+                    @include co(display, $checkout-stripepayments-span-lc-display-desktop, $checkout-stripepayments-span-lc-display);
+                    @include co(width, $checkout-stripepayments-span-lc-width-desktop, $checkout-stripepayments-span-lc-width);
+                }
+            }
+
+        }
+    }
+
+    .payment-method-content {
+        display: none;
+        @include lib-css(padding, 0 0 $indent-base $checkout-payment-method-content-padding-xl);
+        .fieldset {
+            &:not(:last-child) {
+                margin: 0 0 $indent-base;
+            }
+        }
+    }
+
+    .payment-group {
+        & + .payment-group {
+            .step-title {
+                @include co(margin, $indent-base 0 0);
+            }
+        }
+    }
+
+    .field-select-billing,
+    .billing-address-form {
+        @include lib-css(max-width, $checkout-billing-address-form-max-width);
+    }
+
+    .billing-address-same-as-shipping-block {
+        margin: 0 0 $indent-s;
+    }
+
+    .checkout-billing-address {
+        margin: 0 0 $indent-base;
+
+        .primary {
+            .action-update {
+                margin-right: 0;
+            }
+        }
+
+        .action-cancel {
+            @include max-screen($mobiletablet-max) {
+                    margin-top: $indent-s;
+            }
+            @include abs-action-button-as-link();
+        }
+
+        .billing-address-details {
+            @include lib-css(line-height, $checkout-billing-address-details-line-height);
+            @include lib-css(padding, $checkout-billing-address-details-padding);
+        }
+    }
+
+    .payment-method-note {
+        & + .checkout-billing-address {
+            margin-top: $indent-base;
+        }
+    }
+
+    .field-select-billing {
+        > .label {
+            @include abs-visually-hidden();
+        }
+    }
+
+    .payment-method-iframe {
+        background-color: transparent;
+        display: none;
+        width: 100%;
+    }
+
+    .no-payments-block {
+        @include co(margin, $indent-base 0);
+    }
+
+    .payments {
+        .legend {
+            @include abs-visually-hidden();
+        }
+    }
+}
+
+//
+//  Mobile
+//
+
+
+//
+//  Desktop
+//
+
+@include min-screen($screen-m) {
+    .checkout-payment-method {
+        .actions-toolbar {
+            .primary {
+                float: right;
+                margin: 0;
+            }
+        }
+
+        .fieldset {
+            > .field-select-billing {
+                > .control {
+                    float: none;
+                    width: 100%;
+                }
+            }
+        }
+
+        .payment-method-content {
+            .fieldset {
+                > .field {
+                    margin: 0 0 $indent-base;
+
+                    &.type {
+                        .control {
+                            margin-left: 25.8%;
+                        }
+
+                        &.no-detection {
+                            .control {
+                                margin-left: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .checkout-billing-address {
+        .action-update {
+            float: right;
+        }
+
+        .actions-toolbar {
+            .action-cancel {
+                margin: 6px $indent-base 0 0;
+            }
+        }
+    }
+}

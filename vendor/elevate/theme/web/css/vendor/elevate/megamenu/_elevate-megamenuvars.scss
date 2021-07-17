@@ -424,7 +424,7 @@ $flyout-header-title-margin:          15px 0 0 0 !default;
         display: inline-block;
         height: 2px;
         width: 10px;
-        background: $arrow-color-mobile;
+        @include co(background, $arrow-color-mobile);
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
     }
@@ -471,7 +471,7 @@ $flyout-header-title-margin:          15px 0 0 0 !default;
         display: inline-block;
         height: 2px;
         width: 10px;
-        background: $arrow-color-mobile;
+        @include co(background, $arrow-color-mobile);
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
     }

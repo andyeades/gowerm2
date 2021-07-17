@@ -6,6 +6,11 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\View\Result\PageFactory;
 
+/**
+ * Class Raw
+ *
+ * @package SecureTrading\Trust\Controller\PaymentPage
+ */
 class Raw extends Action
 {
     /**
@@ -26,7 +31,10 @@ class Raw extends Action
         $this->resultPageFactory = $resultPageFactory;
     }
 
-    public function execute()
+	/**
+	 * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
+	 */
+	public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
         return $resultPage;

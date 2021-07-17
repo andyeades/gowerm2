@@ -1,7 +1,7 @@
 <?php
 
 namespace SecureTrading\Trust\Plugin\Controller\Adminhtml\Order\Create;
-
+use Magento\Framework\Message\ManagerInterface;
 /**
  * Class Save
  * @package SecureTrading\Trust\Plugin\Controller\Adminhtml\Order\Create
@@ -17,16 +17,15 @@ class Save
      */
     protected $_registry;
 
-    /**
-     * Save constructor.
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @param \Magento\Framework\Registry $registry
-     */
+    protected $_messageManager;
+
     public function __construct(\Magento\Framework\App\RequestInterface $request,
-                                \Magento\Framework\Registry $registry)
+                                \Magento\Framework\Registry $registry,
+                                ManagerInterface $messageManager)
     {
         $this->_request = $request;
         $this->_registry = $registry;
+        $this->_messageManager = $messageManager;
     }
 
     /**
@@ -42,8 +41,13 @@ class Save
 
         if($result instanceof \Magento\Framework\Controller\Result\Redirect && !$result instanceof \Magento\Framework\Controller\Result\Forward){
             if ($tempPaymentData['method'] == 'secure_trading') {
-                return $result->setPath('securetrading/paymentpage/adminredirect', ['order_id' => $orderId]);
+	            $this->_messageManager->getMessages(true);
+	            return $result->setPath('securetrading/paymentpage/adminredirect', ['order_id' => $orderId]);
             }
+	        if ($tempPaymentData['method'] == 'api_secure_trading') {
+	        	$this->_messageManager->getMessages(true);
+		        return $result->setPath('securetrading/apisecuretrading/adminredirect', ['order_id' => $orderId]);
+	        }
             return $result;
         }
         return $result;

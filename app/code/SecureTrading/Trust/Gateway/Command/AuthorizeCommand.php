@@ -8,10 +8,17 @@ use Magento\Payment\Gateway\CommandInterface;
 use Magento\Sales\Model\Order;
 use SecureTrading\Trust\Helper\Logger\Logger;
 
-
+/**
+ * Class AuthorizeCommand
+ *
+ * @package SecureTrading\Trust\Gateway\Command
+ */
 class AuthorizeCommand implements CommandInterface
 {
-    private $logger;
+	/**
+	 * @var Logger
+	 */
+	private $logger;
     /**
      * AuthorizeAndCaptureCommand constructor.
      * @param Logger $logger
@@ -54,13 +61,15 @@ class AuthorizeCommand implements CommandInterface
                 }
                 $this->logger->debug('--- ORDER INCREMENT ID: '. $order->getIncrementId() .'---');
                 $this->logger->debug('--- AUTHORIZE ACTION ---');
-                $payment = $payment->authorize(true, $order->getBaseTotalDue());
+
                 $payment->setAmountAuthorized($order->getTotalDue());
 
-				$payment->setAdditionalInformation('is_complete', true);
+                $payment->setAdditionalInformation('is_complete', true);
 
-                $order->setState(Order::STATE_PROCESSING);
-                $order->setStatus(Order::STATE_PROCESSING);
+                $payment = $payment->authorize(true, $order->getBaseTotalDue());
+
+                $order->setState(Order::STATE_NEW);
+                $order->setStatus($order->getConfig()->getStateDefaultStatus(Order::STATE_NEW));
                 $order->save();
 
 

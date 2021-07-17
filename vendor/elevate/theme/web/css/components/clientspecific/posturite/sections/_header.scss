@@ -1,0 +1,239 @@
+@if $sitename == posturite {
+
+    $hdr-mt-o-bg-color-on: 1 !default;
+    $hdr-mt-o-bg-color: #235e4b !default;
+
+    $hdr-mt-o-border-on: 1 !default;
+    $hdr-mt-o-border-color: #4B6F62 !default;
+    $hdr-mt-o-border-thickness: 1px !default;
+    $hdr-mt-o-border-style: solid !default;
+    $hdr-mt-o-border-position: bottom !default;
+
+
+    $hdr-mti-default-flex: 0 1 auto !default;
+
+
+    $hdr-mti-border-on: 0 !default;
+    $hdr-mti-border-color: #4B6F62 !default;
+    $hdr-mti-border-thickness: 1px !default;
+    $hdr-mti-border-style: solid !default;
+    $hdr-mti-border-position: bottom !default;
+
+
+    $hdr-mti-one-order: 1 !default;
+    $hdr-mti-one-width: auto !default;
+    $hdr-mti-one-padding: 0 !default;
+    $hdr-mti-one-margin: 0 !default;
+    $hdr-mti-one-align-self: flex-start !default;
+    $hdr-mti-one-flex: 0 1 auto !default;
+
+
+    $hdr-mti-two-order: 2 !default;
+    $hdr-mti-two-width: 30% !default;
+    $hdr-mti-two-padding: 0 0 0 0.5rem !default;
+    $hdr-mti-two-margin: 0 !default;
+    $hdr-mti-two-align-self: center !default;
+    $hdr-mti-two-flex: 1 1 auto !default;
+
+    $hdr-mti-three-order: 3 !default;
+    $hdr-mti-three-width: auto !default;
+    $hdr-mti-three-padding: 0 !default;
+    $hdr-mti-three-margin: 0 !default;
+    $hdr-mti-three-align-self: flex-end !default;
+    $hdr-mti-three-flex: 0 1 auto !default;
+
+
+    $ev-hdr-tabs-align-items: center !default;
+
+    $ev-hdr-tabs-li-padding: 0.75rem !default;
+    $ev-hdr-tabs-li-first-padding-different-desktopmd: 1 !default;
+    $ev-hdr-tabs-li-first-padding-desktopmd: 0.75rem 0.75rem 0.75rem 0 !default;
+    $ev-hdr-tabs-li-text-transform-on: 1 !default;
+    $ev-hdr-tabs-li-text-transform: uppercase !default;
+    $ev-hdr-tabs-li-a-padding: 0.25rem 1.25rem !default;
+    $ev-hdr-tabs-li-a-fontsize: 0.75rem !default;
+    $ev-hdr-tabs-li-a-fontweight: 600 !default;
+    $ev-hdr-tabs-li-a-color: white !default;
+    $ev-hdr-tabs-li-a-hover-color: darken($ev-hdr-tabs-li-a-color, 15%) !default;
+    $ev-hdr-tabs-li-width: auto !default;
+
+
+    // TopLine Links
+    $ev-topline-links-align-items: center !default;
+
+    $ev-topline-links-li-padding: 0.75rem 0 !default;
+    $ev-topline-links-li-text-transform-on: 0 !default;
+    $ev-topline-links-li-text-transform: uppercase !default;
+    $ev-topline-links-li-a-padding: 0.25rem 1.375rem !default;
+    $ev-topline-links-li-last-a-padding-different-desktopmd: 1 !default;
+    $ev-topline-links-li-last-a-padding-desktopmd: 0.25rem 0 0.25rem 1.375rem !default;
+    $ev-topline-links-li-a-fontsize: 0.75rem !default;
+    $ev-topline-links-li-a-fontweight: 500 !default;
+    $ev-topline-links-li-a-color: white !default;
+    $ev-topline-links-li-a-hover-color: darken($ev-topline-links-li-a-color, 15%) !default;
+    $ev-topline-links-border-on: 1 !default;
+    $ev-topline-links-border-color: #4B6F62 !default;
+    $ev-topline-links-border-thickness: 1px !default;
+    $ev-topline-links-border-style: solid !default;
+    $ev-topline-links-border-position: right !default;
+    $ev-topline-links-li-width: auto !default;
+
+
+    #hdr-mt-o {
+        @include max-screen($mobile-menu-visible-max) {
+            display: none;
+        }
+        @if $hdr-mt-o-border-on == 1 {
+            @include elevate-border($hdr-mt-o-border-color, $hdr-mt-o-border-thickness, $hdr-mt-o-border-style, $hdr-mt-o-border-position);
+        }
+        @if $hdr-mt-o-bg-color-on == 1 {
+            background-color: $hdr-mt-o-bg-color;
+        }
+    }
+
+
+    #hdr-mt-i {
+        display: flex;
+        flex-wrap: wrap;
+        @if $hdr-mti-border-on == 1 {
+            @include elevate-border($hdr-mti-border-color, $hdr-mti-border-thickness, $hdr-mti-border-style, $hdr-mti-border-position);
+        }
+
+        > div {
+            flex: $hdr-mti-default-flex;
+        }
+
+        .hdr-mti-one {
+            @include co(order, $hdr-mti-one-order);
+            @include co(width, $hdr-mti-one-width);
+            @include co(padding, $hdr-mti-one-padding);
+            @include co(margin, $hdr-mti-one-margin);
+            align-self: $hdr-mti-one-align-self;
+            @include co(flex, $hdr-mti-one-flex, $hdr-mti-default-flex);
+
+        }
+
+        .hdr-mti-two {
+            @include co(order, $hdr-mti-two-order);
+            @include co(width, $hdr-mti-two-width);
+            @include co(padding, $hdr-mti-two-padding);
+            @include co(margin, $hdr-mti-two-margin);
+            align-self: $hdr-mti-two-align-self;
+            @include co(flex, $hdr-mti-two-flex, $hdr-mti-default-flex);
+        }
+
+        .hdr-mti-three {
+            @include co(order, $hdr-mti-three-order);
+            @include co(width, $hdr-mti-three-width);
+            @include co(padding, $hdr-mti-three-padding);
+            @include co(margin, $hdr-mti-three-margin);
+            align-self: $hdr-mti-three-align-self;
+            @include co(flex, $hdr-mti-three-flex, $hdr-mti-default-flex);
+        }
+    }
+
+
+    .ev-hdr-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        @include co(align-items, $ev-hdr-tabs-align-items);
+
+        > li {
+            @include co(width, $ev-hdr-tabs-li-width);
+            flex: 0 1 auto;
+            @include co(padding, $ev-hdr-tabs-li-padding);
+            @include min-screen($desktop-medium-min) {
+                @if $ev-hdr-tabs-li-first-padding-different-desktopmd == 1 {
+                    &:first-child {
+                        @include co(padding, $ev-hdr-tabs-li-first-padding-desktopmd);
+                    }
+                }
+            }
+
+
+            @if $ev-hdr-tabs-li-text-transform-on == 1 {
+                @include co(text-transform, $ev-hdr-tabs-li-text-transform);
+            }
+
+            > a {
+                @include co(font-size, $ev-hdr-tabs-li-a-fontsize);
+                @include co(font-weight, $ev-hdr-tabs-li-a-fontweight);
+                @include co(color, $ev-hdr-tabs-li-a-color);
+                @include co(padding, $ev-hdr-tabs-li-a-padding);
+
+                &:hover {
+                    @include co(color, $ev-hdr-tabs-li-a-hover-color);
+                }
+
+
+            }
+
+            &:nth-of-type(1) {
+                a {
+                    background-color: #0095CD;
+                    border-radius: $border-radius;
+                }
+
+            }
+
+
+        }
+    }
+
+
+    .ev-hdr-topline-links {
+        display: flex;
+        flex-wrap: wrap;
+        @include co(align-items, $ev-topline-links-align-items);
+
+        > li {
+            @include co(width, $ev-topline-links-li-width);
+            flex: 0 1 auto;
+            @include co(padding, $ev-topline-links-li-padding);
+            @if $ev-topline-links-li-text-transform-on == 1 {
+                @include co(text-transform, $ev-topline-links-li-text-transform);
+            }
+
+
+            > a {
+                @include co(font-size, $ev-topline-links-li-a-fontsize);
+                @include co(font-weight, $ev-topline-links-li-a-fontweight);
+                @include co(color, $ev-topline-links-li-a-color);
+                @include co(padding, $ev-topline-links-li-a-padding);
+
+                &:hover {
+                    @include co(color, $ev-topline-links-li-a-hover-color);
+                }
+
+
+            }
+
+            @include min-screen($desktop-medium-min) {
+                @if $ev-topline-links-li-last-a-padding-different-desktopmd == 1 {
+                    &:last-child {
+                        > a {
+                            @include co(padding, $ev-topline-links-li-last-a-padding-desktopmd);
+                        }
+
+                    }
+                }
+            }
+
+            &:first-of-type {
+                a {
+                    @if $ev-topline-links-border-on == 1 {
+                        @include elevate-border($ev-topline-links-border-color, $ev-topline-links-border-thickness, $ev-topline-links-border-style, $ev-topline-links-border-position);
+                    }
+                }
+
+            }
+
+            &:nth-of-type(2) {
+                a {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+}

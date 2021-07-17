@@ -9,7 +9,14 @@
 //phpcs:disable Magento2.Files.LineLength.MaxExceeded
 ?>
 <?php $_giftMessage = false; ?>
+
+<?php // Need to check if the Gift Message is required. If we do this in delivery it will require the module to be on - is this ia problem on Posturite?
+// May need another solution like it being in theme options? ?>
+
 <?php switch ($block->getCheckoutType()) : case 'onepage_checkout': ?>
+
+
+
     <fieldset class="fieldset gift-message">
         <legend class="legend"><span><?= $block->escapeHtml(__('Do you have any gift items in your order?')) ?></span></legend><br>
 

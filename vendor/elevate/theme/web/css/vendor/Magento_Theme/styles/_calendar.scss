@@ -21,7 +21,7 @@ $mage-calendar-color-13: #959595;
     border: $mage-calendar-color-3 4px solid;
     //Instead of the line below you could use @include box-sizing($bs)
     box-sizing: border-box;
-    background: $mage-calendar-color-4;
+    @include co(background, $mage-calendar-color-4);
     //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
     box-shadow: 5px 5px 10px 0 $mage-calendar-color-5;
     width: auto;
@@ -130,7 +130,7 @@ $mage-calendar-color-13: #959595;
         }
     }
     .ui-datepicker-calendar {
-        background: $mage-calendar-color-3;
+        @include co(background, $mage-calendar-color-3);
         border: $mage-calendar-color-6 1px solid;
         border-collapse: collapse;
         td {
@@ -140,11 +140,11 @@ $mage-calendar-color-13: #959595;
                 display: block;
             }
             .ui-state-hover {
-                background: $mage-calendar-color-7;
+                @include co(background, $mage-calendar-color-7);
             }
         }
         th {
-            background: $mage-calendar-color-4;
+            @include co(background, $mage-calendar-color-4);
             border: $mage-calendar-color-6 1px solid;
             padding: 4px;
             text-transform: uppercase;
@@ -154,13 +154,13 @@ $mage-calendar-color-13: #959595;
             border: $mage-calendar-color-6 1px solid;
         }
         .ui-datepicker-today {
-            background: $mage-calendar-color-8;
+            @include co(background, $mage-calendar-color-8);
         }
         .ui-state-active {
-            background: $mage-calendar-color-9;
+            @include co(background, $mage-calendar-color-9);
         }
         .ui-state-disabled {
-            background: $mage-calendar-color-12;
+            @include co(background, $mage-calendar-color-12);
             span {
                 color: $mage-calendar-color-13;
             }
@@ -258,7 +258,7 @@ $mage-calendar-color-13: #959595;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 10px;
     border: none;
-    background: $mage-calendar-color-10;
+    @include co(background, $mage-calendar-color-10);
     .ui-slider-handle {
         margin-left: -5px;
     }
@@ -268,7 +268,7 @@ $mage-calendar-color-13: #959595;
     width: 10px;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 10px;
-    background: $mage-calendar-color-11;
+    @include co(background, $mage-calendar-color-11);
     display: block;
     position: absolute;
 }

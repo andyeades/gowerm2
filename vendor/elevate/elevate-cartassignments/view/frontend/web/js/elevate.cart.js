@@ -198,7 +198,7 @@ function getAddons(item_id, product_id){
 
             if(data.mobile_price_update){
                 jQuery.each( data.mobile_price_update, function( index, value ){
-                    jQuery("#rowprice_"+index+" .origprice").html(data.price_update);
+                    jQuery("#rowprice_"+index+" .origprice").html("&pound;"+(parseFloat(data.price_update)).toFixed(2));
 //if(value){
 
                     var origprice = jQuery("#rowprice_"+index+" .origprice").attr('data-price');
@@ -207,7 +207,7 @@ function getAddons(item_id, product_id){
                     console.log(parseFloat(value));
                     console.log(parseFloat(origprice));
                     // Umm .cart-price-mobile doesn't exist in m2
-                    jQuery("#rowprice_"+index+" .price").html(value);
+                    jQuery("#rowprice_"+index+" .price").html("&pound;"+(parseFloat(value)).toFixed(2));
 
                     //jQuery("#rowprice_"+index+" .cart-price-mobile").html("&pound;"+(parseFloat(value)).toFixed(2));
 //}
@@ -320,6 +320,69 @@ function addItemToCart(product_id, parent_id, type, remove_id, postcode, addon_i
 }
 
 
+
+
+/* Donation Addon*/
+
+function addDonationToCart(){
+    var tS=new Date().getTime();
+
+
+ 
+      var searchbuttonwidth = jQuery('#donation_button').outerWidth();
+       jQuery('#donation_button').html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>').css({"min-width": searchbuttonwidth});
+
+
+     var donation_amount = jQuery('#ev_donation_value').find(':selected').val();   
+     var donation_type = jQuery('#ev_donation_value').find(':selected').data('id');
+     
+   // var alertmessage = jQuery('#'+parent_id+'_alertmessage');
+    var url = '/ev_cartassignments/addon/adddonation?amount=' + donation_amount +'&type=' + donation_type ;
+
+ 
+  
+    var data = ''
+
+    try {
+        var searchbuttonwidth = jQuery("#ev_cart_totals").outerWidth();
+        //console.log(searchbuttonwidth);
+        jQuery("#ev_cart_totals").css({"min-width": searchbuttonwidth});
+        //   jQuery('#ev_cart_totals').html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>').css({"min-width": searchbuttonwidth});
+
+        console.log(url);
+
+        jQuery.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'get',
+            success: function (data) {
+               // console.log(data.status);
+
+                if(data.status == 'ERROR'){
+                  //  console.log("OUTPUT_EROR");
+
+                  //  jQuery('.prod_'+data.lookup_id + ' .col-md-10 .replacewrap').html('This service is not available in your postcode <div id="tryanotherpostcode" onclick="checkPostcodeArea(\'#mattcontainer_' + data.quote_item_id_parent + ' .prod_'+data.lookup_id + ' .col-md-10 .replacewrap\', \''+product_id+'\', \'' + data.quote_item_id_parent + '\', \'' + data.addon_id + '\');">Try another postcode</div>');
+
+                }
+                else{
+                 location.reload(true);
+                    //jQuery('#tritemtotal').html(data.grand_total_inc_vat);
+                    //jQuery('#tritemquantity').html(data.cart_quantity);
+                    //update totals
+                   // jQuery('#ev_cart_totals').html(data.cart_totals);
+                   // jQuery('.hdr-mybasket').html(data.sidebar);
+                  
+                 //   getAddons(parent_id);
+                   // console.log("HERE");
+                    //update Addons for line item
+                }
+            }
+        });
+    } catch (e) {
+    }
+
+}
+/*End Donation Addon*/
 function removeAddon(assignment_id, price_id){
     var tS=new Date().getTime();
 
@@ -474,7 +537,11 @@ jQuery( document ).ready(function() {
 
                            // jQuery('.hdr-mybasket').html(data.sidebar);
                             //update Addons for line item
-                            jQuery('#rowprice_'+data.row_id+" .cart-price").html('<span class="price origprice" data-orig-price="'+data.row_total+'">&pound;'+data.row_total+'</span>');
+                            
+                           
+                            
+                            var update_price =  (Math.round(data.row_total * 100) / 100).toFixed(2);
+                            jQuery('#rowprice_'+data.row_id+" .cart-price").html('<span class="price origprice" data-orig-price="'+data.row_total+'">&pound;'+update_price+'</span>');
                             //  jQuery('#rowprice_'+data.row_id+" .cart-price-mobile").html('<span class="price">'+data.row_total+'</span>');
 
                             getAddons(itemid);
@@ -538,9 +605,9 @@ jQuery( document ).ready(function() {
                             jQuery('#tritemquantity').html(data.cart_quantity);
                             jQuery('.hdr-mybasket').html(data.sidebar);
                             jQuery('#ev_cart_totals').html(data.cart_totals);
-
+                                var update_price =  (Math.round(data.row_total * 100) / 100).toFixed(2);
                             //update Addons for line item
-                            jQuery('#rowprice_'+data.row_id+' .cart-price').html('<span class="price origprice" data-orig-price="'+data.row_total+'">&pound;'+data.row_total+'</span>');
+                            jQuery('#rowprice_'+data.row_id+' .cart-price').html('<span class="price origprice" data-orig-price="'+data.row_total+'">&pound;'+update_price+'</span>');
                             getAddons(itemid);
                         }
 
@@ -558,7 +625,7 @@ jQuery( document ).ready(function() {
 
 
 function updateTotalsBlock(){
-alert
+    ELEVATE.Donation.getDonation();
     /*Use m2 require js update*/
 
     require(

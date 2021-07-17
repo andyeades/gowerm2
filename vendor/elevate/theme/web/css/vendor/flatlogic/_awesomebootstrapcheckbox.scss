@@ -109,7 +109,7 @@ $abc-checkbox-label-after-margin-left-mobilemax: false !default;
         }
 
         &:checked + label::after {
-            font-family: $abc-font-family-icon;
+            @include co(font-family, $abc-font-family-icon);
            @include co(content, $abc-check-icon);
         }
 

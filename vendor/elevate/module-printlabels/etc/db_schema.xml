@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+<table name="elevate_printlabels_holidaydates" resource="default" engine="innodb" comment="Delivery Holiday Dates">
+    <column xsi:type="int" name="printlabelsholidaydates_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="datetime" name="start_date" on_update="false" nullable="true" comment="start_time"/>
+    <column xsi:type="datetime" name="end_date" on_update="false" nullable="true" comment="end_time"/>
+    <column xsi:type="varchar" name="printlabelsholidaytitle" nullable="false" length="255" comment="title"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+        <column name="printlabelsholidaydates_id"/>
+    </constraint>
+</table>
+
+    <table name="elevate_printlabels_api" resource="default" engine="innodb" comment="Print Labels API Data">
+        <column xsi:type="int" name="printlabels_api_id" padding="10" unsigned="true" nullable="false" identity="true" comment="id"/>
+        <column xsi:type="datetime" name="last_checked" on_update="false" nullable="true" comment="last_checked" />
+        <column xsi:type="varchar" name="geosession" nullable="false" length="255" comment="geosession"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="printlabels_api_id"/>
+        </constraint>
+    </table>
+
+</schema>

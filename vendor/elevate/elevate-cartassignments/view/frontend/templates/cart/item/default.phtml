@@ -9,20 +9,6 @@
     .bs-modal {
         overflow-y: auto;
     }
-
-    .price-including-tax:after {
-
-        margin-left: 5px;
-    }
-
-    .price-excluding-tax:after {
-
-        margin-left: 5px;
-    }
-
-    dl.item-options .price {
-        display: none;
-    }
 </style>
 <?
 
@@ -73,7 +59,7 @@ $cart = $objectManager->get('\Magento\Checkout\Model\Cart');
 
 $total_addon_qty = 0;
 foreach ($collection as $data) {
-
+ 
     //echo "<pre>";
     //   print_r($data->getData());
     //   echo "</pre>";
@@ -86,7 +72,7 @@ foreach ($collection as $data) {
 
     $item_lookup = $cart->getQuote()->getItemById($data['parent_quote_item_id']);
     if (!$item_lookup && $data['parent_quote_item_id'] != $current_quote_item_id || $data['parent_quote_item_id'] == $data['linked_quote_item_id']) {
-        //   echo "NO ITEM";
+     //   echo "NO ITEM";
         continue;
     }
     // if ($data['enable_addon'] == 1) {
@@ -94,7 +80,7 @@ foreach ($collection as $data) {
     //  $assignment = $_cartAssignmentsModal->loadAssigned($data['parent_quote_item_id']);
     //print_r($assignment->getData());
     if (is_numeric($data['qty'])) {
-
+  
         $current_item_qty = $current_item_qty - $data['qty'];
 
         // echo "NEW CIQ = $current_item_qty <br>";
@@ -133,40 +119,42 @@ if ($current_item_qty > 0) {
 // if the qty of the product is not all assigned - then we can continue generating the row - otherwise we dont need to show it
 if (!$dontShow) {
 
-    $product_url = $this->hasProductUrl();
+$product_url = $this->hasProductUrl();
 
-    /* call right image for the cart - needs moving to a helper */
+/* call right image for the cart - needs moving to a helper */
 
-    $image_url = $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml();
+$image_url = $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml();
 
-    $bespoke_image = $_item->getBespokeImage();
-    if (!empty($bespoke_image)) {
+$bespoke_image = $_item->getBespokeImage();
+if (!empty($bespoke_image)) {
 
-        $image_url = '<img class="product-image-photo ls-is-cached lazyloaded" src="' . $bespoke_image . '" />';
+    $image_url = '<img class="product-image-photo ls-is-cached lazyloaded" src="'.$bespoke_image.'" />';
+
+}
+$type_id = $_item->getProduct()->getTypeId();
+if ($type_id == 'simple') {
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $product = $objectManager->create('Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable')->getParentIdsByChild($_item->getProduct()->getId());
+
+
+
+    if(isset($product[0])){
+        //this is parent product id..
+        $product_conf = $objectManager->create('Magento\Catalog\Model\Product')->load($product[0]);
+       // $image_url = $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml();
+
+        $image_url = '<img class="product-image-photo ls-is-cached lazyloaded" src="/media/catalog/product'.$product_conf->getData('thumbnail').'" />';
 
     }
-    $type_id = $_item->getProduct()->getTypeId();
-    if ($type_id == 'simple') {
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $product = $objectManager->create('Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable')->getParentIdsByChild($_item->getProduct()->getId());
 
-        if (isset($product[0])) {
-            //this is parent product id..
-            $product_conf = $objectManager->create('Magento\Catalog\Model\Product')->load($product[0]);
-            // $image_url = $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml();
+}
+/* end the image caller */
 
-            $image_url = '<img class="product-image-photo ls-is-cached lazyloaded" src="/media/catalog/product' . $product_conf->getData('thumbnail') . '" />';
-
-        }
-
-    }
-    /* end the image caller */
-
-    ?>
-    <div class="lineItemContainer">
-        <div class="lineItemContainerOuter">
-            <div class="lineItemContainerInner">
-                <div class="arro row" style="align-items:stretch;">
+?>
+<div class="lineItemContainer">
+    <div class="lineItemContainerOuter">
+        <div class="lineItemContainerInner">
+                <div class="arro row" style="display:flex; align-items:stretch;">
                     <!-- image -->
                     <div class="col-xs-12 col-md-4 itemrowproductcol">
 
@@ -197,17 +185,21 @@ if (!$dontShow) {
 
                                 <div style="clear:both;"></div>
                             </div>
-                            <div class="cart-p-remove">
+                            <div class="cart-p-remove a-center">
 
-                                <?php
+                                    <?php
 
-                                $html = '<div class="cart-remove-text" onclick="removeProduct(\'' . $_item->getId() . '\', \'' . $qty . '\', false)"><span>Remove Item</span> <i style="font-size: 12px;" class="fa fa-times"></i></div>';
+                                    $html = '<div
+                       class="cart-remove-text"
+  onclick="removeProduct(\'' . $_item->getId() . '\', \'' . $qty . '\', false)">
 
-                                echo $html;
+<span>Remove Item</span> <i style="font-size: 12px;" class="fa fa-times"></i></div>';
 
-                                ?>
+                                    echo $html;
 
-                            </div>
+                                    ?>
+
+                                </div>
 
                             <!-- End Qty -->
                         </div>
@@ -235,10 +227,7 @@ if (!$dontShow) {
 
 
 
-                            <?php
-
-                            $is_backorder = false;
-                            if ($_options = $block->getOptionList()) : ?>
+                            <?php if ($_options = $block->getOptionList()) : ?>
                                 <h3 class="bc_title">Configuration</h3>
                                 <dl class="item-options">
                                     <?php foreach ($_options as $_option) : ?><?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
@@ -248,140 +237,14 @@ if (!$dontShow) {
                                                 <?= $block->escapeHtml($_formatedOptionValue['full_view']) ?><?php else : ?>
                                                 <?= $block->escapeHtml(
                                                     $_formatedOptionValue['value'], [
-                                                                                      'span',
-                                                                                      'a'
-                                                                                  ]
-                                                ) ?><?php
-
-                                                if (strpos($_formatedOptionValue['value'], 'OUT OF STOCK') !== false) {
-                                                    $is_backorder = true;
-                                                }
-
-                                            endif; ?>
+                                                    'span',
+                                                    'a'
+                                                ]
+                                                ) ?><?php endif; ?>
                                         </dd>
                                     <?php endforeach; ?>
                                 </dl>
-
-
-                                <?php
-
-                                if (!$_item->getProduct()->isSaleable()) {
-                                    echo '<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;display: flex;align-items: center;padding: 0;"> <i class="fa fa-exclamation-circle" style="font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock</div></div></div>';
-                                } else if ($is_backorder) {
-                                    echo '<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;display: flex;align-items: center;padding: 0;"> <i class="fa fa-exclamation-circle" style="font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock, but available on backorder</div></div></div>';
-                                }
-
-                                ?>
-
-
                             <?php endif; ?>
-                            <?php
-
-                            if ($_item->getProduct()->getTypeId() == 'simple') {
-
-                                //this is parent product id..
-                                $product_conf = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProduct()->getId());
-                                $leadtime = $product_conf->getLeadTime();
-
-                                $leadtimefloor = floor($leadtime % 5);
-                                $maxValueInDaysValue = '';
-                                if ($leadtimefloor == 0) {
-                                    if ($leadtime == 5) {
-                                        $maxValueInDaysValue = floor($leadtime / 5) . ' Week';
-                                    } else {
-                                        $maxValueInDaysValue = floor($leadtime / 5) . ' Weeks';
-                                    }
-                                } else {
-                                    if (floor($leadtime / 5) == 0) {
-                                        $maxValueInDaysValue = floor($leadtime % 5) . ' Working Days';
-                                    } else {
-                                        $maxValueInDaysValue = (floor($leadtime / 5) + 1) . ' Weeks ';
-                                    }
-                                }
-                                $back_order_message = '';
-
-                                $is_backorder = false;
-                                $obj = \Magento\Framework\App\ObjectManager::getInstance();
-                                $stockRegistry = $obj->get('Magento\CatalogInventory\Api\StockRegistryInterface');
-                                $stockitem = $stockRegistry->getStockItem($_item->getProduct()->getId(), $_item->getProduct()->getStore()->getWebsiteId());
-
-                                $backorder_status = $stockitem->getBackorders();
-                                $in_stock_status = $stockitem->getIsInStock();
-                                $qty_in_stock = $stockitem->getQty();
-
-                                if ($backorder_status == 2 && $qty_in_stock < 1) {
-
-                                    $is_backorder = true;
-                                    $maxValueInDaysValue = 'Available on request';
-                                }
-
-                                if ($leadtime > 0) {
-                                    ?>
-                                    <dl class="item-options">
-                                        <dt>Lead Time</dt>
-                                        <dd><?php echo $maxValueInDaysValue; ?></dd>
-                                    </dl>
-
-                                    <?php
-                                }
-
-                                $back_order_message = '';
-
-                                if ($leadtime > 0 && 1 == 2) {
-
-                                    echo '
-            <style>
-                         .pp-icon.pp-icon-clock>svg {
-    fill: #333;
-}
-.pp-icon>svg {
-    height: 22px;
-    width: 22px;
-}
-.pp-icon.pp-icon-clock>svg>* {
-    fill: #333;
-}
-.pp-order-info-outer>i, .pp-order-info-outer>div {
-    flex: 0 1 auto;
-}
-                 </style>       
-                                
-
-<div class="pp-order-info-outer ">
-    <i class="pp-icon pp-icon-clock"><svg viewBox="0 0 36 36" version="1.1" fill="#434343" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
-            <title>Group</title>
-            <desc>Created with Sketch.</desc>
-            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="Group" >
-                    <path d="M18,36 C8.059,36 0,27.94 0,17.999 C0,8.059 8.059,0 18,0 C27.941,0 36,8.059 36,17.999 C36,27.94 27.941,36 18,36 Z M25.235,22.62 L19.565,16.951 L19.565,10.956 C19.565,9.659 18.514,8.609 17.217,8.609 C15.921,8.609 14.87,9.659 14.87,10.956 L14.87,17.999 C14.87,18.825 15.296,19.392 15.939,19.965 L21.914,25.941 C22.831,26.858 24.318,26.858 25.235,25.941 C26.151,25.024 26.151,23.537 25.235,22.62 Z" id="Shape"></path>
-                </g>item product
-            </g>
-        </svg></i>
-    <div class="pp-order-info">
-        <div  class="leadtimeReplace line">Lead Time: Available on request</div>
-      
-    </div>
-</div>
-
-';
-
-                                }
-                                if (!$_item->getProduct()->isSaleable()) {
-                                    echo '<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;display: flex;align-items: center;padding: 0;"> <i class="fa fa-exclamation-circle" style="font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock</div></div></div>';
-                                } else if ($is_backorder) {
-
-
-                                    echo '<div class="pp-order-info-outer col-md-12 pp-icon-clock2" style="color:#db2727;display: flex;align-items: center;padding: 0;"> <i class="fa fa-exclamation-circle" style="font-size: 26px;"></i><div class="pp-order-info"><div class=" line">This product is not in stock, but available on backorder</div></div></div>';
-                                }
-
-                            }
-
-                            if ($is_backorder || !$_product->isSaleable()) {
-                                $maxValueInDaysValue = 'Available on request';
-                            }
-
-                            ?>
 
 
                         </div>
@@ -467,37 +330,38 @@ if (!$dontShow) {
                     //$addon_id = $add_product->getId();
 
                     ?>
-                    <div class="col-md-3"
-                    ">
+                    <div class="col-md-3"">
 
 
-                    <div class="andy2" id="rowprice_<?php echo $_item->getId(); ?>">
-                        <div class="cart-price">
+                        <div class="andy2" id="rowprice_<?php echo $_item->getId(); ?>">
+                            <div class="cart-price">
                                 <span class="evca_cart_price_mobile" style="
 
-">Subtotal:</span> <span class="price origprice" data-orig-price="266.6000">
+">Subtotal:</span>
+                          <span class="price origprice" data-orig-price="266.6000">
 
                             <?php
                             $settingsHelper = $objectManager->get('Elevate\CartAssignments\Helper\Settings');
                             $price_type = $settingsHelper->getPriceType();
 
-                            $output_price = '';
-
-                            $output_price .= '<div class="price-excluding-tax">' . $_pricingHelper->currency($_item->getRowTotal(), true, false) . '</div>';
-                            $output_price .= '<div class="price-including-tax">' . $_pricingHelper->currency($_item->getRowTotalInclTax(), true, false) . '</div>';
-                            echo $output_price;
-
+                            if ($price_type == 'ex_vat') {
+                                $output_price_add = $_item->getRowTotal();
+                            } else {
+                                $output_price_add = $_item->getRowTotalInclTax();
+                            }
+                            echo $_pricingHelper->currency($output_price_add, true, false);
+                            
                             ?>
                           </span>
 
+                            </div>
                         </div>
+
+
                     </div>
 
 
                 </div>
-
-
-            </div>
         </div>
 
     </div>
@@ -510,61 +374,61 @@ if (!$dontShow) {
     margin-bottom: 40px;
 ">
 
-<?php } else {
+    <?php } else {
 
-    if ($_item->getDiscountAmount() > 0) {
-        /*
-        ?>
+        if ($_item->getDiscountAmount() > 0) {
+            /*
+            ?>
 
-        <?
-        $appliedRuleIds = explode(',', $_item->getAppliedRuleIds());
-        $discountBreakdown = $_item->getDiscountBreakdown();
-        $rules = Mage::getModel('salesrule/rule')->getCollection()->addFieldToFilter('rule_id', array('in' => $appliedRuleIds));
-        $discount_count = 0;
-        $offer = '';
-        foreach ($rules as $rule) {
-            $rule_name = $rule->getData('name');
-            $rule_id = $rule->getData('rule_id');
-            if ($discount_rule_id != $rule_id) {
-                //  continue;
+            <?
+            $appliedRuleIds = explode(',', $_item->getAppliedRuleIds());
+            $discountBreakdown = $_item->getDiscountBreakdown();
+            $rules = Mage::getModel('salesrule/rule')->getCollection()->addFieldToFilter('rule_id', array('in' => $appliedRuleIds));
+            $discount_count = 0;
+            $offer = '';
+            foreach ($rules as $rule) {
+                $rule_name = $rule->getData('name');
+                $rule_id = $rule->getData('rule_id');
+                if ($discount_rule_id != $rule_id) {
+                    //  continue;
+
+                }
+                $rule_description = $rule->getData('description');
+                $rule_simple_action = $rule->getData('simple_action'); //by_percent
+                if ($rule_simple_action != 'by_percent') {
+                    continue;
+
+                }
+
+                $rule_discount_amount = $rule->getData('discount_amount'); //10.0000
+                //do something with $rule
+                $discount_count++;
+
+                $rule_price = $discountBreakdown[$rule_id];
+                $current_basket_amount = Mage::getSingleton('core/session')->getCABasketAmount();
+
+                $current_basket_rule_ids = Mage::getSingleton('core/session')->getCABasketRuleIds();
+
+                if (is_numeric($rule_id) && $discount_rule_id == $rule_id) {
+                    //  echo $original_item_qty;
+                    $current_basket_rule_ids[$rule_id] = $current_basket_rule_ids[$rule_id] + ($rule_price);
+                }
+
+                // $reduct = $rule_price;
+                $reduct = ($rule_price / $original_item_qty) * $qty;
+
+                //  echo "CURRENT:".$current_basket_amount."<br>";
+                //  echo "NEW:".$current_basket_amount+$reduct."<br>";
+                Mage::getSingleton('core/session')->setCABasketRuleIds($current_basket_rule_ids);
+                Mage::getSingleton('core/session')->setCABasketAmount($current_basket_amount + $reduct);
 
             }
-            $rule_description = $rule->getData('description');
-            $rule_simple_action = $rule->getData('simple_action'); //by_percent
-            if ($rule_simple_action != 'by_percent') {
-                continue;
-
-            }
-
-            $rule_discount_amount = $rule->getData('discount_amount'); //10.0000
-            //do something with $rule
-            $discount_count++;
-
-            $rule_price = $discountBreakdown[$rule_id];
-            $current_basket_amount = Mage::getSingleton('core/session')->getCABasketAmount();
-
-            $current_basket_rule_ids = Mage::getSingleton('core/session')->getCABasketRuleIds();
-
-            if (is_numeric($rule_id) && $discount_rule_id == $rule_id) {
-                //  echo $original_item_qty;
-                $current_basket_rule_ids[$rule_id] = $current_basket_rule_ids[$rule_id] + ($rule_price);
-            }
-
-            // $reduct = $rule_price;
-            $reduct = ($rule_price / $original_item_qty) * $qty;
-
-            //  echo "CURRENT:".$current_basket_amount."<br>";
-            //  echo "NEW:".$current_basket_amount+$reduct."<br>";
-            Mage::getSingleton('core/session')->setCABasketRuleIds($current_basket_rule_ids);
-            Mage::getSingleton('core/session')->setCABasketAmount($current_basket_amount + $reduct);
-
-        }
 */
-        //echo "<pre>";
-        //echo $_item->getName();
-        //print_r($_item->getParentPurchase());
-        //echo "</pre>";
+            //echo "<pre>";
+            //echo $_item->getName();
+            //print_r($_item->getParentPurchase());
+            //echo "</pre>";
+        }
+        //dont show the addon this way - skip
     }
-    //dont show the addon this way - skip
-}
-?>
+    ?>

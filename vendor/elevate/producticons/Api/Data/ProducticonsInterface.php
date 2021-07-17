@@ -129,4 +129,8 @@ interface ProducticonsInterface extends ExtensibleDataInterface
    */
   public function setIconBlkStyle($icon_blk_style);
 
+    /**
+     * @return mixed
+     */
+    public function getAllData();
 }

@@ -1,8 +1,4 @@
 <?php
-/**
- * Copyright © 2016 Magento. All rights reserved.
- * See COPYING.txt for license details.
- */
 
 namespace SecureTrading\Trust\Gateway\Request;
 
@@ -23,11 +19,11 @@ class CancelRequest implements BuilderInterface
     /**
      * @var ConfigInterface
      */
-    private $config;
+    protected $config;
     /**
      * @var Logger
      */
-    private $logger;
+	protected $logger;
     /**
      * CaptureRequest constructor.
      * @param ConfigInterface $config
@@ -58,16 +54,16 @@ class CancelRequest implements BuilderInterface
         $paymentDO = $buildSubject['payment'];
 
         $payment = $paymentDO->getPayment();
-        $data = [];
+        $data['cancel'] = [];
 		if ($this->config->getValue(Data::BACK_OFFICE) == 0) {
 			throw new \Magento\Framework\Exception\LocalizedException(__('Back-Office is required.'));
 		}
-        $data['configData'] = array(
+        $data['cancel']['configData'] = array(
             'username' => $this->config->getValue(Data::USER_NAME),
             'password' => $this->config->getValue(Data::PASSWORD),
         );
 
-        $data['requestData'] = array(
+        $data['cancel']['requestData'] = array(
             'requesttypedescriptions' => array('TRANSACTIONUPDATE'),
             'filter' => array(
                 'sitereference' => array(array('value' => $this->config->getValue(Data::SITE_REFERENCE))),
@@ -76,7 +72,7 @@ class CancelRequest implements BuilderInterface
             'updates' => array('settlestatus' => '3')
         );
         $this->logger->debug('--- ORDER INCREMENT ID: '. $payment->getOrder()->getIncrementId() .'---');
-        $this->logger->debug('--- PREPARE DATA TO CANCEL : ', $data['requestData']);
+        $this->logger->debug('--- PREPARE DATA TO CANCEL : ', $data['cancel']['requestData']);
         return $data;
     }
 }

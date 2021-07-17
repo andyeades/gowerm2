@@ -16,6 +16,7 @@
 			</argument>
 		</arguments>
 	</type>
+
     <virtualType name="Elevate\Productdeepercontent\ImageUploader" type="Elevate\Productdeepercontent\Model\ImageUploader">
         <arguments>
             <argument name="baseTmpPath" xsi:type="string">elevate/proddeepecontent/tmp/image</argument>
@@ -34,6 +35,7 @@
             </argument>
         </arguments>
     </virtualType>
+
     <type name="Elevate\Productdeepercontent\Controller\Adminhtml\Deepercontent\Upload">
         <arguments>
             <argument name="imageUploader" xsi:type="object">Elevate\Productdeepercontent\ImageUploader</argument>
@@ -44,4 +46,5 @@
             <argument name="imageUploader" xsi:type="object">Elevate\Productdeepercontent\ImageUploader</argument>
         </arguments>
     </type>
+
 </config>

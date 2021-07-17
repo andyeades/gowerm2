@@ -25,11 +25,7 @@ $show_featured_image_on_post = false;
 
 
 ?>
- <style>
-   .evblog #page-main-outer h1.page-title {
-    padding-left: 0;
-}
- </style>
+
 <div class="mp-blog-view">
     <div class="mp-post-info">
         <?php if ($authorName && $helper->showAuthorInfo()) :
@@ -136,7 +132,7 @@ $show_featured_image_on_post = false;
                 <div class="owl-carousel owl-theme">
                     <?php foreach ($relatedPosts as $post) : ?>
                         <div class="item post-list-item ">
-                            <div class="post-item-wraper">
+                            <div class="post-item-wrapper">
                                 <div class="post-image">
                                     <?php if ($post->getImage()) : ?>
                                         <a href="<?= $post->getUrl() ?>">
@@ -146,7 +142,7 @@ $show_featured_image_on_post = false;
                                         </a>
                                     <?php endif; ?>
                                 </div>
-                                <div class="post-info-wraper">
+                                <div class="post-info-wrapper">
                                     <h2 class="mp-post-title">
                                         <a class="post-link-title"
                                            title="<?= $block->escapeHtml($post->getName()); ?>"
@@ -191,7 +187,7 @@ $show_featured_image_on_post = false;
                 <div class="related-content-container" style="display: flex; flex-wrap: wrap;">
                     <?php foreach ($relatedPosts as $post) : ?>
                         <div class="post-list-item col-mp mp-6 mp-lg-4 mp-md-6 mp-xs-12">
-                            <div class="post-item-wraper">
+                            <div class="post-item-wrapper">
                                 <div class="post-image">
                                     <?php if ($post->getImage()) : ?>
                                         <a href="<?= $post->getUrl() ?>">
@@ -201,7 +197,7 @@ $show_featured_image_on_post = false;
                                         </a>
                                     <?php endif; ?>
                                 </div>
-                                <div class="post-info-wraper">
+                                <div class="post-info-wrapper">
                                     <h2 class="mp-post-title">
                                         <a class="post-link-title"
                                            title="<?= $block->escapeHtml($post->getName()); ?>"

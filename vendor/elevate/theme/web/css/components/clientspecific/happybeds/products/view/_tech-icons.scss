@@ -137,7 +137,7 @@
         #product-page-midpage-block & {
 
                 @include co(width, $ppmb-tech-ico-width);
-                height: $ppmb-tech-ico-height;
+                @include co(height, $ppmb-tech-ico-height);
                 max-width: $ppmb-tech-ico-maxwidth;
 
             @include max-screen(615.98px) {

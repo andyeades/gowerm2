@@ -1,11 +1,9 @@
 <?php
-/**
- * Copyright © 2016 Magento. All rights reserved.
- * See COPYING.txt for license details.
- */
 
 namespace SecureTrading\Trust\Gateway\Request;
 
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Payment\Gateway\ConfigInterface;
 use Magento\Payment\Gateway\Data\PaymentDataObjectInterface;
@@ -55,8 +53,14 @@ class OrderRequest implements BuilderInterface
 	protected $timezone;
 
 	/**
+	 * @var PriceCurrencyInterface
+	 */
+	protected $priceCurrency;
+
+	/**
 	 * OrderRequest constructor.
 	 *
+	 * @param PriceCurrencyInterface $priceCurrency
 	 * @param TimezoneInterface $timezone
 	 * @param ConfigInterface $config
 	 * @param StoreManagerInterface $storeManager
@@ -65,6 +69,7 @@ class OrderRequest implements BuilderInterface
 	 * @param \Magento\Framework\App\State $state
 	 */
 	public function __construct(
+		PriceCurrencyInterface $priceCurrency,
 		TimezoneInterface $timezone,
 		ConfigInterface $config,
 		StoreManagerInterface $storeManager,
@@ -78,6 +83,7 @@ class OrderRequest implements BuilderInterface
 		$this->logger       = $logger;
 		$this->state 		= $state;
 		$this->timezone     = $timezone;
+		$this->priceCurrency= $priceCurrency;
 	}
 
 	/**
@@ -142,16 +148,18 @@ class OrderRequest implements BuilderInterface
 			'orderreference'            => $order->getOrderIncrementId(),
 			'successfulurlredirect'     => $this->storeManager->getStore()->getBaseUrl() . 'securetrading/paymentpage/response',
 			'declinedurlredirect'       => $this->storeManager->getStore()->getBaseUrl() . 'securetrading/paymentpage/response',
+//			'successfulurlnotification' => 'https://webhook.site/9f2daebc-fc2f-48c3-9ce0-fa86bcb405f6?successnotification',
 			'successfulurlnotification' => $this->storeManager->getStore()->getBaseUrl() . 'securetrading/paymentpage/notificationresponse',
 			'declinedurlnotification'   => $this->storeManager->getStore()->getBaseUrl() . 'securetrading/paymentpage/notificationdecline',
 			'allurlnotification'        => $this->storeManager->getStore()->getBaseUrl() . 'securetrading/paymentpage/notificationall',
-			'ruleidentifiers'           =>
+			'ruleidentifier'           =>
 				[
 					'STR-6',
 					'STR-7',
 					'STR-8',
 					'STR-9',
-					'STR-10'
+					'STR-10',
+					'STR-11'
 				],
 			'url'                       => $url,
 			'accounttypedescription'    => $this->state->getAreaCode() == Area::AREA_ADMINHTML ? 'MOTO' : 'ECOM',
@@ -159,8 +167,11 @@ class OrderRequest implements BuilderInterface
 			'customfield4' => $this->_getCartInformation(),
 			'customfield5' => $this->config->getVersionInformation(),
 			'isusediframe' => $this->config->getValue(Data::USE_IFRAME),
+			'issubscription' => 0,
+			'ismultishipping' => 0,
+			'skipthefirstpayment' => 0,
 
-			'stextraurlredirectfields' => 'isusediframe',
+			'stextraurlredirectfields' => ['isusediframe', 'ismultishipping','multishippingsetid'],
 			'stextraurlnotifyfields'   =>
 				[
 					'accounttypedescription',
@@ -170,7 +181,34 @@ class OrderRequest implements BuilderInterface
 					'authcode',
 					'securityresponsepostcode',
 					'securityresponseaddress',
-					'securityresponsesecuritycode'
+					'securityresponsesecuritycode',
+                    'expirydate',
+					'issubscription',
+					'ismultishipping',
+					'multishippingsetid',
+					'skipthefirstpayment',
+					'customerprefixname',
+					'customerfirstname',
+					'customermiddlename',
+					'customerlastname',
+					'customerstreet',
+					'customertown',
+					'customercounty',
+					'customerpostcode',
+					'customercountryiso2a',
+					'customeremail',
+					'customertelephone',
+					'billingprefixname',
+					'billingfirstname',
+					'billingmiddlename',
+					'billinglastname',
+					'billingstreet',
+					'billingtown',
+					'billingcounty',
+					'billingpostcode',
+					'billingcountryiso2a',
+					'billingemail',
+					'billingtelephone',
 				],
 //			'sitesecuritytimestamp'    => date('Y-m-d h:i:s', time()),
 			'sitesecuritytimestamp'    => $this->_formatTimeStamp(),
@@ -200,8 +238,25 @@ class OrderRequest implements BuilderInterface
 		$this->logger->debug('--- ORDER INCREMENT ID: ' . $order->getOrderIncrementId() . '---');
 		$this->logger->debug('--- PREPARE DATA:', array($data));
 
+		if(is_array($subscriptionData = $this->_processSubscription($payment->getOrder()))){
+				$data = array_merge($data, $subscriptionData);
+		}
+
 		$sitesecurity         = $this->config->getSiteSecurity($data);
 		$data['sitesecurity'] = $sitesecurity;
+
+        if (isset($payment->getAdditionalInformation()['save_card_info']) && $payment->getAdditionalInformation()['save_card_info'] == 1){
+            $data['credentialsonfile'] = 1;
+        }elseif ($payment->getMethod() == "vault_secure_trading"){
+            $data['credentialsonfile'] = 2;
+        }
+
+        if ($this->storeManager->getStore()->getConfig(Data::IS_TOKENIZATION) == 1 && $this->config->getValue('jwt_name') && $this->config->getValue('jwt_secret_key'))
+        {
+            $data['jwt_name'] = $this->config->getValue('jwt_name');
+            $data['jwt_secret_key'] = $this->config->getValue('jwt_secret_key');
+            $this->logger->addDebug($data['jwt_secret_key']);
+        }
 
 		return $data;
 	}
@@ -218,17 +273,29 @@ class OrderRequest implements BuilderInterface
 		return $formattedSettleDueDate = date('Y-m-d', strtotime($daysToAdd));
 	}
 
-	protected function _getCartInformation()
+    /**
+     * @return string
+     */
+    protected function _getCartInformation()
 	{
 		return 'MAGENTO';
 	}
 
-	protected function _getCurrencyCode($order)
+    /**
+     * @param $order
+     * @return mixed
+     */
+    protected function _getCurrencyCode($order)
 	{
 		return $order->getBaseCurrencyCode();
 	}
 
-	protected function _formatMainAmount($order, array $buildSubject)
+    /**
+     * @param $order
+     * @param array $buildSubject
+     * @return string
+     */
+    protected function _formatMainAmount($order, array $buildSubject)
 	{
 		if ($this->_getCurrencyCode($order) == 'JPY') {
 			return strval(number_format(SubjectReader::readAmount($buildSubject), 0, '', ''));
@@ -236,7 +303,50 @@ class OrderRequest implements BuilderInterface
 		return strval(number_format(SubjectReader::readAmount($buildSubject), 2, '.', ''));
 	}
 
-	protected function _formatTimeStamp()
+    /**
+     * @param $order
+     * @return array|null
+     */
+    protected function _processSubscription($order){
+		$items = $order->getItems();
+		$data = [];
+		foreach($items as $item){
+			$options = $item->getProductOptions();
+			if(isset($options["secure_trading_subscription"])){
+				foreach($options["secure_trading_subscription"] as $key => $value){
+					if($key == 'skipthefirstpayment' && $value == 1){
+						$data["orderedrequesttypedescriptions"] = "THREEDQUERY,ACCOUNTCHECK,SUBSCRIPTION";
+						$data["skipthefirstpayment"] = 1;
+					} else {
+						$data[$key] = $value;
+					}
+				}
+				$data["settlestatus"] = $this->config->getValue(Data::SETTLE_STATUS);
+				$data["issubscription"] = 1;
+				$data["credentialsonfile"] = 1;
+				//Handle installment main amount
+				if ($data["subscriptiontype"] == 'INSTALLMENT') {
+					//Divide main amount
+					if($data["skipthefirstpayment"] == 1){
+						$realFinalNumber = (int)$data["subscriptionfinalnumber"] - 1;
+					} else {
+						$realFinalNumber = (int)$data["subscriptionfinalnumber"];
+					}
+					$buildAmount["amount"] = $this->priceCurrency->round((float)($order->getBaseGrandTotal() / $realFinalNumber));
+					$data["mainamount"]    = $this->_formatMainAmount($order, $buildAmount);
+				}
+
+				return $data;
+			}
+		}
+		return null;
+	}
+
+    /**
+     * @return string
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    protected function _formatTimeStamp()
 	{
 		$date = $this->timezone->date();
 		$formattedDate  = $this->timezone->convertConfigTimeToUtc($date);

@@ -5,11 +5,13 @@
 @import "corevariables";
 
 
+@import 'components/clientspecific/happybeds/sections/checkout';
+
 @import 'components/widgets/collapsible_navigation';
 
 @import 'components/sections/customer/login_signup';
 
-
+@import 'components/sections/checkout/m2checkout';
 @import 'vendor/flatlogic/awesomebootstrapcheckbox';
 @import 'vendor/tinyslider/tiny-slider';
 
@@ -23,7 +25,6 @@
 
 @import 'vendor/Magento_Braintree/styles/module';
 
-@import 'vendor/Magento_Checkout/styles/module';
 @import 'components/sections/checkout/cart';
 @import 'components/sections/checkout/checkout';
 @import 'vendor/craftyclicks/craftyclicks';

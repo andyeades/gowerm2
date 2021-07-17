@@ -14,6 +14,8 @@ $ftr-cards-cardssingle-md-bgsize: 450px !default;
 $ftr-cards-cardssingle-md-height: 20px !default;
 $ftr-cards-cardssingle-md-width: 450px !default;
 
+$home-newsletter-include: true !default;
+
 $ftr-nwsltr-homenews-flexdirection: false !default;
 $ftr-nwsltr-homenews-flexdirection-desktopsmmax: column !default;
 $ftr-nwsltr-homenews-flexwrap: false !default;
@@ -157,7 +159,7 @@ $ftr-copyright-text-color: #616161 !default;
 
 $ftr-m-padding-desktop: 1.875rem 0 !default;
 
-$ftr-m-li-a-padding-mobile: 0.625rem 0 !default;
+$ftr-m-li-a-padding: 0.625rem 0 !default;
 $ftr-m-li-a-padding-desktop: 0 0 0.625rem 0 !default;
 
 
@@ -238,6 +240,9 @@ $ftr-block-4-padding-sm: 0 !default;
 $ftr-block-4-padding-md: 0 !default;
 $ftr-block-4-padding-lg: 0 !default;
 
+
+$ftr-block-fontsize: false !default;
+$ftr-block-fontsize-desktop-sm: false !default;
 
 $ftr-block-flex: 1 1 auto !default;
 $ftr-block-flex-desktop: 0 1 auto !default;
@@ -336,9 +341,12 @@ $ftr-block-internal-div-margin-default: 0 0 1.625rem 0 !default;
 $ftr-block-internal-div-margin-mobile: 0 !default;
 
 $ftr-block-internal-div-last-child-margin-default: 0 0 1.625rem 0 !default;
-$ftr-block-internal-div-last-child-margin-sm: $ftr-block-internal-div-margin-default !default;
-$ftr-block-internal-div-last-child-margin-desktop: 0 !default;
 
+$ftr-block-internal-div-last-child-margin-sm-minmax: $ftr-block-internal-div-margin-default !default;
+
+$ftr-block-internal-div-last-child-margin-desktop: 0 !default;
+$ftr-block-internal-div-last-child-margin-desktopmd: 0 !default;
+$ftr-block-internal-div-last-child-margin-desktoplg: 0 !default;
 
 $ftr-input-search-included: 1 !default;
 $ftr-input-search-flex-wrap-xsmidmax: true !default;
@@ -421,6 +429,7 @@ $ftr-m-ti-padding-desktop: 0 0 2.5rem !default;
 // Social Icons
 
 $ftr-soc-i-include: true !default;
+$ftr-social-icons-colored: false !default;
 $ftr-soc-i-flex-wrap: no-wrap !default;
 
 
@@ -475,7 +484,7 @@ $ftr-soc-i-padding-desktopmd: 1.5rem 0 !default;
 $ftr-soc-i-padding-desktoplg: 1.5rem 0 !default;
 $ftr-soc-i-padding-desktopxl: 1.5rem 0 !default;
 
-$ftr-soc-i-i-bg-color: #FFFFFF !default;
+$ftr-soc-i-i-bg-color: false !default;
 $ftr-soc-i-i-display: flex !default;
 $ftr-soc-i-i-alignitems: center !default;
 $ftr-soc-i-i-justifycontent: center !default;
@@ -810,8 +819,9 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
         text-align: center;
         @include co(width, $ftr-block-width);
         @include co(padding, $ftr-block-padding);
-
+        @include co(font-size, $ftr-block-fontsize);
         @include min-screen($desktop-min) {
+            @include co(font-size, $ftr-block-fontsize-desktop-sm, $ftr-block-fontsize);
             @include co(flex, $ftr-block-flex-desktop, $ftr-block-flex);
             @include co(padding, $ftr-block-padding-sm, $ftr-block-padding);
             text-align: left;
@@ -833,16 +843,19 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
             @include min-screen($desktop-min) {
                 @include co(margin, $ftr-block-internal-div-margin-default);
             }
-            @include screen($screen-sm-min, $screen-md-min) {
-                // if More than One
-
+            @include screen($screen-sm-min, $screen-sm-max) {
                 &:last-child {
-                    @include co(margin, $ftr-block-internal-div-last-child-margin-sm);
+                    @include co(margin, $ftr-block-internal-div-last-child-margin-sm-minmax);
+                }
+            }
+            @include min-screen($screen-md-min) {
+                &:last-child {
+                    @include co(margin, $ftr-block-internal-div-last-child-margin-desktopmd);
                 }
             }
             @include min-screen($screen-lg-min) {
                 &:last-child {
-                    @include co(margin, $ftr-block-internal-div-last-child-margin-desktop);
+                    @include co(margin, $ftr-block-internal-div-last-child-margin-desktoplg);
                 }
             }
 
@@ -873,14 +886,14 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
 
                 a {
                     display: block;
-                    @include co(padding, $ftr-m-li-a-padding-mobile);
+                    @include co(padding, $ftr-m-li-a-padding);
                     @include min-screen($desktop-min) {
-                        @include co(padding, $ftr-m-li-a-padding-desktop);
+                        @include co(padding, $ftr-m-li-a-padding-desktop,  $ftr-m-li-a-padding);
                     }
                     color: $ftr-m-text-color;
 
                     &:hover {
-                        @include co(color, $ftr-m-text-hover-color);
+                        @include co(color, $ftr-m-text-hover-color, $ftr-m-text-color);
                     }
                 }
             }
@@ -1132,246 +1145,249 @@ $ftr-mid-left-ir-btm-fontsize: 0.75rem !default;
     }
 }
 
-
-#home-newsletter {
-    @include co(padding, $ftr-nwsltr-padding);
-    @include co(margin, $ftr-nwsltr-margin);
-    text-align: $ftr-nwsltr-text-align;
-    @include min-screen($desktop-min) {
-        @include co(padding, $ftr-nwsltr-padding-desktop, $ftr-nwsltr-padding);
-        @include co(margin, $ftr-nwsltr-margin-desktop, $ftr-nwsltr-margin);
-    }
-
-    #home-news {
-        display: flex;
-        @include co(flex-direction, $ftr-nwsltr-homenews-flexdirection);
-        @include co(flex-wrap, $ftr-nwsltr-homenews-flexwrap);
-
-        @include max-screen($desktop-sm-max) {
-            @include co(flex-direction, $ftr-nwsltr-homenews-flexdirection-desktopsmmax);
+@if $home-newsletter-include == true {
+    #home-newsletter {
+        @include co(padding, $ftr-nwsltr-padding);
+        @include co(margin, $ftr-nwsltr-margin);
+        text-align: $ftr-nwsltr-text-align;
+        @include min-screen($desktop-min) {
+            @include co(padding, $ftr-nwsltr-padding-desktop, $ftr-nwsltr-padding);
+            @include co(margin, $ftr-nwsltr-margin-desktop, $ftr-nwsltr-margin);
         }
 
-        > div {
-            flex: 0 1 auto;
+        #home-news {
             display: flex;
-            align-items: center;
-            @include co(margin, $ftr-nwsltr-homenews-margin);
-            @include co(justify-content, $ftr-nwsltr-homenews-justifycontent);
-            @include max-screen($mobilemax) {
-                @include co(margin, $ftr-nwsltr-homenews-margin-mobilemax);
-            }
+            @include co(flex-direction, $ftr-nwsltr-homenews-flexdirection);
+            @include co(flex-wrap, $ftr-nwsltr-homenews-flexwrap);
+
             @include max-screen($desktop-sm-max) {
-                flex-wrap: wrap;
-                width: 100%;
+                @include co(flex-direction, $ftr-nwsltr-homenews-flexdirection-desktopsmmax);
             }
 
-            > i, h3, div {
+            > div {
                 flex: 0 1 auto;
+                display: flex;
+                align-items: center;
+                @include co(margin, $ftr-nwsltr-homenews-margin);
+                @include co(justify-content, $ftr-nwsltr-homenews-justifycontent);
+                @include max-screen($mobilemax) {
+                    @include co(margin, $ftr-nwsltr-homenews-margin-mobilemax);
+                }
+                @include max-screen($desktop-sm-max) {
+                    flex-wrap: wrap;
+                    width: 100%;
+                }
+
+                > i, h3, div {
+                    flex: 0 1 auto;
+                }
             }
         }
-    }
 
-    .home-newsletter-input {
-        display: flex;
-        @include co(flex-wrap, $ftr-nwsltr-homenews-input-flexwrap);
-        @include co(width, $ftr-nwsltr-homenews-input-width);
-        @include min-screen($desktop-min) {
-            @include co(flex-wrap,$ftr-nwsltr-homenews-input-flexwrap-desktop, $ftr-nwsltr-homenews-input-flexwrap);
-            @include co(width, $ftr-nwsltr-homenews-input-width-desktop, $ftr-nwsltr-homenews-input-width);
+        .home-newsletter-input {
+            display: flex;
+            @include co(flex-wrap, $ftr-nwsltr-homenews-input-flexwrap);
+            @include co(width, $ftr-nwsltr-homenews-input-width);
+            @include min-screen($desktop-min) {
+                @include co(flex-wrap,$ftr-nwsltr-homenews-input-flexwrap-desktop, $ftr-nwsltr-homenews-input-flexwrap);
+                @include co(width, $ftr-nwsltr-homenews-input-width-desktop, $ftr-nwsltr-homenews-input-width);
+            }
+
+
+            > input, > button {
+                flex: 1 1 auto;
+                order: 1;
+            }
+
+            input {
+
+
+                @include co(background, $ftr-nwsltr-input-background);
+                @include co(border-radius, $ftr-nwsltr-input-border-radius);
+                @include co(color, $ftr-nwsltr-input-color);
+                @include co(height, $ftr-nwsltr-input-height);
+                @include co(padding, $ftr-nwsltr-input-padding);
+                @include co(font-size, $ftr-nwsltr-input-fontsize);
+                @include co(font-weight, $ftr-nwsltr-input-font-weight);
+                @include co(font-family, $ftr-nwsltr-input-fontfamily);
+
+                @include max-screen($mobilemax) {
+                    @include co(font-size, $ftr-nwsltr-input-fontsize-mobilemax);
+                }
+
+
+                &:-webkit-autofill,
+                &:-webkit-autofill:hover,
+                &:-webkit-autofill:focus {
+                    border: none;
+                    -webkit-text-fill-color: unset;
+                    transition: background-color 5000s ease-in-out 0s;
+                }
+
+                @include rj-placeholder($ftr-nwsltr-input-placeholder-color);
+
+                &:focus {
+                    box-shadow: none;
+                    outline: 0;
+                    border: unset;
+                }
+
+                @if $ftr-nwsltr-input-border-on == 1 {
+                    border: none; // clears other borders;
+                    @include elevate-border($ftr-nwsltr-input-border-color, $ftr-nwsltr-input-border-thickness, $ftr-nwsltr-input-border-type, $ftr-nwsltr-input-border-position)
+                }
+                @include co(border, $ftr-nwsltr-input-border);
+            }
         }
 
 
-        > input, > button {
-            flex: 1 1 auto;
+        .home-newsletter-input-container {
+            @include co(margin, $ftr-nwsltr-input-container-margin);
+            @include co(width, $ftr-nwsltr-input-container-width);
+            @include co(order, $ftr-nwsltr-input-container-order);
+            @include min-screen($desktop-min) {
+                @include co(margin, $ftr-nwsltr-input-container-margin-desktop, $ftr-nwsltr-input-container-margin);
+                @include co(width, $ftr-nwsltr-input-container-width-sm, $ftr-nwsltr-input-container-width);
+
+            }
+
+            @include min-screen($screen-md-min) {
+                @include co(width, $ftr-nwsltr-input-container-width-desktop, $ftr-nwsltr-input-container-width-sm, $ftr-nwsltr-input-container-width);
+
+
+            }
+        }
+
+        .home-newsletter-text {
+            @include co(margin, $ftr-nwsltr-text-margin);
+            justify-content: center;
+            @include co(width, $ftr-nwsltr-text-container-width);
             order: 1;
-        }
+            @include co(flex-wrap, $ftr-nwsltr-flexwrap);
 
-        input {
-
-
-            @include co(background, $ftr-nwsltr-input-background);
-            @include co(border-radius, $ftr-nwsltr-input-border-radius);
-            @include co(color, $ftr-nwsltr-input-color);
-            @include co(height, $ftr-nwsltr-input-height);
-            @include co(padding, $ftr-nwsltr-input-padding);
-            @include co(font-size, $ftr-nwsltr-input-fontsize);
-            @include co(font-weight, $ftr-nwsltr-input-font-weight);
-            @include co(font-family, $ftr-nwsltr-input-fontfamily);
-
-            @include max-screen($mobilemax) {
-                @include co(font-size, $ftr-nwsltr-input-fontsize-mobilemax);
-            }
-
-
-            &:-webkit-autofill,
-            &:-webkit-autofill:hover,
-            &:-webkit-autofill:focus {
-                border: none;
-                -webkit-text-fill-color: unset;
-                transition: background-color 5000s ease-in-out 0s;
-            }
-
-            @include rj-placeholder($ftr-nwsltr-input-placeholder-color);
-
-            &:focus {
-                box-shadow: none;
-                outline: 0;
-                border: unset;
-            }
-
-            @if $ftr-nwsltr-input-border-on == 1 {
-                border: none; // clears other borders;
-                @include elevate-border($ftr-nwsltr-input-border-color, $ftr-nwsltr-input-border-thickness, $ftr-nwsltr-input-border-type, $ftr-nwsltr-input-border-position)
-            }
-            @include co(border, $ftr-nwsltr-input-border);
-        }
-    }
-
-
-    .home-newsletter-input-container {
-        @include co(margin, $ftr-nwsltr-input-container-margin);
-        @include co(width, $ftr-nwsltr-input-container-width);
-        @include co(order, $ftr-nwsltr-input-container-order);
-        @include min-screen($desktop-min) {
-            @include co(margin, $ftr-nwsltr-input-container-margin-desktop, $ftr-nwsltr-input-container-margin);
-            @include co(width, $ftr-nwsltr-input-container-width-sm, $ftr-nwsltr-input-container-width);
-
-        }
-
-        @include min-screen($screen-md-min) {
-            @include co(width, $ftr-nwsltr-input-container-width-desktop, $ftr-nwsltr-input-container-width-sm, $ftr-nwsltr-input-container-width);
-
-
-        }
-    }
-
-    .home-newsletter-text {
-        @include co(margin, $ftr-nwsltr-text-margin);
-        justify-content: center;
-        @include co(width, $ftr-nwsltr-text-container-width);
-        order: 1;
-        @include co(flex-wrap, $ftr-nwsltr-flexwrap);
-
-        @include min-screen($desktop-medium-min) {
-            justify-content: initial;
-            @if $ftr-nwsltr-text-margin-desktop != $ftr-nwsltr-text-margin {
-                @include co(margin, $ftr-nwsltr-text-margin-desktop);
-            }
-            @include co(flex-wrap, $ftr-nwsltr-flexwrap-desktop, $ftr-nwsltr-flexwrap);
-            @include co(width, $ftr-nwsltr-text-container-width-desktop);
-        }
-    }
-
-
-    .btn-newsletter {
-        white-space: nowrap;
-        @include max-screen($mobiletablet-max) {
-            @include co(margin, $ftr-nwsltr-btn-margin-mobiletablet-max);
-        }
-        @include max-screen($mobilemax) {
-            @include co(margin, $ftr-nwsltr-btn-margin-mobilemax);
-        }
-        @include co(margin, $ftr-nwsltr-btn-margin);
-        vertical-align: top;
-        color: $ftr-nwsltr-btn-color;
-        background-color: $ftr-nwsltr-btn-bg-color;
-        border-color: $ftr-nwsltr-btn-border-color;
-        @include co(height, $ftr-nwsltr-btn-height);
-        @include co(align-self, $ftr-nwsltr-btn-alignself);
-        @include co(border-radius, $ftr-nwsltr-btn-border-radius);
-        @if $ftr-nwsltr-btn-border-radius != false {
-            @include ev-button-size($ftr-nwsltr-btn-padding-vertical, $ftr-nwsltr-btn-padding-horizontal, $ftr-nwsltr-btn-font-size, $ftr-nwsltr-btn-line-height, $ftr-nwsltr-btn-border-radius);
-        } @else {
-            @include ev-button-size($ftr-nwsltr-btn-padding-vertical, $ftr-nwsltr-btn-padding-horizontal, $ftr-nwsltr-btn-font-size, $ftr-nwsltr-btn-line-height, false);
-        }
-        @include co(text-transform, $ftr-nwsltr-btn-text-transform);
-
-        &:hover {
-            background-color: darken($ftr-nwsltr-btn-bg-color, 15%);
-            border-color: darken($ftr-nwsltr-btn-border-color, 15%);
-        }
-    }
-
-
-    @if $ftr-nwsltr-icon-on == 1 {
-        i {
-            display: $ftr-nwsltr-icon-display;
-            @include co(order, $ftr-nwsltr-icon-order);
-            @include co(margin, $ftr-nwsltr-icon-margin);
-
-            @include min-screen($desktop-min) {
-                @include co(display, $ftr-nwsltr-icon-display-desktop, $ftr-nwsltr-icon-display);
-                @include co(margin, $ftr-nwsltr-icon-margin-desktop, $ftr-nwsltr-icon-margin);
+            @include min-screen($desktop-medium-min) {
+                justify-content: initial;
+                @if $ftr-nwsltr-text-margin-desktop != $ftr-nwsltr-text-margin {
+                    @include co(margin, $ftr-nwsltr-text-margin-desktop);
+                }
+                @include co(flex-wrap, $ftr-nwsltr-flexwrap-desktop, $ftr-nwsltr-flexwrap);
+                @include co(width, $ftr-nwsltr-text-container-width-desktop);
             }
         }
-    } @else {
-        i {
-            display: none;
-        }
-    }
 
 
-    h3 {
-        @include co(font-weight, $ftr-nwsltr-hdrtext-fontweight);
-        color: $ftr-nwsltr-hdrtext-color;
-        @include co(font-size, $ftr-nwsltr-hdrtext-fontsize);
-        letter-spacing: $ftr-nwsltr-hdrtext-letter-spacing;
-        @include co(order, $ftr-nwsltr-hdrtext-order);
-        @include co(text-transform, $ftr-nwsltr-hdrtext-text-transform);
-        @include co(margin, $ftr-nwsltr-hdrtext-margin);
-        @include min-screen($desktop-min) {
-            @include co(margin, $ftr-nwsltr-hdrtext-margin-desktop, $ftr-nwsltr-hdrtext-margin);
-            @include co(font-size, $ftr-nwsltr-hdrtext-fontsize-desktop, $ftr-nwsltr-hdrtext-fontsize);
-
-        }
-    }
-
-    .newsletter-additional {
-        @if $ftr-nwsltr-additional-on == 1 {
-            @include co(order, $ftr-nwsltr-additional-order);
-            @include co(color, $ftr-nwsltr-additional-color);
-            @include co(padding, $ftr-nwsltr-additional-padding);
-            @include co(font-size, $ftr-nwsltr-additional-fontsize);
-            @include co(font-weight, $ftr-nwsltr-additional-fontweight);
-            @include co(font-family, $ftr-nwsltr-additional-fontfamily);
-            @include co(letter-spacing, $ftr-nwsltr-additional-letter-spacing);
-            @include co(text-transform, $ftr-nwsltr-additional-text-transform);
-            @include co(margin, $ftr-nwsltr-additional-margin);
-            @include co(width, $ftr-nwsltr-additional-width);
+        .btn-newsletter {
+            white-space: nowrap;
             @include max-screen($mobiletablet-max) {
-                @include co(width, $ftr-nwsltr-additional-width-mobiletabletmax, $ftr-nwsltr-additional-width);
+                @include co(margin, $ftr-nwsltr-btn-margin-mobiletablet-max);
             }
-            @include min-screen($desktop-min) {
-                @include co(width, $ftr-nwsltr-additional-width-desktop, $ftr-nwsltr-additional-width);
-                @include co('padding', $ftr-nwsltr-additional-padding-desktop, $ftr-nwsltr-additional-padding);
-                @include co(margin, $ftr-nwsltr-additional-margin-desktop, $ftr-nwsltr-additional-margin);
-                @include co(font-size, $ftr-nwsltr-additional-fontsize-desktop, $ftr-nwsltr-additional-fontsize);
+            @include max-screen($mobilemax) {
+                @include co(margin, $ftr-nwsltr-btn-margin-mobilemax);
             }
+            @include co(margin, $ftr-nwsltr-btn-margin);
+            vertical-align: top;
+            color: $ftr-nwsltr-btn-color;
+            background-color: $ftr-nwsltr-btn-bg-color;
+            border-color: $ftr-nwsltr-btn-border-color;
+            @include co(height, $ftr-nwsltr-btn-height);
+            @include co(align-self, $ftr-nwsltr-btn-alignself);
+            @include co(border-radius, $ftr-nwsltr-btn-border-radius);
+            @if $ftr-nwsltr-btn-border-radius != false {
+                @include ev-button-size($ftr-nwsltr-btn-padding-vertical, $ftr-nwsltr-btn-padding-horizontal, $ftr-nwsltr-btn-font-size, $ftr-nwsltr-btn-line-height, $ftr-nwsltr-btn-border-radius);
+            } @else {
+                @include ev-button-size($ftr-nwsltr-btn-padding-vertical, $ftr-nwsltr-btn-padding-horizontal, $ftr-nwsltr-btn-font-size, $ftr-nwsltr-btn-line-height, false);
+            }
+            @include co(text-transform, $ftr-nwsltr-btn-text-transform);
 
-
-            @include screen($screen-sm-min, $screen-sm-max) {
-                @include co(display, $ftr-nwsltr-addtional-display-sm);
+            &:hover {
+                background-color: darken($ftr-nwsltr-btn-bg-color, 15%);
+                border-color: darken($ftr-nwsltr-btn-border-color, 15%);
             }
-            @include screen($screen-md-min, $screen-md-max) {
-                @include co(font-size, $ftr-nwsltr-additional-fontsize-md, $ftr-nwsltr-additional-fontsize-desktop);
-
-            }
-        } @else {
-            display: none;
         }
 
 
-    }
+        @if $ftr-nwsltr-icon-on == 1 {
+            i {
+                @include co(display, $ftr-nwsltr-icon-display);
+                @include co(order, $ftr-nwsltr-icon-order);
+                @include co(margin, $ftr-nwsltr-icon-margin);
+
+                @include min-screen($desktop-min) {
+                    @include co(display, $ftr-nwsltr-icon-display-desktop, $ftr-nwsltr-icon-display);
+                    @include co(margin, $ftr-nwsltr-icon-margin-desktop, $ftr-nwsltr-icon-margin);
+                }
+            }
+        } @else {
+            i {
+                display: none;
+            }
+        }
 
 
-    .validation-advice {
-        background: white;
-        position: absolute;
-        bottom: -53px;
-        padding: 5px;
-        border-radius: 5px;
+        h3 {
+            @include co(font-weight, $ftr-nwsltr-hdrtext-fontweight);
+            color: $ftr-nwsltr-hdrtext-color;
+            @include co(font-size, $ftr-nwsltr-hdrtext-fontsize);
+            @include co(letter-spacing, $ftr-nwsltr-hdrtext-letter-spacing);
+            @include co(order, $ftr-nwsltr-hdrtext-order);
+            @include co(text-transform, $ftr-nwsltr-hdrtext-text-transform);
+            @include co(margin, $ftr-nwsltr-hdrtext-margin);
+            @include min-screen($desktop-min) {
+                @include co(margin, $ftr-nwsltr-hdrtext-margin-desktop, $ftr-nwsltr-hdrtext-margin);
+                @include co(font-size, $ftr-nwsltr-hdrtext-fontsize-desktop, $ftr-nwsltr-hdrtext-fontsize);
+
+            }
+        }
+
+        .newsletter-additional {
+            @if $ftr-nwsltr-additional-on == 1 {
+                @include co(order, $ftr-nwsltr-additional-order);
+                @include co(color, $ftr-nwsltr-additional-color);
+                @include co(padding, $ftr-nwsltr-additional-padding);
+                @include co(font-size, $ftr-nwsltr-additional-fontsize);
+                @include co(font-weight, $ftr-nwsltr-additional-fontweight);
+                @include co(font-family, $ftr-nwsltr-additional-fontfamily);
+                @include co(letter-spacing, $ftr-nwsltr-additional-letter-spacing);
+                @include co(text-transform, $ftr-nwsltr-additional-text-transform);
+                @include co(margin, $ftr-nwsltr-additional-margin);
+                @include co(width, $ftr-nwsltr-additional-width);
+                @include max-screen($mobiletablet-max) {
+                    @include co(width, $ftr-nwsltr-additional-width-mobiletabletmax, $ftr-nwsltr-additional-width);
+                }
+                @include min-screen($desktop-min) {
+                    @include co(width, $ftr-nwsltr-additional-width-desktop, $ftr-nwsltr-additional-width);
+                    @include co('padding', $ftr-nwsltr-additional-padding-desktop, $ftr-nwsltr-additional-padding);
+                    @include co(margin, $ftr-nwsltr-additional-margin-desktop, $ftr-nwsltr-additional-margin);
+                    @include co(font-size, $ftr-nwsltr-additional-fontsize-desktop, $ftr-nwsltr-additional-fontsize);
+                }
+
+
+                @include screen($screen-sm-min, $screen-sm-max) {
+                    @include co(display, $ftr-nwsltr-addtional-display-sm);
+                }
+                @include screen($screen-md-min, $screen-md-max) {
+                    @include co(font-size, $ftr-nwsltr-additional-fontsize-md, $ftr-nwsltr-additional-fontsize-desktop);
+
+                }
+            } @else {
+                display: none;
+            }
+
+
+        }
+
+
+        .validation-advice {
+            background: white;
+            position: absolute;
+            bottom: -53px;
+            padding: 5px;
+            border-radius: 5px;
+        }
     }
 }
+
+
 
 #footer-cards {
     @include co(padding, $ftr-cards-padding);
@@ -1573,6 +1589,34 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
 }
 
 
+$ftr-soc-i-a-margin-left-firstoftype: 0 !default;
+$ftr-soc-i-a-margin-left-firstoftype-sm: 0 !default;
+$ftr-soc-i-a-margin-left-firstoftype-md: 0 !default;
+$ftr-soc-i-a-margin-left-firstoftype-lg: 0 !default;
+$ftr-soc-i-a-margin-left-firstoftype-xl: 0 !default;
+
+
+$ftr-soc-i-a-padding-left-firstoftype: 0 !default;
+$ftr-soc-i-a-padding-left-firstoftype-sm: 0 !default;
+$ftr-soc-i-a-padding-left-firstoftype-md: 0 !default;
+$ftr-soc-i-a-padding-left-firstoftype-lg: 0 !default;
+$ftr-soc-i-a-padding-left-firstoftype-xl: 0 !default;
+
+
+$ftr-soc-i-a-margin-right-lastoftype: 0 !default;
+$ftr-soc-i-a-margin-right-lastoftype-sm: 0 !default;
+$ftr-soc-i-a-margin-right-lastoftype-md: 0 !default;
+$ftr-soc-i-a-margin-right-lastoftype-lg: 0 !default;
+$ftr-soc-i-a-margin-right-lastoftype-xl: 0 !default;
+
+
+
+$ftr-soc-i-a-padding-right-lastoftype: 0 !default;
+$ftr-soc-i-a-padding-right-lastoftype-sm: 0 !default;
+$ftr-soc-i-a-padding-right-lastoftype-md: 0 !default;
+$ftr-soc-i-a-padding-right-lastoftype-lg: 0 !default;
+$ftr-soc-i-a-padding-right-lastoftype-xl: 0 !default;
+
 @if $ftr-soc-i-include == true {
 
     $ftr-soc-i-a-width-on: false !default;
@@ -1632,243 +1676,90 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
             @include co(display, $ftr-soc-i-a-display);
             @include co(padding, $ftr-soc-i-a-padding);
 
-            @if $ftr-soc-i-a-margin-left-firstoftype-on == 1 {
-                &:first-of-type {
-                    margin-left: 0;
-                }
+            &:first-of-type {
+                @include co(margin-left, $ftr-soc-i-a-margin-left-firstoftype);
+                @include co(padding-left, $ftr-soc-i-a-padding-left-firstoftype);
             }
-            @if $ftr-soc-i-a-margin-right-lastoftype-on == 1 {
-                &:last-of-type {
-                    margin-right: 0;
+            &:last-of-type {
+                @include co(margin-right, $ftr-soc-i-a-margin-right-lastoftype);
+                @include co(padding-right, $ftr-soc-i-a-padding-right-lastoftype);
+            }
+            &:hover {
+                i {
+                    @include co(transition, $ftr-soc-i-a-transition);
                 }
             }
 
-            @if $ftr-soc-i-a-padding-left-firstoftype-on == 1 {
-                &:first-of-type {
-                    padding-left: 0;
-                }
-            }
-            @if $ftr-soc-i-a-padding-right-lastoftype-on == 1 {
-                &:last-of-type {
-                    padding-right: 0;
-                }
-            }
 
             @include min-screen($desktop-min) {
                 @include co(justify-content, $ftr-soc-i-a-justifycontent-desktop, $ftr-soc-i-a-justifycontent);
                 @include co(display, $ftr-soc-i-a-display-desktop, $ftr-soc-i-a-display);
-
                 @include co(width, $ftr-soc-i-a-width-sm, $ftr-soc-i-a-width);
-
-                @if $ftr-soc-i-a-margin-right-lastoftype-sm-on == 1 {
-                    &:last-of-type {
-                        margin-right: 0;
-                    }
-                } @else {
-                    @if $ftr-soc-i-a-margin-right-lastoftype-on == 1 {
-                        &:last-of-type {
-                            margin-right: initial;
-                        }
-                    }
-
-                }
-                @if $ftr-soc-i-a-margin-left-firstoftype-sm-on == 1 {
-                    &:first-of-type {
-                        margin-left: 0;
-                    }
-                } @else {
-                    @if $ftr-soc-i-a-margin-left-firstoftype-on == 1 {
-                        &:first-of-type {
-                            margin-left: initial;
-                        }
-                    }
-
-                }
                 @include co(margin, $ftr-soc-i-a-margin-desktopsm, $ftr-soc-i-a-margin);
                 @include co(padding, $ftr-soc-i-a-padding-desktopsm, $ftr-soc-i-a-padding);
-                @if $ftr-soc-i-a-padding-right-lastoftype-sm-on == 1 {
-                    &:last-of-type {
-                        padding-right: 0;
-                    }
-                } @else {
-                    @if $ftr-soc-i-a-padding-right-lastoftype-on == 1 {
-                        &:last-of-type {
-                            padding-right: initial;
-                        }
-                    }
 
+                &:first-of-type {
+                    @include co(margin-left, $ftr-soc-i-a-margin-left-firstoftype-sm, $ftr-soc-i-a-margin-left-firstoftype);
+                    @include co(padding-left, $ftr-soc-i-a-padding-left-firstoftype-sm, $ftr-soc-i-a-padding-left-firstoftype);
                 }
-                @if $ftr-soc-i-a-padding-left-firstoftype-sm-on == 1 {
-                    &:first-of-type {
-                        padding-left: 0;
-                    }
-                } @else {
-                    @if $ftr-soc-i-a-padding-left-firstoftype-on == 1 {
-                        &:first-of-type {
-                            padding-left: initial;
-                        }
-                    }
 
+                &:last-of-type {
+                    @include co(margin-right, $ftr-soc-i-a-margin-right-lastoftype-sm, $ftr-soc-i-a-margin-right-lastoftype);
+                    @include co(padding-right, $ftr-soc-i-a-padding-right-lastoftype-sm, $ftr-soc-i-a-padding-right-lastoftype);
                 }
+
+
 
             }
             @include min-screen($desktop-md-min) {
                 @include co(margin, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
-
                 @include co(padding, $ftr-soc-i-a-padding-desktopmd, $ftr-soc-i-a-padding, $ftr-soc-i-a-padding-desktopsm);
-
                 @include co(width, $ftr-soc-i-a-width-md, $ftr-soc-i-a-width-sm, $ftr-soc-i-a-width);
 
-                @if $ftr-soc-i-a-margin-right-lastoftype-md-on == 1 {
-                    @if $ftr-soc-i-a-margin-right-lastoftype-sm-on != 1 {
-                        &:last-of-type {
-                            margin-right: 0;
-                        }
-                    }
-
-                } @else {
-                    @if $ftr-soc-i-a-margin-right-lastoftype-on == 1 {
-                        &:last-of-type {
-                            margin-right: initial;
-                        }
-                    }
-                }
-                @if $ftr-soc-i-a-margin-left-firstoftype-md-on == 1 {
-                    @if $ftr-soc-i-a-margin-left-firstoftype-sm-on != 1 {
-                        &:first-of-type {
-                            margin-left: 0;
-                        }
-                    }
-
-                } @else {
-                    @if $ftr-soc-i-a-margin-left-firstoftype-on == 1 {
-                        &:first-of-type {
-                            margin-left: initial;
-                        }
-                    }
+                &:first-of-type {
+                    @include co(margin-left, $ftr-soc-i-a-margin-left-firstoftype-md, $ftr-soc-i-a-margin-left-firstoftype-sm, $ftr-soc-i-a-margin-left-firstoftype);
+                    @include co(padding-left, $ftr-soc-i-a-padding-left-firstoftype-md, $ftr-soc-i-a-padding-left-firstoftype-sm, $ftr-soc-i-a-padding-left-firstoftype);
                 }
 
-
-                @if $ftr-soc-i-a-padding-right-lastoftype-md-on == 1 {
-                    @if $ftr-soc-i-a-padding-right-lastoftype-sm-on != 1 {
-                        &:last-of-type {
-                            padding-right: 0;
-                        }
-                    }
-
-                } @else {
-                    @if $ftr-soc-i-a-padding-right-lastoftype-on == 1 {
-                        &:last-of-type {
-                            padding-right: initial;
-                        }
-                    }
+                &:last-of-type {
+                    @include co(margin-right,  $ftr-soc-i-a-margin-right-lastoftype-md, $ftr-soc-i-a-margin-right-lastoftype-sm, $ftr-soc-i-a-margin-right-lastoftype);
+                    @include co(padding-right,  $ftr-soc-i-a-padding-right-lastoftype-md, $ftr-soc-i-a-padding-right-lastoftype-sm, $ftr-soc-i-a-padding-right-lastoftype);
                 }
-                @if $ftr-soc-i-a-padding-left-firstoftype-md-on == 1 {
-                    @if $ftr-soc-i-a-padding-left-firstoftype-sm-on != 1 {
-                        &:first-of-type {
-                            padding-left: 0;
-                        }
-                    }
 
-                } @else {
-                    @if $ftr-soc-i-a-padding-left-firstoftype-on == 1 {
-                        &:first-of-type {
-                            padding-left: initial;
-                        }
-                    }
-                }
             }
 
             @include min-screen($desktop-large-min) {
                 @include co(margin, $ftr-soc-i-a-margin-desktoplg, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
                 @include co(width, $ftr-soc-i-a-width-lg, $ftr-soc-i-a-width-md, $ftr-soc-i-a-width-sm, $ftr-soc-i-a-width);
                 @include co(margin, $ftr-soc-i-a-margin-desktoplg, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
-                @if $ftr-soc-i-a-margin-right-lastoftype-lg-on == 1 {
-                    @if $ftr-soc-i-a-margin-right-lastoftype-md-on != 1 {
-                        &:last-of-type {
-                            margin-right: 0;
-                        }
-                    }
-                } @else {
-                    @if $ftr-soc-i-a-margin-right-lastoftype-on == 1 {
-                        &:last-of-type {
-                            margin-right: initial;
-                        }
-                    }
-                }
-                @if $ftr-soc-i-a-margin-left-firstoftype-lg-on == 1 {
-                    @if $ftr-soc-i-a-margin-left-firstoftype-md-on != 1 {
-                        &:first-of-type {
-                            margin-left: 0;
-                        }
-                    }
-                } @else {
-                    @if $ftr-soc-i-a-margin-left-firstoftype-on == 1 {
-                        &:first-of-type {
-                            margin-left: initial;
-                        }
-                    }
-                }
                 @include co(padding, $ftr-soc-i-a-padding-desktoplg, $ftr-soc-i-a-padding-desktopmd, $ftr-soc-i-a-padding, $ftr-soc-i-a-padding-desktopsm);
-                @if $ftr-soc-i-a-padding-right-lastoftype-lg-on == 1 {
-                    @if $ftr-soc-i-a-padding-right-lastoftype-md-on != 1 {
-                        &:last-of-type {
-                            padding-right: 0;
-                        }
-                    }
-                } @else {
-                    @if $ftr-soc-i-a-padding-right-lastoftype-on == 1 {
-                        &:last-of-type {
-                            padding-right: initial;
-                        }
-                    }
-                }
-                @if $ftr-soc-i-a-padding-left-firstoftype-lg-on == 1 {
-                    @if $ftr-soc-i-a-padding-left-firstoftype-md-on != 1 {
-                        &:first-of-type {
-                            padding-left: 0;
-                        }
-                    }
-                } @else {
-                    @if $ftr-soc-i-a-padding-left-firstoftype-on == 1 {
-                        &:first-of-type {
-                            padding-left: initial;
-                        }
-                    }
-                }
-                &:hover {
-                    i {
-                        @include co(transition, $ftr-soc-i-a-transition);
-                    }
 
+                &:first-of-type {
+                    @include co(margin-left, $ftr-soc-i-a-margin-left-firstoftype-lg, $ftr-soc-i-a-margin-left-firstoftype-md, $ftr-soc-i-a-margin-left-firstoftype-sm, $ftr-soc-i-a-margin-left-firstoftype);
+                    @include co(padding-left, $ftr-soc-i-a-padding-left-firstoftype-lg, $ftr-soc-i-a-padding-left-firstoftype-md, $ftr-soc-i-a-padding-left-firstoftype-sm, $ftr-soc-i-a-padding-left-firstoftype);
                 }
+
+                &:last-of-type {
+                    @include co(margin-right, $ftr-soc-i-a-margin-right-lastoftype-lg, $ftr-soc-i-a-margin-right-lastoftype-md, $ftr-soc-i-a-margin-right-lastoftype-sm, $ftr-soc-i-a-margin-right-lastoftype);
+                    @include co(padding-right, $ftr-soc-i-a-padding-right-lastoftype-lg, $ftr-soc-i-a-padding-right-lastoftype-md, $ftr-soc-i-a-padding-right-lastoftype-sm, $ftr-soc-i-a-padding-right-lastoftype);
+                }
+
             }
 
             @include min-screen($desktop-xl-min) {
                 @include co(margin, $ftr-soc-i-a-margin-desktopxl, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
-
                 @include co(width, $ftr-soc-i-a-width-xl, $ftr-soc-i-a-width-lg, $ftr-soc-i-a-width-sm, $ftr-soc-i-a-width);
                 @include co(margin, $ftr-soc-i-a-margin-desktopxl, $ftr-soc-i-a-margin-desktopmd, $ftr-soc-i-a-margin, $ftr-soc-i-a-margin-desktopsm);
-                @if $ftr-soc-i-a-margin-right-lastoftype-xl-on == 1 {
-                    &:last-of-type {
-                        @if $ftr-soc-i-a-margin-right-lastoftype-xl-on != 1 {
-                            margin-right: 0;
-                        }
-                    }
-                }
                 @include co(padding, $ftr-soc-i-a-padding-desktopxl, $ftr-soc-i-a-padding-desktopmd, $ftr-soc-i-a-padding, $ftr-soc-i-a-padding-desktopsm);
-                @if $ftr-soc-i-a-padding-right-lastoftype-xl-on == 1 {
-                    &:last-of-type {
-                        @if $ftr-soc-i-a-padding-right-lastoftype-xl-on != 1 {
-                            padding-right: 0;
-                        }
-                    }
-                }
-                &:hover {
-                    i {
-                        @include co(transition, $ftr-soc-i-a-transition);
-                    }
 
+                &:first-of-type {
+                    @include co(margin-left, $ftr-soc-i-a-margin-left-firstoftype-xl, $ftr-soc-i-a-margin-left-firstoftype-lg, $ftr-soc-i-a-margin-left-firstoftype-md, $ftr-soc-i-a-margin-left-firstoftype-sm, $ftr-soc-i-a-margin-left-firstoftype);
+                    @include co(padding-left, $ftr-soc-i-a-padding-left-firstoftype-xl, $ftr-soc-i-a-padding-left-firstoftype-lg, $ftr-soc-i-a-padding-left-firstoftype-md, $ftr-soc-i-a-padding-left-firstoftype-sm, $ftr-soc-i-a-padding-left-firstoftype);
+                }
+
+                &:last-of-type {
+                    @include co(margin-right, $ftr-soc-i-a-margin-right-lastoftype-xl, $ftr-soc-i-a-margin-right-lastoftype-lg, $ftr-soc-i-a-margin-right-lastoftype-md, $ftr-soc-i-a-margin-right-lastoftype-sm, $ftr-soc-i-a-margin-right-lastoftype);
+                    @include co(padding-right, $ftr-soc-i-a-padding-right-lastoftype-xl, $ftr-soc-i-a-padding-right-lastoftype-lg, $ftr-soc-i-a-padding-right-lastoftype-md, $ftr-soc-i-a-padding-right-lastoftype-sm, $ftr-soc-i-a-padding-right-lastoftype);
                 }
             }
 
@@ -1876,19 +1767,13 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
                 @include co(display, $ftr-soc-i-i-display);
                 @include co(justify-content, $ftr-soc-i-i-justifycontent);
                 @include co(align-items, $ftr-soc-i-i-alignitems);
-
-
                 @include co(border-radius, $ftr-soc-i-i-borderradius);
                 @include co(background-color, $ftr-soc-i-i-bg-color);
                 @include co(color, $ftr-soc-i-i-color);
-
-
                 @include co(text-align, $ftr-soc-i-i-textalign);
-
                 @include co(width, $ftr-soc-i-i-width);
                 @include co(height, $ftr-soc-i-i-height);
                 @include co(font-size, $ftr-soc-i-i-font-size);
-
                 @include co(line-height, $ftr-soc-i-i-line-height);
 
                 @if $ftr-soc-i-i-border != false {
@@ -1905,111 +1790,99 @@ $ev-ftr-bic-ml-justify-content-desktopmd: center !default;
                     @include co(width, $ftr-soc-i-i-width-desktop, $ftr-soc-i-i-width);
                     @include co(line-height, $ftr-soc-i-i-line-height-desktop, $ftr-soc-i-i-line-height);
                     @include co(border-radius, $ftr-soc-i-i-borderradius-desktop, $ftr-soc-i-i-borderradius);
-
                 }
 
-
-            }
-
-
-        }
-
-        .soc-ico-fb {
-            i {
-                background-color: $social-facebook;
-            }
-
-            &:hover {
-                i {
-                    background-color: darken($social-facebook, 10%);
-                }
-            }
-        }
-
-        .soc-ico-twit {
-            i {
-                background-color: $social-twitter-alt;
-            }
-
-            &:hover {
-                i {
-                    background-color: darken($social-twitter-alt, 10%);
-                }
-
-            }
-        }
-
-        .soc-ico-pin {
-            i {
-                background-color: $social-pinterest;
-            }
-
-            &:hover {
-                i {
-                    background-color: darken($social-pinterest, 10%);
-                }
-
-            }
-        }
-
-        .soc-ico-yt {
-            i {
-                background-color: $social-youtube-alt;
-            }
-
-            &:hover {
-                i {
-                    background-color: darken($social-youtube-alt, 10%);
-                }
-
-            }
-        }
-
-        .soc-ico-inst {
-            i {
-                background-color: $social-instagram;
-            }
-
-            &:hover {
-                i {
-                    background-color: darken($social-instagram, 10%);
-                }
-
-            }
-        }
-
-        .soc-ico-linkedin {
-            i {
-                background-color: $social-linkedin;
-            }
-
-            &:hover {
-                i {
-                    background-color: darken($social-linkedin, 10%);
-                }
 
             }
         }
     }
 }
 
+@if $ftr-social-icons-colored == true {
+    .soc-ico-fb {
+        i {
+            background-color: $social-facebook;
+        }
 
-// These May Not Be Necessary in All Themes
-
-$ftr-feefo-footer-margin-mobile: 1rem 0 0 0 !default;
-
-
-#feefo-footer {
-    display: block;
-    @include max-screen($desktop-sm-max) {
-        margin: 0 auto;
+        &:hover {
+            i {
+                background-color: darken($social-facebook, 10%);
+            }
+        }
     }
 
-    img {
-        @include img-responsive();
-        margin: 0 auto;
+    .soc-ico-twit {
+        i {
+            background-color: $social-twitter-alt;
+        }
+
+        &:hover {
+            i {
+                background-color: darken($social-twitter-alt, 10%);
+            }
+
+        }
     }
+
+    .soc-ico-pin {
+        i {
+            background-color: $social-pinterest;
+        }
+
+        &:hover {
+            i {
+                background-color: darken($social-pinterest, 10%);
+            }
+
+        }
+    }
+
+
+    .soc-ico-yt {
+        i {
+            background-color: $social-youtube-alt;
+        }
+
+        &:hover {
+            i {
+                background-color: darken($social-youtube-alt, 10%);
+            }
+
+        }
+    }
+
+    .soc-ico-inst {
+        i {
+            background-color: $social-instagram;
+        }
+
+        &:hover {
+            i {
+                background-color: darken($social-instagram, 10%);
+            }
+
+        }
+    }
+
+    .soc-ico-linkedin {
+        i {
+            background-color: $social-linkedin;
+        }
+
+        &:hover {
+            i {
+                background-color: darken($social-linkedin, 10%);
+            }
+
+        }
+    }
+
 }
+
+
+
+
+
 
 $ftr-copy-lr-width: 100% !default;
 $ftr-copy-lr-line-height: 1.25rem !default;

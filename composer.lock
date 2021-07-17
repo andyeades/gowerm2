@@ -495,16 +495,16 @@
         },
         {
             "name": "colinmollenhour/php-redis-session-abstract",
-            "version": "v1.4.3",
+            "version": "v1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colinmollenhour/php-redis-session-abstract.git",
-                "reference": "39ca38da5e0a981bc1a7e39a86693c128784a513"
+                "reference": "8d684bbacac99450f2a9ddf6f56be296997e2959"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colinmollenhour/php-redis-session-abstract/zipball/39ca38da5e0a981bc1a7e39a86693c128784a513",
-                "reference": "39ca38da5e0a981bc1a7e39a86693c128784a513",
+                "url": "https://api.github.com/repos/colinmollenhour/php-redis-session-abstract/zipball/8d684bbacac99450f2a9ddf6f56be296997e2959",
+                "reference": "8d684bbacac99450f2a9ddf6f56be296997e2959",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -515,7 +515,10 @@
             },
             "require": {
                 "colinmollenhour/credis": "~1.6",
-                "php": "^5.5 || ^7.0|| ^7.1 || ^7.2"
+                "php": "^5.5 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
             },
             "type": "library",
             "autoload": {
@@ -523,7 +526,7 @@
                     "Cm\\RedisSession\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -534,7 +537,11 @@
             ],
             "description": "A Redis-based session handler with optimistic locking",
             "homepage": "https://github.com/colinmollenhour/php-redis-session-abstract",
-            "time": "2020-10-07T09:47:22+00:00"
+            "support": {
+                "issues": "https://github.com/colinmollenhour/php-redis-session-abstract/issues",
+                "source": "https://github.com/colinmollenhour/php-redis-session-abstract/tree/v1.4.4"
+            },
+            "time": "2021-04-07T21:51:17+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -601,16 +608,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.10.20",
+            "version": "1.10.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "e55d297525f0ecc805c813a0f63a40114fd670f6"
+                "reference": "28c9dfbe2351635961f670773e8d7b17bc5eda25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/e55d297525f0ecc805c813a0f63a40114fd670f6",
-                "reference": "e55d297525f0ecc805c813a0f63a40114fd670f6",
+                "url": "https://api.github.com/repos/composer/composer/zipball/28c9dfbe2351635961f670773e8d7b17bc5eda25",
+                "reference": "28c9dfbe2351635961f670773e8d7b17bc5eda25",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -660,7 +667,7 @@
                     "Composer\\": "src/Composer"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -683,20 +690,25 @@
                 "dependency",
                 "package"
             ],
-            "time": "2021-01-27T14:41:06+00:00"
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/composer/issues",
+                "source": "https://github.com/composer/composer/tree/1.10.22"
+            },
+            "time": "2021-04-27T11:10:45+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
-            "version": "1.11.99.1",
+            "version": "1.11.99.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/package-versions-deprecated.git",
-                "reference": "7413f0b55a051e89485c5cb9f765fe24bb02a7b6"
+                "reference": "c6522afe5540d5fc46675043d3ed5a45a740b27c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/7413f0b55a051e89485c5cb9f765fe24bb02a7b6",
-                "reference": "7413f0b55a051e89485c5cb9f765fe24bb02a7b6",
+                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/c6522afe5540d5fc46675043d3ed5a45a740b27c",
+                "reference": "c6522afe5540d5fc46675043d3ed5a45a740b27c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -729,7 +741,7 @@
                     "PackageVersions\\": "src/PackageVersions"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -744,7 +756,11 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-            "time": "2020-11-11T10:22:58+00:00"
+            "support": {
+                "issues": "https://github.com/composer/package-versions-deprecated/issues",
+                "source": "https://github.com/composer/package-versions-deprecated/tree/1.11.99.2"
+            },
+            "time": "2021-05-24T07:46:03+00:00"
         },
         {
             "name": "composer/semver",
@@ -1269,12 +1285,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_CartAssignments.git",
-                "reference": "88a40971fa77af7d1e8d397a46bb588aadae6377"
+                "reference": "89f7a9a41008b9a31a2f44e1950ca2175c661d70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_CartAssignments/zipball/88a40971fa77af7d1e8d397a46bb588aadae6377",
-                "reference": "88a40971fa77af7d1e8d397a46bb588aadae6377",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_CartAssignments/zipball/89f7a9a41008b9a31a2f44e1950ca2175c661d70",
+                "reference": "89f7a9a41008b9a31a2f44e1950ca2175c661d70",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1298,7 +1314,7 @@
                 "source": "https://github.com/elevateweb/Elevate_CartAssignments/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_CartAssignments/issues"
             },
-            "time": "2021-03-30T22:54:04+00:00"
+            "time": "2021-04-29T22:29:59+00:00"
         },
         {
             "name": "elevate/elevate-core",
@@ -1414,12 +1430,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_CustomAdmin.git",
-                "reference": "2f679f7279bea22e2bbd6f32937f3367437f93d6"
+                "reference": "43ea9d2bfc75e3d8730943a020b8441315df715d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_CustomAdmin/zipball/2f679f7279bea22e2bbd6f32937f3367437f93d6",
-                "reference": "2f679f7279bea22e2bbd6f32937f3367437f93d6",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_CustomAdmin/zipball/43ea9d2bfc75e3d8730943a020b8441315df715d",
+                "reference": "43ea9d2bfc75e3d8730943a020b8441315df715d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1437,12 +1453,13 @@
                     "Elevate\\CustomAdmin\\": ""
                 }
             },
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "description": "Elevate CustomAdmin",
             "support": {
                 "source": "https://github.com/elevateweb/Elevate_CustomAdmin/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_CustomAdmin/issues"
             },
-            "time": "2021-03-03T23:31:35+00:00"
+            "time": "2021-04-29T20:38:27+00:00"
         },
         {
             "name": "elevate/elevate-framework",
@@ -1487,12 +1504,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_Megamenu.git",
-                "reference": "d310162353bb1e3f27d20924585f01a7a3163791"
+                "reference": "972bcc3cdb82f17ea38774e86c44db78b745fa21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_Megamenu/zipball/d310162353bb1e3f27d20924585f01a7a3163791",
-                "reference": "d310162353bb1e3f27d20924585f01a7a3163791",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_Megamenu/zipball/972bcc3cdb82f17ea38774e86c44db78b745fa21",
+                "reference": "972bcc3cdb82f17ea38774e86c44db78b745fa21",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1510,12 +1527,13 @@
                     "Elevate\\Megamenu\\": ""
                 }
             },
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "description": "Elevate Megamenu",
             "support": {
                 "source": "https://github.com/elevateweb/Elevate_Megamenu/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_Megamenu/issues"
             },
-            "time": "2020-09-04T15:19:55+00:00"
+            "time": "2021-04-29T20:40:34+00:00"
         },
         {
             "name": "elevate/elevate-release",
@@ -1909,12 +1927,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_Reviews.git",
-                "reference": "d4840fc93bbd99eef233418000346d3a0240911b"
+                "reference": "7533ec237730440f30b2702bb0da6644a5224643"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_Reviews/zipball/d4840fc93bbd99eef233418000346d3a0240911b",
-                "reference": "d4840fc93bbd99eef233418000346d3a0240911b",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_Reviews/zipball/7533ec237730440f30b2702bb0da6644a5224643",
+                "reference": "7533ec237730440f30b2702bb0da6644a5224643",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1938,7 +1956,7 @@
                 "source": "https://github.com/elevateweb/Elevate_Reviews/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_Reviews/issues"
             },
-            "time": "2021-03-10T11:49:51+00:00"
+            "time": "2021-04-29T20:50:49+00:00"
         },
         {
             "name": "elevate/elevate-shopall",
@@ -2254,12 +2272,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_EmailPreview.git",
-                "reference": "e0c47071b7d6466aa69365f77274248c1eac0bb5"
+                "reference": "44acea312ae83a8a95433ac9a88bb6899abb7fdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_EmailPreview/zipball/e0c47071b7d6466aa69365f77274248c1eac0bb5",
-                "reference": "e0c47071b7d6466aa69365f77274248c1eac0bb5",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_EmailPreview/zipball/44acea312ae83a8a95433ac9a88bb6899abb7fdc",
+                "reference": "44acea312ae83a8a95433ac9a88bb6899abb7fdc",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2277,6 +2295,7 @@
                     "Elevate\\EmailPreview\\": ""
                 }
             },
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -2290,7 +2309,7 @@
                 "source": "https://github.com/elevateweb/Elevate_EmailPreview/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_EmailPreview/issues"
             },
-            "time": "2020-09-23T11:51:21+00:00"
+            "time": "2021-04-07T21:07:17+00:00"
         },
         {
             "name": "elevate/module-landingpages",
@@ -2298,12 +2317,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_LandingPages.git",
-                "reference": "717a9ee4f6216f33ef635ff901b9f7e644064b2e"
+                "reference": "28afd83e2b45bbeb0cb26e26744867cd9a780d9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_LandingPages/zipball/717a9ee4f6216f33ef635ff901b9f7e644064b2e",
-                "reference": "717a9ee4f6216f33ef635ff901b9f7e644064b2e",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_LandingPages/zipball/28afd83e2b45bbeb0cb26e26744867cd9a780d9d",
+                "reference": "28afd83e2b45bbeb0cb26e26744867cd9a780d9d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2339,7 +2358,7 @@
                 "source": "https://github.com/elevateweb/Elevate_LandingPages/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_LandingPages/issues"
             },
-            "time": "2021-03-28T00:57:48+00:00"
+            "time": "2021-04-12T16:52:12+00:00"
         },
         {
             "name": "elevate/module-landingpages-rewrite",
@@ -2576,12 +2595,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_Promotions.git",
-                "reference": "19dd393bd27cdf32b07f2c4d9a069fcfb29c2cfb"
+                "reference": "1ea13e75f565b84d110c96c75f3fac8cf596556c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_Promotions/zipball/19dd393bd27cdf32b07f2c4d9a069fcfb29c2cfb",
-                "reference": "19dd393bd27cdf32b07f2c4d9a069fcfb29c2cfb",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_Promotions/zipball/1ea13e75f565b84d110c96c75f3fac8cf596556c",
+                "reference": "1ea13e75f565b84d110c96c75f3fac8cf596556c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2605,7 +2624,7 @@
                 "source": "https://github.com/elevateweb/Elevate_Promotions/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_Promotions/issues"
             },
-            "time": "2021-03-31T19:55:06+00:00"
+            "time": "2021-04-06T14:52:02+00:00"
         },
         {
             "name": "elevate/module-shell",
@@ -2613,12 +2632,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_Shell.git",
-                "reference": "eb236199928153af1b026057b40cddc9404e2592"
+                "reference": "d49daad12b72e29fe50fc420f2bb008056b73a01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_Shell/zipball/eb236199928153af1b026057b40cddc9404e2592",
-                "reference": "eb236199928153af1b026057b40cddc9404e2592",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_Shell/zipball/d49daad12b72e29fe50fc420f2bb008056b73a01",
+                "reference": "d49daad12b72e29fe50fc420f2bb008056b73a01",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2642,7 +2661,7 @@
                 "source": "https://github.com/elevateweb/Elevate_Shell/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_Shell/issues"
             },
-            "time": "2021-03-18T10:00:41+00:00"
+            "time": "2021-04-29T21:38:57+00:00"
         },
         {
             "name": "elevate/module-support",
@@ -2783,12 +2802,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_Widgets.git",
-                "reference": "6d371be49087624dcca95c4bbbd104968507d68a"
+                "reference": "e8d23108c7c1092d7d07dd9a7f22b8498b8d0c2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_Widgets/zipball/6d371be49087624dcca95c4bbbd104968507d68a",
-                "reference": "6d371be49087624dcca95c4bbbd104968507d68a",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_Widgets/zipball/e8d23108c7c1092d7d07dd9a7f22b8498b8d0c2b",
+                "reference": "e8d23108c7c1092d7d07dd9a7f22b8498b8d0c2b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2812,7 +2831,7 @@
                 "source": "https://github.com/elevateweb/Elevate_Widgets/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_Widgets/issues"
             },
-            "time": "2021-03-31T21:32:13+00:00"
+            "time": "2021-05-21T20:10:05+00:00"
         },
         {
             "name": "elevate/producticons",
@@ -2820,12 +2839,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_ProductIcons.git",
-                "reference": "193931112be44ffed30ba331a2dcc2d2436a0f60"
+                "reference": "e7825ec38f5cfc21f7544345554df6c9c47bc29f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_ProductIcons/zipball/193931112be44ffed30ba331a2dcc2d2436a0f60",
-                "reference": "193931112be44ffed30ba331a2dcc2d2436a0f60",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_ProductIcons/zipball/e7825ec38f5cfc21f7544345554df6c9c47bc29f",
+                "reference": "e7825ec38f5cfc21f7544345554df6c9c47bc29f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2843,6 +2862,7 @@
                     "registration.php"
                 ]
             },
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -2850,7 +2870,7 @@
                 "source": "https://github.com/elevateweb/Elevate_ProductIcons/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_ProductIcons/issues"
             },
-            "time": "2021-01-19T01:05:23+00:00"
+            "time": "2021-05-17T13:11:02+00:00"
         },
         {
             "name": "elevate/theme",
@@ -2858,12 +2878,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Elevate_Theme.git",
-                "reference": "ed0f0f37f826733bc3abac9d51143ef0fd9e81e0"
+                "reference": "dc212d85f63386a23fbe55b642061eaaad25d9ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Elevate_Theme/zipball/ed0f0f37f826733bc3abac9d51143ef0fd9e81e0",
-                "reference": "ed0f0f37f826733bc3abac9d51143ef0fd9e81e0",
+                "url": "https://api.github.com/repos/elevateweb/Elevate_Theme/zipball/dc212d85f63386a23fbe55b642061eaaad25d9ae",
+                "reference": "dc212d85f63386a23fbe55b642061eaaad25d9ae",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2891,7 +2911,7 @@
                 "source": "https://github.com/elevateweb/Elevate_Theme/tree/master",
                 "issues": "https://github.com/elevateweb/Elevate_Theme/issues"
             },
-            "time": "2021-03-31T21:33:41+00:00"
+            "time": "2021-06-16T22:12:41+00:00"
         },
         {
             "name": "elevate_client/aitoc-core",
@@ -3480,12 +3500,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Firebear_ConfigurableProducts.git",
-                "reference": "1c4f0380790404a6add0ab368ffd828a98fd5435"
+                "reference": "de6089f90b7d7440da38fa5ec4c37bcf5d5825ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Firebear_ConfigurableProducts/zipball/1c4f0380790404a6add0ab368ffd828a98fd5435",
-                "reference": "1c4f0380790404a6add0ab368ffd828a98fd5435",
+                "url": "https://api.github.com/repos/elevateweb/Firebear_ConfigurableProducts/zipball/de6089f90b7d7440da38fa5ec4c37bcf5d5825ea",
+                "reference": "de6089f90b7d7440da38fa5ec4c37bcf5d5825ea",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3516,7 +3536,7 @@
                 "source": "https://github.com/elevateweb/Firebear_ConfigurableProducts/tree/master",
                 "issues": "https://github.com/elevateweb/Firebear_ConfigurableProducts/issues"
             },
-            "time": "2021-03-10T11:51:56+00:00"
+            "time": "2021-04-29T20:49:08+00:00"
         },
         {
             "name": "elevate_external/fisheye-lazyload",
@@ -3887,12 +3907,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Mageplaza_Seo.git",
-                "reference": "ac0a9897373501b8b5fe907e3e4492a666895e44"
+                "reference": "7d68903bbc0d12668d755dd4f5d6e4489b297d32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Mageplaza_Seo/zipball/ac0a9897373501b8b5fe907e3e4492a666895e44",
-                "reference": "ac0a9897373501b8b5fe907e3e4492a666895e44",
+                "url": "https://api.github.com/repos/elevateweb/Mageplaza_Seo/zipball/7d68903bbc0d12668d755dd4f5d6e4489b297d32",
+                "reference": "7d68903bbc0d12668d755dd4f5d6e4489b297d32",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3910,6 +3930,7 @@
                     "Mageplaza\\Seo\\": ""
                 }
             },
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -3932,7 +3953,7 @@
                 "source": "https://github.com/elevateweb/Mageplaza_Seo/tree/master",
                 "issues": "https://github.com/elevateweb/Mageplaza_Seo/issues"
             },
-            "time": "2021-03-04T00:49:15+00:00"
+            "time": "2021-04-29T21:01:14+00:00"
         },
         {
             "name": "elevate_external/mageplaza-sitemap",
@@ -4043,12 +4064,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Mageplaza_Blog.git",
-                "reference": "d416b23348e27920200b3190e6896d4d8df6a72f"
+                "reference": "68118e14cef43d72a02885c3a9924e1d9df89f2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Mageplaza_Blog/zipball/d416b23348e27920200b3190e6896d4d8df6a72f",
-                "reference": "d416b23348e27920200b3190e6896d4d8df6a72f",
+                "url": "https://api.github.com/repos/elevateweb/Mageplaza_Blog/zipball/68118e14cef43d72a02885c3a9924e1d9df89f2b",
+                "reference": "68118e14cef43d72a02885c3a9924e1d9df89f2b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4066,6 +4087,7 @@
                     "Mageplaza\\Blog\\": ""
                 }
             },
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -4089,7 +4111,7 @@
                 "source": "https://github.com/elevateweb/Mageplaza_Blog/tree/master",
                 "issues": "https://github.com/elevateweb/Mageplaza_Blog/issues"
             },
-            "time": "2021-03-05T16:04:48+00:00"
+            "time": "2021-04-21T21:43:16+00:00"
         },
         {
             "name": "elevate_external/mageplaza_core",
@@ -4528,12 +4550,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:elevateweb/Solwin_Soldout.git",
-                "reference": "a06d09248799fe8a42ecc3917c3113a00da59e5f"
+                "reference": "b31bdb111ed1f41a9ee8ad52b168ced52ff72a49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elevateweb/Solwin_Soldout/zipball/a06d09248799fe8a42ecc3917c3113a00da59e5f",
-                "reference": "a06d09248799fe8a42ecc3917c3113a00da59e5f",
+                "url": "https://api.github.com/repos/elevateweb/Solwin_Soldout/zipball/b31bdb111ed1f41a9ee8ad52b168ced52ff72a49",
+                "reference": "b31bdb111ed1f41a9ee8ad52b168ced52ff72a49",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4551,12 +4573,13 @@
                     "Solwin\\Soldout\\": ""
                 }
             },
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "description": "Solwin out of stock Label on outofstock Products",
             "support": {
                 "source": "https://github.com/elevateweb/Solwin_Soldout/tree/master",
                 "issues": "https://github.com/elevateweb/Solwin_Soldout/issues"
             },
-            "time": "2020-01-23T16:42:49+00:00"
+            "time": "2021-04-29T20:47:12+00:00"
         },
         {
             "name": "elevate_external/tigren-progressivewebapp",
@@ -5001,16 +5024,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.166.0",
+            "version": "v0.176.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "46b71684a100f3d976e0321cf24f487b314add68"
+                "reference": "316cbf9b02c575a140d8cbeca48a3ca0070fcd5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/46b71684a100f3d976e0321cf24f487b314add68",
-                "reference": "46b71684a100f3d976e0321cf24f487b314add68",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/316cbf9b02c575a140d8cbeca48a3ca0070fcd5a",
+                "reference": "316cbf9b02c575a140d8cbeca48a3ca0070fcd5a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5042,22 +5065,22 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.166.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.176.0"
             },
-            "time": "2021-03-22T11:26:04+00:00"
+            "time": "2021-05-15T11:18:02+00:00"
         },
         {
             "name": "google/auth",
-            "version": "v1.15.0",
+            "version": "v1.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-auth-library-php.git",
-                "reference": "b346c07de6613e26443d7b4830e5e1933b830dc4"
+                "reference": "4e0c9367719df9703e96f5ad613041b87742471c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/b346c07de6613e26443d7b4830e5e1933b830dc4",
-                "reference": "b346c07de6613e26443d7b4830e5e1933b830dc4",
+                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/4e0c9367719df9703e96f5ad613041b87742471c",
+                "reference": "4e0c9367719df9703e96f5ad613041b87742471c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5077,7 +5100,7 @@
             "require-dev": {
                 "guzzlehttp/promises": "0.1.1|^1.3",
                 "kelvinmo/simplejwt": "^0.2.5|^0.5.1",
-                "phpseclib/phpseclib": "^2",
+                "phpseclib/phpseclib": "^2.0.31",
                 "phpunit/phpunit": "^4.8.36|^5.7",
                 "sebastian/comparator": ">=1.2.3",
                 "squizlabs/php_codesniffer": "^3.5"
@@ -5091,7 +5114,7 @@
                     "Google\\Auth\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -5102,7 +5125,12 @@
                 "google",
                 "oauth2"
             ],
-            "time": "2021-02-05T20:50:04+00:00"
+            "support": {
+                "docs": "https://googleapis.github.io/google-auth-library-php/master/",
+                "issues": "https://github.com/googleapis/google-auth-library-php/issues",
+                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.15.1"
+            },
+            "time": "2021-04-21T17:42:05+00:00"
         },
         {
             "name": "google/recaptcha",
@@ -5289,16 +5317,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.1",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1"
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/35ea11d335fd638b5882ff1725228b3d35496ab1",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5364,9 +5392,9 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.1"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
-            "time": "2021-03-21T16:25:00+00:00"
+            "time": "2021-04-26T09:17:50+00:00"
         },
         {
             "name": "http-interop/http-factory-guzzle",
@@ -5555,16 +5583,16 @@
         },
         {
             "name": "khanamiryan/qrcode-detector-decoder",
-            "version": "1.0.4",
+            "version": "1.0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/khanamiryan/php-qrcode-detector-decoder.git",
-                "reference": "07fceefb79d895e858e52921afb9c1433d2f3d5e"
+                "reference": "b96163d4f074970dfe67d4185e75e1f4541b30ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/khanamiryan/php-qrcode-detector-decoder/zipball/07fceefb79d895e858e52921afb9c1433d2f3d5e",
-                "reference": "07fceefb79d895e858e52921afb9c1433d2f3d5e",
+                "url": "https://api.github.com/repos/khanamiryan/php-qrcode-detector-decoder/zipball/b96163d4f074970dfe67d4185e75e1f4541b30ca",
+                "reference": "b96163d4f074970dfe67d4185e75e1f4541b30ca",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5577,7 +5605,7 @@
                 "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0"
+                "phpunit/phpunit": "^5.7 | ^7.5 | ^8.0 | ^9.0"
             },
             "type": "library",
             "autoload": {
@@ -5588,9 +5616,10 @@
                     "lib/Common/customFunctions.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
-                "MIT"
+                "MIT",
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -5607,7 +5636,11 @@
                 "qr",
                 "zxing"
             ],
-            "time": "2020-11-29T18:50:26+00:00"
+            "support": {
+                "issues": "https://github.com/khanamiryan/php-qrcode-detector-decoder/issues",
+                "source": "https://github.com/khanamiryan/php-qrcode-detector-decoder/tree/1.0.5.1"
+            },
+            "time": "2021-04-21T08:02:08+00:00"
         },
         {
             "name": "laminas/laminas-captcha",
@@ -8520,16 +8553,16 @@
         },
         {
             "name": "magento/magento-composer-installer",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magento/magento-composer-installer.git",
-                "reference": "4adc8a98ae6ba18e9e3a8d03ce6c40adc33bb273"
+                "reference": "b9f929f718ef93ed61b6410bad85d40c37fd5ed3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magento/magento-composer-installer/zipball/4adc8a98ae6ba18e9e3a8d03ce6c40adc33bb273",
-                "reference": "4adc8a98ae6ba18e9e3a8d03ce6c40adc33bb273",
+                "url": "https://api.github.com/repos/magento/magento-composer-installer/zipball/b9f929f718ef93ed61b6410bad85d40c37fd5ed3",
+                "reference": "b9f929f718ef93ed61b6410bad85d40c37fd5ed3",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8565,7 +8598,7 @@
                     "MagentoHackathon\\Composer\\Magento": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "OSL-3.0"
             ],
@@ -8601,7 +8634,10 @@
                 "composer-installer",
                 "magento"
             ],
-            "time": "2020-12-17T20:07:29+00:00"
+            "support": {
+                "source": "https://github.com/magento/magento-composer-installer/tree/0.2.1"
+            },
+            "time": "2021-03-04T20:05:10+00:00"
         },
         {
             "name": "magento/magento2-base",
@@ -13597,16 +13633,16 @@
         },
         {
             "name": "mpdf/mpdf",
-            "version": "v8.0.10",
+            "version": "v8.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mpdf/mpdf.git",
-                "reference": "1333a962cd2f7ae1a127b7534b7734b58179186f"
+                "reference": "af17afbbfa0b6ce76defc8da5d02a73d54f94c64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/1333a962cd2f7ae1a127b7534b7734b58179186f",
-                "reference": "1333a962cd2f7ae1a127b7534b7734b58179186f",
+                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/af17afbbfa0b6ce76defc8da5d02a73d54f94c64",
+                "reference": "af17afbbfa0b6ce76defc8da5d02a73d54f94c64",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -13642,7 +13678,7 @@
                     "Mpdf\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "GPL-2.0-only"
             ],
@@ -13663,7 +13699,12 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2021-01-08T14:59:28+00:00"
+            "support": {
+                "docs": "http://mpdf.github.io",
+                "issues": "https://github.com/mpdf/mpdf/issues",
+                "source": "https://github.com/mpdf/mpdf"
+            },
+            "time": "2021-05-12T14:18:06+00:00"
         },
         {
             "name": "msp/recaptcha",
@@ -14086,16 +14127,16 @@
         },
         {
             "name": "paragonie/sodium_compat",
-            "version": "v1.14.0",
+            "version": "v1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/sodium_compat.git",
-                "reference": "a1cfe0b21faf9c0b61ac0c6188c4af7fd6fd0db3"
+                "reference": "928e0565c9fe4f60b8f09119656c1aa418fc84ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/a1cfe0b21faf9c0b61ac0c6188c4af7fd6fd0db3",
-                "reference": "a1cfe0b21faf9c0b61ac0c6188c4af7fd6fd0db3",
+                "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/928e0565c9fe4f60b8f09119656c1aa418fc84ab",
+                "reference": "928e0565c9fe4f60b8f09119656c1aa418fc84ab",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -14121,7 +14162,7 @@
                     "autoload.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "ISC"
             ],
@@ -14170,7 +14211,11 @@
                 "secret-key cryptography",
                 "side-channel resistant"
             ],
-            "time": "2020-12-03T16:26:19+00:00"
+            "support": {
+                "issues": "https://github.com/paragonie/sodium_compat/issues",
+                "source": "https://github.com/paragonie/sodium_compat/tree/v1.16.0"
+            },
+            "time": "2021-05-14T03:03:19+00:00"
         },
         {
             "name": "pelago/emogrifier",
@@ -14791,16 +14836,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.30",
+            "version": "2.0.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "136b9ca7eebef78be14abf90d65c5e57b6bc5d36"
+                "reference": "233a920cb38636a43b18d428f9a8db1f0a1a08f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/136b9ca7eebef78be14abf90d65c5e57b6bc5d36",
-                "reference": "136b9ca7eebef78be14abf90d65c5e57b6bc5d36",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/233a920cb38636a43b18d428f9a8db1f0a1a08f4",
+                "reference": "233a920cb38636a43b18d428f9a8db1f0a1a08f4",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -14832,7 +14877,7 @@
                     "phpseclib\\": "phpseclib/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -14884,7 +14929,11 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2020-12-17T05:42:04+00:00"
+            "support": {
+                "issues": "https://github.com/phpseclib/phpseclib/issues",
+                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.31"
+            },
+            "time": "2021-04-06T13:56:45+00:00"
         },
         {
             "name": "printnode/printnode-php",
@@ -15207,16 +15256,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -15239,14 +15288,14 @@
                     "Psr\\Log\\": "Psr/Log/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for logging libraries",
@@ -15256,7 +15305,10 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2020-03-23T09:12:05+00:00"
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/1.1.4"
+            },
+            "time": "2021-05-03T11:20:27+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -15572,16 +15624,16 @@
         },
         {
             "name": "scssphp/scssphp",
-            "version": "v1.4.1",
+            "version": "v1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "ba86c963b94ec7ebd6e19d90cdab90d89667dbf7"
+                "reference": "6fe16f169f55f5e793474fb210aac0a4481619e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/ba86c963b94ec7ebd6e19d90cdab90d89667dbf7",
-                "reference": "ba86c963b94ec7ebd6e19d90cdab90d89667dbf7",
+                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/6fe16f169f55f5e793474fb210aac0a4481619e5",
+                "reference": "6fe16f169f55f5e793474fb210aac0a4481619e5",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -15596,12 +15648,18 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.4",
                 "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.3 || ^9.4",
-                "sass/sass-spec": "2020.12.29",
+                "sass/sass-spec": "*",
                 "squizlabs/php_codesniffer": "~3.5",
                 "symfony/phpunit-bridge": "^5.1",
-                "twbs/bootstrap": "~4.3",
+                "twbs/bootstrap": "~5.0",
+                "twbs/bootstrap4": "4.6.0",
                 "zurb/foundation": "~6.5"
+            },
+            "suggest": {
+                "ext-iconv": "Can be used as fallback when ext-mbstring is not available",
+                "ext-mbstring": "For best performance, mbstring should be installed as it is faster than ext-iconv"
             },
             "bin": [
                 "bin/pscss"
@@ -15612,7 +15670,7 @@
                     "ScssPhp\\ScssPhp\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -15637,7 +15695,11 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2021-01-04T13:23:23+00:00"
+            "support": {
+                "issues": "https://github.com/scssphp/scssphp/issues",
+                "source": "https://github.com/scssphp/scssphp/tree/v1.5.2"
+            },
+            "time": "2021-05-18T00:05:58+00:00"
         },
         {
             "name": "seld/jsonlint",
@@ -16026,16 +16088,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.76.0",
+            "version": "v7.79.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "47e66d4186712be33c593fe820dccf270a04d5d6"
+                "reference": "e17e85bc13dfa531bdfb3d3719d3810431d104f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/47e66d4186712be33c593fe820dccf270a04d5d6",
-                "reference": "47e66d4186712be33c593fe820dccf270a04d5d6",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/e17e85bc13dfa531bdfb3d3719d3810431d104f9",
+                "reference": "e17e85bc13dfa531bdfb3d3719d3810431d104f9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -16087,22 +16149,22 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v7.76.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v7.79.0"
             },
-            "time": "2021-03-22T16:50:21+00:00"
+            "time": "2021-05-19T19:30:23+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v4.4.21",
+            "version": "v4.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "1ba4560dbbb9fcf5ae28b61f71f49c678086cf23"
+                "reference": "1b15ca1b1bedda86f98064da9ff5d800560d4c6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/1ba4560dbbb9fcf5ae28b61f71f49c678086cf23",
-                "reference": "1ba4560dbbb9fcf5ae28b61f71f49c678086cf23",
+                "url": "https://api.github.com/repos/symfony/console/zipball/1b15ca1b1bedda86f98064da9ff5d800560d4c6d",
+                "reference": "1b15ca1b1bedda86f98064da9ff5d800560d4c6d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -16168,22 +16230,22 @@
             "description": "Eases the creation of beautiful and testable command line interfaces",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/console/tree/v4.4.21"
+                "source": "https://github.com/symfony/console/tree/v4.4.24"
             },
-            "time": "2021-03-26T09:23:24+00:00"
+            "time": "2021-05-13T06:28:07+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.4.20",
+            "version": "v4.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "f907d3e53ecb2a5fad8609eb2f30525287a734c8"
+                "reference": "947cacaf1b3a2af6f13a435392873d5ddaba5f70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/f907d3e53ecb2a5fad8609eb2f30525287a734c8",
-                "reference": "f907d3e53ecb2a5fad8609eb2f30525287a734c8",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/947cacaf1b3a2af6f13a435392873d5ddaba5f70",
+                "reference": "947cacaf1b3a2af6f13a435392873d5ddaba5f70",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -16204,7 +16266,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -16224,20 +16286,23 @@
             ],
             "description": "Converts CSS selectors to XPath expressions",
             "homepage": "https://symfony.com",
-            "time": "2021-01-27T09:09:26+00:00"
+            "support": {
+                "source": "https://github.com/symfony/css-selector/tree/v4.4.24"
+            },
+            "time": "2021-05-16T09:52:47+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v2.2.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "5fa56b4074d1ae755beb55617ddafe6f5d78f665"
+                "reference": "5f38c8804a9e97d23e0c8d63341088cd8a22d627"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/5fa56b4074d1ae755beb55617ddafe6f5d78f665",
-                "reference": "5fa56b4074d1ae755beb55617ddafe6f5d78f665",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/5f38c8804a9e97d23e0c8d63341088cd8a22d627",
+                "reference": "5f38c8804a9e97d23e0c8d63341088cd8a22d627",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -16252,7 +16317,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -16264,7 +16329,7 @@
                     "function.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -16280,7 +16345,10 @@
             ],
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
-            "time": "2020-09-07T11:33:47+00:00"
+            "support": {
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v2.4.0"
+            },
+            "time": "2021-03-23T23:28:01+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -16424,16 +16492,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.4.21",
+            "version": "v4.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "940826c465be2690c9fae91b2793481e5cbd6834"
+                "reference": "f0f06656a18304cdeacb2c4c0113a2b78a2b4c2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/940826c465be2690c9fae91b2793481e5cbd6834",
-                "reference": "940826c465be2690c9fae91b2793481e5cbd6834",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/f0f06656a18304cdeacb2c4c0113a2b78a2b4c2a",
+                "reference": "f0f06656a18304cdeacb2c4c0113a2b78a2b4c2a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -16472,22 +16540,22 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v4.4.21"
+                "source": "https://github.com/symfony/filesystem/tree/v4.4.22"
             },
-            "time": "2021-03-28T09:59:32+00:00"
+            "time": "2021-04-01T10:24:12+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.20",
+            "version": "v4.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "2543795ab1570df588b9bbd31e1a2bd7037b94f6"
+                "reference": "a96bc19ed87c88eec78e1a4c803bdc1446952983"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/2543795ab1570df588b9bbd31e1a2bd7037b94f6",
-                "reference": "2543795ab1570df588b9bbd31e1a2bd7037b94f6",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/a96bc19ed87c88eec78e1a4c803bdc1446952983",
+                "reference": "a96bc19ed87c88eec78e1a4c803bdc1446952983",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -16508,7 +16576,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -16524,20 +16592,23 @@
             ],
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
-            "time": "2021-02-12T10:48:09+00:00"
+            "support": {
+                "source": "https://github.com/symfony/finder/tree/v4.4.24"
+            },
+            "time": "2021-05-16T12:27:45+00:00"
         },
         {
             "name": "symfony/http-client",
-            "version": "v5.2.6",
+            "version": "v5.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "3c3075467da15bc2edf38d2ac20d34719e794bd8"
+                "reference": "653dc5e2201659abfa090a7396ce202371787540"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/3c3075467da15bc2edf38d2ac20d34719e794bd8",
-                "reference": "3c3075467da15bc2edf38d2ac20d34719e794bd8",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/653dc5e2201659abfa090a7396ce202371787540",
+                "reference": "653dc5e2201659abfa090a7396ce202371787540",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -16600,22 +16671,22 @@
             "description": "Provides powerful methods to fetch HTTP resources synchronously or asynchronously",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v5.2.6"
+                "source": "https://github.com/symfony/http-client/tree/v5.2.9"
             },
-            "time": "2021-03-28T09:42:18+00:00"
+            "time": "2021-05-15T12:42:34+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
-            "version": "v2.3.1",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client-contracts.git",
-                "reference": "41db680a15018f9c1d4b23516059633ce280ca33"
+                "reference": "7e82f6084d7cae521a75ef2cb5c9457bbda785f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/41db680a15018f9c1d4b23516059633ce280ca33",
-                "reference": "41db680a15018f9c1d4b23516059633ce280ca33",
+                "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/7e82f6084d7cae521a75ef2cb5c9457bbda785f4",
+                "reference": "7e82f6084d7cae521a75ef2cb5c9457bbda785f4",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -16632,9 +16703,8 @@
             },
             "type": "library",
             "extra": {
-                "branch-version": "2.3",
                 "branch-alias": {
-                    "dev-main": "2.3-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -16646,7 +16716,7 @@
                     "Symfony\\Contracts\\HttpClient\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -16670,7 +16740,10 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2020-10-14T17:08:19+00:00"
+            "support": {
+                "source": "https://github.com/symfony/http-client-contracts/tree/v2.4.0"
+            },
+            "time": "2021-04-11T23:07:08+00:00"
         },
         {
             "name": "symfony/options-resolver",
@@ -17415,16 +17488,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.4.20",
+            "version": "v4.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "7e950b6366d4da90292c2e7fa820b3c1842b965a"
+                "reference": "f5481b22729d465acb1cea3455fc04ce84b0148b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/7e950b6366d4da90292c2e7fa820b3c1842b965a",
-                "reference": "7e950b6366d4da90292c2e7fa820b3c1842b965a",
+                "url": "https://api.github.com/repos/symfony/process/zipball/f5481b22729d465acb1cea3455fc04ce84b0148b",
+                "reference": "f5481b22729d465acb1cea3455fc04ce84b0148b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -17445,7 +17518,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -17461,7 +17534,10 @@
             ],
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
-            "time": "2021-01-27T09:09:26+00:00"
+            "support": {
+                "source": "https://github.com/symfony/process/tree/v4.4.22"
+            },
+            "time": "2021-04-07T16:22:29+00:00"
         },
         {
             "name": "symfony/property-access",
@@ -17535,16 +17611,16 @@
         },
         {
             "name": "symfony/property-info",
-            "version": "v5.2.4",
+            "version": "v5.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-info.git",
-                "reference": "7185bbc74e6f49c3f1b5936b4d9e4ca133921189"
+                "reference": "cc8121baf91039648d5f8feb894dc4a9d4935cc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-info/zipball/7185bbc74e6f49c3f1b5936b4d9e4ca133921189",
-                "reference": "7185bbc74e6f49c3f1b5936b4d9e4ca133921189",
+                "url": "https://api.github.com/repos/symfony/property-info/zipball/cc8121baf91039648d5f8feb894dc4a9d4935cc0",
+                "reference": "cc8121baf91039648d5f8feb894dc4a9d4935cc0",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -17586,7 +17662,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -17610,20 +17686,23 @@
                 "type",
                 "validator"
             ],
-            "time": "2021-02-17T15:24:54+00:00"
+            "support": {
+                "source": "https://github.com/symfony/property-info/tree/v5.2.8"
+            },
+            "time": "2021-05-07T14:04:56+00:00"
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v2.2.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "d15da7ba4957ffb8f1747218be9e1a121fd298a1"
+                "reference": "f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/d15da7ba4957ffb8f1747218be9e1a121fd298a1",
-                "reference": "d15da7ba4957ffb8f1747218be9e1a121fd298a1",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb",
+                "reference": "f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -17634,7 +17713,7 @@
             },
             "require": {
                 "php": ">=7.2.5",
-                "psr/container": "^1.0"
+                "psr/container": "^1.1"
             },
             "suggest": {
                 "symfony/service-implementation": ""
@@ -17642,7 +17721,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -17654,7 +17733,7 @@
                     "Symfony\\Contracts\\Service\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -17678,20 +17757,23 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2020-09-07T11:33:47+00:00"
+            "support": {
+                "source": "https://github.com/symfony/service-contracts/tree/v2.4.0"
+            },
+            "time": "2021-04-01T10:43:52+00:00"
         },
         {
             "name": "symfony/string",
-            "version": "v5.2.6",
+            "version": "v5.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "ad0bd91bce2054103f5eaa18ebeba8d3bc2a0572"
+                "reference": "01b35eb64cac8467c3f94cd0ce2d0d376bb7d1db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/ad0bd91bce2054103f5eaa18ebeba8d3bc2a0572",
-                "reference": "ad0bd91bce2054103f5eaa18ebeba8d3bc2a0572",
+                "url": "https://api.github.com/repos/symfony/string/zipball/01b35eb64cac8467c3f94cd0ce2d0d376bb7d1db",
+                "reference": "01b35eb64cac8467c3f94cd0ce2d0d376bb7d1db",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -17751,9 +17833,9 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.2.6"
+                "source": "https://github.com/symfony/string/tree/v5.2.8"
             },
-            "time": "2021-03-17T17:12:15+00:00"
+            "time": "2021-05-10T14:56:10+00:00"
         },
         {
             "name": "tcdent/php-restclient",
@@ -19170,16 +19252,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "1.12.1",
+            "version": "1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "b17c5014ef81d212ac539f07a1001832df1b6d3b"
+                "reference": "e6e7b7d5b45a2f2abc5460cc6396480b2b1d321f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/b17c5014ef81d212ac539f07a1001832df1b6d3b",
-                "reference": "b17c5014ef81d212ac539f07a1001832df1b6d3b",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/e6e7b7d5b45a2f2abc5460cc6396480b2b1d321f",
+                "reference": "e6e7b7d5b45a2f2abc5460cc6396480b2b1d321f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -19191,13 +19273,15 @@
             "require": {
                 "doctrine/lexer": "1.*",
                 "ext-tokenizer": "*",
-                "php": "^7.1 || ^8.0"
+                "php": "^7.1 || ^8.0",
+                "psr/cache": "^1 || ^2 || ^3"
             },
             "require-dev": {
-                "doctrine/cache": "1.*",
+                "doctrine/cache": "^1.11 || ^2.0",
                 "doctrine/coding-standard": "^6.0 || ^8.1",
                 "phpstan/phpstan": "^0.12.20",
-                "phpunit/phpunit": "^7.5 || ^9.1.5"
+                "phpunit/phpunit": "^7.5 || ^8.0 || ^9.1.5",
+                "symfony/cache": "^4.4 || ^5.2"
             },
             "type": "library",
             "autoload": {
@@ -19205,7 +19289,7 @@
                     "Doctrine\\Common\\Annotations\\": "lib/Doctrine/Common/Annotations"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -19238,7 +19322,11 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2021-02-21T21:00:45+00:00"
+            "support": {
+                "issues": "https://github.com/doctrine/annotations/issues",
+                "source": "https://github.com/doctrine/annotations/tree/1.13.1"
+            },
+            "time": "2021-05-16T18:07:53+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -22163,16 +22251,16 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v4.4.20",
+            "version": "v4.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
-                "reference": "cfa8d92f95294747e3abc04969efee51ed374424"
+                "reference": "7e6a92d5d97d826830924bd8cd22daa452c9e467"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/cfa8d92f95294747e3abc04969efee51ed374424",
-                "reference": "cfa8d92f95294747e3abc04969efee51ed374424",
+                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/7e6a92d5d97d826830924bd8cd22daa452c9e467",
+                "reference": "7e6a92d5d97d826830924bd8cd22daa452c9e467",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -22203,7 +22291,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -22219,20 +22307,23 @@
             ],
             "description": "Simulates the behavior of a web browser, allowing you to make requests, click on links and submit forms programmatically",
             "homepage": "https://symfony.com",
-            "time": "2021-02-18T10:52:56+00:00"
+            "support": {
+                "source": "https://github.com/symfony/browser-kit/tree/v4.4.24"
+            },
+            "time": "2021-05-16T09:52:47+00:00"
         },
         {
             "name": "symfony/config",
-            "version": "v4.4.20",
+            "version": "v4.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "98606c6fa1a8f55ff964ccdd704275bf5b9f71b3"
+                "reference": "be9e601f17fc684ddfd6c675fdfcd04bb51fa928"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/98606c6fa1a8f55ff964ccdd704275bf5b9f71b3",
-                "reference": "98606c6fa1a8f55ff964ccdd704275bf5b9f71b3",
+                "url": "https://api.github.com/repos/symfony/config/zipball/be9e601f17fc684ddfd6c675fdfcd04bb51fa928",
+                "reference": "be9e601f17fc684ddfd6c675fdfcd04bb51fa928",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -22268,7 +22359,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -22284,20 +22375,23 @@
             ],
             "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
             "homepage": "https://symfony.com",
-            "time": "2021-02-22T15:36:50+00:00"
+            "support": {
+                "source": "https://github.com/symfony/config/tree/v4.4.23"
+            },
+            "time": "2021-05-07T13:37:51+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v4.4.21",
+            "version": "v4.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "b5f97557faa48ead4671bc311cfca423d476e93e"
+                "reference": "8422396fb0b477ecbbe130907f90a0809b49c835"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/b5f97557faa48ead4671bc311cfca423d476e93e",
-                "reference": "b5f97557faa48ead4671bc311cfca423d476e93e",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/8422396fb0b477ecbbe130907f90a0809b49c835",
+                "reference": "8422396fb0b477ecbbe130907f90a0809b49c835",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -22324,7 +22418,7 @@
             "require-dev": {
                 "symfony/config": "^4.3",
                 "symfony/expression-language": "^3.4|^4.0|^5.0",
-                "symfony/yaml": "^3.4|^4.0|^5.0"
+                "symfony/yaml": "^4.4|^5.0"
             },
             "suggest": {
                 "symfony/config": "",
@@ -22359,22 +22453,22 @@
             "description": "Allows you to standardize and centralize the way objects are constructed in your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/dependency-injection/tree/v4.4.21"
+                "source": "https://github.com/symfony/dependency-injection/tree/v4.4.24"
             },
-            "time": "2021-03-05T18:16:26+00:00"
+            "time": "2021-05-16T09:52:47+00:00"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v4.4.20",
+            "version": "v4.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "be133557f1b0e6672367325b508e65da5513a311"
+                "reference": "fc0bd1f215b0cd9f4efdc63bb66808f3417331bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/be133557f1b0e6672367325b508e65da5513a311",
-                "reference": "be133557f1b0e6672367325b508e65da5513a311",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/fc0bd1f215b0cd9f4efdc63bb66808f3417331bc",
+                "reference": "fc0bd1f215b0cd9f4efdc63bb66808f3417331bc",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -22407,7 +22501,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -22423,20 +22517,23 @@
             ],
             "description": "Eases DOM navigation for HTML and XML documents",
             "homepage": "https://symfony.com",
-            "time": "2021-02-14T12:29:41+00:00"
+            "support": {
+                "source": "https://github.com/symfony/dom-crawler/tree/v4.4.24"
+            },
+            "time": "2021-05-16T09:52:47+00:00"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v5.2.4",
+            "version": "v5.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "54499baea7f7418bce7b5ec92770fd0799e8e9bf"
+                "reference": "e8fbbab7c4a71592985019477532629cb2e142dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/54499baea7f7418bce7b5ec92770fd0799e8e9bf",
-                "reference": "54499baea7f7418bce7b5ec92770fd0799e8e9bf",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/e8fbbab7c4a71592985019477532629cb2e142dc",
+                "reference": "e8fbbab7c4a71592985019477532629cb2e142dc",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -22469,7 +22566,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/elevateweb/elevate-platform/downloads/",
             "license": [
                 "MIT"
             ],
@@ -22485,7 +22582,10 @@
             ],
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
-            "time": "2021-02-25T17:16:57+00:00"
+            "support": {
+                "source": "https://github.com/symfony/http-foundation/tree/v5.2.8"
+            },
+            "time": "2021-05-07T13:41:16+00:00"
         },
         {
             "name": "symfony/polyfill-php70",
@@ -22597,16 +22697,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.4.21",
+            "version": "v4.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "3871c720871029f008928244e56cf43497da7e9d"
+                "reference": "8b6d1b97521e2f125039b3fcb4747584c6dfa0ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/3871c720871029f008928244e56cf43497da7e9d",
-                "reference": "3871c720871029f008928244e56cf43497da7e9d",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/8b6d1b97521e2f125039b3fcb4747584c6dfa0ef",
+                "reference": "8b6d1b97521e2f125039b3fcb4747584c6dfa0ef",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -22654,9 +22754,9 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v4.4.21"
+                "source": "https://github.com/symfony/yaml/tree/v4.4.24"
             },
-            "time": "2021-03-05T17:58:50+00:00"
+            "time": "2021-05-16T09:52:47+00:00"
         },
         {
             "name": "theseer/fdomdocument",

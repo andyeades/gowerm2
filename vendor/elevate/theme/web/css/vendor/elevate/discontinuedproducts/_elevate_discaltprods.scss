@@ -29,7 +29,7 @@ $ev-discprods-alert-border-radius: 10px !default;
 }
 
 .ev-discprod-alternatives {
-    background: $ev-discprod-alternatives-bg-color;
+    @include co(background, $ev-discprod-alternatives-bg-color);
     @if $ev-discprod-alternatives-border-on == 1 {
         @include elevate-border($ev-discprod-alternatives-border-color, $ev-discprod-alternatives-border-thickness, $ev-discprod-alternatives-border-style)
     }
