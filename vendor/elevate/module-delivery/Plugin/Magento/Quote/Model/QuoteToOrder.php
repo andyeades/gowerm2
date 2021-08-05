@@ -52,6 +52,9 @@ class QuoteToOrder
         $detailedDeliveryinfoDates = $orderAddress->getDetailedDeliveryInfoDates();
         $detailedDeliveryTeamnumber = $orderAddress->getDetailedDeliveryTeamnumber();
 
+
+        $order->setDeliveryDateSelected($quote->getDeliveryDateSelected());
+
         /*
         $ev_giftmessagemessage = $orderAddress->getEvGiftmessagemessage();
 

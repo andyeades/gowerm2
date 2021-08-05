@@ -110,6 +110,15 @@ class SetCustomCheckoutAfterAttributes implements ObserverInterface
             $detailed_delivery_info_dates = $quote->getShippingAddress()->getDetailedDeliveryInfoDates();
 
             $delivery_date_selected = $quote->getShippingAddress()->getDeliveryDateSelected();
+
+            if (empty($delivery_date_selected)) {
+                $delivery_date_selected = $quote->getDeliveryDateSelected();
+            }
+
+
+            if (empty($detailed_delivery_info_dates)) {
+                $detailed_delivery_info_dates = $quote->getDetailedDeliveryInfoDates();
+            }
             $delivery_option_selected = $quote->getShippingAddress()->getDeliveryOptionSelected();
             $delivery_area_selected = $quote->getShippingAddress()->getDeliveryAreaSelected();
 

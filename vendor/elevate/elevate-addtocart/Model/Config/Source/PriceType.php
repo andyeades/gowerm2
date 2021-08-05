@@ -9,7 +9,7 @@ class PriceType implements \Magento\Framework\Option\ArrayInterface
             ['value' => 'inc_vat', 'label' => __('Inc VAT Only')],
             ['value' => 'ex_vat', 'label' => __('Ex VAT Only')],
             ['value' => 'both_vat', 'label' => __('Inc Vat & Ex Vat')],
-
+            ['value' => 'disable_functionality', 'label' => __('Disable Functionality')]
         ];
     }
 }

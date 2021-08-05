@@ -1,6 +1,12 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
+    <preference for="Magento\Sales\Controller\Adminhtml\Order\Create\Save" type="Elevate\Delivery\Controller\Adminhtml\Order\Create\Save"/>
+
+    <type name="Magento\Sales\Model\AdminOrder\Create">
+        <plugin name="delivery_sales_model_adminorder_create" type="Elevate\Delivery\Plugin\AdminOrderCreate" />
+    </type>
+
     <preference for="Magento\Multishipping\Controller\Checkout\ShippingPost" type="Elevate\Delivery\Controller\Multishipping\Checkout\ShippingPost"/>
 
     <preference for="Elevate\Delivery\Api\DeliveryMethodRepositoryInterface" type="Elevate\Delivery\Model\DeliveryMethodRepository"/>
@@ -12,6 +18,9 @@
             <argument name="resourceModel" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryMethod\Collection</argument>
         </arguments>
     </virtualType>
+
+
+
 
 
     <type name="Magento\Quote\Model\Quote\Address\ToOrderAddress">
@@ -61,13 +70,6 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="elevate_delivery_holidaydates_form_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Holidaydates\Collection</item>
-            </argument>
-        </arguments>
-    </type>
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments>
-            <argument name="collections" xsi:type="array">
-                <item name="elevate_delivery_holidaydates_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Holidaydates\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
@@ -171,8 +173,6 @@
                 <item name="elevate_delivery_deliveryproducts_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryProducts\Grid\Collection</item>
                 <item name="elevate_delivery_deliveryrulesfunctions_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\DeliveryRulesFunctions\Grid\Collection</item>
                 <item name="elevate_delivery_holidaydates_listing_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Holidaydates\Grid\Collection</item>
-            </argument>
-            <argument name="collections" xsi:type="array">
                 <item name="sales_order_grid_data_source" xsi:type="string">Elevate\Delivery\Model\ResourceModel\Order\Grid\Collection</item>
             </argument>
         </arguments>

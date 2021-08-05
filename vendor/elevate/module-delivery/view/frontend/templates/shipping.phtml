@@ -1,0 +1,640 @@
+<?php
+$watermarks = Mage::getStoreConfig('awesomecheckout/watermarks');
+$inline_validation_messages = Mage::getStoreConfig('awesomecheckout/inline_validation_messages');
+$countryOptions = $this->getCountryOptions();
+$countryOptionsCount = count($countryOptions);
+$pincode_maxlength = Mage::getStoreConfig('awesomecheckout/options/pincode_maxlength');
+$separate_shipping_method_step = Mage::getStoreConfig('awesomecheckout/options/separate_shipping_method_step');
+$disable_postcode_autocomplete = Mage::getStoreConfig('awesomecheckout/options/disable_postcode_autocomplete');
+?>
+<style>
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .please-wait {
+    float:        none;
+    margin-right: 10px;
+    font-size:    11px;
+    margin:       0 auto;
+    color:        #999999;
+    text-align:   center;
+    width:        100%;
+    display:      block;
+  }
+
+  #delivery-bottom-message-1 {
+    clear:   both;
+    padding: 0px 20px;
+  }
+
+  #co-shipping-method-form {
+    font-size:      12px;
+    padding-bottom: 30px;
+  }
+
+  #showmylookup {
+    clear:      both;
+    margin-top: 10px;
+  }
+
+  #delas {
+    margin-top: 20px;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  #shipping\:postcode {
+    float: left;
+    width: 70% !important;
+  }
+
+  #ac-page .form .input-text {
+    transition: background 0.5s linear;
+
+  }
+
+  @media screen and (max-width: 991.99px) {
+    #checkoutSteps header.same-step-header {
+
+      padding-top: 0px !important;
+    }
+
+    #checkoutSteps footer .button {
+      width:     100%;
+      font-size: 17px;
+    }
+
+    #checkout-company {
+      width: 100%;
+    }
+
+    #checkout-company .input-box {
+      width: 100% !important;
+    }
+
+    #checkout-street1 {
+      width: 100%;
+    }
+
+    #checkout-street1 .input-box {
+      width: 100% !important;
+    }
+
+    .checkout-address-more {
+      width: 100%;
+    }
+
+    .checkout-address-more .input-box {
+      width: 100% !important;
+    }
+  }
+
+  @media screen and (max-width: 991.99px) {
+    #checkout-city {
+      width: 100% !important;
+    }
+
+    #checkout-city .input-box {
+      width: 100% !important;
+    }
+  }
+
+  button#shipping_cp_button_id {
+    margin-top: 0px !important;
+    margin:     0px !important;
+    width:      100%;
+  }
+
+  #ac-page .form .input-box {
+    width: 100%;
+  }
+
+  #checkout-country {
+    width: 100%;
+    clear: both;
+  }
+
+  .checkbox.checkbox-happybeds.create_account {
+    width:   60% !important;
+    margin:  0% 0% !important;
+    padding: 11px 24px 0px 20px !important;
+    width:   100% !important;
+  }
+
+  @media screen and (max-width: 991.99px) {
+    #checkout-telephone {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    #ac-page .form .login-block .input-box {
+      width: 100%;
+    }
+  }
+
+  .form-list {
+    width:  60%;
+    margin: 0% 20%;
+  }
+
+  h2 {
+    text-align: center;
+    margin:     0 auto;
+    display:    block;
+    width:      100%;
+  }
+
+  div#shipping_full_address {
+    margin-top: 30px;
+  }
+
+  button#shipping_cp_button_id {
+    margin-top: 0px !important;
+  }
+
+  div#shipping_cp_result_display {
+    clear:       both;
+    padding-top: 10px;
+  }
+
+  div#checkout-postcode {
+    margin-top: 16px;
+  }
+
+  #checkout-postcode {
+    width: 100%;
+  }
+
+  div#shipping_cp_button_div_id {
+    float:       left;
+    width:       auto;
+    clear:       none;
+    width:       28%;
+    margin-left: 2%;
+    padding:     0px;
+  }
+
+  #shipping_cp_button_div_id:after {
+    content: "";
+    display: table;
+    clear:   both;
+  }
+
+  #checkoutSteps header.same-step-header {
+    border:        0px solid #EEEBE8;
+    margin-bottom: 22px;
+    border-bottom: 1px solid #EEEBE8;
+  }
+
+  #checkoutSteps footer {
+    padding:    15px;
+    border-top: 0px solid #EEEBE8;
+  }
+
+  @media screen and (min-width: 768px) {
+    #checkoutSteps footer .button {
+      float:      none;
+      font-size:  16px;
+      margin:     0 auto;
+      text-align: center;
+      display:    block;
+      width:      58%;
+    }
+  }
+
+  #showmylookup:before {
+    content: "";
+    display: table;
+    clear:   both;
+  }
+
+  div#shipping_cp_result_display {
+    margin-top: 10px;
+    clear:      both;
+    display:    block;
+    float:      none;
+  }
+
+  #ac-page .form select {
+    width:      100%;
+    transition: background 0.5s linear;
+    padding:    4px;
+  }
+
+  #checkout-postcode .input-box {
+    width: 100% !important;
+  }
+
+  .progressbar li {
+    list-style-type: none;
+    width:           33%;
+    float:           left;
+    font-size:       12px;
+    position:        relative;
+    text-align:      center;
+    text-transform:  uppercase;
+    color:           #7d7d7d;
+
+  }
+
+  .progressbar li:before {
+    width:             30px;
+    height:            30px;
+    content:           counter(step);
+    border:            none;
+    counter-increment: step;
+    line-height:       30px;
+    border-right:      1px solid #7d7d7d;
+    display:           none !important;
+    text-align:        center;
+    margin:            0 auto 10px auto;
+    border-radius:     0;
+    background-color:  white;
+
+  }
+
+  .progressbar {
+
+    margin: 0px !important;
+  }
+
+  .my-cart abbr {
+    text-transform: uppercase;
+    font-size:      12px;
+  }
+
+  .progressbar li.active {
+    color: #f0386c;
+  }
+
+  @media screen and (max-width: 767.99px) {
+    .form-list {
+      width:  100%;
+      margin: 0%;
+    }
+
+    #ac-page .form .login-block .input-box {
+      width: 100%;
+    }
+
+    #checkout-telephone .input-box {
+      width: 100% !important;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    #billing\:postcode {
+      float: left;
+      width: 65% !important;
+    }
+  }
+</style>
+
+<script type="text/javascript">
+    var countryOptions = <?php echo json_encode($countryOptions) ?>;
+</script>
+<header>
+  <h2><?php echo $this->__('Shipping Information'); ?></h2>
+</header>
+<form action="<?php echo $this->getUrl('checkout/onepage/saveShipping') ?>" id="co-shipping-form" method="post">
+  <ul class="form-list">
+      <?php if (!$this->isCustomerLoggedIn()): ?><?php echo $this->getChildHtml('login'); ?><?php endif; ?>
+      <?php if ($this->customerHasAddresses()): ?>
+        <li class="form saved-address">
+          <label for="shipping-address-select"><?php echo $this->__('Select a delivery address from your address book.') ?></label>
+          <div class="input-box">
+              <?php echo $this->getAddressesHtmlSelect('shipping') ?>
+            <span class="please-wait" id="address-please-wait" style="display:none;">
+						<i class="fa fa-lg fa-spin fa-spinner"></i>  <?php echo $this->__('Loading address...') ?>
+					</span>
+          </div>
+        </li>
+      <?php endif ?>
+    <li class="form" id="shipping-new-address-form"<?php if ($this->customerHasAddresses()): ?> style="display:none;"<?php endif ?>>
+      <input type="hidden" name="shipping[address_id]" value="<?php echo $this->getAddress()->getId() ?>" id="shipping:address_id"/>
+      <div class="flexbox-list">
+        <div class="name-box">
+          <div id="checkout-fname" class="fields border-line">
+            <label for="shipping:firstname" class="required"><i class="fa fa-exclamation-triangle"></i><?php echo $this->__('First Name') ?>
+              <em>*</em></label>
+
+            <div class="input-box ">
+              <input type="text" id="shipping:firstname" name="shipping[firstname]" value="<?php echo Mage::helper('anattadesign_awesomecheckout')->getFirstname($this->getAddress()) ?>" title="<?php echo $this->__('First Name') ?>" class="input-text required" placeholder="<?php echo $watermarks['firstname'] ?>" autocorrect="off"/>
+              <span class="ieplaceholder"><?php echo $watermarks['firstname'] ?></span>
+            </div>
+            <div class="sidetip">
+              <p class="tip"><?php echo $inline_validation_messages['firstname_description']; ?></p>
+              <p class="good"></p>
+              <p class="bad"><?php echo $inline_validation_messages['firstname_error']; ?></p>
+            </div>
+          </div>
+          <div id="checkout-lname" class="fields border-line">
+            <label for="shipping:lastname" class="required"><i class="fa  fa-exclamation-triangle"></i><?php echo $this->__('Last Name') ?>
+              <em>*</em></label>
+            <div class="input-box ">
+              <input type="text" id="shipping:lastname" name="shipping[lastname]" value="<?php echo Mage::helper('anattadesign_awesomecheckout')->getLastname($this->getAddress()) ?>" title="<?php echo $this->__('Last Name') ?>" class="input-text required" placeholder="<?php echo $watermarks['lastname'] ?>" autocorrect="off"/>
+              <span class="ieplaceholder"><?php echo $watermarks['lastname'] ?></span>
+            </div>
+            <div class="sidetip">
+              <p class="tip"><?php echo $inline_validation_messages['lastname_description']; ?></p>
+              <p class="good"></p>
+              <p class="bad"><?php echo $inline_validation_messages['lastname_error']; ?></p>
+            </div>
+          </div>
+
+          <div id="checkout-telephone" class="fields small-input">
+            <label for="shipping:telephone" class="required"><i class="fa  fa-exclamation-triangle"></i><?php echo $this->__('Phone Number') ?>
+              <em>*</em></label>
+            <div class="input-box ">
+                <?php //Using `pattern="\d*" novalidate` in place of setting the type as the type won't allow our masking characters ?>
+              <input type="tel" name="shipping[telephone]" value="<?php if ('0000000000' != $this->getAddress()->getTelephone())
+                  echo $this->htmlEscape($this->getAddress()->getTelephone()); ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text telephone <?php if ($this->helper('anattadesign_awesomecheckout')->getConfigData('options/require_phone'))
+                  echo ' required'; ?>" id="shipping:telephone" placeholder="<?php echo $watermarks['telephone'] ?>" autocorrect="off" required/>
+              <span class="ieplaceholder"><?php echo $watermarks['telephone'] ?></span>
+            </div>
+            <div class="sidetip">
+              <p class="tip"><?php echo $inline_validation_messages['telephone_description']; ?></p>
+              <p class="good"></p>
+              <p class="bad"><?php echo $inline_validation_messages['telephone_error']; ?></p>
+            </div>
+            <div class="clear"></div>
+          </div>
+
+          <div class="clear"></div>
+          <div id="delas">
+            <div id="checkout-country" class="fields">
+              <label for="shipping:country_id" class="required"><i class="fa  fa-exclamation-triangle"></i><?php echo $this->__('Country') ?>
+                <em>*</em></label>
+              <div class="input-box">
+                <select name="shipping[country_id]" id="shipping:country_id" class="validate-select valid" title="Country">
+                  <option value="GB">United Kingdom</option>
+                  <option value="IE">Ireland</option>
+
+                </select></div>
+            </div>
+              <?php $ship_pc = $this->htmlEscape($this->getAddress()->getPostcode()); ?>
+
+
+            <div id="checkout-postcode" class="fields small-input">
+              <label for="shipping:postcode" class="required"><i class="fa  fa-exclamation-triangle"></i><?php echo $this->__('Zip/Postal Code') ?>
+                <em>*</em></label>
+              <div class="input-box ">
+                <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" value="<?php echo $ship_pc; ?>" class="aaaa input-text required postcode" placeholder="<?php echo $watermarks['postcode'] ?>" maxlength="<?php echo $pincode_maxlength; ?>" autocorrect="off" autocomplete="nope" novalidate/>
+                <span class="ieplaceholder"><?php echo $watermarks['postcode'] ?></span>
+              </div>
+              <div class="sidetip">
+                <p class="tip"><?php echo $inline_validation_messages['postcode_description']; ?></p>
+                <p class="good"></p>
+                <p class="bad"><?php echo $inline_validation_messages['postcode_error']; ?></p>
+              </div>
+                <?php if (!$disable_postcode_autocomplete): ?>
+                  <span class="please-wait" id="shipping-postcode-please-wait" style="display:none;">
+								<i class="fa fa-lg fa-spin fa-spinner"></i> <?php echo $this->__('Loading city, state and country...') ?>
+							</span>
+                <?php endif; ?>
+            </div>
+
+            <div style="clear:both;"></div>
+
+
+              <?php if (!empty($ship_pc)) {
+                  $ship_pc_style = '';
+              } else {
+                  $ship_pc_style = 'display:none';
+                  ?>
+
+
+                <div id="hideshipmanadd" onclick="jQuery('#shipping_full_address').show();jQuery('#hideshipmanadd').hide();" style="
+    text-decoration: underline;
+    margin-top: 8px;
+    cursor: pointer;
+    float: left;
+">Enter Address Manually
+                </div>
+
+                <script type="text/javascript">
+                    jQuery('#hideshipmanadd').on('click', function () {
+                        DELSLIDER.slyslider.setHasFirstRun()
+
+
+                        var postcode = jQuery('#shipping\\:postcode').val();
+                        var country = jQuery('#shipping\\:country_id').val();
+                        var tS = new Date().getTime();
+                        if (postcode) {
+                            jQuery.ajax({
+                                url: '/deliveryestimatepostcode/cartdelivery/index/postcode/' + postcode + '/&ts=' + tS,
+                                dataType: 'json',
+                                type: 'get',
+                                beforeSend: function () {
+                                    DELSLIDER.slyslider.ajaxOverlayPostcodeShow();
+                                },
+                                success: function (data) {
+
+                                    if (data.invalid_postcode == 1) {
+                                        jQuery(".delivery-left").html(data.leftblock);
+                                        jQuery("#delivery-right").html(data.rightblock);
+                                        DELSLIDER.slyslider.checkoutIncorrectPostcode();
+                                    } else {
+                                        //console.log(data.timeslot_end_date);
+                                        jQuery('#delivery-calendar').html(data.mobile_day_html);
+                                        jQuery('#delivery-date-other-options').html(data.mobile_day_html_date);
+
+                                        jQuery(".delivery-left").html(data.leftblock);
+                                        jQuery("#delivery-right").html(data.rightblock);
+                                        DELSLIDER.slyslider.addDeliveryDescriptions(data);
+                                        DELSLIDER.slyslider.addDeliveryDescriptionsCheckout(data);
+                                        var previous_date_selected = jQuery('#myOwnDeliveriesRes').val();
+                                        if (previous_date_selected.length !== 0) {
+                                            DELSLIDER.slyslider.sliderreloaded(2, previous_date_selected);
+                                        } else {
+                                            DELSLIDER.slyslider.sliderreloaded(1, '');
+                                        }
+                                        DELSLIDER.slyslider.ajaxOverlayPostcodeHide();
+                                    }
+                                }
+                            });
+                        }
+                    });
+                </script>
+
+              <?php }
+
+              ?>
+            <div id="shipping_full_address" style="<?php echo $ship_pc_style; ?>">
+              <div id="checkout-company" class="checkout-sideby fields">
+                <label for="shipping:company"><i class="fa fa-exclamation-triangle"></i><?php echo $this->__('Company') ?></label>
+                <div class="input-box ">
+                  <input type="text" id="shipping:company" name="shipping[company]" value="<?php echo $this->htmlEscape($this->getAddress()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text" placeholder="<?php echo $watermarks['company']; ?>" autocorrect="off"/>
+                  <span class="ieplaceholder"><?php echo $watermarks['company'] ?></span>
+                </div>
+              </div>
+              <div style="clear:both;"></div>
+              <div>
+                <div id="checkout-street1" class="fields less-margin">
+                  <label for="shipping:street1" class="required"><i class="fa  fa-exclamation-triangle"></i><?php echo $this->__('Delivery Address') ?>
+                    <em>*</em></label>
+                  <div class="input-box ">
+                    <input type="text" title="<?php echo $this->__('Street Address') ?>" name="shipping[street][]" id="shipping:street1" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" class="input-text required" placeholder="<?php echo $watermarks['street1'] ?>" autocorrect="off"/>
+                    <span class="ieplaceholder"><?php echo $watermarks['street1'] ?></span>
+                  </div>
+                  <div class="sidetip">
+                    <p class="tip"><?php echo $inline_validation_messages['address_description']; ?></p>
+                    <p class="good"></p>
+                    <p class="bad"><?php echo $inline_validation_messages['address_error']; ?></p>
+                  </div>
+                </div>
+                  <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                    <div class="checkout-address-more">
+                      <div class="input-box">
+                        <input type="text" title="<?php echo $this->__('Street Address %s', $_i) ?>" name="shipping[street][]" id="shipping:street<?php echo $_i ?>" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet($_i)) ?>" class="input-text" placeholder="<?php if (isset($watermarks['street' . $_i]))
+                            echo $watermarks['street' . $_i] ?>" autocorrect="off"/>
+                        <span class="ieplaceholder"><?php if (isset($watermarks['street' . $_i]))
+                                echo $watermarks['street' . $_i] ?></span>
+                      </div>
+                    </div>
+                  <?php endfor ?>
+
+                <div id="checkout-city" class="checkout-sideby fields border-line">
+                  <div class="city">
+                    <label for="shipping:city" class="required"><i class="fa  fa-exclamation-triangle"></i><?php echo $this->__('City') ?>
+                      <em>*</em></label>
+                    <div class="input-box">
+                      <input type="text" title="<?php echo $this->__('City') ?>" name="shipping[city]" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" class="input-text required" id="shipping:city" placeholder="<?php echo $watermarks['city'] ?>"/>
+                      <span class="ieplaceholder"><?php echo $watermarks['city'] ?></span>
+                    </div>
+                  </div>
+                </div>
+                <div id="checkout-county" class="checkout-sideby">
+                  <div class="state">
+                    <label for="shipping:region_id"><i class="fa  fa-exclamation-triangle"></i><?php echo $this->__('State/Province') ?>
+                      <em>*</em></label>
+                    <div class="input-box">
+                      <select id="shipping:region_id" name="shipping[region_id]" title="<?php echo $this->__('State/Province') ?>" class="" style="display:none;">
+                        <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                      </select>
+                      <script type="text/javascript">
+                          //<![CDATA[
+                          setTimeout(function () {
+                              jQuery(jq('shipping:region_id')).val("<?php echo $this->getAddress()->getRegionId(); ?>");
+                          }, 500);
+                          //]]>
+                      </script>
+                      <input type="text" id="shipping:region" name="shipping[region]" value="<?php echo $this->htmlEscape($this->getAddress()->getRegion()) ?>" title="<?php echo $this->__('State/Province') ?>" class="input-text" placeholder="<?php echo $watermarks['state'] ?>"/>
+                      <span class="ieplaceholder"><?php echo $watermarks['state'] ?></span>
+                    </div>
+                  </div>
+                </div>
+                <div style="clear:both;"></div>
+                  <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()): ?>
+                    <div class="customer-has-address control" style="display:block;">
+                      <div class="checkbox checkbox-happybeds">
+                        <input type="checkbox" name="shipping[save_in_address_book]" value="1" title="<?php echo $this->__('Save for future purchases') ?>" id="shipping:save_in_address_book"<?php if ($this->getAddress()->getSaveInAddressBook()): ?> checked="checked"<?php endif; ?> class="checkbox"/><label for="shipping:save_in_address_book"><?php echo $this->__('Save for Future Purchases') ?></label>
+                      </div>
+                    </div>
+                  <?php else: ?>
+                    <div class="no-display"><input type="hidden" name="shipping[save_in_address_book]" value="1"/></div>
+                  <?php endif; ?>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </li>
+  </ul>
+    <?php if ($separate_shipping_method_step): ?>
+      <footer id="shipping-buttons-container">
+        <input type="submit" class="button" title="<?php echo $this->__('Proceed to Shipping Method') ?>" onclick="shipping.triggerShippingSave = 1; shipping.save();return false;" value="<?php echo $this->__('Proceed to Shipping Method &rarr;') ?>"/>
+        <span id="shipping-please-wait" class="please-wait" style="display:none;">
+		<i class="fa fa-lg fa-spin fa-spinner"></i>  <?php echo $this->__('Loading next step...') ?>
+		</span>
+
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+      </footer>
+    <?php endif; ?>
+  <input id="date-selected" name="shipping[date-selected]" type="hidden" value=""/>
+  <input id="start-range-date-selected" name="shipping[start-range-date-selected]" type="hidden" value=""/>
+  <input id="end-of-date-range" name="shipping[end-of-date-range]" type="hidden" value=""/>
+  <input id="myOwnDeliveriesRes" name="shipping[myOwnDeliveriesRes]" type="hidden" value="<?php echo $_SESSION['customer_base']['myOwnDeliveries_reservation']; ?>"/>
+
+</form>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        jQuery('#shipping\\:country_id').on('change', function () {
+
+            changeTelephoneValidator();
+            if (jQuery('#shipping\\:country_id').val() == "IE") {
+                countryIreland();
+                shipping.save(2);
+            } else {
+                countryUk();
+            }
+
+        });
+
+        jQuery('#shipping\\:postcode').on('change', function () {
+
+            if (jQuery('#shipping\\:country_id').val() == "IE") {
+                countryIreland();
+            } else {
+                countryUk();
+            }
+
+        });
+
+        function countryIreland() {
+            jQuery('#checkout-postcode label').removeClass('required err');
+            jQuery('#shipping\\:postcode').removeClass('required error');
+        }
+
+        function countryUk() {
+            if (jQuery('#checkout-postcode .input-box input').hasClass('required')) {
+            } else {
+                jQuery('#checkout-postcode .input-box input').addClass('required');
+            }
+
+            if (jQuery('#checkout-postcode label').hasClass('required')) {
+            } else {
+                jQuery('#checkout-postcode label').addClass('required');
+            }
+        }
+
+
+        changeTelephoneValidator();
+
+        function changeTelephoneValidator() {
+            if (jQuery('#shipping\\:country_id').val() == "IE") {
+                jQuery('#shipping\\:telephone').attr('pattern', "\d*");
+            } else {
+                // UK
+                jQuery('#shipping\\:telephone').attr('pattern', "^\s*\(?(020[7,8]{1}\)?[ ]?[1-9]{1}[0-9{2}[ ]?[0-9]{4})|(0[1-8]{1}[0-9]{3}\)?[ ]?[1-9]{1}[0-9]{2}[ ]?[0-9]{3})\s*$");
+            }
+        }
+    });
+    //<![CDATA[
+    var billing = new Billing({
+        form: '#co-payment-form', // billing form is just fields inside the payment <form>
+        getAddressUrl: '<?php echo $this->getUrl('anattadesign_awesomecheckout/onepage/getAddress') ?>'
+    });
+    var shipping = new Shipping({
+        form: '#co-shipping-form',
+        getAddressUrl: '<?php echo $this->getUrl('anattadesign_awesomecheckout/onepage/getAddress') ?>',
+        loadingMessage: '<?php echo $this->__('Waiting for Shipping Methods...') ?>',
+        oldLoadingMessage: '<?php echo $this->__('Proceed to Payment &rarr;') ?>',
+        savingMessage: '<?php echo $this->__('Saving Shipping Address...') ?>',
+        oldSavingMessage: '<?php echo $this->__('Proceed to Shipping Methods &rarr;') ?>'
+    });
+
+    var shippingRegionUpdater = new RegionUpdater('shipping:country_id', 'shipping:region', 'shipping:region_id', countryRegions, undefined, 'shipping:postcode');
+    //]]>
+
+
+</script>
+<?php if (!$separate_shipping_method_step): ?><?php echo $this->getChildHtml('shipping_method'); ?><?php endif; ?>

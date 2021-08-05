@@ -6,6 +6,7 @@
 
 namespace Magento\Sales\Controller\Adminhtml\Order\Create;
 
+use Elevate\TrackOrder\Controller\Index\getOrder;
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
 use Magento\Framework\Exception\PaymentException;
 
@@ -24,6 +25,21 @@ class Save extends \Magento\Sales\Controller\Adminhtml\Order\Create implements H
         $pathParams = [];
 
         try {
+
+            $delivery_date_selected = $this->getRequest()->getPost('delivery_date_selected');
+            $detailed_delivery_info_dates = $this->getRequest()->getPost('detailed_delivery_info_dates');
+            $datadelivery = [
+                'delivery_date_selected' => $delivery_date_selected,
+                'detailed_delivery_info_dates' => $detailed_delivery_info_dates
+                ];
+
+
+            //echo 'POST';
+            //echo '<pre>';
+            //print_r($datadelivery);
+            //die();
+
+
             // check if the creation of a new customer is allowed
             if (!$this->_authorization->isAllowed('Magento_Customer::manage')
                 && !$this->_getSession()->getCustomerId()
@@ -46,10 +62,15 @@ class Save extends \Magento\Sales\Controller\Adminhtml\Order\Create implements H
                 $this->_getOrderCreateModel()->getQuote()->getPayment()->addData($paymentData);
             }
 
+            $this->_getOrderCreateModel()->importPostData($datadelivery);
+
+
             $order = $this->_getOrderCreateModel()
-                ->setIsValidate(true)
-                ->importPostData($this->getRequest()->getPost('order'))
-                ->createOrder();
+                          ->setIsValidate(true)
+                          ->importPostData($this->getRequest()->getPost('order'))
+                          ->createOrder();
+
+
 
             $this->_getSession()->clearStorage();
             $this->messageManager->addSuccessMessage(__('You created the order.'));

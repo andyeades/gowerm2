@@ -12,7 +12,9 @@
   },
   "require": {
     "box/spout": "~2.7",
+    "cweagans/composer-patches": "^1.7",
     "elevate/elevate-release": "dev-master",
+    "gene/module-braintree": "dev-master",
     "magento/data-migration-tool": "2.3.5",
     "magento/product-community-edition": "2.3.5",
     "netresearch/jsonmapper": "^1.6",
@@ -68,16 +70,21 @@
   "minimum-stability": "dev",
   "prefer-stable" : true,
   "repositories": [
-                                                 
-  {"type": "composer", "url": "https://repo.magento.com/"},                                
+
+  {"type": "composer", "url": "https://repo.magento.com/"},
   {"type": "composer", "url": "https://repo.packagist.com/elevateweb/elevate-platform/"},
   {"packagist.org": false}
-  
-   
- 
+
+
+
   ],
   "extra": {
     "magento-force": "override",
-    "composer-exit-on-patch-failure": true
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "magento/module-sales": {
+        "MC-31544: Email Template New Pickup Order or add New Template order items are missing in Mail #28331": "patches/composer/MC-31544-2.3.5-p2.patch"
+      }
+    }
   }
 }

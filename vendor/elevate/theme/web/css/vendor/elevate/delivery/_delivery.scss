@@ -1111,12 +1111,14 @@ $del-sel-btn-padding: 1rem 1.5rem !default;
 
 
     > .radio {
-        $del-radio-selector-radio-display: flex !default;
-        @include co(display, $del-radio-selector-radio-display);
+      $del-radio-selector-radio-display: flex !default;
+      $del-radio-selector-radio-width: 100% !default;
 
-        > input, label {
-            flex: 0 1 auto;
-        }
+      @include co(display, $del-radio-selector-radio-display);
+      @include co(width, $del-radio-selector-radio-width);
+      > input, label {
+        flex: 0 1 auto;
+      }
     }
     $del-radio-selector-label-spandiv-width: 100% !default;
     $del-radio-selector-label-flexwrap: false !default;

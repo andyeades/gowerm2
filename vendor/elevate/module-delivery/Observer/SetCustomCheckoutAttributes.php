@@ -46,6 +46,7 @@ class SetCustomCheckoutAttributes implements ObserverInterface
         // This is necessary for the Standard Checkout - As Otherwise it doesn't capture the Gift Message we are using, and add it to the quote properly.
 
 
+
         $gift_message = $quote->getShippingAddress()->getEvGiftmessagemessage();
 
         if ($gift_message) {

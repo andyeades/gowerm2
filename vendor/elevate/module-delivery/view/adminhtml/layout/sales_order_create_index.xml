@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="data">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Elevate_Delivery::order/create/data.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="order_create_shipping_form">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Elevate_Delivery::order/create/shipping/method/form.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

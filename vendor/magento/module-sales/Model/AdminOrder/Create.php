@@ -344,10 +344,10 @@ class Create extends \Magento\Framework\DataObject implements \Magento\Checkout\
         $this->orderManagement = $orderManagement;
         $this->quoteFactory = $quoteFactory;
         $this->serializer = $serializer ?: ObjectManager::getInstance()
-            ->get(\Magento\Framework\Serialize\Serializer\Json::class);
+                                                        ->get(\Magento\Framework\Serialize\Serializer\Json::class);
         parent::__construct($data);
         $this->dataObjectConverter = $dataObjectConverter ?: ObjectManager::getInstance()
-            ->get(ExtensibleDataObjectConverter::class);
+                                                                          ->get(ExtensibleDataObjectConverter::class);
         $this->storeManager = $storeManager ?: ObjectManager::getInstance()->get(StoreManagerInterface::class);
     }
 
@@ -1368,7 +1368,7 @@ class Create extends \Magento\Framework\DataObject implements \Magento\Checkout\
         $data = isset($data['region']) && is_array($data['region']) ? array_merge($data, $data['region']) : $data;
 
         $addressForm = $this->_metadataFormFactory->create(
-            
+
             AddressMetadataInterface::ENTITY_TYPE_ADDRESS,
             'adminhtml_customer_address',
             $data,
@@ -1491,8 +1491,8 @@ class Create extends \Magento\Framework\DataObject implements \Magento\Checkout\
         }
 
         $billingAddress = $this->_objectManager->create(Address::class)
-            ->setData($address)
-            ->setAddressType(Address::TYPE_BILLING);
+                                               ->setData($address)
+                                               ->setAddressType(Address::TYPE_BILLING);
 
         $this->_setQuoteAddress($billingAddress, $address);
 
@@ -1791,21 +1791,21 @@ class Create extends \Magento\Framework\DataObject implements \Magento\Checkout\
             /** Create a new customer record if it is not available in the specified store */
             /** Unset customer ID to ensure that new customer will be created */
             $customer->setId(null)
-                ->setStoreId($store->getId())
-                ->setWebsiteId($store->getWebsiteId())
-                ->setCreatedAt(null);
+                     ->setStoreId($store->getId())
+                     ->setWebsiteId($store->getWebsiteId())
+                     ->setCreatedAt(null);
             $customer = $this->_validateCustomerData($customer);
         } elseif (!$customer->getId()) {
             /** Create new customer */
             $customerBillingAddressDataObject = $this->getBillingAddress()->exportCustomerAddress();
             $customer->setSuffix($customerBillingAddressDataObject->getSuffix())
-                ->setFirstname($customerBillingAddressDataObject->getFirstname())
-                ->setLastname($customerBillingAddressDataObject->getLastname())
-                ->setMiddlename($customerBillingAddressDataObject->getMiddlename())
-                ->setPrefix($customerBillingAddressDataObject->getPrefix())
-                ->setStoreId($store->getId())
-                ->setWebsiteId($store->getWebsiteId())
-                ->setEmail($this->_getNewCustomerEmail());
+                     ->setFirstname($customerBillingAddressDataObject->getFirstname())
+                     ->setLastname($customerBillingAddressDataObject->getLastname())
+                     ->setMiddlename($customerBillingAddressDataObject->getMiddlename())
+                     ->setPrefix($customerBillingAddressDataObject->getPrefix())
+                     ->setStoreId($store->getId())
+                     ->setWebsiteId($store->getWebsiteId())
+                     ->setEmail($this->_getNewCustomerEmail());
             $customer = $this->_validateCustomerData($customer);
         }
         $this->getQuote()->setCustomer($customer);

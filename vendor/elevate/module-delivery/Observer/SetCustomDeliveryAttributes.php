@@ -58,6 +58,20 @@ class SetCustomDeliveryAttributes implements ObserverInterface
         $delivery_option_selected = $quote->getShippingAddress()->getDeliveryOptionSelected();
         $delivery_area_selected = $quote->getShippingAddress()->getDeliveryAreaSelected();
 
+        if (empty($delivery_date_selected)) {
+            // Admin Order Create
+            $delivery_date_selected = $quote->getDeliveryDateSelected();
+        }
+        if (empty($detailed_delivery_info_dates)) {
+            // Admin Order Create
+            $detailed_delivery_info_dates = $quote->getDetailedDeliveryInfoDates();
+        }
+
+        if ($order->getShippingDescription() == 'DeliveryOption - DeliveryOption') {
+            $order->setShippingDescription($detailed_delivery_info_dates);
+        }
+
+
         $order->setDeliveryDateSelected($delivery_date_selected);
         $order->setDeliveryOptionSelected($delivery_option_selected);
         $order->setDeliveryAreaSelected($delivery_area_selected);

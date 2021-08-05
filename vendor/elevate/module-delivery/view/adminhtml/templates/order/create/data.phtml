@@ -1,0 +1,529 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Sales\Block\Adminhtml\Order\Create\Data $block */
+
+$deliveryteamnumberfieldclass = '';
+
+$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+if (strpos($url,'gowercottage') !== false) {
+    $deliveryteamnumberfieldclass = 'hideme';
+}
+
+?>
+<div class="page-create-order">
+    <script>
+    require(["Magento_Sales/order/create/form"], function(){
+        order.setCurrencySymbol('<?= $block->escapeJs($block->getCurrencySymbol($block->getCurrentCurrencyCode())) ?>')
+    });
+</script>
+    <div class="order-details<?php if ($block->getCustomerId()) : ?> order-details-existing-customer<?php endif; ?>">
+
+        <div id="order-additional_area" style="display: none" class="admin__page-section order-additional-area">
+            <?= $block->getChildHtml('additional_area') ?>
+        </div>
+
+        <div id="order-search" style="display: none" class="admin__page-section order-search-items">
+            <?= $block->getChildHtml('search') ?>
+        </div>
+
+        <section id="order-items" class="admin__page-section order-items" data-mage-init='{"loader": {}}'>
+            <?= $block->getChildHtml('items') ?>
+        </section>
+
+        <div id="order-errors" class="order-errors"><?= $block->getChildHtml('errors') ?></div>
+
+        <section id="order-form_account" class="admin__page-section order-account-information">
+            <?= $block->getChildHtml('form_account') ?>
+        </section>
+
+        <section id="order-addresses" class="admin__page-section order-addresses">
+            <div class="admin__page-section-title">
+                <span class="title"><?= $block->escapeHtml(__('Address Information')) ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div id="order-billing_address" class="admin__page-section-item order-billing-address">
+                    <?= $block->getChildHtml('billing_address') ?>
+                </div>
+                <div id="order-shipping_address" class="admin__page-section-item order-shipping-address">
+                    <?= $block->getChildHtml('shipping_address') ?>
+                </div>
+            </div>
+        </section>
+
+        <section id="order-methods" class="admin__page-section order-methods">
+            <div class="admin__page-section-title">
+                <span class="title"><?= $block->escapeHtml(__('Payment &amp; Shipping Information')) ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div id="order-billing_method" class="admin__page-section-item order-billing-method">
+                    <?= $block->getChildHtml('billing_method') ?>
+                </div>
+                <div id="order-shipping_method" class="admin__page-section-item order-shipping-method">
+                    <?= $block->getChildHtml('shipping_method') ?>
+                </div>
+            </div>
+
+        </section>
+
+      <section id="order-methods-additional" class="admin__page-section order-methods-additional" style="display:none;">
+
+          <fieldset class="admin__fieldset">
+            <legend class="admin__legend"><span>Delivery Options</span></legend>
+            <br>
+            <input id="order_id" name="order_id" type="hidden" value="<?= $block->getOrderId(); ?>">
+            <div class="admin__field">
+              <label class="admin__field-label"><span>Delivery Date Selected (YYYY-MM-DD):</span></label>
+              <div class="admin__field-control">
+                <input class="admin__control-text" id="delivery_date_selected" name="delivery_date_selected" value="<?= $block->getDeliveryDateSelected(); ?>">
+              </div>
+            </div>
+            <div class="admin__field">
+              <div class="detailed-del-info-dates"></div>
+              <label class="admin__field-label"><span>Detailed Delivery Info Dates:</span></label>
+              <div class="admin__field-control">
+                <input class="admin__control-text" id="detailed_delivery_info_dates" name="detailed_delivery_info_dates" value="<?= $block->getDetailedDeliveryInfoDates(); ?>">
+                <p>Format: "Friday 26th March 2021"</p>
+              </div>
+            </div>
+
+
+            <div id="ajaxResponse"></div>
+
+            <div id="loading-overlay" class="loading">
+              <div class="loader"></div>
+              <div class="loader-message">Attempting to Save Delivery Options...</div>
+            </div>
+
+            <script type="text/javascript">
+                require(["jquery","jquery/ui"],function($) {
+
+                    jQuery('#delivery_date_selected').datepicker({
+                        dateFormat: "yy-mm-dd"
+                    });
+
+                    jQuery('#delivery_date_selected').change(function(){
+                        var arrayOfWeekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+                        var arrayOfMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                        var datetimestamp = Date.parse(jQuery('#delivery_date_selected').val());
+
+                        var date = new Date(datetimestamp);
+                        var datenumber = date.getDay();
+                        var datemonths = date.getMonth();
+
+
+
+                        var datestring = arrayOfWeekdays[datenumber] + ' ' + date.getDate() + ' ' + arrayOfMonths[datemonths] + ' ' + date.getFullYear();
+
+                        jQuery('#detailed_delivery_info_dates').val(datestring);
+                    });
+
+                });
+            </script>
+
+            <style type="text/css">
+
+              #order-billing_method {
+                width: 100%;
+                clear: both;
+              }
+
+              #order-shipping_method {
+                width: 100%;
+                float: none;
+              }
+
+              .loader {
+                border:        16px solid #f3f3f3; /* Light grey */
+                border-top:    16px solid #3498db; /* Blue */
+                border-radius: 50%;
+                width:         120px;
+                height:        120px;
+                animation:     spin 2s linear infinite;
+                margin:        0 auto;
+              }
+
+              @keyframes spin {
+                0% {
+                  transform: rotate(0deg);
+                }
+                100% {
+                  transform: rotate(360deg);
+                }
+              }
+
+              .loading {
+                position: fixed;
+                z-index:  999;
+                height:   2em;
+                width:    100%;
+                overflow: visible;
+                margin:   auto;
+                top:      0;
+                left:     0;
+                bottom:   0;
+                right:    0;
+                display:  none;
+              }
+
+              .loading:before {
+                content:          '';
+                display:          block;
+                position:         fixed;
+                top:              0;
+                left:             0;
+                width:            100%;
+                height:           100%;
+                background-color: rgba(0, 0, 0, 0.7);
+              }
+
+              .loader-message {
+
+                margin-top: 20px;
+                color:      #f3f3f3;
+                width:      100%;
+                margin:     0 auto;
+                text-align: center;
+                /* z-index: 99999990; */
+                font-size:  30px;
+                /* background: white; */
+                z-index:    1;
+                position:   relative;
+              }
+
+              .action-button {
+                background-color: #eb5202;
+                border-color:     #eb5202;
+                color:            #ffffff;
+                text-shadow:      1px 1px 0 rgba(0, 0, 0, 0.25);
+                border:           1px solid;
+                border-radius:    0;
+                display:          inline-block;
+                font-family:      'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size:        1.4rem;
+                font-weight:      600;
+                line-height:      1.36;
+                padding:          0.6rem 1em 0.6rem;
+                text-align:       center;
+                vertical-align:   baseline;
+                cursor:           pointer;
+              }
+
+              .action-button:hover {
+                background-color: #ba4000;
+                border-color:     #b84002;
+                box-shadow:       0 0 0 1px #007bdb;
+                color:            #ffffff;
+                text-decoration:  none;
+              }
+
+              .actions-toolbar {
+                padding-top: 20px;
+              }
+
+              .actions-toolbar > row {
+                align-items: center;
+              }
+
+              .success-message {
+                background-color: #79a22e;
+              }
+
+              .error-message {
+                background-color: #ee7d7d;
+              }
+              .hideme {
+                display: none;
+              }
+            </style>
+
+
+
+
+            <div id="delivery-spare" style="display:none;">
+              <script type="text/javascript">
+                  require(["jquery"], function ($) {
+
+
+                      jQuery("#mybutton").click(function(){
+                          console.log("CLICKED!");
+                          var tS = new Date().getTime();
+
+                          var country = jQuery('#order-shipping_address_postcode').val();
+                          var postcode = jQuery('#order-shipping_address_country_id').val();
+
+                          console.log('getDeliveryOptionsActual Fired');
+
+
+                          //var data = jQuery('#co-shipping-form').serializeArray();
+                          //var myvar = this
+
+
+                          var ajaxRequest;
+
+                          ajaxRequest = jQuery.ajax({
+                              url: "<?php echo $this->getUrl('delopt/testing/testing'); ?>?isAjax=true",
+                              type: 'POST',
+                              data: {
+                                  form_key: window.FORM_KEY,
+                                  country: country,
+                                  postcode: postcode
+                              },
+                              dataType: 'json',
+                              beforeSend: function () {
+
+                              },
+                              success: function (response) {
+
+                                  if (response.hasOwnProperty('methods_available')) {
+                                      // methods available
+
+                                      //jQuery('.display-this').show();
+
+
+                                      jQuery('#delivery-calendar').html(response.mobile_day_options_1);
+
+                                      jQuery('#delivery-date-selected-options').html(response.mobile_day_options_firstday);
+                                      jQuery('#delivery-date-other-options').html(response.mobile_day_options_exceptfirstday);
+                                      // set descriptions
+                                      jQuery('#delivery-description-store-inner').html(response.delivery_descriptions_checkout)
+
+                                      jQuery('#mobile-month').html(response.first_month_to_display);
+
+                                      reloadMobileSlider();
+
+                                      ajaxOverlayPostcodeHide();
+                                  } else {
+                                      // No Methods
+                                      var error_message = response.error_message;
+                                      console.log('no methods! do something');
+                                      $('#elevateLightboxModal .bs-modal-title').html('Error');
+                                      $('#elevateLightboxModal .bs-modal-body').html(error_message);
+                                      $('#elevateLightboxModal').bsmodal('show');
+                                  }
+                              },
+                              error: function (xhr, status, errorThrown) {
+                                  jQuery('.loading').hide();
+                                  console.log(status);
+                                  console.log(xhr);
+                                  console.log(errorThrown);
+                              }
+                          });
+
+
+
+                          jQuery.ajax({
+                              url: url,
+                              dataType: 'json',
+                              type: 'post',
+                              data: data,
+                              //context: this,
+
+                              /** @inheritdoc */
+                              beforeSend: function () {
+                                  //ajaxOverlayPostcodeShow();
+
+                              },
+
+                              /** @inheritdoc */
+                              complete: function () {
+
+                              }
+                          })
+
+                              .done(function (response) {
+                                  console.log('done');
+                                  console.log(response);
+
+                                  if (response.hasOwnProperty('methods_available')) {
+                                      // methods available
+                                      this.deliveryinfo = response.methods_available;
+
+                                      quote['deliveryinfo'] = this.deliveryinfo;
+                                      //jQuery('.display-this').show();
+
+
+                                      jQuery('#delivery-calendar').html(response.mobile_day_options_1);
+
+                                      jQuery('#delivery-date-selected-options').html(response.mobile_day_options_firstday);
+                                      jQuery('#delivery-date-other-options').html(response.mobile_day_options_exceptfirstday);
+                                      // set descriptions
+                                      jQuery('#delivery-description-store-inner').html(response.delivery_descriptions_checkout)
+
+                                      jQuery('#mobile-month').html(response.first_month_to_display);
+
+                                      reloadMobileSlider();
+
+                                      ajaxOverlayPostcodeHide();
+                                  } else {
+                                      // No Methods
+                                      var error_message = response.error_message;
+                                      console.log('no methods! do something');
+                                      /*
+                                      jQuery('#elevateLightboxModal .bs-modal-title').html('Error');
+                                      jQuery('#elevateLightboxModal .bs-modal-body').html(error_message);
+                                      jQuery('#elevateLightboxModal').bsmodal('show');
+
+                                       */
+                                  }
+
+                              })
+                              .fail(function ( jqXHR, textStatus ) {
+                                  alert("Request failed: " + textStatus);
+                              });
+                      })
+                  });
+
+
+              </script>
+              <div id="delivery-outer" class="delivery-outer">
+                <div id="delivery-mask-overlay" class="delivery-mask-overlay">
+                  <div id="delivery-enter-postcode-outer" class="pre-data-load delivery-enter-postcode-outer">
+                    <div id="delivery-ajax-loader" class="delivery-ajax-loader"></div>
+                    <div id="delivery-enter-postcode" class="delivery-enter-postcode">Please Enter your Postcode and Address above</div>
+
+                  </div>
+                </div>
+                <div id="delivery-mobile-outer" class="delivery-mobile-outer pre-loadingstyle" style="">
+                  <div id="delivery-choose-date" class="delivery-choose-date">Choose Date</div>
+                  <div id="mobile-month" class="mobile-month"></div>
+                  <div id="delivery-mobile" class="delivery-mobile">
+                    <div id="delivery-calendar" class="delivery-calendar">
+                      <div id="mobile-dates-container" class="delivery-slider mobile-dates-container" style="display: flex; ">
+                        <div class="mobile-date tns-item tns-slide-active active" data-date="2020-06-01" data-number="1" data-month="June" id="mobile-dates-container-item0">
+                          <div class="mobile-date-inner " data-date="2020-06-01" data-number="1" data-month="June">
+                            <div class="date-selector fauxradio" id="date-radio-selector-1234">
+                              <i class="fa fa-check" style="display:none;"></i></div>
+                            <div class="date-day">Mon</div>
+                            <div class="date-number">1</div>
+                          </div>
+                        </div>
+                        <div class="mobile-date tns-item tns-slide-active" data-date="2020-06-02" data-number="2" data-month="June" id="mobile-dates-container-item1" >
+                          <div class="mobile-date-inner " data-date="2020-06-02" data-number="2" data-month="June">
+                            <div class="date-selector fauxradio" id="date-radio-selector-2020-06-03">
+                              <i class="fa fa-check" style="display:none;"></i></div><div class="date-day">Tue</div>
+                            <div class="date-number">2</div>
+                          </div>
+                        </div>
+                        <div class="mobile-date tns-item tns-slide-active" data-date="2020-06-03" data-number="3" data-month="June" id="mobile-dates-container-item2" >
+                          <div class="mobile-date-inner " data-date="2020-06-03" data-number="3" data-month="June">
+                            <div class="date-selector fauxradio" id="date-radio-selector-23456">
+                              <i class="fa fa-check" style="display:none;"></i></div><div class="date-day">Wed</div>
+                            <div class="date-number">3</div>
+                          </div>
+                        </div>
+                        <div class="mobile-date tns-item tns-slide-active" data-date="2020-06-04" data-number="4" data-month="June" id="mobile-dates-container-item3" >
+                          <div class="mobile-date-inner " data-date="2020-06-04" data-number="4" data-month="June">
+                            <div class="date-selector fauxradio" id="date-radio-selector-2020-06-04">
+                              <i class="fa fa-check" style="display:none;"></i></div><div class="date-day">Thu</div>
+                            <div class="date-number">4</div>
+                          </div>
+                        </div>
+                        <div class="mobile-date tns-item tns-slide-active" data-date="2020-06-05" data-number="5" data-month="June" id="mobile-dates-container-item4" >
+                          <div class="mobile-date-inner " data-date="2020-06-05" data-number="5" data-month="June">
+                            <div class="date-selector fauxradio" id="date-radio-selector-2020-06-05">
+                              <i class="fa fa-check" style="display:none;"></i></div><div class="date-day">Fri</div>
+                            <div class="date-number">5</div>
+                          </div>
+                        </div>
+                        <div class="mobile-date tns-item tns-slide-active" data-date="2020-06-06" data-number="6" data-month="June" id="mobile-dates-container-item5" >
+                          <div class="mobile-date-inner no-del-options" data-date="2020-06-06" data-number="6" data-month="June">
+                            <div class="date-selector fauxradio" id="date-radio-selector-2020-06-06">
+                              <i class="fa fa-check" style="display:none;"></i></div><div class="date-day">Sat</div>
+                            <div class="date-number">6</div>
+                          </div>
+                        </div>
+                        <div class="mobile-date tns-item tns-slide-active" data-date="2020-06-07" data-number="7" data-month="June" id="mobile-dates-container-item6" >
+                          <div class="mobile-date-inner no-del-options" data-date="2020-06-07" data-number="7" data-month="June">
+                            <div class="date-selector fauxradio" id="date-radio-selector-2020-06-07">
+                              <i class="fa fa-check" style="display:none;"></i></div><div class="date-day">Sun</div>
+                            <div class="date-number">7</div>
+                          </div>
+                        </div>
+
+
+                      </div>
+
+
+                    </div>
+                    <div id="deliveryslider-nav" class="deliveryslider-nav slider-nav controls">
+                      <div id="delslider-prev" class="delslider-prev prev slider-prev disabled"><i class="fa fa-chevron-circle-left"></i>
+                      </div>
+                      <div id="delslider-next" class="delslider-next next slider-next"><i class="fa fa-chevron-circle-right"></i></div>
+                    </div>
+                    <div id="delivery-date-choosedelivery" class="delivery-date-choosedelivery">Choose Delivery</div>
+                    <div id="delivery-date-selected-options" class="delivery-date-selected-options"></div>
+                    <div id="delivery-date-other-options" class="delivery-date-other-options"></div>
+
+
+                  </div>
+                </div>
+                <div id="delivery-bottom-message-2" class="delivery-bottom-message-2"></div>
+                <div id="delivery-bottom-message-1" class="delivery-bottom-message-1"></div>
+                <div id="delivery-description-store" class="delivery-description-store">
+                  <div class="del-desc-store-notice" style="display:none;">
+                    <i class="fa fa-info-circle fa-2x"></i> Delivery Information
+                  </div>
+                  <div id="delivery-description-store-inner"  class="delivery-description-store-inner">
+
+                  </div>
+                </div>
+                <input id="hidden-input-deliverycheck" name="deliverycheck" type="hidden" value="notfired"/>
+              </div>
+              <div class="ding-dong">HELLLO!!!</div>
+              <div id="mybutton" class="mybutton btn" style="background: blue; padding: 20px; cursor: pointer;">TEST</div>
+            </div>
+
+        </section>
+
+        <?php if ($block->getChildBlock('card_validation')) : ?>
+        <section id="order-card_validation" class="admin__page-section order-card-validation">
+            <?= $block->getChildHtml('card_validation') ?>
+        </section>
+        <?php endif; ?>
+
+        <?= $block->getChildHtml('gift_options') ?>
+
+        <section class="admin__page-section order-summary">
+            <div class="admin__page-section-title">
+                <span class="title"><?= $block->escapeHtml(__('Order Total')) ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <fieldset class="admin__fieldset order-history" id="order-comment">
+                    <legend class="admin__legend"><span><?= $block->escapeHtml(__('Order History')) ?></span></legend>
+                    <br>
+                    <?= $block->getChildHtml('comment') ?>
+                </fieldset>
+                <fieldset id="order-totals" class="admin__fieldset order-totals">
+                    <?= $block->getChildHtml('totals') ?>
+                </fieldset>
+            </div>
+        </section>
+    </div>
+
+    <?php if ($block->getCustomerId()) : ?>
+        <div class="order-sidebar">
+            <div class="store-switcher order-currency">
+                <label class="admin__field-label" for="currency_switcher">
+                    <?= $block->escapeHtml(__('Order Currency:')) ?>
+                </label>
+                <select id="currency_switcher"
+                        class="admin__control-select"
+                        name="order[currency]"
+                        onchange="order.setCurrencyId(this.value); order.setCurrencySymbol(this.options[this.selectedIndex].getAttribute('symbol'));">
+                    <?php foreach ($block->getAvailableCurrencies() as $_code) : ?>
+                        <option value="<?= $block->escapeHtmlAttr($_code) ?>"<?php if ($_code == $block->getCurrentCurrencyCode()) : ?> selected="selected"<?php endif; ?> symbol="<?= $block->escapeHtmlAttr($block->getCurrencySymbol($_code)) ?>">
+                            <?= $block->escapeHtml($block->getCurrencyName($_code)) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="customer-current-activity" id="order-sidebar">
+                <?= $block->getChildHtml('sidebar') ?>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>

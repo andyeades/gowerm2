@@ -41,6 +41,7 @@ namespace Stripe;
  * @property \Stripe\Service\PriceService $prices
  * @property \Stripe\Service\ProductService $products
  * @property \Stripe\Service\PromotionCodeService $promotionCodes
+ * @property \Stripe\Service\QuoteService $quotes
  * @property \Stripe\Service\Radar\RadarServiceFactory $radar
  * @property \Stripe\Service\RefundService $refunds
  * @property \Stripe\Service\Reporting\ReportingServiceFactory $reporting
@@ -53,6 +54,7 @@ namespace Stripe;
  * @property \Stripe\Service\SubscriptionItemService $subscriptionItems
  * @property \Stripe\Service\SubscriptionScheduleService $subscriptionSchedules
  * @property \Stripe\Service\SubscriptionService $subscriptions
+ * @property \Stripe\Service\TaxCodeService $taxCodes
  * @property \Stripe\Service\TaxRateService $taxRates
  * @property \Stripe\Service\Terminal\TerminalServiceFactory $terminal
  * @property \Stripe\Service\TokenService $tokens

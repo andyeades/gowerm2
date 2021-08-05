@@ -8,8 +8,6 @@
 
 /** @var $block \Magento\Checkout\Block\Cart\Sidebar */
 
-
-
 $checkout_link = $block->getUrl('checkout', ['_secure' => true]);
 $cart_link = $block->getUrl('checkout/cart', ['_secure' => true]);
 $minicart_no_items_text = $this->getMinicartNoItemText(); //text for no cart
@@ -17,118 +15,125 @@ $custom_cart_icon_on = $this->getMinicartCustomCartIconOn();
 
 $cart_icon_class = $this->getMinicartCartIconClass();
 
-
 $custom_cart_icon_html = $this->getCustomCartIconHtml();
 $custom_cart_icon_styling = $this->getCustomCartIconStyling();
 $custom_cart_icon = $this->getCustomCartIcon();
-?>
-<?php
 
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $scopeConfig = $objectManager->create('Magento\Framework\App\Config\ScopeConfigInterface');
 
-
 $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-    //inc_vat, ex_vat, both_vat (both vat usually with VAT switcher)
-     
- if($price_type == 'inc_vat'){
- ?>
-     
- <?php
- 
- }else if($price_type == 'ex_vat'){
-    ?>
-     
- <?php
- }   
- ?>
+//inc_vat, ex_vat, both_vat (both vat usually with VAT switcher)
+
+if ($price_type != 'disable_functionality') {
+    if ($price_type == 'inc_vat') {
+        ?>
+        <style>
+            #shopping-cart-inner .price-excluding-tax {
+                display: none;
+            }
+
+            #shopping-cart-inner .price-excluding-tax {
+                display: none;
+            }
+
+        </style>
+        <?php
+
+    } else if ($price_type == 'ex_vat') {
+        ?>
+        <style>
+           #shopping-cart-inner .price-including-tax {
+                display: none;
+            }
+
+            #shopping-cart-inner .price-including-tax {
+                display: none;
+            }
+        </style>
+        <?php
+    }
+}
+
+
+?>
 
 <?php if (!empty($custom_cart_icon_styling)) { ?>
-  <style>
-    <?= $custom_cart_icon_styling; ?>
-  </style>
+    <style>
+        <?= $custom_cart_icon_styling; ?>
+    </style>
 <?php } ?>
 
 <?php if ($custom_cart_icon_on == 1) {
 
-  $cart_icon_class = '';
+    $cart_icon_class = '';
 
-}?>
+} ?>
 
-         
 
 <style>
-#shopping-cart-wrap .arrow_box:after {
-    left: auto !important;
+    #shopping-cart-wrap .arrow_box:after {
+        left: auto !important;
     }
-         .shopping-cart .shopping-cart-items .item-name {
-  
-    padding: 0 0 0 0;
-   
-    color: #000;
-}
-  @media screen and (max-width: 767.98px){
 
-    #shopping-cart-inner{
-      display:none;
+    .shopping-cart .shopping-cart-items .item-name {
+        padding: 0 0 0 0;
+        color:   #000;
     }
-  }
-  .hdr-minicart-total .price-including-tax:after, .hdr-minicart-total .price-excluding-tax:after{
-    content:'';
-  }
+
+    @media screen and (max-width: 767.98px) {
+        #shopping-cart-inner {
+            display: none;
+        }
+    }
+
+    .hdr-minicart-total .price-including-tax:after, .hdr-minicart-total .price-excluding-tax:after {
+        content: '';
+    }
 
 </style>
 
 
-
 <div id="shopping-cart-wrap">
-  <a href="/checkout/cart" id="cart">
-    <div class="hdr-basket">
+    <a href="/checkout/cart" id="cart">
+        <div class="hdr-basket">
 
-      <i class="<?= $cart_icon_class; ?>"></i> <span id="minicart_counter" >&nbsp;</span>
-    </div>
-    <?php if ($custom_cart_icon_on == 1) { ?>
-        <?= $custom_cart_icon_html; ?>
-    <?php } ?>
-  </a>
+            <i class="<?= $cart_icon_class; ?>"></i> <span id="minicart_counter">&nbsp;</span>
+        </div>
+        <?php if ($custom_cart_icon_on == 1) { ?>
+            <?= $custom_cart_icon_html; ?><?php } ?>
+    </a>
 
-  <div id="shopping-cart-inner" style="position:absolute;display:none;right:0px;">
-    <div class="shopping-cart arrow_box" >
-      <div class="shopping-cart-header" style="
+    <div id="shopping-cart-inner" style="position:absolute;display:none;right:0px;">
+        <div class="shopping-cart arrow_box">
+            <div class="shopping-cart-header" style="
     display: flex;
 ">
-        <div style="
+                <div style="
     font-weight: bold;
         color: #000;
-">My Basket</div>
-<div class="shopping-cart-total" style="display:none;
+">My Basket
+                </div>
+                <div class="shopping-cart-total" style="display:none;
     margin-left: auto;
 ">
-          <span class="lighter-text">Total:</span>
-          <span id="grand_total" class="main-color-text"></span>
-        </div>
-      </div>
-      <div id="shopping-cart-items" style="display:none;"></div>
-      <div id="minicart_no_prods" style="display:none;"><? echo __($minicart_no_items_text); ?></div>
-      <div id="minicart_payment_options" style="display:none;">
-      
-   
+                    <span class="lighter-text">Total:</span> <span id="grand_total" class="main-color-text"></span>
+                </div>
+            </div>
+            <div id="shopping-cart-items" style="display:none;"></div>
+            <div id="minicart_no_prods" style="display:none;"><? echo __($minicart_no_items_text); ?></div>
+            <div id="minicart_payment_options" style="display:none;">
 
 
-       <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action secondary" style="width:48.5%;">View Basket</a>
-          <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action primary" style="width:48.5%;float: right;">Checkout</a>
-      </div>
-    </div> <!--end shopping-cart -->
-  </div>
+                <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action secondary" style="width:48.5%;">View Basket</a>
+                <a href="<?php echo $cart_link; ?>" class="btn btn-minicart-checkout action primary" style="width:48.5%;float: right;">Checkout</a>
+            </div>
+        </div> <!--end shopping-cart -->
+    </div>
 </div>
 
 
-
-
-
 <script type="text/javascript">
-
-
 
 
     var ELEVATE = ELEVATE || {};
@@ -147,10 +152,7 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
             var data = '';
 
 
-
-
-            function getCart()
-            {
+            function getCart() {
 
 
                 // jQuery('#ajax_loader').show();
@@ -167,46 +169,44 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
                         // TODO: Store check? Currency? etc? - or is this done in controller based on current store?
                         var grand_total = parseFloat(data.grand_total).toFixed(2);
                         var sub_total = parseFloat(data.sub_total).toFixed(2);
-                        jQuery('.hdr-minicart-total').html(currency_symbol + grand_total); 
-                      //  console.log('#hdr-minicart-total'+(currency_symbol + grand_total))                        
+                        jQuery('.hdr-minicart-total').html(currency_symbol + grand_total);
+                        //  console.log('#hdr-minicart-total'+(currency_symbol + grand_total))
 
-                        if(data.total_items > 0){
+                        if (data.total_items > 0) {
                             jQuery('#minicart_payment_options').show();
                             jQuery('#minicart_no_prods').hide();
                             jQuery('#shopping-cart-items').show();
                             jQuery('.shopping-cart-total').show();
-                            
 
-                        }
-                        else{
+
+                        } else {
                             jQuery('#shopping-cart-items').hide();
                             jQuery('#minicart_no_prods').show();
                             jQuery('#minicart_payment_options').hide();
                         }
 
 
-
                         var cart_items = '';
-                        if(data.has_basket){
+                        if (data.has_basket) {
 
                             cart_items += '<ul id="shopping-cart-items" class="shopping-cart-items">';
 
-                            jQuery.each( data.item_data, function( key, value ) {
-                            
+                            jQuery.each(data.item_data, function (key, value) {
+
 
                                 var prod_id = value.id;
                                 var image = value.image;
                                 var prod_name = value.name;
                                 var prod_sku = value.sku;
                                 var prod_qty = value.qty;
-                              //  var prod_price = parseFloat(value.price_inc_vat).toFixed(2);
-                                var prod_price_div = '<span class="price-excluding-tax"><span style="margin-right: 5px;">'+currency_symbol + parseFloat(value.price_ex_vat).toFixed(2)+'</span></span><span class="price-including-tax"><span style="margin-right: 5px;">'+currency_symbol + parseFloat(value.price_inc_vat).toFixed(2)+'</span></span>';
+                                //  var prod_price = parseFloat(value.price_inc_vat).toFixed(2);
+                                var prod_price_div = '<span class="price-excluding-tax"><span style="margin-right: 5px;">' + currency_symbol + parseFloat(value.price_ex_vat).toFixed(2) + '</span></span><span class="price-including-tax"><span style="margin-right: 5px;">' + currency_symbol + parseFloat(value.price_inc_vat).toFixed(2) + '</span></span>';
 
                                 cart_items += '<li>';
-                                cart_items += '<img src="'+image+'" alt="item1" />';
+                                cart_items += '<img src="' + image + '" alt="item1" />';
                                 cart_items += '<div class="mcart-item-details">';
-                                cart_items += '<span class="item-name">'+prod_name+'</span>';
-                                cart_items += '<span class="item-price">'+prod_qty+' x '+prod_price_div+'</span>';
+                                cart_items += '<span class="item-name">' + prod_name + '</span>';
+                                cart_items += '<span class="item-price">' + prod_qty + ' x ' + prod_price_div + '</span>';
 
                                 cart_items += '</div>';
                                 cart_items += '</li>';
@@ -214,30 +214,27 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
                             });
                             cart_items += '</ul>';
                             jQuery('.shopping-cart-header').show();
-                            var price_div = '<span class="price-excluding-tax"><span style="margin-right: 5px;">'+currency_symbol + sub_total+'</span></span><span class="price-including-tax"><span style="margin-right: 5px;">'+currency_symbol + grand_total+'</span></span>';
+                            var price_div = '<span class="price-excluding-tax"><span style="margin-right: 5px;">' + currency_symbol + sub_total + '</span></span><span class="price-including-tax"><span style="margin-right: 5px;">' + currency_symbol + grand_total + '</span></span>';
                             jQuery('.hdr-minicart-total').html(price_div);
                             jQuery('#grand_total').html(price_div);
                             jQuery('#shopping-cart-items').html(cart_items);
-                            
+
                             //update   stickybar
-                              jQuery('#tritemtotal').html(price_div);
-                              jQuery('#tritemquantity').html(items_number);
+                            jQuery('#tritemtotal').html(price_div);
+                            jQuery('#tritemquantity').html(items_number);
                         }
-
-
-
 
 
                     }
                 });
             }
 
-            function attachEvents(){
+            function attachEvents() {
             }
 
 
             return {
-                getCart : function() {
+                getCart: function () {
                     getCart();
                 }
             };
@@ -245,8 +242,6 @@ $price_type = $scopeConfig->getValue('elevate_addtocart/minicart/price_type', \M
         }());
 
     }(jQuery.noConflict(), window));
-
-
 
 
     ELEVATE.Minicart.getCart();
