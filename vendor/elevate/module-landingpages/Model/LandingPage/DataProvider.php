@@ -69,6 +69,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
 
         $this->loadAttributeData();
+                $this->loadFaqData();
         return $this->loadedData;
     }
     function loadAttributeData(){
@@ -111,4 +112,49 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         }
 
     }
+    
+    
+        function loadFaqData(){
+
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $productCollection = $objectManager->create('\Elevate\LandingPages\Model\ResourceModel\LandingPageFaq\CollectionFactory');
+
+
+        $items = $this->collection->getItems();
+
+        foreach($items as $contact)
+        {
+            $this->_loadedData[$contact->getId()] = $contact->getData();
+
+
+         
+            $collection = $productCollection->create()
+            //  ->addAttributeToSelect('*')
+                                            ->addFieldToFilter('landingpage_id', $contact->getId())
+                                            ->setOrder('position','ASC')
+                                            ->load();
+                                                                                                                                                                                                    
+
+
+            foreach ($collection as $product){
+            
+      
+               $this->loadedData[$contact->getId()]['elevate_landingpages_schema_faq'][] = array(
+                    'landingpage_faq_id' => $product->getData('landingpage_faq_id'),
+                    'question' => $product->getQuestion(),
+                    'answer' => $product->getAnswer(),
+                    'position' => $product->getPosition()
+                );
+                //  echo 'Name  =  '.$product->getAttributeId().'<br>';
+            }
+
+
+            //  exit;
+
+        }
+
+    }
+    
 }

@@ -50,10 +50,17 @@ div#ev_ln_btm_description_wrapper {
 */
 
 
-   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-   $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
-$filterProvider = $objectManager->create('\Magento\Cms\Model\Template\FilterProvider');
-$storeManager = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+   
+   
+   $registry = $block->getRegistry();
+
+ 
+   
+   
+            
+   $category = $registry->registry('current_category');//get current category
+   $filterProvider = $block->getFilterProvider();
+   $storeManager = $block->getStoreManager();
 
 
    
@@ -82,11 +89,11 @@ $bottom_description =  $this->getLayout()
    
    
  
-$is_landing_page =$objectManager->get('Magento\Framework\Registry')->registry('elevate_landingpage');
+$is_landing_page = $registry->registry('elevate_landingpage');
 
 if($is_landing_page){
 $bottom_description = '';
- $landing_page_data =$objectManager->get('Magento\Framework\Registry')->registry('elevate_landingpage_data');
+ $landing_page_data = $registry->registry('elevate_landingpage_data');
               
   $landing_page_btm_desc = $landing_page_data['page_bottom_description']; 
      if(!empty($landing_page_btm_desc)){
@@ -103,15 +110,18 @@ echo $filterProvider->getBlockFilter()
                     ->setStoreId($storeManager->getStore()->getId())
                     ->filter($bottom_description);
                                         
-                  $faqCol =$objectManager->create('Elevate\LandingPages\Model\ResourceModel\LandingPageFaq\CollectionFactory');   
-           
+              
+             $faqCol = $block->getFaqCol();
 
 
         $category_id = $category->getId();
            
-           
-        $faqCollection = $faqCol->create()->addFieldToFilter('category_id', $category_id);
-                
+        if($is_landing_page){   
+        $faqCollection = $faqCol->create()->addFieldToFilter('landingpage_id', $landing_page_data['landingpage_id']);
+              }
+              else{
+             $faqCollection = $faqCol->create()->addFieldToFilter('category_id', $category_id);         
+              }  
           
      if($faqCollection){
 
@@ -195,7 +205,7 @@ font-size: 1.125rem;
             }
             echo '</dl>'; 
             
-            echo "<script>
+            $open_close_each_one = "<script>
             
             (function($) {
     
@@ -226,6 +236,53 @@ font-size: 1.125rem;
 })(jQuery);
             
             </script>";           
+    
+    
+    
+    
+echo "<script>
+            
+            (function($) {
+    
+  var allPanels = $('.accordion  dd').hide();
+    
+    
+    $('.accordion  dt').addClass('panel_hidden');
+    
+  $('.accordion dt a').click(function() {
+  
+ if ( $( this ).parent().hasClass( 'panel_shown' ) ) {
+ 
+  
+
+    
+   
+    $(this).parent().addClass('panel_hidden').removeClass('panel_shown');
+    $(this).find('.qa_bullet').removeClass('fa-minus').addClass('fa-plus');
+    $(this).parent().next().slideUp();
+ 
+ 
+ 
+ 
+ 
+ }
+ else{
+   
+   
+     $('.accordion  dt').removeClass('panel_shown').addClass('panel_hidden');
+
+     
+    $(this).parent().removeClass('panel_hidden').addClass('panel_shown');
+    $(this).find('.qa_bullet').removeClass('fa-plus').addClass('fa-minus');
+    $(this).parent().next().slideDown();
+
+ }  return false;
+  });
+  
+})(jQuery);
+            
+            </script>";     
+    
     
             }    
   

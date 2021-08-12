@@ -9,7 +9,10 @@
  *
  * @var $block \Magento\Catalog\Block\Category\View
  */
-?><?php if ($block->isContentMode() || $block->isMixedMode()) : ?>
+ 
+?>
+
+<?php if ($block->isContentMode() || $block->isMixedMode()) : ?>
     <div class="category-cms">
 
         <div class="short-category">
@@ -72,8 +75,8 @@ $top_pages = $block->getCurrentCategory()->getData('ev_landingpages_top_pages');
 $filtered = false;
 if (!empty($top_pages)) {
 
-    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-    $stateFilter = $objectManager->create('\Magento\LayeredNavigation\Block\Navigation\State');
+
+    $stateFilter = $block->getStateFilter();
     $selectedFilters = $stateFilter->getActiveFilters();
     foreach ($selectedFilters as $filter) {
         $filtered = true;

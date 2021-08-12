@@ -28,6 +28,9 @@ class View
     protected $_registry;
 
     protected $_coreRegistry;
+protected $_filterProvider;
+
+
 
     /**
      * View constructor.
@@ -38,16 +41,20 @@ class View
      */
     public function __construct(
         JsonFactory $resultJsonFactory,
-        UrlInterface $_storeManager,
+        \Magento\Store\Model\StoreManagerInterface $_storeManager,
         PageFactory $pageFactory,
         Registry $registry,
-        \Magento\Framework\Registry $coreRegistry
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Cms\Model\Template\FilterProvider $filterProvider
+        
     ) {
         $this->_resultJsonFactory = $resultJsonFactory;
         $this->_storeManager = $_storeManager;
         $this->pageFactory = $pageFactory;
         $this->_coreRegistry = $coreRegistry;
         $this->_registry = $registry;
+        $this->_filterProvider = $filterProvider;
+  
     }
 
     /**
@@ -75,9 +82,9 @@ class View
                     $productsList->getChildBlock('product_list_toolbar')->setData('_current_grid_mode', $listMode);
                 }
                 //
-                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                $filterProvider = $objectManager->create('\Magento\Cms\Model\Template\FilterProvider');
-                $storeManager = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+
+                $filterProvider = $this->_filterProvider;
+                $storeManager = $this->_storeManager;
 
                 //get the left navigation
                 // $leftNav = $response->getLayout()->getBlock('catalog.leftnav')->toHtml();

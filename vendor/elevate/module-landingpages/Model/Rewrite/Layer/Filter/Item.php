@@ -545,6 +545,9 @@ if($remove_url_part){
 if($debug){
       echo '[2]'.$url.'<a href="';
       }
+      
+      $url = str_replace('/https:', 'https:', $url);
+      
                     return $url;
                     //print_r($landingPage);
 
@@ -722,7 +725,17 @@ print_r($params['_query']);
      */
     public function getUrl()
     {
-
+ $debug = false;
+     if(isset($_GET['debug'])){
+         $debug = $_GET['debug'];
+     }
+         
+         
+            if($debug){
+            echo '"" ></a><style>.ev_ln_filter .ev_ln_items li.item{display:block;}</style><br>';
+          }
+          
+          
         if ($this->_request->getFullActionName() == 'catalogsearch_result_index') {
 
 
@@ -737,7 +750,7 @@ print_r($params['_query']);
         }
 
 
-
+        
 
 
 
@@ -945,6 +958,10 @@ if($is_landing_page){
 
 
 
+              if($debug){
+      echo '[a]<a href="';
+      }
+
             return $url.urldecode($query_string);
        // }
            // return "/".$url;
@@ -955,9 +972,17 @@ if($is_landing_page){
      //   }
     }
 
+              if($debug){
+      echo '[b]<a href="';
+      }
+
     return urldecode($this->_url->getUrl('/*/*/*', ['_current' => false, '_use_rewrite' => true, '_query' => $query]));
 
 }
+
+              if($debug){
+      echo '[c]<a href="';
+      }
 
             return urldecode($this->_url->getUrl('* /* /* ', ['_current' => true, '_use_rewrite' => true, '_query' => $query]));
         }
@@ -1057,6 +1082,10 @@ if(is_array($currentLandingAttributes)){
                     $url .= urldecode($query_string);
                 }
 
+              if($debug){
+      echo '[d]<a href="';
+      }
+
                 return '/'.$url;
 
             }
@@ -1081,6 +1110,11 @@ if(is_array($currentLandingAttributes)){
             }
 
 
+              if($debug){
+      echo '[g]<a href="';
+      }
+
+$return = '/'.ltrim($return, '/');
             return $return;
         }
 
@@ -1155,7 +1189,9 @@ if(is_array($currentLandingAttributes)){
         }
      }
 //print_r($query);
-
+      if($debug){
+      echo '[last]<a href="';
+      }
 //return "LAST";
         return $this->_url->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, '_query' => $query]);
     }

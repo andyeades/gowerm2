@@ -35,10 +35,13 @@ namespace Elevate\LandingPages\Observer;
      if(isset($faq_data)){
 
       
-        $landingloadCollection = $this->_landingPageFaqCollectionFactory->create()->load($category_id,'category_id');  
+        $landingloadCollection = $this->_landingPageFaqCollectionFactory->create()->load('category_id', $category_id);  
         foreach($landingloadCollection as $landingload){  
       
+      if($landingload->getData('category_id') == $category_id){
+      
         $landingload->delete();
+        }
         }
 
 

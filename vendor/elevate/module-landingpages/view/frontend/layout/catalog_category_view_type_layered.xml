@@ -34,7 +34,7 @@
 
 
         <referenceContainer name="content">
-            <block class="Magento\Framework\View\Element\Template" name="ev_ln_bottom_description" after="category.products"  template="Elevate_LandingPages::category/bottom_description.phtml" />
+            <block class="Elevate\LandingPages\Block\Category\BottomDescription" name="ev_ln_bottom_description" after="category.products"  template="Elevate_LandingPages::category/bottom_description.phtml" />
         </referenceContainer>
 
     </body>

@@ -123,6 +123,88 @@ class Save extends \Magento\Backend\App\Action {
 
         //exit;
         if ($data) {
+     
+     
+     //save landing page faq
+     
+     
+      
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        
+        
+$landingPageFaqFactory = $objectManager->get('\Elevate\LandingPages\Model\LandingPageFaqFactory');
+$landingPageFaqCollectionFactory = $objectManager->get('\Elevate\LandingPages\Model\ResourceModel\LandingPageFaq\CollectionFactory');
+      
+        $landingloadCollection = $landingPageFaqCollectionFactory->create()->load('landingpage_id', $id);  
+        
+        
+        
+        
+        
+        
+        foreach($landingloadCollection as $landingload){  
+ 
+           if($landingload->getData('landingpage_id') == $id){
+      
+        $landingload->delete();
+        
+        }
+        }
+
+
+  
+    
+     if(isset($data['elevate_landingpages_schema_faq'])){
+
+
+   $faq_data = $data['elevate_landingpages_schema_faq'];   
+      
+        foreach ($faq_data as $faq) {
+        
+          
+            $question = $faq['question'];
+            $answer =  $faq['answer'];
+                $position =  $faq['position'];
+           
+            
+
+
+                //new record
+                $landingload = $landingPageFaqFactory->create();
+
+              
+                $landata['question'] = $question;
+                $landata['answer'] = $answer;
+                $landata['landingpage_id'] = $id;
+                 $landata['position'] = $position;
+                //  $landata = array_filter($landata, function($value) {return $value !== ''; });
+
+                //   print_r($landata);
+                $landingload->setData($landata);
+                try {
+                    //   echo "TRY";
+                    $landingload->save();
+
+                } catch(Exception $e) {
+                    print_r($e->getMessage());
+                    //exit;
+                }
+
+    
+       
+            //what is left in $landing_map we need to delete
+
+        }
+      
+        }
+  
+     
+     
+     ///end faq
+     
+     
+        
+        
             try {
 
 

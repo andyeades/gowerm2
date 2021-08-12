@@ -15,6 +15,19 @@
  */
 use Magento\Catalog\Model\Product\ProductList\Toolbar;
 ?>
+<style>
+.toolbar-products .toolbar-amount {
+     display: flex;
+justify-content: center;
+}
+@media only screen and (max-width: 767.98px){
+.toolbar-products .pages {
+ width: 100%;
+    margin-bottom: 16px;
+}
+}
+
+</style>
 <p class="toolbar-amount" id="toolbar-amount">
     <?php if ($block->getLastPageNum() > 1): ?>
         <?php /* @escapeNotVerified */ echo __('Items %1-%2 of %3',

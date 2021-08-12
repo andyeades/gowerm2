@@ -60,9 +60,10 @@
 $readmore = intval($block->getCurrentCategory()->getData('ev_landingpages_hide_readmore'));
 
 
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$filterProvider = $objectManager->create('\Magento\Cms\Model\Template\FilterProvider');
-$storeManager = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+
+
+$filterProvider = $block->getFilterProvider();
+$storeManager = $block->getStoreManager();
 
 /*
  * [ev_landingpages_btm_desc] => THIS IS MY BOTTOM DESCRIPTION
