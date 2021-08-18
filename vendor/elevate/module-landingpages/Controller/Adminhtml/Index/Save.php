@@ -26,6 +26,9 @@ class Save extends \Magento\Backend\App\Action {
     public function execute() {
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
+        
+
+        
         $id = $data['landingpage_id'];
 
         //convert category array to string - otherwise Notice Error - Array to String conversion on save
@@ -210,7 +213,7 @@ $landingPageFaqCollectionFactory = $objectManager->get('\Elevate\LandingPages\Mo
 
                 $contact = $this->contactFactory->create()->load($id);
 
-                $data = array_filter($data, function ($value) { return $value !== ''; });
+               // $data = array_filter($data, function ($value) { return $value !== ''; });
 
                 $contact->setData($data);
                 $contact->save();

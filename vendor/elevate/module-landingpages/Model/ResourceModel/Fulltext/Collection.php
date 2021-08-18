@@ -1,12 +1,6 @@
 <?php
-/**
- * @category    WeltPixel
- * @package     WeltPixel_LayeredNavigation
- * @copyright   Copyright (c) 2018 Weltpixel
- * @author      Weltpixel TEAM
- */
 
-namespace WeltPixel\LayeredNavigation\Model\ResourceModel\Fulltext;
+namespace Elevate\LandingPages\Model\ResourceModel\Fulltext;
 
 use Magento\CatalogSearch\Model\Search\RequestGenerator;
 use Magento\Framework\Api\Search\SearchResultFactory;
@@ -19,10 +13,7 @@ use Magento\Framework\Search\Request\EmptyRequestDataException;
 use Magento\Store\Model\ScopeInterface;
 use Magento\CatalogSearch\Model\ResourceModel\EngineInterface;
 
-/**
- * Class Collection
- * @package WeltPixel\LayeredNavigation\Model\ResourceModel\Fulltext
- */
+
 class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
 {
     /** @var \WeltPixel\LayeredNavigation\Model\ResourceModel\Fulltext\Collection|null Clone collection */
@@ -203,6 +194,8 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
                 $this->searchCriteriaBuilder->removeFilter($attCode);
             }
         } else {
+        
+;
             $this->searchCriteriaBuilder->removeFilter($attributeCode);
         }
 
@@ -270,7 +263,7 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
     {
         if ($this->searchCriteriaBuilder === null) {
             $this->searchCriteriaBuilder = ObjectManager::getInstance()
-                ->get('\WeltPixel\LayeredNavigation\Model\ResourceModel\Search\SearchCriteriaBuilder');
+                ->get('\Elevate\LandingPages\Model\ResourceModel\Search\SearchCriteriaBuilder');
         }
 
         return $this->searchCriteriaBuilder;
@@ -279,7 +272,7 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
     /**
      * @param \WeltPixel\LayeredNavigation\Model\ResourceModel\Search\SearchCriteriaBuilder $object
      */
-    public function setSearchCriteriaBuilder(\WeltPixel\LayeredNavigation\Model\ResourceModel\Search\SearchCriteriaBuilder $object)
+    public function setSearchCriteriaBuilder(\Elevate\LandingPages\Model\ResourceModel\Search\SearchCriteriaBuilder $object)
     {
         $this->searchCriteriaBuilder = $object;
     }
@@ -467,6 +460,8 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
     public function getFacetedData($field)
     {
+    
+
         $this->_renderFilters();
         $result = [];
 

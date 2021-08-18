@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <aw_giftcard>
+            <email>
+                <sender>general</sender>
+            </email>
+            <code_pattern>
+                <code_length>12</code_length>
+                <code_format>alphanumeric</code_format>
+            </code_pattern>
+            <advanced>
+                <tax>0</tax>
+            </advanced>
+        </aw_giftcard>
+    </default>
+</config>

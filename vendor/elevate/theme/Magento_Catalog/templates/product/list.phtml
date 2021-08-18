@@ -16,7 +16,33 @@ use Magento\Framework\App\Action\Action;
  * @var $block \Magento\Catalog\Block\Product\ListProduct
  */
 ?>
+<style>
+a.product.name.product-item-name.product-item-link {
+    color: #2F2523;
+}
+.main-price .price, .normal-price .price {
+    font-weight: 300;
+    color: #2F2523;
+}
+.category-toolbar-links{
+display:none;
+}
+@media only screen and (max-width: 991.98px){
 
+
+.products-grid .product-item {
+    flex: 0 1 auto;
+    width: 100%;
+    text-align: center;
+    padding: 0 1.25rem;
+    border: none;
+}
+div#elevate-promotions {
+    display: none;
+}
+}
+
+</style>
 <?php
 
 $myarr = array();
@@ -438,6 +464,7 @@ if ($_gpsku == '') {
                                 //$image_source = $this->helper('catalog/image')->init($_product, 'small_image')->resize(350);
                             }
 
+
                             ?>
                             <img class="lazyload" src="/media/loader.jpg" data-src="<?php echo $image_source; ?>" alt="<?php echo $this->stripTags($_product->getName(), NULL, true); ?>"/>
                         <?php }
@@ -530,7 +557,12 @@ if(
                                     <?php
                                     }
                             }
-                            echo $productImage->toHtml();
+?>
+
+
+                           <img class="product-image-photo ls-is-cached lazyloaded" src="https://m2.gowercottagebrownies.co.uk/media/catalog/product/cache/c1de000f1eb7aee968b50dde01f6d336/g/o/gower_image_1.jpg" data-src="https://m2.gowercottagebrownies.co.uk/media/catalog/product/cache/c1de000f1eb7aee968b50dde01f6d336/g/o/gower_image_1.jpg" alt="Original Gower Cottage Brownies">
+<?                           
+                           // echo $productImage->toHtml();
                         }
                         ?>
                     </a>

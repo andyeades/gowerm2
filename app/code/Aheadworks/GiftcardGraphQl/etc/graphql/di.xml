@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CatalogGraphQl\Model\ProductInterfaceTypeResolverComposite">
+        <arguments>
+            <argument name="productTypeNameResolvers" xsi:type="array">
+                <item name="aw_giftcard_product_type_resolver" xsi:type="object">Aheadworks\GiftcardGraphQl\Model\GiftCardProductTypeResolver</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\QuoteGraphQl\Model\Cart\BuyRequest\BuyRequestBuilder">
+        <arguments>
+            <argument name="providers" xsi:type="array">
+                <item name="aw_giftcard_option" xsi:type="object">Aheadworks\GiftcardGraphQl\Model\Cart\BuyRequest\GiftcardOptionDataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Aheadworks\GiftcardGraphQl\Model\Resolver\GiftCard" type="Aheadworks\GiftcardGraphQl\Model\Resolver\EntityList">
+        <arguments>
+            <argument name="dataProvider" xsi:type="object">Aheadworks\GiftcardGraphQl\Model\Resolver\DataProvider\GiftCard</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\GraphQl\Schema\Type\Entity\DefaultMapper">
+        <arguments>
+            <argument name="map" xsi:type="array">
+                <item name="catalog_product" xsi:type="array">
+                    <item name="aw_giftcard" xsi:type="string">AwGiftCardProduct</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\GraphQl\Schema\Type\Enum\DefaultDataMapper">
+        <arguments>
+            <argument name="map" xsi:type="array">
+                <item name="awGcGiftCardTypeEnum" xsi:type="array">
+                    <item name="virtual" xsi:type="string">1</item>
+                    <item name="physical" xsi:type="string">2</item>
+                    <item name="combined" xsi:type="string">3</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -115,6 +115,8 @@ return [
         'Magento_Weee' => 1,
         'Magento_CatalogWidget' => 1,
         'Magento_Wishlist' => 1,
+        'Aheadworks_Giftcard' => 1,
+        'Aheadworks_GiftcardGraphQl' => 0,
         'Aheadworks_Pquestion' => 1,
         'Aitoc_Core' => 1,
         'Aitoc_OptionsManagement' => 1,

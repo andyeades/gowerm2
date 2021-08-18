@@ -262,7 +262,6 @@ else{
         }
 
 
-
         return $this;
     }
     /**$tagFilter
@@ -284,9 +283,19 @@ else{
         $this->_requestVar = $attribute->getAttributeCode();
 
 
+
+
+$landingpage_horizontal = false;
+
+if(isset($_GET['landingpage_direction']) == 'horizontal'){
+$landingpage_horizontal = true;
+
+}
+
       //make the filters dissapear if one is selected // except firmness
-        if(!$attribute->getIsMultiselect() && $this->_isFilter && $attribute->getAttributeCode() != 'mattress_firmness') {
-            return [];
+        if(!$landingpage_horizontal && !$attribute->getIsMultiselect() && $this->_isFilter && $attribute->getAttributeCode() != 'mattress_firmness') {
+        
+          //  return [];
         }
 
 
@@ -326,7 +335,7 @@ else{
 
         foreach ($options as $option) {
 
-
+   $value = $option['value'];
 
             if (is_array($option['value'])) {
                 continue;
@@ -334,7 +343,9 @@ else{
             $optionCount = isset($optionsFacetedData[$option['value']]['count']) ? (int)$optionsFacetedData[$option['value']]['count'] : 0;
 
 
-            if ($this->string->strlen($optionCount) && $optionCount > 0) {
+               
+      
+            if ($optionCount > 0) {
                 // Check filter type
                 if ($this->getAttributeIsFilterable($attribute) == self::ATTRIBUTE_OPTIONS_ONLY_WITH_RESULTS) {
 

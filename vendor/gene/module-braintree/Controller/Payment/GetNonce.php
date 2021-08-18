@@ -67,6 +67,14 @@ class GetNonce extends Action
             $response->setData(['paymentMethodNonce' => $result['paymentMethodNonce']]);
         } catch (\Exception $e) {
             $this->logger->critical($e);
+            
+            
+            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/andy_payment.log');
+$logger = new \Zend\Log\Logger();
+$logger->addWriter($writer);
+$logger->info(print_r($e->getMessage(), true));
+
+
             return $this->processBadRequest($response);
         }
 
@@ -82,7 +90,7 @@ class GetNonce extends Action
     private function processBadRequest(ResultInterface $response): ResultInterface
     {
         $response->setHttpResponseCode(Exception::HTTP_BAD_REQUEST);
-        $response->setData(['message' => __('Sorry, but something went wrong')]);
+        $response->setData(['message' => __('Sorry, but something went wrong - BAD REQUEST')]);
 
         return $response;
     }

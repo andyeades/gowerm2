@@ -171,7 +171,7 @@ protected $_filterProvider;
                 } else {
                     $breadcrumbs = false;
                 }
-
+$bottom_description = '';
                 return $this->_resultJsonFactory->create()->setData(
                     [
                         'success' => true,

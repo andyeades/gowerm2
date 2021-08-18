@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- file: [Vendor]/[ModuleName]/etc/frontend/events.xml -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="layout_load_before">
+        <observer name="Elevate_LandingPages_elevate_category_handle"
+                  instance="Elevate\LandingPages\Observer\AddCategoryLayoutUpdateHandleObserver" />
+    </event>
+</config>

@@ -1,0 +1,145 @@
+type Query {
+    awGcGiftCardGetByCode (
+        gift_card_code: String! @doc(description: "Gift Card code")
+    ): awGcGiftCard @resolver(class: "Aheadworks\\GiftcardGraphQl\\Model\\Resolver\\GetGiftCardByCode")
+
+    awGcGiftCardGetInfoForCart (
+        cart_id: String! @doc(description: "Quote Mask ID")
+    ): awGcGiftCardQuotes @resolver(class: "Aheadworks\\GiftcardGraphQl\\Model\\Resolver\\GiftCardCartInfo")
+
+    awGcGetCustomerGiftCards(
+        customer_email: String
+        cart_id: Int
+    ): awGcGiftCardList @resolver(class: "Aheadworks\\GiftcardGraphQl\\Model\\Resolver\\GetCustomerGiftCards")
+}
+
+type Mutation {
+    awGcAddGiftCardToCart(
+        cart_id: String!
+        gift_card_code: String!
+    ): Boolean @resolver(class: "Aheadworks\\GiftcardGraphQl\\Model\\Resolver\\Mutation\\AddGiftCardToCart") @doc(description:"Apply gift card code to cart")
+
+    awGcRemoveGiftCardFromCart(
+        cart_id: String!
+        gift_card_code: String!
+    ): Boolean @resolver(class: "Aheadworks\\GiftcardGraphQl\\Model\\Resolver\\Mutation\\RemoveGiftCardFromCart") @doc(description:"Remove card code from cart")
+
+    addAwGcProductToCart(input: addAwGcProductToCartInput): addAwGcProductToCartOutput @resolver(class: "Magento\\QuoteGraphQl\\Model\\Resolver\\AddSimpleProductsToCart")
+}
+
+input addAwGcProductToCartInput {
+    cart_id: String!
+    cart_items: [awGcProductCartItemInput!]!
+}
+
+input awGcProductCartItemInput {
+    data: CartItemInput!
+    aw_giftcard_option: awGcGiftCardOptionInput!
+    customizable_options:[CustomizableOptionInput!]
+}
+
+input awGcGiftCardOptionInput {
+    aw_gc_amount: Float
+    aw_gc_custom_amount: Float
+    aw_gc_template: String
+    aw_gc_recipient_name: String!
+    aw_gc_recipient_email: String
+    aw_gc_sender_name: String!
+    aw_gc_sender_email: String
+    aw_gc_headline: String
+    aw_gc_message: String
+    aw_gc_delivery_date: String
+    aw_gc_delivery_date_timezone: String
+}
+
+type addAwGcProductToCartOutput {
+    cart: Cart!
+}
+
+type AwGiftCardCartItem implements CartItemInterface {
+    customizable_options: [SelectedCustomizableOption]! @resolver(class: "Magento\\QuoteGraphQl\\Model\\Resolver\\CustomizableOptions")
+    aw_giftcard_option: [SelectedAwGcGiftCardOption!]! @resolver(class: "Aheadworks\\GiftcardGraphQl\\Model\\Resolver\\GiftCardOption")
+}
+
+type SelectedAwGcGiftCardOption {
+    label: String!
+    value: String!
+}
+
+type AwGiftCardProduct implements ProductInterface, PhysicalProductInterface, CustomizableProductInterface @doc(description: "AwGiftCardProduct defines a gift card product") {
+    aw_gc_type: awGcGiftCardTypeEnum @doc(description: "Gift cart type: virtual, physic or combined") @resolver(class: "Aheadworks\\GiftcardGraphQl\\Model\\Resolver\\Product\\Type")
+    aw_gc_pool: Int @doc(description: "Pool ID")
+    aw_gc_description: String @doc(description: "Card description")
+    aw_gc_expire: String @doc(description: "Expires After (days)")
+    aw_gc_custom_message_fields: Int @doc(description: "Custom Message Fields")
+    aw_gc_email_templates: [awGcEmailTemplates] @doc(description: "Email Templates") @resolver(class: "Aheadworks\\GiftcardGraphQl\\Model\\Resolver\\Product\\EmailTemplateList")
+    aw_gc_amounts: [Float] @doc(description: "Amounts") @resolver(class: "Aheadworks\\GiftcardGraphQl\\Model\\Resolver\\Product\\AmountList")
+    aw_gc_allow_open_amount: Boolean @doc(description: "Allow Open Amount")
+    aw_gc_open_amount_min: Float @doc(description: "The minimum open value for gift card")
+    aw_gc_open_amount_max: Float @doc(description: "The maximum open value for gift card")
+    aw_gc_allow_delivery_date: Boolean @doc(description: "Allow Delivery Date")
+    aw_gc_days_order_delivery: Int @doc(description: "Days Between Order and Delivery Dates")
+}
+
+type awGcEmailTemplates {
+    value: String
+    name: String
+    image_url: String
+}
+
+type awGcGiftCard @doc(description: "Gift Card Information") {
+    id: Int
+    code: String @doc (description: "Gift card code")
+    type: Int @doc (description: "Gift card type (Virtual, Physical, Both")
+    created_at: String @doc (description: "Date of creation")
+    expire_at: String @doc (description: "Date of code expiration")
+    website_id: Int @doc (description: "Website ID associated with gift card")
+    balance: Float @doc (description: "Current gift card balance")
+    initial_balance: Float @doc (description: "Initial gift card balance")
+    state: Int @doc (description: "Customer State associated with gift card")
+    order_id: Int @doc (description: "ID of order with purchased gift card")
+    product_id: Int @doc (description: "ID of gift card product")
+    email_template: String
+    sender_name: String
+    sender_email: String
+    recipient_name: String
+    recipient_email: String
+    delivery_date: String @doc (description: "Gift card delivery date")
+    delivery_date_timezone: String @doc (description: "Gift card delivery date timezone")
+    email_sent: Int @doc (description: "Status of email")
+    headline: String @doc (description: "Gift card content headline")
+    message: String @doc (description: "Gift card content message")
+}
+
+type awGcGiftCardList {
+    items: [awGcGiftCard]
+}
+
+type awGcGiftCardQuotes {
+    items: [awGcGiftCardQuote]
+}
+
+type awGcGiftCardQuote {
+    id: Int
+    giftcard_id: Int
+    giftcard_code: String
+    quote_id: Int
+    giftcard_balance: Float
+    base_giftcard_balance_used: Float
+    giftcard_balance_used: Float
+    base_giftcard_amount: Float
+    giftcard_amount: Float
+    is_remove: Boolean
+    is_invalid: Boolean
+}
+
+type PageInfo {
+    page_size: Int
+    current_page: Int
+}
+
+enum awGcGiftCardTypeEnum @doc(description: "Type enumaration of gift cards") {
+    VIRTUAL
+    PHYSICAL
+    COMBINED
+}
