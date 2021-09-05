@@ -14,12 +14,45 @@
 
 //override the sub items
 //override the sub items
-$label_id = '';
-$a_href_id = '';
-$landing_page_html = '';
-$landing_page_checked_count = 0;
-//e.g mattress firmness numebrs to goup as soft
-$filter_override = $block->getFilterOverrides();
+             $label_id = '';
+             $a_href_id = '';
+/* Happy Beds Firmness */
+$filter_override['mattress_firmness']['label']['-1']['name'] = ['Soft'];
+$filter_override['mattress_firmness']['label']['0']['name'] = ['Soft'];
+$filter_override['mattress_firmness']['label']['1']['name'] = ['Soft'];
+$filter_override['mattress_firmness']['label']['2']['name'] = ['Soft'];
+
+$filter_override['mattress_firmness']['label']['3']['name'] = ['Soft', 'Soft / Medium'];
+
+$filter_override['mattress_firmness']['label']['4']['name'] = ['Soft / Medium'];
+$filter_override['mattress_firmness']['label']['5']['name'] = ['Soft / Medium'];
+$filter_override['mattress_firmness']['label']['6']['name'] = ['Soft / Medium'];
+
+$filter_override['mattress_firmness']['label']['7']['name'] = ['Soft / Medium', 'Medium'];
+
+$filter_override['mattress_firmness']['label']['8']['name'] = ['Medium'];
+$filter_override['mattress_firmness']['label']['9']['name'] = ['Medium'];
+$filter_override['mattress_firmness']['label']['10']['name'] = ['Medium'];
+$filter_override['mattress_firmness']['label']['11']['name'] = ['Medium', 'Medium / Firm'];
+
+$filter_override['mattress_firmness']['label']['12']['name'] = ['Medium / Firm'];
+$filter_override['mattress_firmness']['label']['13']['name'] = ['Medium / Firm'];
+$filter_override['mattress_firmness']['label']['14']['name'] = ['Medium / Firm'];
+$filter_override['mattress_firmness']['label']['15']['name'] = ['Medium / Firm', 'Firm'];
+
+$filter_override['mattress_firmness']['label']['16']['name'] = ['Firm'];
+$filter_override['mattress_firmness']['label']['17']['name'] = ['Firm'];
+$filter_override['mattress_firmness']['label']['18']['name'] = ['Firm'];
+$filter_override['mattress_firmness']['label']['19']['name'] = ['Firm'];
+
+$filter_override['mattress_firmness']['url']['Soft'] = 'soft';
+$filter_override['mattress_firmness']['url']['Soft \ Medium'] = 'soft_medium';
+$filter_override['mattress_firmness']['url']['Medium'] = 'medium';
+$filter_override['mattress_firmness']['url']['Medium Firm'] = 'medium_firm';
+$filter_override['mattress_firmness']['url']['Firm'] = 'firm';
+
+//http://m2.happybeds.co.uk/mattresses/orthopaedic?mattress_firmness=9088
+//http://m2.happybeds.co.uk/mattresses/orthopaedic?mattress_firmness=9078
 
 $has_wrapped = false;
 
@@ -27,16 +60,16 @@ $helper = $this->helper('Elevate\Promotions\Helper\Data');
 $show_more_excludes = $helper->getConfig('elevate_landingpages/categories/show_more_excludes');
 $show_more_excludes_exp = array_flip(explode(',', $show_more_excludes));
 
+?>
 
 
+
+
+    <?php
     $hasGroupedFilter = false;
-    
     $groupedFilter = [];
-    
-    
     $grouped_count = 0;
     foreach ($filterItems as $filterItem) {
-
         $hide_checkbox = false;
         $make_showmore = 'make_showmore';
         $attribute_code = ($filterItem->getFilter()->getRequestVar() != 'cat') ? $filterItem->getFilter()->getAttributeModel()->getAttributeCode() : 0;
@@ -103,7 +136,7 @@ $show_more_excludes_exp = array_flip(explode(',', $show_more_excludes));
 
             if ($has_rating) {
                 $filter_item_name .= '<div class="fa fa-star"></div>';
-                $filter_item_name .= '<div style="margin-left:5px;display:inline-block;"> &amp; Up</div>';
+                $filter_item_name .= '<div style="margin-left:5px;"> &amp; Up</div>';
             }
         }
 
@@ -117,8 +150,6 @@ $show_more_excludes_exp = array_flip(explode(',', $show_more_excludes));
         if ($filterItem->isSelected()) {
             $insclass = 'pinkborder lazyload';
             $checked = "checked";
-       $landing_page_checked_count ++;
-            
             $url = $filterItem->getRemoveUrl();
         }
 
@@ -200,17 +231,16 @@ $show_more_excludes_exp = array_flip(explode(',', $show_more_excludes));
                 $groupedFilter[$filter_item_name]['count'] = $grouped_count;
                 $groupedFilter[$filter_item_name]['hide_checkbox'] = $hide_checkbox;
                 $groupedFilter[$filter_item_name]['checked'] = $checked;
-           
                 continue;
             }
         } else {
-            $label_id = strtolower($filterItem->getData('entity_id')); 
-            $landing_page_html .= '<li class="ev_ln_item">';
-           
+            $label_id = strtolower($filterItem->getData('entity_id')); ?>
+          <li class="ev_ln_item">
+              <?php
               $label_class = '';
             $show_chevron = true;
             $colour_image = '';
-  $input_box = '';
+
             if ($attribute_code !== 0) {
                 $show_chevron= false;
                 if (strtolower($attribute_code) == 'filter_rating3') {
@@ -223,70 +253,47 @@ $show_more_excludes_exp = array_flip(explode(',', $show_more_excludes));
                     $colour_image =  '<img  class="colfilterimage id_' . $_id . ' ' . $insclass . '" src="/media/loader.jpg" data-src="/media/filters/colour_filters/' . str_replace(' ', '-', strtolower($filterItem->getLabel())) . '.jpg" style="
                float: left;margin-right:5px;width: 26px; cursor:pointer;">';
                 } else {
-                    $label_class = ''; 
+                    $label_class = 'checkbox__label'; ?>
 
 
 
-                   $input_box = ' <input type="checkbox" id="ev_ln_filter_'.$label_id.'" class="ev_ln_filter_check main_input" '.$checked.'>';
 
-                   
-                     
+
+                    <input type="checkbox" id="ev_ln_filter_<?= $label_id ?>" class="checkbox__input" <?= $checked; ?>>
+                      <?php
                 }
-            } 
-            $landing_page_html .= '<label for="ev_ln_filter_'.$label_id.'" style="width:100%;" class="'.$label_class.'">';
-              
-                $landing_page_html .= $input_box;
-                $landing_page_html .=  $colour_image;
-            if ($show_chevron) { 
-                $landing_page_html .= '<i class="fa fa-chevron-right"></i>';
-           } ?>
-                <?php if ($filterItem->getCount() > 0): 
-              $landing_page_html .= '<a id="ev_ln_'.$a_href_id.'" class="'.$a_href_class.'" href="'.$block->escapeUrl($url).'">';
-                  $landing_page_html .= $filter_item_name;
-              $landing_page_html .= '</a>';
-             if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): 
-                  $landing_page_html .= '<span class="ev_ln_count">
-                      ('.$filterItem->getCount().')</span>';
-                endif;
-            $landing_page_html .= '</label>';
-         else: 
-         
-              $landing_page_html .= $filterItem->getLabel();
-              
-              if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): 
-              $landing_page_html .= '<span class="ev_ln_count">'.$filterItem->getCount().'<span class="filter-count-label">';
-                      if ($filterItem->getCount() == 1): 
-                        
-                           $landing_page_html .=  __('item');
-                           
-                           else: $landing_page_html .= __('items');
-                            ?><?php endif;
-                            
-                            
-                            $landing_page_html .= '</span></span>';
-               endif; ?>
+            } ?>
+            <label for="ev_ln_filter_<?= $label_id ?>" class="ac-facet__label ac-facet__label--default <?= $label_class; ?>">
+                <?php
+                echo $colour_image;
+            if ($show_chevron) { ?>
+                <i class="fa fa-chevron-right"></i>
+            <?php } ?>
+                <?php if ($filterItem->getCount() > 0): ?>
+              <a id="ev_ln_<?= $a_href_id; ?>" class="<?=$a_href_class;?>" href="<?= $block->escapeUrl($url) ?>">
+                  <?= /* @escapeNotVerified */ $filter_item_name ?>
+              </a>
+                <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                  <span class="ev_ln_count">
+                      (<?= /* @escapeNotVerified */
+                      $filterItem->getCount() ?>)</span>
+                <?php endif; ?>
+            </label>
+          <?php else: ?>
+              <?= /* @escapeNotVerified */
+              $filterItem->getLabel() ?><?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+              <span class="ev_ln_count"><?= /* @escapeNotVerified */
+                  $filterItem->getCount() ?><span class="filter-count-label">
+                        <?php if ($filterItem->getCount() == 1): ?><?= /* @escapeNotVerified */
+                            __('item') ?><?php else: ?><?= /* @escapeNotVerified */
+                            __('items') ?><?php endif; ?></span></span>
+              <?php endif; ?>
 
-          <?php endif;
-          $landing_page_html .= '</li>';
-           
+          <?php endif; ?>
+          </li>
+            <?php
         }
     }
-    
-    echo $landing_page_html;
-    
- 
-if($landing_page_checked_count > 0){
-?>
-<script>
-    jQuery("<span>(<?php echo $landing_page_checked_count; ?>)</span>").appendTo(jQuery('.ev_ln_active_filter_count_<?= str_replace(' ', '_', $attribute_code); ?> .ev_ln_filter_name'));
- </script>
-<?
-}
-
- 
- 
- 
- 
     \Magento\Framework\Profiler::start('filter-group');
     if ($hasGroupedFilter) {
         if (!$has_wrapped) {
@@ -300,7 +307,6 @@ if($landing_page_checked_count > 0){
             $url = $values['url'];
             $count = $values['count'];
             $checked = $values['checked'];
-      
             $hide_checkbox = $values['hide_checkbox'];
             $chevron = $values['chevron']; ?>
           <li class="ev_ln_item groupedFilter">

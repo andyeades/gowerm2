@@ -23,10 +23,7 @@
                     <label>Sort these attributes by count, not by sort order</label>
                     <comment>comma seperated Attribute Codes</comment>
                 </field>
-               <field id="navigation_style" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Navigation Style</label>
-                    <source_model>Elevate\LandingPages\Model\Config\Source\NavigationStyle</source_model>
-                </field>
+
                 <field id="sort_by_count_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Sort by count type</label>
                     <source_model>Elevate\LandingPages\Model\Config\Source\IncludeExclude</source_model>

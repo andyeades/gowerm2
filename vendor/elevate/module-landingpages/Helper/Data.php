@@ -34,13 +34,6 @@ class Data extends AbstractHelper
         return $this->scopeConfig->getValue('elevate_landingpages/categories/exclude_categories', ScopeInterface::SCOPE_STORE);
     }
 
-    public function getLandingPageNavigationStyle()
-    {
-        return $this->scopeConfig->getValue('elevate_landingpages/categories/navigation_style', ScopeInterface::SCOPE_STORE);
-    }
-
-
-
     public function getShowMoreNumber()
     {
         return $this->scopeConfig->getValue('elevate_landingpages/categories/show_more_number', ScopeInterface::SCOPE_STORE);

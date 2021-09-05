@@ -3,4 +3,8 @@
     <event name="catalog_category_save_after">
         <observer name="evlp_category_save_after" instance="Elevate\LandingPages\Observer\CategorySaveAfter"/>
     </event>
+    <!-- for diffrentiate layout.xml on product basis -->
+    <event name="layout_load_before">
+        <observer name="load_custom_handler" instance="Elevate\LandingPages\Observer\LayoutLoadBefore" />
+    </event>
 </config>

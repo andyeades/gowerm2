@@ -4,13 +4,10 @@ namespace Elevate\LandingPages\Model\ResourceModel\Layer\Filter;
 
 class Attribute extends \Magento\Catalog\Model\ResourceModel\Layer\Filter\Attribute {
 
-    public function getCountx(\Magento\Catalog\Model\Layer\Filter\FilterInterface $filter)
+    public function getCount(\Magento\Catalog\Model\Layer\Filter\FilterInterface $filter)
     {
         // clone select from collection with filters
-        //$select = clone $filter->getLayer()->getProductCollection()->getSelect();
-   
-       $select = clone $filter->getLayer()->getCurrentCategory()->getProductCollection()->getSelect();
-        
+        $select = clone $filter->getLayer()->getProductCollection()->getSelect();
         // reset columns, order and limitation conditions
         $select->reset(\Magento\Framework\DB\Select::COLUMNS);
         $select->reset(\Magento\Framework\DB\Select::ORDER);
@@ -36,7 +33,7 @@ class Attribute extends \Magento\Catalog\Model\ResourceModel\Layer\Filter\Attrib
 
         return $connection->fetchPairs($select);
     }
-    public function getCount(\Magento\Catalog\Model\Layer\Filter\FilterInterface $filter)
+    public function getCountOld(\Magento\Catalog\Model\Layer\Filter\FilterInterface $filter)
     {
     
     
@@ -83,7 +80,7 @@ class Attribute extends \Magento\Catalog\Model\ResourceModel\Layer\Filter\Attrib
                 
     
 
-        $narrow_results = false;
+        $narrow_results = true;
 
 
 

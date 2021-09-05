@@ -8,7 +8,6 @@ class Attribute extends \Magento\Catalog\Model\Layer\Filter\Attribute
 {
 
 protected $_cacheHelper;
-protected $_landingpageHelper;
     protected $_appliedOptionIds;
 
     protected $_isFilter = true;
@@ -33,11 +32,10 @@ protected $linkOverrides = [];
         \Magento\Framework\Stdlib\StringUtils $string,
         \Magento\Framework\Filter\StripTags $tagFilter,
         \Elevate\LandingPages\Helper\Cache $cacheHelper,
-        \Elevate\LandingPages\Helper\Data $landingpageHelper,
         array $data = []
     ) {
         $this->_cacheHelper = $cacheHelper;
- $this->_landingpageHelper = $landingpageHelper;
+
         parent::__construct($filterItemFactory, $storeManager, $layer, $itemDataBuilder, $filterAttributeFactory, $string, $tagFilter, $data);
 
 
@@ -264,6 +262,7 @@ else{
         }
 
 
+
         return $this;
     }
     /**$tagFilter
@@ -285,21 +284,9 @@ else{
         $this->_requestVar = $attribute->getAttributeCode();
 
 
-
-
-$landingpage_horizontal = false;
- $navigation_style = $this->_landingpageHelper->getLandingPageNavigationStyle();
- 
- echo "NAV STYLE";
-if(isset($_GET['landingpage_direction']) == 'horizontal' || $navigation_style == 'horizontal'){
-$landingpage_horizontal = true;
-
-}
-
       //make the filters dissapear if one is selected // except firmness
-        if(!$landingpage_horizontal && !$attribute->getIsMultiselect() && $this->_isFilter && $attribute->getAttributeCode() != 'mattress_firmness') {
-        
-          //  return [];
+        if(!$attribute->getIsMultiselect() && $this->_isFilter && $attribute->getAttributeCode() != 'mattress_firmness') {
+            return [];
         }
 
 
@@ -339,7 +326,7 @@ $landingpage_horizontal = true;
 
         foreach ($options as $option) {
 
-   $value = $option['value'];
+
 
             if (is_array($option['value'])) {
                 continue;
@@ -347,9 +334,7 @@ $landingpage_horizontal = true;
             $optionCount = isset($optionsFacetedData[$option['value']]['count']) ? (int)$optionsFacetedData[$option['value']]['count'] : 0;
 
 
-               
-      
-            if ($optionCount > 0) {
+            if ($this->string->strlen($optionCount) && $optionCount > 0) {
                 // Check filter type
                 if ($this->getAttributeIsFilterable($attribute) == self::ATTRIBUTE_OPTIONS_ONLY_WITH_RESULTS) {
 

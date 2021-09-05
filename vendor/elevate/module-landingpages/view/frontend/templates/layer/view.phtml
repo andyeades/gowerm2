@@ -1,32 +1,36 @@
+<style>
+.ev_ln_item .filter_rating {
+
+    display: flex;
+    align-items: center;
+}
+</style>
 <?php
 
-$custom_page_title = false; //needs to be an admin setting
-
-if (!$custom_page_title) {
-    $custom_page_title = __('Filter By');
-}
-
+$custom_page_title = false;
 $enable_full_product_range = false;
-$menuDirection = 'vertical';
 
-if(isset($_GET['landingpage_direction'])){
-
-$menuDirection = $_GET['landingpage_direction'];
-}
+$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 /** @var \Elevate\LandingPages\Helper\Data $landingpages_helper */
 $landingpages_helper = $this->helper('Elevate\LandingPages\Helper\Data');
 
-//how many options to show before we show more - global setting - could be added to the attribute to make this a dynamic setting
+/** @var \Elevate\Promotions\Helper\Data $promotions_helper */
+$promotions_helper = $this->helper('Elevate\Promotions\Helper\Data');
+
 $show_more_number = $landingpages_helper->getShowMoreNumber();
 
-//why are we making this one less?
-if (!is_numeric($show_more_number)) { $show_more_number = 6; } else { $show_more_number = $show_more_number - 1; }
+if (!is_numeric($show_more_number)) {
+    $show_more_number = 6;
+} else {
+    $show_more_number = $show_more_number - 1;
+}
 
-/* Filter Open/Close Icons
-   chevrons-updown
-   plusminus
-*/   
+// Filter Open/Close
+
+// chevrons-updown
+// plusminus
+
 $filter_openclose = $landingpages_helper->getFilterOpenCloseIconType();
 
 if (strcmp($filter_openclose, 'plusminus') == 0) {
@@ -36,42 +40,14 @@ if (strcmp($filter_openclose, 'plusminus') == 0) {
     $filter_openclose_close = '<span class="evlp-filter-openclose"><i class="evlp-filter-chevron-down"></i></span>';
 }
 
+
+/** @var $block \Magento\LayeredNavigation\Block\Navigation */
+
+$menuDirection = 'vertical';
+
 ?>
 <style>
 
-.ev_ln_filter input[type="checkbox"] {
-    position: relative;
-    left: initial;
-    opacity: 1;
-}
-.ev_ln_item a {
-    color: #000;
-    font-size: 13px;
-}
-.ev_ln_filter_check {
-    margin: 0;
-    width: 21px;
-    height: 21px;
-    border-radius: 0.3125rem;
-    top: 6px;
-    margin-right: 10px;
-}
-.ev_ln_count {
-    float: right !important;
-    margin-top: 7px;
-}
-
-.ev_ln_filter_state {
-
-    display: none;
-}
-.evlp-r-ct {
-    display: none;
-}
-.ev_ln_item .filter_rating {
- 
-    align-items: center;
-}
     .expand span, .expand {
         text-align:      right;
         display:         block;
@@ -79,7 +55,11 @@ if (strcmp($filter_openclose, 'plusminus') == 0) {
         cursor:          pointer;
     }
 
+
+
     @media only screen and (max-width: 991.98px) {
+
+
         .page-products .columns {
             position: initial;
         }
@@ -134,76 +114,10 @@ if (strcmp($filter_openclose, 'plusminus') == 0) {
 
 <?php if ($menuDirection == 'horizontal') { ?>
 
-@media only screen and (min-width: 992px){
-.page-layout-2columns-left .columns .column.main {
-    width: 100%;
-    padding: 0 0 2.5rem 0;
-}
-.page-layout-2columns-left .columns .single-sidebar {
-    padding: 0 15px 0 0;
-    width: 100% !important;
-}
-.evlp-filter-openclose {
-  
-    }
-    
-    
-dt.ev_ln_filter_options_title {
-max-width: 300px;
-    border: 1px solid #2f2523;
-    color: #2f2523;
-    padding: 17px;
-    margin: 0px 13px;
-    border-radius: 7px;
-    margin: 0 10px !important;
-    }
-    .evlp-filter-openclose i.evlp-filter-chevron-down {
-    transform: rotate(0);
-    }
-ol.ev_ln_items {
-
-    width: 100%;
-
-}
-h1#page-title-heading {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 28px;
-}
-.category-view {
-    margin-bottom: 39px;
-}
-.ev_ln_filter-content {
-    width: 100%;
-}
-.single-sidebar {
-    padding: 20px 0px !important;
-}
-.ev_ln_filter-content {
-    max-width: 1440px;
-    margin: 0 auto;
-}
-dd.ev_ln_filter-options-content {
-
-    width: 100%;
-}
-.category-description {
-    text-align: center;
-    font-size: 16px;
-}
         .sidebar.sidebar-main {
             width: 100%;
         }
-dl#narrow-by-list {
-    display: flex;
-    align-items: center;
-    position: relative;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-dd.ev_ln_filter-options-content{
-z-index:20;
-}
+
         @media only screen and (min-width: 992px) {
             .page-layout-2columns-left.page-with-filter .columns .single-sidebar {
                 width: 100%;
@@ -246,17 +160,15 @@ z-index:20;
             margin-bottom:    0px;
             padding-bottom:   15px;
             position:         absolute;
-            background-color: #f7f8fb;
+            background-color: #f0f0f0;
             width:            96%;
             left:             0;
             top:              42px;
-            width: 100%;
             padding:          2%;
-                box-shadow: 0 0 1px 0 rgb(0 0 0 / 50%), 0 1px 10px 0 rgb(0 0 0 / 15%);
         }
 
         dt.ev_ln_filter_options_title {
-            
+            border-top:     1px solid #e4e4e4;
             padding-top:    15px;
             padding-bottom: 15px;
             letter-spacing: .5px;
@@ -291,9 +203,9 @@ z-index:20;
             margin:        7.5px 7.5px;
             border-radius: 6px;
         }
-        
-        }
-<?php } ?>
+<?php }
+
+$subtitle = 'Shopping Options'; ?>
 
 
     @media only screen and (max-width: 767.98px) {
@@ -374,8 +286,17 @@ z-index:20;
     }
 
 
+    <?php
+    $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+
+   ?>
 </style>
 <?php
+
+if (!$custom_page_title) {
+    $custom_page_title = __('Filter By');
+}
 
 if ($block->canShowBlock()): ?>
     <div class="ev_ln_filter">
@@ -419,6 +340,9 @@ if ($block->canShowBlock()): ?>
             <?php foreach ($block->getFilters() as $filter): ?>
             <?php if (strtolower(__($filter->getName())) != 'category') {
                 $insert_category = trim(ucwords($filter->getLayer()->getCurrentCategory()->getName()));
+                if ($insert_category == 'The Best Beds') {
+                    $insert_category = 'Beds';
+                }
                 $first_class = '';
                 if ($show_filter) {
                     $is_landing_page = $block->isLandingPage(); /*edit*/
@@ -437,7 +361,7 @@ if ($block->canShowBlock()): ?>
                 }
             }
         if (!$wrapOptions): ?>
-
+            <strong role="heading" aria-level="2" class="ev_ln_filter-subtitle"><?= /* @escapeNotVerified */__($subtitle) ?></strong>
 
             <dl class="ev_ln_filter_options" id="narrow-by-list">
                 <?php
@@ -459,8 +383,6 @@ if ($block->canShowBlock()): ?>
                     $filt_att_code = ($filter->getRequestVar() != 'cat') ? $filter->getAttributeModel()->getAttributeCode() : $filter->getRequestVar();
 
                     if ($filt_att_code) {
-                     if ($menuDirection != 'horizontal') {
-                    
                         if (!empty($filt_in)) {
                             $filt_in_exp = explode(',', $filt_in);
                             $filt_in_exp = array_flip($filt_in_exp);
@@ -472,6 +394,12 @@ if ($block->canShowBlock()): ?>
                             }
                         }
                         $filt_ex_exp = '';
+                        
+                        if($category){
+                          if ($category->getId() == '7') {
+                    $filt_ex = 'choose_mattress_filter,number_of_seats,sofa_size,sofa_mechanism,divan_size,divan_storage';
+                }
+                }
                         
                         $filt_ex_exp = explode(',', $filt_ex);
                         $break_out = false;
@@ -485,7 +413,6 @@ if ($block->canShowBlock()): ?>
                         if ($break_out) {
                             continue;
                         }
-                        }
                     }
 
                     if ($title_show_once) {
@@ -497,7 +424,7 @@ if ($block->canShowBlock()): ?>
 
                     $filter_name_lower = strtolower($filter->getName());
                     if ($filter_name_lower == 'firmness value') {
-                        $filterOutputFirm = '<dt role="heading" aria-level="3" class="ev_ln_filter_options_title ev_ln_active_filter_count_'.str_replace(' ', '_', $filt_att_code).'">Mattress Firmness '.$filter_openclose_close.'</dt>';
+                        $filterOutputFirm = '<dt role="heading" aria-level="3" class="ev_ln_filter_options_title">Mattress Firmness '.$filter_openclose_close.'</dt>';
                         $filterOutputFirm .= '<dd class="firmness_wrap ev_ln_filter-options-content ev_accordian_open">';
                         $filterOutputFirm .= '<div id="bodyweight_filter">';
                         $filterOutputFirm .= '<div id="inject_firmness"></div>';
@@ -517,11 +444,10 @@ if ($block->canShowBlock()): ?>
                                 type: 'get',
                                 cache: 'false',
                                 success: function (data) {
-                                
+                                    jQuery('#inject_firmness').html(data.html);
                                     var checkContents = setInterval(function () {
                                         if (jQuery("#inject_firmness").length > 0 && !has_run) { // Check if element has been found
                                             // There is a <p> element in here!!
-                                                jQuery('#inject_firmness').html(data.html);
                                             //jQuery('#inject_firmness').html(data.html);
                                             has_run = true;
                                         }
@@ -541,23 +467,15 @@ if ($block->canShowBlock()): ?>
                         if ($menuDirection == 'horizontal' || $accordian_count > 9) {
                             $default_accordian_state = 'ev_accordian_closed';
                         }
-                        $display_style="";
-                        
-                        if ($menuDirection == 'horizontal'){
-                         $display_style=' style="display:none;" ';
-                        
-                        }
-                        
+
                         $filter_name = $block->escapeHtml(__($filter->getName()));
                         if ($filter_name == 'filter_rating') {
                             $filter_name = 'Customer Rating';
                         } ?>
-                        <dt role="heading" aria-level="3" class="ev_ln_filter_options_title ev_ln_active_filter_count_<?= str_replace(' ', '_', $filt_att_code); ?>" >                        
-                        <span class="ev_ln_filter_name"><?= $filter_name; ?></span>
-                         
-                        <?= $filter_openclose_close; ?>
+                        <dt role="heading" aria-level="3" class="ev_ln_filter_options_title"><?= $filter_name; ?>
+                            <?= $filter_openclose_close; ?>
                         </dt>
-                        <dd class="ev_ln_filter-options-content <?= $default_accordian_state; ?>" <?= $display_style;?>><?= /* @escapeNotVerified */
+                        <dd class="ev_ln_filter-options-content <?= $default_accordian_state; ?>"><?= /* @escapeNotVerified */
                     $block->getChildBlock('renderer')->render($filter) ?></dd><?php
                     } ?><?php
                 } ?> <?php endforeach; ?> <?php if ($wrapOptions): ?>
@@ -629,9 +547,7 @@ if ($block->canShowBlock()): ?>
             var allPanels = $('.ev_ln_filter-options-content');
             var desktop = ev_checkWindowWidth();
 
-   <?php if ($menuDirection == 'horizontal') { ?>
-   
-   <?php } else { ?>
+
             if (desktop && (menu_type != 1 || !menu_type)) {
 
                 allPanels.show();
@@ -643,9 +559,8 @@ if ($block->canShowBlock()): ?>
                 menu_type = 2;
 
             }
-       
-<?php } ?> 
-}
+        }
+
         landingPagesResize();
 
         jQuery(window).on('resize', function () {
@@ -654,7 +569,6 @@ if ($block->canShowBlock()): ?>
 
 
         $('.ev_ln_filter_options_title').on('click', function (e) {
-
 
             var panelToggle = $(this).next('.ev_ln_filter-options-content');
             var allPanels = $('.ev_ln_filter-options-content').not(panelToggle);
@@ -703,11 +617,8 @@ if ($block->canShowBlock()): ?>
         });
 
 
-    })(jQuery);
-    </script><?php ?>
-
-<script type="text/javascript">
-jQuery(window).bind("pageshow", function (event) {
+    })(jQuery);</script><?php ?> <?php $current_url = $_SERVER['REQUEST_URI']; ?>
+<script type="text/javascript">jQuery(window).bind("pageshow", function (event) {
         if (event.originalEvent.persisted) {
             window.location.reload()
         }

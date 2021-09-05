@@ -98,6 +98,32 @@
                 </checkbox>
             </formElements>
         </field>
+          <field name="no_index" sortOrder="120" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="additionalInfo" xsi:type="string"><![CDATA[No Index a page]]>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>no_index</dataScope>
+                <label translate="true">No Index</label>
+                <dataType>boolean</dataType>
+                <visible>true</visible>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>checkbox</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
         <field name="canonical_url">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
