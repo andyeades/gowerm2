@@ -67,12 +67,12 @@ abstract class AbstractTransaction implements ClientInterface
         } catch (Exception $e) {
         
         
-               $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/andy_payment.log');
+               $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/andy_paymentaz.log');
 $logger = new \Zend\Log\Logger();
 $logger->addWriter($writer);
-$logger->info(print_r($e->getMessage(), true));
-
-        
+$logger->info($e->getMessage());
+$logger->info(print_r($data, true));
+     
         
             $message = __($e->getMessage() ?: 'Sorry, but something went wrong');
             $this->logger->critical($message);

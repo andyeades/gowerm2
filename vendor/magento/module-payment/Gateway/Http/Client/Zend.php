@@ -93,6 +93,14 @@ class Zend implements ClientInterface
                 ? $this->converter->convert($response->getBody())
                 : [$response->getBody()];
             $log['response'] = $result;
+            
+                         $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/andy_payment3.log');
+$logger = new \Zend\Log\Logger();
+$logger->addWriter($writer);
+$logger->info(print_r($e->getMessage(), true));
+$logger->info(print_r($result, true));  
+         
+            
         } catch (\Zend_Http_Client_Exception $e) {
             throw new \Magento\Payment\Gateway\Http\ClientException(
                 __($e->getMessage())

@@ -81,6 +81,12 @@ class Soap implements ClientInterface
                 )
                 : [$response];
 
+                       $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/andy_payment4.log');
+$logger = new \Zend\Log\Logger();
+$logger->addWriter($writer);
+$logger->info(print_r($e->getMessage(), true));
+$logger->info(print_r($result, true));  
+
             $this->logger->debug(['response' => $result]);
         } catch (\Exception $e) {
             $this->logger->debug(['trace' => $client->__getLastRequest()]);

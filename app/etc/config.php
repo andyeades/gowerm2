@@ -165,6 +165,7 @@ return [
         'Elevate_Support' => 1,
         'Elevate_Themeoptions' => 1,
         'Elevate_TrackOrder' => 1,
+        'Elevate_UpdateOrderDate' => 1,
         'Elevate_Widgets' => 1,
         'FME_Productattachments' => 1,
         'Fetchify_Fetchify' => 1,
@@ -211,7 +212,9 @@ return [
         'WebShopApps_MatrixRate' => 1,
         'WeltPixel_Backend' => 1,
         'WeltPixel_GoogleTagManager' => 1,
+        'WeltPixel_ThankYouPage' => 1,
         'Xtento_XtCore' => 1,
-        'Xtento_OrderExport' => 1
+        'Xtento_OrderExport' => 1,
+        'Yireo_CheckoutTester2' => 1
     ]
 ];

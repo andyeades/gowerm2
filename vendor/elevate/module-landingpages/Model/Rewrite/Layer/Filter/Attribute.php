@@ -8,6 +8,7 @@ class Attribute extends \Magento\Catalog\Model\Layer\Filter\Attribute
 {
 
 protected $_cacheHelper;
+protected $_landingpageHelper;
     protected $_appliedOptionIds;
 
     protected $_isFilter = true;
@@ -32,10 +33,11 @@ protected $linkOverrides = [];
         \Magento\Framework\Stdlib\StringUtils $string,
         \Magento\Framework\Filter\StripTags $tagFilter,
         \Elevate\LandingPages\Helper\Cache $cacheHelper,
+        \Elevate\LandingPages\Helper\Data $landingpageHelper,
         array $data = []
     ) {
         $this->_cacheHelper = $cacheHelper;
-
+ $this->_landingpageHelper = $landingpageHelper;
         parent::__construct($filterItemFactory, $storeManager, $layer, $itemDataBuilder, $filterAttributeFactory, $string, $tagFilter, $data);
 
 
@@ -286,8 +288,10 @@ else{
 
 
 $landingpage_horizontal = false;
-
-if(isset($_GET['landingpage_direction']) == 'horizontal'){
+ $navigation_style = $this->_landingpageHelper->getLandingPageNavigationStyle();
+ 
+ echo "NAV STYLE";
+if(isset($_GET['landingpage_direction']) == 'horizontal' || $navigation_style == 'horizontal'){
 $landingpage_horizontal = true;
 
 }

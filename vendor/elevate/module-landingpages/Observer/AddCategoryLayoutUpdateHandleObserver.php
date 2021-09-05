@@ -9,6 +9,7 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Layout as Layout;
 use Magento\Framework\View\Layout\ProcessorInterface as LayoutProcessor;
+
 /**
  *  AddCategoryLayoutUpdateHandleObserver
  */
@@ -25,13 +26,27 @@ class AddCategoryLayoutUpdateHandleObserver implements ObserverInterface
      * @var Registry
      */
     private $registry;
+    
+    /**
+     * @var Registry
+     */
+    protected $_landingpageHelper;    
+    
     /**
      * @param Registry $registry
      */
-    public function __construct(Registry $registry)
+     
+    public function __construct(
+    Registry $registry,
+        \Elevate\LandingPages\Helper\Data $landingpageHelper
+    )
     {
-        $this->registry = $registry;
+        $this->_landingpageHelper = $landingpageHelper;
+    $this->registry = $registry;
     }
+         
+     
+
     /**
      * @param EventObserver $observer
      *
@@ -40,8 +55,10 @@ class AddCategoryLayoutUpdateHandleObserver implements ObserverInterface
     public function execute(EventObserver $observer)
     {
 
- 
-        
+
+
+ $navigation_style = $this->_landingpageHelper->getLandingPageNavigationStyle();
+     
         /** @var Event $event */
         $event = $observer->getEvent();
         $actionName = $event->getData('full_action_name');
@@ -58,7 +75,7 @@ class AddCategoryLayoutUpdateHandleObserver implements ObserverInterface
             // check if Category Display Mode is "Mixed"
 
 
-if(isset($_GET['landingpage_direction'])){
+if(isset($_GET['landingpage_direction']) || $navigation_style == 'horizontal'){
 
              $layoutUpdate->addHandle('elevate_landingpages_horizontal');
 }

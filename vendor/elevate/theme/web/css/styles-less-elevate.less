@@ -1,0 +1,37 @@
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+//
+//  Blank theme mobile styles
+//  _____________________________________________
+
+//  These mobile styles are mandatory and will be used as basis according to the mobile first design
+@import 'source/lib/_lib.less'; // Global lib
+@import 'source/_variables.less';
+
+.test-alpha {
+  color: red;
+}
+
+//
+//  Magento Import instructions
+//  ---------------------------------------------
+
+//@magento_import 'source/_module-elevate.less'; // Theme modules
+
+//
+//  Media queries collector
+//  ---------------------------------------------
+
+@import 'source/lib/_responsive.less';
+
+@media-target: 'mobile'; // Sets target device for this file
+
+//
+//  Global variables override
+//  ---------------------------------------------
+
+@import 'source/_theme.less';
+
